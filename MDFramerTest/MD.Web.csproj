@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -289,10 +290,6 @@
     <ProjectReference Include="..\MD.Services\MD.Services.csproj">
       <Project>{536170e7-6450-4437-86d2-c59d623f6a32}</Project>
       <Name>MD.Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MD.Web.Frameworker\MD.Web.Frameworker.csproj">
-      <Project>{5ab661fe-e69b-42a1-b9d1-20880b1b2d89}</Project>
-      <Name>MD.Web.Frameworker</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
