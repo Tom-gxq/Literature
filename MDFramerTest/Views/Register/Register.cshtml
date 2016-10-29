@@ -1,0 +1,86 @@
+﻿@model MD.Core.DomainModel.Account
+@{
+    ViewBag.Title = "注册";
+}
+
+<h2>@ViewBag.Title。</h2>
+
+@using (Html.BeginForm("", "", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>创建新帐户。</h4>
+    <hr />
+    @Html.ValidationSummary()
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" class="btn btn-default" value="注册" id="Save" name="Save" />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+
+         $(document).ready(function () {
+
+             $("#Save").click(function () {
+
+                 var person = new Object();
+
+                 person.Email = $('#Email').val();
+
+                 person.Password = $('#Password').val();
+                 person.ConfirmPassword = $('#ConfirmPassword').val();
+
+                 $.ajax({
+
+                     url: 'http://localhost:16717/api/UserAcount/Register',
+
+                     type: 'POST',
+
+                     dataType: 'json',
+
+                     data: person,
+
+                     success: function (data, textStatus, xhr) {
+                         alert(data);
+                         if (data == "注册成功")
+                         {
+                             window.location.href = "/Account/Login";
+                         }
+                     },
+
+                     error: function (xhr, textStatus, errorThrown) {
+
+                         console.log('Error in Operation');
+
+                     }
+
+                 });
+
+             });
+
+         });
+
+</script>  
+}

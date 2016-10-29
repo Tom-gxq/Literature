@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6839EAFC-9DF5-4C48-9A5C-199EA155F30E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Lib.Web.Api</RootNamespace>
+    <AssemblyName>Lib.Web.Api</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\Startup\WebApiConfigurationExtensions.cs" />
+    <Compile Include="WebApi\Configuration\IWebApiModuleConfiguration.cs" />
+    <Compile Include="WebApi\Controllers\ApiControllerConventionalRegistrar.cs" />
+    <Compile Include="WebApi\Controllers\Dynamic\Builders\ApiControllerActionBuilder.cs" />
+    <Compile Include="WebApi\Controllers\Dynamic\Builders\ApiControllerBuilder.cs" />
+    <Compile Include="WebApi\Controllers\Dynamic\Builders\BatchApiControllerBuilder.cs" />
+    <Compile Include="WebApi\Controllers\Dynamic\Builders\DynamicApiControllerActionHelper.cs" />
+    <Compile Include="WebApi\Controllers\Dynamic\Builders\DynamicApiControllerBuilder.cs" />
+    <Compile Include="WebApi\Controllers\Dynamic\Builders\DynamicApiServiceNameHelper.cs" />
+    <Compile Include="WebApi\Controllers\Dynamic\Builders\DynamicApiVerbHelper.cs" />
+    <Compile Include="WebApi\Controllers\Dynamic\Builders\IApiControllerActionBuilder.cs" />
+    <Compile Include="WebApi\Controllers\Dynamic\Builders\IApiControllerBuilder.cs" />
+    <Compile Include="WebApi\Controllers\Dynamic\Builders\IBatchApiControllerBuilder.cs" />
+    <Compile Include="WebApi\Controllers\Dynamic\DynamicApiController.cs" />
+    <Compile Include="WebApi\Controllers\Dynamic\DynamicApiControllerInfo.cs" />
+    <Compile Include="WebApi\Controllers\Dynamic\DynamicApiControllerManager.cs" />
+    <Compile Include="WebApi\Controllers\Dynamic\DynamicApiMethodInfo.cs" />
+    <Compile Include="WebApi\Controllers\Dynamic\DynamicApiRouteConfig.cs" />
+    <Compile Include="WebApi\Controllers\Dynamic\Formatters\PlainTextFormatter.cs" />
+    <Compile Include="WebApi\Controllers\Dynamic\IDynamicApiController.cs" />
+    <Compile Include="WebApi\Controllers\Dynamic\Interceptors\IInterceptor.cs" />
+    <Compile Include="WebApi\Controllers\Dynamic\Interceptors\IInvocation.cs" />
+    <Compile Include="WebApi\Controllers\Dynamic\Interceptors\LibDynamicApiControllerInterceptor.cs" />
+    <Compile Include="WebApi\Controllers\Dynamic\Selectors\DyanamicHttpActionDescriptor.cs" />
+    <Compile Include="WebApi\Controllers\Dynamic\Selectors\DynamicHttpControllerDescriptor.cs" />
+    <Compile Include="WebApi\Controllers\Dynamic\Selectors\LibApiControllerActionSelector.cs" />
+    <Compile Include="WebApi\Controllers\Dynamic\Selectors\LibHttpControllerSelector.cs" />
+    <Compile Include="WebApi\Controllers\Filters\LibExceptionFilterAttribute.cs" />
+    <Compile Include="WebApi\Controllers\LibApiController.cs" />
+    <Compile Include="WebApi\Controllers\LibControllerActivator.cs" />
+    <Compile Include="WebApi\WebApiModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lib.Web\Lib.Web.csproj">
+      <Project>{ca36dba3-aa98-4b68-90f8-bc893582225e}</Project>
+      <Name>Lib.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibMain\LibMain.csproj">
+      <Project>{de914158-db1a-4060-a305-e867db9ce497}</Project>
+      <Name>LibMain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="WebApi\Authorization\" />
+    <Folder Include="WebApi\Client\" />
+    <Folder Include="WebApi\Runtime\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

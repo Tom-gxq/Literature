@@ -1,0 +1,13 @@
+D:\Project\LiteratureSite\LibMain\obj\Debug\LibMain.csprojResolveAssemblyReference.cache
+D:\Project\LiteratureSite\LibMain\bin\Debug\LibMain.dll
+D:\Project\LiteratureSite\LibMain\bin\Debug\LibMain.pdb
+D:\Project\LiteratureSite\LibMain\bin\Debug\Autofac.dll
+D:\Project\LiteratureSite\LibMain\bin\Debug\Autofac.xml
+D:\Project\LiteratureSite\LibMain\obj\Debug\LibMain.dll
+D:\Project\LiteratureSite\LibMain\obj\Debug\LibMain.pdb
+D:\项目构建\MD\LiteratureSite\LibMain\bin\Debug\LibMain.dll
+D:\项目构建\MD\LiteratureSite\LibMain\bin\Debug\LibMain.pdb
+D:\项目构建\MD\LiteratureSite\LibMain\bin\Debug\Autofac.dll
+D:\项目构建\MD\LiteratureSite\LibMain\bin\Debug\Autofac.xml
+D:\项目构建\MD\LiteratureSite\LibMain\obj\Debug\LibMain.dll
+D:\项目构建\MD\LiteratureSite\LibMain\obj\Debug\LibMain.pdb
