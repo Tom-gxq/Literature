@@ -13,6 +13,8 @@ namespace LibMain.Core
     public interface IContainer:System.IDisposable
     {
         IContainer Install(params IInstaller[] installers);
+        bool IsRegistered(Type type);
+        bool IsRegistered<TType>();
         //
         // 摘要: 
         //     Registers the components with the Castle.Windsor.IWindsorContainer. The instances
@@ -31,12 +33,14 @@ namespace LibMain.Core
         // 返回结果: 
         //     The container.
         IContainer Register<T>(DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton) where T : class;
+        IContainer RegisterInstance<TType, TImpl>(TImpl instance, DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton) where TImpl : class, TType;
         IContainer Register(Type type, DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton);
         IContainer Register<TType, TImpl>(DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton)
             where TType : class
             where TImpl : class, TType;
         IContainer Register(Type type, Type impl, DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton);
         IContainer RegisterAssemblyTypes<T>(Assembly assembly, DependencyLifeStyle lifeStyle);
+        IContainer RegisterIntecptor<T1, T2>();
         //
         // 摘要: 
         //     Releases a component instance

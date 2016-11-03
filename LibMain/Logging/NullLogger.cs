@@ -14,6 +14,10 @@ namespace LibMain.Logging
     {
         public static readonly NullLogger Instance;
 
+        static NullLogger()
+        {
+            Instance = new NullLogger();
+        }
         public NullLogger()
         {
 

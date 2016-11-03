@@ -1,0 +1,5 @@
+D:\项目构建\MD\Literature\Demo.Core\bin\Debug\Demo.Core.dll
+D:\项目构建\MD\Literature\Demo.Core\bin\Debug\Demo.Core.pdb
+D:\项目构建\MD\Literature\Demo.Core\obj\Debug\Demo.Core.dll
+D:\项目构建\MD\Literature\Demo.Core\obj\Debug\Demo.Core.pdb
+D:\项目构建\MD\Literature\Demo.Core\obj\Debug\Demo.Core.csprojResolveAssemblyReference.cache

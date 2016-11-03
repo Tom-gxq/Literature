@@ -1,4 +1,5 @@
-﻿using LibMain.Dependency;
+﻿using LibMain.Configuration.Startup;
+using LibMain.Dependency;
 using LibMain.Logging;
 using System;
 using System.Collections.Generic;
@@ -57,13 +58,13 @@ namespace LibMain.Modules
             //Register to IOC container.
             foreach (var moduleType in moduleTypes)
             {
-                if (!CustomBaseModule.IsAbpModule(moduleType))
+                if (!Module.IsAbpModule(moduleType))
                 {
                     throw new Exception("This type is not an ABP module: " + moduleType.AssemblyQualifiedName);
                 }
 
                 if (!_iocManager.IsRegistered(moduleType))
-                {
+                {                    
                     _iocManager.Register(moduleType);
                 }
             }
@@ -71,12 +72,12 @@ namespace LibMain.Modules
             //Add to module collection
             foreach (var moduleType in moduleTypes)
             {
-                var moduleObject = (CustomBaseModule)_iocManager.Resolve(moduleType);
+                var moduleObject = (Module)_iocManager.Resolve(moduleType);
 
                 moduleObject.IocManager = _iocManager;
                 moduleObject.Configuration = _iocManager.Resolve<IStartupConfiguration>();
 
-                _modules.Add(new AbpModuleInfo(moduleObject));
+                _modules.Add(new ModuleInfo(moduleObject));
 
                 Logger.DebugFormat("Loaded module: " + moduleType.AssemblyQualifiedName);
             }
@@ -90,7 +91,7 @@ namespace LibMain.Modules
 
         private void EnsureKernelModuleToBeFirst()
         {
-            var kernelModuleIndex = _modules.FindIndex(m => m.Type == typeof(AbpKernelModule));
+            var kernelModuleIndex = _modules.FindIndex(m => m.Type == typeof(KernelModule));
             if (kernelModuleIndex > 0)
             {
                 var kernelModule = _modules[kernelModuleIndex];
@@ -115,7 +116,7 @@ namespace LibMain.Modules
                 }
 
                 //Set dependencies for defined DependsOnAttribute attribute(s).
-                foreach (var dependedModuleType in CustomBaseModule.FindDependedModuleTypes(moduleInfo.Type))
+                foreach (var dependedModuleType in Module.FindDependedModuleTypes(moduleInfo.Type))
                 {
                     var dependedModuleInfo = _modules.FirstOrDefault(m => m.Type == dependedModuleType);
                     if (dependedModuleInfo == null)
@@ -144,7 +145,7 @@ namespace LibMain.Modules
 
         private static void FillDependedModules(Type module, ICollection<Type> allModules)
         {
-            foreach (var dependedModule in CustomBaseModule.FindDependedModuleTypes(module))
+            foreach (var dependedModule in Module.FindDependedModuleTypes(module))
             {
                 if (!allModules.Contains(dependedModule))
                 {

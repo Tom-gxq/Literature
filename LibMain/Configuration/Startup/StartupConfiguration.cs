@@ -12,7 +12,10 @@ namespace LibMain.Configuration.Startup
     {
         public IIocManager IocManager { get; private set; }
 
-        
+        /// <summary>
+        /// Used to set localization configuration.
+        /// </summary>
+        public ILocalizationConfiguration Localization { get; private set; }
 
         /// <summary>
         /// Gets/sets default connection string used by ORM module.
@@ -42,6 +45,7 @@ namespace LibMain.Configuration.Startup
 
         public void Initialize()
         {
+            Localization = IocManager.Resolve<ILocalizationConfiguration>();
             Modules = IocManager.Resolve<IModuleConfigurations>();
             UnitOfWork = IocManager.Resolve<IUnitOfWorkDefaultOptions>();
         }

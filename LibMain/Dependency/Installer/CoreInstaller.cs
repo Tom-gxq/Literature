@@ -15,12 +15,13 @@ namespace LibMain.Dependency.Installer
     {
         public void Install(IContainer container)
         {
-            container.Register<IUnitOfWorkDefaultOptions, UnitOfWorkDefaultOptions>(DependencyLifeStyle.Singleton);
-            container.Register<IModuleConfigurations, ModuleConfigurations>(DependencyLifeStyle.Singleton);
-            container.Register<IStartupConfiguration, StartupConfiguration>(DependencyLifeStyle.Singleton);
             container.Register<ITypeFinder, TypeFinder>(DependencyLifeStyle.Singleton);
+            container.Register<ILocalizationConfiguration, LocalizationConfiguration>(DependencyLifeStyle.Singleton);
             container.Register<IModuleFinder, DefaultModuleFinder>(DependencyLifeStyle.Singleton);
-            container.Register<IModuleManager>(DependencyLifeStyle.Singleton);
+            container.Register<IUnitOfWorkDefaultOptions, UnitOfWorkDefaultOptions>(DependencyLifeStyle.Singleton);
+            container.Register<IStartupConfiguration, StartupConfiguration>(DependencyLifeStyle.Singleton);
+            container.Register<IModuleConfigurations, ModuleConfigurations>(DependencyLifeStyle.Singleton);
+            container.Register<IModuleManager, ModuleManager>(DependencyLifeStyle.Singleton);
         }
     }
 }

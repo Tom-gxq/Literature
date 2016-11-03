@@ -22,7 +22,7 @@ namespace LibMain.Modules
         /// <summary>
         /// Instance of the module.
         /// </summary>
-        public CustomBaseModule Instance { get; private set; }
+        public Module Instance { get; private set; }
 
         /// <summary>
         /// All dependent modules of this module.
@@ -33,7 +33,7 @@ namespace LibMain.Modules
         /// Creates a new AbpModuleInfo object.
         /// </summary>
         /// <param name="instance"></param>
-        public ModuleInfo(CustomBaseModule instance)
+        public ModuleInfo(Module instance)
         {
             Dependencies = new List<ModuleInfo>();
             Type = instance.GetType();

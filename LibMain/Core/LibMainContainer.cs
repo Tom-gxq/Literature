@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Core;
+using Autofac.Extras.DynamicProxy2;
 using LibMain.Dependency;
 using System;
 using System.Collections;
@@ -13,13 +14,11 @@ namespace LibMain.Core
 {
     public class LibMainContainer : IContainer
     {
-        private Autofac.IContainer container;
-        private ContainerBuilder buider;
-
+        private Autofac.IContainer container;        
         public LibMainContainer()
         {
-            buider = new ContainerBuilder();
-            container = buider.Build();
+            var buider = new ContainerBuilder();
+            this.container = buider.Build();
         }
 
         public IContainer Install(params IInstaller[] installers)
@@ -31,8 +30,33 @@ namespace LibMain.Core
             return this;
         }
 
+        public bool IsRegistered(Type type)
+        {
+            if(this.container != null)
+            {
+                return this.container.IsRegistered(type);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool IsRegistered<TType>()
+        {
+            if (this.container != null)
+            {
+                return this.container.IsRegistered<TType>();
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public IContainer Register<T>(DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton) where T : class
         {
+            var buider = new ContainerBuilder();
             switch (lifeStyle)
             {
                 case DependencyLifeStyle.Transient:
@@ -42,12 +66,23 @@ namespace LibMain.Core
                     buider.RegisterType<T>().SingleInstance();
                     break;
             }
-            container = buider.Build();
+            buider.Update(this.container);
+            return this;
+        }
+
+        public IContainer RegisterIntecptor<T1,T2>()
+        {
+            var buider = new ContainerBuilder();
+            buider.RegisterType(typeof(T1)).EnableInterfaceInterceptors().InterceptedBy(typeof(T2));
+            buider.RegisterType(typeof(T1));
+            buider.RegisterType(typeof(T2));
+            buider.Update(this.container);
             return this;
         }
 
         public IContainer RegisterAssemblyTypes<T>(Assembly assemblies, DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton)
         {
+            var buider = new ContainerBuilder();
             switch (lifeStyle)
             {
                 case DependencyLifeStyle.Transient:
@@ -57,13 +92,13 @@ namespace LibMain.Core
                     buider.RegisterAssemblyTypes(assemblies).As<T>().SingleInstance();
                     break;
             }
-            
-            container = buider.Build();
+            buider.Update(this.container);
             return this;
         }
 
         public IContainer Register(Type type ,DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton)
         {
+            var buider = new ContainerBuilder();
             switch (lifeStyle)
             {
                 case DependencyLifeStyle.Transient:
@@ -73,7 +108,7 @@ namespace LibMain.Core
                     buider.RegisterType(type).SingleInstance();
                     break;
             }
-            container = buider.Build();
+            buider.Update(this.container);
             return this;
         }
 
@@ -81,6 +116,7 @@ namespace LibMain.Core
             where TType : class
             where TImpl : class, TType
         {
+            var buider = new ContainerBuilder();
             switch (lifeStyle)
             {
                 case DependencyLifeStyle.Transient:
@@ -90,12 +126,34 @@ namespace LibMain.Core
                     buider.RegisterType<TImpl>().As<TType>().SingleInstance();
                     break;
             }
-            container = buider.Build();
+            buider.Update(this.container);
+            var obj = this.container.Resolve<TType>();
+            this.container.InjectUnsetProperties(obj);
+            return this;
+        }
+        
+        public IContainer RegisterInstance<TType, TImpl>(TImpl instance, DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton)
+            where TImpl : class, TType
+        {
+            var buider = new ContainerBuilder();
+            switch (lifeStyle)
+            {
+                case DependencyLifeStyle.Transient:
+                    buider.RegisterInstance<TImpl>(instance).As<TType>().InstancePerLifetimeScope();
+                    break;
+                case DependencyLifeStyle.Singleton:
+                    buider.RegisterInstance<TImpl>(instance).As<TType>().SingleInstance();
+                    break;
+            }
+            buider.Update(this.container);
+            var obj = this.container.Resolve<TType>();
+            this.container.InjectUnsetProperties(obj);
             return this;
         }
 
         public IContainer Register(Type type, Type impl, DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton)
         {
+            var buider = new ContainerBuilder();
             switch (lifeStyle)
             {
                 case DependencyLifeStyle.Transient:
@@ -105,7 +163,7 @@ namespace LibMain.Core
                     buider.RegisterType(impl).SingleInstance();
                     break;
             }
-            container = buider.Build();
+            buider.Update(this.container);
             return this;
         }
 
@@ -116,7 +174,14 @@ namespace LibMain.Core
 
         public T Resolve<T>()
         {
-            return container.Resolve<T>();
+            try
+            {
+                return container.Resolve<T>();
+            }
+            catch(Exception ex)
+            {
+                return default(T);
+            }
         }
 
         public T Resolve<T>(string key)
@@ -125,7 +190,14 @@ namespace LibMain.Core
         }
         public object Resolve(Type service)
         {
-            return container.Resolve(service);
+            try
+            {
+                return container.Resolve(service);
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
         }
         public object Resolve(string key, Type service)
         {
@@ -167,7 +239,6 @@ namespace LibMain.Core
         public void Dispose()
         {
             container.Dispose();
-            buider = null;
             container = null;
         }
     }

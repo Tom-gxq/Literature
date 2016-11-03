@@ -43,7 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Web\Configuratio\ILibWebModuleConfiguration.cs" />
+    <Compile Include="Web\Configuratio\LibWebModuleConfiguration.cs" />
     <Compile Include="Web\HttpVerb.cs" />
+    <Compile Include="Web\LibWebModule.cs" />
     <Compile Include="Web\Localization\LibWebLocalizedMessages.cs" />
     <Compile Include="Web\Models\AjaxResponse.cs" />
     <Compile Include="Web\Models\AjaxResponseOfTResult.cs" />
@@ -63,7 +65,13 @@
       <Name>LibMain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Web\Localization\LibWebXmlSource\LibWeb-tr.xml" />
+    <Content Include="Web\Localization\LibWebXmlSource\LibWeb.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

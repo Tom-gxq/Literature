@@ -49,7 +49,7 @@ namespace LibMain
         {
             IocManager.IocContainer.Install(new CoreInstaller());
 
-            IocManager.Resolve<StartupConfiguration>().Initialize();
+            ((StartupConfiguration)IocManager.Resolve<IStartupConfiguration>()).Initialize();
 
             _moduleManager = IocManager.Resolve<IModuleManager>();
             _moduleManager.InitializeModules();

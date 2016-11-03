@@ -1,0 +1,16 @@
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\Demo.Application.dll
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\Demo.Application.pdb
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\Demo.Core.dll
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\LibMain.dll
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\Autofac.dll
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\Demo.Core.pdb
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\LibMain.pdb
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\Autofac.xml
+D:\项目构建\MD\Literature\Demo.Application\obj\Debug\Demo.Application.csprojResolveAssemblyReference.cache
+D:\项目构建\MD\Literature\Demo.Application\obj\Debug\Demo.Application.dll
+D:\项目构建\MD\Literature\Demo.Application\obj\Debug\Demo.Application.pdb
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\System.Collections.Immutable.dll
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\System.Collections.Immutable.xml
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\Demo.Application.dll.config
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\Autofac.Extras.DynamicProxy2.dll
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\Autofac.Extras.DynamicProxy2.xml

@@ -14,10 +14,15 @@ namespace LibMain.Dependency
         public void RegisterAssembly(IConventionalRegistrationContext context)
         {
             //Transient
-            context.IocManager.IocContainer.RegisterAssemblyTypes<ITransientDependency>(context.Assembly, DependencyLifeStyle.Transient);
+            var typeArr = context.Assembly.GetTypes().Where(x => x.GetInterfaces().Contains(typeof(ITransientDependency))).ToArray();
+            foreach(var type in typeArr)
+            {
+                context.IocManager.IocContainer.Register(type);
+            }
+            //context.IocManager.IocContainer.RegisterAssemblyTypes<ITransientDependency>(context.Assembly, DependencyLifeStyle.Transient);
 
             //Singleton
-            context.IocManager.IocContainer.RegisterAssemblyTypes<ITransientDependency>(context.Assembly, DependencyLifeStyle.Singleton);
+            context.IocManager.IocContainer.RegisterAssemblyTypes<ISingletonDependency>(context.Assembly, DependencyLifeStyle.Singleton);
 
             //Windsor Interceptors
             //context.IocManager.IocContainer.Register(

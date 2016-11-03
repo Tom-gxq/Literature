@@ -18,7 +18,7 @@ namespace LibMain.Modules
 
         public ICollection<Type> FindAll()
         {
-            return _typeFinder.Find(CustomBaseModule.IsAbpModule).ToList();
+            return _typeFinder.Find(Module.IsAbpModule).ToList();
         }
     }
 }

@@ -20,7 +20,7 @@ using System.Web.Http.Dispatcher;
 namespace Lib.Web.Api
 {
 
-    [DependsOn(typeof(WebApiModule))]
+    [DependsOn(typeof(LibWebModule))]
     public class WebApiModule: LibMain.Modules.Module
     {
         /// <inheritdoc/>

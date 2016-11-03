@@ -22,6 +22,7 @@ namespace LibMain.Dependency
         /// <summary>
         /// Reference to the Castle Windsor Container.
         /// </summary>
+        private Core.IContainer _iocContainer;
         public Core.IContainer IocContainer { get; private set; }
 
         /// <summary>
@@ -31,7 +32,7 @@ namespace LibMain.Dependency
 
         static IocManager()
         {
-            Instance = new IocManager();
+            Instance = new IocManager();            
         }
 
         /// <summary>
@@ -39,17 +40,23 @@ namespace LibMain.Dependency
         /// Normally, you don't directly instantiate an <see cref="IocManager"/>.
         /// This may be useful for test purposes.
         /// </summary>
-        public IocManager()
+        private IocManager()
         {
-            IocContainer = new LibMainContainer();
+            if (IocContainer == null)
+            {
+                IocContainer = new LibMainContainer();
+            }
 
+            if (_conventionalRegistrars == null)
+            {
+                _conventionalRegistrars = new List<IConventionalDependencyRegistrar>();
+            }
             //Register self!
-            Register<IocManager>( DependencyLifeStyle.Transient);
-            Register<IIocManager,IocManager>(DependencyLifeStyle.Transient);
-            Register<IIocRegistrar, IocManager>(DependencyLifeStyle.Transient);
-            Register<IIocResolver, IocManager>(DependencyLifeStyle.Transient);
+            //Instance.Register<IocManager>( DependencyLifeStyle.Transient);
+            RegisterInstance<IIocManager, IocManager>(this,DependencyLifeStyle.Singleton);
+            //Instance.Register<IIocRegistrar, IocManager>(DependencyLifeStyle.Transient);
+            //Instance.Register<IIocResolver, IocManager>(DependencyLifeStyle.Transient);
 
-            _conventionalRegistrars = new List<IConventionalDependencyRegistrar>();
         }
 
         /// <summary>
@@ -127,6 +134,12 @@ namespace LibMain.Dependency
             IocContainer.Register<TType, TImpl>(lifeStyle);
         }
 
+        public void RegisterInstance<TType, TImpl>(TImpl instance, DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton)
+            where TType : class
+            where TImpl : class, TType
+        {
+            IocContainer.RegisterInstance<TType, TImpl>(instance,lifeStyle);
+        }
         /// <summary>
         /// Registers a class as self registration.
         /// </summary>
@@ -144,7 +157,7 @@ namespace LibMain.Dependency
         /// <param name="type">Type to check</param>
         public bool IsRegistered(Type type)
         {
-            return (IocContainer.Resolve(type) == null);
+            return IocContainer.IsRegistered(type);
         }
 
         /// <summary>
@@ -153,7 +166,7 @@ namespace LibMain.Dependency
         /// <typeparam name="TType">Type to check</typeparam>
         public bool IsRegistered<TType>()
         {
-            return (IocContainer.Resolve<TType>() == null);
+            return IocContainer.IsRegistered<TType>();
         }
 
         /// <summary>

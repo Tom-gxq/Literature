@@ -30,7 +30,10 @@ namespace LibMain.Dependency
 
         public void Dispose()
         {
-            _iocResolver.Release(Object);
+            if (Object != null)
+            {
+                _iocResolver.Release(Object);
+            }
         }
     }
 }

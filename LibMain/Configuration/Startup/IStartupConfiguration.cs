@@ -15,7 +15,10 @@ namespace LibMain.Configuration.Startup
         /// </summary>
         IIocManager IocManager { get; }
 
-       
+        /// <summary>
+        /// Used to set localization configuration.
+        /// </summary>
+        ILocalizationConfiguration Localization { get; }
 
         /// <summary>
         /// Gets/sets default connection string used by ORM module.
