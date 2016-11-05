@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Castle.DynamicProxy;
+using Castle.MicroKernel.Registration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,24 +16,33 @@ namespace LibMain.Dependency
         public void RegisterAssembly(IConventionalRegistrationContext context)
         {
             //Transient
-            var typeArr = context.Assembly.GetTypes().Where(x => x.GetInterfaces().Contains(typeof(ITransientDependency))).ToArray();
-            foreach(var type in typeArr)
-            {
-                context.IocManager.IocContainer.Register(type);
-            }
-            //context.IocManager.IocContainer.RegisterAssemblyTypes<ITransientDependency>(context.Assembly, DependencyLifeStyle.Transient);
+            context.IocManager.IocContainer.Register(
+                Classes.FromAssembly(context.Assembly)
+                    .IncludeNonPublicTypes()
+                    .BasedOn<ITransientDependency>()
+                    .WithService.Self()
+                    .WithService.DefaultInterfaces()
+                    .LifestyleTransient()
+                );
 
             //Singleton
-            context.IocManager.IocContainer.RegisterAssemblyTypes<ISingletonDependency>(context.Assembly, DependencyLifeStyle.Singleton);
+            context.IocManager.IocContainer.Register(
+                Classes.FromAssembly(context.Assembly)
+                    .IncludeNonPublicTypes()
+                    .BasedOn<ISingletonDependency>()
+                    .WithService.Self()
+                    .WithService.DefaultInterfaces()
+                    .LifestyleSingleton()
+                );
 
             //Windsor Interceptors
-            //context.IocManager.IocContainer.Register(
-            //    Classes.FromAssembly(context.Assembly)
-            //        .IncludeNonPublicTypes()
-            //        .BasedOn<IInterceptor>()
-            //        .WithService.Self()
-            //        .LifestyleTransient()
-            //    );
+            context.IocManager.IocContainer.Register(
+                Classes.FromAssembly(context.Assembly)
+                    .IncludeNonPublicTypes()
+                    .BasedOn<IInterceptor>()
+                    .WithService.Self()
+                    .LifestyleTransient()
+                );
         }
     }
 }

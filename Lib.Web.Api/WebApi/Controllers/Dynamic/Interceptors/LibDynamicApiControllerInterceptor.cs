@@ -29,7 +29,7 @@ namespace Lib.Web.Api.WebApi.Controllers.Dynamic.Interceptors
         /// Intercepts method calls of dynamic api controller
         /// </summary>
         /// <param name="invocation">Method invocation information</param>
-        public void Intercept(IInvocation invocation)
+        public void Intercept(Castle.DynamicProxy.IInvocation invocation)
         {
             //If method call is for generic type (T)...
             if (DynamicApiControllerActionHelper.IsMethodOfType(invocation.Method, typeof(T)))

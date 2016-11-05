@@ -1,4 +1,5 @@
-﻿using LibMain.Dependency;
+﻿using Castle.MicroKernel.Registration;
+using LibMain.Dependency;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +16,11 @@ namespace Lib.WebApi.Controllers
     {
         public void RegisterAssembly(IConventionalRegistrationContext context)
         {
-            context.IocManager.IocContainer
-                .RegisterAssemblyTypes<ApiController>(context.Assembly, DependencyLifeStyle.Transient);
+            context.IocManager.IocContainer.Register(
+                Classes.FromAssembly(context.Assembly)
+                    .BasedOn<ApiController>()
+                    .LifestyleTransient()
+                );
         }
     }
 }

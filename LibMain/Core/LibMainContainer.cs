@@ -1,6 +1,5 @@
-﻿using Autofac;
-using Autofac.Core;
-using Autofac.Extras.DynamicProxy2;
+﻿using Castle.MicroKernel.Registration;
+using Castle.Windsor;
 using LibMain.Dependency;
 using System;
 using System.Collections;
@@ -14,27 +13,23 @@ namespace LibMain.Core
 {
     public class LibMainContainer : IContainer
     {
-        private Autofac.IContainer container;        
+        private IWindsorContainer container;        
         public LibMainContainer()
         {
-            var buider = new ContainerBuilder();
-            this.container = buider.Build();
+            container = new WindsorContainer();
         }
 
         public IContainer Install(params IInstaller[] installers)
         {
-            foreach(var item in installers)
-            {
-                item.Install(this);
-            }
+            container.Install(installers);
             return this;
         }
 
         public bool IsRegistered(Type type)
         {
-            if(this.container != null)
+            if (this.container != null)
             {
-                return this.container.IsRegistered(type);
+                return this.container.Kernel.HasComponent(type);
             }
             else
             {
@@ -46,69 +41,28 @@ namespace LibMain.Core
         {
             if (this.container != null)
             {
-                return this.container.IsRegistered<TType>();
+                return this.container.Kernel.HasComponent(typeof(TType));
             }
             else
             {
                 return false;
             }
         }
-
-        public IContainer Register<T>(DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton) where T : class
-        {
-            var buider = new ContainerBuilder();
-            switch (lifeStyle)
-            {
-                case DependencyLifeStyle.Transient:
-                    buider.RegisterType<T>().InstancePerLifetimeScope();
-                    break;
-                case DependencyLifeStyle.Singleton:
-                    buider.RegisterType<T>().SingleInstance();
-                    break;
-            }
-            buider.Update(this.container);
-            return this;
-        }
-
-        public IContainer RegisterIntecptor<T1,T2>()
-        {
-            var buider = new ContainerBuilder();
-            buider.RegisterType(typeof(T1)).EnableInterfaceInterceptors().InterceptedBy(typeof(T2));
-            buider.RegisterType(typeof(T1));
-            buider.RegisterType(typeof(T2));
-            buider.Update(this.container);
-            return this;
-        }
-
-        public IContainer RegisterAssemblyTypes<T>(Assembly assemblies, DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton)
-        {
-            var buider = new ContainerBuilder();
-            switch (lifeStyle)
-            {
-                case DependencyLifeStyle.Transient:
-                    buider.RegisterAssemblyTypes(assemblies).As<T>().InstancePerLifetimeScope();
-                    break;
-                case DependencyLifeStyle.Singleton:
-                    buider.RegisterAssemblyTypes(assemblies).As<T>().SingleInstance();
-                    break;
-            }
-            buider.Update(this.container);
-            return this;
-        }
+        
 
         public IContainer Register(Type type ,DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton)
         {
-            var buider = new ContainerBuilder();
-            switch (lifeStyle)
-            {
-                case DependencyLifeStyle.Transient:
-                    buider.RegisterType(type).InstancePerLifetimeScope();
-                    break;
-                case DependencyLifeStyle.Singleton:
-                    buider.RegisterType(type).SingleInstance();
-                    break;
-            }
-            buider.Update(this.container);
+            //var buider = new ContainerBuilder();
+            //switch (lifeStyle)
+            //{
+            //    case DependencyLifeStyle.Transient:
+            //        buider.RegisterType(type).InstancePerLifetimeScope();
+            //        break;
+            //    case DependencyLifeStyle.Singleton:
+            //        buider.RegisterType(type).SingleInstance();
+            //        break;
+            //}
+            //buider.Update(this.container);
             return this;
         }
 
@@ -116,60 +70,66 @@ namespace LibMain.Core
             where TType : class
             where TImpl : class, TType
         {
-            var buider = new ContainerBuilder();
-            switch (lifeStyle)
-            {
-                case DependencyLifeStyle.Transient:
-                    buider.RegisterType<TImpl>().As<TType>().InstancePerLifetimeScope();
-                    break;
-                case DependencyLifeStyle.Singleton:
-                    buider.RegisterType<TImpl>().As<TType>().SingleInstance();
-                    break;
-            }
-            buider.Update(this.container);
-            var obj = this.container.Resolve<TType>();
-            this.container.InjectUnsetProperties(obj);
+            //var buider = new ContainerBuilder();
+            //switch (lifeStyle)
+            //{
+            //    case DependencyLifeStyle.Transient:
+            //        buider.RegisterType<TImpl>().As<TType>().InstancePerLifetimeScope();
+            //        break;
+            //    case DependencyLifeStyle.Singleton:
+            //        buider.RegisterType<TImpl>().As<TType>().SingleInstance();
+            //        break;
+            //}
+            //buider.Update(this.container);
+            //var obj = this.container.Resolve<TType>();
+            //this.container.InjectUnsetProperties(obj);
             return this;
         }
         
         public IContainer RegisterInstance<TType, TImpl>(TImpl instance, DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton)
             where TImpl : class, TType
         {
-            var buider = new ContainerBuilder();
-            switch (lifeStyle)
-            {
-                case DependencyLifeStyle.Transient:
-                    buider.RegisterInstance<TImpl>(instance).As<TType>().InstancePerLifetimeScope();
-                    break;
-                case DependencyLifeStyle.Singleton:
-                    buider.RegisterInstance<TImpl>(instance).As<TType>().SingleInstance();
-                    break;
-            }
-            buider.Update(this.container);
-            var obj = this.container.Resolve<TType>();
-            this.container.InjectUnsetProperties(obj);
+            //var buider = new ContainerBuilder();
+            //switch (lifeStyle)
+            //{
+            //    case DependencyLifeStyle.Transient:
+            //        buider.RegisterInstance<TImpl>(instance).As<TType>().InstancePerLifetimeScope();
+            //        break;
+            //    case DependencyLifeStyle.Singleton:
+            //        buider.RegisterInstance<TImpl>(instance).As<TType>().SingleInstance();
+            //        break;
+            //}
+            //buider.Update(this.container);
+            //var obj = this.container.Resolve<TType>();
+            //this.container.InjectUnsetProperties(obj);
             return this;
         }
 
         public IContainer Register(Type type, Type impl, DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton)
         {
-            var buider = new ContainerBuilder();
-            switch (lifeStyle)
-            {
-                case DependencyLifeStyle.Transient:
-                    buider.RegisterType(impl).InstancePerLifetimeScope();
-                    break;
-                case DependencyLifeStyle.Singleton:
-                    buider.RegisterType(impl).SingleInstance();
-                    break;
-            }
-            buider.Update(this.container);
+            //var buider = new ContainerBuilder();
+            //switch (lifeStyle)
+            //{
+            //    case DependencyLifeStyle.Transient:
+            //        buider.RegisterType(impl).InstancePerLifetimeScope();
+            //        break;
+            //    case DependencyLifeStyle.Singleton:
+            //        buider.RegisterType(impl).SingleInstance();
+            //        break;
+            //}
+            //buider.Update(this.container);
+            return this;
+        }
+
+        public IContainer Register(params IRegistration[] registrations)
+        {
+            container.Register(registrations);
             return this;
         }
 
         public void Release(object instance)
         {
-            container.InjectUnsetProperties(instance);
+            container.Release(instance);
         }
 
         public T Resolve<T>()
@@ -178,68 +138,43 @@ namespace LibMain.Core
             {
                 return container.Resolve<T>();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return default(T);
             }
         }
 
-        public T Resolve<T>(string key)
+        public T Resolve<T>(object argumentsAsAnonymousType)
         {
-            return container.ResolveKeyed<T>(key);
-        }
-        public object Resolve(Type service)
-        {
-            try
-            {
-                return container.Resolve(service);
-            }
-            catch(Exception ex)
-            {
-                return null;
-            }
-        }
-        public object Resolve(string key, Type service)
-        {
-            return container.ResolveKeyed(key, service);
-        }
-        public object Resolve(Type service, IDictionary arguments)
-        {
-            if (arguments.Keys != null)
-            {
-                var parameters = new List<Parameter>();
-                foreach (var item in arguments.Keys)
-                {
-                    parameters.Add(new NamedParameter(item.ToString(), arguments[item]));
-                }
-                return container.ResolveOptional(service, parameters);
-            }
-            else
-            {
-                return null;
-            }
+            //return container.ResolveKeyed<T>(key);
+            return container.Resolve<T>(argumentsAsAnonymousType);
         }
 
-        public object Resolve(string key, Type service, IDictionary arguments)
+        /// <summary>
+        /// Gets an object from IOC container.
+        /// Returning object must be Released (see <see cref="IIocResolver.Release"/>) after usage.
+        /// </summary> 
+        /// <param name="type">Type of the object to get</param>
+        /// <returns>The instance object</returns>
+        public object Resolve(Type type)
         {
-            if (arguments.Keys != null)
-            {
-                var parameters = new List<Parameter>();
-                foreach (var item in arguments.Keys)
-                {
-                    parameters.Add(new NamedParameter(item.ToString(), arguments[item]));
-                }
-                return container.ResolveKeyed(key,service, parameters);
-            }
-            else
-            {
-                return null;
-            }
+            return container.Resolve(type);
+        }
+
+        /// <summary>
+        /// Gets an object from IOC container.
+        /// Returning object must be Released (see <see cref="IIocResolver.Release"/>) after usage.
+        /// </summary> 
+        /// <param name="type">Type of the object to get</param>
+        /// <param name="argumentsAsAnonymousType">Constructor arguments</param>
+        /// <returns>The instance object</returns>
+        public object Resolve(Type type, object argumentsAsAnonymousType)
+        {
+            return container.Resolve(type, argumentsAsAnonymousType);
         }
         public void Dispose()
         {
             container.Dispose();
-            container = null;
         }
     }
 }

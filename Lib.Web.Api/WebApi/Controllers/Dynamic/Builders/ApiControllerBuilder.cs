@@ -1,3 +1,4 @@
+using Castle.MicroKernel.Registration;
 using Lib.Web.Api.WebApi.Controllers.Dynamic.Interceptors;
 using LibMain;
 using LibMain.Dependency;
@@ -96,11 +97,11 @@ namespace Lib.WebApi.Controllers.Dynamic.Builders
 
                 controllerInfo.Actions[actionBuilder.ActionName] = actionBuilder.BuildActionInfo();
             }
-            IocManager.Instance.IocContainer.RegisterIntecptor<DynamicApiController<T>, LibDynamicApiControllerInterceptor<T>>();
-            //IocManager.Instance.IocContainer.Register(
-            //    Component.For<LibDynamicApiControllerInterceptor<T>>().LifestyleTransient(),
-            //    Component.For<DynamicApiController<T>>().Proxy.AdditionalInterfaces(new[] { typeof(T) }).Interceptors<LibDynamicApiControllerInterceptor<T>>().LifestyleTransient()
-            //    );
+
+            IocManager.Instance.IocContainer.Register(
+                Component.For<LibDynamicApiControllerInterceptor<T>>().LifestyleTransient(),
+                Component.For<DynamicApiController<T>>().Proxy.AdditionalInterfaces(new[] { typeof(T) }).Interceptors<LibDynamicApiControllerInterceptor<T>>().LifestyleTransient()
+                );
 
             DynamicApiControllerManager.Register(controllerInfo);
 

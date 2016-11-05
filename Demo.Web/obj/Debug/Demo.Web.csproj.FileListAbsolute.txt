@@ -39,7 +39,6 @@ D:\项目构建\MD\Literature\Demo.Web\bin\System.Web.WebPages.dll
 D:\项目构建\MD\Literature\Demo.Web\bin\System.Web.WebPages.Razor.dll
 D:\项目构建\MD\Literature\Demo.Web\bin\WebGrease.dll
 D:\项目构建\MD\Literature\Demo.Web\bin\Lib.Web.Api.dll
-D:\项目构建\MD\Literature\Demo.Web\bin\Autofac.dll
 D:\项目构建\MD\Literature\Demo.Web\bin\System.Web.Http.dll
 D:\项目构建\MD\Literature\Demo.Web\bin\System.Net.Http.Formatting.dll
 D:\项目构建\MD\Literature\Demo.Web\bin\System.Web.Http.WebHost.dll
@@ -64,7 +63,6 @@ D:\项目构建\MD\Literature\Demo.Web\bin\System.Web.WebPages.Razor.xml
 D:\项目构建\MD\Literature\Demo.Web\bin\Antlr3.Runtime.pdb
 D:\项目构建\MD\Literature\Demo.Web\bin\Newtonsoft.Json.xml
 D:\项目构建\MD\Literature\Demo.Web\bin\Lib.Web.Api.pdb
-D:\项目构建\MD\Literature\Demo.Web\bin\Autofac.xml
 D:\项目构建\MD\Literature\Demo.Web\bin\System.Web.Http.xml
 D:\项目构建\MD\Literature\Demo.Web\bin\System.Net.Http.Formatting.xml
 D:\项目构建\MD\Literature\Demo.Web\bin\System.Web.Http.WebHost.xml
@@ -80,7 +78,7 @@ D:\项目构建\MD\Literature\Demo.Web\bin\zh-Hans\System.Web.Razor.resources.dl
 D:\项目构建\MD\Literature\Demo.Web\bin\zh-Hans\System.Web.WebPages.resources.dll
 D:\项目构建\MD\Literature\Demo.Web\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
 D:\项目构建\MD\Literature\Demo.Web\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
-D:\项目构建\MD\Literature\Demo.Web\bin\Autofac.Extras.DynamicProxy2.dll
+D:\项目构建\MD\Literature\Demo.Web\bin\Castle.Windsor.dll
 D:\项目构建\MD\Literature\Demo.Web\bin\Castle.Core.dll
-D:\项目构建\MD\Literature\Demo.Web\bin\Autofac.Extras.DynamicProxy2.xml
+D:\项目构建\MD\Literature\Demo.Web\bin\Castle.Windsor.xml
 D:\项目构建\MD\Literature\Demo.Web\bin\Castle.Core.xml

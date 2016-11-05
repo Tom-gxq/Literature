@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Lib.Web.Api.WebApi.Controllers.Dynamic.Interceptors
 {
-    public interface IInterceptor
+    public interface IInterceptor: Castle.DynamicProxy.IInterceptor
     {
-        void Intercept(IInvocation invocation);
+
     }
 }

@@ -1,4 +1,4 @@
-﻿using Autofac;
+﻿using Castle.MicroKernel.Registration;
 using LibMain.Core;
 using System;
 using System.Collections.Generic;
@@ -42,21 +42,12 @@ namespace LibMain.Dependency
         /// </summary>
         private IocManager()
         {
-            if (IocContainer == null)
-            {
-                IocContainer = new LibMainContainer();
-            }
-
-            if (_conventionalRegistrars == null)
-            {
-                _conventionalRegistrars = new List<IConventionalDependencyRegistrar>();
-            }
+            IocContainer = new LibMainContainer();
+            _conventionalRegistrars = new List<IConventionalDependencyRegistrar>();
             //Register self!
-            //Instance.Register<IocManager>( DependencyLifeStyle.Transient);
-            RegisterInstance<IIocManager, IocManager>(this,DependencyLifeStyle.Singleton);
-            //Instance.Register<IIocRegistrar, IocManager>(DependencyLifeStyle.Transient);
-            //Instance.Register<IIocResolver, IocManager>(DependencyLifeStyle.Transient);
-
+            IocContainer.Register(
+                Component.For<IocManager, IIocManager, IIocRegistrar, IIocResolver>().UsingFactoryMethod(() => this)
+                );
         }
 
         /// <summary>
@@ -75,11 +66,6 @@ namespace LibMain.Dependency
         public void RegisterAssemblyByConvention(Assembly assembly)
         {
             RegisterAssemblyByConvention(assembly, new ConventionalRegistrationConfig());
-        }
-
-        public void RegisterAssemblyTypes<T>(Assembly assembly, DependencyLifeStyle lifeStyle)
-        {
-            IocContainer.RegisterAssemblyTypes<T>(assembly, lifeStyle);
         }
         /// <summary>
         /// Registers types of given assembly by all conventional registrars. See <see cref="AddConventionalRegistrar"/> method.
@@ -106,9 +92,9 @@ namespace LibMain.Dependency
         /// </summary>
         /// <typeparam name="TType">Type of the class</typeparam>
         /// <param name="lifeStyle">Lifestyle of the objects of this type</param>
-        public void Register<T>(DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton) where T : class
+        public void Register<TType>(DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton) where TType : class
         {
-            IocContainer.Register<T>(lifeStyle);
+            IocContainer.Register(ApplyLifestyle(Component.For<TType>(), lifeStyle));
         }
 
         /// <summary>
@@ -118,7 +104,7 @@ namespace LibMain.Dependency
         /// <param name="lifeStyle">Lifestyle of the objects of this type</param>
         public void Register(Type type, DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton)
         {
-            IocContainer.Register(type, lifeStyle);
+            IocContainer.Register(ApplyLifestyle(Component.For(type), lifeStyle));
         }
 
         /// <summary>
@@ -131,15 +117,9 @@ namespace LibMain.Dependency
             where TType : class
             where TImpl : class, TType
         {
-            IocContainer.Register<TType, TImpl>(lifeStyle);
+            IocContainer.Register(ApplyLifestyle(Component.For<TType, TImpl>().ImplementedBy<TImpl>(), lifeStyle));
         }
 
-        public void RegisterInstance<TType, TImpl>(TImpl instance, DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton)
-            where TType : class
-            where TImpl : class, TType
-        {
-            IocContainer.RegisterInstance<TType, TImpl>(instance,lifeStyle);
-        }
         /// <summary>
         /// Registers a class as self registration.
         /// </summary>
@@ -148,7 +128,7 @@ namespace LibMain.Dependency
         /// <param name="lifeStyle">Lifestyle of the objects of this type</param>
         public void Register(Type type, Type impl, DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton)
         {
-            IocContainer.Register(type, impl, lifeStyle);
+            IocContainer.Register(ApplyLifestyle(Component.For(type, impl).ImplementedBy(impl), lifeStyle));
         }
 
         /// <summary>
@@ -208,6 +188,20 @@ namespace LibMain.Dependency
         public void Dispose()
         {
             IocContainer.Dispose();
+        }
+
+        private static ComponentRegistration<T> ApplyLifestyle<T>(ComponentRegistration<T> registration, DependencyLifeStyle lifeStyle)
+            where T : class
+        {
+            switch (lifeStyle)
+            {
+                case DependencyLifeStyle.Transient:
+                    return registration.LifestyleTransient();
+                case DependencyLifeStyle.Singleton:
+                    return registration.LifestyleSingleton();
+                default:
+                    return registration;
+            }
         }
     }
 }

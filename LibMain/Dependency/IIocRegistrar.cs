@@ -23,8 +23,7 @@ namespace LibMain.Dependency
         /// </summary>
         /// <param name="assembly">Assembly to register</param>
         void RegisterAssemblyByConvention(Assembly assembly);
-
-        void RegisterAssemblyTypes<T>(Assembly assembly, DependencyLifeStyle lifeStyle);
+        
 
         /// <summary>
         /// Registers types of given assembly by all conventional registrars. See <see cref="IocManager.AddConventionalRegistrar"/> method.
