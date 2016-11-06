@@ -153,11 +153,16 @@
     <Compile Include="Modules\ModuleCollection.cs" />
     <Compile Include="Modules\ModuleInfo.cs" />
     <Compile Include="Modules\ModuleManager.cs" />
+    <Compile Include="MultiTenancy\MultiTenancySides.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\CurrentDomainAssemblyFinder.cs" />
     <Compile Include="Reflection\IAssemblyFinder.cs" />
     <Compile Include="Reflection\ITypeFinder.cs" />
     <Compile Include="Reflection\TypeFinder.cs" />
+    <Compile Include="Runtime\Security\LibClaims.cs" />
+    <Compile Include="Runtime\Session\ILibSession.cs" />
+    <Compile Include="Runtime\Session\LibSessionExtensions.cs" />
+    <Compile Include="Runtime\Session\NullLibSession.cs" />
     <Compile Include="Runtime\Validation\LibValidationException.cs" />
     <Compile Include="UI\UserFriendlyException.cs" />
     <Compile Include="Xml\Extensions\XmlExtensions.cs" />
