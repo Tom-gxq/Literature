@@ -27,7 +27,7 @@ namespace Lib.Application.Services
         /// <summary>
         /// Gets current session information.
         /// </summary>
-        [Obsolete("Use AbpSession property instead. CurrentSetting will be removed in future releases.")]
+        //[Obsolete("Use AbpSession property instead. CurrentSetting will be removed in future releases.")]
         //protected IAbpSession CurrentSession { get { return AbpSession; } }
 
         /// <summary>

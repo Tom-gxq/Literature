@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibMain.Domain.Uow;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -91,6 +92,6 @@ namespace LibMain.Domain.UnitOfWork
         /// <param name="filterName">Name of the filter</param>
         /// <param name="parameterName">Parameter's name</param>
         /// <param name="value">Value of the parameter to be set</param>
-        IDisposable SetFilterParameter(string filterName, string parameterName, object value);
+        void SetFilterParameter(string filterName, string parameterName, object value);
     }
 }

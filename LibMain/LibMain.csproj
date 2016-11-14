@@ -38,12 +38,22 @@
       <HintPath>..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Nito.AsyncEx">
+      <HintPath>..\packages\Nito.AsyncEx.3.0.0\lib\net45\Nito.AsyncEx.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Concurrent">
+      <HintPath>..\packages\Nito.AsyncEx.3.0.0\lib\net45\Nito.AsyncEx.Concurrent.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Enlightenment">
+      <HintPath>..\packages\Nito.AsyncEx.3.0.0\lib\net45\Nito.AsyncEx.Enlightenment.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Collections.Immutable, Version=1.1.36.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Collections.Immutable.1.1.36\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
@@ -70,7 +80,23 @@
     <Compile Include="Configuration\Startup\ILocalizationSourceList.cs" />
     <Compile Include="Configuration\Startup\LocalizationConfiguration.cs" />
     <Compile Include="Configuration\Startup\LocalizationSourceList.cs" />
+    <Compile Include="DisposeAction.cs" />
+    <Compile Include="Domain\Repositories\LibRepositoryBase.cs" />
+    <Compile Include="Domain\UnitOfWork\UnitOfWorkAttribute.cs" />
+    <Compile Include="Domain\UnitOfWork\UnitOfWorkHelper.cs" />
+    <Compile Include="Domain\UnitOfWork\UnitOfWorkInterceptor.cs" />
+    <Compile Include="Domain\UnitOfWork\UnitOfWorkRegistrar.cs" />
+    <Compile Include="Domain\Uow\AbpDataFilters.cs" />
+    <Compile Include="Domain\Uow\CallContextCurrentUnitOfWorkProvider.cs" />
+    <Compile Include="Domain\Uow\ICurrentUnitOfWorkProvider.cs" />
+    <Compile Include="Domain\Uow\InnerUnitOfWorkCompleteHandle.cs" />
+    <Compile Include="Domain\Uow\IUnitOfWork.cs" />
+    <Compile Include="Domain\Uow\UnitOfWorkBase.cs" />
+    <Compile Include="Domain\Uow\UnitOfWorkFailedEventArgs.cs" />
+    <Compile Include="Domain\UnitOfWork\UnitOfWorkManager.cs" />
+    <Compile Include="Extensions\EventHandlerExtensions.cs" />
     <Compile Include="IO\Extensions\StreamExtensions.cs" />
+    <Compile Include="IShouldInitialize.cs" />
     <Compile Include="LibServiceBase.cs" />
     <Compile Include="Application\Services\ApplicationService.cs" />
     <Compile Include="Application\Services\IApplicationService.cs" />
@@ -119,7 +145,6 @@
     <Compile Include="Domain\UnitOfWork\IUnitOfWorkDefaultOptions.cs" />
     <Compile Include="Domain\UnitOfWork\IUnitOfWorkManager.cs" />
     <Compile Include="Domain\UnitOfWork\UnitOfWorkDefaultOptions.cs" />
-    <Compile Include="Domain\UnitOfWork\UnitOfWorkFailedEventArgs.cs" />
     <Compile Include="Domain\UnitOfWork\UnitOfWorkOptions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="InitializationException.cs" />
@@ -158,12 +183,16 @@
     <Compile Include="Reflection\CurrentDomainAssemblyFinder.cs" />
     <Compile Include="Reflection\IAssemblyFinder.cs" />
     <Compile Include="Reflection\ITypeFinder.cs" />
+    <Compile Include="Reflection\ReflectionHelper.cs" />
     <Compile Include="Reflection\TypeFinder.cs" />
     <Compile Include="Runtime\Security\LibClaims.cs" />
     <Compile Include="Runtime\Session\ILibSession.cs" />
     <Compile Include="Runtime\Session\LibSessionExtensions.cs" />
     <Compile Include="Runtime\Session\NullLibSession.cs" />
     <Compile Include="Runtime\Validation\LibValidationException.cs" />
+    <Compile Include="Threading\AsyncHelper.cs" />
+    <Compile Include="Threading\Extensions\LockExtensions.cs" />
+    <Compile Include="Threading\InternalAsyncHelper.cs" />
     <Compile Include="UI\UserFriendlyException.cs" />
     <Compile Include="Xml\Extensions\XmlExtensions.cs" />
   </ItemGroup>

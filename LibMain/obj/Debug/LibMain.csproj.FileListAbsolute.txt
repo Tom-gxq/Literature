@@ -11,7 +11,6 @@ D:\项目构建\MD\LiteratureSite\LibMain\bin\Debug\Autofac.dll
 D:\项目构建\MD\LiteratureSite\LibMain\bin\Debug\Autofac.xml
 D:\项目构建\MD\LiteratureSite\LibMain\obj\Debug\LibMain.dll
 D:\项目构建\MD\LiteratureSite\LibMain\obj\Debug\LibMain.pdb
-D:\项目构建\MD\Literature\LibMain\obj\Debug\LibMain.csprojResolveAssemblyReference.cache
 D:\项目构建\MD\Literature\LibMain\bin\Debug\LibMain.dll.config
 D:\项目构建\MD\Literature\LibMain\bin\Debug\LibMain.dll
 D:\项目构建\MD\Literature\LibMain\bin\Debug\LibMain.pdb
@@ -23,3 +22,10 @@ D:\项目构建\MD\Literature\LibMain\bin\Debug\Castle.Windsor.xml
 D:\项目构建\MD\Literature\LibMain\bin\Debug\System.Collections.Immutable.xml
 D:\项目构建\MD\Literature\LibMain\obj\Debug\LibMain.dll
 D:\项目构建\MD\Literature\LibMain\obj\Debug\LibMain.pdb
+D:\项目构建\MD\Literature\LibMain\bin\Debug\Nito.AsyncEx.Concurrent.dll
+D:\项目构建\MD\Literature\LibMain\bin\Debug\Nito.AsyncEx.dll
+D:\项目构建\MD\Literature\LibMain\bin\Debug\Nito.AsyncEx.Enlightenment.dll
+D:\项目构建\MD\Literature\LibMain\bin\Debug\Nito.AsyncEx.xml
+D:\项目构建\MD\Literature\LibMain\bin\Debug\Nito.AsyncEx.Concurrent.xml
+D:\项目构建\MD\Literature\LibMain\bin\Debug\Nito.AsyncEx.Enlightenment.xml
+D:\项目构建\MD\Literature\LibMain\obj\Debug\LibMain.csprojResolveAssemblyReference.cache

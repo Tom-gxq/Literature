@@ -1,4 +1,5 @@
 ﻿using Demo.Application.Users.Dto;
+using Demo.Core.Identity.Users;
 using Lib.Application.Services;
 using LibMain.Application.Services.Dto;
 using System;

@@ -217,6 +217,10 @@
       <Project>{bacf48e7-e06e-4b88-baeb-c9e2d2659644}</Project>
       <Name>Demo.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Demo.EntityFramework\Demo.EntityFramework.csproj">
+      <Project>{0fdca98f-aac3-4909-ab75-975b9407b6e0}</Project>
+      <Name>Demo.EntityFramework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Demo.WebApi\Demo.WebApi.csproj">
       <Project>{95ed053d-0325-48cc-9c46-d486a5edf22e}</Project>
       <Name>Demo.WebApi</Name>

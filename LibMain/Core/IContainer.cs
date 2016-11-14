@@ -1,4 +1,5 @@
-﻿using Castle.MicroKernel.Registration;
+﻿using Castle.MicroKernel;
+using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using LibMain.Dependency;
 using System;
@@ -14,6 +15,7 @@ namespace LibMain.Core
 {
     public interface IContainer:System.IDisposable
     {
+        IKernel Kernel { get; }
         IContainer Install(params IInstaller[] installers);
         bool IsRegistered(Type type);
         bool IsRegistered<TType>();        

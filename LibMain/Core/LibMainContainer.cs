@@ -1,4 +1,5 @@
-﻿using Castle.MicroKernel.Registration;
+﻿using Castle.MicroKernel;
+using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using LibMain.Dependency;
 using System;
@@ -17,6 +18,14 @@ namespace LibMain.Core
         public LibMainContainer()
         {
             container = new WindsorContainer();
+        }
+
+        public IKernel Kernel
+        {
+            get
+            {
+                return container.Kernel;
+            }
         }
 
         public IContainer Install(params IInstaller[] installers)

@@ -203,5 +203,15 @@ namespace LibMain.Dependency
                     return registration;
             }
         }
+
+        public T Resolve<T>(object argumentsAsAnonymousType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Resolve(Type type, object argumentsAsAnonymousType)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

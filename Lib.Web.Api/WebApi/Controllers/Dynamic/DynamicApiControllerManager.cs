@@ -1,6 +1,7 @@
 using LibMain.Collections.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 
 namespace Lib.WebApi.Controllers.Dynamic
 {
@@ -35,9 +36,9 @@ namespace Lib.WebApi.Controllers.Dynamic
             return DynamicApiControllers.GetOrDefault(controllerName);
         }
 
-        //public static IReadOnlyList<DynamicApiControllerInfo> GetAll()
-        //{
-        //    return DynamicApiControllers.Values.ToImmutableList();
-        //}
+        public static IReadOnlyList<DynamicApiControllerInfo> GetAll()
+        {
+            return DynamicApiControllers.Values.ToImmutableList();
+        }
     }
 }

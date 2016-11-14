@@ -52,6 +52,10 @@
       <Project>{bacf48e7-e06e-4b88-baeb-c9e2d2659644}</Project>
       <Name>Demo.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Lib.EntityFramework\Lib.EntityFramework.csproj">
+      <Project>{7c2a5b21-74d8-4bf4-b39e-8db25792c31c}</Project>
+      <Name>Lib.EntityFramework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LibMain\LibMain.csproj">
       <Project>{de914158-db1a-4060-a305-e867db9ce497}</Project>
       <Name>LibMain</Name>

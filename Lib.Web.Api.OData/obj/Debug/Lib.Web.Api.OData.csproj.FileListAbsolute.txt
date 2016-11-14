@@ -75,6 +75,9 @@ D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\System.Web.Http.dll
 D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\System.Web.Http.WebHost.dll
 D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\System.Web.OData.dll
 D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\Lib.Web.dll
+D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\Castle.Core.dll
+D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\Castle.Windsor.dll
+D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\System.Collections.Immutable.dll
 D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\Lib.Web.Api.pdb
 D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\LibMain.pdb
 D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\Microsoft.Extensions.DependencyInjection.xml
@@ -88,6 +91,9 @@ D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\System.Web.Http.xml
 D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\System.Web.Http.WebHost.xml
 D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\System.Web.OData.xml
 D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\Lib.Web.pdb
+D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\Castle.Core.xml
+D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\Castle.Windsor.xml
+D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\System.Collections.Immutable.xml
 D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\de\Microsoft.OData.Core.resources.dll
 D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\es\Microsoft.OData.Core.resources.dll
 D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\fr\Microsoft.OData.Core.resources.dll
@@ -118,9 +124,7 @@ D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\zh-Hant\Microsoft.Spat
 D:\项目构建\MD\Literature\Lib.Web.Api.OData\obj\Debug\Lib.Web.Api.OData.csprojResolveAssemblyReference.cache
 D:\项目构建\MD\Literature\Lib.Web.Api.OData\obj\Debug\Lib.Web.Api.OData.dll
 D:\项目构建\MD\Literature\Lib.Web.Api.OData\obj\Debug\Lib.Web.Api.OData.pdb
-D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\System.Collections.Immutable.dll
-D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\System.Collections.Immutable.xml
-D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\Castle.Core.dll
-D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\Castle.Windsor.dll
-D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\Castle.Core.xml
-D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\Castle.Windsor.xml
+D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\Nito.AsyncEx.dll
+D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\Nito.AsyncEx.Enlightenment.dll
+D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\Nito.AsyncEx.xml
+D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\Nito.AsyncEx.Enlightenment.xml

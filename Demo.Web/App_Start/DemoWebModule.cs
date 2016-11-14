@@ -10,10 +10,11 @@ using System.Web.Mvc;
 using System.Reflection;
 using System.Web.Routing;
 using System.Web.Optimization;
+using Demo.EntityFramework;
 
 namespace Demo.Web
 {
-    [DependsOn(typeof(DemoApplicationModule), typeof(DemoWebApiModule))]
+    [DependsOn(typeof(DemoEntityFramewrokModule), typeof(DemoApplicationModule), typeof(DemoWebApiModule))]
     public class DemoWebModule: LibMain.Modules.Module
     {
         public override void PreInitialize()

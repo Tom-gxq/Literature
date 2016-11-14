@@ -50,7 +50,7 @@ namespace Lib.Web.Api.OData.WebApi.OData.Controllers
         }
 
         [EnableQuery]
-        public virtual IQueryable<TEntity> Get()
+        public virtual List<TEntity> Get()
         {
             return Repository.GetAll();
         }
@@ -60,7 +60,8 @@ namespace Lib.Web.Api.OData.WebApi.OData.Controllers
         {
             var entity = Repository.GetAll().Where(e => e.Id.Equals(key));
 
-            return SingleResult.Create(entity);
+            //return SingleResult.Create(entity);
+            return null;
         }
 
         public virtual async Task<IHttpActionResult> Post(TEntity entity)

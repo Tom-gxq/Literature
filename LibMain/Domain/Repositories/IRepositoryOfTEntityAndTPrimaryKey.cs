@@ -24,7 +24,7 @@ namespace LibMain.Domain.Repositories
         /// returns IQueryable and it requires open database connection to use it.
         /// </summary>
         /// <returns>IQueryable to be used to select entities from database</returns>
-        IQueryable<TEntity> GetAll();
+        List<TEntity> GetAll();
 
         /// <summary>
         /// Used to get all entities.

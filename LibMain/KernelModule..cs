@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using LibMain.Modules;
 using LibMain.Dependency;
 using System.Reflection;
+using LibMain.Domain.UnitOfWork;
 
 namespace LibMain
 {
@@ -24,7 +25,7 @@ namespace LibMain
             //FeatureInterceptorRegistrar.Initialize(base.IocManager);
             //AuditingInterceptorRegistrar.Initialize(base.IocManager);
 
-            //UnitOfWorkRegistrar.Initialize(base.IocManager);
+            UnitOfWorkRegistrar.Initialize(base.IocManager);
 
             //AuthorizationInterceptorRegistrar.Initialize(base.IocManager);
 
@@ -58,11 +59,11 @@ namespace LibMain
 
             //IocManager.IocContainer.Install(new EventBusInstaller(base.IocManager));
 
-            //IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly(),
-            //    new ConventionalRegistrationConfig
-            //    {
-            //        InstallInstallers = false
-            //    });
+            IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly(),
+                new ConventionalRegistrationConfig
+                {
+                    InstallInstallers = false
+                });
         }
 
         public override void PostInitialize()
