@@ -21,12 +21,12 @@ namespace Demo.EntityFramework
 
         public override void Initialize()
         {
-            //var config = new ConventionalRegistrationConfig
-            //{
-            //    InstallInstallers = false
-            //};
-            //config["nameOrConnectionString"] = "Default";
-            IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
+            var config = new ConventionalRegistrationConfig
+            {
+                InstallInstallers = false
+            };
+            config["nameOrConnectionString"] = "Default123";
+            IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly(), config);
 
             //执行一次.
             IocManager.Resolve<DemoDbContext>();

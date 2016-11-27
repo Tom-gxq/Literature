@@ -33,11 +33,11 @@ namespace Lib.EntityFramework.EntityFramework.Dependency
                             }
                             if (string.IsNullOrEmpty(connectionString))
                             {
-                                connectionString = GetNameOrConnectionStringOrNull(context.IocManager);
-                                if (!string.IsNullOrWhiteSpace(connectionString))
-                                {
-                                    dynamicParams["nameOrConnectionString"] = connectionString;
-                                }
+                                connectionString = GetNameOrConnectionStringOrNull(context.IocManager);                                
+                            }
+                            if (!string.IsNullOrWhiteSpace(connectionString))
+                            {
+                                dynamicParams["nameOrConnectionString"] = connectionString;
                             }
                         })));
         }
