@@ -26,10 +26,18 @@ namespace Lib.EntityFramework.EntityFramework.Dependency
                     .Configure(c => c.DynamicParameters(
                         (kernel, dynamicParams) =>
                         {
-                            var connectionString = GetNameOrConnectionStringOrNull(context.IocManager);
-                            if (!string.IsNullOrWhiteSpace(connectionString))
+                            string connectionString = string.Empty;
+                            if ((context.Config != null)&&(context.Config["nameOrConnectionString"] != null))
                             {
-                                dynamicParams["nameOrConnectionString"] = connectionString;
+                                connectionString = context.Config["nameOrConnectionString"].ToString();
+                            }
+                            if (string.IsNullOrEmpty(connectionString))
+                            {
+                                connectionString = GetNameOrConnectionStringOrNull(context.IocManager);
+                                if (!string.IsNullOrWhiteSpace(connectionString))
+                                {
+                                    dynamicParams["nameOrConnectionString"] = connectionString;
+                                }
                             }
                         })));
         }

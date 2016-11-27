@@ -1,5 +1,6 @@
 ﻿using Demo.Core;
 using Lib.EntityFramework.EntityFramework;
+using LibMain.Dependency;
 using LibMain.Modules;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,11 @@ namespace Demo.EntityFramework
 
         public override void Initialize()
         {
+            //var config = new ConventionalRegistrationConfig
+            //{
+            //    InstallInstallers = false
+            //};
+            //config["nameOrConnectionString"] = "Default";
             IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
 
             //执行一次.

@@ -1,6 +1,7 @@
 ﻿using LibMain.Domain.Entities;
 using LibMain.Domain.Repositories;
 using ServiceStack.OrmLite;
+using ServiceStack.OrmLite.Legacy;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -52,7 +53,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
         /// <param name="predicate"></param>
         /// <param name="async">默认异步</param>
         /// <returns></returns>
-        protected List<TEntity> Select(Expression<Func<TEntity, bool>> predicate, bool async = false)
+        public List<TEntity> Select(Expression<Func<TEntity, bool>> predicate, bool async = false)
         {
             try
             {
@@ -75,14 +76,14 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
         /// <param name="expression"></param>
         /// <param name="async">默认异步</param>
         /// <returns></returns>
-        protected List<TEntity> Select(Func<SqlExpression<TEntity>, SqlExpression<TEntity>> expression, bool async = false)
+        public List<TEntity> Select(Func<SqlExpression<TEntity>, SqlExpression<TEntity>> expression, bool async = false)
         {
             try
             {
                 using (var db = Context.OpenDbConnection())
                 {
                     return async
-                        ? db.SelectAsync(expression).Result
+                        ? db.Select(expression)
                         : db.Select(expression);
                 }
             }
@@ -100,7 +101,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
         /// <param name="expression"></param>
         /// <param name="async">默认异步</param>
         /// <returns></returns>
-        protected List<Into> Select<Into, From>(SqlExpression<From> expression, bool async = false)
+        public List<Into> Select<Into, From>(SqlExpression<From> expression, bool async = false)
         {
             try
             {
@@ -123,7 +124,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
         /// <param name="expression"></param>
         /// <param name="async">默认异步</param>
         /// <returns></returns>
-        protected List<Into> Select<Into, From>(Func<SqlExpression<From>, SqlExpression<From>> expression, bool async = false)
+        public List<Into> Select<Into, From>(Func<SqlExpression<From>, SqlExpression<From>> expression, bool async = false)
         {
             try
             {
@@ -140,7 +141,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
             }
         }
 
-        protected List<TEntity> SelectByIds(IEnumerable idValues, bool async = false)
+        public List<TEntity> SelectByIds(IEnumerable idValues, bool async = false)
         {
             try
             {
@@ -161,13 +162,17 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
 
         #region Single封装
 
+        public override TEntity Single(Expression<Func<TEntity, bool>> predicate)
+        {
+            return this.Single(predicate);
+        }
         /// <summary>
         /// 通过lambda表达式返回单条数据
         /// </summary>
         /// <param name="predicate"></param>
         /// <param name="async">默认异步</param>
         /// <returns></returns>
-        protected TEntity Single(Expression<Func<TEntity, bool>> predicate, bool async = false)
+        public TEntity Single(Expression<Func<TEntity, bool>> predicate, bool async = false)
         {
             using (var db = Context.OpenDbConnection())
             {
@@ -183,7 +188,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
         /// <param name="expression"></param>
         /// <param name="async">默认异步</param>
         /// <returns></returns>
-        protected TEntity Single(Func<SqlExpression<TEntity>, SqlExpression<TEntity>> expression, bool async = false)
+        public TEntity Single(Func<SqlExpression<TEntity>, SqlExpression<TEntity>> expression, bool async = false)
         {
             using (var db = Context.OpenDbConnection())
             {
@@ -199,7 +204,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
         /// <param name="expression"></param>
         /// <param name="async">默认异步</param>
         /// <returns></returns>
-        protected TEntity Single(SqlExpression<TEntity> expression, bool async = false)
+        public TEntity Single(SqlExpression<TEntity> expression, bool async = false)
         {
             using (var db = Context.OpenDbConnection())
             {
@@ -209,7 +214,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
             }
         }
 
-        protected TEntity SingleById(object idValue, bool async = false)
+        public TEntity SingleById(object idValue, bool async = false)
         {
             using (var db = Context.OpenDbConnection())
             {
@@ -219,7 +224,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
             }
         }
 
-        protected TEntity SingleWhere(string name, object value, bool async = false)
+        public TEntity SingleWhere(string name, object value, bool async = false)
         {
             using (var db = Context.OpenDbConnection())
             {
@@ -232,47 +237,14 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
         #endregion
 
         #region Scalar封装
-
-        /// <summary>
-        /// 通过SqlExpression lambda表达式返回标量结果
-        /// </summary>
-        /// <param name="field"></param>
-        /// <param name="async">默认异步</param>
-        /// <returns></returns>
-        protected TKey Scalar<TKey>(Expression<Func<TEntity, TKey>> field, bool async = false)
-        {
-            using (var db = Context.OpenDbConnection())
-            {
-                return async
-                    ? db.ScalarAsync(field).Result
-                    : db.Scalar(field);
-            }
-        }
-
-        /// <summary>
-        /// 通过SqlExpression lambda表达式返回标量结果
-        /// </summary>
-        /// <param name="field"></param>
-        /// <param name="predicate"></param>
-        /// <param name="async">默认异步</param>
-        /// <returns></returns>
-        protected TKey Scalar<TKey>(Expression<Func<TEntity, TKey>> field, Expression<Func<TEntity, bool>> predicate, bool async = false)
-        {
-
-            using (var db = Context.OpenDbConnection())
-            {
-                return async
-                    ? db.ScalarAsync(field, predicate).Result
-                    : db.Scalar(field, predicate);
-            }
-        }
+        
 
         /// <summary>
         /// 返回标量结果
         /// </summary>
         /// <param name="async">默认异步</param>
         /// <returns></returns>
-        protected long LongScalar(bool async = false)
+        public long LongScalar(bool async = false)
         {
             try
             {
@@ -293,7 +265,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
 
         #region Insert封装
 
-        protected long Insert(TEntity entity, bool async = false)
+        public long Insert(TEntity entity, bool async = false)
         {
             try
             {
@@ -310,7 +282,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
             }
         }
 
-        protected void Insert(IEnumerable<TEntity> entities, bool async = false)
+        public void Insert(IEnumerable<TEntity> entities, bool async = false)
         {
             try
             {
@@ -348,7 +320,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
         /// <param name="entity"></param>
         /// <param name="async"></param>
         /// <returns></returns>
-        protected int Update(TEntity entity, bool async = false)
+        public int Update(TEntity entity, bool async = false)
         {
             try
             {
@@ -375,7 +347,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
         /// <param name="where"></param>
         /// <param name="async"></param>
         /// <returns></returns>
-        protected int UpdateNonDefaults(TEntity entity, Expression<Func<TEntity, bool>> where, bool async = false)
+        public override int UpdateNonDefaults(TEntity entity, Expression<Func<TEntity, bool>> where, bool async = false)
         {
             try
             {
@@ -393,7 +365,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
         }
 
 
-        protected int Update(object updateOnly, Expression<Func<TEntity, bool>> where = null, bool async = false)
+        public  int Update(object updateOnly, Expression<Func<TEntity, bool>> where = null, bool async = false)
         {
             try
             {
@@ -414,7 +386,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
 
         #region Delete封装
 
-        protected int Delete(TEntity entity, bool async = false)
+        public int Delete(TEntity entity, bool async = false)
         {
             try
             {
@@ -431,7 +403,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
             }
         }
 
-        protected int Delete(Expression<Func<TEntity, bool>> expression, bool async = false)
+        public int Delete(Expression<Func<TEntity, bool>> expression, bool async = false)
         {
             try
             {
@@ -448,7 +420,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
             }
         }
 
-        protected int DeleteById(object id, bool async = false)
+        public int DeleteById(object id, bool async = false)
         {
             try
             {
@@ -465,7 +437,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
             }
         }
 
-        protected int DeleteByIds(IEnumerable idValues, bool async = false)
+        public int DeleteByIds(IEnumerable idValues, bool async = false)
         {
             try
             {
@@ -487,7 +459,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
 
         #region sql支持
 
-        protected int ExecuteSql(string sql, bool async = false)
+        public int ExecuteSql(string sql, bool async = false)
         {
             try
             {
@@ -504,7 +476,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
             }
         }
 
-        protected int ExecuteNonQuery(string sql, bool async = false)
+        public int ExecuteNonQuery(string sql, bool async = false)
         {
             try
             {
@@ -521,7 +493,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
             }
         }
 
-        protected void ExcuteProcedure(TEntity entity, bool async = false)
+        public void ExcuteProcedure(TEntity entity, bool async = false)
         {
             try
             {
@@ -550,7 +522,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
         /// <param name="inParams">参数</param>
         /// <param name="outputParam">返回的参数</param>
         /// <returns></returns>
-        protected object ExecuteProcedureWithOutput(string sqlName, object inParams, string outParam)
+        public object ExecuteProcedureWithOutput(string sqlName, object inParams, string outParam)
         {
             try
             {
@@ -574,7 +546,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
         /// <param name="sqlName"></param>
         /// <param name="inParams"></param>
         /// <returns></returns>
-        protected int ExecuteProcedureNonQuery(string sqlName, object inParams)
+        public int ExecuteProcedureNonQuery(string sqlName, object inParams)
         {
             try
             {
@@ -592,13 +564,16 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
         #endregion
 
         #region 功能函数
-
+        public override int Count()
+        {
+            return (int)this.Count();
+        }
         /// <summary>
         /// 获取行计数
         /// </summary>
         /// <param name="async">默认异步</param>
         /// <returns></returns>
-        protected long Count(bool async = false)
+        public long Count(bool async = false)
         {
             try
             {
@@ -621,7 +596,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
         /// <param name="expression">默认异步</param>
         /// <param name="async"></param>
         /// <returns></returns>
-        protected long Count(Expression<Func<TEntity, bool>> expression, bool async = false)
+        public long Count(Expression<Func<TEntity, bool>> expression, bool async = false)
         {
             try
             {
@@ -644,7 +619,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
         /// <param name="expression">表达式</param>
         /// <param name="async">默认异步</param>
         /// <returns></returns>
-        protected long Count(Func<SqlExpression<TEntity>, SqlExpression<TEntity>> expression, bool async = false)
+        public long Count(Func<SqlExpression<TEntity>, SqlExpression<TEntity>> expression, bool async = false)
         {
             try
             {
@@ -667,7 +642,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
         /// <param name="expression">表达式</param>
         /// <param name="async">默认异步</param>
         /// <returns></returns>
-        protected long Count(SqlExpression<TEntity> expression, bool async = false)
+        public long Count(SqlExpression<TEntity> expression, bool async = false)
         {
             try
             {
@@ -690,7 +665,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
         /// <param name="expression">表达式</param>
         /// <param name="async">默认异步</param>
         /// <returns></returns>
-        protected long RowCount(SqlExpression<TEntity> expression, bool async = false)
+        public long RowCount(SqlExpression<TEntity> expression, bool async = false)
         {
             try
             {
@@ -713,7 +688,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
         /// <param name="sql">sql语句</param>
         /// <param name="async">默认异步</param>
         /// <returns></returns>
-        protected long RowCount(string sql, bool async = false)
+        public long RowCount(string sql, bool async = false)
         {
             try
             {
@@ -730,7 +705,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
             }
         }
 
-        protected bool Exists(Expression<Func<TEntity, bool>> expression, bool async = false)
+        public bool Exists(Expression<Func<TEntity, bool>> expression, bool async = false)
         {
             try
             {
@@ -748,7 +723,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
 
         }
 
-        protected bool Exists(Func<SqlExpression<TEntity>, SqlExpression<TEntity>> expression, bool async = false)
+        public bool Exists(Func<SqlExpression<TEntity>, SqlExpression<TEntity>> expression, bool async = false)
         {
             try
             {
@@ -765,7 +740,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
             }
         }
 
-        protected bool Exists(SqlExpression<TEntity> expression, bool async = false)
+        public bool Exists(SqlExpression<TEntity> expression, bool async = false)
         {
             try
             {
@@ -782,7 +757,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
             }
         }
 
-        protected bool Exists(object anonType, bool async = false)
+        public bool Exists(object anonType, bool async = false)
         {
             try
             {
@@ -799,7 +774,7 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
             }
         }
 
-        protected bool Exists(string sql, object anonType = null, bool async = false)
+        public bool Exists(string sql, object anonType = null, bool async = false)
         {
             try
             {
@@ -841,17 +816,19 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
 
         public override TEntity Insert(TEntity entity)
         {
-            throw new NotImplementedException();
+            this.Insert(entity);
+            return entity;
         }
 
         public override TEntity Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            this.Update(entity);
+            return entity;
         }
 
         public override void Delete(TEntity entity)
         {
-            throw new NotImplementedException();
+            this.Delete(entity);
         }
 
         public override void Delete(TPrimaryKey id)

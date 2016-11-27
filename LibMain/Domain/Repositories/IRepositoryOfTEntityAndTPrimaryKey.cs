@@ -220,6 +220,7 @@ namespace LibMain.Domain.Repositories
         /// <param name="updateAction">Action that can be used to change values of the entity</param>
         /// <returns>Updated entity</returns>
         Task<TEntity> UpdateAsync(TPrimaryKey id, Func<TEntity, Task> updateAction);
+        int UpdateNonDefaults(TEntity entity, Expression<Func<TEntity, bool>> where, bool async = false);
 
         #endregion
 

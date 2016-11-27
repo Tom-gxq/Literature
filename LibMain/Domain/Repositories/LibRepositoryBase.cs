@@ -69,7 +69,6 @@ namespace LibMain.Domain.Repositories
 
         public virtual TEntity Single(Expression<Func<TEntity, bool>> predicate)
         {
-            //return GetAll().Single(predicate);
             return null;
         }
 
@@ -165,6 +164,11 @@ namespace LibMain.Domain.Repositories
             var entity = await GetAsync(id);
             await updateAction(entity);
             return entity;
+        }
+
+        public virtual int UpdateNonDefaults(TEntity entity, Expression<Func<TEntity, bool>> where, bool async = false)
+        {
+            return 0;
         }
 
         public abstract void Delete(TEntity entity);

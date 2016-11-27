@@ -16,5 +16,6 @@ namespace Lib.EntityFramework.EntityFramework.Repositories
             : base(dbContextProvider)
         {
         }
+
     }
 }
