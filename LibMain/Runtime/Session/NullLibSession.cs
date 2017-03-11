@@ -23,9 +23,40 @@ namespace LibMain.Runtime.Session
 
         public MultiTenancySides MultiTenancySide { get { return MultiTenancySides.Tenant; } }
 
+        public string SessionID
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public object this[string key]
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         private NullLibSession()
         {
 
+        }
+
+        public void Remove(string key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Clear()
+        {
+            throw new NotImplementedException();
         }
     }
 }

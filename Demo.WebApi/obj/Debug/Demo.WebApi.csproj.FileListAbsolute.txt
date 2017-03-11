@@ -39,3 +39,7 @@ D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\Nito.AsyncEx.Enlightenment.x
 D:\项目构建\MD\Literature\Demo.WebApi\obj\Debug\Demo.WebApi.csprojResolveAssemblyReference.cache
 D:\项目构建\MD\Literature\Demo.WebApi\obj\Debug\Demo.WebApi.dll
 D:\项目构建\MD\Literature\Demo.WebApi\obj\Debug\Demo.WebApi.pdb
+D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\Lib.Zero.dll
+D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\Lib.Zero.pdb
+D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\ServiceStack.Redis.dll
+D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\ServiceStack.Redis.xml

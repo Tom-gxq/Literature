@@ -28,3 +28,9 @@ D:\项目构建\MD\Literature\Demo.Application\bin\Debug\Nito.AsyncEx.Enlightenm
 D:\项目构建\MD\Literature\Demo.Application\obj\Debug\Demo.Application.csprojResolveAssemblyReference.cache
 D:\项目构建\MD\Literature\Demo.Application\obj\Debug\Demo.Application.dll
 D:\项目构建\MD\Literature\Demo.Application\obj\Debug\Demo.Application.pdb
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\Lib.Zero.dll
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\Newtonsoft.Json.dll
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\Lib.Zero.pdb
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\Newtonsoft.Json.xml
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\ServiceStack.Redis.dll
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\ServiceStack.Redis.xml

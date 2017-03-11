@@ -12,6 +12,6 @@ namespace Demo.Application.Users
 {
     public interface IUserAppService : IApplicationService
     {
-        ListResultOutput<UserDto> GetUsers();
+        ListResultOutput<UserDto> GetUsers(string idstr);
     }
 }

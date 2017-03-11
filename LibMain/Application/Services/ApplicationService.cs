@@ -1,4 +1,5 @@
 ﻿using LibMain;
+using LibMain.Runtime.Session;
 using System;
 using System.Threading.Tasks;
 
@@ -12,8 +13,8 @@ namespace Lib.Application.Services
         /// <summary>
         /// Gets current session information.
         /// </summary>
-        //public IAbpSession AbpSession { get; set; }
-        
+        public ILibSession AbpSession { get; set; }
+
         /// <summary>
         /// Reference to the permission manager.
         /// </summary>
@@ -35,7 +36,7 @@ namespace Lib.Application.Services
         /// </summary>
         protected ApplicationService()
         {
-            //AbpSession = NullAbpSession.Instance;
+            AbpSession = NullLibSession.Instance;
             //PermissionChecker = NullPermissionChecker.Instance;
         }
 

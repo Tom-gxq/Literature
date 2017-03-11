@@ -19,12 +19,13 @@ namespace LibMain.Runtime.Session
         /// <returns>Current User's Id.</returns>
         public static long GetUserId(this ILibSession session)
         {
-            if (!session.UserId.HasValue)
-            {
-                throw new AbpException("Session.UserId is null! Probably, user is not logged in.");
-            }
+            //if (!session.UserId.HasValue)
+            //{
+            //    throw new AbpException("Session.UserId is null! Probably, user is not logged in.");
+            //}
 
-            return session.UserId.Value;
+            //return session.UserId.Value;
+            return 0;
         }
 
         /// <summary>
@@ -36,12 +37,13 @@ namespace LibMain.Runtime.Session
         /// <exception cref="AbpException"></exception>
         public static int GetTenantId(this ILibSession session)
         {
-            if (!session.TenantId.HasValue)
-            {
-                throw new AbpException("Session.TenantId is null! Possible problems: User is not logged in, current user in not tenant user or this is not a multi-tenant application.");
-            }
+            //if (!session.TenantId.HasValue)
+            //{
+            //    throw new AbpException("Session.TenantId is null! Possible problems: User is not logged in, current user in not tenant user or this is not a multi-tenant application.");
+            //}
 
-            return session.TenantId.Value;
+            //return session.TenantId.Value;
+            return 0;
         }
     }
 }

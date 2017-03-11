@@ -72,6 +72,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Lib.Zero\Lib.Zero.csproj">
+      <Project>{c63d51dd-0faf-4786-a9ef-37b24b6aa48e}</Project>
+      <Name>Lib.Zero</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LibMain\LibMain.csproj">
       <Project>{de914158-db1a-4060-a305-e867db9ce497}</Project>
       <Name>LibMain</Name>

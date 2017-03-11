@@ -25,3 +25,7 @@ D:\项目构建\MD\Literature\Demo.Core\bin\Debug\Nito.AsyncEx.Enlightenment.xml
 D:\项目构建\MD\Literature\Demo.Core\obj\Debug\Demo.Core.csprojResolveAssemblyReference.cache
 D:\项目构建\MD\Literature\Demo.Core\obj\Debug\Demo.Core.dll
 D:\项目构建\MD\Literature\Demo.Core\obj\Debug\Demo.Core.pdb
+D:\项目构建\MD\Literature\Demo.Core\bin\Debug\Lib.Zero.dll
+D:\项目构建\MD\Literature\Demo.Core\bin\Debug\Newtonsoft.Json.dll
+D:\项目构建\MD\Literature\Demo.Core\bin\Debug\Lib.Zero.pdb
+D:\项目构建\MD\Literature\Demo.Core\bin\Debug\Newtonsoft.Json.xml

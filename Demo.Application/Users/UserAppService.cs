@@ -22,8 +22,10 @@ namespace Demo.Application.Users
             _userRepository = userRepository;
         }
 
-        public ListResultOutput<UserDto> GetUsers()
+        public ListResultOutput<UserDto> GetUsers(string idstr)
         {
+            var id= this.AbpSession["accountID"]?.ToString();
+            this.AbpSession["accountID"] = idstr;
             return new ListResultOutput<UserDto>
             {
                 Items = null

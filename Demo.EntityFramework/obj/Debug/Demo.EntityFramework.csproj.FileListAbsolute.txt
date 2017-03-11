@@ -27,3 +27,9 @@ D:\项目构建\MD\Literature\Demo.EntityFramework\bin\Debug\Nito.AsyncEx.Enligh
 D:\项目构建\MD\Literature\Demo.EntityFramework\obj\Debug\Demo.EntityFramework.csprojResolveAssemblyReference.cache
 D:\项目构建\MD\Literature\Demo.EntityFramework\obj\Debug\Demo.EntityFramework.dll
 D:\项目构建\MD\Literature\Demo.EntityFramework\obj\Debug\Demo.EntityFramework.pdb
+D:\项目构建\MD\Literature\Demo.EntityFramework\bin\Debug\Lib.Zero.dll
+D:\项目构建\MD\Literature\Demo.EntityFramework\bin\Debug\Newtonsoft.Json.dll
+D:\项目构建\MD\Literature\Demo.EntityFramework\bin\Debug\Lib.Zero.pdb
+D:\项目构建\MD\Literature\Demo.EntityFramework\bin\Debug\Newtonsoft.Json.xml
+D:\项目构建\MD\Literature\Demo.EntityFramework\bin\Debug\ServiceStack.Redis.dll
+D:\项目构建\MD\Literature\Demo.EntityFramework\bin\Debug\ServiceStack.Redis.xml

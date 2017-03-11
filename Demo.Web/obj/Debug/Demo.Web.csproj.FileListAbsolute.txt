@@ -98,3 +98,7 @@ D:\项目构建\MD\Literature\Demo.Web\bin\zh-Hans\System.Web.WebPages.Razor.res
 D:\项目构建\MD\Literature\Demo.Web\obj\Debug\Demo.Web.csprojResolveAssemblyReference.cache
 D:\项目构建\MD\Literature\Demo.Web\obj\Debug\Demo.Web.dll
 D:\项目构建\MD\Literature\Demo.Web\obj\Debug\Demo.Web.pdb
+D:\项目构建\MD\Literature\Demo.Web\bin\Lib.Zero.dll
+D:\项目构建\MD\Literature\Demo.Web\bin\Lib.Zero.pdb
+D:\项目构建\MD\Literature\Demo.Web\bin\ServiceStack.Redis.dll
+D:\项目构建\MD\Literature\Demo.Web\bin\ServiceStack.Redis.xml

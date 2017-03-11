@@ -15,16 +15,9 @@ namespace LibMain.Runtime.Session
         /// <summary>
         /// Gets current UserId or null.
         /// </summary>
-        long? UserId { get; }
-
-        /// <summary>
-        /// Gets current TenantId or null.
-        /// </summary>
-        int? TenantId { get; }
-
-        /// <summary>
-        /// Gets current multi-tenancy side.
-        /// </summary>
-        MultiTenancySides MultiTenancySide { get; }
+        string SessionID { get; }
+        void Remove(string key);
+        void Clear();
+        object this[string key] { get; set; }
     }
 }
