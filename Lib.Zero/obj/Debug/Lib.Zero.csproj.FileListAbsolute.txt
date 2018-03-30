@@ -5,7 +5,6 @@ D:\项目构建\MD\Literature\Lib.Zero\bin\Debug\Newtonsoft.Json.dll
 D:\项目构建\MD\Literature\Lib.Zero\bin\Debug\ServiceStack.Common.dll
 D:\项目构建\MD\Literature\Lib.Zero\bin\Debug\ServiceStack.Interfaces.dll
 D:\项目构建\MD\Literature\Lib.Zero\bin\Debug\ServiceStack.Redis.dll
-D:\项目构建\MD\Literature\Lib.Zero\bin\Debug\ServiceStack.Text.dll
 D:\项目构建\MD\Literature\Lib.Zero\bin\Debug\Castle.Windsor.dll
 D:\项目构建\MD\Literature\Lib.Zero\bin\Debug\Castle.Core.dll
 D:\项目构建\MD\Literature\Lib.Zero\bin\Debug\ServiceStack.OrmLite.dll
@@ -16,7 +15,6 @@ D:\项目构建\MD\Literature\Lib.Zero\bin\Debug\LibMain.pdb
 D:\项目构建\MD\Literature\Lib.Zero\bin\Debug\Newtonsoft.Json.xml
 D:\项目构建\MD\Literature\Lib.Zero\bin\Debug\ServiceStack.Common.xml
 D:\项目构建\MD\Literature\Lib.Zero\bin\Debug\ServiceStack.Redis.xml
-D:\项目构建\MD\Literature\Lib.Zero\bin\Debug\ServiceStack.Text.xml
 D:\项目构建\MD\Literature\Lib.Zero\bin\Debug\Castle.Windsor.xml
 D:\项目构建\MD\Literature\Lib.Zero\bin\Debug\Castle.Core.xml
 D:\项目构建\MD\Literature\Lib.Zero\bin\Debug\ServiceStack.OrmLite.xml
@@ -26,3 +24,5 @@ D:\项目构建\MD\Literature\Lib.Zero\bin\Debug\Nito.AsyncEx.Enlightenment.xml
 D:\项目构建\MD\Literature\Lib.Zero\obj\Debug\Lib.Zero.csprojResolveAssemblyReference.cache
 D:\项目构建\MD\Literature\Lib.Zero\obj\Debug\Lib.Zero.dll
 D:\项目构建\MD\Literature\Lib.Zero\obj\Debug\Lib.Zero.pdb
+D:\项目构建\MD\Literature\Lib.Zero\bin\Debug\LibMain.dll.config
+D:\项目构建\MD\Literature\Lib.Zero\obj\Debug\Lib.Zero.csproj.CoreCompileInputs.cache

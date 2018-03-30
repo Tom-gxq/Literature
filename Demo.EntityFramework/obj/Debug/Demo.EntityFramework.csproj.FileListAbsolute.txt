@@ -22,7 +22,6 @@ D:\项目构建\MD\Literature\Demo.EntityFramework\bin\Debug\ServiceStack.OrmLit
 D:\项目构建\MD\Literature\Demo.EntityFramework\bin\Debug\Nito.AsyncEx.xml
 D:\项目构建\MD\Literature\Demo.EntityFramework\bin\Debug\System.Collections.Immutable.xml
 D:\项目构建\MD\Literature\Demo.EntityFramework\bin\Debug\ServiceStack.Common.xml
-D:\项目构建\MD\Literature\Demo.EntityFramework\bin\Debug\ServiceStack.Text.xml
 D:\项目构建\MD\Literature\Demo.EntityFramework\bin\Debug\Nito.AsyncEx.Enlightenment.xml
 D:\项目构建\MD\Literature\Demo.EntityFramework\obj\Debug\Demo.EntityFramework.csprojResolveAssemblyReference.cache
 D:\项目构建\MD\Literature\Demo.EntityFramework\obj\Debug\Demo.EntityFramework.dll
@@ -33,3 +32,5 @@ D:\项目构建\MD\Literature\Demo.EntityFramework\bin\Debug\Lib.Zero.pdb
 D:\项目构建\MD\Literature\Demo.EntityFramework\bin\Debug\Newtonsoft.Json.xml
 D:\项目构建\MD\Literature\Demo.EntityFramework\bin\Debug\ServiceStack.Redis.dll
 D:\项目构建\MD\Literature\Demo.EntityFramework\bin\Debug\ServiceStack.Redis.xml
+D:\项目构建\MD\Literature\Demo.EntityFramework\bin\Debug\LibMain.dll.config
+D:\项目构建\MD\Literature\Demo.EntityFramework\obj\Debug\Demo.EntityFramework.csproj.CoreCompileInputs.cache

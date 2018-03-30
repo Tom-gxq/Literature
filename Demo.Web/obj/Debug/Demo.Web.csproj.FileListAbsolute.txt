@@ -86,7 +86,6 @@ D:\项目构建\MD\Literature\Demo.Web\bin\System.Web.Http.xml
 D:\项目构建\MD\Literature\Demo.Web\bin\System.Net.Http.Formatting.xml
 D:\项目构建\MD\Literature\Demo.Web\bin\System.Web.Http.WebHost.xml
 D:\项目构建\MD\Literature\Demo.Web\bin\ServiceStack.Common.xml
-D:\项目构建\MD\Literature\Demo.Web\bin\ServiceStack.Text.xml
 D:\项目构建\MD\Literature\Demo.Web\bin\Nito.AsyncEx.Enlightenment.xml
 D:\项目构建\MD\Literature\Demo.Web\bin\zh-Hans\System.Web.Helpers.resources.dll
 D:\项目构建\MD\Literature\Demo.Web\bin\zh-Hans\System.Web.Mvc.resources.dll
@@ -102,3 +101,14 @@ D:\项目构建\MD\Literature\Demo.Web\bin\Lib.Zero.dll
 D:\项目构建\MD\Literature\Demo.Web\bin\Lib.Zero.pdb
 D:\项目构建\MD\Literature\Demo.Web\bin\ServiceStack.Redis.dll
 D:\项目构建\MD\Literature\Demo.Web\bin\ServiceStack.Redis.xml
+D:\项目构建\MD\Literature\Demo.Web\bin\Lib.AutoMapper.dll
+D:\项目构建\MD\Literature\Demo.Web\bin\AutoMapper.dll
+D:\项目构建\MD\Literature\Demo.Web\bin\Demo.Application.dll.config
+D:\项目构建\MD\Literature\Demo.Web\bin\Demo.WebApi.dll.config
+D:\项目构建\MD\Literature\Demo.Web\bin\Lib.Web.dll.config
+D:\项目构建\MD\Literature\Demo.Web\bin\LibMain.dll.config
+D:\项目构建\MD\Literature\Demo.Web\bin\Lib.AutoMapper.pdb
+D:\项目构建\MD\Literature\Demo.Web\bin\Lib.Web.Api.dll.config
+D:\项目构建\MD\Literature\Demo.Web\bin\AutoMapper.pdb
+D:\项目构建\MD\Literature\Demo.Web\bin\AutoMapper.xml
+D:\项目构建\MD\Literature\Demo.Web\obj\Debug\Demo.Web.csproj.CoreCompileInputs.cache

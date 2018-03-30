@@ -34,7 +34,6 @@ D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\Newtonsoft.Json.xml
 D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\ServiceStack.OrmLite.xml
 D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\Nito.AsyncEx.xml
 D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\ServiceStack.Common.xml
-D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\ServiceStack.Text.xml
 D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\Nito.AsyncEx.Enlightenment.xml
 D:\项目构建\MD\Literature\Demo.WebApi\obj\Debug\Demo.WebApi.csprojResolveAssemblyReference.cache
 D:\项目构建\MD\Literature\Demo.WebApi\obj\Debug\Demo.WebApi.dll
@@ -43,3 +42,14 @@ D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\Lib.Zero.dll
 D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\Lib.Zero.pdb
 D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\ServiceStack.Redis.dll
 D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\ServiceStack.Redis.xml
+D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\AutoMapper.Net4.dll
+D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\Lib.AutoMapper.dll
+D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\AutoMapper.dll
+D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\Demo.Application.dll.config
+D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\Lib.Web.Api.dll.config
+D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\LibMain.dll.config
+D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\Lib.AutoMapper.pdb
+D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\Lib.Web.dll.config
+D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\AutoMapper.pdb
+D:\项目构建\MD\Literature\Demo.WebApi\bin\Debug\AutoMapper.xml
+D:\项目构建\MD\Literature\Demo.WebApi\obj\Debug\Demo.WebApi.csproj.CoreCompileInputs.cache

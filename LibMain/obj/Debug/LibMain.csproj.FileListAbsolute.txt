@@ -24,7 +24,6 @@ D:\项目构建\MD\Literature\LibMain\bin\Debug\ServiceStack.Interfaces.dll
 D:\项目构建\MD\Literature\LibMain\bin\Debug\ServiceStack.OrmLite.dll
 D:\项目构建\MD\Literature\LibMain\bin\Debug\ServiceStack.OrmLite.SqlServer.dll
 D:\项目构建\MD\Literature\LibMain\bin\Debug\ServiceStack.Redis.dll
-D:\项目构建\MD\Literature\LibMain\bin\Debug\ServiceStack.Text.dll
 D:\项目构建\MD\Literature\LibMain\bin\Debug\System.Collections.Immutable.dll
 D:\项目构建\MD\Literature\LibMain\bin\Debug\Castle.Core.xml
 D:\项目构建\MD\Literature\LibMain\bin\Debug\Castle.Windsor.xml
@@ -34,8 +33,8 @@ D:\项目构建\MD\Literature\LibMain\bin\Debug\Nito.AsyncEx.Enlightenment.xml
 D:\项目构建\MD\Literature\LibMain\bin\Debug\ServiceStack.Common.xml
 D:\项目构建\MD\Literature\LibMain\bin\Debug\ServiceStack.OrmLite.xml
 D:\项目构建\MD\Literature\LibMain\bin\Debug\ServiceStack.Redis.xml
-D:\项目构建\MD\Literature\LibMain\bin\Debug\ServiceStack.Text.xml
 D:\项目构建\MD\Literature\LibMain\bin\Debug\System.Collections.Immutable.xml
 D:\项目构建\MD\Literature\LibMain\obj\Debug\LibMain.dll
 D:\项目构建\MD\Literature\LibMain\obj\Debug\LibMain.pdb
 D:\项目构建\MD\Literature\LibMain\obj\Debug\LibMain.csprojResolveAssemblyReference.cache
+D:\项目构建\MD\Literature\LibMain\obj\Debug\LibMain.csproj.CoreCompileInputs.cache

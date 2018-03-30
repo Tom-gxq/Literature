@@ -8,7 +8,6 @@ D:\项目构建\MD\Literature\Lib.EntityFramework\bin\Debug\ServiceStack.Interfa
 D:\项目构建\MD\Literature\Lib.EntityFramework\bin\Debug\ServiceStack.OrmLite.dll
 D:\项目构建\MD\Literature\Lib.EntityFramework\bin\Debug\ServiceStack.OrmLite.SqlServer.dll
 D:\项目构建\MD\Literature\Lib.EntityFramework\bin\Debug\ServiceStack.Redis.dll
-D:\项目构建\MD\Literature\Lib.EntityFramework\bin\Debug\ServiceStack.Text.dll
 D:\项目构建\MD\Literature\Lib.EntityFramework\bin\Debug\Nito.AsyncEx.dll
 D:\项目构建\MD\Literature\Lib.EntityFramework\bin\Debug\System.Collections.Immutable.dll
 D:\项目构建\MD\Literature\Lib.EntityFramework\bin\Debug\Nito.AsyncEx.Enlightenment.dll
@@ -18,10 +17,11 @@ D:\项目构建\MD\Literature\Lib.EntityFramework\bin\Debug\Castle.Windsor.xml
 D:\项目构建\MD\Literature\Lib.EntityFramework\bin\Debug\ServiceStack.Common.xml
 D:\项目构建\MD\Literature\Lib.EntityFramework\bin\Debug\ServiceStack.OrmLite.xml
 D:\项目构建\MD\Literature\Lib.EntityFramework\bin\Debug\ServiceStack.Redis.xml
-D:\项目构建\MD\Literature\Lib.EntityFramework\bin\Debug\ServiceStack.Text.xml
 D:\项目构建\MD\Literature\Lib.EntityFramework\bin\Debug\Nito.AsyncEx.xml
 D:\项目构建\MD\Literature\Lib.EntityFramework\bin\Debug\System.Collections.Immutable.xml
 D:\项目构建\MD\Literature\Lib.EntityFramework\bin\Debug\Nito.AsyncEx.Enlightenment.xml
 D:\项目构建\MD\Literature\Lib.EntityFramework\obj\Debug\Lib.EntityFramework.csprojResolveAssemblyReference.cache
 D:\项目构建\MD\Literature\Lib.EntityFramework\obj\Debug\Lib.EntityFramework.dll
 D:\项目构建\MD\Literature\Lib.EntityFramework\obj\Debug\Lib.EntityFramework.pdb
+D:\项目构建\MD\Literature\Lib.EntityFramework\bin\Debug\LibMain.dll.config
+D:\项目构建\MD\Literature\Lib.EntityFramework\obj\Debug\Lib.EntityFramework.csproj.CoreCompileInputs.cache

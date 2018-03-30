@@ -23,7 +23,6 @@ D:\项目构建\MD\Literature\Demo.Application\bin\Debug\Castle.Core.xml
 D:\项目构建\MD\Literature\Demo.Application\bin\Debug\Nito.AsyncEx.xml
 D:\项目构建\MD\Literature\Demo.Application\bin\Debug\System.Collections.Immutable.xml
 D:\项目构建\MD\Literature\Demo.Application\bin\Debug\ServiceStack.Common.xml
-D:\项目构建\MD\Literature\Demo.Application\bin\Debug\ServiceStack.Text.xml
 D:\项目构建\MD\Literature\Demo.Application\bin\Debug\Nito.AsyncEx.Enlightenment.xml
 D:\项目构建\MD\Literature\Demo.Application\obj\Debug\Demo.Application.csprojResolveAssemblyReference.cache
 D:\项目构建\MD\Literature\Demo.Application\obj\Debug\Demo.Application.dll
@@ -34,3 +33,11 @@ D:\项目构建\MD\Literature\Demo.Application\bin\Debug\Lib.Zero.pdb
 D:\项目构建\MD\Literature\Demo.Application\bin\Debug\Newtonsoft.Json.xml
 D:\项目构建\MD\Literature\Demo.Application\bin\Debug\ServiceStack.Redis.dll
 D:\项目构建\MD\Literature\Demo.Application\bin\Debug\ServiceStack.Redis.xml
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\AutoMapper.Net4.dll
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\Lib.AutoMapper.dll
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\AutoMapper.dll
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\Lib.AutoMapper.pdb
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\LibMain.dll.config
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\AutoMapper.pdb
+D:\项目构建\MD\Literature\Demo.Application\bin\Debug\AutoMapper.xml
+D:\项目构建\MD\Literature\Demo.Application\obj\Debug\Demo.Application.csproj.CoreCompileInputs.cache

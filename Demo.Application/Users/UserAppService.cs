@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Lib.EntityFramework.EntityFramework.Repositories;
 using Lib.EntityFramework.EntityFramework.Uow;
 using Lib.EntityFramework.EntityFramework;
+using Lib.AutoMapper.AutoMapper;
 
 namespace Demo.Application.Users
 {
@@ -28,7 +29,9 @@ namespace Demo.Application.Users
             this.AbpSession["accountID"] = idstr;
             return new ListResultOutput<UserDto>
             {
-                Items = null
+                Items = _userRepository
+                           .GetAllList(u => u.TenantId == 1)
+                           .MapTo<List<UserDto>>()
             };
         }
     }

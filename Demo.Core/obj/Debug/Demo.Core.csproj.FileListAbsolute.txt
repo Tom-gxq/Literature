@@ -6,7 +6,6 @@ D:\项目构建\MD\Literature\Demo.Core\bin\Debug\ServiceStack.Interfaces.dll
 D:\项目构建\MD\Literature\Demo.Core\bin\Debug\ServiceStack.OrmLite.dll
 D:\项目构建\MD\Literature\Demo.Core\bin\Debug\ServiceStack.OrmLite.SqlServer.dll
 D:\项目构建\MD\Literature\Demo.Core\bin\Debug\ServiceStack.Redis.dll
-D:\项目构建\MD\Literature\Demo.Core\bin\Debug\ServiceStack.Text.dll
 D:\项目构建\MD\Literature\Demo.Core\bin\Debug\Castle.Windsor.dll
 D:\项目构建\MD\Literature\Demo.Core\bin\Debug\Castle.Core.dll
 D:\项目构建\MD\Literature\Demo.Core\bin\Debug\Nito.AsyncEx.dll
@@ -16,7 +15,6 @@ D:\项目构建\MD\Literature\Demo.Core\bin\Debug\LibMain.pdb
 D:\项目构建\MD\Literature\Demo.Core\bin\Debug\ServiceStack.Common.xml
 D:\项目构建\MD\Literature\Demo.Core\bin\Debug\ServiceStack.OrmLite.xml
 D:\项目构建\MD\Literature\Demo.Core\bin\Debug\ServiceStack.Redis.xml
-D:\项目构建\MD\Literature\Demo.Core\bin\Debug\ServiceStack.Text.xml
 D:\项目构建\MD\Literature\Demo.Core\bin\Debug\Castle.Windsor.xml
 D:\项目构建\MD\Literature\Demo.Core\bin\Debug\Castle.Core.xml
 D:\项目构建\MD\Literature\Demo.Core\bin\Debug\Nito.AsyncEx.xml
@@ -29,3 +27,5 @@ D:\项目构建\MD\Literature\Demo.Core\bin\Debug\Lib.Zero.dll
 D:\项目构建\MD\Literature\Demo.Core\bin\Debug\Newtonsoft.Json.dll
 D:\项目构建\MD\Literature\Demo.Core\bin\Debug\Lib.Zero.pdb
 D:\项目构建\MD\Literature\Demo.Core\bin\Debug\Newtonsoft.Json.xml
+D:\项目构建\MD\Literature\Demo.Core\bin\Debug\LibMain.dll.config
+D:\项目构建\MD\Literature\Demo.Core\obj\Debug\Demo.Core.csproj.CoreCompileInputs.cache

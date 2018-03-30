@@ -103,7 +103,6 @@ D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\System.Collections.Imm
 D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\ServiceStack.OrmLite.xml
 D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\Nito.AsyncEx.xml
 D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\ServiceStack.Common.xml
-D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\ServiceStack.Text.xml
 D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\Nito.AsyncEx.Enlightenment.xml
 D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\de\Microsoft.OData.Core.resources.dll
 D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\es\Microsoft.OData.Core.resources.dll
@@ -135,3 +134,7 @@ D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\zh-Hant\Microsoft.Spat
 D:\项目构建\MD\Literature\Lib.Web.Api.OData\obj\Debug\Lib.Web.Api.OData.csprojResolveAssemblyReference.cache
 D:\项目构建\MD\Literature\Lib.Web.Api.OData\obj\Debug\Lib.Web.Api.OData.dll
 D:\项目构建\MD\Literature\Lib.Web.Api.OData\obj\Debug\Lib.Web.Api.OData.pdb
+D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\Lib.Web.Api.dll.config
+D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\LibMain.dll.config
+D:\项目构建\MD\Literature\Lib.Web.Api.OData\bin\Debug\Lib.Web.dll.config
+D:\项目构建\MD\Literature\Lib.Web.Api.OData\obj\Debug\Lib.Web.Api.OData.csproj.CoreCompileInputs.cache

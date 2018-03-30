@@ -36,8 +36,9 @@ D:\项目构建\MD\Literature\Lib.Web\bin\Debug\ServiceStack.OrmLite.xml
 D:\项目构建\MD\Literature\Lib.Web\bin\Debug\Nito.AsyncEx.xml
 D:\项目构建\MD\Literature\Lib.Web\bin\Debug\System.Collections.Immutable.xml
 D:\项目构建\MD\Literature\Lib.Web\bin\Debug\ServiceStack.Common.xml
-D:\项目构建\MD\Literature\Lib.Web\bin\Debug\ServiceStack.Text.xml
 D:\项目构建\MD\Literature\Lib.Web\bin\Debug\Nito.AsyncEx.Enlightenment.xml
 D:\项目构建\MD\Literature\Lib.Web\obj\Debug\Lib.Web.csprojResolveAssemblyReference.cache
 D:\项目构建\MD\Literature\Lib.Web\obj\Debug\Lib.Web.dll
 D:\项目构建\MD\Literature\Lib.Web\obj\Debug\Lib.Web.pdb
+D:\项目构建\MD\Literature\Lib.Web\bin\Debug\LibMain.dll.config
+D:\项目构建\MD\Literature\Lib.Web\obj\Debug\Lib.Web.csproj.CoreCompileInputs.cache

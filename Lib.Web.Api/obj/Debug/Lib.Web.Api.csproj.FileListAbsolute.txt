@@ -47,8 +47,10 @@ D:\项目构建\MD\Literature\Lib.Web.Api\bin\Debug\System.Web.Http.WebHost.xml
 D:\项目构建\MD\Literature\Lib.Web.Api\bin\Debug\ServiceStack.OrmLite.xml
 D:\项目构建\MD\Literature\Lib.Web.Api\bin\Debug\Nito.AsyncEx.xml
 D:\项目构建\MD\Literature\Lib.Web.Api\bin\Debug\ServiceStack.Common.xml
-D:\项目构建\MD\Literature\Lib.Web.Api\bin\Debug\ServiceStack.Text.xml
 D:\项目构建\MD\Literature\Lib.Web.Api\bin\Debug\Nito.AsyncEx.Enlightenment.xml
 D:\项目构建\MD\Literature\Lib.Web.Api\obj\Debug\Lib.Web.Api.csprojResolveAssemblyReference.cache
 D:\项目构建\MD\Literature\Lib.Web.Api\obj\Debug\Lib.Web.Api.dll
 D:\项目构建\MD\Literature\Lib.Web.Api\obj\Debug\Lib.Web.Api.pdb
+D:\项目构建\MD\Literature\Lib.Web.Api\bin\Debug\Lib.Web.dll.config
+D:\项目构建\MD\Literature\Lib.Web.Api\bin\Debug\LibMain.dll.config
+D:\项目构建\MD\Literature\Lib.Web.Api\obj\Debug\Lib.Web.Api.csproj.CoreCompileInputs.cache
