@@ -1,0 +1,18 @@
+﻿{% for(var i =0, j=$data.length; i
+< j; i++) { %}        
+<tr  class="contenttr">
+    <td>
+        <input type="checkbox" class="checkbox table-ckbs" value="{%=$data[i].TypeId %}">
+    </td>
+    <td class="center">
+        <div>{%=$data[i].TypeName %}</div>
+    </td>
+    <td>
+        <p>{%=$data[i].DisplaySequence %}</p>
+    </td>
+    <td data-item_id="{%=$data[i].TypeId %}" class="center"> 
+        <button class="edit_item lhx_btn btn btn-primary" id="{%=$data[i].TypeId%}">编辑</button>
+        <button class="delete_item lhx_btn btn btn-danger" id="delete">删除</button>
+    </td>
+</tr>
+{% } %}

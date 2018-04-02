@@ -1,0 +1,357 @@
+﻿using SP.Service;
+using SP.Api.Model;
+using SP.Api.Model.Order;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using SP.Api.Model.Product;
+using SP.Api.Model.Account;
+
+namespace OrderGRPCInterface.Business
+{
+    public class OrderBusiness
+    {
+        public static string AddMyOrder(OrderModel order)
+        {
+            var orderId = string.Empty;
+            var client = OrderClientHelper.GetClient();
+            var request = new AddOrderRequest()
+            {
+                AccountId = order.accountId,
+                Remark = order.remark != null ? order.remark: string.Empty,
+                AddressId = order.addressId
+            };
+            order.cartIds.ForEach(x=> request.CartIds.Add(x));
+            var result = client.AddMyOrder(request);
+            if (result.Status == 10001)
+            {
+                orderId = result.OrderId;
+            }
+            if (result.Status == 10003)
+            {
+                orderId = null;
+            }
+            return orderId;
+        }
+
+        public static List<OrderInfoModel> GetMyOrderList(string accountId,int orderStatus)
+        {
+            var client = OrderClientHelper.GetClient();
+            var request1 = new MyOrderRequest()
+            {
+                AccountId = accountId,
+                OrderStatus = orderStatus
+            };
+            var result = client.GetMyOrderList(request1);
+            var list = new List<OrderInfoModel>();
+            if (result.Status == 10001)
+            {
+                foreach (var item in result.OrderList)
+                {
+                    var domain = new OrderInfoModel();
+                    domain.amount = item.Amount;
+                    domain.orderId = item.OrderId;
+                    domain.orderStatus = item.OrderStatus;
+                    if(item.ProductList != null && item.ProductList.Count > 0)
+                    {
+                        var productList = new List<ProductModel>();
+                        foreach (var pitem in item.ProductList)
+                        {
+                            var p = new ProductModel();
+                            p.productId = pitem.ProductId;
+                            p.productName = pitem.ProductName;
+                            p.productCode = pitem.ProductCode;
+                            p.marketPrice = pitem.MarketPrice;
+                            p.unit = pitem.Unit;
+                            if(pitem.Image.Count > 0)
+                            {
+                                foreach (var img in pitem.Image)
+                                {
+                                    var image = new ProductImageModel();
+                                    image.id = img.Id;
+                                    image.imgPath = img.ImgPath;
+                                    image.postion = img.Postion;
+                                    p.images.Add(image);
+                                }                                
+                            }
+                            productList.Add(p);
+                        }
+                        domain.productList = productList;
+                    }
+                    list.Add(domain);
+                }
+            }
+            return list;
+        }
+
+        public static List<OrderInfoModel> SearchOrderKeywordList(string accountId,string keyWord,int pageIndex,int pageSize)
+        {
+            var client = OrderClientHelper.GetClient();
+            var request1 = new SearchMyOrderRequest()
+            {
+                AccountId = accountId,
+                KeyWord = keyWord,
+                PageIndex = pageIndex,
+                PageSize = pageSize
+            };
+            var result = client.SearchOrderKeywordList(request1);
+            var list = new List<OrderInfoModel>();
+            if (result.Status == 10001)
+            {
+                foreach (var item in result.OrderList)
+                {
+                    var domain = new OrderInfoModel();
+                    domain.amount = item.Amount;
+                    domain.orderId = item.OrderId;
+                    domain.orderStatus = item.OrderStatus;
+                    if (item.ProductList != null && item.ProductList.Count > 0)
+                    {
+                        foreach (var pitem in item.ProductList)
+                        {
+                            var p = new ProductModel();
+                            p.productId = pitem.ProductId;
+                            p.productName = pitem.ProductName;
+                            p.productCode = pitem.ProductCode;
+                            p.marketPrice = pitem.MarketPrice;
+                            p.unit = pitem.Unit;
+                            if (pitem.Image.Count > 0)
+                            {
+                                foreach (var img in pitem.Image)
+                                {
+                                    var image = new ProductImageModel();
+                                    image.id = img.Id;
+                                    image.imgPath = img.ImgPath;
+                                    image.postion = img.Postion;
+                                    p.images.Add(image);
+                                }
+                            }
+                            domain.productList.Add(p);
+                        }
+                    }
+                    list.Add(domain);
+                }
+            }
+            return list;
+        }
+        public static OrderInfoModel GetOrderByOrderId(string orderId)
+        {
+            var client = OrderClientHelper.GetClient();
+            var request1 = new OrderIdRequest()
+            {
+                OrderId = orderId
+            };
+            var result = client.GetOrderByOrderId(request1);
+            var list = new List<OrderInfoModel>();
+            if (result.Status == 10001)
+            {
+                var domain = new OrderInfoModel();
+                domain.amount = result.OrderInfo.Amount;
+                domain.orderId = result.OrderInfo.OrderId;
+                domain.orderStatus = result.OrderInfo.OrderStatus;
+                domain.orderCode = result.OrderInfo.OrderCode;
+                if (result.OrderInfo.ProductList != null && result.OrderInfo.ProductList.Count > 0)
+                {
+                    var productList = new List<ProductModel>();
+                    foreach (var pitem in result.OrderInfo.ProductList)
+                    {
+                        var p = new ProductModel();
+                        p.productId = pitem.ProductId;
+                        p.productName = pitem.ProductName;
+                        p.productCode = pitem.ProductCode;
+                        p.marketPrice = pitem.MarketPrice;
+                        p.unit = pitem.Unit;
+                        if (pitem.Image.Count > 0)
+                        {
+                            foreach (var img in pitem.Image)
+                            {
+                                var image = new ProductImageModel();
+                                image.id = img.Id;
+                                image.imgPath = img.ImgPath;
+                                image.postion = img.Postion;
+                                p.images.Add(image);
+                            }
+                        }
+                        productList.Add(p);
+                    }
+                    domain.productList = productList;
+                }
+                return domain;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static bool UpdateOrderStatus(string orderId,int orderStatus)
+        {
+            bool status = false;
+            var client = OrderClientHelper.GetClient();
+            var request = new UpdateOrderRequest()
+            {
+                OrderId= orderId,
+                OrderStatus = orderStatus
+            };
+            var result = client.UpdateOrderStatus(request);
+            if (result.Status == 10001)
+            {
+                status = true;
+            }
+            return status;
+        }
+        public static bool AddCashApply(string accountId,string alipay, double money)
+        {
+            bool status = false;
+            var client = OrderClientHelper.GetClient();
+            var request = new AddCashApplyRequest()
+            {
+                AccountId = accountId,
+                Alipay = alipay,
+                Money = money
+            };
+            var result = client.AddCashApply(request);
+            if (result.Status == 10001)
+            {
+                status = true;
+            }
+            return status;
+        }
+
+        public static List<LeadOrderModel> GetSchoolLeadList(string accountId, int orderStatus)
+        {
+            var client = OrderClientHelper.GetClient();
+            var request1 = new SchoolLeadRequest()
+            {
+                AccountId = accountId,
+                OrderStatus = orderStatus
+            };
+            var result = client.GetSchoolLeadList(request1);
+            var list = new List<LeadOrderModel>();
+            if (result.Status == 10001)
+            {
+                foreach (var item in result.OrderInfo)
+                {
+                    var domain = new LeadOrderModel();
+                    domain.amount = item.Amount;
+                    domain.orderId = item.OrderId;
+                    domain.orderStatus = item.OrderStatus;
+                    domain.orderCode = item.OrderCode;
+                    domain.orderDate = new DateTime(item.OrderDate).ToString("yyyy-MM-dd");
+                    domain.payDate = new DateTime(item.PayDate).ToString("yyyy-MM-dd");
+                    if(item.Account != null)
+                    {
+                        domain.account = new SP.Api.Model.Account.AccountModel();
+                        domain.account.MobilePhone = item.Account.MobilePhone;
+                        domain.account.UserName = item.Account.UserName;
+                    }
+                    if (item.Address != null)
+                    {
+                        domain.address = new SP.Api.Model.Account.AddressModel();
+                        domain.address.contactAddress = item.Address.ContactAddress;
+                        domain.address.id = item.Address.Id;
+                        domain.address.gender = (item.Address.Gender == 1);
+                        domain.address.dorm = item.Address.Dorm;
+                        domain.address.districtName = item.Address.DistrictName;
+                        domain.address.schoolName = item.Address.SchoolName;
+                        domain.address.contactMobile = item.Address.ContactMobile;
+                    }
+                    if (item.Shop != null)
+                    {
+                        domain.shop = new ShopModel();
+                        domain.shop.shopName = item.Shop.ShopName;
+                        domain.shop.startTime = item.Shop.StartTime;
+                        domain.shop.endTime = item.Shop.EndTime;
+                        domain.shop.shopId = item.Shop.ShopId;
+                    }
+                    if (item.ShoppingCartList != null && item.ShoppingCartList.Count > 0)
+                    {
+                        var productList = new List<ShoppingCartModel>();
+                        foreach (var pitem in item.ShoppingCartList)
+                        {
+                            var p = new ShoppingCartModel();
+                            p.Product = new ProductModel();
+                            p.Product.productName = pitem.ProductName;
+                            p.Quantity = pitem.Quantity;
+                            p.Amount = pitem.Amount;
+                            productList.Add(p);
+                        }
+                        domain.shoppingCartList = productList;
+                    }
+                    list.Add(domain);
+                }
+            }
+            return list;
+        }
+        public static List<TradeModel> GetSchoolLeadTradeList(string accountId, int pageIndex,int pageSize,out long total)
+        {
+            var client = OrderClientHelper.GetClient();
+            var request1 = new TradeRequest()
+            {
+                AccountId = accountId,
+                PageIndex = pageIndex,
+                PageSize =pageSize
+            };
+            var result = client.GetSchoolLeadTradeList(request1);
+            var list = new List<TradeModel>();
+            if (result.Status == 10001)
+            {
+                foreach (var item in result.TradeList)
+                {
+                    var domain = new TradeModel();
+                    domain.amount = item.Amount;
+                    domain.accountId = item.AccountId;
+                    domain.cartId = item.CartId;
+                    domain.quantity = item.Quantity;
+                    if(item.Subject == 1)
+                    {
+                        domain.title = "增加"+ item.Quantity + "份";
+                    }
+                    else
+                    {
+                        domain.title = "提现" + item.Amount + "元";
+                    }
+                    domain.createTime = new DateTime(item.CreateTime).ToString("yyyy-MM-dd");
+                    
+                    list.Add(domain);
+                }                
+            }
+            total = result.Total;
+            return list;
+        }
+        public static FinanceModel GetSchoolLeadFinance(string accountId)
+        {
+            var client = OrderClientHelper.GetClient();
+            var request1 = new AccountIdRequest()
+            {
+                AccountId = accountId
+            };
+            var result = client.GetSchoolLeadFinance(request1);
+            var model = new FinanceModel();
+            if (result.Status == 10001)
+            {
+                model.haveAmount = result.HaveAmount;
+                model.accountId = result.AccountId;
+                model.useAmount = result.UseAmount;
+                model.activeAmount = result.ActiveAmount;
+            }
+            return model;
+        }
+
+        public static bool UpdateOrderStatusByOrderCode(string orderCode, int orderStatus)
+        {
+            bool status = false;
+            var client = OrderClientHelper.GetClient();
+            var request = new UpdateOrderCodeRequest()
+            {
+                OrderCode = orderCode,
+                OrderStatus = orderStatus
+            };
+            var result = client.UpdateOrderStatusByOrderCode(request);
+            if (result.Status == 10001)
+            {
+                status = true;
+            }
+            return status;
+        }
+    }
+}

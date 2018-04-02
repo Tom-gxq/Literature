@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Aliyun.Acs.Core</RootNamespace>
+    <PackageId>Aliyun.Acs.Core</PackageId>
+    <Authors>Aliyun.Acs.Core</Authors>
+    <Company>Aliyun.Acs.Core</Company>
+    <Product>Aliyun.Acs.Core</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Regions\endpoints.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Regions\endpoints.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+</Project>

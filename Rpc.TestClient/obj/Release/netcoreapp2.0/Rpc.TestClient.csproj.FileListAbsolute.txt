@@ -1,0 +1,11 @@
+D:\项目构建\饿家军餐饮平台\Src\Specialty\Rpc.TestClient\bin\Release\netcoreapp2.0\Rpc.TestClient.deps.json
+D:\项目构建\饿家军餐饮平台\Src\Specialty\Rpc.TestClient\bin\Release\netcoreapp2.0\Rpc.TestClient.runtimeconfig.json
+D:\项目构建\饿家军餐饮平台\Src\Specialty\Rpc.TestClient\bin\Release\netcoreapp2.0\Rpc.TestClient.runtimeconfig.dev.json
+D:\项目构建\饿家军餐饮平台\Src\Specialty\Rpc.TestClient\bin\Release\netcoreapp2.0\Rpc.TestClient.dll
+D:\项目构建\饿家军餐饮平台\Src\Specialty\Rpc.TestClient\bin\Release\netcoreapp2.0\Rpc.TestClient.pdb
+D:\项目构建\饿家军餐饮平台\Src\Specialty\Rpc.TestClient\obj\Release\netcoreapp2.0\Rpc.TestClient.csprojResolveAssemblyReference.cache
+D:\项目构建\饿家军餐饮平台\Src\Specialty\Rpc.TestClient\obj\Release\netcoreapp2.0\Rpc.TestClient.csproj.CoreCompileInputs.cache
+D:\项目构建\饿家军餐饮平台\Src\Specialty\Rpc.TestClient\obj\Release\netcoreapp2.0\Rpc.TestClient.AssemblyInfo.cs
+D:\项目构建\饿家军餐饮平台\Src\Specialty\Rpc.TestClient\obj\Release\netcoreapp2.0\Rpc.TestClient.dll
+D:\项目构建\饿家军餐饮平台\Src\Specialty\Rpc.TestClient\obj\Release\netcoreapp2.0\Rpc.TestClient.pdb
+D:\项目构建\饿家军餐饮平台\Src\Specialty\Rpc.TestClient\obj\Release\netcoreapp2.0\Rpc.TestClient.AssemblyInfoInputs.cache

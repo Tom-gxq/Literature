@@ -1,0 +1,31 @@
+﻿{% for(var i =0, j=$data.length; i
+< j; i++) { %}
+<tr class="contenttr">
+    <td>
+        <input type="checkbox" class="checkbox table-ckbs" value="{%=$data[i].ProductId %}" data-status="{%=$data[i].SaleStatus%}" {%=$data[i].ShopId>0?'checked':'' %}>
+    </td>
+    <td class="center">
+        <div>{%=$data[i].ProductName %}</div>
+    </td>
+    <td class="center">
+        {%if($data[i].ProductType !=null){%}
+        <div>{%=$data[i].ProductType.TypeName %}</div>
+        {%}else{%}
+        <div>&nbsp;</div>
+        {%}%}
+    </td>
+    <td class="center">
+        {%if($data[i].Brand !=null){%}
+        <div>{%=$data[i].Brand.BrandName %}</div>
+        {%}else{%}
+        <div>&nbsp;</div>
+        {%}%}
+    </td>
+    <td class="center">
+        <div>{%=$data[i].MarketPrice %}</div>
+    </td>
+    <td class="center">
+        <p>{%=$data[i].SaleStatus==1?'上架':'下架' %}</p>
+    </td>
+</tr>
+{% } %}

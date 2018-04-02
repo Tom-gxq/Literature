@@ -1,0 +1,16 @@
+D:\项目构建\饿家军餐饮平台\Src\Specialty\SP.DataEntity34\bin\Release\SP.DataEntity.dll
+D:\项目构建\饿家军餐饮平台\Src\Specialty\SP.DataEntity34\bin\Release\SP.DataEntity.pdb
+D:\项目构建\饿家军餐饮平台\Src\Specialty\SP.DataEntity34\bin\Release\LibMain.dll
+D:\项目构建\饿家军餐饮平台\Src\Specialty\SP.DataEntity34\bin\Release\ServiceStack.Common.dll
+D:\项目构建\饿家军餐饮平台\Src\Specialty\SP.DataEntity34\bin\Release\ServiceStack.Interfaces.dll
+D:\项目构建\饿家军餐饮平台\Src\Specialty\SP.DataEntity34\bin\Release\ServiceStack.OrmLite.dll
+D:\项目构建\饿家军餐饮平台\Src\Specialty\SP.DataEntity34\bin\Release\ServiceStack.OrmLite.SqlServer.dll
+D:\项目构建\饿家军餐饮平台\Src\Specialty\SP.DataEntity34\bin\Release\ServiceStack.Text.dll
+D:\项目构建\饿家军餐饮平台\Src\Specialty\SP.DataEntity34\bin\Release\LibMain.pdb
+D:\项目构建\饿家军餐饮平台\Src\Specialty\SP.DataEntity34\bin\Release\ServiceStack.Common.xml
+D:\项目构建\饿家军餐饮平台\Src\Specialty\SP.DataEntity34\bin\Release\ServiceStack.OrmLite.xml
+D:\项目构建\饿家军餐饮平台\Src\Specialty\SP.DataEntity34\bin\Release\ServiceStack.Text.xml
+D:\项目构建\饿家军餐饮平台\Src\Specialty\SP.DataEntity34\obj\Release\SP.DataEntity.csprojResolveAssemblyReference.cache
+D:\项目构建\饿家军餐饮平台\Src\Specialty\SP.DataEntity34\obj\Release\SP.DataEntity.csproj.CoreCompileInputs.cache
+D:\项目构建\饿家军餐饮平台\Src\Specialty\SP.DataEntity34\obj\Release\SP.DataEntity.dll
+D:\项目构建\饿家军餐饮平台\Src\Specialty\SP.DataEntity34\obj\Release\SP.DataEntity.pdb

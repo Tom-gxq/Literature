@@ -1,0 +1,20 @@
+﻿{% for(var i =0, j=$data.length; i
+< j; i++) { %}        
+<tr  class="contenttr">
+    <td>
+        <input type="checkbox"  value="{%=$data[i].Id %}" >
+    </td>
+    <td class="center">
+        <img src="{%=$data[i].ImagePath %}" style="width:45px;height:45px"/>
+    </td> 
+    <td class="center">
+        <div>{%=$data[i].Description %}</div>
+    </td> 
+    <td class="center">
+        <div>{%=$data[i].DisplaySequence %}</div>
+    </td> 
+    <td data-item_id="{%=$data[i].Id %}" class="center">  
+        <button class="delete_item lhx_btn btn btn-danger" id="delete">删除</button>
+    </td>
+</tr>
+{% } %}

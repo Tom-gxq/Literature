@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Providers>
+    <!--WebPower-->
+    <Provider name="WebPowerFunction" weight="8">
+        <Mobile>
+            <China text="true" />
+        </Mobile>
+    </Provider>
+    <Provider name="WebPowerMarketing" weight="4">
+        <Mobile>
+            <China text="true" />
+        </Mobile>
+    </Provider>
+
+    <!--阿里云-->
+    <Provider name="Aliyun" weight="1">
+        <Voice>
+            <China template="true">
+                <Template type="3" id="TTS_109545269" vars="name|time"/>
+            </China>
+        </Voice>
+    </Provider>
+
+    <!--云通讯-->
+    <Provider name="Yuntongxun" weight="8">
+        <Mobile>
+            <China template="true">
+                <Template type="1" id="1736" vars="{code}"/>
+            </China>
+        </Mobile>
+        <Voice>
+            <China text="true" />
+        </Voice>
+    </Provider>
+
+    <!--思齐-->
+    <Provider name="Rspread" weight="8">
+        <Mobile>
+            <International text="true" />
+        </Mobile>
+    </Provider>
+
+    <!--赛邮-->
+    <Provider name="Submail" weight="0">
+        <Mobile>
+            <International template="true">
+                <Template type="1" id="e6XJH" vars="code" />
+            </International>
+        </Mobile>
+    </Provider>
+
+    <!--创蓝-->
+    <Provider name="Chuanglan" weight="8">
+        <Mobile>
+            <International text="true" />
+        </Mobile>
+    </Provider>
+
+    <!--梦网科技-->
+    <Provider name="MWGate" weight="2">
+        <Mobile>
+            <China text="true" />
+        </Mobile>
+    </Provider>
+
+    <!--云片-->
+    <Provider name="Yunpian" weight="2">
+        <Mobile>
+            <China template="true">
+                <Template type="1" id="1676114" vars="#code#" />
+            </China>
+        </Mobile>
+        <Voice>
+            <China text="true" />
+        </Voice>
+    </Provider>
+
+    <!--三体-->
+    <Provider name="Santi" weight="2">
+        <Mobile>
+            <China template="true">
+                <Template type="1" id="111215" vars="{$var1}" />
+            </China>
+        </Mobile>
+    </Provider>
+</Providers>

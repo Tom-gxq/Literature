@@ -1,0 +1,16 @@
+D:\项目构建\饿家军餐饮平台\Src\Specialty\OrderRPCInterface\bin\Release\netstandard2.0\grpc_csharp_ext.x86.dll
+D:\项目构建\饿家军餐饮平台\Src\Specialty\OrderRPCInterface\bin\Release\netstandard2.0\grpc_csharp_ext.x64.dll
+D:\项目构建\饿家军餐饮平台\Src\Specialty\OrderRPCInterface\bin\Release\netstandard2.0\libgrpc_csharp_ext.x86.so
+D:\项目构建\饿家军餐饮平台\Src\Specialty\OrderRPCInterface\bin\Release\netstandard2.0\libgrpc_csharp_ext.x64.so
+D:\项目构建\饿家军餐饮平台\Src\Specialty\OrderRPCInterface\bin\Release\netstandard2.0\libgrpc_csharp_ext.x86.dylib
+D:\项目构建\饿家军餐饮平台\Src\Specialty\OrderRPCInterface\bin\Release\netstandard2.0\libgrpc_csharp_ext.x64.dylib
+D:\项目构建\饿家军餐饮平台\Src\Specialty\OrderRPCInterface\bin\Release\netstandard2.0\OrderGRPCInterface.deps.json
+D:\项目构建\饿家军餐饮平台\Src\Specialty\OrderRPCInterface\bin\Release\netstandard2.0\OrderGRPCInterface.dll
+D:\项目构建\饿家军餐饮平台\Src\Specialty\OrderRPCInterface\bin\Release\netstandard2.0\OrderGRPCInterface.pdb
+D:\项目构建\饿家军餐饮平台\Src\Specialty\OrderRPCInterface\bin\Release\netstandard2.0\RPCCommonTool.dll
+D:\项目构建\饿家军餐饮平台\Src\Specialty\OrderRPCInterface\bin\Release\netstandard2.0\RPCCommonTool.pdb
+D:\项目构建\饿家军餐饮平台\Src\Specialty\OrderRPCInterface\obj\Release\netstandard2.0\OrderGRPCInterface.csprojResolveAssemblyReference.cache
+D:\项目构建\饿家军餐饮平台\Src\Specialty\OrderRPCInterface\obj\Release\netstandard2.0\OrderGRPCInterface.csproj.CoreCompileInputs.cache
+D:\项目构建\饿家军餐饮平台\Src\Specialty\OrderRPCInterface\obj\Release\netstandard2.0\OrderGRPCInterface.AssemblyInfo.cs
+D:\项目构建\饿家军餐饮平台\Src\Specialty\OrderRPCInterface\obj\Release\netstandard2.0\OrderGRPCInterface.dll
+D:\项目构建\饿家军餐饮平台\Src\Specialty\OrderRPCInterface\obj\Release\netstandard2.0\OrderGRPCInterface.pdb

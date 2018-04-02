@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "登录";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/bootstrap")
+</head>
+<body>
+    <div class="login">
+        <a href="/" class="logo"></a>
+        <input type="hidden" id="session_id" value="">
+        <div class="login-inner">
+            <h1 class="login-title">
+                登录
+            </h1>
+            <div class="login-item mgb20" style="width: 265px;height: 40px;">
+                <!-- 博 -->
+                <input type="text" class="clearError" id="ipt_account" placeholder="请输入用户名" tabindex="1">
+                <a href="javascript:;" class="clearIpt j-clearIpt"><i class="gicon-remove"></i></a>
+            </div>
+            <div class="login-item mgb20" style="width: 265px;height: 40px;">
+                <input type="password" class="clearError" id="ipt_pwd" placeholder="请输入密码" tabindex="2">
+                <a href="javascript:;" class="clearIpt j-clearIpt"><i class="gicon-remove"></i></a>
+            </div>            
+            <div class="clearfix mgb10">
+            </div>
+            <div style="position: relative">
+                <a href="javascript:;" class="login-btn" id="btn_login" tabindex="4" onclick="login()">登录</a>
+            </div>
+
+        </div>
+        
+    </div>
+    <!-- end login -->
+
+    <div class="tooltips" data-origin="ipt_account" data-currentleft="0">
+        <span class="tooltips-arrow tooltips-arrow-left"><em>◆</em><i>◆</i></span>
+        <span class="tooltips-content">请输入手机号码或邮箱</span>
+    </div>
+
+    <div class="tooltips" data-origin="ipt_pwd" data-currentleft="0">
+        <span class="tooltips-arrow tooltips-arrow-left"><em>◆</em><i>◆</i></span>
+        <span class="tooltips-content">请输入密码</span>
+    </div>
+
+    <div class="tooltips" data-origin="ipt_code" data-currentleft="0">
+        <span class="tooltips-arrow tooltips-arrow-left"><em>◆</em><i>◆</i></span>
+        <span class="tooltips-content">请输入验证码</span><!-- 技 -->
+    </div>
+    <!-- end tooltips -->
+
+
+    <script type="text/j-template" id="tpl_hint">
+        <div class="hint hint-<%= type %>"><%= content %></div>
+    </script>
+    <!-- end hint -->
+
+    <script src="/Scripts/lib-min.js"></script>
+    <script src="/Scripts/jbox/jquery.jbox-min.js"></script>
+    <script src="/Scripts/component-min.js"></script>
+    <script src="/Scripts/common_login_reg.js"></script>
+
+
+    <script src="/Scripts/login.js"></script>
+    <script>
+        function init()
+        {
+            $("#ipt_pwd").keypress(function (event) {
+                if (event.keyCode == 13)
+                    login();
+
+            });
+        }
+        function login() {
+            $.ajax({
+                url: "/Admin/CheckAdminLogin",
+                type: "post",
+                dataType: "json",
+                data: {
+                    userName: $("#ipt_account").val(),
+                    passWord: $("#ipt_pwd").val()
+                },
+                beforeSend: function () {
+                    //$.jBox.showloading();
+                },
+                success: function (data) {
+                    if (data.result) {
+                        HYD.hint("success", "恭喜您，登入成功！");
+                        window.location.href = "/Admin/Index";
+                    } else if (!data.result) {
+                        HYD.hint("danger", "密码错误");
+                        setTimeout(window.location.href = "/Admin/Index",3000);
+                    }
+                    //$.jBox.hideloading();
+                }
+            });
+        }
+        init();
+    </script>
+    <!-- end session hint -->
+</body>
+</html>

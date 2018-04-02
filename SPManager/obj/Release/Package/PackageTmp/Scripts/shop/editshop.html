@@ -1,0 +1,82 @@
+﻿<div id="main" style="width:580px">
+    <div id="wizard" style="width:580px">
+        <div class="items" style="width:580px" id="{%=$data.result.Id%}">
+            <div class="page" style="width:580px">
+                <div class="contactInfo" style="height:250px">
+                    <ul style="height:400px;width:580px">
+                        <li style="width:100%">
+                            <input tabindex="1" class="input-text width400 Check txtId" type="hidden" value="{%=$data.result.Id %}" />
+                            <span class="grayfont span">店铺名:</span>
+                            <input tabindex="1" class="input-text width400 Check txtName" type="text" value="{%=$data.result.ShopName %}" placeholder="请输入店铺名" />
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">负责人:</span>
+                            <input id="accountid" class="input-text width400 Check owner" type="hidden" value="{%=$data.result.Owner!=null ?$data.result.Owner.AccountId:''%}"/>
+                            <input id="account" class="input-text width400 Check txtAccount" type="text" value="{%=$data.result.Owner!=null ?$data.result.Owner.Fullname:''%}" placeholder="请输入负责人" />
+                        </li>
+                        <!--<li style="width:100%">
+                            <span class="grayfont span">店铺属性:</span>
+                            <select id="inputAttribute" class="select small newselect" style="height: 35px;">
+                                <option value="0" selected="">&nbsp;</option>
+                                {% for(var i =0, j=$data.attribute.length; i< j; i++) { %}
+                                    {%if($data.result.AttributeId == $data.attribute[i].Id){%}
+                                    <option value="{%=$data.attribute[i].Id%}" selected>{%=$data.attribute[i].AttributeName%}</option>
+                                    {%}else{%}
+                                    <option value="{%=$data.attribute[i].Id%}">{%=$data.attribute[i].AttributeName%}</option>
+                                    {%}%}                                
+                                {% } %}
+                            </select>
+                        </li>-->
+                        <li style="width:100%">
+                            <span class="grayfont span">营业开始时间:</span>
+                            <input id="startTime" tabindex="1" class="input-text width400 Check startTime" type="text" value="{%=$data.result.StartTime%}" placeholder="格式（小时:分:秒）" />
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">营业结束时间:</span>
+                            <input id="endTime" tabindex="1" class="input-text width400 Check endTime" type="text" value="{%=$data.result.EndTime%}" placeholder="格式（小时:分:秒）" />
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">排序:</span>
+                            <input tabindex="1" class="input-text width400 Check sltContact" type="text" value="{%=$data.result.DisplaySequence%}" placeholder="请输入排序" />
+                        </li>
+                        <li style="width:100%">
+                            <table style="width:70%">
+                                <tr>     
+                                    <td>
+                                        <span class="grayfont span">校区:</span>
+                                        <select id="inputSchool" class="select small newselect" style="height: 35px;">
+                                            <option value="0" selected="">&nbsp;</option>
+                                            {% for(var i =0, j=$data.school.length; i< j; i++) {
+                                            var item = $data.school[i];
+                                            %}
+                                            <option value="{%=$data.school[i].DataId%}" {%=(item.DataId ==$data.result.SchoolId)?'selected':''%}>{%=$data.school[i].DataName%}</option>
+                                            {% } %}
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <span class="grayfont span">院区:</span>
+                                        <select id="inputArea" class="select small newselect" style="height: 35px;">
+                                            <option value="0" selected="">&nbsp;</option>
+                                            {% for(var i =0, j=$data.area.length; i< j; i++) {
+                                                var item = $data.area[i];
+                                            %}                                            
+                                            <option value="{%=item.DataId%}" {%=(item.DataId==$data.result.RegionId)?'selected':''%}>{%=item.DataName%}</option>
+                                            {% } %}
+                                        </select>
+                                    </td>                                    
+                                </tr>
+                            </table>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clipLoader" style="display:none;"></div>
+                <div class="btn_nav right">
+                    <input type="button" class="next " id="sub" value="确定" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" class="prev" id="cacel" value="取消" />                    
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

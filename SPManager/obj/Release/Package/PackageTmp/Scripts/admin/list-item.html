@@ -1,0 +1,18 @@
+﻿{% for(var i =0, j=$data.length; i
+< j; i++) { %}        
+<tr class="contenttr">
+    <td class="center">
+        <div>{%=$data[i].UserName %}</div>
+    </td>
+    <td>
+        <p>{%=$data[i].CreateTime.toDate('yyyy-MM-dd hh:mm:ss') %}</p>
+    </td>
+    <td class="item_name">
+        {%=$data[i].UpdateTime.toDate('yyyy-MM-dd hh:mm:ss') %}
+    </td>
+    <td data-item_id="{%=$data[i].Id %}" class="center"> 
+        <button class="edit_item lhx_btn btn btn-primary" id="{%=$data[i].Id%}">编辑</button>
+        <button class="delete_item lhx_btn btn btn-danger" id="delete">删除</button>
+    </td>
+</tr>
+{% } %}

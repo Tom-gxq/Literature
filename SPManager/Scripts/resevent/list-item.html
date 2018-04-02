@@ -1,0 +1,23 @@
+﻿{% for(var i =0, j=$data.length; i
+< j; i++) { %}        
+<tr  class="contenttr">
+    <td>
+        <input type="checkbox"  value="{%=$data[i].Id %}" >
+    </td>
+    <td class="center">
+        <div>{%=$data[i].EventName %}</div>
+    </td> 
+    <td class="center">
+        <div>
+            {%if($data[i].Kind ==100){%}
+             添加会员
+            {%}else if($data[i].Kind ==200){%}
+             添加优惠券
+            {%}%}
+        </div>
+    </td> 
+    <td data-item_id="{%=$data[i].Id %}" class="center">  
+        <button class="delete_item lhx_btn btn btn-danger" id="delete">删除</button>
+    </td>
+</tr>
+{% } %}

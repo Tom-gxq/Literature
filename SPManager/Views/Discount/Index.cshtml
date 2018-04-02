@@ -1,0 +1,59 @@
+﻿<div class="container" style="margin-left: 0px;margin-right: 0px;">
+    <div class="inner clearfix">
+        @Html.Partial("_DiscountLeft")
+        <!-- end content-left -->
+
+        <div class="content-right ">
+
+            <a href="javascript:;" class="btn-leftMenuFold" id="j-btn-leftMenuFold"></a>
+            <h1 class="content-right-title">
+                会员优惠折扣管理
+                <a class="gicon-info-sign gicon_linkother" href="http://help.kuaixcx.com/Operation/index.html?id=54" target="_blank"></a>
+            </h1>
+            <div class="tables-searchbox newcearchbox">
+                <a href="#" class="btn btn-success j-additem" style="height: 32px;" id="btnAddButton">添加</a>
+                
+            </div>
+            <div class="tablesWrap mgt10">
+                <table id="J_ItemList" class="wxtables table-order">
+                    <colgroup>
+                        <col width="5%">
+                        <col width="20%">
+                        <!-- 图片 -->
+                        <col width="10%">
+                        <!-- 名称 -->
+                        <col width="10%">
+                        <!-- 标准现价 -->
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="25%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <td style="background:#f8f8f8"></td>
+                            <td class="center" style="background:#f8f8f8">描述</td>
+                            <td class="center" style="background:#f8f8f8">价格</td>
+                            <td class="center" style="background:#f8f8f8">优惠价</td>
+                            <td class="center" style="background:#f8f8f8">时长</td>
+                            <td class="center" style="background:#f8f8f8">单位</td>
+                            <td class="center" style="background:#f8f8f8">操作</td>
+                        </tr>
+                    </thead>
+
+                </table>
+                <div class="tables-btmctrl clearfix">
+
+                </div>
+            </div>
+            <div id="pager" style="margin:40px 0"></div>
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+<script type="text/javascript">
+    seajs.use(["/Scripts/discount/associatordata"], function (Sysrole) {
+        var $ = Sysrole.jQuery;
+        Sysrole.DiscountController.init({ el: $("#J_ItemList"), url: '' });
+    });
+</script>
+

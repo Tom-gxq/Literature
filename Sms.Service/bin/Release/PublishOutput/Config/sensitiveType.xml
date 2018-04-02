@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SensitiveTypes>
+    <SensitiveType id="1" desc="文本敏感词" code="0001" />
+    <SensitiveType id="2" desc="AccountId 敏感词" code="0002" />
+    <SensitiveType id="3" desc="手机号敏感词" code="0003" />
+    <SensitiveType id="5" desc="IP地址" code="0005" />
+</SensitiveTypes>

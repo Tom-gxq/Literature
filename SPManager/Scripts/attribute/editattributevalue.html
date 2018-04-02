@@ -1,0 +1,37 @@
+﻿<div id="main">
+    <div id="wizard">
+        <div class="items">
+            <div class="page">
+                <div class="contactInfo" id="">
+                    <ul>
+                        <li style="width:100%">
+                            <input tabindex="1" class="input-text width400 Check txtId" type="hidden" value="{%=$data.Id %}" placeholder="请输入名字" />
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">属性值:</span>
+                            <input tabindex="1" class="input-text width400 Check txtName" type="text" value="" placeholder="请输入属性值" />
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">排序:</span>
+                            <input tabindex="1" class="input-text width400 Check sltContact" type="text" value="" placeholder="请输入排序" />
+                        </li>
+                    </ul>
+                    <div class="btn_nav">
+                        <input type="button" class="next " id="sub" value="添加" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="button" class="prev" id="del" value="删除" />
+                    </div>
+                    <table style="width:350px;border:dotted 1px;margin-top: 0px" id="vallist">
+                        {% for(var i =0, j=$data.length; i< j; i++) { %}
+                        <tr style="border:dotted 1px;">
+                            <td><input type="checkbox" class="checkbox table-ckbs" value="{%=$data[i].ValueId %}"></td>                            
+                            <td>{%=$data[i].ValueStr %}</td>
+                        </tr>
+                        {% } %}
+                    </table>
+                </div>                
+            </div>
+            
+            </div>
+    </div>
+</div>

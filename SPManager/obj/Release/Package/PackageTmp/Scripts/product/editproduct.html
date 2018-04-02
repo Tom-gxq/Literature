@@ -1,0 +1,101 @@
+﻿<div id="main" style="width:550px">
+    <div id="wizard" style="width:550px">
+        <div class="items" style="width:550px">
+            <div class="page" style="width:550px">
+                <div class="contactInfo" id="{%=$data.result.ProductId%}">
+                    <ul style="height:450px;width:550px">
+                        <li style="width:100%">
+                            <input tabindex="1" class="input-text width400 Check txtId" type="hidden" value="{%=$data.result.ProductId %}" />
+                            <span class="grayfont span">商品名:</span>
+                            <input tabindex="1" class="input-text Check txtName" style="width:200px" type="text" value="{%=$data.result.ProductName%}" placeholder="请输入分类名" />
+                            <span class="grayfont span">商品编号:</span>
+                            <input tabindex="1" class="input-text Check txtCode" style="width:100px" type="text" value="{%=$data.result.ProductCode%}" placeholder="请输入商品编号" />
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">价格:</span>
+                            <input tabindex="1" class="input-text Check txtPrice" style="width:100px" type="text" value="{%=$data.result.MarketPrice%}" placeholder="请输入价格" />
+                            <span class="grayfont span">会员价格:</span>
+                            <input tabindex="1" class="input-text width400 Check vipPrice" style="width:100px" type="text" value="{%=$data.result.VIPPrice%}" placeholder="请输入会员价格" />
+                            
+                            <span class="grayfont span">规格:</span>
+                            <input tabindex="1" class="input-text width400 Check txtUnit" type="text" style="width:50px" value="{%=$data.result.Unit%}" placeholder="请输入规格单位" />
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span" style="width:60px">商品分类:</span>
+                            <select id="inputTypeForm" class="select small newselect" style="height: 35px;">
+                                <option value="0" selected="">&nbsp;</option>
+                                {% for(var i =0, j=$data.types.length; i< j; i++) { %}
+                                    <option value="{%=$data.types[i].TypeId%}">{%=$data.types[i].TypeName%}</option>
+                                {% } %}
+                            </select>
+                            <span class="grayfont span" style="width:60px">商品品牌:</span>
+                            <select id="inputBrand" class="select small newselect" style="height: 35px;">
+                                <option value="0" selected="">&nbsp;</option>
+                                {% for(var i =0, j=$data.brands.length; i< j; i++) { %}
+                                <option value="{%=$data.brands[i].BrandId%}">{%=$data.brands[i].BrandName%}</option>
+                                {% } %}
+                            </select>
+                            <span class="grayfont span" style="width:40px">排序:</span>
+                            <input tabindex="1" class="input-text Check sltContact" style="width:40px" type="text" value="{%=$data.result.DisplaySequence%}" placeholder="请输入排序" />
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">商品标题:</span>
+                            <input tabindex="1" class="input-text width400 Check txtTitle" type="text" value="{%=$data.result.ShortDescription!=null?$data.result.ShortDescription:''%}" placeholder="请输入标题" />
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">商品详情:</span>
+                            <textarea tabindex="1" class="input-text txtArea" style="height:80px;width:280px" value="{%=$data.result.Description!=null?$data.result.Description:''%}" placeholder="请输入详情"></textarea>
+                        </li>
+                        <li style="width:100%">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                        </li>
+                        <li style="width:100%;height:40px">
+                            <span class="grayfont span">属性:</span>                            
+                            <select id="inputAttr"  class="select small newselect" style="height: 35px;">
+                                <option value="0" selected="">&nbsp;</option>
+                                {% for(var i =0, j=$data.attributes.length; i< j; i++) { %}
+                                <option value="{%=$data.attributes[i].Id%}">{%=$data.attributes[i].AttributeName%}</option>
+                                {% } %}
+                            </select>
+                            <input type="button" id="add" value="添加" />
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="button" id="del" value="删除" />
+                            <table style="width:350px;border:dotted 1px;margin-top: 0px" id="vallist">
+                                <tr style="border:dotted 1px;">
+                                    {% for(var i =0, j=$data.productAttribute.length; i< j; i++) { %}
+                                    <td style="vertical-align:middle"><input type="checkbox" name="attr" class="checkbox table-ckbs" value="{%=$data.productAttribute[i].Id %}" />{%=$data.productAttribute[i].AttributeName %}</td>
+                                    {% } %}
+                                </tr>
+                            </table>
+                        </li> 
+                        <li style="width:100%;height:40px"></li>
+                        <li style="width:100%;">
+                            <div id="container">
+                                <a class="btn btn-default btn-lg " id="pickfiles" href="#">
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                    <span>选择文件</span>
+                                </a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="button" id="picdel" value="删除" />
+                            </div>
+                            <div id="preview">
+                                <div>
+                                    {% for(var i =0, j=$data.productImage.length; i< j; i++) { %}
+                                    <input type="checkbox" name="picattr" class="checkbox table-ckbs" value="{%=$data.productImage[i].Id %}" />
+                                    <img src="{%=$data.productImage[i].ImgPath%}" style="width:45px;height:45px" />
+                                    {% } %}
+                                </div>
+                            </div>
+                        </li>
+                    </ul>                    
+                </div>
+                <div class="btn_nav right">
+                    <input type="button" class="next " id="sub" value="确定" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" class="prev" id="cacel" value="取消" />                    
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

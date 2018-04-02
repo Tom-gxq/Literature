@@ -1,0 +1,38 @@
+﻿<div id="main">
+    <div id="wizard">
+        <div class="items">
+            <div class="page">
+                <div class="contactInfo" id="{%=$data.BrandId%}">
+                    <ul>
+                        <li style="width:100%">
+                            <input tabindex="1" class="input-text width400 Check txtId" type="hidden" value="{%=$data.DataId %}" />
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">区域名:</span>
+                            <input tabindex="1" class="input-text width400 Check txtName" type="text" value="" placeholder="{%=$data.DataName %}" />
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">上级区域:</span>
+                            <input id="dataId" class="input-text width400 Check dataId" type="hidden" value="{%=$data.ParentDataID %}" />
+                            <input id="parent" class="input-text width400 Check txtAccount" type="text" value="" placeholder="{%=$data.ParentDataName %}" />
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">类型:</span>
+                            <select id="inputStatus" class="select small newselect" style="height: 35px;">
+                                <option value="0" selected="">&nbsp;</option>
+                                <option value="1" {%=$data.DataType==1?'selected':'' %}>学校</option>
+                                <option value="2" {%=$data.DataType==2?'selected':'' %}>院区</option>
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+                <div class="btn_nav right">
+                    <input type="button" class="next " id="sub" value="确定" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" class="prev" id="cacel" value="取消" />                    
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

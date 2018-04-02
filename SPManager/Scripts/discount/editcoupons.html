@@ -1,0 +1,43 @@
+﻿<div id="main">
+    <div id="wizard">
+        <div class="items">
+            <div class="page">
+                <div class="contactInfo" id="{%=$data.KindId%}">
+                    <ul>
+                        <li style="width:100%">
+                            <span class="grayfont span">描述:</span>
+                            <input tabindex="1" class="input-text width400 Check txtName" type="text" value="{%=$data.Description %}" placeholder="请输入描述" />
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">优惠时长:</span>
+                            <input id="parent" class="input-text width400 Check txtQuantity" type="text" value="{%=$data.Quantity %}" placeholder="请输入优惠时长" />
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">售卖价格:</span>
+                            <input id="parent" class="input-text width400 Check txtPrice" type="text" value="{%=$data.Price %}" placeholder="请输入价格" />
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">计算单位:</span>
+                            <select id="inputStatus" class="select small newselect" style="height: 35px;">
+                                <option value="0" selected="">&nbsp;</option>
+                                <option value="1" {%=$data.Unit==1?'selected':'' %}>日</option>
+                                <option value="2" {%=$data.Unit==2?'selected':'' %}>月</option>
+                                <option value="2" {%=$data.Unit==3?'selected':'' %}>年</option>
+                            </select>
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">优惠的价格:</span>
+                            <input id="parent" class="input-text width400 Check txtDiscount" style="width:110px" type="text" value="{%=$data.DiscountValue %}" placeholder="请输入会员折扣" />
+                        </li>
+                    </ul>
+                </div>
+                <div class="btn_nav right">
+                    <input type="button" class="next " id="sub" value="确定" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" class="prev" id="cacel" value="取消" />                    
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

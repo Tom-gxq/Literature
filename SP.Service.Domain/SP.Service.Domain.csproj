@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Grpc.Service.Core\Grpc.Service.Core.csproj" />
+    <ProjectReference Include="..\RedisCache.Service\RedisCache.Service.csproj" />
+    <ProjectReference Include="..\SP.Data.Enum\SP.Data.Enum.csproj" />
+    <ProjectReference Include="..\SP.Service.EntityFramework\SP.Service.EntityFramework.csproj" />
+    <ProjectReference Include="..\SP.Service.Entity\SP.Service.Entity.csproj" />
+  </ItemGroup>
+
+</Project>

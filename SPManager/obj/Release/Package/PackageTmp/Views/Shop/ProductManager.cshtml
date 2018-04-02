@@ -1,0 +1,88 @@
+﻿<div class="container" style="margin-left: 0px;margin-right: 0px;">
+    <div class="inner clearfix">
+        @Html.Partial("_ShopProductLeft")
+        <!-- end content-left -->
+
+        <div class="content-right ">
+
+            <a href="javascript:;" class="btn-leftMenuFold" id="j-btn-leftMenuFold"></a>
+            <h1 class="content-right-title">
+                商品管理
+                <a class="gicon-info-sign gicon_linkother" href="http://help.kuaixcx.com/Operation/index.html?id=54" target="_blank"></a>
+            </h1>
+            <div class="tables-searchbox newcearchbox">
+                <input type="text" placeholder="商品名称" class="input" name="title" value="" style="width: 204px; height: 35px;" id="inputSearch">
+                <select id="inputTypeForm" class="select small newselect" style="height: 35px;">
+                    <option value="0" selected="">所有分类</option>
+                    @foreach (SP.Application.Product.DTO.ProductTypeDto entity in ViewBag.TypeData as List<SP.Application.Product.DTO.ProductTypeDto>
+)
+                    {
+                        <option value="@entity.TypeId">@entity.TypeName</option>
+                    }
+                </select>
+                <select id="inputBrand" class="select small newselect" style="height: 35px;">
+                    <option value="0" selected="">所有品牌</option>
+                    @foreach (SP.Application.Product.DTO.BrandDto entity in ViewBag.BrandData as List<SP.Application.Product.DTO.BrandDto>
+)
+                    {
+                        <option value="@entity.BrandId">@entity.BrandName</option>
+                    }
+                </select>
+                <select id="salestatus" class="select small newselect" style="height: 35px;">
+                    <option value="-1" selected="">所有状态</option>
+                    <option value="1">上架</option>
+                    <option value="0">下架</option>
+                </select>
+                <button class="btn btn-primary search_btn" id="btnSearch">查询</button>
+            </div>
+            <div class="tablesWrap mgt10">
+                <table id="J_ItemList" class="wxtables">
+                    <colgroup>
+                        <col width="5%">
+                        <!-- 图片 -->
+                        <col width="20%">
+                        <!-- 名称 -->
+                        <col width="20%">
+                        <col width="20%">
+                        <col width="15%">
+                        <col width="20%">
+                    </colgroup>
+                    <thead>
+                        <tr class="po_list">
+                            <td class="center"><i class="icon_check"></i></td>
+                            <td class="center">商品名</td>
+                            <td class="center">分类</td>
+                            <td class="center">品牌</td>
+                            <td class="center">价格</td>
+                            <td class="center">状态</td>
+                        </tr>
+                    </thead>
+
+                </table>
+                <div class="tables-btmctrl clearfix">
+
+                </div>
+            </div>
+            <div>
+                <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+                <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+                <a href="javascript:;" class="btn btn-warning btn_AllDown" >确定</a>
+            </div>
+            <div id="pager" style="margin:40px 0"></div>
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+<input type="hidden" id="uptoken" value="">
+<script type="text/javascript">
+    seajs.use(["/Scripts/shop/shopproduct"], function (Sysrole) {
+        var $ = Sysrole.jQuery;
+        Sysrole.ProductController.init({ el: $("#J_ItemList"), url: '' });
+    });
+</script>
+<script type="text/javascript" src="/Scripts/plug/plupload/plupload.full.min.js"></script>
+<script type="text/javascript" src="/Scripts/plug/plupload/i18n/zh_CN.js"></script>
+<script type="text/javascript" src="/Scripts/plug/qiniu/ui.js"></script>
+<script type="text/javascript" src="/Scripts/plug/qiniu/qiniu.js"></script>
+<script type="text/javascript" src="/Scripts/plug/qiniu/highlight.js"></script>
+<script type="text/javascript" src="/Scripts/plug/qiniu/main.js"></script>
