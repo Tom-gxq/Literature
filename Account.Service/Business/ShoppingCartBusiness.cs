@@ -36,16 +36,17 @@ namespace Account.Service.Business
                     if (item.Product != null)
                     {
                         shoppingCart.ProductId = item.Product.ProductId;
-                        shoppingCart.ProductName = item.Product.ProductName;
-                        shoppingCart.UnitPrice = item.Product.MarketPrice != null ? item.Product.MarketPrice.Value:0;
+                        shoppingCart.ProductName = item.Product.ProductName;                        
                     }
                     if (memberList.Count > 0)
                     {
                         shoppingCart.Amount = item.VIPAmount;
+                        shoppingCart.UnitPrice = item.Product.VIPPrice != null ? item.Product.VIPPrice.Value : 0;
                     }
                     else
                     {
                         shoppingCart.Amount = item.Amount;
+                        shoppingCart.UnitPrice = item.Product.MarketPrice != null ? item.Product.MarketPrice.Value : 0;
                     }
                     result.ShoppingCartList.Add(shoppingCart);
                 }
@@ -73,15 +74,16 @@ namespace Account.Service.Business
                     {
                         shoppingCart.ProductId = item.Product.ProductId;
                         shoppingCart.ProductName = item.Product.ProductName;
-                        shoppingCart.UnitPrice = item.Product.MarketPrice != null ? item.Product.MarketPrice.Value : 0;
                     }
                     if (memberList.Count > 0)
                     {
                         shoppingCart.Amount = item.VIPAmount;
+                        shoppingCart.UnitPrice = item.Product.VIPPrice != null ? item.Product.VIPPrice.Value : 0;
                     }
                     else
                     {
                         shoppingCart.Amount = item.Amount;
+                        shoppingCart.UnitPrice = item.Product.MarketPrice != null ? item.Product.MarketPrice.Value : 0;
                     }
                     result.ShoppingCartList.Add(shoppingCart);
                 }

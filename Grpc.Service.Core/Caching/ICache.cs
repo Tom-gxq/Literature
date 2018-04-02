@@ -1,4 +1,6 @@
+using StackExchange.Redis;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Grpc.Service.Core.Caching
@@ -33,6 +35,8 @@ namespace Grpc.Service.Core.Caching
         /// <param name="factory">Factory method to create cache item if not exists</param>
         /// <returns>Cached item</returns>
         object Get(string key, Func<string, object> factory);
+        object[] StringGet(string[] keys);
+        long KeyDelete(string[] keys);
 
         /// <summary>
         /// Gets an item from the cache.
@@ -70,7 +74,10 @@ namespace Grpc.Service.Core.Caching
         /// <param name="absoluteExpireTime">Absolute expire time</param>
         void Set(string key, object value, TimeSpan? slidingExpireTime = null, TimeSpan? absoluteExpireTime = null);
         void HashSet(string hashKey, string key, object value);
-
+        bool SortedSetAdd(string key, string member, double value);
+        List<object> SortedSetRangeByScore(string key, double start , double stop );
+        IBatch CreateBatch(object asyncState = null);
+        bool SortedSetRemove(string key, string member);
         /// <summary>
         /// Saves/Overrides an item in the cache by a key.
         /// Use one of the expire times at most (<paramref name="slidingExpireTime"/> or <paramref name="absoluteExpireTime"/>).

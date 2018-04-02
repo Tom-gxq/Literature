@@ -1,4 +1,6 @@
+using StackExchange.Redis;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Grpc.Service.Core.Caching
@@ -51,6 +53,14 @@ namespace Grpc.Service.Core.Caching
         {
             return InternalCache.Get(key, factory);
         }
+        public object[] StringGet(object[] keys)
+        {
+            return InternalCache.StringGet(keys);
+        }
+        public long KeyDelete(object[] keys)
+        {
+            return InternalCache.KeyDelete(keys);
+        }
 
         public Task<TValue> GetAsync(TKey key, Func<TKey, Task<TValue>> factory)
         {
@@ -91,6 +101,22 @@ namespace Grpc.Service.Core.Caching
         {
             return InternalCache.HashGet<TKey, TValue>(hashKey, key);
         }
+        public bool SortedSetAdd(TKey key, TKey member, double value)
+        {
+            return InternalCache.SortedSetAdd<TKey>( key, member, value);
+        }
+        public List<object> SortedSetRangeByScore(string key, double start = double.NegativeInfinity, double stop = double.PositiveInfinity)
+        {
+            return InternalCache.SortedSetRangeByScore(key, start, stop);
+        }
+        public IBatch CreateBatch(object asyncState = null)
+        {
+            return InternalCache.CreateBatch(asyncState);
+        }
+        public bool SortedSetRemove(string key, string member)
+        {
+            return InternalCache.SortedSetRemove(key, member);
+        }
 
         public void HashSet(string hashKey, TKey key, TValue value)
         {
@@ -105,5 +131,6 @@ namespace Grpc.Service.Core.Caching
         {
             InternalCache.IncrementValueBy(key.ToString(), count);
         }
+        
     }
 }

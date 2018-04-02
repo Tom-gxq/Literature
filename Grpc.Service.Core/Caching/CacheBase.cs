@@ -1,6 +1,8 @@
 using System;
 using System.Threading.Tasks;
 using Grpc.Service.Core.AsyncLock;
+using System.Collections.Generic;
+using StackExchange.Redis;
 
 namespace Grpc.Service.Core.Caching
 {
@@ -79,10 +81,14 @@ namespace Grpc.Service.Core.Caching
 
             return item;
         }
-
+        public abstract object[] StringGet(string[] keys);
+        public abstract long KeyDelete(string[] keys);
         public abstract object GetOrDefault(string key);
         public abstract object HashGet(string hashKey, string key);
-
+        public abstract bool SortedSetAdd(string key, string member, double value);
+        public abstract List<object> SortedSetRangeByScore(string key, double start, double stop );
+        public abstract IBatch CreateBatch(object asyncState = null);
+        public abstract bool SortedSetRemove(string key, string member);
         public virtual Task<object> GetOrDefaultAsync(string key)
         {
             return Task.FromResult(GetOrDefault(key));

@@ -1,4 +1,6 @@
+using StackExchange.Redis;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Grpc.Service.Core.Caching
@@ -34,6 +36,8 @@ namespace Grpc.Service.Core.Caching
         /// <param name="factory">Factory method to create cache item if not exists</param>
         /// <returns>Cached item</returns>
         TValue Get(TKey key, Func<TKey, TValue> factory);
+        object[] StringGet(object[] keys);
+        long KeyDelete(object[] keys);
 
         /// <summary>
         /// Gets an item from the cache.
@@ -50,7 +54,10 @@ namespace Grpc.Service.Core.Caching
         /// <returns>Cached item or null if not found</returns>
         TValue GetOrDefault(TKey key);
         TValue HashGet(string hashKey, TKey key);
-
+        bool SortedSetAdd(TKey key, TKey member, double value);
+        List<object> SortedSetRangeByScore(string key, double start = double.NegativeInfinity, double stop = double.PositiveInfinity);
+        IBatch CreateBatch(object asyncState = null);
+        bool SortedSetRemove(string key, string member);
         /// <summary>
         /// Gets an item from the cache or null if not found.
         /// </summary>

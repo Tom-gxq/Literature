@@ -1046,11 +1046,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "D:\\项目构建\\饿家军餐饮平台\\Src\\Specialty\\AccountGRPCInterface\\AccountGRPCInterface.csproj",
+      "projectUniqueName": "D:\\项目构建\\饿家军餐饮平台\\Src\\Literature\\AccountGRPCInterface\\AccountGRPCInterface.csproj",
       "projectName": "AccountGRPCInterface",
-      "projectPath": "D:\\项目构建\\饿家军餐饮平台\\Src\\Specialty\\AccountGRPCInterface\\AccountGRPCInterface.csproj",
+      "projectPath": "D:\\项目构建\\饿家军餐饮平台\\Src\\Literature\\AccountGRPCInterface\\AccountGRPCInterface.csproj",
       "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-      "outputPath": "D:\\项目构建\\饿家军餐饮平台\\Src\\Specialty\\AccountGRPCInterface\\obj\\",
+      "outputPath": "D:\\项目构建\\饿家军餐饮平台\\Src\\Literature\\AccountGRPCInterface\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -1072,11 +1072,11 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "D:\\项目构建\\饿家军餐饮平台\\Src\\Specialty\\RPCCommonTool\\RPCCommonTool.csproj": {
-              "projectPath": "D:\\项目构建\\饿家军餐饮平台\\Src\\Specialty\\RPCCommonTool\\RPCCommonTool.csproj"
+            "D:\\项目构建\\饿家军餐饮平台\\Src\\Literature\\RPCCommonTool\\RPCCommonTool.csproj": {
+              "projectPath": "D:\\项目构建\\饿家军餐饮平台\\Src\\Literature\\RPCCommonTool\\RPCCommonTool.csproj"
             },
-            "D:\\项目构建\\饿家军餐饮平台\\Src\\Specialty\\SP.Api.Model\\SP.Api.Model.csproj": {
-              "projectPath": "D:\\项目构建\\饿家军餐饮平台\\Src\\Specialty\\SP.Api.Model\\SP.Api.Model.csproj"
+            "D:\\项目构建\\饿家军餐饮平台\\Src\\Literature\\SP.Api.Model\\SP.Api.Model.csproj": {
+              "projectPath": "D:\\项目构建\\饿家军餐饮平台\\Src\\Literature\\SP.Api.Model\\SP.Api.Model.csproj"
             }
           }
         }

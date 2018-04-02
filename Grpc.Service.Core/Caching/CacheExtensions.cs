@@ -1,4 +1,6 @@
+using StackExchange.Redis;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Grpc.Service.Core.Caching
@@ -31,6 +33,24 @@ namespace Grpc.Service.Core.Caching
         public static TValue Get<TKey, TValue>(this ICache cache, TKey key, Func<TValue> factory)
         {
             return cache.Get(key, (k) => factory());
+        }
+        public static object[] StringGet<TKey>(this ICache cache, TKey[] keys)
+        {
+            string[] list = new string[keys.Length];
+            for (int i= 0; i<keys.Length;i++)
+            {
+                list[i] = keys[i].ToString();
+            }
+            return cache.StringGet(list);
+        }
+        public static long KeyDelete(this ICache cache, object[] keys)
+        {
+            string[] list = new string[keys.Length];
+            for (int i = 0; i < keys.Length; i++)
+            {
+                list[i] = keys[i].ToString();
+            }
+            return cache.KeyDelete(list);
         }
 
         public static async Task<TValue> GetAsync<TKey, TValue>(this ICache cache, TKey key, Func<TKey, Task<TValue>> factory)
@@ -70,7 +90,30 @@ namespace Grpc.Service.Core.Caching
 
             return (TValue)value;
         }
+        public static bool SortedSetAdd<TKey>(this ICache cache, TKey key, TKey member, double value)
+        {
+            var val = cache.SortedSetAdd(key.ToString(), member.ToString(), value);
+            
+            return val;
+        }
+        public static List<object> SortedSetRangeByScore(this ICache cache, string key, double start , double stop )
+        {
+            var val = cache.SortedSetRangeByScore(key, start, stop);
 
+            return val;
+        }
+        public static IBatch CreateBatch(this ICache cache, object asyncState = null)
+        {
+            var val = cache.CreateBatch(asyncState);
+
+            return val;
+        }
+        public static bool SortedSetRemove<TKey>(this ICache cache, TKey key, TKey member)
+        {
+            var val = cache.SortedSetRemove(key.ToString(), member.ToString());
+
+            return val;
+        }
         public static async Task<TValue> GetOrDefaultAsync<TKey, TValue>(this ICache cache, TKey key)
         {
             var value = await cache.GetOrDefaultAsync(key.ToString());
