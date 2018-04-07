@@ -119,7 +119,7 @@ define(function (require, exports, module) {
                 DisplaySequence: divElement.find('.sltContact').val(),
                 StartTime: divElement.find('.startTime').val(),
                 EndTime: divElement.find('.endTime').val(),
-
+                ShopType: divElement.find('#shopType').val(),
             };
             user = $.param(user, true);
             Global.post("/Shop/EditShop", user, function (data) {

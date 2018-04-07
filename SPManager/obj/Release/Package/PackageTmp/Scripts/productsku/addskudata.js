@@ -85,6 +85,26 @@ define(function (require, exports, module) {
                         return { keywords: request.term };
                     }
                 });
+                completeInfo.createComplete({
+                    element: "#shop",
+                    url: '/Shop/SearchShopByUserName',
+                    selectCallback: function (value, text) {
+                        _this.bindShopId(value, text);
+                    },
+                    asyncCallback: function (response, data) {
+
+                        response($.map(data.result, function (item) {
+                            return {
+                                label: item.ShopName,
+                                valueKey: item.Id
+                            }
+                        }));
+                    },
+                    data: function (request) {
+                        $(".clipLoader").show();
+                        return { keyWord: request.term };
+                    }
+                });
                 $("#inputResEvent").change(function () {
                     //_this.bindSysKindInfo($(this).val());
                 })
@@ -96,6 +116,7 @@ define(function (require, exports, module) {
             var _this = this;
             var divElement = $('#' + elementID + '');
             var type = {
+                ShopId: divElement.find('#shopId').val(),
                 ProductId: divElement.find('#productId').val(),
                 SKU: divElement.find('#sku').val(),
                 Stock: divElement.find('#stock').val(),
@@ -110,8 +131,11 @@ define(function (require, exports, module) {
         //绑定公司信息
         bindProductId: function (productId, name) {
             $("#productId").val(productId);
+        },
+        //绑定店铺信息
+        bindShopId: function (shopId, name) {
+            $("#shopId").val(shopId);
         }
-        
 
     };
 

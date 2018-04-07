@@ -15,15 +15,20 @@ namespace SP.Service.Domain.Reporting
         {
             _repository = repository;
         }
-        public ProductSkuDomain GetProductSkuByProductId(string productId)
+        public ProductSkuDomain GetProductSkuByProductId(int shopId,string productId)
         {
-            var sku = _repository.GetProductSkuByProductId(productId);
+            var sku = _repository.GetProductSkuByProductId(shopId,productId);
 
             return ConvertSkuEntityToDomain(sku); ;
         }
         public bool UpdateProductSkuStock(ProductSkuEntity entity)
         {
             var result = _repository.UpdateProductSkuStock(entity);
+            return result > 0;
+        }
+        public bool UpdateProductSkuOrderNum(ProductSkuEntity entity)
+        {
+            var result = _repository.UpdateProductSkuOrderNum(entity);
             return result > 0;
         }
         private ProductSkuDomain ConvertSkuEntityToDomain(ProductSkuEntity entity)

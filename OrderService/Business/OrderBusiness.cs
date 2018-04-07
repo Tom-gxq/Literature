@@ -102,6 +102,18 @@ namespace Order.Service.Business
             }
             return result;
         }
+        public static OrderResponse GetOrderByOrderCode(string orderCode)
+        {
+            var result = new OrderResponse();
+            result.Status = 10002;
+            var order = ServiceLocator.ReportDatabase.GetLeadOrderDomainByOrderCode(orderCode);
+            if (order != null)
+            {
+                result.OrderInfo = ConvertOrderDomainToResponse(order);
+                result.Status = 10001;
+            }
+            return result;
+        }
 
         public static void UpdateOrderStatus(string orderId, int orderStatus)
         {

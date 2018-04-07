@@ -30,6 +30,7 @@ namespace SP.Service {
     static readonly grpc::Marshaller<global::SP.Service.SchoolLeadFinanceResponse> __Marshaller_SchoolLeadFinanceResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.SchoolLeadFinanceResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.AddCashApplyRequest> __Marshaller_AddCashApplyRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AddCashApplyRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.UpdateOrderCodeRequest> __Marshaller_UpdateOrderCodeRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.UpdateOrderCodeRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.OrderCodeRequest> __Marshaller_OrderCodeRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.OrderCodeRequest.Parser.ParseFrom);
 
     static readonly grpc::Method<global::SP.Service.AddOrderRequest, global::SP.Service.AddOrderResponse> __Method_AddMyOrder = new grpc::Method<global::SP.Service.AddOrderRequest, global::SP.Service.AddOrderResponse>(
         grpc::MethodType.Unary,
@@ -107,6 +108,13 @@ namespace SP.Service {
         "UpdateOrderStatusByOrderCode",
         __Marshaller_UpdateOrderCodeRequest,
         __Marshaller_OrderStatusResponse);
+
+    static readonly grpc::Method<global::SP.Service.OrderCodeRequest, global::SP.Service.OrderResponse> __Method_GetOrderByOrderCode = new grpc::Method<global::SP.Service.OrderCodeRequest, global::SP.Service.OrderResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetOrderByOrderCode",
+        __Marshaller_OrderCodeRequest,
+        __Marshaller_OrderResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -245,6 +253,18 @@ namespace SP.Service {
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
       public virtual global::System.Threading.Tasks.Task<global::SP.Service.OrderStatusResponse> UpdateOrderStatusByOrderCode(global::SP.Service.UpdateOrderCodeRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 获取的订单
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.OrderResponse> GetOrderByOrderCode(global::SP.Service.OrderCodeRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -802,6 +822,54 @@ namespace SP.Service {
       {
         return CallInvoker.AsyncUnaryCall(__Method_UpdateOrderStatusByOrderCode, null, options, request);
       }
+      /// <summary>
+      ///*
+      /// 获取的订单
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.OrderResponse GetOrderByOrderCode(global::SP.Service.OrderCodeRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetOrderByOrderCode(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取的订单
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.OrderResponse GetOrderByOrderCode(global::SP.Service.OrderCodeRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetOrderByOrderCode, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 获取的订单
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.OrderResponse> GetOrderByOrderCodeAsync(global::SP.Service.OrderCodeRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetOrderByOrderCodeAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取的订单
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.OrderResponse> GetOrderByOrderCodeAsync(global::SP.Service.OrderCodeRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetOrderByOrderCode, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override OrderServiceClient NewInstance(ClientBaseConfiguration configuration)
       {
@@ -824,7 +892,8 @@ namespace SP.Service {
           .AddMethod(__Method_GetSchoolLeadTradeList, serviceImpl.GetSchoolLeadTradeList)
           .AddMethod(__Method_GetSchoolLeadFinance, serviceImpl.GetSchoolLeadFinance)
           .AddMethod(__Method_AddCashApply, serviceImpl.AddCashApply)
-          .AddMethod(__Method_UpdateOrderStatusByOrderCode, serviceImpl.UpdateOrderStatusByOrderCode).Build();
+          .AddMethod(__Method_UpdateOrderStatusByOrderCode, serviceImpl.UpdateOrderStatusByOrderCode)
+          .AddMethod(__Method_GetOrderByOrderCode, serviceImpl.GetOrderByOrderCode).Build();
     }
 
   }

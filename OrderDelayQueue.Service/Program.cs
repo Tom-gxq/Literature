@@ -43,7 +43,14 @@ namespace OrderDelayQueue.Service
                     {
                         var orderId = order.Value<string>("orderId");
                         var orderDate = order.Value<string>("orderDate");
-                        ServiceLocator.CommandBus.Send(new OrderRedoStockCommand(new Guid(orderId), orderDate));
+                        if (!string.IsNullOrEmpty(orderId))
+                        {
+                            var orderDomain = ServiceLocator.OrderDatabase.GetOrderByOrderId(orderId);
+                            if (orderDomain.OrderStatus == SP.Data.Enum.OrderStatus.WaitPay)
+                            {
+                                ServiceLocator.CommandBus.Send(new OrderRedoStockCommand(new Guid(orderId), orderDate));
+                            }
+                        }
                     }
                 }
                 catch(Exception ex)

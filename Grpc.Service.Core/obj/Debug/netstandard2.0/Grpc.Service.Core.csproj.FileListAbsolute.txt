@@ -15,3 +15,4 @@ D:\项目构建\饿家军餐饮平台\Src\Literature\Grpc.Service.Core\obj\Debug
 D:\项目构建\饿家军餐饮平台\Src\Literature\Grpc.Service.Core\obj\Debug\netstandard2.0\Grpc.Service.Core.AssemblyInfo.cs
 D:\项目构建\饿家军餐饮平台\Src\Literature\Grpc.Service.Core\obj\Debug\netstandard2.0\Grpc.Service.Core.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\Grpc.Service.Core\obj\Debug\netstandard2.0\Grpc.Service.Core.pdb
+D:\项目构建\饿家军餐饮平台\Src\Literature\Grpc.Service.Core\obj\Debug\netstandard2.0\Grpc.Service.Core.csprojResolveAssemblyReference.cache

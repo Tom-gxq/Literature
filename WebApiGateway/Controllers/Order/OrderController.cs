@@ -20,13 +20,14 @@ namespace WebApiGateway.Controllers.Order
             try
             {
                 model.accountId = currentAccount.AccountId;
-                var orderId = OrderBusiness.AddMyOrder(model);
+                int status = 0;
+                var orderId = OrderBusiness.AddMyOrder(model,out status);
                 if (!string.IsNullOrEmpty(orderId))
                 {
                     JsonResult.Add("status", 0);
                     JsonResult.Add("orderId", orderId);
                 }
-                else if(orderId == null)
+                else if(orderId == null && status == 10004)
                 {
                     JsonResult.Add("status", 3);
                 }

@@ -67,7 +67,8 @@ namespace SP.Service {
             "bnQYBCABKAESFAoMYWN0aXZlQW1vdW50GAUgASgBIkcKE0FkZENhc2hBcHBs",
             "eVJlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEg4KBmFsaXBheRgCIAEoCRIN",
             "CgVtb25leRgDIAEoASJAChZVcGRhdGVPcmRlckNvZGVSZXF1ZXN0EhMKC29y",
-            "ZGVyU3RhdHVzGAEgASgFEhEKCW9yZGVyQ29kZRgCIAEoCWIGcHJvdG8z"));
+            "ZGVyU3RhdHVzGAEgASgFEhEKCW9yZGVyQ29kZRgCIAEoCSIlChBPcmRlckNv",
+            "ZGVSZXF1ZXN0EhEKCW9yZGVyQ29kZRgBIAEoCWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, global::SP.Service.ProductModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -90,7 +91,8 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TradeListResponse), global::SP.Service.TradeListResponse.Parser, new[]{ "Status", "TradeList", "Total" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SchoolLeadFinanceResponse), global::SP.Service.SchoolLeadFinanceResponse.Parser, new[]{ "Status", "AccountId", "HaveAmount", "UseAmount", "ActiveAmount" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AddCashApplyRequest), global::SP.Service.AddCashApplyRequest.Parser, new[]{ "AccountId", "Alipay", "Money" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.UpdateOrderCodeRequest), global::SP.Service.UpdateOrderCodeRequest.Parser, new[]{ "OrderStatus", "OrderCode" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.UpdateOrderCodeRequest), global::SP.Service.UpdateOrderCodeRequest.Parser, new[]{ "OrderStatus", "OrderCode" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OrderCodeRequest), global::SP.Service.OrderCodeRequest.Parser, new[]{ "OrderCode" }, null, null, null)
           }));
     }
     #endregion
@@ -4332,6 +4334,131 @@ namespace SP.Service {
             break;
           }
           case 18: {
+            OrderCode = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 获取订单的返回信息
+  /// </summary>
+  public sealed partial class OrderCodeRequest : pb::IMessage<OrderCodeRequest> {
+    private static readonly pb::MessageParser<OrderCodeRequest> _parser = new pb::MessageParser<OrderCodeRequest>(() => new OrderCodeRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<OrderCodeRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.OrderModelReflection.Descriptor.MessageTypes[20]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public OrderCodeRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public OrderCodeRequest(OrderCodeRequest other) : this() {
+      orderCode_ = other.orderCode_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public OrderCodeRequest Clone() {
+      return new OrderCodeRequest(this);
+    }
+
+    /// <summary>Field number for the "orderCode" field.</summary>
+    public const int OrderCodeFieldNumber = 1;
+    private string orderCode_ = "";
+    /// <summary>
+    ///*
+    /// 订单编号
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string OrderCode {
+      get { return orderCode_; }
+      set {
+        orderCode_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as OrderCodeRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(OrderCodeRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (OrderCode != other.OrderCode) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (OrderCode.Length != 0) hash ^= OrderCode.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (OrderCode.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(OrderCode);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (OrderCode.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(OrderCode);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(OrderCodeRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.OrderCode.Length != 0) {
+        OrderCode = other.OrderCode;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
             OrderCode = input.ReadString();
             break;
           }

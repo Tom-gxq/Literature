@@ -410,7 +410,9 @@ namespace SP.Application.Product
                Price = productSku.Price,
                ProductId = productSku.ProductId,
                SKU = productSku.SKU,
-               Stock = productSku.Stock
+               Stock = productSku.Stock,
+               ShopId = productSku.ShopId,
+               AccountId = !string.IsNullOrEmpty(productSku.AccountId)? productSku.AccountId:null
             });
         }
 
@@ -559,14 +561,18 @@ namespace SP.Application.Product
             }
             var skuDto = new ProductSkuDto
             {
-                SKU = productSku.SKU,
-                AlertStock = productSku.AlertStock.Value,
+                SKU = (!string.IsNullOrEmpty(productSku.SKU) ? productSku.SKU : string.Empty),
+                AlertStock = (productSku.AlertStock != null ? productSku.AlertStock.Value : 0),
                 EffectiveTime = productSku.EffectiveTime.Value,
-                Price = productSku.Price.Value,
+                Price = (productSku.Price != null ? productSku.Price.Value : 0),
                 ProductId = productSku.ProductId,
                 ProductName = productSku.ProductName,
                 SkuId = productSku.Id,
-                Stock = productSku.Stock.Value
+                Stock = productSku.Stock.Value,
+                OrderNum = (productSku.OrderNum != null ? productSku.OrderNum.Value:0),
+                ShopId = (productSku.ShopId != null ? productSku.ShopId.Value : 0),
+                ShopName = productSku.ShopName,
+                DataName = productSku.DataName,
             };
 
             return skuDto;

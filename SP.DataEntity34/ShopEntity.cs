@@ -32,5 +32,6 @@ namespace SP.DataEntity
         public string MetaKeywords { get; set; }
         public string StartTime { get; set; }
         public string EndTime { get; set; }
+        public int? ShopType { get; set; }
     }
 }

@@ -39,6 +39,13 @@ namespace SP.Service.Domain.DomainEntity
         {
             this.CartId = e.CartId;
         }
+        public void Handle(OrderSubAmountEvent e)
+        {
+            this.CartId = e.AggregateId.ToString();
+            this.Amount = e.Amount;
+            this.VIPAmount = e.VipAmount;
+            this.Product = new ProductEntity() { ProductId = e.ProductId };
+        }
         public void Handle(CreatShoppingCartEvent e)
         {
             this.AccountId = e.AccountId.ToString();
@@ -72,7 +79,7 @@ namespace SP.Service.Domain.DomainEntity
                 this.AccountId = cart.AccountId;
                 this.CreateTime = cart.CreateTime.Value;
                 this.UpdateTime = cart.UpdateTime.Value;
-                this.Quantity = cart.Quantity.Value;
+                this.Quantity = cart.Quantity != null ? cart.Quantity.Value : 0;
                 this.Product = new ProductEntity() { ProductId = cart.ProductId };
                 this.ShopId = cart.ShopId != null ? cart.ShopId.Value:0;
             }

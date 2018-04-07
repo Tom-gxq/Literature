@@ -18,5 +18,8 @@ namespace SP.Service.Entity
         public int? Stock { get; set; }
         public int? AlertStock { get; set; }
         public double? Price { get; set; }
+        public int? ShopId { get; set; }
+        public string AccountId { get; set; }
+        public int? OrderNum { get; set; }
     }
 }

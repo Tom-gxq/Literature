@@ -12,14 +12,19 @@ namespace SP.Service.EntityFramework.Repositories
         {
             DbConnection = context.GetConnectionString();
         }
-        public ProductSkuEntity GetProductSkuByProductId(string productId)
+        public ProductSkuEntity GetProductSkuByProductId(int shopId, string productId)
         {
-            var result = this.Single(x => x.ProductId == productId && x.EffectiveTime >= DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd")));
+            var result = this.Single(x =>x.ShopId == shopId && x.ProductId == productId 
+            && x.EffectiveTime >= DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd")));
             return result;
         }
         public int UpdateProductSkuStock(ProductSkuEntity entity)
         {
             return this.UpdateNonDefaults(entity,x=>x.SkuId == entity.SkuId && x.Stock > 0);
+        }
+        public int UpdateProductSkuOrderNum(ProductSkuEntity entity)
+        {
+            return this.UpdateNonDefaults(entity, x => x.SkuId == entity.SkuId );
         }
 
     }

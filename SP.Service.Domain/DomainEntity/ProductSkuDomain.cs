@@ -18,28 +18,43 @@ namespace SP.Service.Domain.DomainEntity
         public DateTime EffectiveTime { get; internal set; }
         public int AlertStock { get; internal set; }
         public double Price { get; internal set; }
+        public int ShopId { get; internal set; }
+        public int OrderNum { get; internal set; }
+        public string AccountId { get; internal set; }
 
         public ProductSkuDomain()
         {
 
         }
-        public void EditProductSkuDomainStock(string productId, int stock)
+        public void EditProductSkuOrderNum(int shopId, string productId, int orderNum)
         {
-            ApplyChange(new DecreaseProductSkuEvent(productId, stock));
+            ApplyChange(new ProductSkuOrderNumEvent(shopId, productId, orderNum));
         }
-        public void RedoProductSkuDomainStock(string productId, int stock)
+        public void EditProductSkuDomainStock(int shopId,string productId, int stock)
         {
-            ApplyChange(new RedoProductSkuEvent(productId, stock));
+            ApplyChange(new DecreaseProductSkuEvent(shopId,productId, stock));
+        }
+        public void RedoProductSkuDomainStock(int shopId, string productId, int stock)
+        {
+            ApplyChange(new RedoProductSkuEvent(shopId,productId, stock));
         }
         public void Handle(DecreaseProductSkuEvent e)
         {
             this.ProductId = e.ProductId;
             this.Stock = e.DecStock;
+            this.ShopId = e.ShopId;
         }
         public void Handle(RedoProductSkuEvent e)
         {
             this.ProductId = e.ProductId;
             this.Stock = e.RedoStock;
+            this.ShopId = e.ShopId;
+        }
+        public void Handle(ProductSkuOrderNumEvent e)
+        {
+            this.ProductId = e.ProductId;
+            this.OrderNum = e.OrderNum;
+            this.ShopId = e.ShopId;
         }
         public void SetMemento(BaseEntity memento)
         {
@@ -49,10 +64,13 @@ namespace SP.Service.Domain.DomainEntity
                 this.ProductId = product.ProductId;
                 this.SkuId = product.SkuId;
                 this.SKU = product.SKU;
+                this.ShopId = product.ShopId != null ? product.ShopId.Value : 0;
                 this.Stock = product.Stock!= null ? product.Stock.Value:0;
                 this.AlertStock = product.AlertStock != null ? product.AlertStock.Value : 0;
-                this.Price = product.Price != null ? product.Price.Value : 0; ;
+                this.Price = product.Price != null ? product.Price.Value : 0;
                 this.EffectiveTime = product.EffectiveTime != null ? product.EffectiveTime.Value : DateTime.MinValue;
+                this.AccountId = string.IsNullOrEmpty(product.AccountId) ? product.AccountId : string.Empty;
+                this.OrderNum = product.OrderNum != null? product.OrderNum.Value : 0;
             }
         }
         public BaseEntity GetMemento()
@@ -65,7 +83,10 @@ namespace SP.Service.Domain.DomainEntity
                 Stock = this.Stock,
                 AlertStock = this.AlertStock,
                 Price = this.Price,
-                EffectiveTime =this.EffectiveTime
+                ShopId = this.ShopId,
+                EffectiveTime =this.EffectiveTime,
+                AccountId = this.AccountId,
+                OrderNum = this.OrderNum
             };
         }
     }

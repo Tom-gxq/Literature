@@ -43,7 +43,7 @@ namespace Order.Service.GrpcImpl
             }
             catch(ProductSkuException skuEx)
             {
-                response.Status = 10003;//库存错误
+                response.Status = 10004;//库存错误
             }
             catch (Exception ex)
             {
@@ -207,6 +207,21 @@ namespace Order.Service.GrpcImpl
                 logger.LogError(this.prjLicEID, ex, "UpdateOrderStatusByOrderCode Exception");
             }
             logger.LogInformation(this.prjLicEID, "UpdateOrderStatusByOrderCode {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+        public override Task<OrderResponse> GetOrderByOrderCode(OrderCodeRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "GetOrderByOrderCode {Date} {IPAdress} {Status} Connected! OrderCode:[{OrderCode}]", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.OrderCode ?? string.Empty);
+            OrderResponse response = null;
+            try
+            {
+                response = OrderBusiness.GetOrderByOrderCode(request.OrderCode);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "GetOrderByOrderCode Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "GetOrderByOrderCode {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
     }

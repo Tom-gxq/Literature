@@ -20,7 +20,9 @@ namespace SP.ManageEntityFramework.Repositories
             using (var db = Context.OpenDbConnection())
             {
                 var q = db.From<ProductSkuEntity>();
-                q= q.Join<ProductSkuEntity, ProductEntity>((a,b)=>a.ProductId == b.ProductId).OrderByDescending(x=>x.EffectiveTime);
+                q= q.Join<ProductSkuEntity, ProductEntity>((a,b)=>a.ProductId == b.ProductId);
+                q = q.LeftJoin<ProductSkuEntity, ShopEntity>((a, b) => a.ShopId == b.Id);
+                q = q.LeftJoin<ShopEntity, RegionEntity>((a, b) => a.RegionId == b.Id).OrderBy(x=>x.Id).OrderByDescending(x => x.EffectiveTime);
                 q = q.Limit((pageIndex - 1) * pageSize, pageSize);
                 return db.Select<ProductSkuFullEntity>(q);
             }

@@ -91,6 +91,10 @@ namespace WebApiGateway.Controllers.Account
             try
             {
                 var order = OrderBusiness.GetOrderByOrderId(orderId);
+                if(order != null && order.orderStatus > 1)
+                {
+                    return string.Empty;
+                }
                 //content.Add("product_code", "QUICK_MSECURITY_PAY");
                 content.Add("total_amount", order.amount);
                 //content.Add("subject", "饿家军");

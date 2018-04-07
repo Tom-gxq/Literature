@@ -72,9 +72,10 @@ namespace SP.Service.EntityFramework.Repositories
                 var q = db.From<ProductEntity>();
                 q = q.Join<ProductEntity, ProductAttributeEntity>((e, a) => a.AttributeId == attributeId && a.ProductId == e.ProductId && e.SaleStatus == 1);
                 q = q.Join<ProductEntity, ShopProductEntity>((e, a) => a.ShopId == shopId && a.ProductId == e.ProductId);
-                q = q.LeftJoin<ProductEntity, ProductSkuEntity>((e, a) => a.ProductId == e.ProductId && a.EffectiveTime >= DateTime.Parse(DateTime.Now.ToShortDateString()));
+                q = q.LeftJoin<ShopProductEntity, ProductSkuEntity>((e, a) => a.ProductId == e.ProductId && e.ShopId==a.ShopId 
+                && a.EffectiveTime >= DateTime.Parse(DateTime.Now.ToShortDateString()));
                 //q = q.Join<ProductEntity, ProductRegionEntity>((e, a) => a.ProductId == e.ProductId && a.DataId == districtId);
-                q = q.Limit((pageIndex - 1) * pageSize, (pageIndex - 1) * pageSize + pageSize);
+                q = q.OrderByDescending<ProductSkuEntity>(a=>a.Stock).Limit((pageIndex - 1) * pageSize, (pageIndex - 1) * pageSize + pageSize);
                 return db.Select<ProductFullEntity>(q);
             }
         }

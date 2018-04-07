@@ -75,6 +75,7 @@ define(function (require, exports, module) {
                 displaySequence: divElement.find('.sltContact').val(),
                 startTime: divElement.find('.startTime').val(),
                 endTime: divElement.find('.endTime').val(),
+                shopType: divElement.find('.newselect').val(),
             };
             type = $.param(type, true);
             Global.post("/Shop/AddShop", type, function (data) {

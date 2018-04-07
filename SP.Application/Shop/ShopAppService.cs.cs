@@ -30,7 +30,7 @@ namespace SP.Application.Shop
             _regionRepository = regionRepository;
             _shopProductRepository = shopProductRepository;
         }
-        public bool AddShop(string shopName, int displaySequence, string startTime, string endTime)
+        public bool AddShop(string shopName, int displaySequence, string startTime, string endTime, int shopType)
         {
             var result = _shopRepository.Insert(new ShopEntity()
             {
@@ -38,7 +38,8 @@ namespace SP.Application.Shop
                 DisplaySequence = displaySequence,
                 MetaKeywords = shopName,
                 StartTime = startTime,
-                EndTime = endTime
+                EndTime = endTime,
+                ShopType = shopType
             });
             return result != null;
         }
@@ -65,7 +66,8 @@ namespace SP.Application.Shop
                 RegionId = shop.RegionId,
                 MetaKeywords = shop.ShopName+"|"+ (shop.Owner != null ? shop.Owner.Fullname:string.Empty),
                 StartTime = shop.StartTime,
-                EndTime = shop.EndTime
+                EndTime = shop.EndTime,
+                ShopType = shop.ShopType
             }, x => x.Id == shop.Id);
 
             if(result > 0 && shop.AttributeId > 0)
@@ -208,6 +210,7 @@ namespace SP.Application.Shop
                 RegionId = shop.RegionId != null ? shop.RegionId.Value:0,
                 StartTime = shop.StartTime,
                 EndTime = shop.EndTime,
+                ShopType = shop.ShopType != null ? shop.ShopType.Value:0
             };
 
             return shopDto;

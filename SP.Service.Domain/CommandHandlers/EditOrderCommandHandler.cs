@@ -89,19 +89,20 @@ namespace SP.Service.Domain.CommandHandlers
                         _financeRepository.Save(financeDomain);
                     }
                 }
-                //else if (orderStatus == Data.Enum.OrderStatus.Payed)
-                //{
-                //    foreach (var cart in order.ShoppingCarts)
-                //    {
-                //        if (cart != null && !string.IsNullOrEmpty(cart.CartId))
-                //        {
-                //            System.Console.WriteLine("EditProductSkuDomainStock Quantity=" + cart.Quantity);
-                //            var sku = new ProductSkuDomain();
-                //            sku.EditProductSkuDomainStock(cart.Product.ProductId, cart.Quantity);
-                //            _skuRepository.Save(sku);
-                //        }
-                //    }
-                //}
+                else if (orderStatus == Data.Enum.OrderStatus.Payed)
+                {
+                    foreach (var cart in order.ShoppingCarts)
+                    {
+                        if (cart != null && !string.IsNullOrEmpty(cart.CartId))
+                        {
+                            System.Console.WriteLine("EditProductSkuDomainStock Quantity=" + cart.Quantity);
+                            var sku = new ProductSkuDomain();
+                            //sku.EditProductSkuDomainStock(cart.Product.ProductId, cart.Quantity);
+                            sku.EditProductSkuOrderNum(cart.ShopId,cart.Product.ProductId, cart.Quantity);
+                            _skuRepository.Save(sku);
+                        }
+                    }
+                }
             }
         }
     }

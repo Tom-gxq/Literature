@@ -11,7 +11,7 @@ namespace OrderGRPCInterface.Business
 {
     public class OrderBusiness
     {
-        public static string AddMyOrder(OrderModel order)
+        public static string AddMyOrder(OrderModel order,out int status)
         {
             var orderId = string.Empty;
             var client = OrderClientHelper.GetClient();
@@ -27,10 +27,11 @@ namespace OrderGRPCInterface.Business
             {
                 orderId = result.OrderId;
             }
-            if (result.Status == 10003)
+            if (result.Status == 10004)
             {
                 orderId = null;
             }
+            status = result.Status;
             return orderId;
         }
 
@@ -352,6 +353,56 @@ namespace OrderGRPCInterface.Business
                 status = true;
             }
             return status;
+        }
+
+        public static OrderInfoModel GetOrderByOrderCode(string orderCode)
+        {
+            var client = OrderClientHelper.GetClient();
+            var request1 = new OrderCodeRequest()
+            {
+                OrderCode = orderCode
+            };
+            var result = client.GetOrderByOrderCode(request1);
+            var list = new List<OrderInfoModel>();
+            if (result.Status == 10001)
+            {
+                var domain = new OrderInfoModel();
+                domain.amount = result.OrderInfo.Amount;
+                domain.orderId = result.OrderInfo.OrderId;
+                domain.orderStatus = result.OrderInfo.OrderStatus;
+                domain.orderCode = result.OrderInfo.OrderCode;
+                if (result.OrderInfo.ProductList != null && result.OrderInfo.ProductList.Count > 0)
+                {
+                    var productList = new List<ProductModel>();
+                    foreach (var pitem in result.OrderInfo.ProductList)
+                    {
+                        var p = new ProductModel();
+                        p.productId = pitem.ProductId;
+                        p.productName = pitem.ProductName;
+                        p.productCode = pitem.ProductCode;
+                        p.marketPrice = pitem.MarketPrice;
+                        p.unit = pitem.Unit;
+                        if (pitem.Image.Count > 0)
+                        {
+                            foreach (var img in pitem.Image)
+                            {
+                                var image = new ProductImageModel();
+                                image.id = img.Id;
+                                image.imgPath = img.ImgPath;
+                                image.postion = img.Postion;
+                                p.images.Add(image);
+                            }
+                        }
+                        productList.Add(p);
+                    }
+                    domain.productList = productList;
+                }
+                return domain;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

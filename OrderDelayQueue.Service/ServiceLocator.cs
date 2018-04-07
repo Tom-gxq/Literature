@@ -11,6 +11,7 @@ namespace OrderDelayQueue.Service
     {
         private static ICommandBus _commandBus;
         private static ShoppingCartReportDatabase _reportShppingCartDatabase;
+        private static OrderReportDatabase _reportOrderDatabase;
         private static bool _isInitialized;
         private static readonly object _lockThis = new object();
 
@@ -22,6 +23,7 @@ namespace OrderDelayQueue.Service
                 {
                     _commandBus = IocManager.Instance.Resolve(typeof(ICommandBus)) as ICommandBus;                    
                     _reportShppingCartDatabase = IocManager.Instance.Resolve(typeof(ShoppingCartReportDatabase)) as ShoppingCartReportDatabase;
+                    _reportOrderDatabase = IocManager.Instance.Resolve(typeof(OrderReportDatabase)) as OrderReportDatabase;
                     _isInitialized = true;
                 }
             }
@@ -35,6 +37,9 @@ namespace OrderDelayQueue.Service
         {
             get { return _reportShppingCartDatabase; }
         }
-        
+        public static OrderReportDatabase OrderDatabase
+        {
+            get { return _reportOrderDatabase; }
+        }
     }
 }

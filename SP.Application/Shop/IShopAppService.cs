@@ -10,7 +10,7 @@ namespace SP.Application.Shop
 {
     public interface IShopAppService: IApplicationService
     {
-        bool AddShop(string shopName, int displaySequence, string startTime, string endTime);
+        bool AddShop(string shopName, int displaySequence, string startTime, string endTime, int shopType);
         bool DelShop(int id);
         List<ShopDto> GetShopList(int pageIndex, int pageSize);
         int GetShopListCount();

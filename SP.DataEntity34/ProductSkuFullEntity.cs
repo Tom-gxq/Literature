@@ -9,5 +9,7 @@ namespace SP.DataEntity
     public class ProductSkuFullEntity: ProductSkuEntity
     {
         public string ProductName { get; set; }
+        public string ShopName { get; set; }
+        public string DataName { get; set; }
     }
 }

@@ -330,9 +330,16 @@ namespace SPManager.Controllers
         }
         public JsonResult AddProductSku([FromBody]ProductSkuDto productSku)
         {
-            IProductAppService service = IocManager.Instance.Resolve<IProductAppService>();
-            var result = service.AddProductSku(productSku);
-            JsonResult.Add("result", result);
+            try
+            {
+                IProductAppService service = IocManager.Instance.Resolve<IProductAppService>();
+                var result = service.AddProductSku(productSku);
+                JsonResult.Add("result", result);
+            }
+            catch(Exception ex)
+            {
+                Common.Common.WriteLog("AddProductSku ex="+ex.ToString());
+            }
 
             return new JsonResult()
             {

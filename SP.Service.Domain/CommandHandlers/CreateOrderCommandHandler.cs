@@ -78,7 +78,7 @@ namespace SP.Service.Domain.CommandHandlers
                             }
                             if ( cartDomain.Product != null && !string.IsNullOrEmpty(cartDomain.Product.ProductId))
                             {
-                                var skuDomain = _skuReportDatabase.GetProductSkuByProductId(cartDomain.Product.ProductId);
+                                var skuDomain = _skuReportDatabase.GetProductSkuByProductId(cartDomain.ShopId,cartDomain.Product.ProductId);
                                 if (!string.IsNullOrEmpty(shoppingCart?.OrderId) && (skuDomain?.Stock ?? 0) < cartDomain.Quantity)
                                 {
                                     var order = _orderReportDatabase.GetOrderByOrderId(shoppingCart.OrderId);
@@ -103,7 +103,7 @@ namespace SP.Service.Domain.CommandHandlers
                                 {
                                     System.Console.WriteLine("EditProductSkuDomainStock Quantity=" + shoppingCart.Quantity);
                                     var sku = new ProductSkuDomain();
-                                    sku.EditProductSkuDomainStock(shoppingCart.ProductId, (shoppingCart.Quantity!= null? shoppingCart.Quantity.Value:0));
+                                    sku.EditProductSkuDomainStock(cartDomain.ShopId,shoppingCart.ProductId, cartDomain.Quantity);
                                     _skuRepository.Save(sku);
                                 }
                             }

@@ -5,6 +5,13 @@
                 <div class="contactInfo" style="height:250px">
                     <ul style="height:400px;width:580px">
                         <li style="width:100%">
+                            <span class="grayfont span" style="width:60px">店铺分类:</span>
+                            <select id="shopType" class="select small newselect" style="height: 35px;">
+                                <option value="0" {%=$data.result.ShopType==0?'selected':'' %}>餐饮</option>
+                                <option value="1" {%=$data.result.ShopType==1?'selected':'' %}>超市</option>
+                            </select>
+                        </li>
+                        <li style="width:100%">
                             <input tabindex="1" class="input-text width400 Check txtId" type="hidden" value="{%=$data.result.Id %}" />
                             <span class="grayfont span">店铺名:</span>
                             <input tabindex="1" class="input-text width400 Check txtName" type="text" value="{%=$data.result.ShopName %}" placeholder="请输入店铺名" />

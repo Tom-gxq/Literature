@@ -17,9 +17,9 @@ namespace WebApiGateway.Controllers
         {
             var model = new VersionModel()
             {
-                url = "http://www.ejiajunxy.cn/apk/app-debug.apk",
-                updateMessage = "美哟内容",
-                versionCode = "1.0.0"
+                url = "https://ejiajunapp.oss-cn-beijing.aliyuncs.com/app-release.apk",
+                updateMessage = "更新购物车计算",
+                versionCode = "1.0.1"
             };
             return model;
         }

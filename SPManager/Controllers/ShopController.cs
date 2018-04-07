@@ -22,10 +22,10 @@ namespace SPManager.Controllers
             return View();
         }
 
-        public JsonResult AddShop(string shopName, int displaySequence,string startTime,string endTime)
+        public JsonResult AddShop(string shopName, int displaySequence,string startTime,string endTime,int shopType)
         {
             IShopAppService service = IocManager.Instance.Resolve<IShopAppService>();
-            var result = service.AddShop(shopName, displaySequence, startTime, endTime);
+            var result = service.AddShop(shopName, displaySequence, startTime, endTime, shopType);
             JsonResult.Add("result", result);
 
             return new JsonResult()
@@ -66,7 +66,7 @@ namespace SPManager.Controllers
             };
         }
 
-        public JsonResult SearchShopByUserName(string keyWord, int pageIndex, int pageSize)
+        public JsonResult SearchShopByUserName(string keyWord, int pageIndex=1, int pageSize=1000)
         {
             IShopAppService service = IocManager.Instance.Resolve<IShopAppService>();
             var result = service.SearchShopByUserName(keyWord, pageIndex, pageSize);
