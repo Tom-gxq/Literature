@@ -133,9 +133,10 @@ namespace WebApiGateway.Controllers.Account
             model.TotalAmount = content["total_amount"].Value<string>();
             model.ProductCode = "QUICK_MSECURITY_PAY";
             model.OutTradeNo = content["out_trade_no"].Value<string>();
-            model.TimeoutExpress = "30m";
-            model.SellerId = "1725219681@qq.com";
-            
+            model.TimeoutExpress = "1m";//支付超时时间
+            model.SellerId = "1725219681@qq.com";           
+
+
             request.SetBizModel(model);
             request.SetNotifyUrl(Config.Notify_Url);
 

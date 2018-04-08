@@ -26,6 +26,11 @@ namespace SP.Service.Domain.Reporting
             var result = _repository.UpdateProductSkuStock(entity);
             return result > 0;
         }
+        public bool RedoProductSkuStock(ProductSkuEntity entity)
+        {
+            var result = _repository.RedoProductSkuStock(entity);
+            return result > 0;
+        }
         public bool UpdateProductSkuOrderNum(ProductSkuEntity entity)
         {
             var result = _repository.UpdateProductSkuOrderNum(entity);

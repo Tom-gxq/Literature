@@ -22,6 +22,10 @@ namespace SP.Service.EntityFramework.Repositories
         {
             return this.UpdateNonDefaults(entity,x=>x.SkuId == entity.SkuId && x.Stock > 0);
         }
+        public int RedoProductSkuStock(ProductSkuEntity entity)
+        {
+            return this.UpdateNonDefaults(entity, x => x.SkuId == entity.SkuId );
+        }
         public int UpdateProductSkuOrderNum(ProductSkuEntity entity)
         {
             return this.UpdateNonDefaults(entity, x => x.SkuId == entity.SkuId );

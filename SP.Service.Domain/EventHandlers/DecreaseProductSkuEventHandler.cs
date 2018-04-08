@@ -48,7 +48,7 @@ namespace SP.Service.Domain.EventHandlers
                 if (domaint != null && !string.IsNullOrEmpty(domaint.SkuId))
                 {
                     System.Console.WriteLine("Stock=" + domaint.Stock);
-                    var result = _reportDatabase.UpdateProductSkuStock(new Entity.ProductSkuEntity()
+                    var result = _reportDatabase.RedoProductSkuStock(new Entity.ProductSkuEntity()
                     {
                         SkuId = domaint.SkuId,
                         Stock = domaint.Stock + handle.RedoStock

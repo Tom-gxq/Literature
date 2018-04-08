@@ -33,7 +33,7 @@ namespace SP.Service.Domain.CommandHandlers
                 {
                     if (cart != null && !string.IsNullOrEmpty(cart.CartId))
                     {
-                        System.Console.WriteLine("RedoProductSkuDomainStock OrderId="+ orderDomain.OrderId + "  ProductId="+ cart.ProductId + "  Quantity=" + cart.Quantity);
+                        System.Console.WriteLine("RedoProductSkuDomainStock OrderId="+ orderDomain.OrderId + "  ProductId="+ cart.ProductId + "  Quantity=" + cart.Quantity+ " OrderDate=" + orderDomain.OrderDate.ToString("yyyy-MM-dd HH:mm:ss"));
                         var sku = new ProductSkuDomain();
                         sku.RedoProductSkuDomainStock(cart.ShopId.Value,cart.ProductId, (cart.Quantity!=null? cart.Quantity.Value:0));
                         _skuRepository.Save(sku);

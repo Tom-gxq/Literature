@@ -46,6 +46,7 @@ namespace OrderDelayQueue.Service
                         if (!string.IsNullOrEmpty(orderId))
                         {
                             var orderDomain = ServiceLocator.OrderDatabase.GetOrderByOrderId(orderId);
+                            System.Console.WriteLine("RedoProductSkuDomainStock OrderId=" + orderId + "  OrderStatus=" + orderDomain?.OrderStatus??string.Empty + " OrderDate=" + orderDate);
                             if (orderDomain.OrderStatus == SP.Data.Enum.OrderStatus.WaitPay)
                             {
                                 ServiceLocator.CommandBus.Send(new OrderRedoStockCommand(new Guid(orderId), orderDate));
