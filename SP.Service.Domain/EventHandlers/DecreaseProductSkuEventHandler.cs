@@ -11,6 +11,7 @@ namespace SP.Service.Domain.EventHandlers
     {
         private readonly ProductSkuReportDatabase _reportDatabase;
         private static object lockObj = new object();
+        private static object lockObjSecond = new object();
         public DecreaseProductSkuEventHandler(ProductSkuReportDatabase reportDatabase)
         {
             _reportDatabase = reportDatabase;
@@ -20,21 +21,30 @@ namespace SP.Service.Domain.EventHandlers
             lock (lockObj)
             {
                 System.Console.WriteLine("DecreaseProductSkuEvent ShopId=" + handle.ShopId + "  ProductId=" + handle.ProductId);
-                var domaint = _reportDatabase.GetProductSkuByProductId(handle.ShopId, handle.ProductId);
-                if (domaint != null && !string.IsNullOrEmpty(domaint.SkuId))
+                lock (lockObjSecond)
                 {
-                    System.Console.WriteLine("Stock=" + domaint.Stock);
-                    var result = _reportDatabase.UpdateProductSkuStock(new Entity.ProductSkuEntity()
+                    var domaint = _reportDatabase.GetProductSkuByProductId(handle.ShopId, handle.ProductId);
+                    if (domaint != null && !string.IsNullOrEmpty(domaint.SkuId) && domaint.Stock  > 0&& domaint.Stock >= handle.DecStock)
                     {
-                        SkuId = domaint.SkuId,
-                        Stock = domaint.Stock - handle.DecStock
-                    });
-                    System.Console.WriteLine("result=" + result);
-                    if (!result)
+                        System.Console.WriteLine("Stock=" + domaint.Stock);
+                        var result = _reportDatabase.UpdateProductSkuStock(new Entity.ProductSkuEntity()
+                        {
+                            SkuId = domaint.SkuId,
+                            Stock = domaint.Stock - handle.DecStock
+                        });
+                        System.Console.WriteLine("result=" + result);
+                        if (!result)
+                        {
+                            throw new ProductSkuException(string.Format($"ShopId={handle.ShopId} " +
+                                $"ProductId={handle.ProductId} domaint.Stock={domaint.Stock} " +
+                                $"DecStock={handle.DecStock}"));
+                        }
+                    }
+                    else
                     {
                         throw new ProductSkuException(string.Format($"ShopId={handle.ShopId} " +
-                            $"ProductId={handle.ProductId} domaint.Stock={domaint.Stock} " +
-                            $"DecStock={handle.DecStock}"));
+                                                        $"ProductId={handle.ProductId} domaint.Stock={domaint.Stock} " +
+                                                        $"DecStock={handle.DecStock}"));
                     }
                 }
             }

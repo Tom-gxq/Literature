@@ -63,7 +63,7 @@ namespace SP.Service.Domain.CommandHandlers
             if (order != null && order.Shop != null && !string.IsNullOrEmpty(order.Shop.OwnerId)
                 && order.ShoppingCarts != null)
             {
-                System.Console.WriteLine("orderStatus=" + orderStatus);
+                System.Console.WriteLine("OrderId=" + order.OrderId + "orderStatus=" + orderStatus);
                 if (orderStatus == Data.Enum.OrderStatus.Success)
                 {
                     foreach (var cart in order.ShoppingCarts)

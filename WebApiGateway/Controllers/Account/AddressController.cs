@@ -1,5 +1,6 @@
 ﻿using AccountGRPCInterface;
 using SP.Api.Model.Account;
+using SP.Api.Model.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -232,6 +233,43 @@ namespace WebApiGateway.Controllers.Account
             try
             {
                 var model = AddressBusiness.GetDefaultRegionData(currentAccount.AccountId);
+                JsonResult.Add("regionData", model);
+                JsonResult.Add("status", 0);
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+
+        public ActionResult GetAllSchoolList()
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                var model = AddressBusiness.GetRegionDataList((int)RegionType.School);
+                JsonResult.Add("regionData", model);
+                JsonResult.Add("status", 0);
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+        public ActionResult GetSchoolDistrictList(int dataId)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                var model = AddressBusiness.GetSchoolDistrictList(dataId);
                 JsonResult.Add("regionData", model);
                 JsonResult.Add("status", 0);
             }

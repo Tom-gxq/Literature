@@ -17,9 +17,9 @@ D:\项目构建\饿家军餐饮平台\Src\Specialty\SP.Data.Enum\obj\Debug\netst
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Data.Enum\bin\Debug\netstandard2.0\SP.Data.Enum.deps.json
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Data.Enum\bin\Debug\netstandard2.0\SP.Data.Enum.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Data.Enum\bin\Debug\netstandard2.0\SP.Data.Enum.pdb
-D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Data.Enum\obj\Debug\netstandard2.0\SP.Data.Enum.csprojResolveAssemblyReference.cache
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Data.Enum\obj\Debug\netstandard2.0\SP.Data.Enum.csproj.CoreCompileInputs.cache
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Data.Enum\obj\Debug\netstandard2.0\SP.Data.Enum.AssemblyInfoInputs.cache
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Data.Enum\obj\Debug\netstandard2.0\SP.Data.Enum.AssemblyInfo.cs
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Data.Enum\obj\Debug\netstandard2.0\SP.Data.Enum.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Data.Enum\obj\Debug\netstandard2.0\SP.Data.Enum.pdb
+D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Data.Enum\obj\Debug\netstandard2.0\SP.Data.Enum.csprojResolveAssemblyReference.cache

@@ -56,7 +56,9 @@
     <Compile Include="Account\SmsModel.cs" />
     <Compile Include="Account\SysKindModel.cs" />
     <Compile Include="Account\TokenModel.cs" />
+    <Compile Include="Account\WxPayModel.cs" />
     <Compile Include="Enum\AuthType.cs" />
+    <Compile Include="Enum\RegionType.cs" />
     <Compile Include="OAuth2\OAuth2AccessToken.cs" />
     <Compile Include="Order\FinanceModel.cs" />
     <Compile Include="Order\LeadOrderModel.cs" />

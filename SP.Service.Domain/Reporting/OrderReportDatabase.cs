@@ -126,7 +126,7 @@ namespace SP.Service.Domain.Reporting
             var orderCartList = _cartRepository.GetShoppingCartsByOrderId(entity.OrderId);
             var productList = new List<ProductDomain>();
             foreach (var cart in orderCartList)
-            {
+            {                
                 var productReportDatabase = IocManager.Instance.Resolve(typeof(ProductReportDatabase)) as ProductReportDatabase; ;
                 var product = productReportDatabase.GetProductDomainById(cart.ProductId);
                 productList.Add(product);

@@ -3,6 +3,7 @@ using SP.Service;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static SP.Service.AccountService;
 
 namespace AccountGRPCInterface
 {
@@ -279,6 +280,57 @@ namespace AccountGRPCInterface
                 }
             }
             return model;
+        }
+
+        public static List<RegionDataModel> GetSchoolDistrictList(int dataId)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request1 = new RegionIDRequest()
+            {
+                DataId = dataId
+            };
+            var result = client.GetChildRegionDataList(request1);
+            var list = new List<RegionDataModel>();
+            if (result.Status == 10001)
+            {
+                foreach (var item in result.RegionList)
+                {
+                    var domain = new RegionDataModel();
+                    domain.dataId = item.DataId;
+                    domain.dataName = item.DataName;
+                    domain.parentDataId = item.ParentDataId;
+                    if (domain.parentDataId > 0)
+                    {
+                        GetChildRegion(domain, client);
+                    }
+                    list.Add(domain);
+                }
+            }
+            return list;
+        }
+        private static void GetChildRegion(RegionDataModel model, AccountServiceClient client)
+        {
+            var requst2 = new RegionIDRequest()
+            {
+                DataId = model.parentDataId
+            };
+            model.childList = new List<RegionDataModel>();
+            var childResult = client.GetChildRegionData(requst2);
+            if (childResult?.RegionList != null)
+            {
+                foreach (var item in childResult.RegionList)
+                {
+                    RegionDataModel child = new RegionDataModel();
+                    child.dataId = item.DataId;
+                    child.dataName = item.DataName;
+                    child.parentDataId = item.ParentDataId;
+                    if(child.parentDataId > 0)
+                    {
+                        GetChildRegion(child, client);
+                    }
+                    model.childList.Add(child);
+                }
+            }
         }
     }
 }

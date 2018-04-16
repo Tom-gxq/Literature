@@ -29,7 +29,9 @@ namespace SP.Service.Domain.CommandHandlers
         private ProductReportDatabase _productReportDatabase;
         private ShopReportDatabase _shopReportDatabase;
         private ProductSkuReportDatabase _skuReportDatabase;
-        private object lockObj = new object();
+        private static object lockObj = new object();
+        private static object lockObjSecond = new object();
+
 
         public CreateOrderCommandHandler(IDataRepository<OrderDomain> repository, OrderReportDatabase orderReportDatabase, 
             ProductReportDatabase productReportDatabase, ShopReportDatabase shopReportDatabase, ProductSkuReportDatabase skuReportDatabase,
@@ -48,83 +50,72 @@ namespace SP.Service.Domain.CommandHandlers
         {
             lock (lockObj)
             {
-                var cartList = new List<ShoppingCartsDomain>();
-                var groupList = command.CartIds.Distinct();
-                foreach (var item in groupList)
+                lock (lockObjSecond)
                 {
-                    var shoppingCart = _orderReportDatabase.GetShoppingCartsById(item);
-
-                    if (shoppingCart != null)
+                    var cartList = new List<ShoppingCartsDomain>();
+                    var groupList = command.CartIds.Distinct();
+                    foreach (var item in groupList)
                     {
-                        var cartDomain = new ShoppingCartsDomain();
-                        cartDomain.SetMemento(shoppingCart);
-                        var product = _productReportDatabase.GetProductById(shoppingCart.ProductId);
-                        cartDomain.SetMemenProductto(product);
-                        if (cartDomain.ShopId > 0)
-                        {
-                            var shop = _shopReportDatabase.GetShopById(cartDomain.ShopId);
-                            if (shop.StartTime != null)
-                            {
-                                var times = shop.StartTime.Split(':');
-                                if (times.Length > 1)
-                                {
-                                    var hour = times[0];
-                                    if (!string.IsNullOrEmpty(hour))
-                                    {
-                                        var newHour = int.Parse(hour) - 2;
-                                        shop.StartTime = string.Format("{0}:{1}", newHour, times[1]);
-                                    }
-                                }
-                            }
-                            if ( cartDomain.Product != null && !string.IsNullOrEmpty(cartDomain.Product.ProductId))
-                            {
-                                var skuDomain = _skuReportDatabase.GetProductSkuByProductId(cartDomain.ShopId,cartDomain.Product.ProductId);
-                                if (!string.IsNullOrEmpty(shoppingCart?.OrderId) && (skuDomain?.Stock ?? 0) < cartDomain.Quantity)
-                                {
-                                    var order = _orderReportDatabase.GetOrderByOrderId(shoppingCart.OrderId);
-                                    if (order != null)
-                                    {
-                                        double amount = order.Amount;
-                                        if(order.Amount > (product.MarketPrice != null ? product.MarketPrice.Value:0))
-                                        {
-                                            amount = amount - product.MarketPrice.Value;
-                                        }
-                                        double vipAmount = order.VIPAmount;
-                                        if (order.VIPAmount > (product.VIPPrice != null ? product.VIPPrice.Value : 0))
-                                        {
-                                            vipAmount = vipAmount - product.VIPPrice.Value;
-                                        }
-                                        cartDomain.DeleteShoppingCart(item, shoppingCart.OrderId, shoppingCart.ProductId, amount, vipAmount);
-                                        _cartRepository.Save(cartDomain);
-                                    }
-                                    continue;
-                                }
-                                else
-                                {
-                                    System.Console.WriteLine("EditProductSkuDomainStock Quantity=" + shoppingCart.Quantity);
-                                    var sku = new ProductSkuDomain();
-                                    sku.EditProductSkuDomainStock(cartDomain.ShopId,shoppingCart.ProductId, cartDomain.Quantity);
-                                    _skuRepository.Save(sku);
-                                }
-                            }
-                        }
-                        cartList.Add(cartDomain);
-                    }
-                }
-                if (cartList.Count > 0)
-                {
-                    var aggregate = new OrderDomain(command.Id, command.Remark, command.OrderStatus, command.OrderDate, command.AccountId, cartList, command.AddressId);
+                        var shoppingCart = _orderReportDatabase.GetShoppingCartsById(item);
 
-                    _repository.Save(aggregate);
-                    JObject data = new JObject();
-                    data.Add("orderId", command.Id.ToString());
-                    data.Add("orderDate", command.OrderDate.ToString("yyyy-MM-dd HH:mm:ss"));
-                    var queue = new SP.Service.Domain.DelayQueue.DelayQueue();
-                    queue.Push(data);
-                }
-                else
-                {
-                    throw new ProductSkuException("");
+                        if (shoppingCart != null && string.IsNullOrEmpty(shoppingCart.OrderId))
+                        {
+                            var cartDomain = new ShoppingCartsDomain();
+                            cartDomain.SetMemento(shoppingCart);
+                            var product = _productReportDatabase.GetProductById(shoppingCart.ProductId);
+                            cartDomain.SetMemenProductto(product);
+                            if (cartDomain.ShopId > 0)
+                            {
+                                var shop = _shopReportDatabase.GetShopById(cartDomain.ShopId);
+                                if (shop.StartTime != null)
+                                {
+                                    var times = shop.StartTime.Split(':');
+                                    if (times.Length > 1)
+                                    {
+                                        var hour = times[0];
+                                        if (!string.IsNullOrEmpty(hour))
+                                        {
+                                            var newHour = int.Parse(hour) - 2;
+                                            shop.StartTime = string.Format("{0}:{1}", newHour, times[1]);
+                                        }
+                                    }
+                                }
+                                if (cartDomain.Product != null && !string.IsNullOrEmpty(cartDomain.Product.ProductId))
+                                {
+                                    var skuDomain = _skuReportDatabase.GetProductSkuByProductId(cartDomain.ShopId, cartDomain.Product.ProductId);
+                                    if (!string.IsNullOrEmpty(shoppingCart?.OrderId) && (skuDomain?.Stock ?? 0) < cartDomain.Quantity)
+                                    {
+                                        throw new ProductSkuException(string.Format($"ShopId={skuDomain.ShopId} " +
+                                        $"ProductId={skuDomain.ProductId} domaint.Stock={skuDomain.Stock} " +
+                                        $"DecStock={cartDomain.Quantity}"));
+                                    }
+                                    else
+                                    {
+                                        System.Console.WriteLine("EditProductSkuDomainStock Quantity=" + shoppingCart.Quantity);
+                                        var sku = new ProductSkuDomain();
+                                        sku.EditProductSkuDomainStock(cartDomain.ShopId, shoppingCart.ProductId, cartDomain.Quantity);
+                                        _skuRepository.Save(sku);
+                                    }
+                                }
+                            }
+                            cartList.Add(cartDomain);
+                        }
+                    }
+                    if (cartList.Count > 0)
+                    {
+                        var aggregate = new OrderDomain(command.Id, command.Remark, command.OrderStatus, command.OrderDate, command.AccountId, cartList, command.AddressId);
+
+                        _repository.Save(aggregate);
+                        JObject data = new JObject();
+                        data.Add("orderId", command.Id.ToString());
+                        data.Add("orderDate", command.OrderDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                        var queue = new SP.Service.Domain.DelayQueue.DelayQueue();
+                        queue.Push(data);
+                    }
+                    else
+                    {
+                        throw new ProductSkuException("");
+                    }
                 }
             }
         }

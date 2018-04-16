@@ -11,7 +11,7 @@ namespace SP.Service.Domain.EventHandlers
     public class UpdateShoppingCartOrderIDEventHandler : IEventHandler<UpdateShoppingCartOrderIDEvent>
     {
         private readonly OrderReportDatabase _reportDatabase;
-        private object lockObj = new object();
+        private static object lockObj = new object();
         public UpdateShoppingCartOrderIDEventHandler(OrderReportDatabase reportDatabase)
         {
             _reportDatabase = reportDatabase;

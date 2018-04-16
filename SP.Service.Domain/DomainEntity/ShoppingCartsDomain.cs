@@ -35,6 +35,10 @@ namespace SP.Service.Domain.DomainEntity
             ApplyChange(new DelShoppingCartEvent(cartId));
             ApplyChange(new OrderSubAmountEvent(new Guid(orderId), productId, amount, vipAmount));
         }
+        public void AddShoppingCartNum(Guid id, string accountId, int quantity, string productId, int shopId)
+        {
+            ApplyChange(new AddShoppingCartNumEvent(accountId, id.ToString(), quantity, productId, DateTime.Now, shopId));
+        }
         public void Handle(DelShoppingCartEvent e)
         {
             this.CartId = e.CartId;
@@ -53,6 +57,15 @@ namespace SP.Service.Domain.DomainEntity
             this.Product = new ProductEntity() { ProductId = e.ProductId };
             this.Quantity = e.Quantity;
             this.CreateTime = e.CreateTime;
+            this.ShopId = e.ShopId;
+        }
+        public void Handle(AddShoppingCartNumEvent e)
+        {
+            this.AccountId = e.AccountId.ToString();
+            this.CartId = e.CartId;
+            this.Product = new ProductEntity() { ProductId = e.ProductId };
+            this.Quantity = e.Quantity;
+            this.UpdateTime = e.CreateTime;
             this.ShopId = e.ShopId;
         }
 

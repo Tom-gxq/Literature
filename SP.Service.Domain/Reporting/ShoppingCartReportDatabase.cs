@@ -76,9 +76,19 @@ namespace SP.Service.Domain.Reporting
             var retCount = _repository.RemoveShoppingCart(cartId);
             return retCount > 0;
         }
+        public ShoppingCartsDomain GetShoppingCart(string accountId, int shopId,string productId)
+        {
+            var entity = _repository.GetShoppingCart(accountId, shopId, productId);
+            
+            return ConvertOrderEntityToDomain(entity);
+        }
 
         private ShoppingCartsDomain ConvertOrderEntityToDomain(ShoppingCartsEntity entity)
         {
+            if(entity == null)
+            {
+                return null;
+            }
             var shopCart = new ShoppingCartsDomain();
             shopCart.SetMemento(entity);
             if (shopCart.Product != null && !string.IsNullOrEmpty(shopCart.Product.ProductId))

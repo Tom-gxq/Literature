@@ -30,6 +30,10 @@ namespace SP.Service.Domain.DomainEntity
 
         public void SetMemento(BaseEntity memento)
         {
+            if(memento == null)
+            {
+                return;
+            }
             var product = memento as ProductEntity;
             this.ProductId = product.ProductId;
             this.ProductName = product.ProductName;

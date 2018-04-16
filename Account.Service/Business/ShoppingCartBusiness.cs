@@ -8,6 +8,8 @@ namespace Account.Service.Business
 {
     public class ShoppingCartBusiness
     {
+        private static object lockObj = new object();
+        private static object lockObj2 = new object();
         public static ShoppingCartResultResponse AddShoppingCart(ShoppingCartRequest request)
         {
             ServiceLocator.CommandBus.Send(new CreatShoppingCartCommand(Guid.NewGuid(), request.ProductId, request.AccountId, request.Quantity, request.ShopId));
@@ -98,17 +100,32 @@ namespace Account.Service.Business
 
         public static bool UpdateShoppingCartQuantity(string cartId, int quantity)
         {
-            return ServiceLocator.ShppingCartDatabase.UpdateShoppingCartQuantity(cartId, quantity);
+            lock (lockObj)
+            {
+                lock (lockObj2)
+                {
+                    return ServiceLocator.ShppingCartDatabase.UpdateShoppingCartQuantity(cartId, quantity);
+                }
+            }
         }
 
         public static bool UpdateShoppingCartEnabled(string accountId)
         {
-            return ServiceLocator.ShppingCartDatabase.UpdateShoppingCartEnabled(accountId);
+            lock (lockObj)
+            {
+                return ServiceLocator.ShppingCartDatabase.UpdateShoppingCartEnabled(accountId);
+            }
         }
 
         public static bool UpdateShoppingCartOrderId(string orderId, List<string> list )
         {
-            return ServiceLocator.ShppingCartDatabase.UpdateShoppingCartOrderId(orderId,list);
+            lock (lockObj)
+            {
+                lock (lockObj2)
+                {
+                    return ServiceLocator.ShppingCartDatabase.UpdateShoppingCartOrderId(orderId, list);
+                }
+            }
         }
     }
 }

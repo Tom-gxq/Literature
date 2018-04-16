@@ -128,7 +128,7 @@ namespace WebApiGateway.Controllers
                 }
                 catch (Exception ex)
                 {
-                    
+                    Common.WriteLog(ex.ToString());
                 }
             }
             return retValue;

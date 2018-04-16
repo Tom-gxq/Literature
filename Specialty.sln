@@ -63,7 +63,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "aliyun-net-sdk-core", "aliy
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "aliyun-net-sdk-dysmsapi", "aliyun-net-sdk-dysmsapi\aliyun-net-sdk-dysmsapi.csproj", "{63EB2A96-7BB6-4331-B21E-5FC09080B97F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderDelayQueue.Service", "OrderDelayQueue.Service\OrderDelayQueue.Service.csproj", "{088D4432-0325-4C44-ABB7-F33780342FA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderDelayQueue.Service", "OrderDelayQueue.Service\OrderDelayQueue.Service.csproj", "{088D4432-0325-4C44-ABB7-F33780342FA5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docment", "Docment", "{D97B82CA-BEB3-4C7A-86EC-A2D8A666B1B7}"
+	ProjectSection(SolutionItems) = preProject
+		EJJ_DB_20170805.xlsx = EJJ_DB_20170805.xlsx
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wx.pay", "wx.pay\wx.pay.csproj", "{3F3E6720-E254-460E-834D-35FAAE88337C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -183,6 +190,10 @@ Global
 		{088D4432-0325-4C44-ABB7-F33780342FA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{088D4432-0325-4C44-ABB7-F33780342FA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{088D4432-0325-4C44-ABB7-F33780342FA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F3E6720-E254-460E-834D-35FAAE88337C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F3E6720-E254-460E-834D-35FAAE88337C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F3E6720-E254-460E-834D-35FAAE88337C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F3E6720-E254-460E-834D-35FAAE88337C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -211,6 +222,7 @@ Global
 		{672E5146-0420-4A9A-8881-613AD5EFAD31} = {86BCEEB1-94AE-44F0-891B-1135910FA566}
 		{63EB2A96-7BB6-4331-B21E-5FC09080B97F} = {86BCEEB1-94AE-44F0-891B-1135910FA566}
 		{088D4432-0325-4C44-ABB7-F33780342FA5} = {48DA2324-1307-4897-8D86-91221A227271}
+		{3F3E6720-E254-460E-834D-35FAAE88337C} = {86BCEEB1-94AE-44F0-891B-1135910FA566}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {97F59FCE-65D7-438A-8C58-E94BDEC135B5}

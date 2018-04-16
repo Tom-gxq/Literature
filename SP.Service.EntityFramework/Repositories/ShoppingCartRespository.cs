@@ -21,7 +21,7 @@ namespace SP.Service.EntityFramework.Repositories
 
         public List<ShoppingCartsEntity> GetShoppingCartsByOrderId(string orderId)
         {
-            var result = this.Select(x => x.OrderId == orderId);
+            var result = this.Select(x => x.OrderId == orderId );
             return result;
         }
 
@@ -56,7 +56,7 @@ namespace SP.Service.EntityFramework.Repositories
         }
         public List<ShoppingCartsEntity> GetMyShoppingCartListByOrderId(string accountId,string orderId)
         {
-            return this.Select(x => x.AccountId == accountId  && x.Quantity > 0 && x.OrderId == orderId);
+            return this.Select(x => x.AccountId == accountId  && x.Quantity > 0 && x.OrderId == orderId );
         }
 
         public long GetMyShoppingCartCount(string accountId)
@@ -65,7 +65,15 @@ namespace SP.Service.EntityFramework.Repositories
         }
         public long RemoveShoppingCart(string cartId)
         {
-            return this.Delete(x=>x.CartId == cartId);
+            return this.UpdateNonDefaults(new ShoppingCartsEntity()
+            {
+                IsEnabled = true
+            }, x => x.CartId == cartId );
+        }
+        public ShoppingCartsEntity GetShoppingCart(string accountId, int shopId, string productId)
+        {
+            return this.Single(x => x.AccountId == accountId &&x.ShopId== shopId && x.ProductId == productId
+            && x.IsEnabled == false && x.OrderId == null && x.CreateTime >=DateTime.Parse(DateTime.Now.ToShortDateString()));
         }
     }
 }

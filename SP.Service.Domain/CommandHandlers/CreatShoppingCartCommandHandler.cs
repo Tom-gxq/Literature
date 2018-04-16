@@ -2,6 +2,7 @@
 using Grpc.Service.Core.Domain.Storage;
 using SP.Service.Domain.Commands.ShoppingCart;
 using SP.Service.Domain.DomainEntity;
+using SP.Service.Domain.Reporting;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,17 +12,33 @@ namespace SP.Service.Domain.CommandHandlers
     public class CreatShoppingCartCommandHandler : ICommandHandler<CreatShoppingCartCommand>
     {
         private IDataRepository<ShoppingCartsDomain> _repository;
+        private readonly ShoppingCartReportDatabase _reportDatabase;
+        private static object lockObj = new object();
 
-        public CreatShoppingCartCommandHandler(IDataRepository<ShoppingCartsDomain> repository)
+        public CreatShoppingCartCommandHandler(IDataRepository<ShoppingCartsDomain> repository, ShoppingCartReportDatabase reportDatabase)
         {
             this._repository = repository;
+            this._reportDatabase = reportDatabase;
         }
 
         public void Execute(CreatShoppingCartCommand command)
         {
-            var aggregate = new ShoppingCartsDomain(command.Id, command.AccountId, command.Quantity, command.ProductId,command.ShopId);
-
-            _repository.Save(aggregate);
+            lock (lockObj)
+            {
+                ShoppingCartsDomain aggregate = null;
+                var domain = _reportDatabase.GetShoppingCart(command.AccountId, command.ShopId, command.ProductId);
+                if (domain == null)
+                {
+                    aggregate = new ShoppingCartsDomain(command.Id, command.AccountId, command.Quantity, command.ProductId, command.ShopId);
+                }
+                else
+                {
+                    var quantity = domain.Quantity + command.Quantity;
+                    aggregate = new ShoppingCartsDomain();
+                    aggregate.AddShoppingCartNum(new Guid(domain.CartId), command.AccountId, quantity, command.ProductId, command.ShopId);
+                }
+                _repository.Save(aggregate);
+            }
         }
     }
 }

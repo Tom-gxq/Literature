@@ -208,6 +208,7 @@
     <Compile Include="Controllers\Account\AddressController.cs" />
     <Compile Include="Controllers\Account\AssociatorController.cs" />
     <Compile Include="Controllers\Account\ShoppingCartController.cs" />
+    <Compile Include="Controllers\Account\wxPayController.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\Base\OauthBaseController.cs" />
     <Compile Include="Controllers\Base\Test.cs" />
@@ -330,6 +331,10 @@
     <ProjectReference Include="..\SP.Api.Model\SP.Api.Model.csproj">
       <Project>{3a637592-a435-45bf-82bf-7ecd0ae7f5cb}</Project>
       <Name>SP.Api.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\wx.pay\wx.pay.csproj">
+      <Project>{3f3e6720-e254-460e-834d-35faae88337c}</Project>
+      <Name>wx.pay</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
