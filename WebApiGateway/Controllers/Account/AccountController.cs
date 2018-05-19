@@ -5,6 +5,7 @@ using Aop.Api.Request;
 using Aop.Api.Response;
 using Newtonsoft.Json.Linq;
 using OrderGRPCInterface.Business;
+using SP.Api.Cache;
 using SP.Api.Model.Account;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using WebApiGateway.App_Start;
+using WebApiGateway.App_Start.Crypt;
 using WebApiGateway.Controllers.Base;
 
 namespace WebApiGateway.Controllers.Account
@@ -154,5 +156,235 @@ namespace WebApiGateway.Controllers.Account
             string basePath = System.IO.Directory.GetParent(System.Environment.CurrentDirectory).Parent.FullName;
             return basePath + "/sign/";
         }
+
+        public ActionResult SetAccountPayPwd([FromBody]PayPwdModel model)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            if(model.Password != model.ConfirmPassword)
+            {
+                JsonResult.Add("status", 2);
+                result.Data = JsonResult;
+                return result;
+            }
+            try
+            {
+                model.AccountId = currentAccount.AccountId;
+                model.Password = StringCrypt.Encrypt(model.Password, ConfigInfo.ConfigInfoData.CryptKey.MessageKey);
+                var retValue = AccountBusiness.SetAccountPayPwd(model);
+                if (retValue)
+                {
+                    JsonResult.Add("status", 0);
+                }
+                else
+                {
+                    JsonResult.Add("status", 2);
+                }
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+        public ActionResult UpdateAccountPayPwd([FromBody]PayPwdModel model)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            
+            try
+            {
+                var accountModel = AccountBusiness.GetAccountFullInfo(currentAccount.AccountId);
+                model.PrePassword = StringCrypt.Encrypt(model.PrePassword, ConfigInfo.ConfigInfoData.CryptKey.MessageKey);
+                if (accountModel != null && accountModel.PayPassWord  != model.PrePassword)
+                {
+                    JsonResult.Add("status", 2);
+                    result.Data = JsonResult;
+                    return result;
+                }
+                model.AccountId = currentAccount.AccountId;
+                model.Password = StringCrypt.Encrypt(model.Password, ConfigInfo.ConfigInfoData.CryptKey.MessageKey);
+                var retValue = AccountBusiness.UpdateAccountPayPwd(model);
+                if (retValue)
+                {
+                    JsonResult.Add("status", 0);
+                }
+                else
+                {
+                    JsonResult.Add("status", 2);
+                }
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+
+        public ActionResult UpdateAccountLoginPwd([FromBody]PayPwdModel model)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+
+            try
+            {
+                var accountModel = AccountBusiness.GetAccountDetail(currentAccount.AccountId);
+                model.PrePassword = StringCrypt.Encrypt(model.PrePassword, ConfigInfo.ConfigInfoData.CryptKey.MessageKey);
+                if (accountModel != null && accountModel.Password != model.PrePassword)
+                {
+                    JsonResult.Add("status", 3);
+                    result.Data = JsonResult;
+                    return result;
+                }
+                if (model.Password != model.ConfirmPassword)
+                {
+                    JsonResult.Add("status", 4);
+                    result.Data = JsonResult;
+                    return result;
+                }
+                model.AccountId = currentAccount.AccountId;
+                model.Password = StringCrypt.Encrypt(model.Password, ConfigInfo.ConfigInfoData.CryptKey.MessageKey);
+                var retValue = AccountBusiness.UpdateAccountLoginPwd(model);
+                if (retValue)
+                {
+                    JsonResult.Add("status", 0);
+                }
+                else
+                {
+                    JsonResult.Add("status", 2);
+                }
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+        public ActionResult IsExsitAccountPayPwd()
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+
+            try
+            {
+                var accountModel = AccountBusiness.GetAccountFullInfo(currentAccount.AccountId);
+               
+                if (!string.IsNullOrEmpty(accountModel.PayPassWord))
+                {
+                    JsonResult.Add("status", 0);
+                }
+                else
+                {
+                    JsonResult.Add("status", 2);
+                }
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+
+        [System.Web.Http.HttpPost]
+        public ActionResult UpdateAccountMobile([FromBody] RegisterAccount Params)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+
+            Params.account = Common.CheckAccount(Params.account);
+
+            if (string.IsNullOrEmpty(Params.account))
+            {
+                JsonResult.Add("status", 3);//手机号不合法
+                result.Data = JsonResult;
+                return result;
+            }
+
+            if (!string.IsNullOrEmpty(Params.code))
+            {
+                if (!Common.VerifyRegisterCode(Params.code, Params.account))
+                {
+                    JsonResult.Add("status", 4);//验证码错误
+                    result.Data = JsonResult;
+                    return result;
+                }
+            }
+            else
+            {
+                JsonResult.Add("status", 5);//验证码不能为空
+                result.Data = JsonResult;
+                return result;
+            }
+            //账号已经存在
+            var userAccount = AccountBusiness.GetAccount(Params.account);
+            if (userAccount != null && !string.IsNullOrEmpty(userAccount.AccountId))
+            {
+                JsonResult.Add("status", 6);//账号已经存在
+                result.Data = JsonResult;
+                return result;
+            }
+
+            var model = new AccountModel();
+            model.AccountId = currentAccount.AccountId;
+            model.MobilePhone = Params.account;
+            try
+            {
+                var retValue = AccountBusiness.UpdateAccountMobile(model);
+                if (retValue)
+                {
+                    JsonResult.Add("status", 0);
+                }
+                else
+                {
+                    JsonResult.Add("status", 2);
+                }
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+
+        [System.Web.Http.HttpPost]
+        public ActionResult BindOtherAccount([FromBody]BingAccountModel model)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+
+            try
+            {
+                
+                model.AccountId = currentAccount.AccountId;
+                var retValue = AccountBusiness.BindOtherAccount(model);
+                if (retValue)
+                {
+                    JsonResult.Add("status", 0);
+                }
+                else
+                {
+                    JsonResult.Add("status", 2);
+                }
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+        
+
     }
 }

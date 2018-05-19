@@ -315,6 +315,11 @@ namespace SP.Application.Product
             {
                 typeId = product.TypeId;
             }
+            int? secondTypeId = null;
+            if (product.SecondTypeId > 0)
+            {
+                secondTypeId = product.SecondTypeId;
+            }
             int? brandId = null;
             if (product.BrandId > 0)
             {
@@ -332,6 +337,7 @@ namespace SP.Application.Product
                 DisplaySequence = product.DisplaySequence,
                 UpdateTime = DateTime.Now,
                 TypeId = typeId,
+                SecondTypeId = secondTypeId,
                 BrandId = brandId,
                 LastOperater = lastOperater != null ? lastOperater.Id : 0,
                 VIPPrice = product.VIPPrice,
@@ -421,6 +427,30 @@ namespace SP.Application.Product
             var repository = IocManager.Instance.Resolve<ProductSkuRespository>();
             return repository.DeleteProductSku(skuId);
         }
+        public bool AddOneProductSku(string skuId)
+        {
+            var repository = IocManager.Instance.Resolve<ProductSkuRespository>();
+            var entity = repository.GetProductSkuById(skuId);
+            bool result = false;
+            if (entity != null)
+            {
+                int stock = entity.Stock.Value + 1;
+                result = repository.UpdateOneProductSku(skuId, stock);
+            }
+            return result;
+        }
+        public bool DelOneProductSku(string skuId)
+        {
+            var repository = IocManager.Instance.Resolve<ProductSkuRespository>();
+            var entity = repository.GetProductSkuById(skuId);
+            bool result = false;
+            if (entity != null)
+            {
+                int stock = entity.Stock.Value - 1;
+                result = repository.UpdateOneProductSku(skuId, (stock<0?0: stock));
+            }
+            return result;
+        }
         public List<ProductsDto> SearchProductByKeyWord(string keyWord, int pageIndex, int pageSize)
         {
             var retList = new List<ProductsDto>();
@@ -430,6 +460,18 @@ namespace SP.Application.Product
             {
                 var order = ConvertFromRepositoryEntity(item, string.Empty);
                 retList.Add(order);
+            }
+            return retList;
+        }
+        public List<ProductSkuDto> SearchProducSku(int schoolId, int districtId, int shopId, string productId, int skuStatus)
+        {
+            var retList = new List<ProductSkuDto>();
+            var repository = IocManager.Instance.Resolve<ProductSkuRespository>();
+            var list = repository.SearchProducSku(schoolId,  districtId,  shopId,  productId,  skuStatus);
+            foreach (var item in list)
+            {
+                var entity = ConvertSkuFromRepositoryEntity(item);
+                retList.Add(entity);
             }
             return retList;
         }
@@ -453,7 +495,10 @@ namespace SP.Application.Product
                 ShortDescription = product.ShortDescription,
                 Unit = product.Unit,       
                 DisplaySequence = product.DisplaySequence != null ? product.DisplaySequence.Value:0,
-                SaleStatus = product.SaleStatus!= null ? product.SaleStatus.Value:0
+                SaleStatus = product.SaleStatus!= null ? product.SaleStatus.Value:0,
+                TypeId = product.TypeId != null ? product.TypeId.Value : 0,
+                SecondTypeId = product.SecondTypeId != null ? product.SecondTypeId.Value : 0,
+                BrandId = product.BrandId != null ? product.BrandId.Value : 0,
             };
 
             return productsDto;

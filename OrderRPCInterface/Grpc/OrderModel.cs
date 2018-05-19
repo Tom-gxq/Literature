@@ -39,36 +39,36 @@ namespace SP.Service {
             "EQoJcGFnZUluZGV4GAMgASgFEhAKCHBhZ2VTaXplGAQgASgFEg0KBXRvdGFs",
             "GAUgASgDIm0KD0dldE9yZGVyUmVxdWVzdBIRCglhY2NvdW50SWQYASABKAkS",
             "EwoLb3JkZXJTdGF0dXMYAiABKAUSEQoJcGFnZUluZGV4GAMgASgFEhAKCHBh",
-            "Z2VTaXplGAQgASgFEg0KBXRvdGFsGAUgASgDIjgKDk15T3JkZXJSZXF1ZXN0",
-            "EhEKCWFjY291bnRJZBgBIAEoCRITCgtvcmRlclN0YXR1cxgCIAEoBSIhCg5P",
-            "cmRlcklkUmVxdWVzdBIPCgdvcmRlcklkGAEgASgJIkUKDU9yZGVyUmVzcG9u",
-            "c2USDgoGc3RhdHVzGAEgASgFEiQKCW9yZGVySW5mbxgCIAEoCzIRLlNQLlNl",
-            "cnZpY2UuT3JkZXIiMwoQQWRkT3JkZXJSZXNwb25zZRIOCgZzdGF0dXMYASAB",
-            "KAUSDwoHb3JkZXJJZBgCIAEoCSI6ChJVcGRhdGVPcmRlclJlcXVlc3QSEwoL",
-            "b3JkZXJTdGF0dXMYASABKAUSDwoHb3JkZXJJZBgCIAEoCSI7ChFTY2hvb2xM",
-            "ZWFkUmVxdWVzdBIRCglhY2NvdW50SWQYASABKAkSEwoLb3JkZXJTdGF0dXMY",
-            "AiABKAUiogIKD1NjaG9vbExlYWRPcmRlchIPCgdvcmRlcklkGAEgASgJEg4K",
-            "BmFtb3VudBgCIAEoARIRCglvcmRlckNvZGUYAyABKAkSEQoJb3JkZXJEYXRl",
-            "GAQgASgDEg8KB3BheURhdGUYBSABKAMSKAoHYWNjb3VudBgGIAEoCzIXLlNQ",
-            "LlNlcnZpY2UuQWNjb3VudEluZm8SJAoHYWRkcmVzcxgHIAEoCzITLlNQLlNl",
-            "cnZpY2UuQWRkcmVzcxIeCgRzaG9wGAggASgLMhAuU1AuU2VydmljZS5TaG9w",
-            "EjIKEHNob3BwaW5nQ2FydExpc3QYCSADKAsyGC5TUC5TZXJ2aWNlLlNob3Bw",
-            "aW5nQ2FydBITCgtvcmRlclN0YXR1cxgKIAEoBSJdChtTY2hvb2xMZWFkT3Jk",
-            "ZXJMaXN0UmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEi4KCW9yZGVySW5mbxgC",
-            "IAMoCzIbLlNQLlNlcnZpY2UuU2Nob29sTGVhZE9yZGVyIkYKDFRyYWRlUmVx",
-            "dWVzdBIRCglhY2NvdW50SWQYASABKAkSEQoJcGFnZUluZGV4GAMgASgFEhAK",
-            "CHBhZ2VTaXplGAQgASgFInEKBVRyYWRlEhEKCWFjY291bnRJZBgBIAEoCRIO",
-            "CgZhbW91bnQYAiABKAESDgoGY2FydElkGAMgASgJEhIKCmNyZWF0ZVRpbWUY",
-            "BCABKAMSEAoIcXVhbnRpdHkYBSABKAUSDwoHc3ViamVjdBgGIAEoBSJYChFU",
-            "cmFkZUxpc3RSZXNwb25zZRIOCgZzdGF0dXMYASABKAUSJAoJdHJhZGVMaXN0",
-            "GAIgAygLMhEuU1AuU2VydmljZS5UcmFkZRINCgV0b3RhbBgFIAEoAyJ7ChlT",
-            "Y2hvb2xMZWFkRmluYW5jZVJlc3BvbnNlEg4KBnN0YXR1cxgBIAEoBRIRCglh",
-            "Y2NvdW50SWQYAiABKAkSEgoKaGF2ZUFtb3VudBgDIAEoARIRCgl1c2VBbW91",
-            "bnQYBCABKAESFAoMYWN0aXZlQW1vdW50GAUgASgBIkcKE0FkZENhc2hBcHBs",
-            "eVJlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEg4KBmFsaXBheRgCIAEoCRIN",
-            "CgVtb25leRgDIAEoASJAChZVcGRhdGVPcmRlckNvZGVSZXF1ZXN0EhMKC29y",
-            "ZGVyU3RhdHVzGAEgASgFEhEKCW9yZGVyQ29kZRgCIAEoCSIlChBPcmRlckNv",
-            "ZGVSZXF1ZXN0EhEKCW9yZGVyQ29kZRgBIAEoCWIGcHJvdG8z"));
+            "Z2VTaXplGAQgASgFEg0KBXRvdGFsGAUgASgDIjYKDk15T3JkZXJSZXF1ZXN0",
+            "EhEKCWFjY291bnRJZBgBIAEoCRIRCglvcmRlckRhdGUYAiABKAkiIQoOT3Jk",
+            "ZXJJZFJlcXVlc3QSDwoHb3JkZXJJZBgBIAEoCSJFCg1PcmRlclJlc3BvbnNl",
+            "Eg4KBnN0YXR1cxgBIAEoBRIkCglvcmRlckluZm8YAiABKAsyES5TUC5TZXJ2",
+            "aWNlLk9yZGVyIjMKEEFkZE9yZGVyUmVzcG9uc2USDgoGc3RhdHVzGAEgASgF",
+            "Eg8KB29yZGVySWQYAiABKAkiOgoSVXBkYXRlT3JkZXJSZXF1ZXN0EhMKC29y",
+            "ZGVyU3RhdHVzGAEgASgFEg8KB29yZGVySWQYAiABKAkiOwoRU2Nob29sTGVh",
+            "ZFJlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEhMKC29yZGVyU3RhdHVzGAIg",
+            "ASgFIqICCg9TY2hvb2xMZWFkT3JkZXISDwoHb3JkZXJJZBgBIAEoCRIOCgZh",
+            "bW91bnQYAiABKAESEQoJb3JkZXJDb2RlGAMgASgJEhEKCW9yZGVyRGF0ZRgE",
+            "IAEoAxIPCgdwYXlEYXRlGAUgASgDEigKB2FjY291bnQYBiABKAsyFy5TUC5T",
+            "ZXJ2aWNlLkFjY291bnRJbmZvEiQKB2FkZHJlc3MYByABKAsyEy5TUC5TZXJ2",
+            "aWNlLkFkZHJlc3MSHgoEc2hvcBgIIAEoCzIQLlNQLlNlcnZpY2UuU2hvcBIy",
+            "ChBzaG9wcGluZ0NhcnRMaXN0GAkgAygLMhguU1AuU2VydmljZS5TaG9wcGlu",
+            "Z0NhcnQSEwoLb3JkZXJTdGF0dXMYCiABKAUiXQobU2Nob29sTGVhZE9yZGVy",
+            "TGlzdFJlc3BvbnNlEg4KBnN0YXR1cxgBIAEoBRIuCglvcmRlckluZm8YAiAD",
+            "KAsyGy5TUC5TZXJ2aWNlLlNjaG9vbExlYWRPcmRlciJGCgxUcmFkZVJlcXVl",
+            "c3QSEQoJYWNjb3VudElkGAEgASgJEhEKCXBhZ2VJbmRleBgDIAEoBRIQCghw",
+            "YWdlU2l6ZRgEIAEoBSJxCgVUcmFkZRIRCglhY2NvdW50SWQYASABKAkSDgoG",
+            "YW1vdW50GAIgASgBEg4KBmNhcnRJZBgDIAEoCRISCgpjcmVhdGVUaW1lGAQg",
+            "ASgDEhAKCHF1YW50aXR5GAUgASgFEg8KB3N1YmplY3QYBiABKAUiWAoRVHJh",
+            "ZGVMaXN0UmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEiQKCXRyYWRlTGlzdBgC",
+            "IAMoCzIRLlNQLlNlcnZpY2UuVHJhZGUSDQoFdG90YWwYBSABKAMiewoZU2No",
+            "b29sTGVhZEZpbmFuY2VSZXNwb25zZRIOCgZzdGF0dXMYASABKAUSEQoJYWNj",
+            "b3VudElkGAIgASgJEhIKCmhhdmVBbW91bnQYAyABKAESEQoJdXNlQW1vdW50",
+            "GAQgASgBEhQKDGFjdGl2ZUFtb3VudBgFIAEoASJHChNBZGRDYXNoQXBwbHlS",
+            "ZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIOCgZhbGlwYXkYAiABKAkSDQoF",
+            "bW9uZXkYAyABKAEiQAoWVXBkYXRlT3JkZXJDb2RlUmVxdWVzdBITCgtvcmRl",
+            "clN0YXR1cxgBIAEoBRIRCglvcmRlckNvZGUYAiABKAkiJQoQT3JkZXJDb2Rl",
+            "UmVxdWVzdBIRCglvcmRlckNvZGUYASABKAliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, global::SP.Service.ProductModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -78,7 +78,7 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OrderListResponse), global::SP.Service.OrderListResponse.Parser, new[]{ "Status", "OrderList" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SearchMyOrderRequest), global::SP.Service.SearchMyOrderRequest.Parser, new[]{ "AccountId", "KeyWord", "PageIndex", "PageSize", "Total" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.GetOrderRequest), global::SP.Service.GetOrderRequest.Parser, new[]{ "AccountId", "OrderStatus", "PageIndex", "PageSize", "Total" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.MyOrderRequest), global::SP.Service.MyOrderRequest.Parser, new[]{ "AccountId", "OrderStatus" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.MyOrderRequest), global::SP.Service.MyOrderRequest.Parser, new[]{ "AccountId", "OrderDate" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OrderIdRequest), global::SP.Service.OrderIdRequest.Parser, new[]{ "OrderId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OrderResponse), global::SP.Service.OrderResponse.Parser, new[]{ "Status", "OrderInfo" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AddOrderResponse), global::SP.Service.AddOrderResponse.Parser, new[]{ "Status", "OrderId" }, null, null, null),
@@ -1654,7 +1654,7 @@ namespace SP.Service {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public MyOrderRequest(MyOrderRequest other) : this() {
       accountId_ = other.accountId_;
-      orderStatus_ = other.orderStatus_;
+      orderDate_ = other.orderDate_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1677,18 +1677,18 @@ namespace SP.Service {
       }
     }
 
-    /// <summary>Field number for the "orderStatus" field.</summary>
-    public const int OrderStatusFieldNumber = 2;
-    private int orderStatus_;
+    /// <summary>Field number for the "orderDate" field.</summary>
+    public const int OrderDateFieldNumber = 2;
+    private string orderDate_ = "";
     /// <summary>
     ///*
-    /// 订单类型
+    /// 订单日期
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int OrderStatus {
-      get { return orderStatus_; }
+    public string OrderDate {
+      get { return orderDate_; }
       set {
-        orderStatus_ = value;
+        orderDate_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -1706,7 +1706,7 @@ namespace SP.Service {
         return true;
       }
       if (AccountId != other.AccountId) return false;
-      if (OrderStatus != other.OrderStatus) return false;
+      if (OrderDate != other.OrderDate) return false;
       return true;
     }
 
@@ -1714,7 +1714,7 @@ namespace SP.Service {
     public override int GetHashCode() {
       int hash = 1;
       if (AccountId.Length != 0) hash ^= AccountId.GetHashCode();
-      if (OrderStatus != 0) hash ^= OrderStatus.GetHashCode();
+      if (OrderDate.Length != 0) hash ^= OrderDate.GetHashCode();
       return hash;
     }
 
@@ -1729,9 +1729,9 @@ namespace SP.Service {
         output.WriteRawTag(10);
         output.WriteString(AccountId);
       }
-      if (OrderStatus != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(OrderStatus);
+      if (OrderDate.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(OrderDate);
       }
     }
 
@@ -1741,8 +1741,8 @@ namespace SP.Service {
       if (AccountId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountId);
       }
-      if (OrderStatus != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(OrderStatus);
+      if (OrderDate.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(OrderDate);
       }
       return size;
     }
@@ -1755,8 +1755,8 @@ namespace SP.Service {
       if (other.AccountId.Length != 0) {
         AccountId = other.AccountId;
       }
-      if (other.OrderStatus != 0) {
-        OrderStatus = other.OrderStatus;
+      if (other.OrderDate.Length != 0) {
+        OrderDate = other.OrderDate;
       }
     }
 
@@ -1772,8 +1772,8 @@ namespace SP.Service {
             AccountId = input.ReadString();
             break;
           }
-          case 16: {
-            OrderStatus = input.ReadInt32();
+          case 18: {
+            OrderDate = input.ReadString();
             break;
           }
         }

@@ -18,6 +18,8 @@ namespace MD.SmsService {
     static readonly grpc::Marshaller<global::MD.SmsService.SendMessageRequest> __Marshaller_SendMessageRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::MD.SmsService.SendMessageRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::MD.SmsService.SendMessageResponse> __Marshaller_SendMessageResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::MD.SmsService.SendMessageResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::MD.SmsService.RegisterRequest> __Marshaller_RegisterRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::MD.SmsService.RegisterRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::MD.SmsService.HttpRequest> __Marshaller_HttpRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::MD.SmsService.HttpRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::MD.SmsService.HttpResponse> __Marshaller_HttpResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::MD.SmsService.HttpResponse.Parser.ParseFrom);
 
     static readonly grpc::Method<global::MD.SmsService.SendMessageRequest, global::MD.SmsService.SendMessageResponse> __Method_SendMessage = new grpc::Method<global::MD.SmsService.SendMessageRequest, global::MD.SmsService.SendMessageResponse>(
         grpc::MethodType.Unary,
@@ -39,6 +41,13 @@ namespace MD.SmsService {
         "SetRegisterMobileMessageLimit",
         __Marshaller_RegisterRequest,
         __Marshaller_SendMessageResponse);
+
+    static readonly grpc::Method<global::MD.SmsService.HttpRequest, global::MD.SmsService.HttpResponse> __Method_SendHttp = new grpc::Method<global::MD.SmsService.HttpRequest, global::MD.SmsService.HttpResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SendHttp",
+        __Marshaller_HttpRequest,
+        __Marshaller_HttpResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -78,6 +87,17 @@ namespace MD.SmsService {
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
       public virtual global::System.Threading.Tasks.Task<global::MD.SmsService.SendMessageResponse> SetRegisterMobileMessageLimit(global::MD.SmsService.RegisterRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      /// 发送对外请求
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::MD.SmsService.HttpResponse> SendHttp(global::MD.SmsService.HttpRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -239,6 +259,50 @@ namespace MD.SmsService {
       {
         return CallInvoker.AsyncUnaryCall(__Method_SetRegisterMobileMessageLimit, null, options, request);
       }
+      /// <summary>
+      /// 发送对外请求
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::MD.SmsService.HttpResponse SendHttp(global::MD.SmsService.HttpRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return SendHttp(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// 发送对外请求
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::MD.SmsService.HttpResponse SendHttp(global::MD.SmsService.HttpRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SendHttp, null, options, request);
+      }
+      /// <summary>
+      /// 发送对外请求
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::MD.SmsService.HttpResponse> SendHttpAsync(global::MD.SmsService.HttpRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return SendHttpAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// 发送对外请求
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::MD.SmsService.HttpResponse> SendHttpAsync(global::MD.SmsService.HttpRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SendHttp, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override SmsClient NewInstance(ClientBaseConfiguration configuration)
       {
@@ -253,7 +317,8 @@ namespace MD.SmsService {
       return grpc::ServerServiceDefinition.CreateBuilder()
           .AddMethod(__Method_SendMessage, serviceImpl.SendMessage)
           .AddMethod(__Method_CheckIsAllowSendRegisterMobileMessage, serviceImpl.CheckIsAllowSendRegisterMobileMessage)
-          .AddMethod(__Method_SetRegisterMobileMessageLimit, serviceImpl.SetRegisterMobileMessageLimit).Build();
+          .AddMethod(__Method_SetRegisterMobileMessageLimit, serviceImpl.SetRegisterMobileMessageLimit)
+          .AddMethod(__Method_SendHttp, serviceImpl.SendHttp).Build();
     }
 
   }

@@ -30,9 +30,9 @@ D:\项目构建\饿家军餐饮平台\Src\Literature\ProductGRPCInterface\bin\De
 D:\项目构建\饿家军餐饮平台\Src\Literature\ProductGRPCInterface\bin\Debug\netstandard2.0\SP.Api.Model.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\ProductGRPCInterface\bin\Debug\netstandard2.0\RPCCommonTool.pdb
 D:\项目构建\饿家军餐饮平台\Src\Literature\ProductGRPCInterface\bin\Debug\netstandard2.0\SP.Api.Model.pdb
-D:\项目构建\饿家军餐饮平台\Src\Literature\ProductGRPCInterface\obj\Debug\netstandard2.0\ProductGRPCInterface.csprojResolveAssemblyReference.cache
 D:\项目构建\饿家军餐饮平台\Src\Literature\ProductGRPCInterface\obj\Debug\netstandard2.0\ProductGRPCInterface.csproj.CoreCompileInputs.cache
 D:\项目构建\饿家军餐饮平台\Src\Literature\ProductGRPCInterface\obj\Debug\netstandard2.0\ProductGRPCInterface.AssemblyInfoInputs.cache
 D:\项目构建\饿家军餐饮平台\Src\Literature\ProductGRPCInterface\obj\Debug\netstandard2.0\ProductGRPCInterface.AssemblyInfo.cs
 D:\项目构建\饿家军餐饮平台\Src\Literature\ProductGRPCInterface\obj\Debug\netstandard2.0\ProductGRPCInterface.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\ProductGRPCInterface\obj\Debug\netstandard2.0\ProductGRPCInterface.pdb
+D:\项目构建\饿家军餐饮平台\Src\Literature\ProductGRPCInterface\obj\Debug\netstandard2.0\ProductGRPCInterface.csprojResolveAssemblyReference.cache

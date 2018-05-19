@@ -70,6 +70,7 @@ define(function (require, exports, module) {
         dataBinding: function (data) {
             var _self = this
             items = '';
+            _self.SkuArea.find(".contenttr").remove();
             doT.exec('productsku/list-item.html', function (templateFun) {
                 items = templateFun(data);
                 items = $(items);
@@ -140,6 +141,19 @@ define(function (require, exports, module) {
                     return { dataName: request.term };
                 }
             });
+
+            $("#inputSchool").change(function () {
+                _self.bindSchoolInfo($(this).val());
+            });
+            $("#inputDistrict").change(function () {
+                _self.bindDistrictInfo($(this).val());
+            });
+            $("#inputShop").change(function () {
+                _self.bindShopInfo($(this).val());
+            });
+            $("#btnSearch").click(function () {
+                _self.searchProductInfo(1, {});
+            });
         },
         /**
          * 生成模版时绑定删除，失去焦点事件
@@ -150,6 +164,16 @@ define(function (require, exports, module) {
 
             item.find('button.delete_item').click(function (event) {
                 _self.deleteProductSku(this);
+                event.stopPropagation();
+                return false;
+            });
+            item.find('button.addOne_item').click(function (event) {
+                _self.addOneProductSku(this);
+                event.stopPropagation();
+                return false;
+            });
+            item.find('button.delOne_item').click(function (event) {
+                _self.delOneProductSku(this);
                 event.stopPropagation();
                 return false;
             });
@@ -193,6 +217,44 @@ define(function (require, exports, module) {
             event.stopPropagation();
             return false;
         },
+        addOneProductSku: function (ele) {
+            ele = $(ele);
+            if (!ele.hasClass('addOne_item')) return;
+            
+            var input = ele.parent('td'),
+                id = input.attr('data-item_id'),
+                item = input.parent('tr');
+
+            Global.post('AddOneProductSku', {
+                skuId: id
+            },
+                function (data) {
+                    //重新加载页面
+                    window.location.href = '/Product/SkuIndex';
+                }
+            );
+            event.stopPropagation();
+            return false;
+        },
+        delOneProductSku: function (ele) {
+            ele = $(ele);
+            if (!ele.hasClass('delOne_item')) return;
+
+            var input = ele.parent('td'),
+                id = input.attr('data-item_id'),
+                item = input.parent('tr');
+
+            Global.post('DelOneProductSku', {
+                skuId: id
+            },
+                function (data) {
+                    //重新加载页面
+                    window.location.href = '/Product/SkuIndex';
+                }
+            );
+            event.stopPropagation();
+            return false;
+        },
         /**
          * Ajax 请求获取角色列表,并调用模版进行UI显示
          */
@@ -224,7 +286,70 @@ define(function (require, exports, module) {
 
                 }
             });
-        }
+        },
+        //绑定学区信息
+        bindSchoolInfo: function (parentId) {
+            $("#inputDistrict").empty();
+            $("#inputDistrict").append($("<option/>").text("院区名称").attr("value", "0"));
+            $("#inputShop").empty();
+            $("#inputShop").append($("<option/>").text("店铺名称").attr("value", "0"));
+            $("#inputProduct").empty();
+            $("#inputProduct").append($("<option/>").text("产品名称").attr("value", ""));
+            var data = {
+                parentId: parentId
+            }
+            data = $.param(data, true);
+            Global.get("/RegionData/GetChildRegionDataBorShopMenu", data, function (msg) {
+                $(msg.items).each(function (index, itemData) {
+                    $("#inputDistrict").append($("<option/>").text(itemData.DataName).attr("value", itemData.DataId));
+                });
+            })
+        },
+        //绑定店铺信息
+        bindDistrictInfo: function (parentId) {
+            $("#inputShop").empty();
+            $("#inputShop").append($("<option/>").text("店铺名称").attr("value", "0"));
+            $("#inputProduct").empty();
+            $("#inputProduct").append($("<option/>").text("产品名称").attr("value", ""));
+            var data = {
+                regionId: parentId
+            }
+            data = $.param(data, true);
+            Global.get("/Shop/GetShopListByRegionId", data, function (msg) {
+                $(msg.items).each(function (index, itemData) {
+                    $("#inputShop").append($("<option/>").text(itemData.ShopName).attr("value", itemData.Id));
+                });
+            })
+        },
+        //绑定产品信息
+        bindShopInfo: function (parentId) {
+            $("#inputProduct").empty();
+            $("#inputProduct").append($("<option/>").text("产品名称").attr("value", ""));
+            var data = {
+                shopId: parentId
+            }
+            data = $.param(data, true);
+            Global.get("/Product/GetAllShopProductList", data, function (msg) {
+                $(msg.items).each(function (index, itemData) {
+                    $("#inputProduct").append($("<option/>").text(itemData.ProductName).attr("value", itemData.ProductId));
+                });
+            })
+        },
+        //搜寻产品信息
+        searchProductInfo: function (parentId) {
+            var _self = this;
+            var data = {
+                schoolId: $("#inputSchool").val(),
+                districtId: $("#inputDistrict").val(),
+                shopId: $("#inputShop").val(),
+                productId: $("#inputProduct").val(),
+                skuStatus: $("#inputSku").val(),
+            }
+            data = $.param(data, true);
+            Global.get("/Product/SearchProducSku", data, function (msg) {
+                _self.dataBinding(msg.items);                
+            })
+        },
     }, base);
 
     exports.jQuery = $;

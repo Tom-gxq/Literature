@@ -18,6 +18,11 @@ namespace Sms.Service.GrpcMap
 
             // 输出
             CreateMap<SendOutput, SendMessageResponse>();
+            // 输入
+            CreateMap<HttpRequest, HttpInput>();
+
+            // 输出
+            CreateMap<HttpOutput, HttpResponse>();
         }
     }
 }

@@ -27,7 +27,8 @@ namespace SP.Service.Domain.EventHandlers
                 OrderDate =handle.OrderDate,
                 OrderStatus = (int)handle.OrderStatus,
                 OrderCode = DateTime.Now.ToString("yyyyMMddHH24mmssffff"),
-                AddressId = handle.AddressId
+                AddressId = handle.AddressId,
+                OrderAddress = handle.Address
             };
 
             _reportDatabase.Add(item);

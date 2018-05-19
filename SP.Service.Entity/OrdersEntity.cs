@@ -27,5 +27,6 @@ namespace SP.Service.Entity
         public string Meta_Keywords { get; set; }
         public DateTime? UpdateTime { get; set; }
         public int? AddressId { get; set; }
+        public string OrderAddress { get; set; }
     }
 }

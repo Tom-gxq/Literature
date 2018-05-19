@@ -28,8 +28,8 @@ namespace SP.ManageEntityFramework.Repositories
         {
             using (var db = Context.OpenDbConnection())
             {
-                var q = db.From<ProductEntity>().Where(x => x.SaleStatus >= saleStatus).OrderByDescending(x => x.UpdateTime);
-                q = q.LeftJoin<ShopProductEntity>((a, e) => a.ProductId == e.ProductId && e.ShopId == shopId);
+                var q = db.From<ProductEntity>().Where(x => x.SaleStatus == saleStatus);
+                q = q.Join<ShopProductEntity>((a, e) => a.ProductId == e.ProductId && e.ShopId == shopId);
                 q = q.Limit((pageIndex - 1) * pageSize, pageSize);
                 return db.Select<ProductFullEntity>(q);
             }

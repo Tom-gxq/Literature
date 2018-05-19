@@ -197,7 +197,8 @@ namespace AccountGRPCInterface
                 addressDomain.contactAddress = addressResult.Address.ContactAddress;
                 addressDomain.contactMobile = addressResult.Address.ContactMobile;
                 addressDomain.contactName = addressResult.Address.ContactName;
-                addressDomain.dorm = addressResult.Address.Dorm;
+                addressDomain.dormId = addressResult.Address.DormId;
+                addressDomain.dorm = addressResult.Address.DormName;
             }
             model.defaultAddress = addressDomain;
             return model;
@@ -259,7 +260,7 @@ namespace AccountGRPCInterface
                 addressDomain.contactAddress = addressResult.Address.ContactAddress;
                 addressDomain.contactMobile = addressResult.Address.ContactMobile;
                 addressDomain.contactName = addressResult.Address.ContactName;
-                addressDomain.dorm = addressResult.Address.Dorm;
+                addressDomain.dorm = addressResult.Address.DormName;
             }
             model.defaultAddress = addressDomain;
             return model;

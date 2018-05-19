@@ -16,10 +16,10 @@ namespace SP.Service.Domain.Reporting
             _repository = repository;
         }
 
-        public List<ShopDomain> GetAllShopList(int regionId, int pageIndex, int pageSize)
+        public List<ShopDomain> GetAllShopList(int regionId, int shopType, int pageIndex, int pageSize)
         {
             var shopDomainList = new List<ShopDomain>();
-            var addressList = _repository.GetShopList(regionId,pageIndex,  pageSize);
+            var addressList = _repository.GetShopList(regionId, shopType, pageIndex,  pageSize);
             foreach (var item in addressList)
             {
                 var order = ConvertShopEntityToDomain(item);
@@ -27,9 +27,9 @@ namespace SP.Service.Domain.Reporting
             }
             return shopDomainList;
         }
-        public int GetAllShopCount(int regionId)
+        public int GetAllShopCount(int regionId, int shopType)
         {
-            return _repository.GetAllShopCount(regionId);
+            return _repository.GetAllShopCount(regionId, shopType);
         }
 
         public ShopDomain GetShopById(int shopId)

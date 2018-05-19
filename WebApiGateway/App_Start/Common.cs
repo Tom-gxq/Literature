@@ -1,4 +1,7 @@
-﻿using Aop.Api;
+﻿using AccountGRPCInterface;
+using Aop.Api;
+using SP.Api.Model.Account;
+using SP.Api.Model.Enum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -86,6 +89,25 @@ namespace WebApiGateway.App_Start
             return account;
         }
         #endregion
+        public static bool VerifyRegisterCode(string code, string account)
+        {
+            var authType = Common.ValidateEmail(account) ? AuthType.Register : AuthType.MobilePhoneRegister;
+
+            string verifyCode = AccountBusiness.GetValidVerifyCodeByAccount(new AuthenticationModel()
+            {
+                Account = account,
+                VerifyCode = code,
+                AuthType = AuthType.MobilePhoneRegister,
+                AccountId = string.Empty,
+                Token = string.Empty
+            });
+
+            if (!string.IsNullOrEmpty(verifyCode) && code.Equals(verifyCode))
+            {
+                return true;
+            }
+            return false;
+        }
 
         #region 验证手机号的有效性
         /// <summary>
@@ -520,6 +542,13 @@ namespace WebApiGateway.App_Start
                     }
                 }
             }
+        }
+        #endregion
+        #region 获取时间戳
+        public static double GetTimestamp(DateTime d)
+        {
+            TimeSpan ts = d.ToUniversalTime() - new DateTime(1970, 1, 1);
+            return ts.TotalMilliseconds;     //精确到毫秒
         }
         #endregion
         public static IAopClient GetAlipayClient()

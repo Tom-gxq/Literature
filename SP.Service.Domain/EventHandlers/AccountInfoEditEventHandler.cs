@@ -23,6 +23,8 @@ namespace SP.Service.Domain.EventHandlers
                 Gender = handle.Gender,
                 Avatar  = handle.Avatar,
                 Fullname = handle.FullName,
+                UserType = handle.UserType,
+                UpdateTime = DateTime.Now
             };
 
             _reportDatabase.UpdateAccountFullInfo(item);

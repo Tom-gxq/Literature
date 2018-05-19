@@ -42,7 +42,7 @@ D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Core\bin\Debug\LibMain.p
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Core\bin\Debug\ServiceStack.Common.xml
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Core\bin\Debug\ServiceStack.OrmLite.xml
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Core\bin\Debug\ServiceStack.Text.xml
-D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Core\obj\Debug\SP.Core.csprojResolveAssemblyReference.cache
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Core\obj\Debug\SP.Core.csproj.CoreCompileInputs.cache
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Core\obj\Debug\SP.Core.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Core\obj\Debug\SP.Core.pdb
+D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Core\obj\Debug\SP.Core.csprojResolveAssemblyReference.cache

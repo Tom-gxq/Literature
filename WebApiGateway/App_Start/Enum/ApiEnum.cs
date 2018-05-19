@@ -40,7 +40,9 @@ public class ApiEnum
 
         Fail = 0,
         Success = 1,
-
+        Mobile = 3,
+        MobileCode,
+        ExsitAccount,
 
         NotFound = 404,
         MethodNotAllowed = 405,

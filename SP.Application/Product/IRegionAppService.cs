@@ -20,5 +20,11 @@ namespace SP.Application.Product
         List<RegionDto>  SearchRegionData(string dataName);
         RegionDto GetRegionDataDetail(int dataId);
         bool EditRegionData(RegionDto region);
+        RegionDto GetRegionData(int parentId,string dataName);
+        List<RegionTypeDto> GetRegionTypeList(int pageIndex, int pageSize);
+        int GetRegionTypeCount();
+        bool AddRegionType(RegionTypeDto region);
+        bool DelRegionType(int id);
+        List<RegionTypeDto> SearchRegionTypeByKeyWord(string keywords);
     }
 }

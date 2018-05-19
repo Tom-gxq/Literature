@@ -30,26 +30,37 @@ namespace SP.Service.Domain.Reporting
             return result;
         }
 
-        public List<OrderDomain> GetMyOrderList(string accountId,int status)
+        public List<OrderDomain> GetMyOrderList(string accountId, DateTime orderDate)
         {
             var orderDomainList = new List<OrderDomain>();
             var orderList = new List<OrdersEntity>();
-            if (status != 1)
-            {
-                orderList = _repository.GetMyOrderList(accountId);
-            }
-            else
-            {
-                orderList = _repository.GetMyHistoryOrderList(accountId);
-            }
-            foreach(var item in orderList)
+            orderList = _repository.GetMyHistoryOrderList(accountId, orderDate);
+
+            foreach (var item in orderList)
             {
                 var order = ConvertOrderEntityToDomain(item);
-                orderDomainList.Add(order);
+                if (order != null)
+                {
+                    orderDomainList.Add(order);
+                }
             }
             return orderDomainList;
         }
-        
+        public DateTime GetMyMaxHistoryOrder(string accountId)
+        {
+            var orderDomainList = new List<OrderDomain>();
+            var orderList = new List<DateTime>();
+            orderList = _repository.GetMyMaxHistoryOrder(accountId);
+            if(orderList != null && orderList.Count > 0)
+            {
+                return orderList[0];
+            }
+            else
+            {
+                return DateTime.MaxValue;
+            }
+        }
+
         public List<OrderDomain> SearchOrderKeywordList(string accountId, string keyWord)
         {
             var orderDomainList = new List<OrderDomain>();
@@ -121,6 +132,10 @@ namespace SP.Service.Domain.Reporting
 
         private OrderDomain ConvertOrderEntityToDomain(OrdersEntity entity)
         {
+            if(entity == null)
+            {
+                return null;
+            }
             var order = new OrderDomain();
             order.SetMemento(entity);
             var orderCartList = _cartRepository.GetShoppingCartsByOrderId(entity.OrderId);

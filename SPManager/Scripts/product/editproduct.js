@@ -110,6 +110,7 @@ define(function (require, exports, module) {
                 ShortDescription: divElement.find('.txtTitle').val(),
                 Description: divElement.find('.txtArea').val(),
                 TypeId: divElement.find('#inputTypeForm').val(),
+                SecondTypeId: divElement.find('#inputSecondTypeForm').val(),
                 BrandId: divElement.find('#inputBrand').val(),
                 DisplaySequence: divElement.find('.sltContact').val(),
                 VIPPrice: divElement.find('.vipPrice').val()

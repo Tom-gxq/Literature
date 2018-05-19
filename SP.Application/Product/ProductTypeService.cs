@@ -21,12 +21,15 @@ namespace SP.Application.Product
             _productTypeRepository = productTypeRepository;
         }
 
-        public bool AddProductType(string typeName, int displaySequence)
+        public bool AddProductType(string typeName, int displaySequence,string typePath,string typeLogo, int kind)
         {
             var reuslt = _productTypeRepository.Insert(new ProductTypeEntity()
             {
                  TypeName = typeName,
-                 DisplaySequence = displaySequence
+                 DisplaySequence = displaySequence,
+                 TypePath = typePath,
+                 TypeLogo = typeLogo,
+                 Kind = kind
             });
             return reuslt > 0;
         }
@@ -37,11 +40,11 @@ namespace SP.Application.Product
             return reuslt > 0;
         }
 
-        public List<ProductTypeDto> GetProductTypeList(int pageIndex, int pageSize)
+        public List<ProductTypeDto> GetProductTypeList(int kind,int pageIndex, int pageSize)
         {
             var retList = new List<ProductTypeDto>();
             var repository = IocManager.Instance.Resolve<ProductTypeRespository>();
-            var list = repository.GetProductTypeList(pageIndex, pageSize);
+            var list = repository.GetProductTypeList(kind,pageIndex, pageSize);
             foreach (var item in list)
             {
                 var adminUser = ConvertFromRepositoryEntity(item);
@@ -49,11 +52,11 @@ namespace SP.Application.Product
             }
             return retList;
         }
-        public List<ProductTypeDto> GetAllProductTypeList()
+        public List<ProductTypeDto> GetAllProductTypeList(int kind)
         {
             var retList = new List<ProductTypeDto>();
             var repository = IocManager.Instance.Resolve<ProductTypeRespository>();
-            var list = repository.GetAllProductTypeList();
+            var list = repository.GetAllProductTypeList(kind);
             foreach (var item in list)
             {
                 var adminUser = ConvertFromRepositoryEntity(item);
@@ -83,7 +86,9 @@ namespace SP.Application.Product
                 DisplaySequence = productType.DisplaySequence,
                 TypeName = productType.TypeName,
                 Kind = productType.Kind,
-                Remark = productType.Remark
+                Remark = productType.Remark,
+                TypePath = productType.TypePath,
+                TypeLogo = productType.TypeLogo
             },x=>x.Id == productType.TypeId);
             return result > 0;
         }
@@ -128,7 +133,9 @@ namespace SP.Application.Product
                 DisplaySequence = productType.DisplaySequence.Value,
                 TypeName = productType.TypeName,
                 Kind = productType.Kind != null ? productType.Kind.Value:0,
-                Remark = productType.Remark
+                Remark = productType.Remark,
+                TypePath = productType.TypePath,
+                TypeLogo = productType.TypeLogo,
             };
 
             return productsDto;

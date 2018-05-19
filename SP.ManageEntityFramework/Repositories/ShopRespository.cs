@@ -24,6 +24,15 @@ namespace SP.ManageEntityFramework.Repositories
                 return db.Select(q);
             }
         }
+        public List<ShopEntity>  GetShopListByRegionId(int regionId)
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<ShopEntity>().Where(x=>x.RegionId == regionId);
+                q = q.OrderBy(x => x.DisplaySequence);
+                return db.Select(q);
+            }
+        }
         public List<ShopEntity> GetAllShopList()
         {
             using (var db = Context.OpenDbConnection())

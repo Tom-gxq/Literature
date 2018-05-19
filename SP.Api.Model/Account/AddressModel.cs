@@ -19,6 +19,9 @@ namespace SP.Api.Model.Account
         public string districtName { get; set; }
         public int schoolId { get; set; }
         public string schoolName { get; set; }
+        public int buildinglId { get; set; }
+        public string buildingName { get; set; }
+        public int dormId { get; set; }
         public string dorm { get; set; }
         public bool isDefault { get; set; }
     }

@@ -25,15 +25,24 @@ namespace SP.Service.EntityFramework.Repositories
             return result > 0;
         }
 
-        public List<OrdersEntity> GetMyHistoryOrderList(string accountId)
+        public List<OrdersEntity> GetMyHistoryOrderList(string accountId, DateTime orderDate)
         {
             using (var db = OpenDbConnection())
             {
                 var q = db.From<OrdersEntity>();
-                q = q.Join<OrdersEntity, ShoppingCartsEntity>((e, a) => a.OrderId == e.OrderId 
-                && (e.OrderStatus == 4 || e.OrderStatus == 5) && e.AccountId == accountId);
+                q = q.Join<OrdersEntity, ShoppingCartsEntity>((e, a) => a.OrderId == e.OrderId
+                && e.OrderDate >= orderDate && (e.OrderStatus == 2 || e.OrderStatus == 5) && e.AccountId == accountId);
                 q = q.Join<ShoppingCartsEntity, ProductEntity>((e, a) => a.ProductId == e.ProductId);
                 return db.Select(q);
+            }
+        }
+        public List<DateTime> GetMyMaxHistoryOrder(string accountId)
+        {
+            using (var db = OpenDbConnection())
+            {
+                var q = db.From<OrdersEntity>().Where(e=> (e.OrderStatus == 2 || e.OrderStatus == 5) && e.AccountId == accountId);
+                q = q.Select(x => Sql.Max(x.OrderDate));
+                return db.Select<DateTime>(q);
             }
         }
         public List<OrdersEntity> GetMyOrderList(string accountId)

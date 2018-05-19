@@ -11,7 +11,7 @@ namespace Account.Service.Business
         public static AccountResultResponse AddAccountAddress(AddressRequest request)
         {
             ServiceLocator.CommandBus.Send(new CreatAddressCommand(Guid.NewGuid(), request.Address.ContactName, request.Address.Gender
-                , request.Address.ContactMobile, request.Address.DistrictId, request.Address.ContactAddress, request.Address.AccountId, request.Address.Dorm,request.Address.IsDefault));
+                , request.Address.ContactMobile, request.Address.DistrictId, request.Address.ContactAddress, request.Address.AccountId, request.Address.DormName, request.Address.IsDefault));
             var result = new AccountResultResponse();
             result.Status = 10001;
             return result;
@@ -20,7 +20,7 @@ namespace Account.Service.Business
         public static AccountResultResponse EditAccountAddress(AddressRequest request)
         {
             ServiceLocator.CommandBus.Send(new EditAddressCommand(Guid.NewGuid(), request.Address.Id, request.Address.ContactName, request.Address.Gender
-                , request.Address.ContactMobile, request.Address.DistrictId, request.Address.ContactAddress, request.Address.AccountId, request.Address.Dorm,request.Address.IsDefault));
+                , request.Address.ContactMobile, request.Address.DistrictId, request.Address.ContactAddress, request.Address.AccountId, request.Address.DormName,request.Address.IsDefault));
             var result = new AccountResultResponse();
             result.Status = 10001;
             return result;
@@ -53,6 +53,27 @@ namespace Account.Service.Business
             
             return result;
         }
+        public static AccountResultResponse UpdateAddressDorm(AddressDormRequest request)
+        {
+            var retValue = false;
+            retValue = ServiceLocator.AddressDatabase.UpdateAccountAddress(new SP.Service.Entity.AccountAddressEntity()
+            {
+                ID = request.Id,
+                AccountId = request.AccountId,
+                RegionID = request.DormId
+            });
+            var result = new AccountResultResponse();
+            if (retValue)
+            {
+                result.Status = 10001;
+            }
+            else
+            {
+                result.Status = 10002;
+            }
+
+            return result;
+        }
 
         public static AccountResultResponse DelAddress(DelAddressRequest request)
         {
@@ -83,7 +104,8 @@ namespace Account.Service.Business
                     address.ContactName = item.UserName;
                     address.Gender = item.Gender;
                     address.IsDefault = item.IsDefault;
-                    address.Dorm = item.Dorm!= null? item.Dorm:string.Empty;
+                    address.DormId = item.DormId;
+                    address.DormName = item.DormName != null? item.DormName : string.Empty;
                     result.AddressList.Add(address);
                 }
             }
@@ -162,23 +184,26 @@ namespace Account.Service.Business
 
         public static AddressResponse GetDefaultSelectedAddress(string accountId)
         {
-            var list = ServiceLocator.AddressDatabase.GetDefaultSelectedAddress(accountId);
+            var domain = ServiceLocator.AddressDatabase.GetDefaultSelectedAddress(accountId);
             var result = new AddressResponse();
             result.Status = 10001;
-            if (list != null && list.Count > 0)
+            if (domain != null )
             {
                 var address = new Address();
-                address.AccountId = list[0].AccountId;
-                address.ContactAddress = list[0].Address;
-                address.Id = list[0].AddressId;
-                address.DistrictId = list[0].DistrictId;
-                address.DistrictName = list[0].DistrictName!= null ? list[0].DistrictName:string.Empty;
-                address.SchoolId = list[0].SchoolId;
-                address.SchoolName = list[0].SchoolName!= null? list[0].SchoolName:string.Empty;
-                address.ContactMobile = list[0].Mobile;
-                address.ContactName = list[0].UserName;
-                address.Gender = list[0].Gender;
-                address.Dorm = list[0].Dorm!= null? list[0].Dorm:string.Empty;
+                address.AccountId = domain.AccountId;     
+                address.Id = domain.AddressId;
+                address.DistrictId = domain.DistrictId;
+                address.DistrictName = domain.DistrictName!= null ? domain.DistrictName:string.Empty;
+                address.SchoolId = domain.SchoolId;
+                address.SchoolName = domain.SchoolName!= null? domain.SchoolName:string.Empty;
+                address.ContactMobile = domain.Mobile;
+                address.ContactName = domain.UserName;
+                address.Gender = domain.Gender;
+                address.BuildingId = domain.BuildingId;
+                address.BuildingName = domain.BuildingName != null ? domain.BuildingName : string.Empty;
+                address.DormId = domain.DormId;
+                address.DormName = domain.DormName != null ? domain.DormName : string.Empty;
+                address.ContactAddress = domain.Address;
                 result.Address = address;
             }
             return result;

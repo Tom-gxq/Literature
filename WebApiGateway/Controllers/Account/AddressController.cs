@@ -181,7 +181,30 @@ namespace WebApiGateway.Controllers.Account
             result.Data = JsonResult;
             return result;
         }
-
+        public ActionResult UpdateAddressDorm(int id, int dormId)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                var retValue = AddressBusiness.UpdateAddressDorm(id, dormId, currentAccount.AccountId);
+                if (retValue)
+                {
+                    JsonResult.Add("status", 0);
+                }
+                else
+                {
+                    JsonResult.Add("status", 2);
+                }
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
         public ActionResult DelAddress(int id)
         {
             var result = new JsonResult();

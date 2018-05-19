@@ -65,28 +65,53 @@ namespace SP.Service.EntityFramework.Repositories
             }
         }
 
-        public List<ProductFullEntity> GetShopProductList(int districtId, int shopId,long attributeId, int pageIndex, int pageSize)
+        public List<ProductFullEntity> GetShopProductList(int districtId, int shopId,long typeId, int pageIndex, int pageSize)
         {
             using (var db = OpenDbConnection())
             {
                 var q = db.From<ProductEntity>();
-                q = q.Join<ProductEntity, ProductAttributeEntity>((e, a) => a.AttributeId == attributeId && a.ProductId == e.ProductId && e.SaleStatus == 1);
-                q = q.Join<ProductEntity, ShopProductEntity>((e, a) => a.ShopId == shopId && a.ProductId == e.ProductId);
+                q = q.Join<ProductEntity, ShopProductEntity>((e, a) => a.ProductId == e.ProductId && e.SaleStatus == 1 
+                && (e.SecondTypeId == typeId || e.TypeId == typeId));
+                q = q.Join<ShopProductEntity, ShopEntity>((a, b) => a.ShopId == b.Id && b.RegionId == districtId);
                 q = q.LeftJoin<ShopProductEntity, ProductSkuEntity>((e, a) => a.ProductId == e.ProductId && e.ShopId==a.ShopId 
                 && a.EffectiveTime >= DateTime.Parse(DateTime.Now.ToShortDateString()));
+                
                 //q = q.Join<ProductEntity, ProductRegionEntity>((e, a) => a.ProductId == e.ProductId && a.DataId == districtId);
                 q = q.OrderByDescending<ProductSkuEntity>(a=>a.Stock).Limit((pageIndex - 1) * pageSize, (pageIndex - 1) * pageSize + pageSize);
                 return db.Select<ProductFullEntity>(q);
             }
         }
-        public int GetShopProductCount(int districtId, int shopId, long attributeId, int pageIndex, int pageSize)
+        public List<ProductFullEntity> GetFoodShopProductList(int districtId, int shopId, int pageIndex, int pageSize)
         {
             using (var db = OpenDbConnection())
             {
                 var q = db.From<ProductEntity>();
-                q = q.Join<ProductEntity,ProductAttributeEntity>((e, a) => a.AttributeId == attributeId && a.ProductId == e.ProductId && e.SaleStatus == 1);
-                q = q.Join<ProductEntity,ShopProductEntity>((e, a) => a.ShopId == shopId && a.ProductId == e.ProductId);
+                q = q.Join<ProductEntity, ShopProductEntity>((e, a) => a.ShopId == shopId && a.ProductId == e.ProductId && e.SaleStatus == 1);
+                q = q.LeftJoin<ShopProductEntity, ProductSkuEntity>((e, a) => a.ProductId == e.ProductId && e.ShopId == a.ShopId
+                && a.EffectiveTime >= DateTime.Parse(DateTime.Now.ToShortDateString()));
                 //q = q.Join<ProductEntity, ProductRegionEntity>((e, a) => a.ProductId == e.ProductId && a.DataId == districtId);
+                q = q.OrderByDescending<ProductSkuEntity>(a => a.Stock).Limit((pageIndex - 1) * pageSize, (pageIndex - 1) * pageSize + pageSize);
+                return db.Select<ProductFullEntity>(q);
+            }
+        }
+        public int GetShopProductCount(int districtId, int shopId, long typeId, int pageIndex, int pageSize)
+        {
+            using (var db = OpenDbConnection())
+            {
+                var q = db.From<ProductEntity>();
+                q = q.Join<ProductEntity,ShopProductEntity>((e, a) =>  a.ProductId == e.ProductId && e.SaleStatus == 1 
+                && (e.SecondTypeId == typeId || e.TypeId == typeId));
+                q = q.Join<ShopProductEntity, ShopEntity>((a,b)=>a.ShopId == b.Id && b.RegionId== districtId);
+                //q = q.Join<ProductEntity, ProductRegionEntity>((e, a) => a.ProductId == e.ProductId && a.DataId == districtId);
+                return db.Select(q).Count();
+            }
+        }
+        public int GetFoodShopProductListCount(int districtId, int shopId, int pageIndex, int pageSize)
+        {
+            using (var db = OpenDbConnection())
+            {
+                var q = db.From<ProductEntity>();
+                q = q.Join<ProductEntity, ShopProductEntity>((e, a) => a.ShopId == shopId && a.ProductId == e.ProductId && e.SaleStatus == 1);
                 return db.Select(q).Count();
             }
         }

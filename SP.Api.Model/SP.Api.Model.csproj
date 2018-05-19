@@ -47,8 +47,12 @@
     <Compile Include="Account\AddressModel.cs" />
     <Compile Include="Account\AssociatorModel.cs" />
     <Compile Include="Account\AuthenticationModel.cs" />
+    <Compile Include="Account\BingAccountModel.cs" />
     <Compile Include="Account\CarouselModel.cs" />
     <Compile Include="Account\DiscountModel.cs" />
+    <Compile Include="Account\ForgetAccount.cs" />
+    <Compile Include="Account\OtherAccountModel.cs" />
+    <Compile Include="Account\PayPwdModel.cs" />
     <Compile Include="Account\PreOrderModel.cs" />
     <Compile Include="Account\RegionDataModel.cs" />
     <Compile Include="Account\RegisterAccount.cs" />
@@ -57,6 +61,7 @@
     <Compile Include="Account\SysKindModel.cs" />
     <Compile Include="Account\TokenModel.cs" />
     <Compile Include="Account\WxPayModel.cs" />
+    <Compile Include="Account\WxPrePayModel.cs" />
     <Compile Include="Enum\AuthType.cs" />
     <Compile Include="Enum\RegionType.cs" />
     <Compile Include="OAuth2\OAuth2AccessToken.cs" />

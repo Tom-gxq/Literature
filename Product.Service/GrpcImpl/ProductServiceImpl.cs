@@ -148,7 +148,7 @@ namespace Product.Service.GrpcImpl
             ShopListResponse response = null;
             try
             {
-                response = ProductBusiness.GetAllShopList(request.DistrictId, request.PageIndex, request.PageSize);
+                response = ProductBusiness.GetAllShopList(request.DistrictId, request.ShopType, request.PageIndex, request.PageSize);
             }
             catch (Exception ex)
             {
@@ -160,17 +160,32 @@ namespace Product.Service.GrpcImpl
 
         public override Task<ProductListResponse> GetShopProductList(ShopProductListRequest request, ServerCallContext context)
         {
-            logger.LogInformation(this.prjLicEID, "GetShopProductList {Date} {IPAdress} {Status} Connected! ShopId:[{ShopId}]", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.ShopId);
+            logger.LogInformation(this.prjLicEID, "GetShopProductList {Date} {IPAdress} {Status} Connected! ShopId:[{ShopId}] TypeId:[{TypeId}]", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.ShopId, request.TypeId);
             ProductListResponse response = null;
             try
             {
-                response = ProductBusiness.GetShopProductList(request.DistrictId,request.ShopId, request.AttributeId, request.PageIndex, request.PageSize);
+                response = ProductBusiness.GetShopProductList(request.DistrictId,request.ShopId, request.TypeId, request.PageIndex, request.PageSize);
             }
             catch (Exception ex)
             {
                 logger.LogError(this.prjLicEID, ex, "GetShopProductList Exception");
             }
             logger.LogInformation(this.prjLicEID, "GetShopProductList {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+        public override Task<ProductListResponse> GetFoodShopProductList(ShopProductListRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "GetFoodShopProductList {Date} {IPAdress} {Status} Connected! ShopId:[{ShopId}] ]", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.ShopId);
+            ProductListResponse response = null;
+            try
+            {
+                response = ProductBusiness.GetFoodShopProductList(request.DistrictId, request.ShopId,  request.PageIndex, request.PageSize);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "GetFoodShopProductList Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "GetFoodShopProductList {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
         public override Task<ShopResponse> GetShopById(ShopIdRequest request, ServerCallContext context)
@@ -201,6 +216,37 @@ namespace Product.Service.GrpcImpl
                 logger.LogError(this.prjLicEID, ex, "GetCarouselList Exception");
             }
             logger.LogInformation(this.prjLicEID, "GetCarouselList {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+
+        public override Task<TitleTypeListResponse> GetShopTypeList(VoidRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "GetShopTypeList {Date} {IPAdress} {Status} Connected! ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            TitleTypeListResponse response = null;
+            try
+            {
+                response = ProductBusiness.GetTitleTypeList(0);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "GetShopTypeList Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "GetShopTypeList {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+        public override Task<TitleTypeListResponse> GetProductTypeList(VoidRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "GetProductTypeList {Date} {IPAdress} {Status} Connected! ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            TitleTypeListResponse response = null;
+            try
+            {
+                response = ProductBusiness.GetTitleTypeList(1);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "GetProductTypeList Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "GetProductTypeList {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
     }

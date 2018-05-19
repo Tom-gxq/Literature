@@ -41,6 +41,7 @@ namespace WebApiGateway.Controllers.Oauth2
                 {
                     if (grantType == "authorization_code")
                     {
+                        //短信登陆
                         GetTokenByCode();
                     }
                     else if (grantType == "password")
@@ -55,6 +56,11 @@ namespace WebApiGateway.Controllers.Oauth2
                     else if (grantType == "refresh_token")
                     {
                         GetTokenByRefreshToken();
+                    }
+                    else if (grantType == "other_account")
+                    {
+                        //第三方登陆
+                        GetTokenByOther();
                     }
                     else
                     {
@@ -266,25 +272,68 @@ namespace WebApiGateway.Controllers.Oauth2
             }
             else
             {
+                DateTime expires = DateTime.MinValue;
                 var tokenModel = TokenCache.GetTokenByRefreshToken(refresh_token);
-
+                
                 if (tokenModel != null)
                 {
-                    accountId = tokenModel.AccountId;
-                    
+                    if (!string.IsNullOrEmpty(tokenModel.Refresh_Token_Expires))
+                    {
+                        expires = DateTime.Parse(tokenModel.Refresh_Token_Expires);
+                    }
+                    if (expires >= DateTime.Now)
+                    {
+                        accountId = tokenModel.AccountId;
 
-                    accessTokenModel = new TokenModel();
-                    TokenCache.Add(accessTokenModel,accountId);
+                        accessTokenModel = new TokenModel();
+                        TokenCache.Add(accessTokenModel, accountId);
 
-                    var account = AccountInfoCache.GetAccountInfoByAccountId(accountId);
+                        var account = AccountInfoCache.GetAccountInfoByAccountId(accountId);
 
-                    MDSession.Session.Clear();
-                    MDSession.Session["Account"] = account;
+                        MDSession.Session.Clear();
+                        MDSession.Session["Account"] = account;
+                    }
+                    else
+                    {
+                        error_code = ApiEnum.ErrorCode.BaseDisabledToken;
+                        error_msg = "refresh_token失效";
+                    }
                 }
                 else
                 {
                     error_code = ApiEnum.ErrorCode.BaseBadToken;
                     error_msg = "refresh_token对应的access_token不存在";
+                }
+                
+            }
+        }
+        [System.Web.Mvc.NonAction]
+        public void GetTokenByOther()
+        {
+            string account = Request["other_account"];
+            string otherType = Request["other_type"];
+
+            if (string.IsNullOrEmpty(account))
+            {
+                error_code = ApiEnum.ErrorCode.ComLoseParam;
+                error_msg = "other_account：缺少参数";
+            }
+            else if(!string.IsNullOrEmpty(otherType))
+            {
+                 
+                var accountEntity = AccountBusiness.GetOtherAccount(account,int.Parse(otherType));
+                if (accountEntity == null||string.IsNullOrEmpty(accountEntity.AccountId))
+                {
+                    error_code = ApiEnum.ErrorCode.NotFound;
+                }
+                else
+                {
+                    accountId = accountEntity.AccountId;
+                    error_msg += accountId + "#@  ";
+                    MDSession.Session.Clear();
+                    MDSession.Session["Account"] = AccountInfoCache.GetAccountInfoByAccountId(accountId);
+                    accessTokenModel = new TokenModel();
+                    TokenCache.Add(accessTokenModel, accountId);
                 }
             }
         }

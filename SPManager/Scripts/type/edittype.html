@@ -1,9 +1,9 @@
 ﻿<div id="main">
-    <div id="wizard">
+    <div id="wizard" style="height:450px">
         <div class="items">
             <div class="page">
-                <div class="contactInfo" id="{%=$data.TypeId%}">
-                    <ul>
+                <div class="contactInfo" id="{%=$data.TypeId%}" style="height:400px">
+                    <ul style="height:400px;">
                         <li style="width:100%">
                             <input tabindex="1" class="input-text width400 Check txtId" type="hidden" value="{%=$data.TypeId %}" />
                         </li>
@@ -15,7 +15,29 @@
                             <span class="grayfont span">排序:</span>
                             <input tabindex="1" class="input-text width400 Check sltContact" type="text" value="{%=$data.DisplaySequence%}" placeholder="请输入排序" />
                         </li>
-
+                        <li style="width:100%">
+                            <span class="grayfont span">分类短链:</span>
+                            <input tabindex="1" class="input-text width400 Check txtPath" type="text" value="" placeholder="请输入分类短链" />
+                        </li>
+                        <li style="width:100%">
+                            <div id="container">
+                                <a class="btn btn-default btn-lg " id="pickfiles" href="#">
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                    <span>选择文件</span>
+                                </a>
+                            </div>
+                            <div id="preview">                                
+                                <div>
+                                    {%if($data.TypeLogo !=null) { %}
+                                    <img src="{%=$data.TypeLogo%}" style="width:45px;height:45px" />
+                                    <input tabindex="1" id="imgPath" class="input-text width400 Check sequence" type="hidden" value="{%=$data.TypeLogo%}" />
+                                    {%} else { %}
+                                    <input tabindex="1" id="imgPath" class="input-text width400 Check sequence" type="hidden" value="" />
+                                    {% } %}
+                                </div>
+                            </div>
+                            <input tabindex="1" id="imgPath" class="input-text width400 Check sequence" type="hidden" value="" />
+                        </li>
                     </ul>
                 </div>
                 <div class="btn_nav right">

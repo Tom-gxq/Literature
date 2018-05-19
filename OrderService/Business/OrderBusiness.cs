@@ -32,11 +32,17 @@ namespace Order.Service.Business
             
             return orderId.ToString();
         }
-        public static OrderListResponse GetMyOrderList(string accountId,int status)
+        public static OrderListResponse GetMyOrderList(string accountId,string orderDate)
         {
             var result = new OrderListResponse();
             result.Status = 10002;
-            var list = ServiceLocator.ReportDatabase.GetMyOrderList(accountId, status);
+            DateTime startDate = DateTime.Parse(orderDate).AddDays(-2);
+            var maxDate = ServiceLocator.ReportDatabase.GetMyMaxHistoryOrder(accountId);
+            if(maxDate < startDate)
+            {
+                startDate = maxDate.AddDays(-2);
+            }
+            var list = ServiceLocator.ReportDatabase.GetMyOrderList(accountId, startDate);
             if (list != null)
             {                
                 foreach (var item in list)
@@ -233,7 +239,7 @@ namespace Order.Service.Business
                 order.Address.ContactAddress = entity.Address.Address;
                 order.Address.Id  = entity.Address.AddressId;
                 order.Address.Gender = entity.Address.Gender;
-                order.Address.Dorm = entity.Address.Dorm ??string.Empty;
+                order.Address.Dorm = entity.Address.DormName ??string.Empty;
                 order.Address.DistrictName = entity.Address.DistrictName ?? string.Empty;
                 order.Address.SchoolName = entity.Address.SchoolName ?? string.Empty;
                 order.Address.ContactMobile = entity.Address.Mobile ?? string.Empty;

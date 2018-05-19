@@ -27,7 +27,7 @@ namespace WebApiGateway.Controllers.Order
                     JsonResult.Add("status", 0);
                     JsonResult.Add("orderId", orderId);
                 }
-                else if(orderId == null && status == 10004)
+                else if(status == 10004)
                 {
                     JsonResult.Add("status", 3);
                 }
@@ -77,13 +77,13 @@ namespace WebApiGateway.Controllers.Order
             return result;
         }
 
-        public ActionResult GetMyOrderList(int orderStatus)
+        public ActionResult GetMyOrderList(string orderDate)
         {
             var result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var list = OrderBusiness.GetMyOrderList(currentAccount.AccountId, orderStatus);
+                var list = OrderBusiness.GetMyOrderList(currentAccount.AccountId, orderDate);
                 JsonResult.Add("orderList", list);
                 JsonResult.Add("status", 0);
             }

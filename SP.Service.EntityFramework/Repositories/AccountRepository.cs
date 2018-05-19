@@ -19,6 +19,11 @@ namespace SP.Service.EntityFramework.Repositories
             var result = this.Insert(account);
             return result > 0;
         }
+        public bool UpdateAccount(AccountEntity account)
+        {
+            var result = this.UpdateNonDefaults(account,x=>x.AccountId == account.AccountId );
+            return result > 0;
+        }
 
         public AccountEntity GetAccountById(string accountId)
         {
@@ -28,6 +33,19 @@ namespace SP.Service.EntityFramework.Repositories
         public AccountEntity GetAccount(string account)
         {
             return this.Single(x => x.MobilePhone == account || x.Email == account);
+        }
+
+        public AccountEntity GetAccountByAli(string otherAccount)
+        {
+            return this.Single(x => x.AliBind == otherAccount);
+        }
+        public AccountEntity GetAccountByWx(string otherAccount)
+        {
+            return this.Single(x => x.WxBind == otherAccount);
+        }
+        public AccountEntity GetAccountByQQ(string otherAccount)
+        {
+            return this.Single(x => x.QQBind == otherAccount);
         }
     }
 }

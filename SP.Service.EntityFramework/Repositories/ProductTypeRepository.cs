@@ -1,4 +1,5 @@
 ﻿using Grpc.Service.Core.Domain.Repositories;
+using ServiceStack.OrmLite;
 using SP.Service.Entity;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,16 @@ namespace SP.Service.EntityFramework.Repositories
         {
             var result = this.Single(x => x.Id == typeId);
             return result;
+        }
+        public List<ProductTypeEntity> GetProductTypeByKind(int kind)
+        {
+            using (var db = OpenDbConnection())
+            {
+                var q = db.From<ProductTypeEntity>().Where(x => x.Kind == kind);
+
+                q = q.OrderBy(x => x.DisplaySequence);
+                return db.Select(q);
+            }
         }
     }
 }

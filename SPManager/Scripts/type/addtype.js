@@ -13,6 +13,7 @@ define(function (require, exports, module) {
         doT = require('dot'),
         Global = require('global').Global,
         easydialog = require("easydialog");
+    qiniu = require('qiniutype');
     require('type/style.css');
     //默认参数
     var Defaults = {
@@ -61,7 +62,7 @@ define(function (require, exports, module) {
                 $("#sub").click(function () {
                     _this.Submit(elementID);
                 });
-
+                qiniu.QiniuMainController.init();
             });
 
             //_this.bindEvent();
@@ -71,8 +72,10 @@ define(function (require, exports, module) {
             var divElement = $('#' + elementID + '');
             var type = {
                 typeName: divElement.find('.txtName').val(),
-                displaySequence: divElement.find('.sltContact').val()
-
+                displaySequence: divElement.find('.sltContact').val(),
+                typePath: divElement.find('.txtPath').val(),
+                typeLogo: divElement.find('#imgPath').val(),
+                kind: divElement.find('.txtKind').val()
             };
             type = $.param(type, true);
             Global.post("/ProductType/AddProductType", type, function (data) {

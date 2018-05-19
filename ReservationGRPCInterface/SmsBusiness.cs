@@ -61,5 +61,23 @@ namespace SmsGRPCInterface
             var reuslt = client.SetRegisterMobileMessageLimit(request1);
             
         }
+        public static string SendHttp(string url, string data)
+        {
+            var client = SmsClientHelper.GetClient();
+            var request1 = new HttpRequest()
+            {
+                Url = url,
+                Data = data
+            };
+            var reuslt = client.SendHttp(request1);
+            if(reuslt.Code == 10001)
+            {
+                return reuslt.Message;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

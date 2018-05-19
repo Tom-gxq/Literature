@@ -20,5 +20,6 @@ namespace SP.Service.Entity
         public string WeiXin { get; set; }
         public DateTime? CreateTime { get; set; }
         public DateTime? UpdateTime { get; set; }
+        public string PayPassWord { get; set; }
     }
 }

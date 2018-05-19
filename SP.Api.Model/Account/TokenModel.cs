@@ -14,6 +14,7 @@ namespace SP.Api.Model.Account
         public string AccountId { get; set; }
         public string Access_Token_Expires { get; set; }
         public string Refresh_Token { get; set; }
+        public string Refresh_Token_Expires { get; set; }
         public bool Success { get; set; }
     }
 }

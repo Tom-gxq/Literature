@@ -34,21 +34,25 @@ namespace SP.Service.Domain.Reporting
             }
             return addressDomainList;
         }
-        public List<AccountAddressDomain> GetDefaultSelectedAddress(string accountId)
+        public AccountAddressDomain GetDefaultSelectedAddress(string accountId)
         {
-            var addressDomainList = new List<AccountAddressDomain>();
+            var addressDomain = new AccountAddressDomain();
             var addressList = _repository.GetAddressList(accountId);
-            foreach (var item in addressList)
+            if(addressList != null && addressList.Count > 0)
             {
-                var order = ConvertAddressEntityToDomain(item);
-                addressDomainList.Add(order);
+                addressDomain = ConvertAddressEntityToDomain(addressList[0]);
             }
-            return addressDomainList;
+            return addressDomain;
         }
 
         public AccountAddressDomain GetAddressById(int addressId,string accountId)
         {
             var address = _repository.GetAddressById(addressId,accountId);
+            return ConvertAddressEntityToDomain(address); ;
+        }
+        public AccountAddressDomain GetAccountAddress(int dormId, string accountId)
+        {
+            var address = _repository.GetAddressById(dormId, accountId);
             return ConvertAddressEntityToDomain(address); ;
         }
 
@@ -123,14 +127,23 @@ namespace SP.Service.Domain.Reporting
 
         private AccountAddressDomain ConvertAddressEntityToDomain(AccountAddressEntity entity)
         {
+            if(entity == null)
+            {
+                return null;
+            }
             var account = new AccountAddressDomain();
             account.SetMemento(entity);
             var districtReg = _regionDataRepository.GetRegionData(account.DistrictId);
             if(districtReg != null)
             {
-                account.DistrictName = districtReg.DataName;
-                account.SchoolId = districtReg.ParentDataID;
-                account.SchoolName = districtReg.CityName;
+                account.BuildingId = districtReg.BuiddingID;
+                account.BuildingName = districtReg.BuiddingName;
+                account.DistrictName = districtReg.DistrictName;
+                account.DistrictId = districtReg.DistrictID;
+                account.SchoolId = districtReg.SchoolID;
+                account.SchoolName = districtReg.SchoolName;
+                account.DormId = districtReg.DataID;
+                account.DormName = districtReg.DataName;
             }
 
             return account;

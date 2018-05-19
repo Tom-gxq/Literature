@@ -14,6 +14,8 @@ define(function (require, exports, module) {
     var easydialog = require("easydialog");
     var addregion = require('add-region');
     var editregion = require('edit-region');
+    var genderbuilding = require('gender-building');
+    var genderdorm = require('gender-dorm');
     var Global = common.Global;
     //基础扩展
     var base = {
@@ -174,6 +176,42 @@ define(function (require, exports, module) {
                             window.location.href = '/RegionData/Index';
                         } else {
                             alert('编辑失败');
+                        }
+                    }
+                });
+                event.stopPropagation();
+                return false;
+            });
+            item.find('button.building_item').click(function (event) {
+                genderbuilding.init({
+                    stepOne: true,
+                    dialogID: 'wizard',
+                    header: '生成栋',
+                    Id: this.id,
+                    callBack: function (orderID) {
+                        if (orderID && orderID != '') {
+                            //重新加载页面
+                            window.location.href = '/RegionData/Index';
+                        } else {
+                            alert('生成栋失败');
+                        }
+                    }
+                });
+                event.stopPropagation();
+                return false;
+            });
+            item.find('button.dorm_item').click(function (event) {
+                genderdorm.init({
+                    stepOne: true,
+                    dialogID: 'wizard',
+                    header: '生成宿舍',
+                    Id: this.id,
+                    callBack: function (orderID) {
+                        if (orderID && orderID != '') {
+                            //重新加载页面
+                            window.location.href = '/RegionData/Index';
+                        } else {
+                            alert('生成宿舍失败');
                         }
                     }
                 });

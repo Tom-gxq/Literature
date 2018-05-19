@@ -16,9 +16,11 @@ namespace SP.Application.User
     public class AdminAppService: ApplicationService, IAdminAppService
     {
         private readonly IRepository<AdminEntity, long> _userRepository;
-        public AdminAppService(IRepository<AdminEntity, long> userRepository)
+        private readonly IRepository<CashApplyEntity, int> _cashApplyRepository;
+        public AdminAppService(IRepository<AdminEntity, long> userRepository, IRepository<CashApplyEntity, int> cashApplyRepository)
         {
             _userRepository = userRepository;
+            _cashApplyRepository = cashApplyRepository;
         }
 
         public AdminDto GetCurrentSession()
@@ -155,6 +157,94 @@ namespace SP.Application.User
             }, x => x.Id == admin.Id);
             return result > 0;
         }
+        public List<CashApplyDto> GetCashApply(int pageIndex, int pageSize)
+        {
+            var retList = new List<CashApplyDto>();
+            var repository = IocManager.Instance.Resolve<CashApplyRespository>();
+            var list = repository.GetCashApplyList(pageIndex, pageSize);
+            foreach (var item in list)
+            {
+                var adminUser = ConvertFromRepositoryEntity(item);
+                retList.Add(adminUser);
+            }
+            return retList;
+        }
+        public long GetCashApplyCount()
+        {
+            var repository = IocManager.Instance.Resolve<CashApplyRespository>();
+            return repository.GetCashApplyListCount();
+        }
+
+        public List<CashApplyDto> SearchCashApplyByKeyWord(string keyWord)
+        {
+            var retList = new List<CashApplyDto>();
+            var repository = IocManager.Instance.Resolve<AccountRespository>();
+            var accountList = repository.SearchAccount(keyWord);
+            if(accountList != null && accountList.Count > 0)
+            {
+                var cashRep = IocManager.Instance.Resolve<CashApplyRespository>();
+                var list = cashRep.GetCashApplyList(accountList[0].AccountId);
+                foreach (var item in list)
+                {
+                    var adminUser = ConvertFromRepositoryEntity(item);
+                    retList.Add(adminUser);
+                }
+            }
+            return retList;
+        }
+        public List<CashApplyDto> SearchCashApplyByDate(int status,string startDate,string endDate)
+        {
+            var retList = new List<CashApplyDto>();
+            if (!string.IsNullOrEmpty(startDate) && !string.IsNullOrEmpty(endDate))
+            {
+                var cashRep = IocManager.Instance.Resolve<CashApplyRespository>();
+                var start = DateTime.Parse(startDate);
+                var end = DateTime.Parse(endDate);
+                var list = cashRep.SearchCashApplyByDate(status, start, end);
+                foreach (var item in list)
+                {
+                    var adminUser = ConvertFromRepositoryEntity(item);
+                    retList.Add(adminUser);
+                }
+            }
+            return retList;
+        }
+        public bool EditApplyStatus(int id, int status)
+        {
+            bool retValue = false;
+            try
+            {
+                var repository = IocManager.Instance.Resolve<CashApplyRespository>();
+                var result = repository.UpdateNonDefaults(new CashApplyEntity()
+                {
+                    Status = status,
+                    UpdateTime = DateTime.Now,
+                }, x => x.Id == id);
+                if (result > 0)
+                {
+                    var cash = repository.GetCashApplyById(id);
+                    if (cash != null)
+                    {
+                        var finaceRep = IocManager.Instance.Resolve<AccountFinanceRepository>();
+                        var finace = finaceRep.GetAccountFinanceDetail(cash.AccountId);
+                        if (finace != null)
+                        {
+                            finaceRep.UpdateNonDefaults(new AccountFinanceEntity()
+                            {
+                                AccountId = cash.AccountId,
+                                UseAmount = (finace.UseAmount != null? finace.UseAmount.Value :0 )+ cash.Money,                                
+                            }, x => x.Id == finace.Id);
+                        }
+                    }
+                    retValue = true;
+                }
+            }
+            catch(Exception ex)
+            {
+                retValue = false;
+            }
+            return retValue;
+        }
 
         private static AdminDto ConvertFromRepositoryEntity(AdminEntity adminUser)
         {
@@ -174,6 +264,35 @@ namespace SP.Application.User
 
             return adminDto;
         }
+        private static CashApplyDto ConvertFromRepositoryEntity(CashApplyEntity cashApply)
+        {
+            if (cashApply == null)
+            {
+                return null;
+            }
+            var cashApplyDto = new CashApplyDto
+            {
+                Id = cashApply.Id != null ? cashApply.Id.Value:0,
+                Alipay = cashApply.Alipay,
+                Money = cashApply.Money,
+                CreateTime = cashApply.CreateTime != null ? cashApply.CreateTime.Value:DateTime.MinValue,
+                Status = cashApply.Status.Value
+            };
+            if(!string.IsNullOrEmpty(cashApply.AccountId))
+            {
+                var repository = IocManager.Instance.Resolve<AccountInfoRepository>();
+                var entity = repository.GetAccountInfoById(cashApply.AccountId);
+                if (entity != null)
+                {
+                    cashApplyDto.AccountInfo = ConvertFromRepositoryEntity(entity);
+                }
+                var finaceRep = IocManager.Instance.Resolve<AccountFinanceRepository>();
+                var finaceEntity = finaceRep.GetAccountFinanceDetail(cashApply.AccountId);
+                cashApplyDto.HaveAmount = finaceEntity.HaveAmount != null ? finaceEntity.HaveAmount.Value:0;
+            }
+
+            return cashApplyDto;
+        }
 
         private static string GetMD5(string myString)
         {
@@ -182,6 +301,20 @@ namespace SP.Application.User
             byte[] output = md5.ComputeHash(result);
             var retVal = BitConverter.ToString(output).Replace("-", "");  //tbMd5pass为输出加密文本
             return retVal;
+        }
+        private static AccountInfoDto ConvertFromRepositoryEntity(AccountInfoEntity accountInfo)
+        {
+            if (accountInfo == null)
+            {
+                return null;
+            }
+            var accountInfoDto = new AccountInfoDto
+            {
+                AccountId = accountInfo.AccountId,
+                Fullname = !string.IsNullOrEmpty(accountInfo.Fullname) ? accountInfo.Fullname : "@##$%",                
+            };
+
+            return accountInfoDto;
         }
     }
 }

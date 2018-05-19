@@ -33,8 +33,6 @@ namespace SP.Service.Domain.DomainEntity
                 DataID = this.DataID,
                 DataName = this.DataName,
                 ParentDataID = this.ParentDataID,
-                CityID = this.CityID,
-                ProvinceID = this.ProvinceID,
             };
         }
 
@@ -47,8 +45,6 @@ namespace SP.Service.Domain.DomainEntity
                 this.DataID = entity.DataID;
                 this.DataName = entity.DataName;
                 this.ParentDataID = entity.ParentDataID;
-                this.CityID = entity.CityID;
-                this.ProvinceID = entity.ProvinceID;
             }
         }
     }

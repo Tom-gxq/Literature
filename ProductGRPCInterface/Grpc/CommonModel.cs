@@ -33,16 +33,16 @@ namespace SP.Service {
             "ZGVyGAUgASgFEg4KBnN0YXR1cxgGIAEoBRIRCglhY2NvdW50SWQYByABKAkS",
             "EAoIc2Nob29sSWQYCCABKAUSEgoKc2Nob29sTmFtZRgJIAEoCRISCgpkaXN0",
             "cmljdElkGAogASgFEhQKDGRpc3RyaWN0TmFtZRgLIAEoCRIMCgRkb3JtGAwg",
-            "ASgJEhEKCWlzRGVmYXVsdBgNIAEoBSJwCgRTaG9wEg4KBnNob3BJZBgBIAEo",
-            "AxIQCghzaG9wTmFtZRgCIAEoCRIPCgdvd25lcklkGAMgASgJEhEKCW93bmVy",
-            "TmFtZRgEIAEoCRIRCglzdGFydFRpbWUYBSABKAkSDwoHZW5kVGltZRgGIAEo",
-            "CSKyAQoMU2hvcHBpbmdDYXJ0EhEKCXByb2R1Y3RJZBgBIAEoCRIRCglhY2Nv",
-            "dW50SWQYAiABKAkSEAoIcXVhbnRpdHkYAyABKAUSDgoGc2hvcElkGAQgASgF",
-            "Eg4KBmNhcnRJZBgFIAEoCRISCgpjcmVhdGVUaW1lGAYgASgDEhMKC3Byb2R1",
-            "Y3ROYW1lGAcgASgJEg4KBmFtb3VudBgIIAEoARIRCgl1bml0UHJpY2UYCSAB",
-            "KAEiVgoLQWNjb3VudEluZm8SEQoJYWNjb3VudElkGAIgASgJEhMKC21vYmls",
-            "ZVBob25lGAMgASgJEg0KBWVtYWlsGAQgASgJEhAKCHVzZXJOYW1lGAUgASgJ",
-            "YgZwcm90bzM="));
+            "ASgJEhEKCWlzRGVmYXVsdBgNIAEoBSKCAQoEU2hvcBIOCgZzaG9wSWQYASAB",
+            "KAMSEAoIc2hvcE5hbWUYAiABKAkSDwoHb3duZXJJZBgDIAEoCRIRCglvd25l",
+            "ck5hbWUYBCABKAkSEQoJc3RhcnRUaW1lGAUgASgJEg8KB2VuZFRpbWUYBiAB",
+            "KAkSEAoIc2hvcExvZ28YByABKAkisgEKDFNob3BwaW5nQ2FydBIRCglwcm9k",
+            "dWN0SWQYASABKAkSEQoJYWNjb3VudElkGAIgASgJEhAKCHF1YW50aXR5GAMg",
+            "ASgFEg4KBnNob3BJZBgEIAEoBRIOCgZjYXJ0SWQYBSABKAkSEgoKY3JlYXRl",
+            "VGltZRgGIAEoAxITCgtwcm9kdWN0TmFtZRgHIAEoCRIOCgZhbW91bnQYCCAB",
+            "KAESEQoJdW5pdFByaWNlGAkgASgBIlYKC0FjY291bnRJbmZvEhEKCWFjY291",
+            "bnRJZBgCIAEoCRITCgttb2JpbGVQaG9uZRgDIAEoCRINCgVlbWFpbBgEIAEo",
+            "CRIQCgh1c2VyTmFtZRgFIAEoCWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -51,7 +51,7 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.Attribute), global::SP.Service.Attribute.Parser, new[]{ "AttributeId", "AttributeName", "UseAttributeImage" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AttributeValue), global::SP.Service.AttributeValue.Parser, new[]{ "ValueId", "AttributeId", "ValueStr", "ImageUrl" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.Address), global::SP.Service.Address.Parser, new[]{ "Id", "ContactName", "ContactAddress", "ContactMobile", "Gender", "Status", "AccountId", "SchoolId", "SchoolName", "DistrictId", "DistrictName", "Dorm", "IsDefault" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.Shop), global::SP.Service.Shop.Parser, new[]{ "ShopId", "ShopName", "OwnerId", "OwnerName", "StartTime", "EndTime" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.Shop), global::SP.Service.Shop.Parser, new[]{ "ShopId", "ShopName", "OwnerId", "OwnerName", "StartTime", "EndTime", "ShopLogo" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ShoppingCart), global::SP.Service.ShoppingCart.Parser, new[]{ "ProductId", "AccountId", "Quantity", "ShopId", "CartId", "CreateTime", "ProductName", "Amount", "UnitPrice" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountInfo), global::SP.Service.AccountInfo.Parser, new[]{ "AccountId", "MobilePhone", "Email", "UserName" }, null, null, null)
           }));
@@ -1231,6 +1231,7 @@ namespace SP.Service {
       ownerName_ = other.ownerName_;
       startTime_ = other.startTime_;
       endTime_ = other.endTime_;
+      shopLogo_ = other.shopLogo_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1328,6 +1329,21 @@ namespace SP.Service {
       }
     }
 
+    /// <summary>Field number for the "shopLogo" field.</summary>
+    public const int ShopLogoFieldNumber = 7;
+    private string shopLogo_ = "";
+    /// <summary>
+    ///*
+    /// 店铺logo
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string ShopLogo {
+      get { return shopLogo_; }
+      set {
+        shopLogo_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as Shop);
@@ -1347,6 +1363,7 @@ namespace SP.Service {
       if (OwnerName != other.OwnerName) return false;
       if (StartTime != other.StartTime) return false;
       if (EndTime != other.EndTime) return false;
+      if (ShopLogo != other.ShopLogo) return false;
       return true;
     }
 
@@ -1359,6 +1376,7 @@ namespace SP.Service {
       if (OwnerName.Length != 0) hash ^= OwnerName.GetHashCode();
       if (StartTime.Length != 0) hash ^= StartTime.GetHashCode();
       if (EndTime.Length != 0) hash ^= EndTime.GetHashCode();
+      if (ShopLogo.Length != 0) hash ^= ShopLogo.GetHashCode();
       return hash;
     }
 
@@ -1393,6 +1411,10 @@ namespace SP.Service {
         output.WriteRawTag(50);
         output.WriteString(EndTime);
       }
+      if (ShopLogo.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(ShopLogo);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1415,6 +1437,9 @@ namespace SP.Service {
       }
       if (EndTime.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(EndTime);
+      }
+      if (ShopLogo.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ShopLogo);
       }
       return size;
     }
@@ -1441,6 +1466,9 @@ namespace SP.Service {
       }
       if (other.EndTime.Length != 0) {
         EndTime = other.EndTime;
+      }
+      if (other.ShopLogo.Length != 0) {
+        ShopLogo = other.ShopLogo;
       }
     }
 
@@ -1474,6 +1502,10 @@ namespace SP.Service {
           }
           case 50: {
             EndTime = input.ReadString();
+            break;
+          }
+          case 58: {
+            ShopLogo = input.ReadString();
             break;
           }
         }

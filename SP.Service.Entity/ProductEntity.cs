@@ -26,6 +26,7 @@ namespace SP.Service.Entity
         public int? BrandId { get; set; }
         public string SuppliersId { get; set; }
         public int? TypeId { get; set; }
+        public int? SecondTypeId { get; set; }
         public DateTime? UpdateTime { get; set; }
         public long? LastOperater { get; set; }
     }

@@ -16,7 +16,7 @@ namespace SP.ManageEntityFramework.Repositories
         {
         }
 
-        public List<ProductTypeEntity> GetProductTypeList(int pageIndex, int pageSize)
+        public List<ProductTypeEntity> GetProductTypeList(int kind,int pageIndex, int pageSize)
         {
             using (var db = Context.OpenDbConnection())
             {
@@ -54,11 +54,11 @@ namespace SP.ManageEntityFramework.Repositories
             }
         }
 
-        public List<ProductTypeEntity> GetAllProductTypeList()
+        public List<ProductTypeEntity> GetAllProductTypeList(int kind)
         {
             using (var db = Context.OpenDbConnection())
             {
-                var q = db.From<ProductTypeEntity>().OrderBy(x => x.DisplaySequence);
+                var q = db.From<ProductTypeEntity>().Where(x=>x.Kind == kind).OrderBy(x => x.DisplaySequence);
                 return db.Select(q);
             }
         }

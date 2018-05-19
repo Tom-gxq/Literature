@@ -29,6 +29,7 @@ namespace SP.ManageEntityFramework
         public IDbSet<ShopProductEntity> ShopProduct { get; set; }
         public IDbSet<SysKindEntity> SysKind { get; set; }
         public IDbSet<CarouselEntity> Carousel { get; set; }
+        public IDbSet<CashApplyEntity> CashApply { get; set; }
 
         public ManageDbContext()
             : base("Default")

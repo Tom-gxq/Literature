@@ -8,7 +8,8 @@ using System.Text;
 
 namespace SP.Service.Domain.EventHandlers
 {
-    public class AccountCreatedEventHandler : IEventHandler<AccountCreatedEvent>
+    public class AccountCreatedEventHandler : IEventHandler<AccountCreatedEvent>, IEventHandler<AliBindCreatedEvent>, 
+        IEventHandler<WxBindCreatedEvent>,  IEventHandler<QQBindCreatedEvent>
     {
         private readonly AccountReportDatabase _reportDatabase;
         public AccountCreatedEventHandler(AccountReportDatabase reportDatabase)
@@ -24,6 +25,48 @@ namespace SP.Service.Domain.EventHandlers
                 MobilePhone = handle.MobilePhone,
                 Password = handle.Password,
                 Status = handle.Status,
+                CreateTime = DateTime.Now,
+                UpdateTime = DateTime.Now,
+            };
+
+            _reportDatabase.Add(item);
+        }
+        public void Handle(AliBindCreatedEvent handle)
+        {
+            var item = new AccountEntity()
+            {
+                AccountId = handle.AggregateId.ToString(),               
+                MobilePhone = handle.MobilePhone,
+                Status = handle.Status,
+                AliBind = handle.OtherAccount,
+                CreateTime = DateTime.Now,
+                UpdateTime = DateTime.Now,
+            };
+
+            _reportDatabase.Add(item);
+        }
+        public void Handle(WxBindCreatedEvent handle)
+        {
+            var item = new AccountEntity()
+            {
+                AccountId = handle.AggregateId.ToString(),
+                MobilePhone = handle.MobilePhone,
+                Status = handle.Status,
+                AliBind = handle.OtherAccount,
+                CreateTime = DateTime.Now,
+                UpdateTime = DateTime.Now,
+            };
+
+            _reportDatabase.Add(item);
+        }
+        public void Handle(QQBindCreatedEvent handle)
+        {
+            var item = new AccountEntity()
+            {
+                AccountId = handle.AggregateId.ToString(),
+                MobilePhone = handle.MobilePhone,
+                Status = handle.Status,
+                AliBind = handle.OtherAccount,
                 CreateTime = DateTime.Now,
                 UpdateTime = DateTime.Now,
             };

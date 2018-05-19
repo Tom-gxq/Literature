@@ -13,5 +13,7 @@ namespace SP.Application.Product.DTO
         public int Kind { get; set; }
         public string Remark { get; set; }
         public int DisplaySequence { get; set; }
+        public string TypePath { get; set; }
+        public string TypeLogo { get; set; }
     }
 }

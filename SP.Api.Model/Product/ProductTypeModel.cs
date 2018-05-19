@@ -10,5 +10,7 @@ namespace SP.Api.Model.Product
     {
         public long typeId { get; set; }
         public string typeName { get; set; }
+        public string typePath { get; set; }
+        public string typeLogo { get; set; }
     }
 }

@@ -209,6 +209,7 @@ define(function (require, exports, module) {
                 type: 'GET',
                 cache: false,
                 data: {
+                    kind:0,
                     pageIndex: index,
                     pageSize: 20
                 },

@@ -151,14 +151,14 @@ namespace Product.Service.Business
             return result;
         }
 
-        public static ShopListResponse GetAllShopList(int regionId, int pageIndex, int pageSize)
+        public static ShopListResponse GetAllShopList(int regionId,int shopType, int pageIndex, int pageSize)
         {
             var result = new ShopListResponse();
             result.Status = 10002;
-            result.Total = ServiceLocator.ShopReportDatabase.GetAllShopCount(regionId);
+            result.Total = ServiceLocator.ShopReportDatabase.GetAllShopCount(regionId, shopType);
             if (result.Total > 0)
             {
-                var list = ServiceLocator.ShopReportDatabase.GetAllShopList(regionId,pageIndex, pageSize);
+                var list = ServiceLocator.ShopReportDatabase.GetAllShopList(regionId, shopType, pageIndex, pageSize);
                 if (list != null)
                 {
                     foreach (var item in list)
@@ -168,6 +168,7 @@ namespace Product.Service.Business
                             var shop = new SP.Service.Shop();
                             shop.ShopId = item.Id;
                             shop.ShopName = item.ShopName;
+                            shop.ShopLogo = string.IsNullOrEmpty(item.ShopLogo) ? string.Empty : item.ShopLogo;
                             if (!string.IsNullOrEmpty(item.OwnerId))
                             {
                                 shop.OwnerId = item.OwnerId;
@@ -198,14 +199,14 @@ namespace Product.Service.Business
             }
             return result;
         }
-        public static ProductListResponse GetShopProductList(int districtId, int shopId, long attributeId, int pageIndex, int pageSize)
+        public static ProductListResponse GetShopProductList(int districtId, int shopId, long typeId, int pageIndex, int pageSize)
         {
             var result = new ProductListResponse();
             result.Status = 10002;
-            result.Total = ServiceLocator.ReportDatabase.GetShopProductCount(districtId,shopId, attributeId, pageIndex, pageSize);
+            result.Total = ServiceLocator.ReportDatabase.GetShopProductCount(districtId,shopId, typeId, pageIndex, pageSize);
             if (result.Total > 0)
             {
-                var list = ServiceLocator.ReportDatabase.GetShopProductList(districtId,shopId, attributeId, pageIndex, pageSize);
+                var list = ServiceLocator.ReportDatabase.GetShopProductList(districtId,shopId, typeId, pageIndex, pageSize);
                 if (list != null)
                 {
                     bool skuFlag = false;
@@ -224,6 +225,43 @@ namespace Product.Service.Business
                         {
                             var product = ConvertProductDomainToResponse(item);
                             if(!skuFlag)
+                            {
+                                //product.SkuNum = -1;
+                            }
+                            result.ProductList.Add(product);
+                        }
+                    }
+                    result.Status = 10001;
+                }
+            }
+            return result;
+        }
+        public static ProductListResponse GetFoodShopProductList(int districtId, int shopId,  int pageIndex, int pageSize)
+        {
+            var result = new ProductListResponse();
+            result.Status = 10002;
+            result.Total = ServiceLocator.ReportDatabase.GetFoodShopProductListCount(districtId, shopId, pageIndex, pageSize);
+            if (result.Total > 0)
+            {
+                var list = ServiceLocator.ReportDatabase.GetFoodShopProductList(districtId, shopId, pageIndex, pageSize);
+                if (list != null)
+                {
+                    bool skuFlag = false;
+                    var shop = ServiceLocator.ShopReportDatabase.GetShopById(shopId);
+                    if (!string.IsNullOrEmpty(shop.StartTime))
+                    {
+                        var startShopTime = DateTime.Parse(DateTime.Now.ToShortDateString() + " " + shop.StartTime);
+                        if (DateTime.Now >= startShopTime)
+                        {
+                            skuFlag = true;
+                        }
+                    }
+                    foreach (var item in list)
+                    {
+                        if (item != null)
+                        {
+                            var product = ConvertProductDomainToResponse(item);
+                            if (!skuFlag)
                             {
                                 //product.SkuNum = -1;
                             }
@@ -320,6 +358,49 @@ namespace Product.Service.Business
                 }
             }
             return product;
+        }
+
+        public static TitleTypeListResponse GetTitleTypeList(int typeKind)
+        {
+            var result = new TitleTypeListResponse();
+            result.Status = 10002;
+            var list = ServiceLocator.ProductTypeReportDatabase.GetProductTypeByKind(typeKind);
+            if (list != null)
+            {
+                //var day = (int)DateTime.Now.DayOfWeek;
+
+                //for (int i = 0; i < 1; i++)
+                //{
+                //    if (day >= list.Count)
+                //    {
+                //        day = 0;
+                //    }
+                //    var item = list[day];
+                //    if (item != null)
+                //    {
+                //        var type = new SP.Service.ProductType();
+                //        type.TypeId = item.Id;
+                //        type.TypeName = item.TypeName;
+                //        type.TypePath = string.IsNullOrEmpty(item.TypePath)?string.Empty: item.TypePath;
+                //        type.Kind = item.Kind;
+                //        type.TypeLogo = string.IsNullOrEmpty(item.TypeLogo) ? string.Empty : item.TypeLogo;
+                //        result.TitleTypeList.Add(type);
+                //    }
+                //    day++;
+                //}
+                foreach(var item in list)
+                {
+                    var type = new SP.Service.ProductType();
+                    type.TypeId = item.Id;
+                    type.TypeName = item.TypeName;
+                    type.TypePath = string.IsNullOrEmpty(item.TypePath) ? string.Empty : item.TypePath;
+                    type.Kind = item.Kind;
+                    type.TypeLogo = string.IsNullOrEmpty(item.TypeLogo) ? string.Empty : item.TypeLogo;
+                    result.TitleTypeList.Add(type);
+                }
+                result.Status = 10001;
+            }
+            return result;
         }
     }
 }

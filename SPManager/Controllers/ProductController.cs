@@ -1,6 +1,7 @@
 ﻿using LibMain.Dependency;
 using SP.Application.Product;
 using SP.Application.Product.DTO;
+using SP.Application.Shop;
 using SP.Application.User;
 using SPManager.Models;
 using System;
@@ -21,7 +22,7 @@ namespace SPManager.Controllers
         {
             ViewBag.Title = "商品管理";
             IProductTypeService service = IocManager.Instance.Resolve<IProductTypeService>();
-            var list = service.GetAllProductTypeList();
+            var list = service.GetAllProductTypeList(0);
             ViewBag.TypeData = list;
 
             IBrandAppService brandService = IocManager.Instance.Resolve<IBrandAppService>();
@@ -70,6 +71,17 @@ namespace SPManager.Controllers
             jObject.Pages = (int)Math.Ceiling(Convert.ToDouble(total) / pageSize);
             jObject.Index = pageIndex;
             JsonResult.Add("data", jObject);
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public JsonResult GetAllShopProductList(int shopId)
+        {
+            IProductAppService service = IocManager.Instance.Resolve<IProductAppService>();
+            var result = service.GetShopProductList(shopId, 1, 1, 100000);
+            JsonResult.Add("items", result);
             return new JsonResult()
             {
                 Data = JsonResult,
@@ -220,8 +232,10 @@ namespace SPManager.Controllers
             var brandList = brandService.GetAllBrandList();
             JsonResult.Add("brands", brandList);
             IProductTypeService typeService = IocManager.Instance.Resolve<IProductTypeService>();
-            var typeList = typeService.GetAllProductTypeList();
+            var typeList = typeService.GetAllProductTypeList(0);
             JsonResult.Add("types", typeList);
+            var stypeList = typeService.GetAllProductTypeList(1);
+            JsonResult.Add("secondTypes", stypeList);
             IAttributeAppService attrService = IocManager.Instance.Resolve<IAttributeAppService>();
             var attrList = attrService.GetAttributeList(1,1000);
             JsonResult.Add("attributes", attrList);
@@ -309,6 +323,20 @@ namespace SPManager.Controllers
         }
         public ActionResult SkuIndex()
         {
+            IRegionAppService service = IocManager.Instance.Resolve<IRegionAppService>();
+            var list = service.GetRegionData(1);
+            ViewBag.SchoolData = list;
+            
+            var districtList = service.GetRegionData(2);
+            ViewBag.DistrictData = districtList;
+
+            IShopAppService brandService = IocManager.Instance.Resolve<IShopAppService>();
+            var shopList = brandService.GetShopList(1,100000);
+            ViewBag.ShopData = shopList;
+
+            IProductAppService pService = IocManager.Instance.Resolve<IProductAppService>();
+            var pList = pService.GetProductList(1,1,100000);
+            ViewBag.ProductData = pList;
             return View();
         }
         public JsonResult GetProducSkuList(int pageIndex, int pageSize)
@@ -365,6 +393,43 @@ namespace SPManager.Controllers
             var result = service.SearchProductByKeyWord(keywords,  1, 30);
             JsonResult.Add("items", result);
             
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public JsonResult AddOneProductSku(string skuId)
+        {
+            IProductAppService service = IocManager.Instance.Resolve<IProductAppService>();
+            var result = service.AddOneProductSku(skuId);
+            JsonResult.Add("result", result);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public JsonResult DelOneProductSku(string skuId)
+        {
+            IProductAppService service = IocManager.Instance.Resolve<IProductAppService>();
+            var result = service.DelOneProductSku(skuId);
+            JsonResult.Add("result", result);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult SearchProducSku(int schoolId,int districtId,int shopId,string productId,int skuStatus)
+        {
+            IProductAppService service = IocManager.Instance.Resolve<IProductAppService>();
+            var list = service.SearchProducSku(schoolId,  districtId, shopId, productId, skuStatus);
+            JsonResult.Add("items", list);
+
             return new JsonResult()
             {
                 Data = JsonResult,

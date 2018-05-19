@@ -98,6 +98,25 @@ namespace Sms.Service.Impl
             logger.LogInformation(7800, "SetRegisterMobileMessageLimit {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
+        public override Task<HttpResponse> SendHttp(HttpRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(7800, "{Date} {IPAdress} {Status} SendMessage Connected! Url:[{Url}] Data:[{Data}]",
+               DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.Url, request.Data);
+            var input = Mapper.Map<HttpInput>(request);
+            HttpResponse response = null;
+            try
+            {
+                var output = new HttpSender(input).Send();
+                response = Mapper.Map<HttpResponse>(output);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(7800, ex, "SendHttp Exception");
+            }
+
+            logger.LogInformation(7800, "SendHttp {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
 
     }
 }

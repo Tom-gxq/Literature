@@ -139,6 +139,12 @@ namespace SP.Application.Product
                 return null;
             }
         }
+        public RegionDto GetRegionData(int parentId, string dataName)
+        {
+            var repository = IocManager.Instance.Resolve<RegionRespository>();
+            var entity = repository.GetRegionData(parentId, dataName);
+            return ConvertFromRepositoryEntity(entity);
+        }
         public bool EditRegionData(RegionDto region)
         {
             var repository = IocManager.Instance.Resolve<RegionRespository>();
@@ -150,6 +156,58 @@ namespace SP.Application.Product
                 ParentDataID = region.ParentDataID,
                 UpdateTime = DateTime.Now
             });
+        }
+        public List<RegionTypeDto> GetRegionTypeList(int pageIndex, int pageSize)
+        {
+            var retList = new List<RegionTypeDto>();
+            var repository = IocManager.Instance.Resolve<RegionTypeRespository>();
+            var list = repository.GetRegionTypeList(pageIndex, pageSize);
+            foreach (var item in list)
+            {
+                var entity = ConvertFromRepositoryEntity(item);
+                retList.Add(entity);
+            }
+
+            return retList;
+        }
+        public int GetRegionTypeCount()
+        {
+            var retList = new List<ProductsDto>();
+            var repository = IocManager.Instance.Resolve<RegionTypeRespository>();
+            var total = repository.GetRegionTypeCount();
+            return total;
+        }
+        public bool AddRegionType(RegionTypeDto region)
+        {
+            var repository = IocManager.Instance.Resolve<RegionTypeRespository>();
+            var reulst = repository.AddRegionType(new RegionTypeEntity()
+            {
+                TypeId = region.TypeId,
+                RegionId = region.RegionId,
+                DisplaySequence = region.DisplaySequence
+            });
+            return reulst;
+        }
+
+        public bool DelRegionType(int id)
+        {
+            var repository = IocManager.Instance.Resolve<RegionTypeRespository>();
+            var reulst = repository.DelRegionType(id);
+            return reulst;
+        }
+
+        public List<RegionTypeDto> SearchRegionTypeByKeyWord(string keywords)
+        {
+            var retList = new List<RegionTypeDto>();
+            var repository = IocManager.Instance.Resolve<RegionTypeRespository>();
+            var list = repository.SearchRegionTypeByKeyWord(keywords);
+            foreach (var item in list)
+            {
+                var entity = ConvertFromRepositoryEntity(item);
+                retList.Add(entity);
+            }
+
+            return retList;
         }
 
         private static RegionDto ConvertFromRepositoryEntity(RegionEntity region)
@@ -167,7 +225,25 @@ namespace SP.Application.Product
                 ParentDataID = region.ParentDataID!= null ?region.ParentDataID.Value:0,
                 CreateTime = region.CreateTime != null ? region.CreateTime.Value: DateTime.MinValue,
                 UpdateTime = region.UpdateTime != null ? region.UpdateTime.Value : DateTime.MinValue,                
-        };
+            };
+
+            return regionDto;
+        }
+        private static RegionTypeDto ConvertFromRepositoryEntity(RegionTypeFullEntity region)
+        {
+            if (region == null)
+            {
+                return null;
+            }
+            var regionDto = new RegionTypeDto
+            {
+                Id = region.Id,
+                DataName = region.DataName,
+                TypeName = region.TypeName,
+                RegionId = region.RegionId.Value,
+                TypeId  = region.TypeId.Value,    
+                DisplaySequence = region.DisplaySequence!= null ? region.DisplaySequence.Value:0
+            };
 
             return regionDto;
         }

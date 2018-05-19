@@ -10,6 +10,7 @@ namespace SP.Api.Model.Product
     {
         public long attributeId { get; set; }
         public string attributeName { get; set; }
+        public string attributeImage { get; set; }
 
     }
 }

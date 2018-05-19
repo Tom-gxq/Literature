@@ -33,7 +33,16 @@ namespace SP.ManageEntityFramework.Repositories
                 return db.Select(q);
             }
         }
-        
+        public RegionEntity GetRegionData(int parentId, string dataName)
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<RegionEntity>().Where(x => x.ParentDataID == parentId && x.DataName == dataName);
+                return db.Single(q);
+            }
+        }
+
+
         public List<RegionEntity> SearchRegionData(string dataName)
         {
             using (var db = Context.OpenDbConnection())

@@ -29,6 +29,7 @@ namespace SP.Service {
     static readonly grpc::Marshaller<global::SP.Service.ShopResponse> __Marshaller_ShopResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.ShopResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.VoidRequest> __Marshaller_VoidRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.VoidRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.CarouselListResponse> __Marshaller_CarouselListResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.CarouselListResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.TitleTypeListResponse> __Marshaller_TitleTypeListResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.TitleTypeListResponse.Parser.ParseFrom);
 
     static readonly grpc::Method<global::SP.Service.ProductListRequest, global::SP.Service.ProductListResponse> __Method_GetProductList = new grpc::Method<global::SP.Service.ProductListRequest, global::SP.Service.ProductListResponse>(
         grpc::MethodType.Unary,
@@ -93,6 +94,13 @@ namespace SP.Service {
         __Marshaller_ShopProductListRequest,
         __Marshaller_ProductListResponse);
 
+    static readonly grpc::Method<global::SP.Service.ShopProductListRequest, global::SP.Service.ProductListResponse> __Method_GetFoodShopProductList = new grpc::Method<global::SP.Service.ShopProductListRequest, global::SP.Service.ProductListResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetFoodShopProductList",
+        __Marshaller_ShopProductListRequest,
+        __Marshaller_ProductListResponse);
+
     static readonly grpc::Method<global::SP.Service.ShopIdRequest, global::SP.Service.ShopResponse> __Method_GetShopById = new grpc::Method<global::SP.Service.ShopIdRequest, global::SP.Service.ShopResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
@@ -106,6 +114,20 @@ namespace SP.Service {
         "GetCarouselList",
         __Marshaller_VoidRequest,
         __Marshaller_CarouselListResponse);
+
+    static readonly grpc::Method<global::SP.Service.VoidRequest, global::SP.Service.TitleTypeListResponse> __Method_GetShopTypeList = new grpc::Method<global::SP.Service.VoidRequest, global::SP.Service.TitleTypeListResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetShopTypeList",
+        __Marshaller_VoidRequest,
+        __Marshaller_TitleTypeListResponse);
+
+    static readonly grpc::Method<global::SP.Service.VoidRequest, global::SP.Service.TitleTypeListResponse> __Method_GetProductTypeList = new grpc::Method<global::SP.Service.VoidRequest, global::SP.Service.TitleTypeListResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetProductTypeList",
+        __Marshaller_VoidRequest,
+        __Marshaller_TitleTypeListResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -226,6 +248,18 @@ namespace SP.Service {
 
       /// <summary>
       ///*
+      /// 获取产品列表
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.ProductListResponse> GetFoodShopProductList(global::SP.Service.ShopProductListRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
       /// 获取店铺
       /// </summary>
       /// <param name="request">The request received from the client.</param>
@@ -244,6 +278,30 @@ namespace SP.Service {
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
       public virtual global::System.Threading.Tasks.Task<global::SP.Service.CarouselListResponse> GetCarouselList(global::SP.Service.VoidRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 获取店铺种类列表
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.TitleTypeListResponse> GetShopTypeList(global::SP.Service.VoidRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 获取产品种类列表
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.TitleTypeListResponse> GetProductTypeList(global::SP.Service.VoidRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -707,6 +765,54 @@ namespace SP.Service {
       }
       /// <summary>
       ///*
+      /// 获取产品列表
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.ProductListResponse GetFoodShopProductList(global::SP.Service.ShopProductListRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetFoodShopProductList(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取产品列表
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.ProductListResponse GetFoodShopProductList(global::SP.Service.ShopProductListRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetFoodShopProductList, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 获取产品列表
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.ProductListResponse> GetFoodShopProductListAsync(global::SP.Service.ShopProductListRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetFoodShopProductListAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取产品列表
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.ProductListResponse> GetFoodShopProductListAsync(global::SP.Service.ShopProductListRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetFoodShopProductList, null, options, request);
+      }
+      /// <summary>
+      ///*
       /// 获取店铺
       /// </summary>
       /// <param name="request">The request to send to the server.</param>
@@ -801,6 +907,102 @@ namespace SP.Service {
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetCarouselList, null, options, request);
       }
+      /// <summary>
+      ///*
+      /// 获取店铺种类列表
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.TitleTypeListResponse GetShopTypeList(global::SP.Service.VoidRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetShopTypeList(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取店铺种类列表
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.TitleTypeListResponse GetShopTypeList(global::SP.Service.VoidRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetShopTypeList, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 获取店铺种类列表
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.TitleTypeListResponse> GetShopTypeListAsync(global::SP.Service.VoidRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetShopTypeListAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取店铺种类列表
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.TitleTypeListResponse> GetShopTypeListAsync(global::SP.Service.VoidRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetShopTypeList, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 获取产品种类列表
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.TitleTypeListResponse GetProductTypeList(global::SP.Service.VoidRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetProductTypeList(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取产品种类列表
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.TitleTypeListResponse GetProductTypeList(global::SP.Service.VoidRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetProductTypeList, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 获取产品种类列表
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.TitleTypeListResponse> GetProductTypeListAsync(global::SP.Service.VoidRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetProductTypeListAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取产品种类列表
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.TitleTypeListResponse> GetProductTypeListAsync(global::SP.Service.VoidRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetProductTypeList, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override ProductServiceClient NewInstance(ClientBaseConfiguration configuration)
       {
@@ -822,8 +1024,11 @@ namespace SP.Service {
           .AddMethod(__Method_GetTitleAttributeList, serviceImpl.GetTitleAttributeList)
           .AddMethod(__Method_GetAllShopList, serviceImpl.GetAllShopList)
           .AddMethod(__Method_GetShopProductList, serviceImpl.GetShopProductList)
+          .AddMethod(__Method_GetFoodShopProductList, serviceImpl.GetFoodShopProductList)
           .AddMethod(__Method_GetShopById, serviceImpl.GetShopById)
-          .AddMethod(__Method_GetCarouselList, serviceImpl.GetCarouselList).Build();
+          .AddMethod(__Method_GetCarouselList, serviceImpl.GetCarouselList)
+          .AddMethod(__Method_GetShopTypeList, serviceImpl.GetShopTypeList)
+          .AddMethod(__Method_GetProductTypeList, serviceImpl.GetProductTypeList).Build();
     }
 
   }

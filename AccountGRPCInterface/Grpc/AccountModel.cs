@@ -32,76 +32,91 @@ namespace SP.Service {
             "ZS5BZGRyZXNzIl4KE0FkZHJlc3NMaXN0UmVzcG9uc2USDgoGc3RhdHVzGAEg",
             "ASgFEigKC2FkZHJlc3NMaXN0GAIgAygLMhMuU1AuU2VydmljZS5BZGRyZXNz",
             "Eg0KBXRvdGFsGAMgASgDIkUKFEFkZHJlc3NTdGF0dXNSZXF1ZXN0EgoKAmlk",
-            "GAEgASgFEg4KBnN0YXR1cxgCIAEoBRIRCglhY2NvdW50SWQYAyABKAkiHgoP",
-            "VG9rZW5LZXlSZXF1ZXN0EgsKA2tleRgBIAEoCSJTChNBY2Nlc3NUb2tlblJl",
-            "c3BvbnNlEg4KBnN0YXR1cxgBIAEoBRIsCgthY2Nlc3NUb2tlbhgCIAEoCzIX",
-            "LlNQLlNlcnZpY2UuQWNjZXNzVG9rZW4iOAoOVG9rZW5JZFJlcXVlc3QSEwoL",
-            "YWNjZXNzVG9rZW4YASABKAkSEQoJYWNjb3VudElkGAIgASgJIpgBCgtBY2Nl",
-            "c3NUb2tlbhITCgthY2Nlc3NUb2tlbhgBIAEoCRIRCglhY2NvdW50SWQYAiAB",
-            "KAkSGgoSYWNjZXNzVG9rZW5FeHBpcmVzGAMgASgDEhQKDHJlZnJlc2hUb2tl",
-            "bhgEIAEoCRIbChNyZWZyZXNoVG9rZW5FeHBpcmVzGAUgASgDEhIKCmNyZWF0",
-            "ZVRpbWUYBiABKAMiQgoSQWNjZXNzVG9rZW5SZXF1ZXN0EiwKC2FjY2Vzc1Rv",
-            "a2VuGAEgASgLMhcuU1AuU2VydmljZS5BY2Nlc3NUb2tlbiJXCg1SZWdpc3RS",
-            "ZXF1ZXN0Eg0KBWVtYWlsGAEgASgJEhMKC21vYmlsZVBob25lGAIgASgJEhAK",
-            "CHBhc3NXb3JkGAMgASgJEhAKCHVzZXJOYW1lGAQgASgJIh8KEURlbEFkZHJl",
-            "c3NSZXF1ZXN0EgoKAmlkGAEgASgFIiEKDkFjY291bnRSZXF1ZXN0Eg8KB2Fj",
-            "Y291bnQYASABKAkiJQoRUmVnaW9uRGF0YVJlcXVlc3QSEAoIZGF0YVR5cGUY",
-            "ASABKAUiRAoKUmVnaW9uRGF0YRIOCgZkYXRhSWQYASABKAUSEAoIZGF0YU5h",
-            "bWUYAiABKAkSFAoMcGFyZW50RGF0YUlkGAMgASgFIlAKElJlZ2lvbkxpc3RS",
-            "ZXNwb25zZRIOCgZzdGF0dXMYASABKAUSKgoKcmVnaW9uTGlzdBgCIAMoCzIW",
-            "LlNQLlNlcnZpY2UuUmVnaW9uRGF0YSIhCg9SZWdpb25JRFJlcXVlc3QSDgoG",
-            "ZGF0YUlkGAEgASgFIoABChJSZWdpb25EYXRhUmVzcG9uc2USDgoGc3RhdHVz",
-            "GAEgASgFEg4KBmRhdGFJZBgCIAEoBRIQCghkYXRhTmFtZRgDIAEoCRIUCgxw",
-            "YXJlbnREYXRhSWQYBCABKAUSDgoGY2l0eUlkGAUgASgFEhIKCnByb3ZpbmNl",
-            "SWQYBiABKAUiXQoTU2hvcHBpbmdDYXJ0UmVxdWVzdBIRCglwcm9kdWN0SWQY",
-            "ASABKAkSEQoJYWNjb3VudElkGAIgASgJEhAKCHF1YW50aXR5GAMgASgFEg4K",
-            "BnNob3BJZBgEIAEoBSIsChpTaG9wcGluZ0NhcnRSZXN1bHRSZXNwb25zZRIO",
-            "CgZzdGF0dXMYASABKAUiPwobU2hvcHBpbmdDYXJ0UXVhbnRpdHlSZXF1ZXN0",
-            "Eg4KBmNhcnRJZBgBIAEoCRIQCghxdWFudGl0eRgCIAEoBSI9ChpTaG9wcGlu",
-            "Z0NhcnRPcmRlcklkUmVxdWVzdBIOCgZjYXJ0SWQYASADKAkSDwoHb3JkZXJJ",
-            "ZBgCIAEoCSJeChhTaG9wcGluZ0NhcnRMaXN0UmVzcG9uc2USDgoGc3RhdHVz",
-            "GAEgASgFEjIKEHNob3BwaW5nQ2FydExpc3QYAiADKAsyGC5TUC5TZXJ2aWNl",
-            "LlNob3BwaW5nQ2FydCI6ChlTaG9wcGluZ0NhcnRDb3VudFJlc3BvbnNlEg4K",
-            "BnN0YXR1cxgBIAEoBRINCgVjb3VudBgCIAEoAyJHCg9BZGRyZXNzUmVzcG9u",
-            "c2USDgoGc3RhdHVzGAEgASgFEiQKB2FkZHJlc3MYAiABKAsyEy5TUC5TZXJ2",
-            "aWNlLkFkZHJlc3MimAEKFUFjY291bnRBdXRoZW50aWNhdGlvbhIQCghhdXRo",
-            "VHlwZRgBIAEoBRIRCglhY2NvdW50SWQYAiABKAkSDwoHYWNjb3VudBgDIAEo",
-            "CRINCgV0b2tlbhgEIAEoCRISCgp2ZXJpZnlDb2RlGAUgASgJEhIKCmNyZWF0",
-            "ZVRpbWUYBiABKAMSEgoKdXBkYXRlVGltZRgHIAEoAyJSChhBZGRBdXRoZW50",
-            "aWNhdGlvblJlcXVlc3QSNgoLYWNjb3VudEF1dGgYASABKAsyIS5TUC5TZXJ2",
-            "aWNlLkFjY291bnRBdXRoZW50aWNhdGlvbiJMChRHZXRWZXJpZnlDb2RlUmVx",
-            "dWVzdBIPCgdhY2NvdW50GAEgASgJEhAKCGF1dGhUeXBlGAIgASgFEhEKCWFj",
-            "Y291bnRJZBgDIAEoCSI4ChJWZXJpZnlDb2RlUmVzcG9uc2USDgoGc3RhdHVz",
-            "GAEgASgFEhIKCnZlcmlmeUNvZGUYAiABKAkiYwobVXBkYXRlQXV0aGVudGlj",
-            "YXRpb25SZXF1ZXN0Eg8KB2FjY291bnQYASABKAkSEQoJYWNjb3VudElkGAIg",
-            "ASgJEhAKCGF1dGhUeXBlGAMgASgFEg4KBnN0YXR1cxgEIAEoBSLuAQoKQXNz",
-            "b2NpYXRvchIUCgxhc3NvY2lhdG9ySWQYASABKAkSEQoJYWNjb3VudElkGAIg",
-            "ASgJEg4KBmtpbmRJZBgDIAEoCRIQCghxdWFudGl0eRgEIAEoBRIOCgZhbW91",
-            "bnQYBSABKAESFAoMcGF5T3JkZXJDb2RlGAYgASgJEg8KB3BheVR5cGUYByAB",
-            "KAUSEQoJc3RhcnREYXRlGAggASgDEg8KB2VuZERhdGUYCSABKAMSDgoGc3Rh",
-            "dHVzGAogASgFEhMKC2Rlc2NyaXB0aW9uGAsgASgJEhUKDWRpc2NvdW50VmFs",
-            "dWUYDCABKAEiggEKFEFkZEFzc29jaWF0b3JSZXF1ZXN0EhEKCWFjY291bnRJ",
-            "ZBgCIAEoCRIOCgZraW5kSWQYAyABKAkSEAoIcXVhbnRpdHkYBCABKAUSDgoG",
-            "YW1vdW50GAUgASgBEhQKDHBheU9yZGVyQ29kZRgGIAEoCRIPCgdwYXlUeXBl",
-            "GAcgASgFIlgKFkFzc29jaWF0b3JMaXN0UmVzcG9uc2USDgoGc3RhdHVzGAEg",
-            "ASgFEi4KDmFzc29jaWF0b3JMaXN0GAIgAygLMhYuU1AuU2VydmljZS5Bc3Nv",
-            "Y2lhdG9yIiEKEUdldFN5c0tpbmRSZXF1ZXN0EgwKBGtpbmQYASABKAUiggEK",
-            "B1N5c0tpbmQSDgoGa2luZElkGAEgASgJEgwKBGtpbmQYAiABKAUSEAoIcXVh",
-            "bnRpdHkYAyABKAUSDAoEdW5pdBgEIAEoBRINCgVwcmljZRgFIAEoARITCgtk",
-            "ZXNjcmlwdGlvbhgGIAEoCRIVCg1kaXNjb3VudFZhbHVlGAcgASgBIkwKE1N5",
-            "c0tpbmRMaXN0UmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEiUKCGtpbmRMaXN0",
-            "GAIgAygLMhMuU1AuU2VydmljZS5TeXNLaW5kIlsKF0FjY291bnRGdWxsSW5m",
-            "b1Jlc3BvbnNlEg4KBnN0YXR1cxgBIAEoBRIOCgZhdmF0YXIYAiABKAkSEAoI",
-            "ZnVsbE5hbWUYAyABKAkSDgoGZ2VuZGVyGAQgASgIIl0KFkFjY291bnRGdWxs",
-            "SW5mb1JlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEg4KBmF2YXRhchgCIAEo",
-            "CRIQCghmdWxsTmFtZRgDIAEoCRIOCgZnZW5kZXIYBCABKAgiMgoPRGlzY291",
-            "bnRSZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIMCgRraW5kGAIgASgFIisK",
-            "E0Fzc29jaWF0b3JJZFJlcXVlc3QSFAoMYXNzb2NpYXRvcklkGAEgASgJIlAK",
-            "EkFzc29jaWF0b3JSZXNwb25zZRIOCgZzdGF0dXMYASABKAUSKgoKYXNzb2Np",
-            "YXRvchgCIAEoCzIWLlNQLlNlcnZpY2UuQXNzb2NpYXRvciJFCh1VcGRhdGVB",
-            "c3NvY2lhdG9yU3RhdHVzUmVxdWVzdBIUCgxhc3NvY2lhdG9ySWQYASABKAkS",
-            "DgoGc3RhdHVzGAIgASgFIjsKFU15U2hvcHBpbmdDYXJ0UmVxdWVzdBIRCglh",
-            "Y2NvdW50SWQYASABKAkSDwoHb3JkZXJJZBgCIAEoCWIGcHJvdG8z"));
+            "GAEgASgFEg4KBnN0YXR1cxgCIAEoBRIRCglhY2NvdW50SWQYAyABKAkiQwoS",
+            "QWRkcmVzc0Rvcm1SZXF1ZXN0EgoKAmlkGAEgASgFEg4KBmRvcm1JZBgCIAEo",
+            "BRIRCglhY2NvdW50SWQYAyABKAkiHgoPVG9rZW5LZXlSZXF1ZXN0EgsKA2tl",
+            "eRgBIAEoCSJTChNBY2Nlc3NUb2tlblJlc3BvbnNlEg4KBnN0YXR1cxgBIAEo",
+            "BRIsCgthY2Nlc3NUb2tlbhgCIAEoCzIXLlNQLlNlcnZpY2UuQWNjZXNzVG9r",
+            "ZW4iOAoOVG9rZW5JZFJlcXVlc3QSEwoLYWNjZXNzVG9rZW4YASABKAkSEQoJ",
+            "YWNjb3VudElkGAIgASgJIpgBCgtBY2Nlc3NUb2tlbhITCgthY2Nlc3NUb2tl",
+            "bhgBIAEoCRIRCglhY2NvdW50SWQYAiABKAkSGgoSYWNjZXNzVG9rZW5FeHBp",
+            "cmVzGAMgASgDEhQKDHJlZnJlc2hUb2tlbhgEIAEoCRIbChNyZWZyZXNoVG9r",
+            "ZW5FeHBpcmVzGAUgASgDEhIKCmNyZWF0ZVRpbWUYBiABKAMiQgoSQWNjZXNz",
+            "VG9rZW5SZXF1ZXN0EiwKC2FjY2Vzc1Rva2VuGAEgASgLMhcuU1AuU2Vydmlj",
+            "ZS5BY2Nlc3NUb2tlbiJfChRVcGRhdGVBY2NvdW50UmVxdWVzdBINCgVlbWFp",
+            "bBgBIAEoCRITCgttb2JpbGVQaG9uZRgCIAEoCRIQCghwYXNzV29yZBgDIAEo",
+            "CRIRCglhY2NvdW50SWQYBCABKAkiVwoNUmVnaXN0UmVxdWVzdBINCgVlbWFp",
+            "bBgBIAEoCRITCgttb2JpbGVQaG9uZRgCIAEoCRIQCghwYXNzV29yZBgDIAEo",
+            "CRIQCgh1c2VyTmFtZRgEIAEoCSIfChFEZWxBZGRyZXNzUmVxdWVzdBIKCgJp",
+            "ZBgBIAEoBSIhCg5BY2NvdW50UmVxdWVzdBIPCgdhY2NvdW50GAEgASgJIiUK",
+            "EVJlZ2lvbkRhdGFSZXF1ZXN0EhAKCGRhdGFUeXBlGAEgASgFIkQKClJlZ2lv",
+            "bkRhdGESDgoGZGF0YUlkGAEgASgFEhAKCGRhdGFOYW1lGAIgASgJEhQKDHBh",
+            "cmVudERhdGFJZBgDIAEoBSJQChJSZWdpb25MaXN0UmVzcG9uc2USDgoGc3Rh",
+            "dHVzGAEgASgFEioKCnJlZ2lvbkxpc3QYAiADKAsyFi5TUC5TZXJ2aWNlLlJl",
+            "Z2lvbkRhdGEiIQoPUmVnaW9uSURSZXF1ZXN0Eg4KBmRhdGFJZBgBIAEoBSKA",
+            "AQoSUmVnaW9uRGF0YVJlc3BvbnNlEg4KBnN0YXR1cxgBIAEoBRIOCgZkYXRh",
+            "SWQYAiABKAUSEAoIZGF0YU5hbWUYAyABKAkSFAoMcGFyZW50RGF0YUlkGAQg",
+            "ASgFEg4KBmNpdHlJZBgFIAEoBRISCgpwcm92aW5jZUlkGAYgASgFIl0KE1No",
+            "b3BwaW5nQ2FydFJlcXVlc3QSEQoJcHJvZHVjdElkGAEgASgJEhEKCWFjY291",
+            "bnRJZBgCIAEoCRIQCghxdWFudGl0eRgDIAEoBRIOCgZzaG9wSWQYBCABKAUi",
+            "LAoaU2hvcHBpbmdDYXJ0UmVzdWx0UmVzcG9uc2USDgoGc3RhdHVzGAEgASgF",
+            "Ij8KG1Nob3BwaW5nQ2FydFF1YW50aXR5UmVxdWVzdBIOCgZjYXJ0SWQYASAB",
+            "KAkSEAoIcXVhbnRpdHkYAiABKAUiPQoaU2hvcHBpbmdDYXJ0T3JkZXJJZFJl",
+            "cXVlc3QSDgoGY2FydElkGAEgAygJEg8KB29yZGVySWQYAiABKAkiXgoYU2hv",
+            "cHBpbmdDYXJ0TGlzdFJlc3BvbnNlEg4KBnN0YXR1cxgBIAEoBRIyChBzaG9w",
+            "cGluZ0NhcnRMaXN0GAIgAygLMhguU1AuU2VydmljZS5TaG9wcGluZ0NhcnQi",
+            "OgoZU2hvcHBpbmdDYXJ0Q291bnRSZXNwb25zZRIOCgZzdGF0dXMYASABKAUS",
+            "DQoFY291bnQYAiABKAMiRwoPQWRkcmVzc1Jlc3BvbnNlEg4KBnN0YXR1cxgB",
+            "IAEoBRIkCgdhZGRyZXNzGAIgASgLMhMuU1AuU2VydmljZS5BZGRyZXNzIpgB",
+            "ChVBY2NvdW50QXV0aGVudGljYXRpb24SEAoIYXV0aFR5cGUYASABKAUSEQoJ",
+            "YWNjb3VudElkGAIgASgJEg8KB2FjY291bnQYAyABKAkSDQoFdG9rZW4YBCAB",
+            "KAkSEgoKdmVyaWZ5Q29kZRgFIAEoCRISCgpjcmVhdGVUaW1lGAYgASgDEhIK",
+            "CnVwZGF0ZVRpbWUYByABKAMiUgoYQWRkQXV0aGVudGljYXRpb25SZXF1ZXN0",
+            "EjYKC2FjY291bnRBdXRoGAEgASgLMiEuU1AuU2VydmljZS5BY2NvdW50QXV0",
+            "aGVudGljYXRpb24iTAoUR2V0VmVyaWZ5Q29kZVJlcXVlc3QSDwoHYWNjb3Vu",
+            "dBgBIAEoCRIQCghhdXRoVHlwZRgCIAEoBRIRCglhY2NvdW50SWQYAyABKAki",
+            "OAoSVmVyaWZ5Q29kZVJlc3BvbnNlEg4KBnN0YXR1cxgBIAEoBRISCgp2ZXJp",
+            "ZnlDb2RlGAIgASgJImMKG1VwZGF0ZUF1dGhlbnRpY2F0aW9uUmVxdWVzdBIP",
+            "CgdhY2NvdW50GAEgASgJEhEKCWFjY291bnRJZBgCIAEoCRIQCghhdXRoVHlw",
+            "ZRgDIAEoBRIOCgZzdGF0dXMYBCABKAUi7gEKCkFzc29jaWF0b3ISFAoMYXNz",
+            "b2NpYXRvcklkGAEgASgJEhEKCWFjY291bnRJZBgCIAEoCRIOCgZraW5kSWQY",
+            "AyABKAkSEAoIcXVhbnRpdHkYBCABKAUSDgoGYW1vdW50GAUgASgBEhQKDHBh",
+            "eU9yZGVyQ29kZRgGIAEoCRIPCgdwYXlUeXBlGAcgASgFEhEKCXN0YXJ0RGF0",
+            "ZRgIIAEoAxIPCgdlbmREYXRlGAkgASgDEg4KBnN0YXR1cxgKIAEoBRITCgtk",
+            "ZXNjcmlwdGlvbhgLIAEoCRIVCg1kaXNjb3VudFZhbHVlGAwgASgBIoIBChRB",
+            "ZGRBc3NvY2lhdG9yUmVxdWVzdBIRCglhY2NvdW50SWQYAiABKAkSDgoGa2lu",
+            "ZElkGAMgASgJEhAKCHF1YW50aXR5GAQgASgFEg4KBmFtb3VudBgFIAEoARIU",
+            "CgxwYXlPcmRlckNvZGUYBiABKAkSDwoHcGF5VHlwZRgHIAEoBSJYChZBc3Nv",
+            "Y2lhdG9yTGlzdFJlc3BvbnNlEg4KBnN0YXR1cxgBIAEoBRIuCg5hc3NvY2lh",
+            "dG9yTGlzdBgCIAMoCzIWLlNQLlNlcnZpY2UuQXNzb2NpYXRvciIhChFHZXRT",
+            "eXNLaW5kUmVxdWVzdBIMCgRraW5kGAEgASgFIoIBCgdTeXNLaW5kEg4KBmtp",
+            "bmRJZBgBIAEoCRIMCgRraW5kGAIgASgFEhAKCHF1YW50aXR5GAMgASgFEgwK",
+            "BHVuaXQYBCABKAUSDQoFcHJpY2UYBSABKAESEwoLZGVzY3JpcHRpb24YBiAB",
+            "KAkSFQoNZGlzY291bnRWYWx1ZRgHIAEoASJMChNTeXNLaW5kTGlzdFJlc3Bv",
+            "bnNlEg4KBnN0YXR1cxgBIAEoBRIlCghraW5kTGlzdBgCIAMoCzITLlNQLlNl",
+            "cnZpY2UuU3lzS2luZCJwChdBY2NvdW50RnVsbEluZm9SZXNwb25zZRIOCgZz",
+            "dGF0dXMYASABKAUSDgoGYXZhdGFyGAIgASgJEhAKCGZ1bGxOYW1lGAMgASgJ",
+            "Eg4KBmdlbmRlchgEIAEoCBITCgtwYXlQYXNzV29yZBgFIAEoCSJ/ChZBY2Nv",
+            "dW50RnVsbEluZm9SZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIOCgZhdmF0",
+            "YXIYAiABKAkSEAoIZnVsbE5hbWUYAyABKAkSDgoGZ2VuZGVyGAQgASgIEhAK",
+            "CHVzZXJUeXBlGAUgASgFEg4KBmRvcm1JZBgGIAEoBSIyCg9EaXNjb3VudFJl",
+            "cXVlc3QSEQoJYWNjb3VudElkGAEgASgJEgwKBGtpbmQYAiABKAUiKwoTQXNz",
+            "b2NpYXRvcklkUmVxdWVzdBIUCgxhc3NvY2lhdG9ySWQYASABKAkiUAoSQXNz",
+            "b2NpYXRvclJlc3BvbnNlEg4KBnN0YXR1cxgBIAEoBRIqCgphc3NvY2lhdG9y",
+            "GAIgASgLMhYuU1AuU2VydmljZS5Bc3NvY2lhdG9yIkUKHVVwZGF0ZUFzc29j",
+            "aWF0b3JTdGF0dXNSZXF1ZXN0EhQKDGFzc29jaWF0b3JJZBgBIAEoCRIOCgZz",
+            "dGF0dXMYAiABKAUiOwoVTXlTaG9wcGluZ0NhcnRSZXF1ZXN0EhEKCWFjY291",
+            "bnRJZBgBIAEoCRIPCgdvcmRlcklkGAIgASgJIjkKFEFjY291bnRQYXlQd2RS",
+            "ZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIOCgZwYXlQd2QYAiABKAkiggEK",
+            "EkJpbmdBY2NvdW50UmVxdWVzdBIRCglhY2NvdW50SWQYASABKAkSEQoJb3Ro",
+            "ZXJUeXBlGAIgASgFEhQKDG90aGVyQWNjb3VudBgDIAEoCRIOCgZhdmF0YXIY",
+            "BCABKAkSEAoIZnVsbE5hbWUYBSABKAkSDgoGZ2VuZGVyGAYgASgIIoUBChNP",
+            "dGhlckFjY291bnRSZXF1ZXN0EhMKC21vYmlsZVBob25lGAEgASgJEhEKCW90",
+            "aGVyVHlwZRgCIAEoBRIUCgxvdGhlckFjY291bnQYAyABKAkSDgoGYXZhdGFy",
+            "GAQgASgJEhAKCGZ1bGxOYW1lGAUgASgJEg4KBmdlbmRlchgGIAEoCCJBChZH",
+            "ZXRPdGhlckFjY291bnRSZXF1ZXN0EhEKCW90aGVyVHlwZRgCIAEoBRIUCgxv",
+            "dGhlckFjY291bnQYAyABKAkiPgoUQWNjb3VudE1vYmlsZVJlcXVlc3QSEQoJ",
+            "YWNjb3VudElkGAEgASgJEhMKC21vYmlsZVBob25lGAIgASgJYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -111,11 +126,13 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AddressRequest), global::SP.Service.AddressRequest.Parser, new[]{ "Status", "Address" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AddressListResponse), global::SP.Service.AddressListResponse.Parser, new[]{ "Status", "AddressList", "Total" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AddressStatusRequest), global::SP.Service.AddressStatusRequest.Parser, new[]{ "Id", "Status", "AccountId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AddressDormRequest), global::SP.Service.AddressDormRequest.Parser, new[]{ "Id", "DormId", "AccountId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TokenKeyRequest), global::SP.Service.TokenKeyRequest.Parser, new[]{ "Key" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccessTokenResponse), global::SP.Service.AccessTokenResponse.Parser, new[]{ "Status", "AccessToken" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TokenIdRequest), global::SP.Service.TokenIdRequest.Parser, new[]{ "AccessToken", "AccountId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccessToken), global::SP.Service.AccessToken.Parser, new[]{ "AccessToken_", "AccountId", "AccessTokenExpires", "RefreshToken", "RefreshTokenExpires", "CreateTime" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccessTokenRequest), global::SP.Service.AccessTokenRequest.Parser, new[]{ "AccessToken" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.UpdateAccountRequest), global::SP.Service.UpdateAccountRequest.Parser, new[]{ "Email", "MobilePhone", "PassWord", "AccountId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.RegistRequest), global::SP.Service.RegistRequest.Parser, new[]{ "Email", "MobilePhone", "PassWord", "UserName" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.DelAddressRequest), global::SP.Service.DelAddressRequest.Parser, new[]{ "Id" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountRequest), global::SP.Service.AccountRequest.Parser, new[]{ "Account" }, null, null, null),
@@ -142,13 +159,18 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.GetSysKindRequest), global::SP.Service.GetSysKindRequest.Parser, new[]{ "Kind" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SysKind), global::SP.Service.SysKind.Parser, new[]{ "KindId", "Kind", "Quantity", "Unit", "Price", "Description", "DiscountValue" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SysKindListResponse), global::SP.Service.SysKindListResponse.Parser, new[]{ "Status", "KindList" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountFullInfoResponse), global::SP.Service.AccountFullInfoResponse.Parser, new[]{ "Status", "Avatar", "FullName", "Gender" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountFullInfoRequest), global::SP.Service.AccountFullInfoRequest.Parser, new[]{ "AccountId", "Avatar", "FullName", "Gender" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountFullInfoResponse), global::SP.Service.AccountFullInfoResponse.Parser, new[]{ "Status", "Avatar", "FullName", "Gender", "PayPassWord" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountFullInfoRequest), global::SP.Service.AccountFullInfoRequest.Parser, new[]{ "AccountId", "Avatar", "FullName", "Gender", "UserType", "DormId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.DiscountRequest), global::SP.Service.DiscountRequest.Parser, new[]{ "AccountId", "Kind" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AssociatorIdRequest), global::SP.Service.AssociatorIdRequest.Parser, new[]{ "AssociatorId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AssociatorResponse), global::SP.Service.AssociatorResponse.Parser, new[]{ "Status", "Associator" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.UpdateAssociatorStatusRequest), global::SP.Service.UpdateAssociatorStatusRequest.Parser, new[]{ "AssociatorId", "Status" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.MyShoppingCartRequest), global::SP.Service.MyShoppingCartRequest.Parser, new[]{ "AccountId", "OrderId" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.MyShoppingCartRequest), global::SP.Service.MyShoppingCartRequest.Parser, new[]{ "AccountId", "OrderId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountPayPwdRequest), global::SP.Service.AccountPayPwdRequest.Parser, new[]{ "AccountId", "PayPwd" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.BingAccountRequest), global::SP.Service.BingAccountRequest.Parser, new[]{ "AccountId", "OtherType", "OtherAccount", "Avatar", "FullName", "Gender" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OtherAccountRequest), global::SP.Service.OtherAccountRequest.Parser, new[]{ "MobilePhone", "OtherType", "OtherAccount", "Avatar", "FullName", "Gender" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.GetOtherAccountRequest), global::SP.Service.GetOtherAccountRequest.Parser, new[]{ "OtherType", "OtherAccount" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountMobileRequest), global::SP.Service.AccountMobileRequest.Parser, new[]{ "AccountId", "MobilePhone" }, null, null, null)
           }));
     }
     #endregion
@@ -1225,6 +1247,195 @@ namespace SP.Service {
 
   /// <summary>
   ///*
+  /// 用户地址的请求参数
+  /// </summary>
+  public sealed partial class AddressDormRequest : pb::IMessage<AddressDormRequest> {
+    private static readonly pb::MessageParser<AddressDormRequest> _parser = new pb::MessageParser<AddressDormRequest>(() => new AddressDormRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<AddressDormRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[6]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AddressDormRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AddressDormRequest(AddressDormRequest other) : this() {
+      id_ = other.id_;
+      dormId_ = other.dormId_;
+      accountId_ = other.accountId_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AddressDormRequest Clone() {
+      return new AddressDormRequest(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private int id_;
+    /// <summary>
+    ///*
+    ///  用户地址ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "dormId" field.</summary>
+    public const int DormIdFieldNumber = 2;
+    private int dormId_;
+    /// <summary>
+    ///*
+    /// 用户宿舍ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int DormId {
+      get { return dormId_; }
+      set {
+        dormId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "accountId" field.</summary>
+    public const int AccountIdFieldNumber = 3;
+    private string accountId_ = "";
+    /// <summary>
+    ///*
+    ///  AccountId
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AccountId {
+      get { return accountId_; }
+      set {
+        accountId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as AddressDormRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(AddressDormRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Id != other.Id) return false;
+      if (DormId != other.DormId) return false;
+      if (AccountId != other.AccountId) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Id != 0) hash ^= Id.GetHashCode();
+      if (DormId != 0) hash ^= DormId.GetHashCode();
+      if (AccountId.Length != 0) hash ^= AccountId.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Id != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Id);
+      }
+      if (DormId != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(DormId);
+      }
+      if (AccountId.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(AccountId);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Id != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
+      }
+      if (DormId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(DormId);
+      }
+      if (AccountId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountId);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(AddressDormRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Id != 0) {
+        Id = other.Id;
+      }
+      if (other.DormId != 0) {
+        DormId = other.DormId;
+      }
+      if (other.AccountId.Length != 0) {
+        AccountId = other.AccountId;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            Id = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            DormId = input.ReadInt32();
+            break;
+          }
+          case 26: {
+            AccountId = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
   /// 获取AccessToken的请求参数
   /// </summary>
   public sealed partial class TokenKeyRequest : pb::IMessage<TokenKeyRequest> {
@@ -1234,7 +1445,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[6]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1359,7 +1570,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[7]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1522,7 +1733,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[8]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1679,7 +1890,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[9]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1964,7 +2175,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[10]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2086,6 +2297,227 @@ namespace SP.Service {
 
   /// <summary>
   ///*
+  /// 更新账户的请求参数
+  /// </summary>
+  public sealed partial class UpdateAccountRequest : pb::IMessage<UpdateAccountRequest> {
+    private static readonly pb::MessageParser<UpdateAccountRequest> _parser = new pb::MessageParser<UpdateAccountRequest>(() => new UpdateAccountRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<UpdateAccountRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[12]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UpdateAccountRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UpdateAccountRequest(UpdateAccountRequest other) : this() {
+      email_ = other.email_;
+      mobilePhone_ = other.mobilePhone_;
+      passWord_ = other.passWord_;
+      accountId_ = other.accountId_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UpdateAccountRequest Clone() {
+      return new UpdateAccountRequest(this);
+    }
+
+    /// <summary>Field number for the "email" field.</summary>
+    public const int EmailFieldNumber = 1;
+    private string email_ = "";
+    /// <summary>
+    ///*
+    ///  注册邮箱
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Email {
+      get { return email_; }
+      set {
+        email_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "mobilePhone" field.</summary>
+    public const int MobilePhoneFieldNumber = 2;
+    private string mobilePhone_ = "";
+    /// <summary>
+    ///*
+    ///  注册邮箱
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string MobilePhone {
+      get { return mobilePhone_; }
+      set {
+        mobilePhone_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "passWord" field.</summary>
+    public const int PassWordFieldNumber = 3;
+    private string passWord_ = "";
+    /// <summary>
+    ///*
+    ///  注册密码
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string PassWord {
+      get { return passWord_; }
+      set {
+        passWord_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "accountId" field.</summary>
+    public const int AccountIdFieldNumber = 4;
+    private string accountId_ = "";
+    /// <summary>
+    ///*
+    ///  账户ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AccountId {
+      get { return accountId_; }
+      set {
+        accountId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as UpdateAccountRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(UpdateAccountRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Email != other.Email) return false;
+      if (MobilePhone != other.MobilePhone) return false;
+      if (PassWord != other.PassWord) return false;
+      if (AccountId != other.AccountId) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Email.Length != 0) hash ^= Email.GetHashCode();
+      if (MobilePhone.Length != 0) hash ^= MobilePhone.GetHashCode();
+      if (PassWord.Length != 0) hash ^= PassWord.GetHashCode();
+      if (AccountId.Length != 0) hash ^= AccountId.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Email.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Email);
+      }
+      if (MobilePhone.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(MobilePhone);
+      }
+      if (PassWord.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(PassWord);
+      }
+      if (AccountId.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(AccountId);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Email.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Email);
+      }
+      if (MobilePhone.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(MobilePhone);
+      }
+      if (PassWord.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(PassWord);
+      }
+      if (AccountId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountId);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(UpdateAccountRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Email.Length != 0) {
+        Email = other.Email;
+      }
+      if (other.MobilePhone.Length != 0) {
+        MobilePhone = other.MobilePhone;
+      }
+      if (other.PassWord.Length != 0) {
+        PassWord = other.PassWord;
+      }
+      if (other.AccountId.Length != 0) {
+        AccountId = other.AccountId;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            Email = input.ReadString();
+            break;
+          }
+          case 18: {
+            MobilePhone = input.ReadString();
+            break;
+          }
+          case 26: {
+            PassWord = input.ReadString();
+            break;
+          }
+          case 34: {
+            AccountId = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
   /// 注册账户的请求参数
   /// </summary>
   public sealed partial class RegistRequest : pb::IMessage<RegistRequest> {
@@ -2095,7 +2527,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[11]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[13]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2316,7 +2748,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[12]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[14]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2441,7 +2873,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[13]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[15]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2566,7 +2998,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[14]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[16]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2687,7 +3119,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[15]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[17]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2876,7 +3308,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[16]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[18]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3025,7 +3457,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[17]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[19]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3150,7 +3582,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[18]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[20]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3435,7 +3867,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[19]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[21]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3656,7 +4088,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[20]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[22]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3781,7 +4213,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[21]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[23]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3938,7 +4370,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[22]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[24]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4087,7 +4519,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[23]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[25]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4236,7 +4668,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[24]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[26]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4393,7 +4825,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[25]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[27]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4556,7 +4988,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[26]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[28]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4873,7 +5305,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[27]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[29]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5004,7 +5436,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[28]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[30]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5193,7 +5625,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[29]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[31]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5350,7 +5782,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[30]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[32]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5571,7 +6003,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[31]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[33]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6048,7 +6480,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[32]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[34]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6333,7 +6765,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[33]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[35]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6482,7 +6914,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[34]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[36]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6607,7 +7039,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[35]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[37]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6924,7 +7356,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[36]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[38]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7073,7 +7505,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[37]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[39]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7094,6 +7526,7 @@ namespace SP.Service {
       avatar_ = other.avatar_;
       fullName_ = other.fullName_;
       gender_ = other.gender_;
+      payPassWord_ = other.payPassWord_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7161,6 +7594,21 @@ namespace SP.Service {
       }
     }
 
+    /// <summary>Field number for the "payPassWord" field.</summary>
+    public const int PayPassWordFieldNumber = 5;
+    private string payPassWord_ = "";
+    /// <summary>
+    ///*
+    ///  支付密码
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string PayPassWord {
+      get { return payPassWord_; }
+      set {
+        payPassWord_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as AccountFullInfoResponse);
@@ -7178,6 +7626,7 @@ namespace SP.Service {
       if (Avatar != other.Avatar) return false;
       if (FullName != other.FullName) return false;
       if (Gender != other.Gender) return false;
+      if (PayPassWord != other.PayPassWord) return false;
       return true;
     }
 
@@ -7188,6 +7637,7 @@ namespace SP.Service {
       if (Avatar.Length != 0) hash ^= Avatar.GetHashCode();
       if (FullName.Length != 0) hash ^= FullName.GetHashCode();
       if (Gender != false) hash ^= Gender.GetHashCode();
+      if (PayPassWord.Length != 0) hash ^= PayPassWord.GetHashCode();
       return hash;
     }
 
@@ -7214,6 +7664,10 @@ namespace SP.Service {
         output.WriteRawTag(32);
         output.WriteBool(Gender);
       }
+      if (PayPassWord.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(PayPassWord);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7230,6 +7684,9 @@ namespace SP.Service {
       }
       if (Gender != false) {
         size += 1 + 1;
+      }
+      if (PayPassWord.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(PayPassWord);
       }
       return size;
     }
@@ -7250,6 +7707,9 @@ namespace SP.Service {
       }
       if (other.Gender != false) {
         Gender = other.Gender;
+      }
+      if (other.PayPassWord.Length != 0) {
+        PayPassWord = other.PayPassWord;
       }
     }
 
@@ -7277,6 +7737,10 @@ namespace SP.Service {
             Gender = input.ReadBool();
             break;
           }
+          case 42: {
+            PayPassWord = input.ReadString();
+            break;
+          }
         }
       }
     }
@@ -7294,7 +7758,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[38]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[40]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7315,6 +7779,8 @@ namespace SP.Service {
       avatar_ = other.avatar_;
       fullName_ = other.fullName_;
       gender_ = other.gender_;
+      userType_ = other.userType_;
+      dormId_ = other.dormId_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7382,6 +7848,36 @@ namespace SP.Service {
       }
     }
 
+    /// <summary>Field number for the "userType" field.</summary>
+    public const int UserTypeFieldNumber = 5;
+    private int userType_;
+    /// <summary>
+    ///*
+    ///  用户类别
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int UserType {
+      get { return userType_; }
+      set {
+        userType_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "dormId" field.</summary>
+    public const int DormIdFieldNumber = 6;
+    private int dormId_;
+    /// <summary>
+    ///*
+    ///  宿舍ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int DormId {
+      get { return dormId_; }
+      set {
+        dormId_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as AccountFullInfoRequest);
@@ -7399,6 +7895,8 @@ namespace SP.Service {
       if (Avatar != other.Avatar) return false;
       if (FullName != other.FullName) return false;
       if (Gender != other.Gender) return false;
+      if (UserType != other.UserType) return false;
+      if (DormId != other.DormId) return false;
       return true;
     }
 
@@ -7409,6 +7907,8 @@ namespace SP.Service {
       if (Avatar.Length != 0) hash ^= Avatar.GetHashCode();
       if (FullName.Length != 0) hash ^= FullName.GetHashCode();
       if (Gender != false) hash ^= Gender.GetHashCode();
+      if (UserType != 0) hash ^= UserType.GetHashCode();
+      if (DormId != 0) hash ^= DormId.GetHashCode();
       return hash;
     }
 
@@ -7435,6 +7935,14 @@ namespace SP.Service {
         output.WriteRawTag(32);
         output.WriteBool(Gender);
       }
+      if (UserType != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(UserType);
+      }
+      if (DormId != 0) {
+        output.WriteRawTag(48);
+        output.WriteInt32(DormId);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7451,6 +7959,12 @@ namespace SP.Service {
       }
       if (Gender != false) {
         size += 1 + 1;
+      }
+      if (UserType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UserType);
+      }
+      if (DormId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(DormId);
       }
       return size;
     }
@@ -7471,6 +7985,12 @@ namespace SP.Service {
       }
       if (other.Gender != false) {
         Gender = other.Gender;
+      }
+      if (other.UserType != 0) {
+        UserType = other.UserType;
+      }
+      if (other.DormId != 0) {
+        DormId = other.DormId;
       }
     }
 
@@ -7498,6 +8018,14 @@ namespace SP.Service {
             Gender = input.ReadBool();
             break;
           }
+          case 40: {
+            UserType = input.ReadInt32();
+            break;
+          }
+          case 48: {
+            DormId = input.ReadInt32();
+            break;
+          }
         }
       }
     }
@@ -7515,7 +8043,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[39]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[41]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7672,7 +8200,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[40]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[42]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7797,7 +8325,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[41]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[43]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7956,7 +8484,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[42]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[44]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8109,7 +8637,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[43]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[45]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8247,6 +8775,1047 @@ namespace SP.Service {
           }
           case 18: {
             OrderId = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 支付密码的请求参数
+  /// </summary>
+  public sealed partial class AccountPayPwdRequest : pb::IMessage<AccountPayPwdRequest> {
+    private static readonly pb::MessageParser<AccountPayPwdRequest> _parser = new pb::MessageParser<AccountPayPwdRequest>(() => new AccountPayPwdRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<AccountPayPwdRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[46]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AccountPayPwdRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AccountPayPwdRequest(AccountPayPwdRequest other) : this() {
+      accountId_ = other.accountId_;
+      payPwd_ = other.payPwd_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AccountPayPwdRequest Clone() {
+      return new AccountPayPwdRequest(this);
+    }
+
+    /// <summary>Field number for the "accountId" field.</summary>
+    public const int AccountIdFieldNumber = 1;
+    private string accountId_ = "";
+    /// <summary>
+    ///*
+    ///  会员ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AccountId {
+      get { return accountId_; }
+      set {
+        accountId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "payPwd" field.</summary>
+    public const int PayPwdFieldNumber = 2;
+    private string payPwd_ = "";
+    /// <summary>
+    ///*
+    ///  支付密码
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string PayPwd {
+      get { return payPwd_; }
+      set {
+        payPwd_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as AccountPayPwdRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(AccountPayPwdRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (AccountId != other.AccountId) return false;
+      if (PayPwd != other.PayPwd) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (AccountId.Length != 0) hash ^= AccountId.GetHashCode();
+      if (PayPwd.Length != 0) hash ^= PayPwd.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (AccountId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(AccountId);
+      }
+      if (PayPwd.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(PayPwd);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (AccountId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountId);
+      }
+      if (PayPwd.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(PayPwd);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(AccountPayPwdRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.AccountId.Length != 0) {
+        AccountId = other.AccountId;
+      }
+      if (other.PayPwd.Length != 0) {
+        PayPwd = other.PayPwd;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            AccountId = input.ReadString();
+            break;
+          }
+          case 18: {
+            PayPwd = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 绑定账号的请求参数
+  /// </summary>
+  public sealed partial class BingAccountRequest : pb::IMessage<BingAccountRequest> {
+    private static readonly pb::MessageParser<BingAccountRequest> _parser = new pb::MessageParser<BingAccountRequest>(() => new BingAccountRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<BingAccountRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[47]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BingAccountRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BingAccountRequest(BingAccountRequest other) : this() {
+      accountId_ = other.accountId_;
+      otherType_ = other.otherType_;
+      otherAccount_ = other.otherAccount_;
+      avatar_ = other.avatar_;
+      fullName_ = other.fullName_;
+      gender_ = other.gender_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BingAccountRequest Clone() {
+      return new BingAccountRequest(this);
+    }
+
+    /// <summary>Field number for the "accountId" field.</summary>
+    public const int AccountIdFieldNumber = 1;
+    private string accountId_ = "";
+    /// <summary>
+    ///*
+    ///  AccountId
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AccountId {
+      get { return accountId_; }
+      set {
+        accountId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "otherType" field.</summary>
+    public const int OtherTypeFieldNumber = 2;
+    private int otherType_;
+    /// <summary>
+    ///*
+    /// 第三方账号类型
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int OtherType {
+      get { return otherType_; }
+      set {
+        otherType_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "otherAccount" field.</summary>
+    public const int OtherAccountFieldNumber = 3;
+    private string otherAccount_ = "";
+    /// <summary>
+    ///*
+    ///  第三方账号
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string OtherAccount {
+      get { return otherAccount_; }
+      set {
+        otherAccount_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "avatar" field.</summary>
+    public const int AvatarFieldNumber = 4;
+    private string avatar_ = "";
+    /// <summary>
+    ///*
+    ///  头像
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Avatar {
+      get { return avatar_; }
+      set {
+        avatar_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "fullName" field.</summary>
+    public const int FullNameFieldNumber = 5;
+    private string fullName_ = "";
+    /// <summary>
+    ///*
+    ///  昵称
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string FullName {
+      get { return fullName_; }
+      set {
+        fullName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "gender" field.</summary>
+    public const int GenderFieldNumber = 6;
+    private bool gender_;
+    /// <summary>
+    ///*
+    ///  性别
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Gender {
+      get { return gender_; }
+      set {
+        gender_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as BingAccountRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(BingAccountRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (AccountId != other.AccountId) return false;
+      if (OtherType != other.OtherType) return false;
+      if (OtherAccount != other.OtherAccount) return false;
+      if (Avatar != other.Avatar) return false;
+      if (FullName != other.FullName) return false;
+      if (Gender != other.Gender) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (AccountId.Length != 0) hash ^= AccountId.GetHashCode();
+      if (OtherType != 0) hash ^= OtherType.GetHashCode();
+      if (OtherAccount.Length != 0) hash ^= OtherAccount.GetHashCode();
+      if (Avatar.Length != 0) hash ^= Avatar.GetHashCode();
+      if (FullName.Length != 0) hash ^= FullName.GetHashCode();
+      if (Gender != false) hash ^= Gender.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (AccountId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(AccountId);
+      }
+      if (OtherType != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(OtherType);
+      }
+      if (OtherAccount.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(OtherAccount);
+      }
+      if (Avatar.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Avatar);
+      }
+      if (FullName.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(FullName);
+      }
+      if (Gender != false) {
+        output.WriteRawTag(48);
+        output.WriteBool(Gender);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (AccountId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountId);
+      }
+      if (OtherType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(OtherType);
+      }
+      if (OtherAccount.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(OtherAccount);
+      }
+      if (Avatar.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Avatar);
+      }
+      if (FullName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(FullName);
+      }
+      if (Gender != false) {
+        size += 1 + 1;
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(BingAccountRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.AccountId.Length != 0) {
+        AccountId = other.AccountId;
+      }
+      if (other.OtherType != 0) {
+        OtherType = other.OtherType;
+      }
+      if (other.OtherAccount.Length != 0) {
+        OtherAccount = other.OtherAccount;
+      }
+      if (other.Avatar.Length != 0) {
+        Avatar = other.Avatar;
+      }
+      if (other.FullName.Length != 0) {
+        FullName = other.FullName;
+      }
+      if (other.Gender != false) {
+        Gender = other.Gender;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            AccountId = input.ReadString();
+            break;
+          }
+          case 16: {
+            OtherType = input.ReadInt32();
+            break;
+          }
+          case 26: {
+            OtherAccount = input.ReadString();
+            break;
+          }
+          case 34: {
+            Avatar = input.ReadString();
+            break;
+          }
+          case 42: {
+            FullName = input.ReadString();
+            break;
+          }
+          case 48: {
+            Gender = input.ReadBool();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 创建第三方账号的请求参数
+  /// </summary>
+  public sealed partial class OtherAccountRequest : pb::IMessage<OtherAccountRequest> {
+    private static readonly pb::MessageParser<OtherAccountRequest> _parser = new pb::MessageParser<OtherAccountRequest>(() => new OtherAccountRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<OtherAccountRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[48]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public OtherAccountRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public OtherAccountRequest(OtherAccountRequest other) : this() {
+      mobilePhone_ = other.mobilePhone_;
+      otherType_ = other.otherType_;
+      otherAccount_ = other.otherAccount_;
+      avatar_ = other.avatar_;
+      fullName_ = other.fullName_;
+      gender_ = other.gender_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public OtherAccountRequest Clone() {
+      return new OtherAccountRequest(this);
+    }
+
+    /// <summary>Field number for the "mobilePhone" field.</summary>
+    public const int MobilePhoneFieldNumber = 1;
+    private string mobilePhone_ = "";
+    /// <summary>
+    ///*
+    ///  注册电话
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string MobilePhone {
+      get { return mobilePhone_; }
+      set {
+        mobilePhone_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "otherType" field.</summary>
+    public const int OtherTypeFieldNumber = 2;
+    private int otherType_;
+    /// <summary>
+    ///*
+    /// 第三方账号类型
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int OtherType {
+      get { return otherType_; }
+      set {
+        otherType_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "otherAccount" field.</summary>
+    public const int OtherAccountFieldNumber = 3;
+    private string otherAccount_ = "";
+    /// <summary>
+    ///*
+    ///  第三方账号
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string OtherAccount {
+      get { return otherAccount_; }
+      set {
+        otherAccount_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "avatar" field.</summary>
+    public const int AvatarFieldNumber = 4;
+    private string avatar_ = "";
+    /// <summary>
+    ///*
+    ///  头像
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Avatar {
+      get { return avatar_; }
+      set {
+        avatar_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "fullName" field.</summary>
+    public const int FullNameFieldNumber = 5;
+    private string fullName_ = "";
+    /// <summary>
+    ///*
+    ///  昵称
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string FullName {
+      get { return fullName_; }
+      set {
+        fullName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "gender" field.</summary>
+    public const int GenderFieldNumber = 6;
+    private bool gender_;
+    /// <summary>
+    ///*
+    ///  性别
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Gender {
+      get { return gender_; }
+      set {
+        gender_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as OtherAccountRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(OtherAccountRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (MobilePhone != other.MobilePhone) return false;
+      if (OtherType != other.OtherType) return false;
+      if (OtherAccount != other.OtherAccount) return false;
+      if (Avatar != other.Avatar) return false;
+      if (FullName != other.FullName) return false;
+      if (Gender != other.Gender) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (MobilePhone.Length != 0) hash ^= MobilePhone.GetHashCode();
+      if (OtherType != 0) hash ^= OtherType.GetHashCode();
+      if (OtherAccount.Length != 0) hash ^= OtherAccount.GetHashCode();
+      if (Avatar.Length != 0) hash ^= Avatar.GetHashCode();
+      if (FullName.Length != 0) hash ^= FullName.GetHashCode();
+      if (Gender != false) hash ^= Gender.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (MobilePhone.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(MobilePhone);
+      }
+      if (OtherType != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(OtherType);
+      }
+      if (OtherAccount.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(OtherAccount);
+      }
+      if (Avatar.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Avatar);
+      }
+      if (FullName.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(FullName);
+      }
+      if (Gender != false) {
+        output.WriteRawTag(48);
+        output.WriteBool(Gender);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (MobilePhone.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(MobilePhone);
+      }
+      if (OtherType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(OtherType);
+      }
+      if (OtherAccount.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(OtherAccount);
+      }
+      if (Avatar.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Avatar);
+      }
+      if (FullName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(FullName);
+      }
+      if (Gender != false) {
+        size += 1 + 1;
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(OtherAccountRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.MobilePhone.Length != 0) {
+        MobilePhone = other.MobilePhone;
+      }
+      if (other.OtherType != 0) {
+        OtherType = other.OtherType;
+      }
+      if (other.OtherAccount.Length != 0) {
+        OtherAccount = other.OtherAccount;
+      }
+      if (other.Avatar.Length != 0) {
+        Avatar = other.Avatar;
+      }
+      if (other.FullName.Length != 0) {
+        FullName = other.FullName;
+      }
+      if (other.Gender != false) {
+        Gender = other.Gender;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            MobilePhone = input.ReadString();
+            break;
+          }
+          case 16: {
+            OtherType = input.ReadInt32();
+            break;
+          }
+          case 26: {
+            OtherAccount = input.ReadString();
+            break;
+          }
+          case 34: {
+            Avatar = input.ReadString();
+            break;
+          }
+          case 42: {
+            FullName = input.ReadString();
+            break;
+          }
+          case 48: {
+            Gender = input.ReadBool();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 根据第三方账号获取账户信息的请求参数
+  /// </summary>
+  public sealed partial class GetOtherAccountRequest : pb::IMessage<GetOtherAccountRequest> {
+    private static readonly pb::MessageParser<GetOtherAccountRequest> _parser = new pb::MessageParser<GetOtherAccountRequest>(() => new GetOtherAccountRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<GetOtherAccountRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[49]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public GetOtherAccountRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public GetOtherAccountRequest(GetOtherAccountRequest other) : this() {
+      otherType_ = other.otherType_;
+      otherAccount_ = other.otherAccount_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public GetOtherAccountRequest Clone() {
+      return new GetOtherAccountRequest(this);
+    }
+
+    /// <summary>Field number for the "otherType" field.</summary>
+    public const int OtherTypeFieldNumber = 2;
+    private int otherType_;
+    /// <summary>
+    ///*
+    /// 第三方账号类型
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int OtherType {
+      get { return otherType_; }
+      set {
+        otherType_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "otherAccount" field.</summary>
+    public const int OtherAccountFieldNumber = 3;
+    private string otherAccount_ = "";
+    /// <summary>
+    ///*
+    ///  第三方账号
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string OtherAccount {
+      get { return otherAccount_; }
+      set {
+        otherAccount_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as GetOtherAccountRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(GetOtherAccountRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (OtherType != other.OtherType) return false;
+      if (OtherAccount != other.OtherAccount) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (OtherType != 0) hash ^= OtherType.GetHashCode();
+      if (OtherAccount.Length != 0) hash ^= OtherAccount.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (OtherType != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(OtherType);
+      }
+      if (OtherAccount.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(OtherAccount);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (OtherType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(OtherType);
+      }
+      if (OtherAccount.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(OtherAccount);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(GetOtherAccountRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.OtherType != 0) {
+        OtherType = other.OtherType;
+      }
+      if (other.OtherAccount.Length != 0) {
+        OtherAccount = other.OtherAccount;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 16: {
+            OtherType = input.ReadInt32();
+            break;
+          }
+          case 26: {
+            OtherAccount = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 更换的请求参数
+  /// </summary>
+  public sealed partial class AccountMobileRequest : pb::IMessage<AccountMobileRequest> {
+    private static readonly pb::MessageParser<AccountMobileRequest> _parser = new pb::MessageParser<AccountMobileRequest>(() => new AccountMobileRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<AccountMobileRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[50]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AccountMobileRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AccountMobileRequest(AccountMobileRequest other) : this() {
+      accountId_ = other.accountId_;
+      mobilePhone_ = other.mobilePhone_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AccountMobileRequest Clone() {
+      return new AccountMobileRequest(this);
+    }
+
+    /// <summary>Field number for the "accountId" field.</summary>
+    public const int AccountIdFieldNumber = 1;
+    private string accountId_ = "";
+    /// <summary>
+    ///*
+    ///  AccountId
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AccountId {
+      get { return accountId_; }
+      set {
+        accountId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "mobilePhone" field.</summary>
+    public const int MobilePhoneFieldNumber = 2;
+    private string mobilePhone_ = "";
+    /// <summary>
+    ///*
+    ///  注册电话
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string MobilePhone {
+      get { return mobilePhone_; }
+      set {
+        mobilePhone_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as AccountMobileRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(AccountMobileRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (AccountId != other.AccountId) return false;
+      if (MobilePhone != other.MobilePhone) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (AccountId.Length != 0) hash ^= AccountId.GetHashCode();
+      if (MobilePhone.Length != 0) hash ^= MobilePhone.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (AccountId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(AccountId);
+      }
+      if (MobilePhone.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(MobilePhone);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (AccountId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountId);
+      }
+      if (MobilePhone.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(MobilePhone);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(AccountMobileRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.AccountId.Length != 0) {
+        AccountId = other.AccountId;
+      }
+      if (other.MobilePhone.Length != 0) {
+        MobilePhone = other.MobilePhone;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            AccountId = input.ReadString();
+            break;
+          }
+          case 18: {
+            MobilePhone = input.ReadString();
             break;
           }
         }

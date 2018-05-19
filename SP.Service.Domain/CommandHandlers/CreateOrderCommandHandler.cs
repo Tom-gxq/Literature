@@ -29,12 +29,14 @@ namespace SP.Service.Domain.CommandHandlers
         private ProductReportDatabase _productReportDatabase;
         private ShopReportDatabase _shopReportDatabase;
         private ProductSkuReportDatabase _skuReportDatabase;
+        private AddressReportDatabase _addressReportDatabase;
         private static object lockObj = new object();
         private static object lockObjSecond = new object();
 
 
         public CreateOrderCommandHandler(IDataRepository<OrderDomain> repository, OrderReportDatabase orderReportDatabase, 
             ProductReportDatabase productReportDatabase, ShopReportDatabase shopReportDatabase, ProductSkuReportDatabase skuReportDatabase,
+            AddressReportDatabase addressReportDatabase,
             IDataRepository<ShoppingCartsDomain> cartRepository, IDataRepository<ProductSkuDomain> skuRepository)
         {
             this._repository = repository;
@@ -43,6 +45,7 @@ namespace SP.Service.Domain.CommandHandlers
             _productReportDatabase = productReportDatabase;
             _shopReportDatabase = shopReportDatabase;
             _skuReportDatabase = skuReportDatabase;
+            _addressReportDatabase = addressReportDatabase;
             _cartRepository = cartRepository;            
         }
 
@@ -52,6 +55,7 @@ namespace SP.Service.Domain.CommandHandlers
             {
                 lock (lockObjSecond)
                 {
+                    var address = _addressReportDatabase.GetAddressById(command.AddressId, command.AccountId);
                     var cartList = new List<ShoppingCartsDomain>();
                     var groupList = command.CartIds.Distinct();
                     foreach (var item in groupList)
@@ -103,7 +107,7 @@ namespace SP.Service.Domain.CommandHandlers
                     }
                     if (cartList.Count > 0)
                     {
-                        var aggregate = new OrderDomain(command.Id, command.Remark, command.OrderStatus, command.OrderDate, command.AccountId, cartList, command.AddressId);
+                        var aggregate = new OrderDomain(command.Id, command.Remark, command.OrderStatus, command.OrderDate, command.AccountId, cartList, command.AddressId, address.Address);
 
                         _repository.Save(aggregate);
                         JObject data = new JObject();

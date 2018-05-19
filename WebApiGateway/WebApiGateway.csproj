@@ -218,6 +218,7 @@
     <Compile Include="Controllers\Product\ProductController.cs" />
     <Compile Include="Controllers\Register\AlipayNotifyController.cs" />
     <Compile Include="Controllers\Register\RegisterController.cs" />
+    <Compile Include="Controllers\Register\WXNotifyController.cs" />
     <Compile Include="Controllers\System\VersionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

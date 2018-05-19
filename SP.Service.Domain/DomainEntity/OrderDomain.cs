@@ -37,10 +37,10 @@ namespace SP.Service.Domain.DomainEntity
 
         }
 
-        public OrderDomain(Guid id, string remark, OrderStatus orderStatus, DateTime orderDate, string accountId, List<ShoppingCartsDomain> shoppingCarts, int addressId)
+        public OrderDomain(Guid id, string remark, OrderStatus orderStatus, DateTime orderDate, string accountId, List<ShoppingCartsDomain> shoppingCarts, int addressId,string address)
         {
             SumOrderAmount(shoppingCarts,id);
-            ApplyChange(new OrderCreatedEvent(id, remark, orderStatus, orderDate, accountId, this.Amount,this.VIPAmount, addressId));
+            ApplyChange(new OrderCreatedEvent(id, remark, orderStatus, orderDate, accountId, this.Amount,this.VIPAmount, addressId, address));
         }
 
         private void SumOrderAmount(List<ShoppingCartsDomain> shoppingCarts, Guid orderId)

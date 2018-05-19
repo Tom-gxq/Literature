@@ -15,13 +15,13 @@ namespace WebApiGateway.Controllers.Product
     public class ProductController : BaseController
     {
         [System.Web.Mvc.HttpGet]
-        public ActionResult GetAllShopList(int districtId,int pageIndex, int pageSize)
+        public ActionResult GetAllShopList(int districtId,int shopType,int pageIndex, int pageSize)
         {
             var result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var list = ProductBusiness.GetAllShopList(districtId, pageIndex, pageSize);
+                var list = ProductBusiness.GetAllShopList(districtId, shopType, pageIndex, pageSize);
                 JsonResult.Add("shopList", list);
                 JsonResult.Add("status", 0);
             }
@@ -53,13 +53,13 @@ namespace WebApiGateway.Controllers.Product
             return result;
         }
         [System.Web.Mvc.HttpGet]
-        public ActionResult GetShopProductList(int districtId, long attributeId, int shopId, int pageIndex, int pageSize)
+        public ActionResult GetShopProductList(int districtId, long typeId,  int pageIndex, int pageSize)
         {
             var result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var list = ProductBusiness.GetShopProductList(districtId,attributeId, shopId, pageIndex, pageSize);
+                var list = ProductBusiness.GetShopProductList(districtId, typeId, pageIndex, pageSize);
                 string domainPath = ConfigurationManager.AppSettings["Qiniu.Domain"];
                 if(list!= null)
                 {
@@ -68,6 +68,39 @@ namespace WebApiGateway.Controllers.Product
                         if(item.images != null)
                         {
                             foreach(var img in item.images)
+                            {
+                                img.imgPath = !string.IsNullOrEmpty(img.imgPath) ? (domainPath + img.imgPath) : string.Empty;
+                            }
+                        }
+                    }
+                }
+                JsonResult.Add("shopProductList", list);
+                JsonResult.Add("status", 0);
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+        [System.Web.Mvc.HttpGet]
+        public ActionResult GetFoodShopProductList(int districtId, int shopId, int pageIndex, int pageSize)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                var list = ProductBusiness.GetFoodShopProductList(districtId, shopId, pageIndex, pageSize);
+                string domainPath = ConfigurationManager.AppSettings["Qiniu.Domain"];
+                if (list != null)
+                {
+                    foreach (var item in list)
+                    {
+                        if (item.images != null)
+                        {
+                            foreach (var img in item.images)
                             {
                                 img.imgPath = !string.IsNullOrEmpty(img.imgPath) ? (domainPath + img.imgPath) : string.Empty;
                             }
@@ -112,6 +145,44 @@ namespace WebApiGateway.Controllers.Product
             {
                 var list = ProductBusiness.GetCarouselList();
                 JsonResult.Add("list", list);
+                JsonResult.Add("status", 0);
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+        [System.Web.Mvc.HttpGet]
+        public ActionResult GetTitleTypeList()
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                var list = ProductBusiness.GetTitleTypeList();
+                JsonResult.Add("titleTypeList", list);
+                JsonResult.Add("status", 0);
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+        [System.Web.Mvc.HttpGet]
+        public ActionResult GetProductTypeTitleList()
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                var list = ProductBusiness.GetProductTypeTitleList();
+                JsonResult.Add("titleTypeList", list);
                 JsonResult.Add("status", 0);
             }
             catch (Exception ex)

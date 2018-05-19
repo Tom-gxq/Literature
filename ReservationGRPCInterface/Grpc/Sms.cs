@@ -28,21 +28,26 @@ namespace MD.SmsService {
             "IAEoCRIVCg10ZW1wbGF0ZV90eXBlGAYgASgFEhYKDnRlbXBsYXRlX2RhdGFz",
             "GAcgAygJEhQKDG1lc3NhZ2VfdHlwZRgIIAEoBSI0ChNTZW5kTWVzc2FnZVJl",
             "c3BvbnNlEgwKBGNvZGUYASABKAUSDwoHbWVzc2FnZRgCIAEoCSIyCg9SZWdp",
-            "c3RlclJlcXVlc3QSEwoLbW9iaWxlUGhvbmUYASABKAkSCgoCaXAYAiABKAky",
-            "swIKA1NtcxJWCgtTZW5kTWVzc2FnZRIhLk1ELlNtc1NlcnZpY2UuU2VuZE1l",
-            "c3NhZ2VSZXF1ZXN0GiIuTUQuU21zU2VydmljZS5TZW5kTWVzc2FnZVJlc3Bv",
-            "bnNlIgASbQolQ2hlY2tJc0FsbG93U2VuZFJlZ2lzdGVyTW9iaWxlTWVzc2Fn",
-            "ZRIeLk1ELlNtc1NlcnZpY2UuUmVnaXN0ZXJSZXF1ZXN0GiIuTUQuU21zU2Vy",
-            "dmljZS5TZW5kTWVzc2FnZVJlc3BvbnNlIgASZQodU2V0UmVnaXN0ZXJNb2Jp",
-            "bGVNZXNzYWdlTGltaXQSHi5NRC5TbXNTZXJ2aWNlLlJlZ2lzdGVyUmVxdWVz",
-            "dBoiLk1ELlNtc1NlcnZpY2UuU2VuZE1lc3NhZ2VSZXNwb25zZSIAYgZwcm90",
-            "bzM="));
+            "c3RlclJlcXVlc3QSEwoLbW9iaWxlUGhvbmUYASABKAkSCgoCaXAYAiABKAki",
+            "KAoLSHR0cFJlcXVlc3QSCwoDdXJsGAEgASgJEgwKBGRhdGEYAiABKAkiLQoM",
+            "SHR0cFJlc3BvbnNlEgwKBGNvZGUYASABKAUSDwoHbWVzc2FnZRgCIAEoCTL6",
+            "AgoDU21zElYKC1NlbmRNZXNzYWdlEiEuTUQuU21zU2VydmljZS5TZW5kTWVz",
+            "c2FnZVJlcXVlc3QaIi5NRC5TbXNTZXJ2aWNlLlNlbmRNZXNzYWdlUmVzcG9u",
+            "c2UiABJtCiVDaGVja0lzQWxsb3dTZW5kUmVnaXN0ZXJNb2JpbGVNZXNzYWdl",
+            "Eh4uTUQuU21zU2VydmljZS5SZWdpc3RlclJlcXVlc3QaIi5NRC5TbXNTZXJ2",
+            "aWNlLlNlbmRNZXNzYWdlUmVzcG9uc2UiABJlCh1TZXRSZWdpc3Rlck1vYmls",
+            "ZU1lc3NhZ2VMaW1pdBIeLk1ELlNtc1NlcnZpY2UuUmVnaXN0ZXJSZXF1ZXN0",
+            "GiIuTUQuU21zU2VydmljZS5TZW5kTWVzc2FnZVJlc3BvbnNlIgASRQoIU2Vu",
+            "ZEh0dHASGi5NRC5TbXNTZXJ2aWNlLkh0dHBSZXF1ZXN0GhsuTUQuU21zU2Vy",
+            "dmljZS5IdHRwUmVzcG9uc2UiAGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::MD.SmsService.SendMessageRequest), global::MD.SmsService.SendMessageRequest.Parser, new[]{ "RequestId", "FromAccountId", "Ip", "Mobile", "Message", "TemplateType", "TemplateDatas", "MessageType" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MD.SmsService.SendMessageResponse), global::MD.SmsService.SendMessageResponse.Parser, new[]{ "Code", "Message" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::MD.SmsService.RegisterRequest), global::MD.SmsService.RegisterRequest.Parser, new[]{ "MobilePhone", "Ip" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::MD.SmsService.RegisterRequest), global::MD.SmsService.RegisterRequest.Parser, new[]{ "MobilePhone", "Ip" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MD.SmsService.HttpRequest), global::MD.SmsService.HttpRequest.Parser, new[]{ "Url", "Data" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MD.SmsService.HttpResponse), global::MD.SmsService.HttpResponse.Parser, new[]{ "Code", "Message" }, null, null, null)
           }));
     }
     #endregion
@@ -681,6 +686,314 @@ namespace MD.SmsService {
           }
           case 18: {
             Ip = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  /// 发送对外请求
+  /// </summary>
+  public sealed partial class HttpRequest : pb::IMessage<HttpRequest> {
+    private static readonly pb::MessageParser<HttpRequest> _parser = new pb::MessageParser<HttpRequest>(() => new HttpRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<HttpRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::MD.SmsService.SmsReflection.Descriptor.MessageTypes[3]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public HttpRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public HttpRequest(HttpRequest other) : this() {
+      url_ = other.url_;
+      data_ = other.data_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public HttpRequest Clone() {
+      return new HttpRequest(this);
+    }
+
+    /// <summary>Field number for the "url" field.</summary>
+    public const int UrlFieldNumber = 1;
+    private string url_ = "";
+    /// <summary>
+    ///请求Url
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Url {
+      get { return url_; }
+      set {
+        url_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "data" field.</summary>
+    public const int DataFieldNumber = 2;
+    private string data_ = "";
+    /// <summary>
+    ///请求的数据
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Data {
+      get { return data_; }
+      set {
+        data_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as HttpRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(HttpRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Url != other.Url) return false;
+      if (Data != other.Data) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Url.Length != 0) hash ^= Url.GetHashCode();
+      if (Data.Length != 0) hash ^= Data.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Url.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Url);
+      }
+      if (Data.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Data);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Url.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Url);
+      }
+      if (Data.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Data);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(HttpRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Url.Length != 0) {
+        Url = other.Url;
+      }
+      if (other.Data.Length != 0) {
+        Data = other.Data;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            Url = input.ReadString();
+            break;
+          }
+          case 18: {
+            Data = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  /// 对外请求结果
+  /// </summary>
+  public sealed partial class HttpResponse : pb::IMessage<HttpResponse> {
+    private static readonly pb::MessageParser<HttpResponse> _parser = new pb::MessageParser<HttpResponse>(() => new HttpResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<HttpResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::MD.SmsService.SmsReflection.Descriptor.MessageTypes[4]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public HttpResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public HttpResponse(HttpResponse other) : this() {
+      code_ = other.code_;
+      message_ = other.message_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public HttpResponse Clone() {
+      return new HttpResponse(this);
+    }
+
+    /// <summary>Field number for the "code" field.</summary>
+    public const int CodeFieldNumber = 1;
+    private int code_;
+    /// <summary>
+    /// 发送结果code
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Code {
+      get { return code_; }
+      set {
+        code_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "message" field.</summary>
+    public const int MessageFieldNumber = 2;
+    private string message_ = "";
+    /// <summary>
+    /// 返回的结果
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Message {
+      get { return message_; }
+      set {
+        message_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as HttpResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(HttpResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Code != other.Code) return false;
+      if (Message != other.Message) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Code != 0) hash ^= Code.GetHashCode();
+      if (Message.Length != 0) hash ^= Message.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Code != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Code);
+      }
+      if (Message.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Message);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Code != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Code);
+      }
+      if (Message.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Message);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(HttpResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Code != 0) {
+        Code = other.Code;
+      }
+      if (other.Message.Length != 0) {
+        Message = other.Message;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            Code = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            Message = input.ReadString();
             break;
           }
         }

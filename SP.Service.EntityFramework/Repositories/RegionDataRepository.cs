@@ -28,15 +28,22 @@ namespace SP.Service.EntityFramework.Repositories
                 result.DataID = region.DataID;
                 result.DataName = region.DataName;
                 result.ParentDataID = region.ParentDataID.Value;
-                var city = this.Single(x => x.DataID == result.ParentDataID);
-                if(city != null )
+                var building = this.Single(x => x.DataID == result.ParentDataID);
+                if(building != null )
                 {
-                    result.CityID = city.ParentDataID.Value;
-                    result.CityName = city.DataName;
-                    var province = this.Single(x => x.DataID == result.CityID);
-                    if(province != null)
+                    result.BuiddingID = building.DataID;
+                    result.BuiddingName = building.DataName;
+                    var district = this.Single(x => x.DataID == building.ParentDataID.Value);
+                    if (district != null)
                     {
-                        result.ProvinceID = province.ParentDataID.Value;
+                        result.DistrictID = district.DataID;
+                        result.DistrictName = district.DataName;
+                        var school = this.Single(x => x.DataID == district.ParentDataID.Value);
+                        if (school != null)
+                        {
+                            result.SchoolID = school.DataID;
+                            result.SchoolName = school.DataName;
+                        }
                     }
                 }
             }

@@ -13,6 +13,7 @@ define(function (require, exports, module) {
         doT = require('dot'),
         Global = require('global').Global,
         easydialog = require("easydialog");
+    qiniu = require('qiniushop');
     require('shop/style.css');
     require('jqueryui');
   
@@ -72,6 +73,7 @@ define(function (require, exports, module) {
                             $("#sub").click(function () {
                                 _this.Submit(elementID);
                             });
+                            qiniu.QiniuMainController.init();
 
                             var completeInfo = require('complete');
                             completeInfo.createComplete({
@@ -120,6 +122,7 @@ define(function (require, exports, module) {
                 StartTime: divElement.find('.startTime').val(),
                 EndTime: divElement.find('.endTime').val(),
                 ShopType: divElement.find('#shopType').val(),
+                ShopLogo: divElement.find('#imgPath').val(),
             };
             user = $.param(user, true);
             Global.post("/Shop/EditShop", user, function (data) {

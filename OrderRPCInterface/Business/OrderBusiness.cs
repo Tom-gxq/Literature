@@ -35,13 +35,13 @@ namespace OrderGRPCInterface.Business
             return orderId;
         }
 
-        public static List<OrderInfoModel> GetMyOrderList(string accountId,int orderStatus)
+        public static List<OrderInfoModel> GetMyOrderList(string accountId, string orderDate)
         {
             var client = OrderClientHelper.GetClient();
             var request1 = new MyOrderRequest()
             {
                 AccountId = accountId,
-                OrderStatus = orderStatus
+                OrderDate = orderDate
             };
             var result = client.GetMyOrderList(request1);
             var list = new List<OrderInfoModel>();
@@ -53,7 +53,8 @@ namespace OrderGRPCInterface.Business
                     domain.amount = item.Amount;
                     domain.orderId = item.OrderId;
                     domain.orderStatus = item.OrderStatus;
-                    if(item.ProductList != null && item.ProductList.Count > 0)
+                    domain.orderDate = GetTimestamp(new DateTime(item.OrderDate));
+                    if (item.ProductList != null && item.ProductList.Count > 0)
                     {
                         var productList = new List<ProductModel>();
                         foreach (var pitem in item.ProductList)
@@ -403,6 +404,10 @@ namespace OrderGRPCInterface.Business
             {
                 return null;
             }
+        }
+        private static long GetTimestamp(DateTime d)
+        {
+            return (d.ToUniversalTime().Ticks - 621355968000000000) / 10000000;     //精确到毫秒
         }
     }
 }

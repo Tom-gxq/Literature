@@ -68,6 +68,11 @@ namespace SP.Service.EntityFramework.Repositories
             var result = this.Single(x =>x.ID == addressId && x.AccountId == accountId);
             return result;
         }
+        public AccountAddressEntity GetAccountAddress(int dormId, string accountId)
+        {
+            var result = this.Single(x => x.RegionID == dormId && x.AccountId == accountId);
+            return result;
+        }
 
         public bool RemoveAccountAddress(int addressId)
         {

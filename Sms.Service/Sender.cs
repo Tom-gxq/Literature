@@ -178,7 +178,7 @@ namespace Sms.Service
             var providerType = (ProviderType)Enum.Parse(typeof(ProviderType), provider.Name);
             var sender = Flyweight.ProviderFactory.GetSender(providerType);
 
-            var sendResult = !string.IsNullOrEmpty(tuple.Item1) ?
+            var sendResult = !string.IsNullOrEmpty(tuple?.Item1) ?
                 sender.SendMobileMessage(sendInput.Mobile, tuple.Item2, tuple.Item1) :
                 sender.SendMobileMessage(sendInput.Mobile, sendInput.Message);
 

@@ -11,12 +11,16 @@ namespace SP.Service.Domain.Commands.Account
         public string FullName { get; set; }
         public string Avatar { get; set; }
         public int Gender { get; set; }
-        public EditAccountInfoCommand(string accountId,  string userName, bool gender, string avatar)
+        public int UserType { get; set; }
+        public int DormId { get; set; }
+        public EditAccountInfoCommand(string accountId,  string userName, bool gender, string avatar,int userType,int dormId)
         {
             this.Avatar = avatar;
             this.FullName = userName;
             this.Gender = gender ? 1:0;
             this.AccountId = accountId;
+            this.UserType = userType;
+            this.DormId = dormId;
         }
     }
 }

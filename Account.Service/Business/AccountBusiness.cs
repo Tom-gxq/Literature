@@ -1,5 +1,6 @@
 ﻿using SP.Service;
 using SP.Service.Domain.Commands.Account;
+using SP.Service.Domain.DomainEntity;
 using SP.Service.Entity;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,13 @@ namespace Account.Service.Business
         public static AccountResultResponse RegistAccount(string email,string mobilePhone, string passWord, string userName)
         {
             ServiceLocator.CommandBus.Send(new CreatAccountCommand(Guid.NewGuid(), mobilePhone,email, passWord,1, userName));
+            var result = new AccountResultResponse();
+            result.Status = 10001;
+            return result;
+        }
+        public static AccountResultResponse UpdateAccount(string email, string mobilePhone, string passWord, string accountId)
+        {
+            ServiceLocator.CommandBus.Send(new EditAccountCommand(new Guid(accountId), mobilePhone, email, passWord));
             var result = new AccountResultResponse();
             result.Status = 10001;
             return result;
@@ -81,14 +89,21 @@ namespace Account.Service.Business
         {
             var account = ServiceLocator.ReportDatabase.GetAccessTokenByRefreshToken(userKey);
             var result = new AccessTokenResponse();
-            result.Status = 10001;
-            result.AccessToken = new AccessToken();
-            result.AccessToken.AccountId = account.AccountId;
-            result.AccessToken.AccessToken_ = account.AccessToken;
-            result.AccessToken.AccessTokenExpires = account.AccessTokenExpires.Ticks;
-            result.AccessToken.CreateTime = account.CreateTime.Ticks;
-            result.AccessToken.RefreshToken = account.RefreshToken;
-            result.AccessToken.RefreshTokenExpires = account.RefreshTokenExpires.Ticks;
+            if (account != null)
+            {
+                result.Status = 10001;
+                result.AccessToken = new AccessToken();
+                result.AccessToken.AccountId = account.AccountId;
+                result.AccessToken.AccessToken_ = account.AccessToken;
+                result.AccessToken.AccessTokenExpires = account.AccessTokenExpires.Ticks;
+                result.AccessToken.CreateTime = account.CreateTime.Ticks;
+                result.AccessToken.RefreshToken = account.RefreshToken;
+                result.AccessToken.RefreshTokenExpires = account.RefreshTokenExpires.Ticks;
+            }
+            else
+            {
+                result.Status = 10003;
+            }
             return result;
         }
 
@@ -242,13 +257,14 @@ namespace Account.Service.Business
                 result.Avatar = domain.Avatar!= null ? domain.Avatar:string.Empty;
                 result.FullName = domain.Fullname!= null? domain.Fullname:string.Empty;
                 result.Gender = domain.Gender == 1;
+                result.PayPassWord = domain.PayPassWord != null ? domain.PayPassWord : string.Empty;
             }
             return result;
         }
         public static AccountResultResponse UpdateAccountFullInfo(AccountFullInfoRequest request)
         {
             ServiceLocator.CommandBus.Send(new EditAccountInfoCommand(request.AccountId, request.FullName, request.Gender
-                , request.Avatar));
+                , request.Avatar, request.UserType, request.DormId));
             var result = new AccountResultResponse();
             result.Status = 10001;
             return result;
@@ -269,6 +285,65 @@ namespace Account.Service.Business
                 result.Associator.StartDate = domain.EndDate != null ? domain.StartDate.Ticks : 0;
                 result.Associator.Quantity = domain.Quantity ;
                 result.Associator.PayType = domain.PayType;
+            }
+            return result;
+        }
+        public static AccountResultResponse SetAccountPayPwd(string accountId, string payPwd)
+        {
+            ServiceLocator.CommandBus.Send(new CreateAccountPayPwdCommand(new Guid(accountId), payPwd));
+            var result = new AccountResultResponse();
+            result.Status = 10001;
+            return result;
+        }
+        public static AccountResultResponse UpdateAccountPayPwd(string accountId, string payPwd)
+        {
+            ServiceLocator.CommandBus.Send(new EditAccountPayPwdCommand(new Guid(accountId), payPwd));
+            var result = new AccountResultResponse();
+            result.Status = 10001;
+            return result;
+        }
+
+        public static AccountResultResponse UpdateAccountLoginPwd(string accountId, string pwd)
+        {
+            ServiceLocator.CommandBus.Send(new EditAccountPwdCommand(new Guid(accountId), pwd));
+            var result = new AccountResultResponse();
+            result.Status = 10001;
+            return result;
+        }
+        public static AccountResultResponse UpdateAccountMobile(string accountId, string mobilePhone)
+        {
+            ServiceLocator.CommandBus.Send(new EditAccountMobileCommand(new Guid(accountId), mobilePhone));
+            var result = new AccountResultResponse();
+            result.Status = 10001;
+            return result;
+        }
+        public static AccountResultResponse BindOtherAccount(string accountId, int otherType, string otherAccount)
+        {
+            ServiceLocator.CommandBus.Send(new BindOtherAccountCommand(new Guid(accountId), otherAccount, (OtherType)otherType));
+            var result = new AccountResultResponse();
+            result.Status = 10001;
+            return result;
+        }
+
+        public static AccountResultResponse CreateOtherAccount(string mobilePhone, int otherType, string otherAccount, string fullName, string avatar, bool gender)
+        {
+            ServiceLocator.CommandBus.Send(new CreateOtherAccountCommand(mobilePhone, otherAccount, (OtherType)otherType, fullName,  avatar,  gender));
+            var result = new AccountResultResponse();
+            result.Status = 10001;
+            return result;
+        }
+
+        public static AccountResponse GetOtherAccount(string otherAccount, OtherType otherType)
+        {
+            var account = ServiceLocator.ReportDatabase.GetOtherAccount(otherAccount, otherType);
+            var result = new AccountResponse();
+            result.Status = 10001;
+            if (account != null)
+            {
+                result.MobilePhone = account.MobilePhone;
+                result.Email = account.Email;
+                result.Password = account.Password;
+                result.AccountId = account.AccountId;
             }
             return result;
         }

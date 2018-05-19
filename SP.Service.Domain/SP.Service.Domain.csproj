@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="EventHandlers\AccountPayPwdCreateEventHandler.cs" />
+    <Compile Remove="Events\AliBindEvent.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Grpc.Service.Core\Grpc.Service.Core.csproj" />
     <ProjectReference Include="..\RedisCache.Service\RedisCache.Service.csproj" />
     <ProjectReference Include="..\SP.Data.Enum\SP.Data.Enum.csproj" />

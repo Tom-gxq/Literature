@@ -20,10 +20,10 @@ namespace SPManager.Controllers
             ViewBag.Title = "分类管理";
             return View();
         }
-        public JsonResult AddProductType(string typeName, int displaySequence)
+        public JsonResult AddProductType(string typeName, int displaySequence,string typePath,string typeLogo,int kind)
         {
             IProductTypeService service = IocManager.Instance.Resolve<IProductTypeService>();
-            var result = service.AddProductType(typeName, displaySequence);
+            var result = service.AddProductType(typeName, displaySequence, typePath,typeLogo,kind);
             JsonResult.Add("result", result);
 
             return new JsonResult()
@@ -46,10 +46,10 @@ namespace SPManager.Controllers
             };
         }
 
-        public JsonResult GetProductTypeList(int pageIndex, int pageSize)
+        public JsonResult GetProductTypeList(int kind,int pageIndex, int pageSize)
         {
             IProductTypeService service = IocManager.Instance.Resolve<IProductTypeService>();
-            var result = service.GetProductTypeList(pageIndex, pageSize);
+            var result = service.GetProductTypeList(kind,pageIndex, pageSize);
             JsonResult.Add("result", result);
             var total = service.GetProductTypeListCount();
             PageModel jObject = new PageModel();
@@ -75,6 +75,18 @@ namespace SPManager.Controllers
             jObject.Pages = (int)Math.Ceiling(Convert.ToDouble(total) / pageSize);
             jObject.Index = pageIndex;
             JsonResult.Add("data", jObject);
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public JsonResult SearchProductTypeByKeyword(string keyword)
+        {
+            IProductTypeService service = IocManager.Instance.Resolve<IProductTypeService>();
+            var result = service.SearchProductTypeByName(keyword, 1, 30);
+            JsonResult.Add("items", result);
+            
             return new JsonResult()
             {
                 Data = JsonResult,

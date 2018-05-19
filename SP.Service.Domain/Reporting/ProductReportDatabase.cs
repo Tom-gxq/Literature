@@ -164,10 +164,10 @@ namespace SP.Service.Domain.Reporting
             return domainList;
         }
 
-        public List<ProductDomain> GetShopProductList(int districtId, int shopId, long attributeId, int pageIndex, int pageSize)
+        public List<ProductDomain> GetShopProductList(int districtId, int shopId, long typeId, int pageIndex, int pageSize)
         {
             var domainList = new List<ProductDomain>();
-            var productList = _repository.GetShopProductList(districtId,shopId, attributeId,pageIndex, pageSize);
+            var productList = _repository.GetShopProductList(districtId,shopId, typeId, pageIndex, pageSize);
             foreach (var item in productList)
             {
                 var domain = GetProductDomainById(item);
@@ -175,9 +175,24 @@ namespace SP.Service.Domain.Reporting
             }
             return domainList;
         }
-        public int GetShopProductCount(int districtId, int shopId, long attributeId, int pageIndex, int pageSize)
+        public List<ProductDomain> GetFoodShopProductList(int districtId, int shopId,  int pageIndex, int pageSize)
         {
-            return  _repository.GetShopProductCount(districtId,shopId, attributeId, pageIndex, pageSize);
+            var domainList = new List<ProductDomain>();
+            var productList = _repository.GetFoodShopProductList(districtId, shopId,  pageIndex, pageSize);
+            foreach (var item in productList)
+            {
+                var domain = GetProductDomainById(item);
+                domainList.Add(domain);
+            }
+            return domainList;
+        }
+        public int GetShopProductCount(int districtId, int shopId, long typeId, int pageIndex, int pageSize)
+        {
+            return  _repository.GetShopProductCount(districtId,shopId, typeId, pageIndex, pageSize);
+        }
+        public int GetFoodShopProductListCount(int districtId, int shopId,  int pageIndex, int pageSize)
+        {
+            return _repository.GetFoodShopProductListCount(districtId, shopId, pageIndex, pageSize);
         }
     }
 }

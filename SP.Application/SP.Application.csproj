@@ -84,6 +84,7 @@
     <Compile Include="Product\DTO\ProductSkuDto.cs" />
     <Compile Include="Product\DTO\ProductTypeDto.cs" />
     <Compile Include="Product\DTO\RegionDto.cs" />
+    <Compile Include="Product\DTO\RegionTypeDto.cs" />
     <Compile Include="Product\IAttributeAppService.cs" />
     <Compile Include="Product\IAttributeValueAppService.cs" />
     <Compile Include="Product\IBrandAppService.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="User\AdminAppService.cs" />
     <Compile Include="User\DTO\AccountInfoDto.cs" />
     <Compile Include="User\DTO\AdminDto.cs" />
+    <Compile Include="User\DTO\CashApplyDto.cs" />
     <Compile Include="User\IAccountAppService.cs" />
     <Compile Include="User\IAdminAppService.cs" />
   </ItemGroup>
@@ -119,6 +121,10 @@
     <ProjectReference Include="..\SP.ManageEntityFramework\SP.ManageEntityFramework.csproj">
       <Project>{80c2b3dc-097b-490c-8951-4d47215e16e9}</Project>
       <Name>SP.ManageEntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SP.Service.EntityFramework\SP.Service.EntityFramework.csproj">
+      <Project>{2EB5863F-1D32-49BC-A221-45E69F0813CF}</Project>
+      <Name>SP.Service.EntityFramework</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

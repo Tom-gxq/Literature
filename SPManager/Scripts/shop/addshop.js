@@ -13,7 +13,8 @@ define(function (require, exports, module) {
         doT = require('dot'),
         Global = require('global').Global,
         easydialog = require("easydialog");
-        require('daterangepicker');
+    require('daterangepicker');
+    qiniu = require('qiniushop');
     require('shop/style.css');
     //默认参数
     var Defaults = {
@@ -40,30 +41,48 @@ define(function (require, exports, module) {
         showDialog: function () {
             var _this = this;
             var elementID = _this.setting.dialogID;
-            doT.exec('shop/addshop.html', function (templateFun) {
-                var innerText;
-                innerText = templateFun(elementID);
-                easydialog.open({
-                    container: {
-                        id: "addshop",
-                        header: '添加店铺',
-                        content: innerText
+            $.ajax({
+                url: '/ProductType/GetProductTypeList',
+                type: 'GET',
+                cache: false,
+                data: {
+                    kind: 0,
+                    pageIndex: 1,
+                    pageSize: 2000
+                },
+                success: function (msg) {
+                    if (msg.result) {
+                        doT.exec('shop/addshop.html', function (templateFun) {
+                            var innerText;
+                            innerText = templateFun(msg);
+                            easydialog.open({
+                                container: {
+                                    id: "addshop",
+                                    header: '添加店铺',
+                                    content: innerText
+                                }
+                            });
+                            $('#wizard').css('height', $('#addshop').find('.page').height());
+
+                            $(".page").show();
+                            //取消
+                            $("#cacel").click(function () {
+                                easydialog.close();
+                            });
+
+                            //提交
+                            $("#sub").click(function () {
+                                _this.Submit(elementID);
+                            });
+                            qiniu.QiniuMainController.init();
+                        });
                     }
-                });
-                $('#wizard').css('height', $('#addshop').find('.page').height());
+                },
+                error: function (err) {
 
-                $(".page").show();
-                //取消
-                $("#cacel").click(function () {
-                    easydialog.close();
-                });
-
-                //提交
-                $("#sub").click(function () {
-                    _this.Submit(elementID);
-                });
-
+                }
             });
+            
 
             //_this.bindEvent();
         },        
@@ -76,6 +95,7 @@ define(function (require, exports, module) {
                 startTime: divElement.find('.startTime').val(),
                 endTime: divElement.find('.endTime').val(),
                 shopType: divElement.find('.newselect').val(),
+                shopLogo: divElement.find('#imgPath').val()
             };
             type = $.param(type, true);
             Global.post("/Shop/AddShop", type, function (data) {

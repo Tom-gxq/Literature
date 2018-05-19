@@ -59,7 +59,7 @@ namespace Order.Service.GrpcImpl
             OrderListResponse response = null;
             try
             {
-                response = OrderBusiness.GetMyOrderList(request.AccountId, request.OrderStatus);
+                response = OrderBusiness.GetMyOrderList(request.AccountId, request.OrderDate);
             }
             catch (Exception ex)
             {

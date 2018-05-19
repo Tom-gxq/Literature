@@ -10,9 +10,14 @@
     <td>
         <p></p>
     </td>    
-    <td data-item_id="{%=$data[i].DataId %}" class="center">   
+    <td data-item_id="{%=$data[i].DataId %}" class="center"> 
+        {%if($data[i].DataType ==2){%}
+        <button class="building_item lhx_btn btn btn-primary" id="{%=$data[i].DataId%}">生成栋</button>
+        {%}else if($data[i].DataType ==3){%}
+        <button class="dorm_item lhx_btn btn btn-primary" id="{%=$data[i].DataId%}">生成宿舍</button>
+        {%}%}
         <button class="edit_item lhx_btn btn btn-primary" id="{%=$data[i].DataId%}">编辑</button>
-        <button class="delete_item lhx_btn btn btn-danger" id="delete">删除</button>
+        <button class="delete_item lhx_btn btn btn-danger" id="delete">删除</button>        
     </td>
 </tr>
 {% } %}

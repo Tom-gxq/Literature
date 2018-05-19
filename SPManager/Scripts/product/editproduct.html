@@ -21,13 +21,22 @@
                             <input tabindex="1" class="input-text width400 Check txtUnit" type="text" style="width:50px" value="{%=$data.result.Unit%}" placeholder="请输入规格单位" />
                         </li>
                         <li style="width:100%">
-                            <span class="grayfont span" style="width:60px">商品分类:</span>
+                            <span class="grayfont span" style="width:80px">商品一级分类:</span>
                             <select id="inputTypeForm" class="select small newselect" style="height: 35px;">
                                 <option value="0" selected="">&nbsp;</option>
                                 {% for(var i =0, j=$data.types.length; i< j; i++) { %}
-                                    <option value="{%=$data.types[i].TypeId%}">{%=$data.types[i].TypeName%}</option>
+                                    <option value="{%=$data.types[i].TypeId%}" {%=$data.result.TypeId==$data.types[i].TypeId?'selected':'' %}>{%=$data.types[i].TypeName%}</option>
                                 {% } %}
                             </select>
+                            <span class="grayfont span" style="width:80px">商品二级分类:</span>
+                            <select id="inputSecondTypeForm" class="select small newselect" style="height: 35px;">
+                                <option value="0" selected="">&nbsp;</option>
+                                {% for(var i =0, j=$data.secondTypes.length; i< j; i++) { %}
+                                <option value="{%=$data.secondTypes[i].TypeId%}" {%=$data.result.TypeId==$data.types[i].TypeId?'selected':'' %}>{%=$data.secondTypes[i].TypeName%}</option>
+                                {% } %}
+                            </select>                            
+                        </li>
+                        <li style="width:100%">                            
                             <span class="grayfont span" style="width:60px">商品品牌:</span>
                             <select id="inputBrand" class="select small newselect" style="height: 35px;">
                                 <option value="0" selected="">&nbsp;</option>

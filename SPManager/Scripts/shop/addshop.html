@@ -1,14 +1,15 @@
 ﻿<div id="main">
-    <div id="wizard">
+    <div id="wizard" style="height: 400px;">
         <div class="items" id="{%=$data%}">
             <div class="page">
-                <div class="contactInfo">
-                    <ul>
+                <div class="contactInfo" style="height:400px">
+                    <ul style="height:400px;">
                         <li style="width:100%">
                             <span class="grayfont span" style="width:60px">店铺分类:</span>
-                            <select id="shopType" class="select small newselect" style="height: 35px;">
-                                <option value="0" selected="">餐饮</option>
-                                <option value="1" selected="">超市</option>
+                            <select id="shopType" class="select small newselect" style="height: 35px;">                                
+                                {% for(var i =0, j=$data.result.length; i< j; i++) { %}
+                                <option value="{%=$data.result[i].TypeId%}">{%=$data.result[i].TypeName%}</option>
+                                {% } %}
                             </select>
                         </li>
                         <li style="width:100%">
@@ -26,6 +27,18 @@
                         <li style="width:100%">
                             <span class="grayfont span">排序:</span>
                             <input tabindex="1" class="input-text width400 Check sltContact" type="text" value="" placeholder="请输入排序" />
+                        </li>
+                        <li style="width:100%">
+                            <div id="container">
+                                <a class="btn btn-default btn-lg " id="pickfiles" href="#">
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                    <span>选择文件</span>
+                                </a>
+                            </div>
+                            <div id="preview">
+
+                            </div>
+                            <input tabindex="1" id="imgPath" class="input-text width400 Check sequence" type="hidden" value="" />
                         </li>
                     </ul>
                 </div>

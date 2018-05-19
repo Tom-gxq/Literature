@@ -17,9 +17,17 @@ namespace SP.Service.Entity
         *  区域父ID
         */
         public int ParentDataID { get; set; }
-        public int CityID { get; set; }
         [Ignore]
-        public string CityName { get; set; }
-        public int ProvinceID { get; set; }
+        public int BuiddingID { get; set; }
+        [Ignore]
+        public string BuiddingName { get; set; }
+        [Ignore]
+        public int DistrictID { get; set; }
+        [Ignore]
+        public string DistrictName { get; set; }
+        [Ignore]
+        public int SchoolID { get; set; }
+        [Ignore]
+        public string SchoolName { get; set; }
     }
 }

@@ -15,11 +15,11 @@ namespace SP.Service.EntityFramework.Repositories
             DbConnection = context.GetConnectionString();
         }
 
-        public List<ShopEntity> GetShopList(int regionId,int pageIndex, int pageSize)
+        public List<ShopEntity> GetShopList(int regionId, int shopType, int pageIndex, int pageSize)
         {
             using (var db = OpenDbConnection())
             {
-                var q = db.From<ShopEntity>().Where(x=>x.RegionId == regionId
+                var q = db.From<ShopEntity>().Where(x=>x.RegionId == regionId && x.ShopType == shopType
                 && (string.Compare(x.EndTime, DateTime.Now.ToString("HH:mm")) >= 0 || x.EndTime == null || x.EndTime.Trim() == string.Empty))
                 .OrderBy(x => x.DisplaySequence);
                 q = q.Skip((pageIndex - 1) * pageSize).Limit(pageSize);
@@ -27,11 +27,11 @@ namespace SP.Service.EntityFramework.Repositories
             }
         }
 
-        public int GetAllShopCount(int regionId)
+        public int GetAllShopCount(int regionId, int shopType)
         {
             using (var db = OpenDbConnection())
             {
-                var q = db.From<ShopEntity>().Where(x=>x.RegionId == regionId
+                var q = db.From<ShopEntity>().Where(x=>x.RegionId == regionId && x.ShopType == shopType 
                 && (string.Compare(x.EndTime , DateTime.Now.ToString("HH:mm"))>=0 ||x.EndTime==null ||x.EndTime.Trim() == string.Empty) );
                 return db.Select(q).Count();
             }

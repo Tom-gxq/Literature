@@ -65,7 +65,94 @@ namespace WebApiGateway.Controllers.Register
 
             return new ResultModel() { code = errorCode, error_msg = errorMsg };
         }
+        [HttpPost]
+        public ResultModel Send_Forget_Code([FromBody] RegisterAccount Params)
+        {
+            Params.account = Common.CheckAccount(Params.account);
 
+            if (string.IsNullOrEmpty(Params.account))
+            {
+                return new ResultModel() { code = ApiEnum.ErrorCode.ComBad, error_msg = "发送失败" };
+            }
+
+            //账号已经存在
+            var userAccount = AccountBusiness.GetAccount(Params.account);
+            if (userAccount != null && !string.IsNullOrEmpty(userAccount.AccountId) && !Params.is_authorization)
+            {
+                bool isSendLimit = false;
+                if (!SendRegisterVerifyCode((VerifyCodeType)Params.type, Params.is_authorization, Params.account, out isSendLimit))
+                {
+                    if (isSendLimit)
+                    {
+                        errorCode = ApiEnum.ErrorCode.ComBad;
+                        errorMsg = "发送短信过于频繁";
+                    }
+                    else
+                    {
+                        errorCode = ApiEnum.ErrorCode.ComBad;
+                        errorMsg = "发送失败";
+                    }
+                }
+            }
+            else
+            {
+                errorCode = ApiEnum.ErrorCode.NotFound;
+            }
+
+            return new ResultModel() { code = errorCode, error_msg = errorMsg };
+        }
+        [HttpPost]
+        public ResultModel Forget_Account([FromBody] ForgetAccount Params)
+        {
+            Params.account = Common.CheckAccount(Params.account);
+
+            if (string.IsNullOrEmpty(Params.account))
+            {
+                return new ResultModel() { code = ApiEnum.ErrorCode.ComBad, error_msg = "修改失败" };
+            }
+            if (!string.IsNullOrEmpty(Params.code))
+            {
+                if (!Common.VerifyRegisterCode(Params.code, Params.account))
+                    return new ResultModel() { code = ApiEnum.ErrorCode.ComBad, error_msg = "验证码错误" };
+            }
+            else
+                return new ResultModel() { code = ApiEnum.ErrorCode.ComBad, error_msg = "验证码不能为空" };
+            if (Params.password != Params.confirmPassword)
+            {
+                return new ResultModel() { code = ApiEnum.ErrorCode.ComBad, error_msg = "两次输入密码不一致" };
+            }
+            //账号已经存在
+            var userAccount = AccountBusiness.GetAccount(Params.account);
+            if (userAccount == null || string.IsNullOrEmpty(userAccount.AccountId))
+            {
+                return new ResultModel() { code = ApiEnum.ErrorCode.ComBad, error_msg = "输入账号不存在" };
+            }
+            if (!string.IsNullOrEmpty(Params.password))
+            {
+                if (!Common.ValidatePassword(Params.password))
+                {
+                    errorCode = ApiEnum.ErrorCode.ComBad;
+                    errorMsg = "密码不符合规范";
+                }
+                bool isEmail = Common.ValidateEmail(Params.account);
+                //var accountId = MD.Business.Account.InsertAccount(Params.account, Params.password, Params.full_name, string.Empty, string.Empty);
+                var pwd = StringCrypt.Encrypt(Params.password, ConfigInfo.ConfigInfoData.CryptKey.MessageKey);
+                var model = new AccountModel()
+                {
+                    Email = isEmail ? Params.account : string.Empty,
+                    MobilePhone = !isEmail ? Params.account : string.Empty,
+                    Password = pwd,
+                    AccountId = userAccount.AccountId
+                };
+                var accountId = AccountBusiness.UpdateAccount(model);
+                if (string.IsNullOrEmpty(accountId))
+                {
+                    errorCode = ApiEnum.ErrorCode.ComBad;
+                    errorMsg = "注册失败";
+                }
+            }
+            return new ResultModel() { code = errorCode, error_msg = errorMsg };
+        }
         /// <summary>
         /// 注册账号
         /// </summary>
@@ -83,7 +170,7 @@ namespace WebApiGateway.Controllers.Register
 
             if (!string.IsNullOrEmpty(Params.code))
             {
-                if (!VerifyRegisterCode(Params.code, Params.account))
+                if (!Common.VerifyRegisterCode(Params.code, Params.account))
                     return new ResultModel() { code = ApiEnum.ErrorCode.ComBad, error_msg = "验证码错误" };
             }
             else
@@ -123,6 +210,57 @@ namespace WebApiGateway.Controllers.Register
             }
 
             return new ResultModel() { code = errorCode, error_msg = errorMsg };
+        }
+        /// <summary>
+        /// 第三方创建账号
+        /// </summary>
+        /// <param name="Params"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ResultModel CreateOtherAccount([FromBody] OtherAccountModel Params)
+        {
+            Params.MobilePhone = Common.CheckAccount(Params.MobilePhone);
+
+            if (string.IsNullOrEmpty(Params.MobilePhone))
+            {
+                return new ResultModel() { code = ApiEnum.ErrorCode.Mobile, error_msg = "手机号不合法" };
+            }
+
+            if (!string.IsNullOrEmpty(Params.Code))
+            {
+                if (!Common.VerifyRegisterCode(Params.Code, Params.MobilePhone))
+                {
+                    return new ResultModel() { code = ApiEnum.ErrorCode.MobileCode, error_msg = "验证码错误" };
+                }
+            }
+            else
+            {
+                return new ResultModel() { code = ApiEnum.ErrorCode.MobileCode, error_msg = "验证码不能为空" };
+            }
+            //账号已经存在
+            var userAccount = AccountBusiness.GetAccount(Params.MobilePhone);
+            if (userAccount != null && !string.IsNullOrEmpty(userAccount.AccountId))
+            {
+                return new ResultModel() { code = ApiEnum.ErrorCode.ExsitAccount, error_msg = "账号已经存在" };
+            }
+            try
+            {
+                var retValue = AccountBusiness.CreateOtherAccount(Params);
+                if (retValue)
+                {
+                    errorCode = ApiEnum.ErrorCode.Success;
+                }
+                else
+                {
+                    errorCode = ApiEnum.ErrorCode.Fail;
+                    errorMsg = "创建失败";
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResultModel() { code = ApiEnum.ErrorCode.Fail, error_msg = ex.Message };
+            }
+            return new ResultModel() { code = errorCode, error_msg = errorMsg }; 
         }
         #endregion
 
@@ -194,25 +332,7 @@ namespace WebApiGateway.Controllers.Register
             return false;
         }
 
-        private bool VerifyRegisterCode(string code, string account)
-        {
-            var authType = Common.ValidateEmail(account) ? AuthType.Register : AuthType.MobilePhoneRegister;
-
-            string verifyCode = AccountBusiness.GetValidVerifyCodeByAccount(new AuthenticationModel()
-            {
-                Account = account,
-                VerifyCode = code,
-                AuthType = AuthType.MobilePhoneRegister,
-                AccountId = string.Empty,
-                Token = string.Empty
-            });
-
-            if (!string.IsNullOrEmpty(verifyCode) && code.Equals(verifyCode))
-            {
-                return true;
-            }
-            return false;
-        }
+        
 
         /// <summary>
         /// 注册

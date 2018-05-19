@@ -14,5 +14,8 @@ namespace SP.Service.Entity
         public string TypeName { get; set; }
         public int? Kind { get; set; }
         public string Remark { get; set; }
+        public string TypePath { get; set; }
+        public string TypeLogo { get; set; }
+        public int? DisplaySequence { get; set; }
     }
 }

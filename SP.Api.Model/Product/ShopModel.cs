@@ -26,5 +26,6 @@ namespace SP.Api.Model.Product
         public string ownerName { get; set; }
         public string startTime { get; set; }
         public string endTime { get; set; }
+        public string shopLogo { get; set; }
     }
 }

@@ -34,7 +34,8 @@ namespace AccountGRPCInterface
                     domain.contactMobile = item.ContactMobile;
                     domain.contactName = item.ContactName;
                     domain.accountId = item.AccountId;
-                    domain.dorm = item.Dorm;
+                    domain.dormId = item.DormId;
+                    domain.dorm = item.DormName;
                     domain.isDefault = item.IsDefault == 1 ? true : false;
                     list.Add(domain);
                 }
@@ -62,7 +63,10 @@ namespace AccountGRPCInterface
                 domain.contactAddress = result.Address.ContactAddress;
                 domain.contactMobile = result.Address.ContactMobile;
                 domain.contactName = result.Address.ContactName;
-                domain.dorm = result.Address.Dorm;
+                domain.buildinglId = result.Address.BuildingId;
+                domain.buildingName = result.Address.BuildingName;
+                domain.dormId = result.Address.DormId;
+                domain.dorm = result.Address.DormName;
             }
             return domain;
         }
@@ -105,6 +109,7 @@ namespace AccountGRPCInterface
                 domain.dataId = result.DataId;
                 domain.dataName = result.DataName;
                 domain.parentDataId = result.ParentDataId;
+                
             }
             return domain;
         }
@@ -144,8 +149,7 @@ namespace AccountGRPCInterface
                     ContactMobile = model.contactMobile,
                     ContactName = model.contactName,
                     Gender = model.gender?1:0,
-                    DistrictId = model.districtId,
-                    Dorm = model.dorm
+                    DistrictId = model.dormId,
                 }
             };
             bool ret = false;
@@ -170,8 +174,7 @@ namespace AccountGRPCInterface
                     ContactMobile = !string.IsNullOrEmpty(model.contactMobile) ? model.contactMobile : string.Empty,
                     ContactName = !string.IsNullOrEmpty(model.contactName) ? model.contactName : string.Empty,
                     Gender = model.gender ? 1 : 0,
-                    DistrictId = model.districtId,
-                    Dorm = model.dorm,
+                    DistrictId = model.dormId,
                     IsDefault = model.isDefault ?1:0
                 }
             };
@@ -194,6 +197,23 @@ namespace AccountGRPCInterface
             };
             bool ret = false;
             var result = client.UpdateAddressStatus(request1);
+            if (result.Status == 10001)
+            {
+                ret = true;
+            }
+            return ret;
+        }
+        public static bool UpdateAddressDorm(int id, int dormId, string accountId)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request1 = new AddressDormRequest()
+            {
+                AccountId = accountId,
+                Id = id,
+                DormId = dormId
+            };
+            bool ret = false;
+            var result = client.UpdateAddressDorm(request1);
             if (result.Status == 10001)
             {
                 ret = true;
@@ -299,7 +319,7 @@ namespace AccountGRPCInterface
                     domain.dataId = item.DataId;
                     domain.dataName = item.DataName;
                     domain.parentDataId = item.ParentDataId;
-                    if (domain.parentDataId > 0)
+                    if (domain.dataId > 0)
                     {
                         GetChildRegion(domain, client);
                     }
@@ -312,7 +332,7 @@ namespace AccountGRPCInterface
         {
             var requst2 = new RegionIDRequest()
             {
-                DataId = model.parentDataId
+                DataId = model.dataId
             };
             model.childList = new List<RegionDataModel>();
             var childResult = client.GetChildRegionData(requst2);

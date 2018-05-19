@@ -34,47 +34,50 @@ namespace SP.Service {
             "BWltYWdlGA4gAygLMhguU1AuU2VydmljZS5Qcm9kdWN0SW1hZ2USEAoIdmlw",
             "UHJpY2UYDyABKAESDgoGc2t1TnVtGBAgASgFImIKBUJyYW5kEg8KB2JyYW5k",
             "SWQYASABKAUSEQoJYnJhbmROYW1lGAIgASgJEgwKBGxvZ28YAyABKAkSEgoK",
-            "Y29tcGFueVVybBgEIAEoCRITCgtkZXNjcmlwdGlvbhgFIAEoCSJNCgtQcm9k",
+            "Y29tcGFueVVybBgEIAEoCRITCgtkZXNjcmlwdGlvbhgFIAEoCSJxCgtQcm9k",
             "dWN0VHlwZRIOCgZ0eXBlSWQYASABKAMSEAoIdHlwZU5hbWUYAiABKAkSDAoE",
-            "a2luZBgDIAEoBRIOCgZyZW1hcmsYBCABKAkiPAoMUHJvZHVjdEltYWdlEgoK",
-            "AklkGAEgASgDEg8KB0ltZ1BhdGgYAiABKAkSDwoHUG9zdGlvbhgDIAEoBSJn",
-            "ChBQcm9kdWN0QXR0cmlidXRlEigKCWF0dHJpYnV0ZRgBIAEoCzIVLlNQLlNl",
-            "cnZpY2UuQXR0cmlidXRlEikKBXZhbHVlGAIgASgLMhouU1AuU2VydmljZS5B",
-            "dHRyaWJ1dGVWYWx1ZSI5ChJQcm9kdWN0TGlzdFJlcXVlc3QSEQoJcGFnZUlu",
-            "ZGV4GAEgASgFEhAKCHBhZ2VTaXplGAIgASgFIiUKEFByb2R1Y3RJZFJlcXVl",
-            "c3QSEQoJcHJvZHVjdElkGAEgASgJIkYKDkJyYW5kSWRSZXF1ZXN0Eg8KB2Jy",
-            "YW5kSWQYASABKAUSEQoJcGFnZUluZGV4GAIgASgFEhAKCHBhZ2VTaXplGAMg",
-            "ASgFIkQKDVR5cGVJZFJlcXVlc3QSDgoGdHlwZUlkGAEgASgDEhEKCXBhZ2VJ",
-            "bmRleBgCIAEoBRIQCghwYWdlU2l6ZRgDIAEoBSJOChJBdHRyaWJ1dGVJZFJl",
-            "cXVlc3QSEwoLYXR0cmlidXRlSWQYASABKAMSEQoJcGFnZUluZGV4GAIgASgF",
-            "EhAKCHBhZ2VTaXplGAMgASgFIkwKFFNlYXJjaFByb2R1Y3RSZXF1ZXN0Eg8K",
-            "B2tleVdvcmQYASABKAkSEQoJcGFnZUluZGV4GAIgASgFEhAKCHBhZ2VTaXpl",
-            "GAMgASgFIl4KE1Byb2R1Y3RMaXN0UmVzcG9uc2USDgoGc3RhdHVzGAEgASgF",
-            "EigKC3Byb2R1Y3RMaXN0GAIgAygLMhMuU1AuU2VydmljZS5Qcm9kdWN0Eg0K",
-            "BXRvdGFsGAQgASgDIlIKFFByb2RjdERldGFpbFJlc3BvbnNlEg4KBnN0YXR1",
-            "cxgBIAEoBRIqCg1wcm9kdWN0RGV0YWlsGAIgASgLMhMuU1AuU2VydmljZS5Q",
-            "cm9kdWN0IiwKGVRpdGxlQXR0cmlidXRlTGlzdFJlcXVlc3QSDwoHYXR0VHlw",
-            "ZRgBIAEoBSJfChpUaXRsZUF0dHJpYnV0ZUxpc3RSZXNwb25zZRIOCgZzdGF0",
-            "dXMYASABKAUSMQoSdGl0bGVBdHRyaWJ1dGVMaXN0GAIgAygLMhUuU1AuU2Vy",
-            "dmljZS5BdHRyaWJ1dGUiSgoPU2hvcExpc3RSZXF1ZXN0EhEKCXBhZ2VJbmRl",
-            "eBgBIAEoBRIQCghwYWdlU2l6ZRgCIAEoBRISCgpkaXN0cmljdElkGAUgASgF",
-            "IlUKEFNob3BMaXN0UmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEiIKCHNob3BM",
-            "aXN0GAIgAygLMhAuU1AuU2VydmljZS5TaG9wEg0KBXRvdGFsGAMgASgFInYK",
-            "FlNob3BQcm9kdWN0TGlzdFJlcXVlc3QSEQoJcGFnZUluZGV4GAEgASgFEhAK",
-            "CHBhZ2VTaXplGAIgASgFEhMKC2F0dHJpYnV0ZUlkGAMgASgDEg4KBnNob3BJ",
-            "ZBgEIAEoBRISCgpkaXN0cmljdElkGAUgASgFIh8KDVNob3BJZFJlcXVlc3QS",
-            "DgoGc2hvcElkGAEgASgFIj4KDFNob3BSZXNwb25zZRIOCgZzdGF0dXMYASAB",
-            "KAUSHgoEc2hvcBgCIAEoCzIQLlNQLlNlcnZpY2UuU2hvcCJACghDYXJvdXNl",
-            "bBILCgN1cmwYASABKAkSEQoJaW1hZ2VQYXRoGAIgASgJEhQKDGRpc3BsYXlJ",
-            "bmRleBgDIAEoBSJSChRDYXJvdXNlbExpc3RSZXNwb25zZRIOCgZzdGF0dXMY",
-            "ASABKAUSKgoMY2Fyb3VzZWxMaXN0GAIgAygLMhQuU1AuU2VydmljZS5DYXJv",
-            "dXNlbGIGcHJvdG8z"));
+            "a2luZBgDIAEoBRIOCgZyZW1hcmsYBCABKAkSEAoIdHlwZVBhdGgYBSABKAkS",
+            "EAoIdHlwZUxvZ28YBiABKAkiPAoMUHJvZHVjdEltYWdlEgoKAklkGAEgASgD",
+            "Eg8KB0ltZ1BhdGgYAiABKAkSDwoHUG9zdGlvbhgDIAEoBSJnChBQcm9kdWN0",
+            "QXR0cmlidXRlEigKCWF0dHJpYnV0ZRgBIAEoCzIVLlNQLlNlcnZpY2UuQXR0",
+            "cmlidXRlEikKBXZhbHVlGAIgASgLMhouU1AuU2VydmljZS5BdHRyaWJ1dGVW",
+            "YWx1ZSI5ChJQcm9kdWN0TGlzdFJlcXVlc3QSEQoJcGFnZUluZGV4GAEgASgF",
+            "EhAKCHBhZ2VTaXplGAIgASgFIiUKEFByb2R1Y3RJZFJlcXVlc3QSEQoJcHJv",
+            "ZHVjdElkGAEgASgJIkYKDkJyYW5kSWRSZXF1ZXN0Eg8KB2JyYW5kSWQYASAB",
+            "KAUSEQoJcGFnZUluZGV4GAIgASgFEhAKCHBhZ2VTaXplGAMgASgFIkQKDVR5",
+            "cGVJZFJlcXVlc3QSDgoGdHlwZUlkGAEgASgDEhEKCXBhZ2VJbmRleBgCIAEo",
+            "BRIQCghwYWdlU2l6ZRgDIAEoBSJOChJBdHRyaWJ1dGVJZFJlcXVlc3QSEwoL",
+            "YXR0cmlidXRlSWQYASABKAMSEQoJcGFnZUluZGV4GAIgASgFEhAKCHBhZ2VT",
+            "aXplGAMgASgFIkwKFFNlYXJjaFByb2R1Y3RSZXF1ZXN0Eg8KB2tleVdvcmQY",
+            "ASABKAkSEQoJcGFnZUluZGV4GAIgASgFEhAKCHBhZ2VTaXplGAMgASgFIl4K",
+            "E1Byb2R1Y3RMaXN0UmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEigKC3Byb2R1",
+            "Y3RMaXN0GAIgAygLMhMuU1AuU2VydmljZS5Qcm9kdWN0Eg0KBXRvdGFsGAQg",
+            "ASgDIlIKFFByb2RjdERldGFpbFJlc3BvbnNlEg4KBnN0YXR1cxgBIAEoBRIq",
+            "Cg1wcm9kdWN0RGV0YWlsGAIgASgLMhMuU1AuU2VydmljZS5Qcm9kdWN0IiwK",
+            "GVRpdGxlQXR0cmlidXRlTGlzdFJlcXVlc3QSDwoHYXR0VHlwZRgBIAEoBSJf",
+            "ChpUaXRsZUF0dHJpYnV0ZUxpc3RSZXNwb25zZRIOCgZzdGF0dXMYASABKAUS",
+            "MQoSdGl0bGVBdHRyaWJ1dGVMaXN0GAIgAygLMhUuU1AuU2VydmljZS5BdHRy",
+            "aWJ1dGUiXAoPU2hvcExpc3RSZXF1ZXN0EhEKCXBhZ2VJbmRleBgBIAEoBRIQ",
+            "CghwYWdlU2l6ZRgCIAEoBRIQCghzaG9wVHlwZRgDIAEoBRISCgpkaXN0cmlj",
+            "dElkGAUgASgFIlUKEFNob3BMaXN0UmVzcG9uc2USDgoGc3RhdHVzGAEgASgF",
+            "EiIKCHNob3BMaXN0GAIgAygLMhAuU1AuU2VydmljZS5TaG9wEg0KBXRvdGFs",
+            "GAMgASgFInEKFlNob3BQcm9kdWN0TGlzdFJlcXVlc3QSEQoJcGFnZUluZGV4",
+            "GAEgASgFEhAKCHBhZ2VTaXplGAIgASgFEg4KBnR5cGVJZBgDIAEoAxIOCgZz",
+            "aG9wSWQYBCABKAUSEgoKZGlzdHJpY3RJZBgFIAEoBSIfCg1TaG9wSWRSZXF1",
+            "ZXN0Eg4KBnNob3BJZBgBIAEoBSI+CgxTaG9wUmVzcG9uc2USDgoGc3RhdHVz",
+            "GAEgASgFEh4KBHNob3AYAiABKAsyEC5TUC5TZXJ2aWNlLlNob3AiQAoIQ2Fy",
+            "b3VzZWwSCwoDdXJsGAEgASgJEhEKCWltYWdlUGF0aBgCIAEoCRIUCgxkaXNw",
+            "bGF5SW5kZXgYAyABKAUiUgoUQ2Fyb3VzZWxMaXN0UmVzcG9uc2USDgoGc3Rh",
+            "dHVzGAEgASgFEioKDGNhcm91c2VsTGlzdBgCIAMoCzIULlNQLlNlcnZpY2Uu",
+            "Q2Fyb3VzZWwiVwoVVGl0bGVUeXBlTGlzdFJlc3BvbnNlEg4KBnN0YXR1cxgB",
+            "IAEoBRIuCg10aXRsZVR5cGVMaXN0GAIgAygLMhcuU1AuU2VydmljZS5Qcm9k",
+            "dWN0VHlwZWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.Product), global::SP.Service.Product.Parser, new[]{ "ProductId", "ProductName", "ProductCode", "ShortDescription", "Unit", "Description", "SaleStatus", "AddedDate", "MarketPrice", "Brand", "SuppliersId", "ProductType", "ProductAttribute", "Image", "VipPrice", "SkuNum" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.Brand), global::SP.Service.Brand.Parser, new[]{ "BrandId", "BrandName", "Logo", "CompanyUrl", "Description" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ProductType), global::SP.Service.ProductType.Parser, new[]{ "TypeId", "TypeName", "Kind", "Remark" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ProductType), global::SP.Service.ProductType.Parser, new[]{ "TypeId", "TypeName", "Kind", "Remark", "TypePath", "TypeLogo" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ProductImage), global::SP.Service.ProductImage.Parser, new[]{ "Id", "ImgPath", "Postion" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ProductAttribute), global::SP.Service.ProductAttribute.Parser, new[]{ "Attribute", "Value" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ProductListRequest), global::SP.Service.ProductListRequest.Parser, new[]{ "PageIndex", "PageSize" }, null, null, null),
@@ -87,13 +90,14 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ProdctDetailResponse), global::SP.Service.ProdctDetailResponse.Parser, new[]{ "Status", "ProductDetail" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TitleAttributeListRequest), global::SP.Service.TitleAttributeListRequest.Parser, new[]{ "AttType" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TitleAttributeListResponse), global::SP.Service.TitleAttributeListResponse.Parser, new[]{ "Status", "TitleAttributeList" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ShopListRequest), global::SP.Service.ShopListRequest.Parser, new[]{ "PageIndex", "PageSize", "DistrictId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ShopListRequest), global::SP.Service.ShopListRequest.Parser, new[]{ "PageIndex", "PageSize", "ShopType", "DistrictId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ShopListResponse), global::SP.Service.ShopListResponse.Parser, new[]{ "Status", "ShopList", "Total" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ShopProductListRequest), global::SP.Service.ShopProductListRequest.Parser, new[]{ "PageIndex", "PageSize", "AttributeId", "ShopId", "DistrictId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ShopProductListRequest), global::SP.Service.ShopProductListRequest.Parser, new[]{ "PageIndex", "PageSize", "TypeId", "ShopId", "DistrictId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ShopIdRequest), global::SP.Service.ShopIdRequest.Parser, new[]{ "ShopId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ShopResponse), global::SP.Service.ShopResponse.Parser, new[]{ "Status", "Shop" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.Carousel), global::SP.Service.Carousel.Parser, new[]{ "Url", "ImagePath", "DisplayIndex" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.CarouselListResponse), global::SP.Service.CarouselListResponse.Parser, new[]{ "Status", "CarouselList" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.CarouselListResponse), global::SP.Service.CarouselListResponse.Parser, new[]{ "Status", "CarouselList" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TitleTypeListResponse), global::SP.Service.TitleTypeListResponse.Parser, new[]{ "Status", "TitleTypeList" }, null, null, null)
           }));
     }
     #endregion
@@ -1000,6 +1004,8 @@ namespace SP.Service {
       typeName_ = other.typeName_;
       kind_ = other.kind_;
       remark_ = other.remark_;
+      typePath_ = other.typePath_;
+      typeLogo_ = other.typeLogo_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1067,6 +1073,36 @@ namespace SP.Service {
       }
     }
 
+    /// <summary>Field number for the "typePath" field.</summary>
+    public const int TypePathFieldNumber = 5;
+    private string typePath_ = "";
+    /// <summary>
+    ///*
+    /// 
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string TypePath {
+      get { return typePath_; }
+      set {
+        typePath_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "typeLogo" field.</summary>
+    public const int TypeLogoFieldNumber = 6;
+    private string typeLogo_ = "";
+    /// <summary>
+    ///*
+    /// 
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string TypeLogo {
+      get { return typeLogo_; }
+      set {
+        typeLogo_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as ProductType);
@@ -1084,6 +1120,8 @@ namespace SP.Service {
       if (TypeName != other.TypeName) return false;
       if (Kind != other.Kind) return false;
       if (Remark != other.Remark) return false;
+      if (TypePath != other.TypePath) return false;
+      if (TypeLogo != other.TypeLogo) return false;
       return true;
     }
 
@@ -1094,6 +1132,8 @@ namespace SP.Service {
       if (TypeName.Length != 0) hash ^= TypeName.GetHashCode();
       if (Kind != 0) hash ^= Kind.GetHashCode();
       if (Remark.Length != 0) hash ^= Remark.GetHashCode();
+      if (TypePath.Length != 0) hash ^= TypePath.GetHashCode();
+      if (TypeLogo.Length != 0) hash ^= TypeLogo.GetHashCode();
       return hash;
     }
 
@@ -1120,6 +1160,14 @@ namespace SP.Service {
         output.WriteRawTag(34);
         output.WriteString(Remark);
       }
+      if (TypePath.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(TypePath);
+      }
+      if (TypeLogo.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteString(TypeLogo);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1136,6 +1184,12 @@ namespace SP.Service {
       }
       if (Remark.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Remark);
+      }
+      if (TypePath.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(TypePath);
+      }
+      if (TypeLogo.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(TypeLogo);
       }
       return size;
     }
@@ -1156,6 +1210,12 @@ namespace SP.Service {
       }
       if (other.Remark.Length != 0) {
         Remark = other.Remark;
+      }
+      if (other.TypePath.Length != 0) {
+        TypePath = other.TypePath;
+      }
+      if (other.TypeLogo.Length != 0) {
+        TypeLogo = other.TypeLogo;
       }
     }
 
@@ -1181,6 +1241,14 @@ namespace SP.Service {
           }
           case 34: {
             Remark = input.ReadString();
+            break;
+          }
+          case 42: {
+            TypePath = input.ReadString();
+            break;
+          }
+          case 50: {
+            TypeLogo = input.ReadString();
             break;
           }
         }
@@ -3233,6 +3301,7 @@ namespace SP.Service {
     public ShopListRequest(ShopListRequest other) : this() {
       pageIndex_ = other.pageIndex_;
       pageSize_ = other.pageSize_;
+      shopType_ = other.shopType_;
       districtId_ = other.districtId_;
     }
 
@@ -3271,6 +3340,21 @@ namespace SP.Service {
       }
     }
 
+    /// <summary>Field number for the "shopType" field.</summary>
+    public const int ShopTypeFieldNumber = 3;
+    private int shopType_;
+    /// <summary>
+    ///*
+    /// 店铺分类
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int ShopType {
+      get { return shopType_; }
+      set {
+        shopType_ = value;
+      }
+    }
+
     /// <summary>Field number for the "districtId" field.</summary>
     public const int DistrictIdFieldNumber = 5;
     private int districtId_;
@@ -3301,6 +3385,7 @@ namespace SP.Service {
       }
       if (PageIndex != other.PageIndex) return false;
       if (PageSize != other.PageSize) return false;
+      if (ShopType != other.ShopType) return false;
       if (DistrictId != other.DistrictId) return false;
       return true;
     }
@@ -3310,6 +3395,7 @@ namespace SP.Service {
       int hash = 1;
       if (PageIndex != 0) hash ^= PageIndex.GetHashCode();
       if (PageSize != 0) hash ^= PageSize.GetHashCode();
+      if (ShopType != 0) hash ^= ShopType.GetHashCode();
       if (DistrictId != 0) hash ^= DistrictId.GetHashCode();
       return hash;
     }
@@ -3329,6 +3415,10 @@ namespace SP.Service {
         output.WriteRawTag(16);
         output.WriteInt32(PageSize);
       }
+      if (ShopType != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(ShopType);
+      }
       if (DistrictId != 0) {
         output.WriteRawTag(40);
         output.WriteInt32(DistrictId);
@@ -3343,6 +3433,9 @@ namespace SP.Service {
       }
       if (PageSize != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(PageSize);
+      }
+      if (ShopType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ShopType);
       }
       if (DistrictId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(DistrictId);
@@ -3360,6 +3453,9 @@ namespace SP.Service {
       }
       if (other.PageSize != 0) {
         PageSize = other.PageSize;
+      }
+      if (other.ShopType != 0) {
+        ShopType = other.ShopType;
       }
       if (other.DistrictId != 0) {
         DistrictId = other.DistrictId;
@@ -3380,6 +3476,10 @@ namespace SP.Service {
           }
           case 16: {
             PageSize = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            ShopType = input.ReadInt32();
             break;
           }
           case 40: {
@@ -3599,7 +3699,7 @@ namespace SP.Service {
     public ShopProductListRequest(ShopProductListRequest other) : this() {
       pageIndex_ = other.pageIndex_;
       pageSize_ = other.pageSize_;
-      attributeId_ = other.attributeId_;
+      typeId_ = other.typeId_;
       shopId_ = other.shopId_;
       districtId_ = other.districtId_;
     }
@@ -3639,18 +3739,18 @@ namespace SP.Service {
       }
     }
 
-    /// <summary>Field number for the "attributeId" field.</summary>
-    public const int AttributeIdFieldNumber = 3;
-    private long attributeId_;
+    /// <summary>Field number for the "typeId" field.</summary>
+    public const int TypeIdFieldNumber = 3;
+    private long typeId_;
     /// <summary>
     ///*
     /// 商品属性ID
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long AttributeId {
-      get { return attributeId_; }
+    public long TypeId {
+      get { return typeId_; }
       set {
-        attributeId_ = value;
+        typeId_ = value;
       }
     }
 
@@ -3699,7 +3799,7 @@ namespace SP.Service {
       }
       if (PageIndex != other.PageIndex) return false;
       if (PageSize != other.PageSize) return false;
-      if (AttributeId != other.AttributeId) return false;
+      if (TypeId != other.TypeId) return false;
       if (ShopId != other.ShopId) return false;
       if (DistrictId != other.DistrictId) return false;
       return true;
@@ -3710,7 +3810,7 @@ namespace SP.Service {
       int hash = 1;
       if (PageIndex != 0) hash ^= PageIndex.GetHashCode();
       if (PageSize != 0) hash ^= PageSize.GetHashCode();
-      if (AttributeId != 0L) hash ^= AttributeId.GetHashCode();
+      if (TypeId != 0L) hash ^= TypeId.GetHashCode();
       if (ShopId != 0) hash ^= ShopId.GetHashCode();
       if (DistrictId != 0) hash ^= DistrictId.GetHashCode();
       return hash;
@@ -3731,9 +3831,9 @@ namespace SP.Service {
         output.WriteRawTag(16);
         output.WriteInt32(PageSize);
       }
-      if (AttributeId != 0L) {
+      if (TypeId != 0L) {
         output.WriteRawTag(24);
-        output.WriteInt64(AttributeId);
+        output.WriteInt64(TypeId);
       }
       if (ShopId != 0) {
         output.WriteRawTag(32);
@@ -3754,8 +3854,8 @@ namespace SP.Service {
       if (PageSize != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(PageSize);
       }
-      if (AttributeId != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(AttributeId);
+      if (TypeId != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(TypeId);
       }
       if (ShopId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(ShopId);
@@ -3777,8 +3877,8 @@ namespace SP.Service {
       if (other.PageSize != 0) {
         PageSize = other.PageSize;
       }
-      if (other.AttributeId != 0L) {
-        AttributeId = other.AttributeId;
+      if (other.TypeId != 0L) {
+        TypeId = other.TypeId;
       }
       if (other.ShopId != 0) {
         ShopId = other.ShopId;
@@ -3805,7 +3905,7 @@ namespace SP.Service {
             break;
           }
           case 24: {
-            AttributeId = input.ReadInt64();
+            TypeId = input.ReadInt64();
             break;
           }
           case 32: {
@@ -4440,6 +4540,155 @@ namespace SP.Service {
           }
           case 18: {
             carouselList_.AddEntriesFrom(input, _repeated_carouselList_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 店铺种类列表的返回信息
+  /// </summary>
+  public sealed partial class TitleTypeListResponse : pb::IMessage<TitleTypeListResponse> {
+    private static readonly pb::MessageParser<TitleTypeListResponse> _parser = new pb::MessageParser<TitleTypeListResponse>(() => new TitleTypeListResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<TitleTypeListResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[22]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public TitleTypeListResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public TitleTypeListResponse(TitleTypeListResponse other) : this() {
+      status_ = other.status_;
+      titleTypeList_ = other.titleTypeList_.Clone();
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public TitleTypeListResponse Clone() {
+      return new TitleTypeListResponse(this);
+    }
+
+    /// <summary>Field number for the "status" field.</summary>
+    public const int StatusFieldNumber = 1;
+    private int status_;
+    /// <summary>
+    ///*
+    /// 添加状态10001为正常10002为异常
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Status {
+      get { return status_; }
+      set {
+        status_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "titleTypeList" field.</summary>
+    public const int TitleTypeListFieldNumber = 2;
+    private static readonly pb::FieldCodec<global::SP.Service.ProductType> _repeated_titleTypeList_codec
+        = pb::FieldCodec.ForMessage(18, global::SP.Service.ProductType.Parser);
+    private readonly pbc::RepeatedField<global::SP.Service.ProductType> titleTypeList_ = new pbc::RepeatedField<global::SP.Service.ProductType>();
+    /// <summary>
+    ///*
+    /// 店铺种类列表
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::SP.Service.ProductType> TitleTypeList {
+      get { return titleTypeList_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as TitleTypeListResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(TitleTypeListResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Status != other.Status) return false;
+      if(!titleTypeList_.Equals(other.titleTypeList_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Status != 0) hash ^= Status.GetHashCode();
+      hash ^= titleTypeList_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Status != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Status);
+      }
+      titleTypeList_.WriteTo(output, _repeated_titleTypeList_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Status != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Status);
+      }
+      size += titleTypeList_.CalculateSize(_repeated_titleTypeList_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(TitleTypeListResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Status != 0) {
+        Status = other.Status;
+      }
+      titleTypeList_.Add(other.titleTypeList_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            Status = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            titleTypeList_.AddEntriesFrom(input, _repeated_titleTypeList_codec);
             break;
           }
         }

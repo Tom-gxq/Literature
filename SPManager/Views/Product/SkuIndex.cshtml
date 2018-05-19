@@ -12,7 +12,40 @@
             </h1>
             <div class="tables-searchbox newcearchbox">
                 <a href="#" class="btn btn-success j-additem" style="height: 32px;" id="btnAddButton">添加</a>
-
+                <select id="inputSchool" class="select small newselect" style="height: 35px;">
+                    <option value="" selected="">学校名称</option>
+                    @foreach (SP.Application.Product.DTO.RegionDto entity in ViewBag.SchoolData as List<SP.Application.Product.DTO.RegionDto>)
+                    {
+                        <option value="@entity.DataId">@entity.DataName</option>
+                    }
+                </select>
+                <select id="inputDistrict" class="select small newselect" style="height: 35px;">
+                    <option value="0" selected="">院区名称</option>
+                    @foreach (SP.Application.Product.DTO.RegionDto entity in ViewBag.DistrictData as List<SP.Application.Product.DTO.RegionDto>)
+                    {
+                        <option value="@entity.DataId">@entity.DataName</option>
+                    }
+                </select>
+                <select id="inputShop" class="select small newselect" style="height: 35px;">
+                    <option value="0" selected="">店铺名称</option>
+                    @foreach (SP.Application.Shop.DTO.ShopDto entity in ViewBag.ShopData as List<SP.Application.Shop.DTO.ShopDto>)
+                    {
+                        <option value="@entity.Id">@entity.ShopName</option>
+                    }
+                </select>
+                <select id="inputProduct" class="select small newselect" style="height: 35px;">
+                    <option value="0" selected="">产品名称</option>
+                    @foreach (SP.Application.Product.DTO.ProductsDto entity in ViewBag.ProductData as List<SP.Application.Product.DTO.ProductsDto>)
+                    {
+                        <option value="@entity.ProductId">@entity.ProductName</option>
+                    }
+                </select>
+                <select id="inputSku" class="select small newselect" style="height: 35px;">
+                    <option value="-1" selected="">库存状态</option>
+                    <option value="1">在售</option>
+                    <option value="0">售空</option>
+                </select>
+                <button class="btn btn-primary search_btn" id="btnSearch">查询</button>
             </div>
             <div class="tablesWrap mgt10">
                 <table id="J_ItemList" class="wxtables table-order">
@@ -25,8 +58,9 @@
                         <col width="5%">
                         <col width="5%">
                         <col width="5%">
+                        <col width="5%">
                         <col width="10%">
-                        <col width="25%">
+                        <col width="20%">
                     </colgroup>
                     <thead>
                         <tr>

@@ -30,7 +30,7 @@ namespace SP.Application.Shop
             _regionRepository = regionRepository;
             _shopProductRepository = shopProductRepository;
         }
-        public bool AddShop(string shopName, int displaySequence, string startTime, string endTime, int shopType)
+        public bool AddShop(string shopName, int displaySequence, string startTime, string endTime, int shopType, string shopLogo)
         {
             var result = _shopRepository.Insert(new ShopEntity()
             {
@@ -39,7 +39,8 @@ namespace SP.Application.Shop
                 MetaKeywords = shopName,
                 StartTime = startTime,
                 EndTime = endTime,
-                ShopType = shopType
+                ShopType = shopType,
+                ShopLogo = shopLogo
             });
             return result != null;
         }
@@ -67,7 +68,8 @@ namespace SP.Application.Shop
                 MetaKeywords = shop.ShopName+"|"+ (shop.Owner != null ? shop.Owner.Fullname:string.Empty),
                 StartTime = shop.StartTime,
                 EndTime = shop.EndTime,
-                ShopType = shop.ShopType
+                ShopType = shop.ShopType,
+                ShopLogo = shop.ShopLogo
             }, x => x.Id == shop.Id);
 
             if(result > 0 && shop.AttributeId > 0)
@@ -150,6 +152,21 @@ namespace SP.Application.Shop
             return total;
         }
 
+        public List<ShopDto> GetShopListByRegionId(int regionId)
+        {
+            var retList = new List<ShopDto>();
+            var repository = IocManager.Instance.Resolve<ShopRespository>();
+            var list = repository.GetShopListByRegionId(regionId);
+            foreach (var item in list)
+            {
+                var entity = ConvertFromRepositoryEntity(item);
+                
+                retList.Add(entity);
+            }
+
+            return retList;
+        }
+
         public List<ShopDto> SearchShopByUserName(string keyWord, int pageIndex, int pageSize)
         {
             var retList = new List<ShopDto>();
@@ -210,7 +227,8 @@ namespace SP.Application.Shop
                 RegionId = shop.RegionId != null ? shop.RegionId.Value:0,
                 StartTime = shop.StartTime,
                 EndTime = shop.EndTime,
-                ShopType = shop.ShopType != null ? shop.ShopType.Value:0
+                ShopType = shop.ShopType != null ? shop.ShopType.Value:0,
+                ShopLogo = shop.ShopLogo != null ? shop.ShopLogo : string.Empty,
             };
 
             return shopDto;

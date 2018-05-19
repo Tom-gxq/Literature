@@ -3,6 +3,7 @@ using Grpc.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SP.Service;
+using SP.Service.Domain.DomainEntity;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -42,6 +43,21 @@ namespace Account.Service.GrpcImpl
             catch(Exception ex)
             {
                 logger.LogError(this.prjLicEID, ex, "RegistAccount Exception");
+            }
+            return Task.FromResult(response);
+        }
+        public override Task<AccountResultResponse> UpdateAccount(UpdateAccountRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} UpdateAccount Connected! MobilePhone:[{MobilePhone}]",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.MobilePhone ?? string.Empty);
+            AccountResultResponse response = null;
+            try
+            {
+                response = AccountBusiness.UpdateAccount(request.Email, request.MobilePhone, request.PassWord, request.AccountId);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "UpdateAccount Exception");
             }
             return Task.FromResult(response);
         }
@@ -232,6 +248,26 @@ namespace Account.Service.GrpcImpl
             catch (Exception ex)
             {
                 logger.LogError(this.prjLicEID, ex, "UpdateAddressStatus Exception");
+            }
+            return Task.FromResult(response);
+        }
+
+        /**
+        * 更新用户地址
+        */
+        public override Task<AccountResultResponse> UpdateAddressDorm(AddressDormRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} UpdateAddressDorm Connected! Id:[{Id}] DormId:[{DormId}] AccountId:[{AccountId}]",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.Id, request.DormId, request.AccountId);
+            AccountResultResponse response = new AccountResultResponse();
+            response.Status = 10002;
+            try
+            {
+                response = AddressBusiness.UpdateAddressDorm(request);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "UpdateAddressDorm Exception");
             }
             return Task.FromResult(response);
         }
@@ -713,6 +749,120 @@ namespace Account.Service.GrpcImpl
                 logger.LogError(this.prjLicEID, ex, "GetAssociatorById Exception");
             }
             logger.LogInformation(this.prjLicEID, "GetAssociatorById Result:[{Result}] ", response.ToString());
+            return Task.FromResult(response);
+        }
+
+        public override Task<AccountResultResponse> SetAccountPayPwd(AccountPayPwdRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} SetAccountPayPwd Connected! AccountId:[{AccountId}]",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.AccountId ?? string.Empty);
+            AccountResultResponse response = null;
+            try
+            {
+                response = AccountBusiness.SetAccountPayPwd(request.AccountId, request.PayPwd);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "SetAccountPayPwd Exception");
+            }
+            return Task.FromResult(response);
+        }
+
+        public override Task<AccountResultResponse> UpdateAccountPayPwd(AccountPayPwdRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} UpdateAccountPayPwd Connected! AccountId:[{AccountId}]",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.AccountId ?? string.Empty);
+            AccountResultResponse response = null;
+            try
+            {
+                response = AccountBusiness.UpdateAccountPayPwd(request.AccountId, request.PayPwd);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "UpdateAccountPayPwd Exception");
+            }
+            return Task.FromResult(response);
+        }
+
+        public override Task<AccountResultResponse> UpdateAccountLoginPwd(AccountPayPwdRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} UpdateAccountLoginPwd Connected! AccountId:[{AccountId}]",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.AccountId ?? string.Empty);
+            AccountResultResponse response = null;
+            try
+            {
+                response = AccountBusiness.UpdateAccountLoginPwd(request.AccountId, request.PayPwd);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "UpdateAccountLoginPwd Exception");
+            }
+            return Task.FromResult(response);
+        }
+
+        public override Task<AccountResultResponse> UpdateAccountMobile(AccountMobileRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} UpdateAccountMobile Connected! AccountId:[{AccountId}]",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.AccountId ?? string.Empty);
+            AccountResultResponse response = null;
+            try
+            {
+                response = AccountBusiness.UpdateAccountMobile(request.AccountId, request.MobilePhone);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "UpdateAccountMobile Exception");
+            }
+            return Task.FromResult(response);
+        }
+
+        public override Task<AccountResultResponse> BindOtherAccount(BingAccountRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} BindOtherAccount Connected! AccountId:[{AccountId}] OtherAccount:[{OtherAccount}]",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.AccountId ?? string.Empty, request.OtherAccount ?? string.Empty);
+            AccountResultResponse response = null;
+            try
+            {
+                response = AccountBusiness.BindOtherAccount(request.AccountId, request.OtherType, request.OtherAccount);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "BindOtherAccount Exception");
+            }
+            return Task.FromResult(response);
+        }
+
+        public override Task<AccountResultResponse> CreateOtherAccount(OtherAccountRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} CreateOtherAccount Connected! MobilePhone:[{MobilePhone}] OtherAccount:[{OtherAccount}]",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.MobilePhone ?? string.Empty, request.OtherAccount ?? string.Empty);
+            AccountResultResponse response = null;
+            try
+            {
+                response = AccountBusiness.CreateOtherAccount(request.MobilePhone, request.OtherType, request.OtherAccount, request.FullName, request.Avatar, request.Gender);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "CreateOtherAccount Exception");
+            }
+            return Task.FromResult(response);
+        }
+
+        public override Task<AccountResponse> GetOtherAccount(GetOtherAccountRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} GetOtherAccount Connected! OtherAccount:[{OtherAccount}]",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.OtherAccount ?? string.Empty);
+            AccountResponse response = new AccountResponse();
+            response.Status = 10002;
+            try
+            {
+                response = AccountBusiness.GetOtherAccount(request.OtherAccount, (OtherType)request.OtherType);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "GetOtherAccount Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "GetOtherAccount {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
     }

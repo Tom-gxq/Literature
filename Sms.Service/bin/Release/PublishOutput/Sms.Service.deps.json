@@ -1575,6 +1575,7 @@
           "Microsoft.Extensions.Configuration.Abstractions": "2.0.0",
           "Newtonsoft.Json": "10.0.3",
           "ServiceStack.OrmLite.SqlServer.Core": "5.0.2",
+          "StackExchange.Redis": "1.2.6",
           "System.Collections.Immutable": "1.4.0"
         },
         "runtime": {

@@ -22,5 +22,6 @@ namespace SP.Application.Shop.DTO
         public string EndTime { get; set; }
         public AccountInfoDto Owner { get; set; }
         public int ShopType { get; set; }
+        public string ShopLogo { get; set; }
     }
 }

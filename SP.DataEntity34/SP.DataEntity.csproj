@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountFinanceEntity.cs" />
     <Compile Include="AuthenticationEntity.cs" />
     <Compile Include="AccountEntity.cs" />
     <Compile Include="AccountInfoEntity.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="AttributeValueEntity.cs" />
     <Compile Include="BrandEntity.cs" />
     <Compile Include="CarouselEntity.cs" />
+    <Compile Include="CashApplyEntity.cs" />
     <Compile Include="EventFullInfoEntity.cs" />
     <Compile Include="EventRelationEntity.cs" />
     <Compile Include="OrdersEntity.cs" />
@@ -80,6 +82,8 @@
     <Compile Include="ProductTypeEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegionEntity.cs" />
+    <Compile Include="RegionTypeEntity.cs" />
+    <Compile Include="RegionTypeFullEntity.cs" />
     <Compile Include="ResEventEntity.cs" />
     <Compile Include="ShopAttributeEntity.cs" />
     <Compile Include="ShopEntity.cs" />

@@ -43,7 +43,7 @@ namespace SP.Service.Domain.EventHandlers
                     else
                     {
                         throw new ProductSkuException(string.Format($"ShopId={handle.ShopId} " +
-                                                        $"ProductId={handle.ProductId} domaint.Stock={domaint.Stock} " +
+                                                        $"ProductId={handle.ProductId} domaint.Stock={domaint?.Stock??0} " +
                                                         $"DecStock={handle.DecStock}"));
                     }
                 }

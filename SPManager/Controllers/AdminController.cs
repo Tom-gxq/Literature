@@ -127,5 +127,66 @@ namespace SPManager.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
+        public ActionResult CashApplyIndex()
+        {
+            return View();
+        }
+        public JsonResult GetCashApply(int pageIndex, int pageSize)
+        {
+            IAdminAppService service = IocManager.Instance.Resolve<IAdminAppService>();
+            var list = service.GetCashApply(pageIndex, pageSize);
+            var total = service.GetCashApplyCount();
+            JsonResult.Add("items", list);
+            PageModel jObject = new PageModel();
+            jObject.Total = (int)total;
+            jObject.Pages = (int)Math.Ceiling(Convert.ToDouble(total) / pageSize);
+            jObject.Index = pageIndex;
+            JsonResult.Add("data", jObject);
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult SearchCashApplyByKeyWord(string keywords)
+        {
+            IAdminAppService service = IocManager.Instance.Resolve<IAdminAppService>();
+            var result = service.SearchCashApplyByKeyWord(keywords);
+            JsonResult.Add("items", result);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult EditApplyStatus(int id,int status)
+        {
+            IAdminAppService service = IocManager.Instance.Resolve<IAdminAppService>();
+            var result = service.EditApplyStatus(id, status);
+            JsonResult.Add("result", result);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult SearchCashApplyByDate(int status, string startDate, string endDate)
+        {
+            IAdminAppService service = IocManager.Instance.Resolve<IAdminAppService>();
+            var result = service.SearchCashApplyByDate(status, startDate, endDate);
+            JsonResult.Add("items", result);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
     }
 }

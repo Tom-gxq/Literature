@@ -11,6 +11,7 @@ namespace SP.Service.Domain.DomainEntity
 {
     public class AccountDomain : AggregateRoot<Guid>,
         IHandle<AccountCreatedEvent>, IHandle<AccountInfoCreatedEvent>, IHandle<AssociatorCreatedEvent>,
+        IHandle<AccountEditEvent>,
         IOriginator
     {
         public string AccountId { get; set; }
@@ -21,6 +22,9 @@ namespace SP.Service.Domain.DomainEntity
         public int Status { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime UpdateTime { get; set; }
+        public string AliBind { get; set; }
+        public string WxBind { get; set; }
+        public string QQBind { get; set; }
 
         public AccountDomain()
         {
@@ -31,11 +35,62 @@ namespace SP.Service.Domain.DomainEntity
             ApplyChange(new AccountCreatedEvent(accountId, mobilePhone, email, password, status));
             ApplyChange(new AccountInfoCreatedEvent(accountId,fullname: userName));
         }
+        public AccountDomain(Guid accountId, string mobilePhone, string otherAccount, OtherType otherType, string userName,string avatar,bool gender)
+        {            
+            if (otherType == OtherType.AliAccount)
+            {
+                ApplyChange(new AliBindCreatedEvent(accountId, mobilePhone,otherAccount));
+            }
+            else if (otherType == OtherType.WxAccount)
+            {
+                ApplyChange(new WxBindCreatedEvent(accountId, mobilePhone, otherAccount));
+            }
+            else if (otherType == OtherType.QQAccount)
+            {
+                ApplyChange(new QQBindCreatedEvent(accountId, mobilePhone, otherAccount));
+            }
+            else
+            {
+                throw new Exception();
+            }
+            ApplyChange(new AccountInfoCreatedEvent(accountId, avatar, userName, gender: gender));
+        }
         public void CreateSysMember(string accountId,string kindId,int quantity)
         {
             var payType = 1;
             var payOrderCode = "ZSHY"+DateTime.Now.ToString("yyyyMMddHH24mmssffff");
             ApplyChange(new AssociatorCreatedEvent(Guid.NewGuid(),accountId, kindId, quantity, payOrderCode, payType,0));
+        }
+        public void EditAccount(Guid accountId, string mobilePhone, string email, string password)
+        {
+            ApplyChange(new AccountEditEvent(accountId, mobilePhone, email, password));
+        }
+        public void EditAccountPwd(Guid accountId, string password)
+        {
+            ApplyChange(new AccountEditEvent(accountId, null, null, password));
+        }
+        public void EditAccountMobile(Guid accountId, string mobilePhone)
+        {
+            ApplyChange(new AccountEditEvent(accountId, mobilePhone, null, null));
+        }
+        public void BindAccount(Guid accountId, string otherAccount, OtherType otherType)
+        {
+            if(otherType == OtherType.AliAccount)
+            {
+                ApplyChange(new AliBindEvent(accountId, otherAccount));
+            }
+            else if(otherType == OtherType.WxAccount)
+            {
+                ApplyChange(new WxBindEvent(accountId, otherAccount));
+            }
+            else if (otherType == OtherType.QQAccount)
+            {
+                ApplyChange(new QQBindEvent(accountId, otherAccount));
+            }
+            else
+            {
+                throw new Exception();
+            }
         }
         public BaseEntity GetMemento()
         {
@@ -66,6 +121,28 @@ namespace SP.Service.Domain.DomainEntity
         {
             this.AccountId = e.AggregateId.ToString();
         }
+        public void Handle(AccountEditEvent e)
+        {
+            this.AccountId = e.AggregateId.ToString();
+            this.Email = e.Email;
+            this.MobilePhone = e.MobilePhone;
+            this.Password = e.Password;
+        }
+        public void Handle(AliBindEvent e)
+        {
+            this.AccountId = e.AggregateId.ToString();
+            this.AliBind = e.OtherAccount;
+        }
+        public void Handle(WxBindEvent e)
+        {
+            this.AccountId = e.AggregateId.ToString();
+            this.WxBind = e.OtherAccount;
+        }
+        public void Handle(QQBindEvent e)
+        {
+            this.AccountId = e.AggregateId.ToString();
+            this.QQBind = e.OtherAccount;
+        }
 
         public void SetMemento(BaseEntity memento)
         {
@@ -79,5 +156,11 @@ namespace SP.Service.Domain.DomainEntity
                 this.Status = entity.Status.Value;
             }
         }
+    }
+    public enum OtherType
+    {
+        AliAccount=0,
+        WxAccount,
+        QQAccount
     }
 }

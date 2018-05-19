@@ -321,6 +321,9 @@
     <Content Include="Scripts\carousel\list-item.html" />
     <Content Include="Scripts\carousel\carouseldata.js" />
     <Content Include="Scripts\carousel\style.css" />
+    <Content Include="Scripts\cash\cashdata.js" />
+    <Content Include="Scripts\cash\list-item.html" />
+    <Content Include="Scripts\cash\style.css" />
     <Content Include="Scripts\common_login_reg.js" />
     <Content Include="Scripts\component-min.js" />
     <Content Include="Scripts\discount\addassociator.html" />
@@ -412,6 +415,8 @@
     <Content Include="Scripts\plug\plupload\plupload.dev.js" />
     <Content Include="Scripts\plug\plupload\plupload.full.min.js" />
     <Content Include="Scripts\plug\plupload\plupload.min.js" />
+    <Content Include="Scripts\plug\qiniu\producttype.js" />
+    <Content Include="Scripts\plug\qiniu\shop.js" />
     <Content Include="Scripts\plug\qiniu\css\highlight.css" />
     <Content Include="Scripts\plug\qiniu\highlight.js" />
     <Content Include="Scripts\plug\qiniu\carouse.js" />
@@ -430,13 +435,22 @@
     <Content Include="Scripts\product\list-item.html" />
     <Content Include="Scripts\product\style.css" />
     <Content Include="Scripts\product\product.js" />
+    <Content Include="Scripts\regiondata\genderdorm.html" />
+    <Content Include="Scripts\regiondata\genderdorm.js" />
+    <Content Include="Scripts\regiondata\genderbuilding.html" />
     <Content Include="Scripts\regiondata\addregion.html" />
+    <Content Include="Scripts\regiondata\genderbuilding.js" />
     <Content Include="Scripts\regiondata\addregiondata.js" />
     <Content Include="Scripts\regiondata\editregion.html" />
     <Content Include="Scripts\regiondata\editregiondata.js" />
     <Content Include="Scripts\regiondata\list-item.html" />
     <Content Include="Scripts\regiondata\regiondata.js" />
     <Content Include="Scripts\regiondata\style.css" />
+    <Content Include="Scripts\regiontype\addregiontype.html" />
+    <Content Include="Scripts\regiontype\addregiontype.js" />
+    <Content Include="Scripts\regiontype\regiontypedata.js" />
+    <Content Include="Scripts\regiontype\list-item.html" />
+    <Content Include="Scripts\regiontype\style.css" />
     <Content Include="Scripts\resevent\addresevent.html" />
     <Content Include="Scripts\resevent\addreseventdata.js" />
     <Content Include="Scripts\resevent\reseventdata.js" />
@@ -505,6 +519,8 @@
     <Content Include="Views\Product\SkuIndex.cshtml" />
     <Content Include="Views\Discount\CarouselIndex.cshtml" />
     <Content Include="Views\Order\SumIndex.cshtml" />
+    <Content Include="Views\Admin\CashApplyIndex.cshtml" />
+    <Content Include="Views\RegionData\RegionTypeIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -102,7 +102,8 @@ namespace WebApiGateway.Models.Token
                 tokenModel.AccountId = accessUserInfo.AccountId;
                 //tokenModel.AppID = accessUserInfo.AppID;
                 tokenModel.Access_Token_Expires = accessUserInfo.Access_Token_Expires;
-
+                tokenModel.Refresh_Token = accessUserInfo.Refresh_Token;
+                tokenModel.Refresh_Token_Expires = accessUserInfo.Refresh_Token_Expires;
                 return tokenModel;
             }
             else
@@ -120,7 +121,7 @@ namespace WebApiGateway.Models.Token
         {
             DateTime dateNow = DateTime.Now;
             int accessTokenExpires = 48;
-            int refreshTokenExpires = 52;
+            int refreshTokenExpires = 168;
             
             string newAccessToken = System.Guid.NewGuid().ToString().Replace("-", string.Empty).ToLower();
             DateTime newAccessTokenExpires = dateNow.AddHours(accessTokenExpires);
@@ -148,6 +149,7 @@ namespace WebApiGateway.Models.Token
                 accessTokenModel.Access_Token = entity.AccessToken;
                 accessTokenModel.Access_Token_Expires = Convert.ToString(accessTokenExpires * 3600);
                 accessTokenModel.Refresh_Token = entity.RefreshToken;
+                accessTokenModel.Refresh_Token_Expires = Convert.ToString(refreshTokenExpires * 3600);
             }
         }
 

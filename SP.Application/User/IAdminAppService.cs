@@ -22,5 +22,10 @@ namespace SP.Application.User
         bool DelCurrentSession();
         AdminDto GetAdminDetail(int id);
         bool EditAdmin(AdminDto admin);
+        List<CashApplyDto> GetCashApply(int pageIndex, int pageSize);
+        long GetCashApplyCount();
+        List<CashApplyDto> SearchCashApplyByKeyWord(string keyWord);
+        bool EditApplyStatus(int id, int status);
+        List<CashApplyDto> SearchCashApplyByDate(int status, string startDate, string endDate);
     }
 }

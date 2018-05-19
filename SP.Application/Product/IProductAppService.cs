@@ -38,5 +38,8 @@ namespace SP.Application.Product
         bool AddProductSku(ProductSkuDto productSku);
         bool DeleteProductSku(string skuId);
         List<ProductsDto> SearchProductByKeyWord(string keyWord, int pageIndex, int pageSize);
+        bool AddOneProductSku(string skuId);
+        bool DelOneProductSku(string skuId);
+        List<ProductSkuDto> SearchProducSku(int schoolId, int districtId, int shopId, string productId, int skuStatus);
     }
 }

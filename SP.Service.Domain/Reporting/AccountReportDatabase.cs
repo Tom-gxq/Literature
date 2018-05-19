@@ -26,11 +26,18 @@ namespace SP.Service.Domain.Reporting
         {
             return _repository.AddAccount(item);
         }
+        public bool Update(AccountEntity item)
+        {
+            return _repository.UpdateAccount(item);
+        }
         public bool AddInfo(AccountInfoEntity item)
         {
             return _infoRepository.AddAccountInfo(item);
         }
-
+        public bool UpdateInfo(AccountInfoEntity item)
+        {
+            return _infoRepository.UpdateAccountFullInfo(item);
+        }
         public AccountDomain GetAccountById(string accountId)
         {
             var account = _repository.GetAccountById(accountId);
@@ -75,8 +82,31 @@ namespace SP.Service.Domain.Reporting
             return ConvertTokenEntityToDomain(result);
         }
 
+        public AccountDomain GetOtherAccount(string otherAccount, OtherType otherType)
+        {
+            AccountEntity account = null;
+            if (otherType == OtherType.AliAccount)
+            {
+                account = _repository.GetAccountByAli(otherAccount);
+            }
+            else if(otherType == OtherType.WxAccount)
+            {
+                account = _repository.GetAccountByWx(otherAccount);
+            }
+            else if (otherType == OtherType.QQAccount)
+            {
+                account = _repository.GetAccountByQQ(otherAccount);
+            }               
+
+            return ConvertOrderEntityToDomain(account);
+        }
+
         private AccountDomain ConvertOrderEntityToDomain(AccountEntity entity)
         {
+            if(entity == null)
+            {
+                return null;
+            }
             var account = new AccountDomain();
             account.SetMemento(entity);
             return account;
@@ -84,6 +114,10 @@ namespace SP.Service.Domain.Reporting
 
         private AccessTokenDomain ConvertTokenEntityToDomain(OAuth2AccessToken entity)
         {
+            if(entity == null)
+            {
+                return null;
+            }
             var account = new AccessTokenDomain();
             account.SetMemento(entity);
             return account;

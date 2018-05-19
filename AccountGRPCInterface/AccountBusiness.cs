@@ -76,6 +76,24 @@ namespace AccountGRPCInterface
             }
             return reuslt;
         }
+        public static string UpdateAccount(AccountModel model)
+        {
+            string reuslt = string.Empty;
+            var client = AccountClientHelper.GetClient();
+            var request1 = new UpdateAccountRequest()
+            {
+                Email = model.Email,
+                MobilePhone = model.MobilePhone,
+                PassWord = model.Password,
+                AccountId = model.AccountId
+            };
+            var result = client.UpdateAccount(request1);
+            if (result.Status == 10001)
+            {
+                reuslt = model.AccountId;
+            }
+            return reuslt;
+        }
 
         public static TokenModel GetAccessToken(string userKey)
         {
@@ -92,7 +110,7 @@ namespace AccountGRPCInterface
                 domain.Access_Token = result.AccessToken.AccessToken_;
                 domain.Access_Token_Expires = new DateTime(result.AccessToken.AccessTokenExpires).ToString("yyyy-MM-dd HH:mm:ss");
                 domain.Refresh_Token = result.AccessToken.RefreshToken;
-                //domain.Refresh_Token_Expires = new DateTime(result.AccessToken.RefreshTokenExpires).ToString("yyyy-MM-dd HH:mm:ss");
+                domain.Refresh_Token_Expires = new DateTime(result.AccessToken.RefreshTokenExpires).ToString("yyyy-MM-dd HH:mm:ss");
             }
 
             return domain;
@@ -113,7 +131,7 @@ namespace AccountGRPCInterface
                 domain.Access_Token = result.AccessToken.AccessToken_;
                 domain.Access_Token_Expires = new DateTime(result.AccessToken.AccessTokenExpires).ToString("yyyy-MM-dd HH:mm:ss");
                 domain.Refresh_Token = result.AccessToken.RefreshToken;
-                //domain.Refresh_Token_Expires = new DateTime(result.AccessToken.RefreshTokenExpires).ToString("yyyy-MM-dd HH:mm:ss");
+                domain.Refresh_Token_Expires = new DateTime(result.AccessToken.RefreshTokenExpires).ToString("yyyy-MM-dd HH:mm:ss");
             }
 
             return domain;
@@ -348,6 +366,7 @@ namespace AccountGRPCInterface
                 model.Avatar = reuslt.Avatar;
                 model.FullName = reuslt.FullName;
                 model.Gender = reuslt.Gender;
+                model.PayPassWord = reuslt.PayPassWord;
                 return model;
             }
             else
@@ -361,9 +380,11 @@ namespace AccountGRPCInterface
             var request = new AccountFullInfoRequest()
             {
                 AccountId = model.AccountId,
-                Avatar = model.Avatar,
+                Avatar = string.IsNullOrEmpty(model.Avatar)?string.Empty: model.Avatar,
                 FullName = model.FullName,
-                Gender = model.Gender
+                Gender = model.Gender,
+                UserType= model.UserType,
+                DormId = model.DormId
             };
             var result = client.UpdateAccountFullInfo(request);
             if (result.Status == 10001)
@@ -400,6 +421,144 @@ namespace AccountGRPCInterface
                 }
             }
             return list;
+        }
+        public static bool SetAccountPayPwd(PayPwdModel model)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request = new AccountPayPwdRequest()
+            {
+                AccountId = model.AccountId,
+                PayPwd = model.Password
+            };
+            var result = client.SetAccountPayPwd(request);
+            if (result.Status == 10001)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool UpdateAccountPayPwd(PayPwdModel model)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request = new AccountPayPwdRequest()
+            {
+                AccountId = model.AccountId,
+                PayPwd = model.Password
+            };
+            var result = client.UpdateAccountPayPwd(request);
+            if (result.Status == 10001)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool UpdateAccountLoginPwd(PayPwdModel model)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request = new AccountPayPwdRequest()
+            {
+                AccountId = model.AccountId,
+                PayPwd = model.Password
+            };
+            var result = client.UpdateAccountLoginPwd(request);
+            if (result.Status == 10001)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool UpdateAccountMobile(AccountModel model)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request = new AccountMobileRequest()
+            {
+                AccountId = model.AccountId,
+                MobilePhone = model.MobilePhone
+            };
+            var result = client.UpdateAccountMobile(request);
+            if (result.Status == 10001)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool BindOtherAccount(BingAccountModel model)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request = new BingAccountRequest()
+            {
+                AccountId = model.AccountId,
+                OtherAccount = model.OtherAccount,
+                OtherType = model.OtherType,
+            };
+            var result = client.BindOtherAccount(request);
+            if (result.Status == 10001)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool CreateOtherAccount(OtherAccountModel model)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request = new OtherAccountRequest()
+            {
+                MobilePhone = model.MobilePhone,
+                OtherAccount = model.OtherAccount,
+                OtherType = model.OtherType,
+                Avatar = model.Avatar,
+                FullName = model.FullName,
+                Gender = model.Gender
+            };
+            var result = client.CreateOtherAccount(request);
+            if (result.Status == 10001)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static AccountModel GetOtherAccount(string otherAccount,int otherType)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request1 = new GetOtherAccountRequest()
+            {
+                OtherAccount = otherAccount,
+                OtherType = otherType
+            };
+            var reuslt = client.GetOtherAccount(request1);
+            if (reuslt.Status == 10001)
+            {
+                var model = new AccountModel();
+                model.AccountId = reuslt.AccountId;
+                model.Email = reuslt.Email;
+                model.MobilePhone = reuslt.MobilePhone;
+                model.Password = reuslt.Password;
+                return model;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

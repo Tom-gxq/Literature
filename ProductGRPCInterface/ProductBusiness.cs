@@ -9,13 +9,14 @@ namespace ProductGRPCInterface
 {
     public class ProductBusiness
     {
-        public static List<ShopModel> GetAllShopList(int regionId,int pageIndex,int pageSize)
+        public static List<ShopModel> GetAllShopList(int regionId,int shopType,int pageIndex,int pageSize)
         {
             var client = ProductClientHelper.GetClient();
             var request1 = new ShopListRequest()
             {
                 DistrictId = regionId,
-                PageIndex= pageIndex,
+                ShopType = shopType,
+                PageIndex = pageIndex,
                 PageSize = pageSize
             };
             var result = client.GetAllShopList(request1);
@@ -31,6 +32,7 @@ namespace ProductGRPCInterface
                     domain.ownerName = item.OwnerName;
                     domain.startTime = item.StartTime;
                     domain.endTime = item.EndTime;
+                    domain.shopLogo = item.ShopLogo;
                     list.Add(domain);
                 }
             }
@@ -53,24 +55,90 @@ namespace ProductGRPCInterface
                     var domain = new AttributeModel();
                     domain.attributeId = item.AttributeId;
                     domain.attributeName = item.AttributeName;
+                    domain.attributeImage = item.UseAttributeImage;
                     list.Add(domain);
                 }
             }
             return list;
         }
 
-        public static List<ProductModel> GetShopProductList(int districtId, long attributeId,int shopId,int pageIndex,int pageSize)
+        public static List<ProductModel> GetShopProductList(int districtId, long typeId, int pageIndex,int pageSize)
         {
             var client = ProductClientHelper.GetClient();
             var request1 = new ShopProductListRequest()
             {
-                AttributeId = attributeId,
+                TypeId = typeId,
+                ShopId = 0,
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                DistrictId = districtId,
+            };
+            var result = client.GetShopProductList(request1);
+            var list = new List<ProductModel>();
+            if (result.Status == 10001)
+            {
+                foreach (var item in result.ProductList)
+                {
+                    var domain = new ProductModel();
+                    domain.productId = item.ProductId;
+                    domain.addedDate = new DateTime(item.AddedDate);
+                    domain.description = item.Description;
+                    domain.shortDescription = item.ShortDescription;
+                    domain.suppliersId = item.SuppliersId;
+                    domain.saleStatus = item.SaleStatus;
+                    domain.skuNum = item.SkuNum;
+                    domain.productName = item.ProductName;
+                    domain.marketPrice = item.MarketPrice;
+                    domain.vipPrice = item.VipPrice;
+                    domain.productCode = item.ProductCode;
+                    domain.unit = item.Unit;                    
+                    if (item.Brand != null)
+                    {
+                        domain.brand = new BrandModel()
+                        {
+                            brandId = item.Brand != null ? item.Brand.BrandId:0,
+                            brandName = item.Brand != null ? item.Brand.BrandName : string.Empty,
+                            description = item.Brand != null ? item.Brand.Description : string.Empty,
+                        };
+                    }
+                    if(item.ProductType != null)
+                    {
+                        domain.productType = new ProductTypeModel()
+                        {
+                           typeId = item.ProductType != null ? item.ProductType.TypeId : 0,
+                           typeName = item.ProductType != null ? item.ProductType.TypeName : string.Empty,
+                        };
+                    }
+                    if(item.Image != null)
+                    {
+                        domain.images = new List<ProductImageModel>();
+                        foreach (var imageItem in item.Image)
+                        {
+                            var imageModel = new ProductImageModel()
+                            {
+                                id = imageItem != null ? imageItem.Id : 0,
+                                imgPath = imageItem != null ? imageItem.ImgPath : string.Empty,
+                                postion = imageItem != null ? imageItem.Postion : 0,
+                            };
+                            domain.images.Add(imageModel);
+                        }
+                    }
+                    list.Add(domain);
+                }
+            }
+            return list;
+        }
+        public static List<ProductModel> GetFoodShopProductList(int districtId, int shopId, int pageIndex, int pageSize)
+        {
+            var client = ProductClientHelper.GetClient();
+            var request1 = new ShopProductListRequest()
+            {
                 ShopId = shopId,
                 PageIndex = pageIndex,
                 PageSize = pageSize,
-                DistrictId = districtId
+                DistrictId = districtId,
             };
-            var result = client.GetShopProductList(request1);
+            var result = client.GetFoodShopProductList(request1);
             var list = new List<ProductModel>();
             if (result.Status == 10001)
             {
@@ -93,20 +161,20 @@ namespace ProductGRPCInterface
                     {
                         domain.brand = new BrandModel()
                         {
-                            brandId = item.Brand != null ? item.Brand.BrandId:0,
+                            brandId = item.Brand != null ? item.Brand.BrandId : 0,
                             brandName = item.Brand != null ? item.Brand.BrandName : string.Empty,
                             description = item.Brand != null ? item.Brand.Description : string.Empty,
                         };
                     }
-                    if(item.ProductType != null)
+                    if (item.ProductType != null)
                     {
                         domain.productType = new ProductTypeModel()
                         {
-                           typeId = item.ProductType != null ? item.ProductType.TypeId : 0,
-                           typeName = item.ProductType != null ? item.ProductType.TypeName : string.Empty,
+                            typeId = item.ProductType != null ? item.ProductType.TypeId : 0,
+                            typeName = item.ProductType != null ? item.ProductType.TypeName : string.Empty,
                         };
                     }
-                    if(item.Image != null)
+                    if (item.Image != null)
                     {
                         domain.images = new List<ProductImageModel>();
                         foreach (var imageItem in item.Image)
@@ -163,6 +231,45 @@ namespace ProductGRPCInterface
             }
             return list;
         }
-
+        public static List<ProductTypeModel> GetTitleTypeList()
+        {
+            var client = ProductClientHelper.GetClient();
+            var request1 = new VoidRequest();
+            var result = client.GetShopTypeList(request1);
+            var list = new List<ProductTypeModel>();
+            if (result.Status == 10001)
+            {
+                foreach (var item in result.TitleTypeList)
+                {
+                    var domain = new ProductTypeModel();
+                    domain.typeId = item.TypeId;
+                    domain.typeName = item.TypeName;
+                    domain.typeLogo = item.TypeLogo;
+                    domain.typePath = item.TypePath;
+                    list.Add(domain);
+                }
+            }
+            return list;
+        }
+        public static List<ProductTypeModel> GetProductTypeTitleList()
+        {
+            var client = ProductClientHelper.GetClient();
+            var request1 = new VoidRequest();
+            var result = client.GetProductTypeList(request1);
+            var list = new List<ProductTypeModel>();
+            if (result.Status == 10001)
+            {
+                foreach (var item in result.TitleTypeList)
+                {
+                    var domain = new ProductTypeModel();
+                    domain.typeId = item.TypeId;
+                    domain.typeName = item.TypeName;
+                    domain.typeLogo = item.TypeLogo;
+                    domain.typePath = item.TypePath;
+                    list.Add(domain);
+                }
+            }
+            return list;
+        }
     }
 }

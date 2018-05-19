@@ -23,6 +23,7 @@ namespace SP.Application.Product.DTO
         public DateTime UpdateTime { get; set; }
         public string LastOperater { get; set; }
         public int TypeId { get; set; }
+        public int SecondTypeId { get; set; }
         public int BrandId { get; set; }
         public BrandDto Brand { get; set; }
         public ProductTypeDto ProductType { get; set; }

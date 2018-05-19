@@ -14,12 +14,14 @@ namespace SP.Service {
 
     static readonly grpc::Marshaller<global::SP.Service.RegistRequest> __Marshaller_RegistRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.RegistRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.AccountResultResponse> __Marshaller_AccountResultResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AccountResultResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.UpdateAccountRequest> __Marshaller_UpdateAccountRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.UpdateAccountRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.LoginRequest> __Marshaller_LoginRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.LoginRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.AccountIdRequest> __Marshaller_AccountIdRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AccountIdRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.AccountResponse> __Marshaller_AccountResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AccountResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.AccountRequest> __Marshaller_AccountRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AccountRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.AddressRequest> __Marshaller_AddressRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AddressRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.AddressStatusRequest> __Marshaller_AddressStatusRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AddressStatusRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.AddressDormRequest> __Marshaller_AddressDormRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AddressDormRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.AddressListResponse> __Marshaller_AddressListResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AddressListResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.DelAddressRequest> __Marshaller_DelAddressRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.DelAddressRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.TokenKeyRequest> __Marshaller_TokenKeyRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.TokenKeyRequest.Parser.ParseFrom);
@@ -52,12 +54,24 @@ namespace SP.Service {
     static readonly grpc::Marshaller<global::SP.Service.AccountFullInfoResponse> __Marshaller_AccountFullInfoResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AccountFullInfoResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.AccountFullInfoRequest> __Marshaller_AccountFullInfoRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AccountFullInfoRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.DiscountRequest> __Marshaller_DiscountRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.DiscountRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.AccountPayPwdRequest> __Marshaller_AccountPayPwdRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AccountPayPwdRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.AccountMobileRequest> __Marshaller_AccountMobileRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AccountMobileRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.BingAccountRequest> __Marshaller_BingAccountRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.BingAccountRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.OtherAccountRequest> __Marshaller_OtherAccountRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.OtherAccountRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.GetOtherAccountRequest> __Marshaller_GetOtherAccountRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.GetOtherAccountRequest.Parser.ParseFrom);
 
     static readonly grpc::Method<global::SP.Service.RegistRequest, global::SP.Service.AccountResultResponse> __Method_RegistAccount = new grpc::Method<global::SP.Service.RegistRequest, global::SP.Service.AccountResultResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "RegistAccount",
         __Marshaller_RegistRequest,
+        __Marshaller_AccountResultResponse);
+
+    static readonly grpc::Method<global::SP.Service.UpdateAccountRequest, global::SP.Service.AccountResultResponse> __Method_UpdateAccount = new grpc::Method<global::SP.Service.UpdateAccountRequest, global::SP.Service.AccountResultResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "UpdateAccount",
+        __Marshaller_UpdateAccountRequest,
         __Marshaller_AccountResultResponse);
 
     static readonly grpc::Method<global::SP.Service.LoginRequest, global::SP.Service.AccountResultResponse> __Method_ValidateLogin = new grpc::Method<global::SP.Service.LoginRequest, global::SP.Service.AccountResultResponse>(
@@ -100,6 +114,13 @@ namespace SP.Service {
         __ServiceName,
         "UpdateAddressStatus",
         __Marshaller_AddressStatusRequest,
+        __Marshaller_AccountResultResponse);
+
+    static readonly grpc::Method<global::SP.Service.AddressDormRequest, global::SP.Service.AccountResultResponse> __Method_UpdateAddressDorm = new grpc::Method<global::SP.Service.AddressDormRequest, global::SP.Service.AccountResultResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "UpdateAddressDorm",
+        __Marshaller_AddressDormRequest,
         __Marshaller_AccountResultResponse);
 
     static readonly grpc::Method<global::SP.Service.AccountIdRequest, global::SP.Service.AddressListResponse> __Method_GetAddressList = new grpc::Method<global::SP.Service.AccountIdRequest, global::SP.Service.AddressListResponse>(
@@ -312,6 +333,55 @@ namespace SP.Service {
         __Marshaller_DiscountRequest,
         __Marshaller_AssociatorListResponse);
 
+    static readonly grpc::Method<global::SP.Service.AccountPayPwdRequest, global::SP.Service.AccountResultResponse> __Method_SetAccountPayPwd = new grpc::Method<global::SP.Service.AccountPayPwdRequest, global::SP.Service.AccountResultResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetAccountPayPwd",
+        __Marshaller_AccountPayPwdRequest,
+        __Marshaller_AccountResultResponse);
+
+    static readonly grpc::Method<global::SP.Service.AccountPayPwdRequest, global::SP.Service.AccountResultResponse> __Method_UpdateAccountPayPwd = new grpc::Method<global::SP.Service.AccountPayPwdRequest, global::SP.Service.AccountResultResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "UpdateAccountPayPwd",
+        __Marshaller_AccountPayPwdRequest,
+        __Marshaller_AccountResultResponse);
+
+    static readonly grpc::Method<global::SP.Service.AccountPayPwdRequest, global::SP.Service.AccountResultResponse> __Method_UpdateAccountLoginPwd = new grpc::Method<global::SP.Service.AccountPayPwdRequest, global::SP.Service.AccountResultResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "UpdateAccountLoginPwd",
+        __Marshaller_AccountPayPwdRequest,
+        __Marshaller_AccountResultResponse);
+
+    static readonly grpc::Method<global::SP.Service.AccountMobileRequest, global::SP.Service.AccountResultResponse> __Method_UpdateAccountMobile = new grpc::Method<global::SP.Service.AccountMobileRequest, global::SP.Service.AccountResultResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "UpdateAccountMobile",
+        __Marshaller_AccountMobileRequest,
+        __Marshaller_AccountResultResponse);
+
+    static readonly grpc::Method<global::SP.Service.BingAccountRequest, global::SP.Service.AccountResultResponse> __Method_BindOtherAccount = new grpc::Method<global::SP.Service.BingAccountRequest, global::SP.Service.AccountResultResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "BindOtherAccount",
+        __Marshaller_BingAccountRequest,
+        __Marshaller_AccountResultResponse);
+
+    static readonly grpc::Method<global::SP.Service.OtherAccountRequest, global::SP.Service.AccountResultResponse> __Method_CreateOtherAccount = new grpc::Method<global::SP.Service.OtherAccountRequest, global::SP.Service.AccountResultResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "CreateOtherAccount",
+        __Marshaller_OtherAccountRequest,
+        __Marshaller_AccountResultResponse);
+
+    static readonly grpc::Method<global::SP.Service.GetOtherAccountRequest, global::SP.Service.AccountResponse> __Method_GetOtherAccount = new grpc::Method<global::SP.Service.GetOtherAccountRequest, global::SP.Service.AccountResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetOtherAccount",
+        __Marshaller_GetOtherAccountRequest,
+        __Marshaller_AccountResponse);
+
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
@@ -329,6 +399,18 @@ namespace SP.Service {
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
       public virtual global::System.Threading.Tasks.Task<global::SP.Service.AccountResultResponse> RegistAccount(global::SP.Service.RegistRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 更新注册账户
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.AccountResultResponse> UpdateAccount(global::SP.Service.UpdateAccountRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -401,6 +483,18 @@ namespace SP.Service {
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
       public virtual global::System.Threading.Tasks.Task<global::SP.Service.AccountResultResponse> UpdateAddressStatus(global::SP.Service.AddressStatusRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 更新用户地址
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.AccountResultResponse> UpdateAddressDorm(global::SP.Service.AddressDormRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -765,6 +859,90 @@ namespace SP.Service {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
+      /// <summary>
+      ///*
+      /// 设置支付密码
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.AccountResultResponse> SetAccountPayPwd(global::SP.Service.AccountPayPwdRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 修改支付密码
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.AccountResultResponse> UpdateAccountPayPwd(global::SP.Service.AccountPayPwdRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 修改登陆密码
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.AccountResultResponse> UpdateAccountLoginPwd(global::SP.Service.AccountPayPwdRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 修改登陆密码
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.AccountResultResponse> UpdateAccountMobile(global::SP.Service.AccountMobileRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 绑定第三方账号
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.AccountResultResponse> BindOtherAccount(global::SP.Service.BingAccountRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 创建第三方账号
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.AccountResultResponse> CreateOtherAccount(global::SP.Service.OtherAccountRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 获取第三方账号
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.AccountResponse> GetOtherAccount(global::SP.Service.GetOtherAccountRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
     }
 
     /// <summary>Client for AccountService</summary>
@@ -837,6 +1015,54 @@ namespace SP.Service {
       public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> RegistAccountAsync(global::SP.Service.RegistRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_RegistAccount, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 更新注册账户
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResultResponse UpdateAccount(global::SP.Service.UpdateAccountRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UpdateAccount(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 更新注册账户
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResultResponse UpdateAccount(global::SP.Service.UpdateAccountRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_UpdateAccount, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 更新注册账户
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> UpdateAccountAsync(global::SP.Service.UpdateAccountRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UpdateAccountAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 更新注册账户
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> UpdateAccountAsync(global::SP.Service.UpdateAccountRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_UpdateAccount, null, options, request);
       }
       /// <summary>
       ///*
@@ -1125,6 +1351,54 @@ namespace SP.Service {
       public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> UpdateAddressStatusAsync(global::SP.Service.AddressStatusRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_UpdateAddressStatus, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 更新用户地址
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResultResponse UpdateAddressDorm(global::SP.Service.AddressDormRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UpdateAddressDorm(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 更新用户地址
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResultResponse UpdateAddressDorm(global::SP.Service.AddressDormRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_UpdateAddressDorm, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 更新用户地址
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> UpdateAddressDormAsync(global::SP.Service.AddressDormRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UpdateAddressDormAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 更新用户地址
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> UpdateAddressDormAsync(global::SP.Service.AddressDormRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_UpdateAddressDorm, null, options, request);
       }
       /// <summary>
       ///*
@@ -2566,6 +2840,342 @@ namespace SP.Service {
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetDiscountByAccountId, null, options, request);
       }
+      /// <summary>
+      ///*
+      /// 设置支付密码
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResultResponse SetAccountPayPwd(global::SP.Service.AccountPayPwdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return SetAccountPayPwd(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 设置支付密码
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResultResponse SetAccountPayPwd(global::SP.Service.AccountPayPwdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetAccountPayPwd, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 设置支付密码
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> SetAccountPayPwdAsync(global::SP.Service.AccountPayPwdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return SetAccountPayPwdAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 设置支付密码
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> SetAccountPayPwdAsync(global::SP.Service.AccountPayPwdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetAccountPayPwd, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 修改支付密码
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResultResponse UpdateAccountPayPwd(global::SP.Service.AccountPayPwdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UpdateAccountPayPwd(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 修改支付密码
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResultResponse UpdateAccountPayPwd(global::SP.Service.AccountPayPwdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_UpdateAccountPayPwd, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 修改支付密码
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> UpdateAccountPayPwdAsync(global::SP.Service.AccountPayPwdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UpdateAccountPayPwdAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 修改支付密码
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> UpdateAccountPayPwdAsync(global::SP.Service.AccountPayPwdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_UpdateAccountPayPwd, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 修改登陆密码
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResultResponse UpdateAccountLoginPwd(global::SP.Service.AccountPayPwdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UpdateAccountLoginPwd(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 修改登陆密码
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResultResponse UpdateAccountLoginPwd(global::SP.Service.AccountPayPwdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_UpdateAccountLoginPwd, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 修改登陆密码
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> UpdateAccountLoginPwdAsync(global::SP.Service.AccountPayPwdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UpdateAccountLoginPwdAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 修改登陆密码
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> UpdateAccountLoginPwdAsync(global::SP.Service.AccountPayPwdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_UpdateAccountLoginPwd, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 修改登陆密码
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResultResponse UpdateAccountMobile(global::SP.Service.AccountMobileRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UpdateAccountMobile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 修改登陆密码
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResultResponse UpdateAccountMobile(global::SP.Service.AccountMobileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_UpdateAccountMobile, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 修改登陆密码
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> UpdateAccountMobileAsync(global::SP.Service.AccountMobileRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UpdateAccountMobileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 修改登陆密码
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> UpdateAccountMobileAsync(global::SP.Service.AccountMobileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_UpdateAccountMobile, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 绑定第三方账号
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResultResponse BindOtherAccount(global::SP.Service.BingAccountRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return BindOtherAccount(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 绑定第三方账号
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResultResponse BindOtherAccount(global::SP.Service.BingAccountRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_BindOtherAccount, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 绑定第三方账号
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> BindOtherAccountAsync(global::SP.Service.BingAccountRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return BindOtherAccountAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 绑定第三方账号
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> BindOtherAccountAsync(global::SP.Service.BingAccountRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_BindOtherAccount, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 创建第三方账号
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResultResponse CreateOtherAccount(global::SP.Service.OtherAccountRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return CreateOtherAccount(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 创建第三方账号
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResultResponse CreateOtherAccount(global::SP.Service.OtherAccountRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_CreateOtherAccount, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 创建第三方账号
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> CreateOtherAccountAsync(global::SP.Service.OtherAccountRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return CreateOtherAccountAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 创建第三方账号
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> CreateOtherAccountAsync(global::SP.Service.OtherAccountRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_CreateOtherAccount, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 获取第三方账号
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResponse GetOtherAccount(global::SP.Service.GetOtherAccountRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetOtherAccount(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取第三方账号
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResponse GetOtherAccount(global::SP.Service.GetOtherAccountRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetOtherAccount, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 获取第三方账号
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResponse> GetOtherAccountAsync(global::SP.Service.GetOtherAccountRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetOtherAccountAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取第三方账号
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResponse> GetOtherAccountAsync(global::SP.Service.GetOtherAccountRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetOtherAccount, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override AccountServiceClient NewInstance(ClientBaseConfiguration configuration)
       {
@@ -2579,12 +3189,14 @@ namespace SP.Service {
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
           .AddMethod(__Method_RegistAccount, serviceImpl.RegistAccount)
+          .AddMethod(__Method_UpdateAccount, serviceImpl.UpdateAccount)
           .AddMethod(__Method_ValidateLogin, serviceImpl.ValidateLogin)
           .AddMethod(__Method_GetAccountDetail, serviceImpl.GetAccountDetail)
           .AddMethod(__Method_GetAccount, serviceImpl.GetAccount)
           .AddMethod(__Method_AddAccountAddress, serviceImpl.AddAccountAddress)
           .AddMethod(__Method_EditAccountAddress, serviceImpl.EditAccountAddress)
           .AddMethod(__Method_UpdateAddressStatus, serviceImpl.UpdateAddressStatus)
+          .AddMethod(__Method_UpdateAddressDorm, serviceImpl.UpdateAddressDorm)
           .AddMethod(__Method_GetAddressList, serviceImpl.GetAddressList)
           .AddMethod(__Method_DelAddress, serviceImpl.DelAddress)
           .AddMethod(__Method_GetAccessToken, serviceImpl.GetAccessToken)
@@ -2614,7 +3226,14 @@ namespace SP.Service {
           .AddMethod(__Method_GetSysKindList, serviceImpl.GetSysKindList)
           .AddMethod(__Method_GetAccountFullInfo, serviceImpl.GetAccountFullInfo)
           .AddMethod(__Method_UpdateAccountFullInfo, serviceImpl.UpdateAccountFullInfo)
-          .AddMethod(__Method_GetDiscountByAccountId, serviceImpl.GetDiscountByAccountId).Build();
+          .AddMethod(__Method_GetDiscountByAccountId, serviceImpl.GetDiscountByAccountId)
+          .AddMethod(__Method_SetAccountPayPwd, serviceImpl.SetAccountPayPwd)
+          .AddMethod(__Method_UpdateAccountPayPwd, serviceImpl.UpdateAccountPayPwd)
+          .AddMethod(__Method_UpdateAccountLoginPwd, serviceImpl.UpdateAccountLoginPwd)
+          .AddMethod(__Method_UpdateAccountMobile, serviceImpl.UpdateAccountMobile)
+          .AddMethod(__Method_BindOtherAccount, serviceImpl.BindOtherAccount)
+          .AddMethod(__Method_CreateOtherAccount, serviceImpl.CreateOtherAccount)
+          .AddMethod(__Method_GetOtherAccount, serviceImpl.GetOtherAccount).Build();
     }
 
   }

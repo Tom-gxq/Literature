@@ -17,23 +17,21 @@ namespace SP.Service.Domain.DomainEntity
         public string UserName { get; set; }
         public int Gender { get; set; }
         public string Mobile { get; set; }
+        public int BuildingId { get; set; }
+        public string BuildingName { get; set; }
         public int DistrictId { get; set; }
         public string DistrictName { get; set; }
         public int SchoolId { get; set; }
         public string SchoolName { get; set; }
+        public int DormId { get; set; }
+        public string DormName { get; set; }
         private string address { get; set; }
         public string Address
         {
             get
             {
-                if (!string.IsNullOrEmpty(address))
-                {
-                    return address;
-                }
-                else
-                {
-                    return string.Format("{0} {1} {2}", this.SchoolName ?? string.Empty, this.DistrictName ?? string.Empty, this.Dorm ?? string.Empty);
-                }
+                return string.Format("{0} {1} {2} {3}", this.SchoolName ?? string.Empty, this.DistrictName ?? string.Empty, 
+                    this.BuildingName ?? string.Empty, this.DormName ?? string.Empty);
             }
             set
             {
@@ -41,7 +39,6 @@ namespace SP.Service.Domain.DomainEntity
             }
         }
         public string AccountId { get; set; }
-        public string Dorm { get; set; }
         public int IsDefault { get; set; }
 
         public AccountAddressDomain()
@@ -67,7 +64,6 @@ namespace SP.Service.Domain.DomainEntity
                 Mobile = this.Mobile,
                 RegionID = this.DistrictId,
                 Address = this.Address,
-                Dorm = this.Dorm,
                 IsDefault = this.IsDefault,
                 ID = this.AddressId,
             };
@@ -81,7 +77,6 @@ namespace SP.Service.Domain.DomainEntity
             this.Mobile = e.Mobile;
             this.DistrictId = e.RegionID;
             this.Address = e.Address;
-            this.Dorm = e.Dorm;
             this.IsDefault = e.IsDefault;
         }
 
@@ -94,7 +89,6 @@ namespace SP.Service.Domain.DomainEntity
             this.DistrictId = e.RegionID;
             this.Address = e.Address;
             this.AddressId = e.AddressId;
-            this.Dorm = e.Dorm;
             this.IsDefault = e.IsDefault;
         }
 
@@ -110,7 +104,6 @@ namespace SP.Service.Domain.DomainEntity
                 this.DistrictId = entity.RegionID!= null ?entity.RegionID.Value:0;
                 this.Address = entity.Address;
                 this.AddressId = entity.ID.Value;
-                this.Dorm = entity.Dorm;
                 this.IsDefault = entity.IsDefault != null ? entity.IsDefault.Value : 0;
             }
         }

@@ -14,6 +14,7 @@ namespace SP.Api.Model.Order
         public int orderStatus { get; set; }
         public double amount { get; set; }
         public string orderCode { get; set; }
+        public long orderDate { get; set; }
 
         public List<ProductModel> productList { get; set; }
 

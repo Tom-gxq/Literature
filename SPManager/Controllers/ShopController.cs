@@ -22,10 +22,10 @@ namespace SPManager.Controllers
             return View();
         }
 
-        public JsonResult AddShop(string shopName, int displaySequence,string startTime,string endTime,int shopType)
+        public JsonResult AddShop(string shopName, int displaySequence,string startTime,string endTime,int shopType,string shopLogo)
         {
             IShopAppService service = IocManager.Instance.Resolve<IShopAppService>();
-            var result = service.AddShop(shopName, displaySequence, startTime, endTime, shopType);
+            var result = service.AddShop(shopName, displaySequence, startTime, endTime, shopType, shopLogo);
             JsonResult.Add("result", result);
 
             return new JsonResult()
@@ -97,6 +97,9 @@ namespace SPManager.Controllers
             JsonResult.Add("school", schoolList);            
             var areaList = regionService.GetRegionData(2);
             JsonResult.Add("area", areaList);
+            IProductTypeService pservice = IocManager.Instance.Resolve<IProductTypeService>();
+            var ptype = pservice.GetProductTypeList(0,1, 2000);
+            JsonResult.Add("productType", ptype);
 
             return new JsonResult()
             {
@@ -122,7 +125,7 @@ namespace SPManager.Controllers
         {
             ViewBag.Title = "店铺产品管理";
             IProductTypeService service = IocManager.Instance.Resolve<IProductTypeService>();
-            var list = service.GetAllProductTypeList();
+            var list = service.GetAllProductTypeList(0);
             ViewBag.TypeData = list;
 
             IBrandAppService brandService = IocManager.Instance.Resolve<IBrandAppService>();
@@ -149,6 +152,17 @@ namespace SPManager.Controllers
             var result = service.DelShopProductByShopId(ShopId);
             JsonResult.Add("result", result);
 
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public JsonResult GetShopListByRegionId(int regionId)
+        {
+            IShopAppService service = IocManager.Instance.Resolve<IShopAppService>();
+            var result = service.GetShopListByRegionId(regionId);
+            JsonResult.Add("items", result);
             return new JsonResult()
             {
                 Data = JsonResult,

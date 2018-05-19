@@ -12,5 +12,8 @@ namespace SP.Api.Model.Account
         public string FullName { get; set; }
         public string Avatar { get; set; }
         public bool Gender { get; set; }
+        public int UserType { get; set; }
+        public int DormId { get; set; }
+        public string PayPassWord { get; set; }
     }
 }

@@ -472,3 +472,5 @@ D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\obj\Debug\Web
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\obj\Debug\WebApiGateway.csproj.CoreCompileInputs.cache
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\obj\Debug\WebApiGateway.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\obj\Debug\WebApiGateway.pdb
+D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\wx.pay.dll
+D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\wx.pay.pdb

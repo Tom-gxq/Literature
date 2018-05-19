@@ -18,6 +18,7 @@ namespace SP.Service.Domain.DomainEntity
         public int RegionId { get; set; }
         public string StartTime { get; set; }
         public string EndTime { get; set; }
+        public string ShopLogo { get; set; }
 
         public ShopDomain()
         {
@@ -33,7 +34,8 @@ namespace SP.Service.Domain.DomainEntity
                 OwnerId = this.OwnerId,
                 RegionId = this.RegionId,
                 StartTime = this.StartTime,
-                EndTime = this.EndTime
+                EndTime = this.EndTime,
+                ShopLogo = this.ShopLogo
             };
         }
 
@@ -48,6 +50,7 @@ namespace SP.Service.Domain.DomainEntity
                 this.RegionId = entity.RegionId!= null ? entity.RegionId.Value:0;
                 this.StartTime = entity.StartTime;
                 this.EndTime = entity.EndTime;
+                this.ShopLogo = entity.ShopLogo;
             }
         }
     }

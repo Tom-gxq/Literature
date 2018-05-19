@@ -1,13 +1,18 @@
-﻿
+﻿@{
+    var ActionName = Url.RequestContext.RouteData.Values["action"].ToString().ToLower();
+}
 <div class="content-left fl">
     <dl class="left-menu shop_2 sub_home">
         <dt>
             <i class="icon-menu commodity"></i>
             <span id="shop_2" data-id="2">人员管理</span>
         </dt>
-        <dd class="subshop_2 active">
+        <dd class="subshop_2 @Html.GetActive(ActionName,"Index","active")">
             <a href="/Admin/Index">人员列表</a>
-        </dd>        
+        </dd> 
+        <dd class="subshop_2 @Html.GetActive(ActionName,"CashApplyIndex","active")">
+            <a href="/Admin/CashApplyIndex">提现申请列表</a>
+        </dd>
     </dl>
 </div>
 

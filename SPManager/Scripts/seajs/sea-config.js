@@ -45,6 +45,10 @@ seajs.config({
         'qiniumain': 'plug/qiniu/main.js',
         // 七牛上传
         'qiniucarousel': 'plug/qiniu/carouse.js',
+        // 七牛上传
+        'qiniushop': 'plug/qiniu/shop.js',
+        // 七牛上传
+        'qiniutype': 'plug/qiniu/producttype.js',
         // 表情插件
         'facebase': 'plug/face/facebase.js',
         // 表情插件
@@ -87,6 +91,12 @@ seajs.config({
         'add-region': 'regiondata/addregiondata.js',
         // 编辑区域
         'edit-region': 'regiondata/editregiondata.js',
+        // 添加区域种类
+        'add-regiontype': 'regiontype/addregiontype.js',
+        // 生成栋
+        'gender-building': 'regiondata/genderbuilding.js',
+        // 生成宿舍
+        'gender-dorm': 'regiondata/genderdorm.js',
         // 添加会员优惠折扣
         'add-associator': 'discount/addassociatordata.js',
         // 编辑会员优惠折扣

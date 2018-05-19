@@ -23,7 +23,7 @@ namespace SP.Service {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChRQcm9kdWN0U2VydmljZS5wcm90bxIKU1AuU2VydmljZRoRQ29tbW9uTW9k",
-            "ZWwucHJvdG8aElByb2R1Y3RNb2RlbC5wcm90bzLcBwoOUHJvZHVjdFNlcnZp",
+            "ZWwucHJvdG8aElByb2R1Y3RNb2RlbC5wcm90bzLiCQoOUHJvZHVjdFNlcnZp",
             "Y2USUwoOR2V0UHJvZHVjdExpc3QSHi5TUC5TZXJ2aWNlLlByb2R1Y3RMaXN0",
             "UmVxdWVzdBofLlNQLlNlcnZpY2UuUHJvZHVjdExpc3RSZXNwb25zZSIAElQK",
             "EEdldFByb2R1Y3REZXRhaWwSHC5TUC5TZXJ2aWNlLlByb2R1Y3RJZFJlcXVl",
@@ -42,10 +42,16 @@ namespace SP.Service {
             "LlNlcnZpY2UuU2hvcExpc3RSZXF1ZXN0GhwuU1AuU2VydmljZS5TaG9wTGlz",
             "dFJlc3BvbnNlIgASWwoSR2V0U2hvcFByb2R1Y3RMaXN0EiIuU1AuU2Vydmlj",
             "ZS5TaG9wUHJvZHVjdExpc3RSZXF1ZXN0Gh8uU1AuU2VydmljZS5Qcm9kdWN0",
-            "TGlzdFJlc3BvbnNlIgASRAoLR2V0U2hvcEJ5SWQSGS5TUC5TZXJ2aWNlLlNo",
-            "b3BJZFJlcXVlc3QaGC5TUC5TZXJ2aWNlLlNob3BSZXNwb25zZSIAEk4KD0dl",
-            "dENhcm91c2VsTGlzdBIXLlNQLlNlcnZpY2UuVm9pZFJlcXVlc3QaIC5TUC5T",
-            "ZXJ2aWNlLkNhcm91c2VsTGlzdFJlc3BvbnNlIgBiBnByb3RvMw=="));
+            "TGlzdFJlc3BvbnNlIgASXwoWR2V0Rm9vZFNob3BQcm9kdWN0TGlzdBIiLlNQ",
+            "LlNlcnZpY2UuU2hvcFByb2R1Y3RMaXN0UmVxdWVzdBofLlNQLlNlcnZpY2Uu",
+            "UHJvZHVjdExpc3RSZXNwb25zZSIAEkQKC0dldFNob3BCeUlkEhkuU1AuU2Vy",
+            "dmljZS5TaG9wSWRSZXF1ZXN0GhguU1AuU2VydmljZS5TaG9wUmVzcG9uc2Ui",
+            "ABJOCg9HZXRDYXJvdXNlbExpc3QSFy5TUC5TZXJ2aWNlLlZvaWRSZXF1ZXN0",
+            "GiAuU1AuU2VydmljZS5DYXJvdXNlbExpc3RSZXNwb25zZSIAEk8KD0dldFNo",
+            "b3BUeXBlTGlzdBIXLlNQLlNlcnZpY2UuVm9pZFJlcXVlc3QaIS5TUC5TZXJ2",
+            "aWNlLlRpdGxlVHlwZUxpc3RSZXNwb25zZSIAElIKEkdldFByb2R1Y3RUeXBl",
+            "TGlzdBIXLlNQLlNlcnZpY2UuVm9pZFJlcXVlc3QaIS5TUC5TZXJ2aWNlLlRp",
+            "dGxlVHlwZUxpc3RSZXNwb25zZSIAYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, global::SP.Service.ProductModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null));
