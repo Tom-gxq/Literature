@@ -123,7 +123,7 @@ namespace WebApiGateway.Controllers
                     var order = OrderBusiness.GetOrderByOrderCode(orderCode);
                     if (order != null && order.orderStatus == 1)
                     {
-                        retValue = OrderBusiness.UpdateOrderStatusByOrderCode(orderCode, 2);
+                        retValue = OrderBusiness.UpdateOrderStatusByOrderCode(orderCode, 2,2);
                     }                    
                 }
                 catch (Exception ex)

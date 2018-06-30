@@ -20,7 +20,12 @@ namespace SP.ManageEntityFramework.Repositories
         {
             using (var db = Context.OpenDbConnection())
             {
-                var q = db.From<ProductTypeEntity>().OrderBy(x=>x.DisplaySequence);
+                var q = db.From<ProductTypeEntity>();
+                if(kind >= 0)
+                {
+                    q = q.Where(x=>x.Kind == kind);
+                }
+                q = q.OrderBy(x => x.DisplaySequence);
                 q = q.Limit((pageIndex - 1) * pageSize, pageSize);
                 return db.Select(q);
             }

@@ -47,6 +47,7 @@
     <Compile Include="Account\AddressModel.cs" />
     <Compile Include="Account\AssociatorModel.cs" />
     <Compile Include="Account\AuthenticationModel.cs" />
+    <Compile Include="Account\BindedModel.cs" />
     <Compile Include="Account\BingAccountModel.cs" />
     <Compile Include="Account\CarouselModel.cs" />
     <Compile Include="Account\DiscountModel.cs" />

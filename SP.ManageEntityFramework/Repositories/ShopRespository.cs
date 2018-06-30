@@ -33,6 +33,24 @@ namespace SP.ManageEntityFramework.Repositories
                 return db.Select(q);
             }
         }
+        public List<ShopEntity> GetFoodShopListByRegionId(int regionId,int marketId)
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<ShopEntity>().Where(x => x.RegionId == regionId && x.ShopType != marketId);
+                q = q.OrderBy(x => x.DisplaySequence);
+                return db.Select(q);
+            }
+        }
+        public List<ShopEntity> GetMarketShopListByRegionId(int regionId, int marketId)
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<ShopEntity>().Where(x => x.RegionId == regionId && x.ShopType == marketId);
+                q = q.OrderBy(x => x.DisplaySequence);
+                return db.Select(q);
+            }
+        }
         public List<ShopEntity> GetAllShopList()
         {
             using (var db = Context.OpenDbConnection())

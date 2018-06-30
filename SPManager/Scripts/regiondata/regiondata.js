@@ -141,7 +141,7 @@ define(function (require, exports, module) {
 
                     response($.map(data.items, function (item) {
                         return {
-                            label: item.DataName,
+                            label: item.DataName + "(" + item.ParentDataName+")",
                             valueKey: item.DataId
                         }
                     }));

@@ -18,6 +18,7 @@ namespace SP.Service.Domain.EventHandlers
         }
         public void Handle(OrderCreatedEvent handle)
         {
+            var orderCode = DateTime.Now.ToString("yyyyMMddHH24mmssffff");
             var item = new OrdersEntity()
             {
                 OrderId = handle.AggregateId.ToString(),
@@ -26,9 +27,11 @@ namespace SP.Service.Domain.EventHandlers
                 AccountId = handle.AccountId,
                 OrderDate =handle.OrderDate,
                 OrderStatus = (int)handle.OrderStatus,
-                OrderCode = DateTime.Now.ToString("yyyyMMddHH24mmssffff"),
+                OrderCode = orderCode,
                 AddressId = handle.AddressId,
-                OrderAddress = handle.Address
+                OrderAddress = handle.Address,
+                Meta_Keywords = $"{orderCode}|{handle.Mobile}",
+                IsVip = handle.IsVip,
             };
 
             _reportDatabase.Add(item);

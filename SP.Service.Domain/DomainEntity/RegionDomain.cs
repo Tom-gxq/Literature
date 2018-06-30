@@ -44,7 +44,7 @@ namespace SP.Service.Domain.DomainEntity
                 var entity = memento as RegionEntity;
                 this.DataID = entity.DataID;
                 this.DataName = entity.DataName;
-                this.ParentDataID = entity.ParentDataID;
+                this.ParentDataID = entity.BuiddingID;
             }
         }
     }

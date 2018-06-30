@@ -28,5 +28,8 @@ namespace SP.Service.Entity
         public DateTime? UpdateTime { get; set; }
         public int? AddressId { get; set; }
         public string OrderAddress { get; set; }
+        public bool? IsVip { get; set; }
+        public bool? IsWxPay { get; set; }
+        public bool? IsAliPay { get; set; }
     }
 }

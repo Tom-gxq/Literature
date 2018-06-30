@@ -28,7 +28,11 @@ namespace SP.ManageEntityFramework.Repositories
         {
             using (var db = Context.OpenDbConnection())
             {
-                var q = db.From<ProductEntity>().Where(x => x.SaleStatus == saleStatus);
+                var q = db.From<ProductEntity>();
+                if(saleStatus>=0)
+                {
+                    q = q.Where(x => x.SaleStatus == saleStatus);
+                }
                 q = q.Join<ShopProductEntity>((a, e) => a.ProductId == e.ProductId && e.ShopId == shopId);
                 q = q.Limit((pageIndex - 1) * pageSize, pageSize);
                 return db.Select<ProductFullEntity>(q);

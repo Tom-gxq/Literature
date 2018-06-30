@@ -35,8 +35,13 @@ namespace SP.DataEntity
         public DateTime? ShipToDate { get; set; }
         public decimal? Freight { get; set; }
         public decimal? Amount { get; set; }
+        public decimal? VIPAmount { get; set; }
         public string Meta_Keywords { get; set; }
         public DateTime? UpdateTime { get; set; }
         public string OrderCode { get; set; }
+        public string OrderAddress { get; set; }
+        public bool? IsVip { get; set; }
+        public bool? IsWxPay { get; set; }
+        public bool? IsAliPay { get; set; }
     }
 }

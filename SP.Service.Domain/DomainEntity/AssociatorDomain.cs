@@ -1,6 +1,9 @@
-﻿using Grpc.Service.Core.Domain;
+﻿using Grpc.Service.Core.Dependency;
+using Grpc.Service.Core.Domain;
 using Grpc.Service.Core.Domain.Entity;
 using Grpc.Service.Core.Domain.Repositories;
+using Microsoft.Extensions.Configuration;
+using SP.Producer;
 using SP.Service.Domain.Events;
 using SP.Service.Entity;
 using System;
@@ -10,7 +13,7 @@ using System.Text;
 namespace SP.Service.Domain.DomainEntity
 {
     public class AssociatorDomain : AggregateRoot<Guid>, IHandle<AssociatorCreatedEvent>, IHandle<AssociatorEditEvent>,
-        IOriginator
+        IHandle<KafkaAddEvent>,        IOriginator
     {
         public string AccountId { get; set; }
         public string KindId { get; set; }
@@ -34,6 +37,21 @@ namespace SP.Service.Domain.DomainEntity
         public void EditAssociatorDomain(Guid associatorId,int status)
         {
             ApplyChange(new AssociatorEditEvent(associatorId, status));
+        }
+        public void AddMemberKafkaInfo(string accountId, double amount, AuthorizeType Type)
+        {
+            var config = IocManager.Instance.Resolve<IConfigurationRoot>();
+            string kafkaIP = string.Empty;
+            if (config != null)
+            {
+                kafkaIP = config.GetSection("KafkaIP").Value?.ToString() ?? string.Empty;
+            }
+            var producer = new KafkaMemberProducer();
+            producer.IPConfig = kafkaIP;
+            producer.AccountId = accountId;
+            producer.Amount = amount;
+            producer.Type = Type;
+            ApplyChange(new KafkaAddEvent(producer));
         }
         public BaseEntity GetMemento()
         {
@@ -70,6 +88,11 @@ namespace SP.Service.Domain.DomainEntity
         {
             this.Id = e.AggregateId;
             this.Status = e.Status;
+        }
+
+        public void Handle(KafkaAddEvent e)
+        {
+
         }
 
         public void SetMemento(BaseEntity memento)

@@ -44,31 +44,32 @@ namespace SP.Service {
             "ZXJJZFJlcXVlc3QSDwoHb3JkZXJJZBgBIAEoCSJFCg1PcmRlclJlc3BvbnNl",
             "Eg4KBnN0YXR1cxgBIAEoBRIkCglvcmRlckluZm8YAiABKAsyES5TUC5TZXJ2",
             "aWNlLk9yZGVyIjMKEEFkZE9yZGVyUmVzcG9uc2USDgoGc3RhdHVzGAEgASgF",
-            "Eg8KB29yZGVySWQYAiABKAkiOgoSVXBkYXRlT3JkZXJSZXF1ZXN0EhMKC29y",
-            "ZGVyU3RhdHVzGAEgASgFEg8KB29yZGVySWQYAiABKAkiOwoRU2Nob29sTGVh",
-            "ZFJlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEhMKC29yZGVyU3RhdHVzGAIg",
-            "ASgFIqICCg9TY2hvb2xMZWFkT3JkZXISDwoHb3JkZXJJZBgBIAEoCRIOCgZh",
-            "bW91bnQYAiABKAESEQoJb3JkZXJDb2RlGAMgASgJEhEKCW9yZGVyRGF0ZRgE",
-            "IAEoAxIPCgdwYXlEYXRlGAUgASgDEigKB2FjY291bnQYBiABKAsyFy5TUC5T",
-            "ZXJ2aWNlLkFjY291bnRJbmZvEiQKB2FkZHJlc3MYByABKAsyEy5TUC5TZXJ2",
-            "aWNlLkFkZHJlc3MSHgoEc2hvcBgIIAEoCzIQLlNQLlNlcnZpY2UuU2hvcBIy",
-            "ChBzaG9wcGluZ0NhcnRMaXN0GAkgAygLMhguU1AuU2VydmljZS5TaG9wcGlu",
-            "Z0NhcnQSEwoLb3JkZXJTdGF0dXMYCiABKAUiXQobU2Nob29sTGVhZE9yZGVy",
-            "TGlzdFJlc3BvbnNlEg4KBnN0YXR1cxgBIAEoBRIuCglvcmRlckluZm8YAiAD",
-            "KAsyGy5TUC5TZXJ2aWNlLlNjaG9vbExlYWRPcmRlciJGCgxUcmFkZVJlcXVl",
-            "c3QSEQoJYWNjb3VudElkGAEgASgJEhEKCXBhZ2VJbmRleBgDIAEoBRIQCghw",
-            "YWdlU2l6ZRgEIAEoBSJxCgVUcmFkZRIRCglhY2NvdW50SWQYASABKAkSDgoG",
-            "YW1vdW50GAIgASgBEg4KBmNhcnRJZBgDIAEoCRISCgpjcmVhdGVUaW1lGAQg",
-            "ASgDEhAKCHF1YW50aXR5GAUgASgFEg8KB3N1YmplY3QYBiABKAUiWAoRVHJh",
-            "ZGVMaXN0UmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEiQKCXRyYWRlTGlzdBgC",
-            "IAMoCzIRLlNQLlNlcnZpY2UuVHJhZGUSDQoFdG90YWwYBSABKAMiewoZU2No",
-            "b29sTGVhZEZpbmFuY2VSZXNwb25zZRIOCgZzdGF0dXMYASABKAUSEQoJYWNj",
-            "b3VudElkGAIgASgJEhIKCmhhdmVBbW91bnQYAyABKAESEQoJdXNlQW1vdW50",
-            "GAQgASgBEhQKDGFjdGl2ZUFtb3VudBgFIAEoASJHChNBZGRDYXNoQXBwbHlS",
-            "ZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIOCgZhbGlwYXkYAiABKAkSDQoF",
-            "bW9uZXkYAyABKAEiQAoWVXBkYXRlT3JkZXJDb2RlUmVxdWVzdBITCgtvcmRl",
-            "clN0YXR1cxgBIAEoBRIRCglvcmRlckNvZGUYAiABKAkiJQoQT3JkZXJDb2Rl",
-            "UmVxdWVzdBIRCglvcmRlckNvZGUYASABKAliBnByb3RvMw=="));
+            "Eg8KB29yZGVySWQYAiABKAkiSgoSVXBkYXRlT3JkZXJSZXF1ZXN0EhMKC29y",
+            "ZGVyU3RhdHVzGAEgASgFEg8KB29yZGVySWQYAiABKAkSDgoGcGF5V2F5GAMg",
+            "ASgFIjsKEVNjaG9vbExlYWRSZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIT",
+            "CgtvcmRlclN0YXR1cxgCIAEoBSKiAgoPU2Nob29sTGVhZE9yZGVyEg8KB29y",
+            "ZGVySWQYASABKAkSDgoGYW1vdW50GAIgASgBEhEKCW9yZGVyQ29kZRgDIAEo",
+            "CRIRCglvcmRlckRhdGUYBCABKAMSDwoHcGF5RGF0ZRgFIAEoAxIoCgdhY2Nv",
+            "dW50GAYgASgLMhcuU1AuU2VydmljZS5BY2NvdW50SW5mbxIkCgdhZGRyZXNz",
+            "GAcgASgLMhMuU1AuU2VydmljZS5BZGRyZXNzEh4KBHNob3AYCCABKAsyEC5T",
+            "UC5TZXJ2aWNlLlNob3ASMgoQc2hvcHBpbmdDYXJ0TGlzdBgJIAMoCzIYLlNQ",
+            "LlNlcnZpY2UuU2hvcHBpbmdDYXJ0EhMKC29yZGVyU3RhdHVzGAogASgFIl0K",
+            "G1NjaG9vbExlYWRPcmRlckxpc3RSZXNwb25zZRIOCgZzdGF0dXMYASABKAUS",
+            "LgoJb3JkZXJJbmZvGAIgAygLMhsuU1AuU2VydmljZS5TY2hvb2xMZWFkT3Jk",
+            "ZXIiRgoMVHJhZGVSZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIRCglwYWdl",
+            "SW5kZXgYAyABKAUSEAoIcGFnZVNpemUYBCABKAUicQoFVHJhZGUSEQoJYWNj",
+            "b3VudElkGAEgASgJEg4KBmFtb3VudBgCIAEoARIOCgZjYXJ0SWQYAyABKAkS",
+            "EgoKY3JlYXRlVGltZRgEIAEoAxIQCghxdWFudGl0eRgFIAEoBRIPCgdzdWJq",
+            "ZWN0GAYgASgFIlgKEVRyYWRlTGlzdFJlc3BvbnNlEg4KBnN0YXR1cxgBIAEo",
+            "BRIkCgl0cmFkZUxpc3QYAiADKAsyES5TUC5TZXJ2aWNlLlRyYWRlEg0KBXRv",
+            "dGFsGAUgASgDInsKGVNjaG9vbExlYWRGaW5hbmNlUmVzcG9uc2USDgoGc3Rh",
+            "dHVzGAEgASgFEhEKCWFjY291bnRJZBgCIAEoCRISCgpoYXZlQW1vdW50GAMg",
+            "ASgBEhEKCXVzZUFtb3VudBgEIAEoARIUCgxhY3RpdmVBbW91bnQYBSABKAEi",
+            "RwoTQWRkQ2FzaEFwcGx5UmVxdWVzdBIRCglhY2NvdW50SWQYASABKAkSDgoG",
+            "YWxpcGF5GAIgASgJEg0KBW1vbmV5GAMgASgBIlAKFlVwZGF0ZU9yZGVyQ29k",
+            "ZVJlcXVlc3QSEwoLb3JkZXJTdGF0dXMYASABKAUSEQoJb3JkZXJDb2RlGAIg",
+            "ASgJEg4KBnBheVdheRgDIAEoBSIlChBPcmRlckNvZGVSZXF1ZXN0EhEKCW9y",
+            "ZGVyQ29kZRgBIAEoCWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, global::SP.Service.ProductModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -82,7 +83,7 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OrderIdRequest), global::SP.Service.OrderIdRequest.Parser, new[]{ "OrderId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OrderResponse), global::SP.Service.OrderResponse.Parser, new[]{ "Status", "OrderInfo" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AddOrderResponse), global::SP.Service.AddOrderResponse.Parser, new[]{ "Status", "OrderId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.UpdateOrderRequest), global::SP.Service.UpdateOrderRequest.Parser, new[]{ "OrderStatus", "OrderId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.UpdateOrderRequest), global::SP.Service.UpdateOrderRequest.Parser, new[]{ "OrderStatus", "OrderId", "PayWay" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SchoolLeadRequest), global::SP.Service.SchoolLeadRequest.Parser, new[]{ "AccountId", "OrderStatus" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SchoolLeadOrder), global::SP.Service.SchoolLeadOrder.Parser, new[]{ "OrderId", "Amount", "OrderCode", "OrderDate", "PayDate", "Account", "Address", "Shop", "ShoppingCartList", "OrderStatus" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SchoolLeadOrderListResponse), global::SP.Service.SchoolLeadOrderListResponse.Parser, new[]{ "Status", "OrderInfo" }, null, null, null),
@@ -91,7 +92,7 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TradeListResponse), global::SP.Service.TradeListResponse.Parser, new[]{ "Status", "TradeList", "Total" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SchoolLeadFinanceResponse), global::SP.Service.SchoolLeadFinanceResponse.Parser, new[]{ "Status", "AccountId", "HaveAmount", "UseAmount", "ActiveAmount" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AddCashApplyRequest), global::SP.Service.AddCashApplyRequest.Parser, new[]{ "AccountId", "Alipay", "Money" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.UpdateOrderCodeRequest), global::SP.Service.UpdateOrderCodeRequest.Parser, new[]{ "OrderStatus", "OrderCode" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.UpdateOrderCodeRequest), global::SP.Service.UpdateOrderCodeRequest.Parser, new[]{ "OrderStatus", "OrderCode", "PayWay" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OrderCodeRequest), global::SP.Service.OrderCodeRequest.Parser, new[]{ "OrderCode" }, null, null, null)
           }));
     }
@@ -2257,6 +2258,7 @@ namespace SP.Service {
     public UpdateOrderRequest(UpdateOrderRequest other) : this() {
       orderStatus_ = other.orderStatus_;
       orderId_ = other.orderId_;
+      payWay_ = other.payWay_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2294,6 +2296,21 @@ namespace SP.Service {
       }
     }
 
+    /// <summary>Field number for the "payWay" field.</summary>
+    public const int PayWayFieldNumber = 3;
+    private int payWay_;
+    /// <summary>
+    ///*
+    /// 订单支付方式
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int PayWay {
+      get { return payWay_; }
+      set {
+        payWay_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as UpdateOrderRequest);
@@ -2309,6 +2326,7 @@ namespace SP.Service {
       }
       if (OrderStatus != other.OrderStatus) return false;
       if (OrderId != other.OrderId) return false;
+      if (PayWay != other.PayWay) return false;
       return true;
     }
 
@@ -2317,6 +2335,7 @@ namespace SP.Service {
       int hash = 1;
       if (OrderStatus != 0) hash ^= OrderStatus.GetHashCode();
       if (OrderId.Length != 0) hash ^= OrderId.GetHashCode();
+      if (PayWay != 0) hash ^= PayWay.GetHashCode();
       return hash;
     }
 
@@ -2335,6 +2354,10 @@ namespace SP.Service {
         output.WriteRawTag(18);
         output.WriteString(OrderId);
       }
+      if (PayWay != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(PayWay);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2345,6 +2368,9 @@ namespace SP.Service {
       }
       if (OrderId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(OrderId);
+      }
+      if (PayWay != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PayWay);
       }
       return size;
     }
@@ -2359,6 +2385,9 @@ namespace SP.Service {
       }
       if (other.OrderId.Length != 0) {
         OrderId = other.OrderId;
+      }
+      if (other.PayWay != 0) {
+        PayWay = other.PayWay;
       }
     }
 
@@ -2376,6 +2405,10 @@ namespace SP.Service {
           }
           case 18: {
             OrderId = input.ReadString();
+            break;
+          }
+          case 24: {
+            PayWay = input.ReadInt32();
             break;
           }
         }
@@ -4216,6 +4249,7 @@ namespace SP.Service {
     public UpdateOrderCodeRequest(UpdateOrderCodeRequest other) : this() {
       orderStatus_ = other.orderStatus_;
       orderCode_ = other.orderCode_;
+      payWay_ = other.payWay_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4253,6 +4287,21 @@ namespace SP.Service {
       }
     }
 
+    /// <summary>Field number for the "payWay" field.</summary>
+    public const int PayWayFieldNumber = 3;
+    private int payWay_;
+    /// <summary>
+    ///*
+    /// 订单支付方式
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int PayWay {
+      get { return payWay_; }
+      set {
+        payWay_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as UpdateOrderCodeRequest);
@@ -4268,6 +4317,7 @@ namespace SP.Service {
       }
       if (OrderStatus != other.OrderStatus) return false;
       if (OrderCode != other.OrderCode) return false;
+      if (PayWay != other.PayWay) return false;
       return true;
     }
 
@@ -4276,6 +4326,7 @@ namespace SP.Service {
       int hash = 1;
       if (OrderStatus != 0) hash ^= OrderStatus.GetHashCode();
       if (OrderCode.Length != 0) hash ^= OrderCode.GetHashCode();
+      if (PayWay != 0) hash ^= PayWay.GetHashCode();
       return hash;
     }
 
@@ -4294,6 +4345,10 @@ namespace SP.Service {
         output.WriteRawTag(18);
         output.WriteString(OrderCode);
       }
+      if (PayWay != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(PayWay);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4304,6 +4359,9 @@ namespace SP.Service {
       }
       if (OrderCode.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(OrderCode);
+      }
+      if (PayWay != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PayWay);
       }
       return size;
     }
@@ -4318,6 +4376,9 @@ namespace SP.Service {
       }
       if (other.OrderCode.Length != 0) {
         OrderCode = other.OrderCode;
+      }
+      if (other.PayWay != 0) {
+        PayWay = other.PayWay;
       }
     }
 
@@ -4335,6 +4396,10 @@ namespace SP.Service {
           }
           case 18: {
             OrderCode = input.ReadString();
+            break;
+          }
+          case 24: {
+            PayWay = input.ReadInt32();
             break;
           }
         }

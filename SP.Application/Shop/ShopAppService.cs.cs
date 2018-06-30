@@ -138,7 +138,7 @@ namespace SP.Application.Shop
                 if (item != null && item.RegionId >0)
                 {
                     var region = _regionRepository.Single(x => x.Id == item.RegionId);
-                    entity.RegionName = region.DataName;
+                    entity.RegionName = region?.DataName??string.Empty;
                 }
                 retList.Add(entity);
             }
@@ -161,6 +161,34 @@ namespace SP.Application.Shop
             {
                 var entity = ConvertFromRepositoryEntity(item);
                 
+                retList.Add(entity);
+            }
+
+            return retList;
+        }
+        public List<ShopDto> GetFoodShopListByRegionId(int regionId, int marketId)
+        {
+            var retList = new List<ShopDto>();
+            var repository = IocManager.Instance.Resolve<ShopRespository>();
+            var list = repository.GetFoodShopListByRegionId(regionId, marketId);
+            foreach (var item in list)
+            {
+                var entity = ConvertFromRepositoryEntity(item);
+
+                retList.Add(entity);
+            }
+
+            return retList;
+        }
+        public List<ShopDto> GetMarketShopListByRegionId(int regionId, int marketId)
+        {
+            var retList = new List<ShopDto>();
+            var repository = IocManager.Instance.Resolve<ShopRespository>();
+            var list = repository.GetMarketShopListByRegionId(regionId, marketId);
+            foreach (var item in list)
+            {
+                var entity = ConvertFromRepositoryEntity(item);
+
                 retList.Add(entity);
             }
 

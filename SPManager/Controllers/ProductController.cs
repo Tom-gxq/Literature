@@ -437,5 +437,46 @@ namespace SPManager.Controllers
             };
         }
 
+
+        public ActionResult MarketSkuIndex()
+        {
+            IRegionAppService service = IocManager.Instance.Resolve<IRegionAppService>();
+            var list = service.GetRegionData(1);
+            ViewBag.SchoolData = list;
+
+            var districtList = service.GetRegionData(2);
+            ViewBag.DistrictData = districtList;
+
+            IShopAppService brandService = IocManager.Instance.Resolve<IShopAppService>();
+            var shopList = brandService.GetShopList(1, 100000);
+            ViewBag.ShopData = shopList;
+
+            IProductAppService pService = IocManager.Instance.Resolve<IProductAppService>();
+            var pList = pService.GetProductList(1, 1, 100000);
+            ViewBag.ProductData = pList;
+            return View();
+        }
+
+        public JsonResult GetMarketSkuList(int pageIndex, int pageSize)
+        {
+            IProductAppService service = IocManager.Instance.Resolve<IProductAppService>();
+            string marketId = ConfigurationManager.AppSettings["MarketId"];
+            int id = 0;
+            int.TryParse(marketId,out id);
+            var list = service.GetMarketSkuList(pageIndex, pageSize, id);
+            var total = service.GetMarketSkuListCount(id);
+            JsonResult.Add("items", list);
+            PageModel jObject = new PageModel();
+            jObject.Total = (int)total;
+            jObject.Pages = (int)Math.Ceiling(Convert.ToDouble(total) / pageSize);
+            jObject.Index = pageIndex;
+            JsonResult.Add("data", jObject);
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
     }
 }

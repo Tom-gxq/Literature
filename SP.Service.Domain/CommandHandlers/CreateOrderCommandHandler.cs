@@ -19,8 +19,7 @@ using Newtonsoft.Json.Linq;
 
 namespace SP.Service.Domain.CommandHandlers
 {
-    public class CreateOrderCommandHandler :
-        ICommandHandler<CreateOrderCommand>
+    public class CreateOrderCommandHandler : ICommandHandler<CreateOrderCommand>
     {
         private IDataRepository<OrderDomain> _repository;
         private IDataRepository<ShoppingCartsDomain> _cartRepository;
@@ -30,6 +29,8 @@ namespace SP.Service.Domain.CommandHandlers
         private ShopReportDatabase _shopReportDatabase;
         private ProductSkuReportDatabase _skuReportDatabase;
         private AddressReportDatabase _addressReportDatabase;
+        private AccountReportDatabase _accountReportDatabase;
+        private AssociatorReportDatabase _associatorReportDatabase;
         private static object lockObj = new object();
         private static object lockObjSecond = new object();
 
@@ -37,7 +38,8 @@ namespace SP.Service.Domain.CommandHandlers
         public CreateOrderCommandHandler(IDataRepository<OrderDomain> repository, OrderReportDatabase orderReportDatabase, 
             ProductReportDatabase productReportDatabase, ShopReportDatabase shopReportDatabase, ProductSkuReportDatabase skuReportDatabase,
             AddressReportDatabase addressReportDatabase,
-            IDataRepository<ShoppingCartsDomain> cartRepository, IDataRepository<ProductSkuDomain> skuRepository)
+            IDataRepository<ShoppingCartsDomain> cartRepository, IDataRepository<ProductSkuDomain> skuRepository,
+            AccountReportDatabase accountReportDatabase, AssociatorReportDatabase associatorReportDatabase)
         {
             this._repository = repository;
             this._skuRepository = skuRepository;
@@ -46,7 +48,9 @@ namespace SP.Service.Domain.CommandHandlers
             _shopReportDatabase = shopReportDatabase;
             _skuReportDatabase = skuReportDatabase;
             _addressReportDatabase = addressReportDatabase;
-            _cartRepository = cartRepository;            
+            _cartRepository = cartRepository;
+            _accountReportDatabase = accountReportDatabase;
+            _associatorReportDatabase = associatorReportDatabase;
         }
 
         public void Execute(CreateOrderCommand command)
@@ -107,7 +111,10 @@ namespace SP.Service.Domain.CommandHandlers
                     }
                     if (cartList.Count > 0)
                     {
-                        var aggregate = new OrderDomain(command.Id, command.Remark, command.OrderStatus, command.OrderDate, command.AccountId, cartList, command.AddressId, address.Address);
+                        var memberList = _associatorReportDatabase.GetMemberByAccountId(command.AccountId);
+                        var account = _accountReportDatabase.GetAccountById(command.AccountId);
+                        var isvip = (memberList != null && memberList.Count > 0);
+                        var aggregate = new OrderDomain(command.Id, command.Remark, command.OrderStatus, command.OrderDate, command.AccountId, cartList, command.AddressId, address.Address, account.MobilePhone, isvip);
 
                         _repository.Save(aggregate);
                         JObject data = new JObject();

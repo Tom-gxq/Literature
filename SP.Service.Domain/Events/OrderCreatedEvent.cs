@@ -16,8 +16,10 @@ namespace SP.Service.Domain.Events
         public double VIPAmount { get; internal set; }
         public int AddressId { get; internal set; }
         public string Address { get; internal set; }
+        public string Mobile { get; internal set; }
+        public bool IsVip { get; internal set; }
 
-        public OrderCreatedEvent(Guid aggregateId, string remark, OrderStatus orderStatus, DateTime orderDate, string accountId, double amount, double vipAmount, int addressId, string address)
+        public OrderCreatedEvent(Guid aggregateId, string remark, OrderStatus orderStatus, DateTime orderDate, string accountId, double amount, double vipAmount, int addressId, string address,string mobile, bool isvip)
         {
             AggregateId = aggregateId;
             Remark = remark;
@@ -28,6 +30,8 @@ namespace SP.Service.Domain.Events
             VIPAmount = vipAmount;
             AddressId = addressId;
             Address = address;
+            Mobile = mobile;
+            IsVip = isvip;
         }
     }
 }

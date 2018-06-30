@@ -39,7 +39,7 @@ namespace SP.Service.Domain.CommandHandlers
                         _skuRepository.Save(sku);
                     }
                 }
-                orderDomain.EditOrderDomainStatus(command.Id, Data.Enum.OrderStatus.Closed);
+                orderDomain.EditOrderDomainStatus(command.Id, Data.Enum.OrderStatus.Closed, Data.Enum.OrderPay.None);
                 _repository.Save(orderDomain);
             }            
         }

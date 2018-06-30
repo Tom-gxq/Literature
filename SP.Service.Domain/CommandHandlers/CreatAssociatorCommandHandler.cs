@@ -1,5 +1,6 @@
 ﻿using Grpc.Service.Core.Domain.Handlers;
 using Grpc.Service.Core.Domain.Storage;
+using SP.Producer;
 using SP.Service.Domain.Commands.Account;
 using SP.Service.Domain.DomainEntity;
 using SP.Service.Domain.Reporting;
@@ -12,12 +13,17 @@ namespace SP.Service.Domain.CommandHandlers
     public class CreatAssociatorCommandHandler : ICommandHandler<CreatAssociatorCommand>
     {
         private IDataRepository<AssociatorDomain> _repository;
+        private IDataRepository<SysStatisticsDomain> _sysRepository;
         private SysKindReportDatabase _kindReportDatabase;
+        private SysStatisticsReportDatabase _sysStatisticsReportDatabase;
 
-        public CreatAssociatorCommandHandler(IDataRepository<AssociatorDomain> repository, SysKindReportDatabase kindReportDatabase)
+        public CreatAssociatorCommandHandler(IDataRepository<AssociatorDomain> repository, IDataRepository<SysStatisticsDomain> sysRepository,
+            SysKindReportDatabase kindReportDatabase, SysStatisticsReportDatabase sysStatisticsReportDatabase)
         {
             this._repository = repository;
-            _kindReportDatabase = kindReportDatabase;
+            this._sysRepository = sysRepository;
+            this._kindReportDatabase = kindReportDatabase;
+            this._sysStatisticsReportDatabase = sysStatisticsReportDatabase;
         }
 
         public void Execute(CreatAssociatorCommand command)
@@ -30,7 +36,8 @@ namespace SP.Service.Domain.CommandHandlers
             }
             var payOrderCode = "GMHY" + DateTime.Now.ToString("yyyyMMddHH24mmssffff");
             var aggregate = new AssociatorDomain(command.Id, command.AccountId, command.KindId, command.Quantity, payOrderCode, command.PayType, amount);
-
+            //会员购买统计
+            aggregate.AddMemberKafkaInfo(command.AccountId, amount, AuthorizeType.Buy);
             _repository.Save(aggregate);
         }
     }

@@ -185,14 +185,15 @@ namespace OrderGRPCInterface.Business
             }
         }
 
-        public static bool UpdateOrderStatus(string orderId,int orderStatus)
+        public static bool UpdateOrderStatus(string orderId,int orderStatus, int payWay = 0)
         {
             bool status = false;
             var client = OrderClientHelper.GetClient();
             var request = new UpdateOrderRequest()
             {
                 OrderId= orderId,
-                OrderStatus = orderStatus
+                OrderStatus = orderStatus,
+                PayWay = payWay
             };
             var result = client.UpdateOrderStatus(request);
             if (result.Status == 10001)
@@ -339,14 +340,15 @@ namespace OrderGRPCInterface.Business
             return model;
         }
 
-        public static bool UpdateOrderStatusByOrderCode(string orderCode, int orderStatus)
+        public static bool UpdateOrderStatusByOrderCode(string orderCode, int orderStatus,int payWay=0)
         {
             bool status = false;
             var client = OrderClientHelper.GetClient();
             var request = new UpdateOrderCodeRequest()
             {
                 OrderCode = orderCode,
-                OrderStatus = orderStatus
+                OrderStatus = orderStatus,
+                PayWay = payWay
             };
             var result = client.UpdateOrderStatusByOrderCode(request);
             if (result.Status == 10001)

@@ -121,9 +121,9 @@ namespace Order.Service.Business
             return result;
         }
 
-        public static void UpdateOrderStatus(string orderId, int orderStatus)
+        public static void UpdateOrderStatus(string orderId, int orderStatus,int payWay)
         {
-            ServiceLocator.CommandBus.Send(new EditOrderCommand(new Guid(orderId), (OrderStatus)orderStatus));           
+            ServiceLocator.CommandBus.Send(new EditOrderCommand(new Guid(orderId), (OrderStatus)orderStatus,(OrderPay)payWay));           
         }
 
         public static TradeListResponse GetSchoolLeadTradeList(string accountId, int pageIndex, int pageSize)
@@ -235,15 +235,25 @@ namespace Order.Service.Business
             }
             if(entity.Address != null)
             {
+                var addressArray = entity.OrderAddress?.Split(" ");
                 order.Address = new SP.Service.Address();
-                order.Address.ContactAddress = entity.Address.Address;
-                order.Address.Id  = entity.Address.AddressId;
-                order.Address.Gender = entity.Address.Gender;
-                order.Address.Dorm = entity.Address.DormName ??string.Empty;
-                order.Address.DistrictName = entity.Address.DistrictName ?? string.Empty;
-                order.Address.SchoolName = entity.Address.SchoolName ?? string.Empty;
-                order.Address.ContactMobile = entity.Address.Mobile ?? string.Empty;
-                order.Address.ContactName = entity.Address.UserName ?? string.Empty;
+                order.Address.ContactAddress = entity.OrderAddress??string.Empty;
+                order.Address.Id  = 0;
+                order.Address.Gender = 1;
+                if (addressArray != null && addressArray.Length > 2)
+                {
+                    order.Address.Dorm = $"{addressArray[2]} {addressArray[3]}" ?? string.Empty;
+                    order.Address.DistrictName = addressArray[1] ?? string.Empty;
+                    order.Address.SchoolName = addressArray[0] ?? string.Empty;
+                }
+                else
+                {
+                    order.Address.Dorm = string.Empty;
+                    order.Address.DistrictName = string.Empty;
+                    order.Address.SchoolName = string.Empty;
+                }
+                order.Address.ContactMobile =  string.Empty;
+                order.Address.ContactName =  string.Empty;
             }
             if (entity.Shop != null)
             {
@@ -280,9 +290,9 @@ namespace Order.Service.Business
             ServiceLocator.CommandBus.Send(new CreateCashApplyCommand(accountId, alipay, money));
         }
 
-        public static void  UpdateOrderStatusByOrderCode(string orderCode, int orderStatus)
+        public static void  UpdateOrderStatusByOrderCode(string orderCode, int orderStatus, int payWay)
         {
-            ServiceLocator.CommandBus.Send(new EditOrderCodeCommand(orderCode, (OrderStatus)orderStatus));
+            ServiceLocator.CommandBus.Send(new EditOrderCodeCommand(orderCode, (OrderStatus)orderStatus, (OrderPay)payWay));
         }
 
     }

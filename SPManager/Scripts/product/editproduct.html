@@ -32,7 +32,7 @@
                             <select id="inputSecondTypeForm" class="select small newselect" style="height: 35px;">
                                 <option value="0" selected="">&nbsp;</option>
                                 {% for(var i =0, j=$data.secondTypes.length; i< j; i++) { %}
-                                <option value="{%=$data.secondTypes[i].TypeId%}" {%=$data.result.TypeId==$data.types[i].TypeId?'selected':'' %}>{%=$data.secondTypes[i].TypeName%}</option>
+                                <option value="{%=$data.secondTypes[i].TypeId%}" {%=$data.result.SecondTypeId = =$data.secondTypes[i].TypeId?'selected':'' %}>{%=$data.secondTypes[i].TypeName%}</option>
                                 {% } %}
                             </select>                            
                         </li>

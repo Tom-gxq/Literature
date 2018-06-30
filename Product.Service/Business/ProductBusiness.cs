@@ -329,6 +329,7 @@ namespace Product.Service.Business
             product.SkuNum = entity.SkuNum;
             product.AddedDate = entity.AddedDate.Ticks;
             product.VipPrice = entity.VipPrice;
+            product.ShopId = entity.ShopId;
             if (entity.Brand != null)
             {
                 product.Brand = new Brand();

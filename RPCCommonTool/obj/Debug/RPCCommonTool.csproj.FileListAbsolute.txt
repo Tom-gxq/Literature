@@ -42,7 +42,7 @@ D:\项目构建\饿家军餐饮平台\Src\Literature\RPCCommonTool\bin\Debug\Grp
 D:\项目构建\饿家军餐饮平台\Src\Literature\RPCCommonTool\bin\Debug\System.Interactive.Async.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\RPCCommonTool\bin\Debug\Grpc.Core.xml
 D:\项目构建\饿家军餐饮平台\Src\Literature\RPCCommonTool\bin\Debug\System.Interactive.Async.xml
-D:\项目构建\饿家军餐饮平台\Src\Literature\RPCCommonTool\obj\Debug\RPCCommonTool.csprojResolveAssemblyReference.cache
 D:\项目构建\饿家军餐饮平台\Src\Literature\RPCCommonTool\obj\Debug\RPCCommonTool.csproj.CoreCompileInputs.cache
 D:\项目构建\饿家军餐饮平台\Src\Literature\RPCCommonTool\obj\Debug\RPCCommonTool.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\RPCCommonTool\obj\Debug\RPCCommonTool.pdb
+D:\项目构建\饿家军餐饮平台\Src\Literature\RPCCommonTool\obj\Debug\RPCCommonTool.csprojResolveAssemblyReference.cache

@@ -53,7 +53,7 @@ define(function (require, exports, module) {
             _self.bindElements();
 
             //获取数据
-            _self.getDataSource(1);
+            _self.getDataSource(1,-1);
             _self.bindEvent();
         },
         //元素
@@ -125,6 +125,9 @@ define(function (require, exports, module) {
                         );
                     }
                 });
+            });
+            $("#inputStatus").change(function () {
+                _self.bindStatus($(this).val());
             });
         },
         /**
@@ -200,14 +203,15 @@ define(function (require, exports, module) {
         /**
          * Ajax 请求获取角色列表,并调用模版进行UI显示
          */
-        getDataSource: function (index) {
+        getDataSource: function (index,status) {
             var _self = this;
+            _self.orderArea.find(".contenttr").remove();
             $.ajax({
                 url: 'GetOrderList',
                 type: 'GET',
                 cache: false,
                 data: {
-                    status:1,
+                    status: status,
                     pageIndex: index,
                     pageSize: 20
                 },
@@ -220,7 +224,7 @@ define(function (require, exports, module) {
                             start: msg.data.Index,
                             display: 10,
                             onChange: function (page) {
-                                _self.getDataSource(page);
+                                _self.getDataSource(page, status);
                             }
                         });
                     }
@@ -260,6 +264,10 @@ define(function (require, exports, module) {
 
                 }
             });
+        },
+        bindStatus: function (status) {  
+            var _self = this;
+            _self.getDataSource(1, status);
         }
     }, base);
 

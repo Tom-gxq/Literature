@@ -93,12 +93,52 @@ namespace SP.Application.Order
                 OrderId = order.OrderId,
                 OrderStatus = order.OrderStatus.Value,
                 PayDate = order.PayDate == null ? DateTime.MinValue : order.PayDate.Value,
-                Remark = order.Remark,
-                ShippingDate = order.ShippingDate == null ? DateTime.MinValue :order.ShippingDate.Value,
+                Remark = order.Remark ?? string.Empty,
+                ShippingDate = order.ShippingDate == null ? DateTime.MinValue : order.ShippingDate.Value,
                 ShipToDate = order.ShipToDate == null ? DateTime.MinValue : order.ShipToDate.Value,
-                OrderCode = order.OrderCode
+                OrderCode = order.OrderCode,
+                OrderAddress = order.OrderAddress ?? string.Empty,
+                IsAliPay = order.IsAliPay != null ? order.IsAliPay.Value : false,
+                IsVip = order.IsVip != null ? order.IsVip.Value : false,
+                IsWxPay = order.IsWxPay != null ? order.IsWxPay.Value : false,
+                Shiper = new List<User.DTO.AccountInfoDto>(),
+                Owner = new User.DTO.AccountInfoDto()
+                {
+                    Fullname = string.Empty,
+                    Mobile = string.Empty
+                }
             };
+            orderDto.Amount = orderDto.IsVip ? (order.VIPAmount == null ? 0 : order.VIPAmount.Value) : (order.Amount == null ? 0 : order.Amount.Value);
+            var repository = IocManager.Instance.Resolve<AccountInfoRepository>();
+            var accountRep = IocManager.Instance.Resolve<AccountRespository>();
+            if (!string.IsNullOrEmpty(order.AccountId))
+            {
+                var accountInfo = repository.GetAccountInfoById(order.AccountId);
+                orderDto.Owner.Fullname = accountInfo?.Fullname ?? string.Empty;                
+                var account = accountRep.GetAccountById(order.AccountId);
+                orderDto.Owner.Mobile = account.MobilePhone?.Replace("+86", "") ?? string.Empty;
+            }
 
+            var orderRep = IocManager.Instance.Resolve<OrdersRespository>();
+            var list = orderRep.GetOrderProduct(orderDto.OrderId);
+            if (list != null && list.Count>0)
+            {
+                var group = list.GroupBy(x=>x.ShiperId);
+                foreach (var item in group)
+                {
+                    if (item != null && !string.IsNullOrEmpty(item.Key)
+                        && (orderDto.Shiper.Find(x=>x.AccountId == item.Key) == null))
+                    {
+                        var shiper = new User.DTO.AccountInfoDto();
+                        shiper.AccountId = item.Key;
+                        var shiperInfo = repository.GetAccountInfoById(item.Key);
+                        shiper.Fullname = shiperInfo?.Fullname??string.Empty;                        
+                        var shiperAccount = accountRep.GetAccountById(order.AccountId);
+                        shiper.Mobile = shiperAccount.MobilePhone?.Replace("+86", "") ?? string.Empty;
+                        orderDto.Shiper.Add(shiper);
+                    }
+                }
+            }            
             return orderDto;
         }        
     }

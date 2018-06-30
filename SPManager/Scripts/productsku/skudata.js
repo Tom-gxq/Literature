@@ -315,7 +315,7 @@ define(function (require, exports, module) {
                 regionId: parentId
             }
             data = $.param(data, true);
-            Global.get("/Shop/GetShopListByRegionId", data, function (msg) {
+            Global.get("/Shop/GetFoodShopListByRegionId", data, function (msg) {
                 $(msg.items).each(function (index, itemData) {
                     $("#inputShop").append($("<option/>").text(itemData.ShopName).attr("value", itemData.Id));
                 });

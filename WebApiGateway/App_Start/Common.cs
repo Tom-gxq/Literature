@@ -3,8 +3,10 @@ using Aop.Api;
 using SP.Api.Model.Account;
 using SP.Api.Model.Enum;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -13,6 +15,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
+using WeddingCarService.WXPay;
 
 namespace WebApiGateway.App_Start
 {
@@ -463,13 +466,16 @@ namespace WebApiGateway.App_Start
 
         public static void WriteLog(string str)
         {
-            //if ((System.Web.HttpContext.Current == null) || (System.Web.HttpContext.Current.Server == null)
-            //    || (ConfigurationManager.AppSettings["crm_logpath"] == null))
-            //{
-            //    return;
-            //}
-
-            string logPath = "c:\\apilog\\";
+            string logPath = string.Empty;
+            if ((System.Web.HttpContext.Current == null) || (System.Web.HttpContext.Current.Server == null)
+                || (ConfigurationManager.AppSettings["LogPath"] == null))
+            {
+                logPath = "c:\\s1apilog\\";
+            }
+            else
+            {
+                logPath = ConfigurationManager.AppSettings["LogPath"];
+            }
 
 
             if (string.IsNullOrEmpty(logPath))
@@ -568,6 +574,35 @@ namespace WebApiGateway.App_Start
 
 
             return client;
+        }
+        /// <summary>
+        /// 创建微信的package签名
+        /// </summary>
+        /// <param name="key">密钥键</param>
+        /// <param name="value">财付通商户密钥（自定义32位密钥）</param>
+        /// <returns></returns>
+        public static string CreateMd5Sign(string key, string value, Hashtable parameters, string _ContentEncoding)
+        {
+            var sb = new StringBuilder();
+            //数组化键值对，并排序
+            var akeys = new ArrayList(parameters.Keys);
+            akeys.Sort();
+            //循环拼接包参数
+            foreach (string k in akeys)
+            {
+                var v = (string)parameters[k];
+                if (null != v && "".CompareTo(v) != 0
+                    && "sign".CompareTo(k) != 0 && "key".CompareTo(k) != 0)
+                {
+                    sb.Append(k + "=" + v + "&");
+                }
+            }
+            //最后拼接商户自定义密钥
+            sb.Append(key + "=" + value);
+            //加密
+            string sign = MD5Util.GetMD5(sb.ToString(), _ContentEncoding).ToUpper();
+            //返回密文
+            return sign;
         }
     }
 }

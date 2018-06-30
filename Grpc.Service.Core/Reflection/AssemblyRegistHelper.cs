@@ -16,6 +16,7 @@ using Grpc.Service.Core.Domain;
 using Grpc.Service.Core.Domain.Repositories.Extensions;
 using Grpc.Service.Core.Domain.Entity;
 using Grpc.Service.Core.Domain.Reporting;
+using Grpc.Service.Core.Domain.Sender;
 
 namespace Grpc.Service.Core.Reflection
 {
@@ -79,6 +80,10 @@ namespace Grpc.Service.Core.Reflection
                     RegisterForIDatatRepository(type, IocManager.Instance);
                 }
                 else if (type.GetTypeInfo().GetInterface(typeof(IReportDatabase).FullName) != null)
+                {
+                    IocManager.Instance.Register(type, DependencyLifeStyle.Singleton);
+                }
+                else if (type.GetTypeInfo().GetInterface(typeof(ISender).FullName) != null)
                 {
                     IocManager.Instance.Register(type, DependencyLifeStyle.Singleton);
                 }

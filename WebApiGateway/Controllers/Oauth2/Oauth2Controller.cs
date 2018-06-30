@@ -167,10 +167,16 @@ namespace WebApiGateway.Controllers.Oauth2
                     {
                         accountId = accountEntity.AccountId;
                         error_msg += accountId + "#@  ";
-                        MDSession.Session.Clear();
-                        MDSession.Session["Account"] = AccountInfoCache.GetAccountInfoByAccountId(accountId);
-                        accessTokenModel = new TokenModel();
-                        TokenCache.Add(accessTokenModel, accountId);
+                        try
+                        {
+                            MDSession.Session.Clear();
+                            MDSession.Session["Account"] = AccountInfoCache.GetAccountInfoByAccountId(accountId);
+                            accessTokenModel = new TokenModel();
+                            TokenCache.Add(accessTokenModel, accountId);
+                        }
+                        catch(Exception ex)
+                        {
+                        }
                     }
                     
                 }
@@ -290,8 +296,14 @@ namespace WebApiGateway.Controllers.Oauth2
 
                         var account = AccountInfoCache.GetAccountInfoByAccountId(accountId);
 
-                        MDSession.Session.Clear();
-                        MDSession.Session["Account"] = account;
+                        try
+                        {
+                            MDSession.Session.Clear();
+                            MDSession.Session["Account"] = account;
+                        }
+                        catch(Exception ex)
+                        {
+                        }
                     }
                     else
                     {
@@ -330,10 +342,15 @@ namespace WebApiGateway.Controllers.Oauth2
                 {
                     accountId = accountEntity.AccountId;
                     error_msg += accountId + "#@  ";
-                    MDSession.Session.Clear();
-                    MDSession.Session["Account"] = AccountInfoCache.GetAccountInfoByAccountId(accountId);
-                    accessTokenModel = new TokenModel();
-                    TokenCache.Add(accessTokenModel, accountId);
+                    try
+                    {
+                        MDSession.Session.Clear();
+                        MDSession.Session["Account"] = AccountInfoCache.GetAccountInfoByAccountId(accountId);
+                        accessTokenModel = new TokenModel();
+                        TokenCache.Add(accessTokenModel, accountId);
+                    }catch(Exception ex)
+                    {
+                    }
                 }
             }
         }

@@ -17,14 +17,21 @@ namespace SPManager.Filters
             get
             {
                 IAdminAppService service = IocManager.Instance.Resolve<IAdminAppService>();
-                var result = service.GetCurrentSession();
-                if (result == null)
+                if (service != null)
                 {
-                    return null;
+                    var result = service.GetCurrentSession();
+                    if (result == null)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        return result;
+                    }
                 }
                 else
                 {
-                    return result;
+                    return null;
                 }
             }
         }

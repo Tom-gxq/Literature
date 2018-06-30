@@ -10,5 +10,6 @@ namespace SP.Application.User.DTO
     {
         public string AccountId { get; set; }
         public string Fullname { get; set; }
+        public string Mobile { get; set; }
     }
 }

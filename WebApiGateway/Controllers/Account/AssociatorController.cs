@@ -4,8 +4,10 @@ using Aop.Api.Domain;
 using Aop.Api.Request;
 using Aop.Api.Response;
 using Newtonsoft.Json.Linq;
+using SP.Api.Model;
 using SP.Api.Model.Account;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +16,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using WebApiGateway.App_Start;
 using WebApiGateway.Controllers.Base;
+using WeddingCarService.WXPay;
+using wx.pay;
 
 namespace WebApiGateway.Controllers.Account
 {
@@ -227,6 +231,74 @@ namespace WebApiGateway.Controllers.Account
 
 
             return client;
+        }
+
+        public ActionResult GetAssociatorWxPayStr(string associatorId)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                var payStr = GetWxPayParam(associatorId);
+                JsonResult.Add("payStr", payStr);
+                JsonResult.Add("status", 0);
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+        private WxPrePayModel GetWxPayParam(string associatorId)
+        {
+            var content = new JObject();
+            try
+            {
+                var member = AccountBusiness.GetAssociatorById(associatorId);
+                //content.Add("product_code", "QUICK_MSECURITY_PAY");
+                content.Add("total_amount", member.amount);
+                //content.Add("subject", "饿家军");
+                content.Add("out_trade_no", member.payOrderCode);
+                content.Add("body", "会员服务");
+
+            }
+            catch (Exception ex)
+            {
+            }
+            //随机验证码
+            var nonceStr = TenpayUtil.getNoncestr().Replace("-", "");
+            WxPrePayModel wxPrePaymodel = new WxPrePayModel();
+            wxPrePaymodel.appid = PaymaxConfig.WX_APPID;
+            wxPrePaymodel.mch_id = PaymaxConfig.WX_MCHID;
+            wxPrePaymodel.nonce_str = nonceStr;
+            wxPrePaymodel.body = content["body"].Value<string>();
+            wxPrePaymodel.out_trade_no = content["out_trade_no"].Value<string>();
+            wxPrePaymodel.total_fee = (content["total_amount"].Value<double>() * 100).ToString();
+            wxPrePaymodel.spbill_create_ip = Request.UserHostAddress;
+            wxPrePaymodel.notify_url = PaymaxConfig.WX_NOTIFYURL;
+            wxPrePaymodel.trade_type = "APP";
+            wxPrePaymodel.fee_type = "CNY";
+            //设置package订单参数
+            Hashtable packageParameter = new Hashtable();
+            packageParameter.Add("appid", PaymaxConfig.WX_APPID);//开放账号ID  
+            packageParameter.Add("mch_id", PaymaxConfig.WX_MCHID); //商户号
+            packageParameter.Add("nonce_str", nonceStr); //随机字符串
+            packageParameter.Add("body", content["body"].Value<string>()); //商品描述    
+            packageParameter.Add("out_trade_no", content["out_trade_no"].Value<string>()); //商家订单号 
+            packageParameter.Add("total_fee", (content["total_amount"].Value<double>() * 100).ToString()); //商品金额,以分为单位    
+            packageParameter.Add("spbill_create_ip", Request.UserHostAddress); //订单生成的机器IP，指用户浏览器端IP  
+            packageParameter.Add("notify_url", PaymaxConfig.WX_NOTIFYURL); //接收财付通通知的URL  
+            packageParameter.Add("trade_type", "APP");//交易类型  
+            packageParameter.Add("fee_type", "CNY"); //币种，1人民币   66  
+            //获取签名
+            var sign = Common.CreateMd5Sign("key", PaymaxConfig.WX_APIKEY, packageParameter, Request.ContentEncoding.BodyName);
+
+            wxPrePaymodel.sign = sign;
+
+            //将参数对象直接返回给客户端
+            return wxPrePaymodel;
         }
     }
 }

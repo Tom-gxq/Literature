@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SPManager</RootNamespace>
     <AssemblyName>SPManager</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -350,6 +350,9 @@
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\lib-min.js" />
     <Content Include="Scripts\login.js" />
+    <Content Include="Scripts\marketsku\list-item.html" />
+    <Content Include="Scripts\marketsku\skudata.js" />
+    <Content Include="Scripts\marketsku\style.css" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\order\ordersum-list-item.html" />
     <Content Include="Scripts\order\list-item.html" />
@@ -521,6 +524,7 @@
     <Content Include="Views\Order\SumIndex.cshtml" />
     <Content Include="Views\Admin\CashApplyIndex.cshtml" />
     <Content Include="Views\RegionData\RegionTypeIndex.cshtml" />
+    <Content Include="Views\Product\MarketSkuIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

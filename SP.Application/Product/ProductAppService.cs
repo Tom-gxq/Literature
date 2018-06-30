@@ -270,7 +270,8 @@ namespace SP.Application.Product
             var product = ConvertFromRepositoryEntity(result);
             if(product != null)
             {
-                var imageList = _imageRepository.GetAllList(x=>x.ProductId == productId).OrderBy(x=>x.DisplaySequence).ToList();
+                var repository = IocManager.Instance.Resolve<ProductsRespository>();
+                var imageList = repository.GetImageListByProductId(productId).OrderBy(x=>x.DisplaySequence).ToList();
                 product.ProductImage = new List<ProductImageDto>();
                 foreach (var item in imageList)
                 {
@@ -280,7 +281,7 @@ namespace SP.Application.Product
                         product.ProductImage.Add(image);
                     }
                 }
-                var repository = IocManager.Instance.Resolve<ProductsRespository>();
+                
                 var brand = repository.GetProductBrandByProductId(productId);
                 product.Brand = ConvertBrandFromRepositoryEntity(brand);
 
@@ -474,6 +475,25 @@ namespace SP.Application.Product
                 retList.Add(entity);
             }
             return retList;
+        }
+        public List<ProductSkuDto> GetMarketSkuList(int pageIndex, int pageSize, int marketId)
+        {
+            var retList = new List<ProductSkuDto>();
+            var repository = IocManager.Instance.Resolve<ProductSkuRespository>();
+            var list = repository.GetMarketSkuList(pageIndex, pageSize, marketId);
+            foreach (var item in list)
+            {
+                var entity = ConvertSkuFromRepositoryEntity(item);
+                retList.Add(entity);
+            }
+            return retList;
+        }
+        public long GetMarketSkuListCount(int marketId)
+        {
+            var retList = new List<ProductSkuDto>();
+            var repository = IocManager.Instance.Resolve<ProductSkuRespository>();
+            var count = repository.GetMarketSkuListCount(marketId);
+            return count;
         }
 
         private static ProductsDto ConvertFromRepositoryEntity(ProductEntity product,string lastOperater="")

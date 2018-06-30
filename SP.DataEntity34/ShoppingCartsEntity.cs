@@ -24,5 +24,6 @@ namespace SP.DataEntity
         public string OrderId { get; set; }
         public int? ShopId { get; set; }
         public bool? IsEnabled { get; set; }
+        public string ShiperId { get; set; }
     }
 }

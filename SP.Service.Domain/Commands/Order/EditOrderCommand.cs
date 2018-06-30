@@ -9,10 +9,12 @@ namespace SP.Service.Domain.Commands.Order
     public class EditOrderCommand : Command
     {
         public OrderStatus OrderStatus { get; set; }
-        public EditOrderCommand(Guid id, OrderStatus OrderStatus)
+        public OrderPay PayWay { get; internal set; }
+        public EditOrderCommand(Guid id, OrderStatus OrderStatus, OrderPay payWay)
         {
             base.Id = id;
             this.OrderStatus = OrderStatus;
+            this.PayWay = payWay;
         }
     }
 }

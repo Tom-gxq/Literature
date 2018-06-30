@@ -16,6 +16,13 @@
                             <input tabindex="1" class="input-text width400 Check sltContact" type="text" value="{%=$data.DisplaySequence%}" placeholder="请输入排序" />
                         </li>
                         <li style="width:100%">
+                            <span class="grayfont span">种类:</span>
+                            <select id="inputTypeForm" class="select small newselect" style="height: 35px;">
+                                <option value="0" {%=$data.Kind==0?'selected':'' %}>大分类</option>
+                                <option value="1" {%=$data.Kind==1?'selected':'' %}>小分类</option>
+                            </select>
+                        </li>
+                        <li style="width:100%">
                             <span class="grayfont span">分类短链:</span>
                             <input tabindex="1" class="input-text width400 Check txtPath" type="text" value="" placeholder="请输入分类短链" />
                         </li>

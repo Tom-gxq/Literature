@@ -1,5 +1,7 @@
-﻿using Grpc.Service.Core.Domain.Handlers;
+﻿using Grpc.Service.Core.Dependency;
+using Grpc.Service.Core.Domain.Handlers;
 using Grpc.Service.Core.Domain.Storage;
+using Microsoft.Extensions.Configuration;
 using SP.Data.Enum;
 using SP.Service.Domain.Commands.Order;
 using SP.Service.Domain.DomainEntity;
@@ -18,10 +20,12 @@ namespace SP.Service.Domain.CommandHandlers
         private IDataRepository<ProductSkuDomain> _skuRepository;
         private OrderReportDatabase _orderReportDatabase;
         private AccountFinanceReportDatabase _financeReportDatabase;
+        private AddressReportDatabase _addressReportDatabase;
 
         public EditOrderCommandHandler(IDataRepository<OrderDomain> repository, IDataRepository<TradeDomain> tradeRepository,
             IDataRepository<AccountFinanceDomain> financeRepository, OrderReportDatabase orderReportDatabase, 
-            IDataRepository<ProductSkuDomain> skuRepository, AccountFinanceReportDatabase financeReportDatabase)
+            IDataRepository<ProductSkuDomain> skuRepository, AccountFinanceReportDatabase financeReportDatabase,
+            AddressReportDatabase addressReportDatabase)
         {
             this._repository = repository;
             this._tradeRepository = tradeRepository;
@@ -29,12 +33,13 @@ namespace SP.Service.Domain.CommandHandlers
             this._orderReportDatabase = orderReportDatabase;
             this._skuRepository = skuRepository;
             this._financeReportDatabase = financeReportDatabase;
+            this._addressReportDatabase = addressReportDatabase;
         }
 
         public void Execute(EditOrderCommand command)
         {
             var aggregate = new OrderDomain();
-            aggregate.EditOrderDomainStatus(command.Id, command.OrderStatus);
+            aggregate.EditOrderDomainStatus(command.Id, command.OrderStatus, command.PayWay);
             _repository.Save(aggregate);
             
             var order = _orderReportDatabase.GetLeadOrderDomainByOrderId(command.Id.ToString());
@@ -47,7 +52,7 @@ namespace SP.Service.Domain.CommandHandlers
             if (order != null)
             {
                 var aggregate = new OrderDomain();
-                aggregate.EditOrderDomainStatus(new Guid(order.OrderId), command.OrderStatus);
+                aggregate.EditOrderDomainStatus(new Guid(order.OrderId), command.OrderStatus, command.PayWay);
                 _repository.Save(aggregate);
 
                 CaclCommsion(order, command.OrderStatus);
@@ -63,14 +68,31 @@ namespace SP.Service.Domain.CommandHandlers
             if (order != null && order.Shop != null && !string.IsNullOrEmpty(order.Shop.OwnerId)
                 && order.ShoppingCarts != null)
             {
-                System.Console.WriteLine("OrderId=" + order.OrderId + "orderStatus=" + orderStatus);
+                
                 if (orderStatus == Data.Enum.OrderStatus.Success)
                 {
+                    var config = IocManager.Instance.Resolve<IConfigurationRoot>();
+                    int marketId = -1;
+                    if (config != null)
+                    {
+                        var reObj = config.GetSection("MarketId");
+                        int.TryParse(reObj?.Value,out marketId);
+                    }
                     foreach (var cart in order.ShoppingCarts)
                     {
                         if (cart != null && !string.IsNullOrEmpty(cart.CartId))
                         {
-                            var amount = cart.Quantity * 0.5;
+                            double amount = 0;
+                            if (marketId == order.Shop.ShopType)
+                            {
+                                //超市提成方法
+                                amount = order.IsVip ? cart.VIPAmount: cart.Amount;
+                            }
+                            else
+                            {
+                                //餐饮提成方法
+                                amount = cart.Quantity * 1;
+                            } 
                             var trade = new TradeDomain(order.Shop.OwnerId, cart.CartId, 1, amount);
                             _tradeRepository.Save(trade);
                             commsion += amount;
@@ -95,15 +117,24 @@ namespace SP.Service.Domain.CommandHandlers
                     {
                         if (cart != null && !string.IsNullOrEmpty(cart.CartId))
                         {
-                            System.Console.WriteLine("EditProductSkuDomainStock Quantity=" + cart.Quantity);
+                            System.Console.WriteLine("Payed EditProductSkuDomainStock Quantity=" + cart.Quantity);
                             var sku = new ProductSkuDomain();
                             //sku.EditProductSkuDomainStock(cart.Product.ProductId, cart.Quantity);
                             sku.EditProductSkuOrderNum(cart.ShopId,cart.Product.ProductId, cart.Quantity);
                             _skuRepository.Save(sku);
                         }
                     }
+                    //将订单成功付款的信息添加到kafka队列中
+                    AddKafka(order.OrderId,orderStatus);
                 }
             }
+        }
+        private void AddKafka(string orderId,OrderStatus orderStatus)
+        {
+            var aggregate = _orderReportDatabase.GetOrderByOrderId(orderId);
+            var address = _addressReportDatabase.GetRegionData(aggregate.AdressId);
+            aggregate.AddKafkaInfo(orderStatus, address.ParentDataID);
+            _repository.Save(aggregate);
         }
     }
 }

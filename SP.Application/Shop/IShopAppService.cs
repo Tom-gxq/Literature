@@ -21,5 +21,7 @@ namespace SP.Application.Shop
         bool AddShopProduct(int ShopId, string ProductId);
         bool DelShopProductByShopId(int ShopId);
         List<ShopDto> GetShopListByRegionId(int regionId);
+        List<ShopDto> GetFoodShopListByRegionId(int regionId, int marketId);
+        List<ShopDto> GetMarketShopListByRegionId(int regionId,int marketId);
     }
 }

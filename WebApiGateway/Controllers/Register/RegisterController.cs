@@ -44,6 +44,7 @@ namespace WebApiGateway.Controllers.Register
             if (userAccount != null && !string.IsNullOrEmpty(userAccount.AccountId) && !Params.is_authorization)
             {
                 errorCode = ApiEnum.ErrorCode.AlreadyAccount;
+                errorMsg = "该账号已存在";
             }
             else
             {

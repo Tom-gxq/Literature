@@ -108,7 +108,7 @@ namespace Order.Service.GrpcImpl
             response.Status = 10002;
             try
             {
-                OrderBusiness.UpdateOrderStatus(request.OrderId, request.OrderStatus);
+                OrderBusiness.UpdateOrderStatus(request.OrderId, request.OrderStatus, request.PayWay);
                 response.Status = 10001;
             }
             catch (Exception ex)
@@ -189,7 +189,7 @@ namespace Order.Service.GrpcImpl
             response.Status = 10002;
             try
             {
-                OrderBusiness.UpdateOrderStatusByOrderCode(request.OrderCode, request.OrderStatus);
+                OrderBusiness.UpdateOrderStatusByOrderCode(request.OrderCode, request.OrderStatus, request.PayWay);
                 response.Status = 10001;
             }
             catch(OrderCodeUpdateException codeEx)

@@ -55,6 +55,10 @@ namespace SP.Api.Model.Product
         /**
         * 
         */
+        public int shopId { get; set; }
+        /**
+        * 
+        */
         public BrandModel brand { get; set; }
         /**
         * 

@@ -85,7 +85,6 @@ namespace SP.Application.Product
                 Id=productType.TypeId,
                 DisplaySequence = productType.DisplaySequence,
                 TypeName = productType.TypeName,
-                Kind = productType.Kind,
                 Remark = productType.Remark,
                 TypePath = productType.TypePath,
                 TypeLogo = productType.TypeLogo

@@ -20,8 +20,21 @@ namespace SP.Service.Domain.EventHandlers
             var item = new OrdersEntity()
             {
                 OrderId = handle.AggregateId.ToString(),
-                OrderStatus = (int)handle.OrderStatus
+                OrderStatus = (int)handle.OrderStatus, 
+                UpdateTime = DateTime.Now,
             };
+            switch(handle.OrderStatus )
+            {
+                case Data.Enum.OrderStatus.Payed:
+                    item.PayDate = DateTime.Now;
+                    item.IsAliPay = (handle.PayWay == Data.Enum.OrderPay.AliPay);
+                    item.IsWxPay = (handle.PayWay == Data.Enum.OrderPay.WxPay);
+                    break;
+                case Data.Enum.OrderStatus.Success:
+                    item.ShipToDate = DateTime.Now;
+                    item.FinishDate = DateTime.Now;
+                    break;
+            }
 
             _reportDatabase.UpdateOrderStatus(item);
         }
@@ -31,7 +44,8 @@ namespace SP.Service.Domain.EventHandlers
             {
                 OrderId = handle.AggregateId.ToString(),
                 Amount = handle.Amount,
-                VIPAmount = handle.VipAmount
+                VIPAmount = handle.VipAmount,
+                UpdateTime = DateTime.Now,
             };
 
             _reportDatabase.UpdateOrderStatus(item);

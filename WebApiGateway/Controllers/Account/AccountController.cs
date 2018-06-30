@@ -291,7 +291,7 @@ namespace WebApiGateway.Controllers.Account
             }
             result.Data = JsonResult;
             return result;
-        }
+        }        
 
         [System.Web.Http.HttpPost]
         public ActionResult UpdateAccountMobile([FromBody] RegisterAccount Params)
@@ -384,7 +384,41 @@ namespace WebApiGateway.Controllers.Account
             result.Data = JsonResult;
             return result;
         }
-        
 
+        public ActionResult IsBindedOtherAccount()
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+
+            try
+            {
+                var accountModel = AccountBusiness.GetAccountDetail(currentAccount.AccountId);
+                BindedModel model = new BindedModel();
+                if (!string.IsNullOrEmpty(accountModel.AliBind))
+                {
+                    model.bindedAliPay = accountModel.AliBind;
+                    model.IsBindedAliPay = true;
+                }
+                if (!string.IsNullOrEmpty(accountModel.WxBind))
+                {
+                    model.bindedWeiXin = accountModel.WxBind;
+                    model.IsBindedWeiXin = true;
+                }
+                if (!string.IsNullOrEmpty(accountModel.QQBind))
+                {
+                    model.bindedQQ = accountModel.QQBind;
+                    model.IsBindedQQ = true;
+                }
+                JsonResult.Add("model", model);
+                JsonResult.Add("status", 0);
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
     }
 }

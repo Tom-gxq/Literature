@@ -1,5 +1,5 @@
-FROM microsoft/dotnet:2.0-runtime
-MAINTAINER Jerry "3023173152@qq.com"
+FROM gaoxiqing/dotnet_librdkafka:1.0.0
+MAINTAINER gaoxiqing "3023173152@qq.com"
 
 #设置并发数的环境变量
 ENV COMPlus_ThreadPool_ForceMinWorkerThreads=100

@@ -24,7 +24,8 @@ namespace SP.Service.Domain.EventHandlers
                 ProductId = handle.ProductId,
                 Quantity = handle.Quantity,
                 ShopId = handle.ShopId,
-                IsEnabled = false,                
+                IsEnabled = false,      
+                ShiperId = handle.ShiperId,
                 CreateTime = DateTime.Now,
                 UpdateTime = DateTime.Now,
             };

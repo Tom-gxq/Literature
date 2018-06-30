@@ -17,6 +17,7 @@ namespace SP.Service.Domain.DomainEntity
         public string Description { get; internal set; }
         public int SaleStatus { get; internal set; }
         public int SkuNum { get; internal set; }
+        public int ShopId { get; internal set; }
         public double Price { get; set; }
         public string SkuId { get; set; }
         public DateTime AddedDate { get; internal set; }
@@ -45,12 +46,14 @@ namespace SP.Service.Domain.DomainEntity
             this.Unit = product.Unit;            
             this.SaleStatus = product.SaleStatus.Value;
             this.AddedDate = product.AddedDate != null ? product.AddedDate.Value : DateTime.MinValue;
+            
             if (memento is ProductFullEntity)
             {
                 var productFull = memento as ProductFullEntity;
                 this.SkuNum = productFull.Stock != null ? productFull.Stock.Value : 0;
                 this.SkuId = productFull.SkuId;
                 this.Price = productFull.Price != null ? productFull.Price.Value : 0;
+                this.ShopId = productFull.ShopId != null ? productFull.ShopId.Value : 0;
             }
         }
         public void SetMemenBrandto(BrandEntity memento)

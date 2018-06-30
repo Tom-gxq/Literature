@@ -9,10 +9,12 @@ namespace SP.Service.Domain.Events
     public class OrderEditEvent : Event
     {
         public OrderStatus OrderStatus { get; internal set; }
-        public OrderEditEvent(Guid aggregateId,OrderStatus orderStatus)
+        public OrderPay PayWay { get; internal set; }
+        public OrderEditEvent(Guid aggregateId,OrderStatus orderStatus, OrderPay payWay)
         {
             AggregateId = aggregateId;
             OrderStatus = orderStatus;
+            PayWay = payWay;
         }
     }
 }

@@ -41,4 +41,10 @@ namespace SP.Data.Enum
         /// </summary>
         Returned = 10
     }
+    public enum OrderPay
+    {
+        None=0,
+        WxPay,
+        AliPay,
+    }
 }

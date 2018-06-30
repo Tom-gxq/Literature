@@ -15,5 +15,7 @@ namespace SP.Api.Model.Account
         public int UserType { get; set; }
         public int DormId { get; set; }
         public string PayPassWord { get; set; }
+        public long AssociatorDate { get; set; }
+        public bool IsAssociator { get; set; }
     }
 }

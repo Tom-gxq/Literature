@@ -52,6 +52,9 @@ namespace Account.Service.Business
                 result.Email = account.Email;
                 result.Password = account.Password;
                 result.AccountId = account.AccountId;
+                result.AliBind = !string.IsNullOrEmpty(account.AliBind) ? account.AliBind : string.Empty;
+                result.WxBind = !string.IsNullOrEmpty(account.WxBind) ? account.WxBind : string.Empty;
+                result.QQBind = !string.IsNullOrEmpty(account.QQBind) ? account.QQBind : string.Empty;
             }
             return result;
         }
@@ -67,6 +70,9 @@ namespace Account.Service.Business
                 result.Email = !string.IsNullOrEmpty(domain.Email) ? domain.Email : string.Empty;
                 result.Password = !string.IsNullOrEmpty(domain.Password) ? domain.Password : string.Empty;
                 result.AccountId = !string.IsNullOrEmpty(domain.AccountId) ? domain.AccountId : string.Empty;
+                result.AliBind = !string.IsNullOrEmpty(domain.AliBind) ? domain.AliBind : string.Empty;
+                result.WxBind = !string.IsNullOrEmpty(domain.WxBind) ? domain.WxBind : string.Empty;
+                result.QQBind = !string.IsNullOrEmpty(domain.QQBind) ? domain.QQBind : string.Empty;
             }
             return result;
         }
@@ -258,6 +264,16 @@ namespace Account.Service.Business
                 result.FullName = domain.Fullname!= null? domain.Fullname:string.Empty;
                 result.Gender = domain.Gender == 1;
                 result.PayPassWord = domain.PayPassWord != null ? domain.PayPassWord : string.Empty;
+                result.UserType = domain.UserType;
+                var date = ServiceLocator.AccountInfoReportDatabase.GetAssociatorDateByAId(accountId);
+                if(date > DateTime.MinValue)
+                {
+                    result.AssociatorDate = date.Ticks;
+                }
+                else
+                {
+                    result.AssociatorDate = 0;
+                }
             }
             return result;
         }

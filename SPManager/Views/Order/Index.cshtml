@@ -14,6 +14,13 @@
                 
                 <input type="text" placeholder="搜索内容" class="input" name="title" value="" style="width: 204px; height: 35px;" id="inputSearch">
                 <button class="btn btn-primary search_btn" id="btnSearch">查询</button>
+                <select id="inputStatus" class="select small newselect" style="height: 35px;">
+                    <option value="-1">全部</option>
+                    <option value="1">待付款</option>
+                    <option value="2">已付款</option>
+                    <option value="4">已关闭</option>
+                    <option value="5">已完成</option>
+                </select>
             </div>
             <div class="tablesWrap mgt10">
                 <table id="J_ItemList" class="wxtables table-order">

@@ -24,6 +24,9 @@ namespace AccountGRPCInterface
                 model.Email = reuslt.Email;
                 model.MobilePhone = reuslt.MobilePhone;
                 model.Password = reuslt.Password;
+                model.AliBind = reuslt.AliBind;
+                model.WxBind = reuslt.WxBind;
+                model.QQBind = reuslt.QQBind;
                 return model;
             }
             else
@@ -47,6 +50,9 @@ namespace AccountGRPCInterface
                 model.Email = reuslt.Email;
                 model.MobilePhone = reuslt.MobilePhone;
                 model.Password = reuslt.Password;
+                model.AliBind = reuslt.AliBind;
+                model.WxBind = reuslt.WxBind;
+                model.QQBind = reuslt.QQBind;
                 return model;
             }
             else
@@ -367,6 +373,21 @@ namespace AccountGRPCInterface
                 model.FullName = reuslt.FullName;
                 model.Gender = reuslt.Gender;
                 model.PayPassWord = reuslt.PayPassWord;
+                model.UserType = reuslt.UserType;
+                if(reuslt.AssociatorDate > 0)
+                {
+                    var currrentDate = new DateTime(reuslt.AssociatorDate);
+                    ;
+                    model.AssociatorDate = GetTimestamp(currrentDate);
+                    if(currrentDate > DateTime.Now)
+                    {
+                        model.IsAssociator = true;
+                    }
+                    else
+                    {
+                        model.IsAssociator = false;
+                    }
+                }
                 return model;
             }
             else
@@ -559,6 +580,11 @@ namespace AccountGRPCInterface
             {
                 return null;
             }
+        }
+
+        private static long GetTimestamp(DateTime d)
+        {
+            return (d.ToUniversalTime().Ticks - 621355968000000000) / 10000000;     //精确到毫秒
         }
     }
 }

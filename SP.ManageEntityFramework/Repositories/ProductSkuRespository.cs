@@ -22,7 +22,7 @@ namespace SP.ManageEntityFramework.Repositories
                 var q = db.From<ProductSkuEntity>();
                 q= q.Join<ProductSkuEntity, ProductEntity>((a,b)=>a.ProductId == b.ProductId && a.EffectiveTime>=DateTime.Parse(DateTime.Now.ToShortDateString()));
                 q = q.LeftJoin<ProductSkuEntity, ShopEntity>((a, b) => a.ShopId == b.Id);
-                q = q.LeftJoin<ShopEntity, RegionEntity>((a, b) => a.RegionId == b.Id).OrderBy(x=>x.ShopId).OrderByDescending(x => x.EffectiveTime);
+                q = q.LeftJoin<ShopEntity, RegionEntity>((a, b) => a.RegionId == b.Id).OrderBy(x=>x.ShopId);
                 q = q.Limit((pageIndex - 1) * pageSize, pageSize);
                 return db.Select<ProductSkuFullEntity>(q);
             }
@@ -96,6 +96,28 @@ namespace SP.ManageEntityFramework.Repositories
                 }
                 q = q.OrderBy(x => x.ShopId);
                 return db.Select<ProductSkuFullEntity>(q);
+            }
+        }
+
+        public List<ProductSkuFullEntity> GetMarketSkuList(int pageIndex, int pageSize,int marketId)
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<ProductSkuEntity>();
+                q = q.Join<ProductSkuEntity, ProductEntity>((a, b) => a.ProductId == b.ProductId );
+                q = q.Join<ProductSkuEntity, ShopEntity>((a, b) => a.ShopId == b.Id && b.ShopType == marketId);
+                q = q.LeftJoin<ShopEntity, RegionEntity>((a, b) => a.RegionId == b.Id).OrderBy(x => x.ShopId);
+                q = q.Limit((pageIndex - 1) * pageSize, pageSize);
+                return db.Select<ProductSkuFullEntity>(q);
+            }
+        }
+        public long GetMarketSkuListCount(int marketId)
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<ProductSkuEntity>();
+                q = q.Join<ProductSkuEntity, ShopEntity>((a, b) => a.ShopId == b.Id && b.ShopType == marketId);
+                return db.Select<ProductSkuFullEntity>(q).Count();
             }
         }
     }

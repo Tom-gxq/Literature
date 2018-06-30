@@ -17,11 +17,6 @@ namespace SP.Service.Domain.EventHandlers
         }
         public void Handle(AddressEditEvent handle)
         {
-            int? gender = null;
-            if(handle.Gender > 0)
-            {
-                gender = handle.Gender;
-            }
             int? regionId = null;
             if(handle.RegionID > 0)
             {
@@ -32,7 +27,7 @@ namespace SP.Service.Domain.EventHandlers
                 ID = handle.AddressId,
                 AccountId = handle.AccountId,
                 Address = !string.IsNullOrEmpty(handle.Address) ? handle.Address : null,
-                Gender = gender,
+                Gender = handle.Gender,
                 Mobile = !string.IsNullOrEmpty(handle.Mobile) ? handle.Mobile : null,
                 RegionID = regionId,
                 UserName = !string.IsNullOrEmpty(handle.UserName) ? handle.UserName : null,

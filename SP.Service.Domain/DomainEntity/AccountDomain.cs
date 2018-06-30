@@ -1,6 +1,9 @@
-﻿using Grpc.Service.Core.Domain;
+﻿using Grpc.Service.Core.Dependency;
+using Grpc.Service.Core.Domain;
 using Grpc.Service.Core.Domain.Entity;
 using Grpc.Service.Core.Domain.Repositories;
+using Microsoft.Extensions.Configuration;
+using SP.Producer;
 using SP.Service.Domain.Events;
 using SP.Service.Entity;
 using System;
@@ -11,7 +14,7 @@ namespace SP.Service.Domain.DomainEntity
 {
     public class AccountDomain : AggregateRoot<Guid>,
         IHandle<AccountCreatedEvent>, IHandle<AccountInfoCreatedEvent>, IHandle<AssociatorCreatedEvent>,
-        IHandle<AccountEditEvent>,
+        IHandle<AccountEditEvent>, IHandle<KafkaAddEvent>,
         IOriginator
     {
         public string AccountId { get; set; }
@@ -92,6 +95,38 @@ namespace SP.Service.Domain.DomainEntity
                 throw new Exception();
             }
         }
+        public void AddUserRegKafkaInfo(string accountId)
+        {
+            var config = IocManager.Instance.Resolve<IConfigurationRoot>();
+            string kafkaIP = string.Empty;
+            if (config != null)
+            {
+                kafkaIP = config.GetSection("KafkaIP").Value?.ToString() ?? string.Empty;
+            }
+            var producer = new KafkaUserRegProducer();
+            producer.IPConfig = kafkaIP;
+            producer.AccountId = accountId;
+            ApplyChange(new KafkaAddEvent(producer));
+        }
+        public void AddMemberKafkaInfo(string accountId,double amount, AuthorizeType Type)
+        {
+            var config = IocManager.Instance.Resolve<IConfigurationRoot>();
+            string kafkaIP = string.Empty;
+            if (config != null)
+            {
+                kafkaIP = config.GetSection("KafkaIP").Value?.ToString() ?? string.Empty;
+            }
+            var producer = new KafkaMemberProducer();
+            producer.IPConfig = kafkaIP;
+            producer.AccountId = accountId;
+            producer.Amount = amount;
+            producer.Type = Type;
+            ApplyChange(new KafkaAddEvent(producer));
+        }
+        public void Handle(KafkaAddEvent e)
+        {
+
+        }
         public BaseEntity GetMemento()
         {
             return new AccountEntity()
@@ -154,6 +189,9 @@ namespace SP.Service.Domain.DomainEntity
                 this.Email = entity.Email;
                 this.Password = entity.Password;
                 this.Status = entity.Status.Value;
+                this.AliBind = entity.AliBind;
+                this.WxBind = entity.WxBind;
+                this.QQBind = entity.QQBind;
             }
         }
     }

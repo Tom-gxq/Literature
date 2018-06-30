@@ -9,11 +9,15 @@ using System.Threading.Tasks;
 
 namespace SP.ManageEntityFramework.Repositories
 {
-    public class AccountRespository:RepositoryBase<AccountInfoEntity, int>
+    public class AccountRespository:RepositoryBase<AccountEntity, int>
     {
         public AccountRespository(IDbContextProvider<ManageDbContext> dbContextProvider)
             : base(dbContextProvider)
         {
+        }
+        public AccountEntity GetAccountById(string accountId)
+        {
+            return this.Single(x => x.AccountId == accountId);
         }
         public List<AccountInfoEntity> SearchAccount(string keywords)
         {

@@ -223,9 +223,16 @@ namespace SP.Application.Product
                 DataType = region.DataType.Value,
                 Status = region.Status.Value,
                 ParentDataID = region.ParentDataID!= null ?region.ParentDataID.Value:0,
+                ParentDataName = string.Empty,
                 CreateTime = region.CreateTime != null ? region.CreateTime.Value: DateTime.MinValue,
                 UpdateTime = region.UpdateTime != null ? region.UpdateTime.Value : DateTime.MinValue,                
             };
+            if (regionDto.ParentDataID > 0)
+            {
+                var repository = IocManager.Instance.Resolve<RegionRespository>();
+                var entity = repository.GetRegionDataDetail(regionDto.ParentDataID);
+                regionDto.ParentDataName = entity?.DataName??string.Empty;
+            }
 
             return regionDto;
         }

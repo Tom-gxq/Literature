@@ -39,34 +39,37 @@ namespace SP.Service {
             "EQoJcGFnZUluZGV4GAMgASgFEhAKCHBhZ2VTaXplGAQgASgFEg0KBXRvdGFs",
             "GAUgASgDIm0KD0dldE9yZGVyUmVxdWVzdBIRCglhY2NvdW50SWQYASABKAkS",
             "EwoLb3JkZXJTdGF0dXMYAiABKAUSEQoJcGFnZUluZGV4GAMgASgFEhAKCHBh",
-            "Z2VTaXplGAQgASgFEg0KBXRvdGFsGAUgASgDIjgKDk15T3JkZXJSZXF1ZXN0",
-            "EhEKCWFjY291bnRJZBgBIAEoCRITCgtvcmRlclN0YXR1cxgCIAEoBSIhCg5P",
-            "cmRlcklkUmVxdWVzdBIPCgdvcmRlcklkGAEgASgJIkUKDU9yZGVyUmVzcG9u",
-            "c2USDgoGc3RhdHVzGAEgASgFEiQKCW9yZGVySW5mbxgCIAEoCzIRLlNQLlNl",
-            "cnZpY2UuT3JkZXIiMwoQQWRkT3JkZXJSZXNwb25zZRIOCgZzdGF0dXMYASAB",
-            "KAUSDwoHb3JkZXJJZBgCIAEoCSI6ChJVcGRhdGVPcmRlclJlcXVlc3QSEwoL",
-            "b3JkZXJTdGF0dXMYASABKAUSDwoHb3JkZXJJZBgCIAEoCSI7ChFTY2hvb2xM",
-            "ZWFkUmVxdWVzdBIRCglhY2NvdW50SWQYASABKAkSEwoLb3JkZXJTdGF0dXMY",
-            "AiABKAUiogIKD1NjaG9vbExlYWRPcmRlchIPCgdvcmRlcklkGAEgASgJEg4K",
-            "BmFtb3VudBgCIAEoARIRCglvcmRlckNvZGUYAyABKAkSEQoJb3JkZXJEYXRl",
-            "GAQgASgDEg8KB3BheURhdGUYBSABKAMSKAoHYWNjb3VudBgGIAEoCzIXLlNQ",
-            "LlNlcnZpY2UuQWNjb3VudEluZm8SJAoHYWRkcmVzcxgHIAEoCzITLlNQLlNl",
-            "cnZpY2UuQWRkcmVzcxIeCgRzaG9wGAggASgLMhAuU1AuU2VydmljZS5TaG9w",
-            "EjIKEHNob3BwaW5nQ2FydExpc3QYCSADKAsyGC5TUC5TZXJ2aWNlLlNob3Bw",
-            "aW5nQ2FydBITCgtvcmRlclN0YXR1cxgKIAEoBSJdChtTY2hvb2xMZWFkT3Jk",
-            "ZXJMaXN0UmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEi4KCW9yZGVySW5mbxgC",
-            "IAMoCzIbLlNQLlNlcnZpY2UuU2Nob29sTGVhZE9yZGVyIkYKDFRyYWRlUmVx",
-            "dWVzdBIRCglhY2NvdW50SWQYASABKAkSEQoJcGFnZUluZGV4GAMgASgFEhAK",
-            "CHBhZ2VTaXplGAQgASgFInEKBVRyYWRlEhEKCWFjY291bnRJZBgBIAEoCRIO",
-            "CgZhbW91bnQYAiABKAESDgoGY2FydElkGAMgASgJEhIKCmNyZWF0ZVRpbWUY",
-            "BCABKAMSEAoIcXVhbnRpdHkYBSABKAUSDwoHc3ViamVjdBgGIAEoBSJYChFU",
-            "cmFkZUxpc3RSZXNwb25zZRIOCgZzdGF0dXMYASABKAUSJAoJdHJhZGVMaXN0",
-            "GAIgAygLMhEuU1AuU2VydmljZS5UcmFkZRINCgV0b3RhbBgFIAEoAyJ7ChlT",
-            "Y2hvb2xMZWFkRmluYW5jZVJlc3BvbnNlEg4KBnN0YXR1cxgBIAEoBRIRCglh",
-            "Y2NvdW50SWQYAiABKAkSEgoKaGF2ZUFtb3VudBgDIAEoARIRCgl1c2VBbW91",
-            "bnQYBCABKAESFAoMYWN0aXZlQW1vdW50GAUgASgBIkcKE0FkZENhc2hBcHBs",
-            "eVJlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEg4KBmFsaXBheRgCIAEoCRIN",
-            "CgVtb25leRgDIAEoAWIGcHJvdG8z"));
+            "Z2VTaXplGAQgASgFEg0KBXRvdGFsGAUgASgDIjYKDk15T3JkZXJSZXF1ZXN0",
+            "EhEKCWFjY291bnRJZBgBIAEoCRIRCglvcmRlckRhdGUYAiABKAkiIQoOT3Jk",
+            "ZXJJZFJlcXVlc3QSDwoHb3JkZXJJZBgBIAEoCSJFCg1PcmRlclJlc3BvbnNl",
+            "Eg4KBnN0YXR1cxgBIAEoBRIkCglvcmRlckluZm8YAiABKAsyES5TUC5TZXJ2",
+            "aWNlLk9yZGVyIjMKEEFkZE9yZGVyUmVzcG9uc2USDgoGc3RhdHVzGAEgASgF",
+            "Eg8KB29yZGVySWQYAiABKAkiSgoSVXBkYXRlT3JkZXJSZXF1ZXN0EhMKC29y",
+            "ZGVyU3RhdHVzGAEgASgFEg8KB29yZGVySWQYAiABKAkSDgoGcGF5V2F5GAMg",
+            "ASgFIjsKEVNjaG9vbExlYWRSZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIT",
+            "CgtvcmRlclN0YXR1cxgCIAEoBSKiAgoPU2Nob29sTGVhZE9yZGVyEg8KB29y",
+            "ZGVySWQYASABKAkSDgoGYW1vdW50GAIgASgBEhEKCW9yZGVyQ29kZRgDIAEo",
+            "CRIRCglvcmRlckRhdGUYBCABKAMSDwoHcGF5RGF0ZRgFIAEoAxIoCgdhY2Nv",
+            "dW50GAYgASgLMhcuU1AuU2VydmljZS5BY2NvdW50SW5mbxIkCgdhZGRyZXNz",
+            "GAcgASgLMhMuU1AuU2VydmljZS5BZGRyZXNzEh4KBHNob3AYCCABKAsyEC5T",
+            "UC5TZXJ2aWNlLlNob3ASMgoQc2hvcHBpbmdDYXJ0TGlzdBgJIAMoCzIYLlNQ",
+            "LlNlcnZpY2UuU2hvcHBpbmdDYXJ0EhMKC29yZGVyU3RhdHVzGAogASgFIl0K",
+            "G1NjaG9vbExlYWRPcmRlckxpc3RSZXNwb25zZRIOCgZzdGF0dXMYASABKAUS",
+            "LgoJb3JkZXJJbmZvGAIgAygLMhsuU1AuU2VydmljZS5TY2hvb2xMZWFkT3Jk",
+            "ZXIiRgoMVHJhZGVSZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIRCglwYWdl",
+            "SW5kZXgYAyABKAUSEAoIcGFnZVNpemUYBCABKAUicQoFVHJhZGUSEQoJYWNj",
+            "b3VudElkGAEgASgJEg4KBmFtb3VudBgCIAEoARIOCgZjYXJ0SWQYAyABKAkS",
+            "EgoKY3JlYXRlVGltZRgEIAEoAxIQCghxdWFudGl0eRgFIAEoBRIPCgdzdWJq",
+            "ZWN0GAYgASgFIlgKEVRyYWRlTGlzdFJlc3BvbnNlEg4KBnN0YXR1cxgBIAEo",
+            "BRIkCgl0cmFkZUxpc3QYAiADKAsyES5TUC5TZXJ2aWNlLlRyYWRlEg0KBXRv",
+            "dGFsGAUgASgDInsKGVNjaG9vbExlYWRGaW5hbmNlUmVzcG9uc2USDgoGc3Rh",
+            "dHVzGAEgASgFEhEKCWFjY291bnRJZBgCIAEoCRISCgpoYXZlQW1vdW50GAMg",
+            "ASgBEhEKCXVzZUFtb3VudBgEIAEoARIUCgxhY3RpdmVBbW91bnQYBSABKAEi",
+            "RwoTQWRkQ2FzaEFwcGx5UmVxdWVzdBIRCglhY2NvdW50SWQYASABKAkSDgoG",
+            "YWxpcGF5GAIgASgJEg0KBW1vbmV5GAMgASgBIlAKFlVwZGF0ZU9yZGVyQ29k",
+            "ZVJlcXVlc3QSEwoLb3JkZXJTdGF0dXMYASABKAUSEQoJb3JkZXJDb2RlGAIg",
+            "ASgJEg4KBnBheVdheRgDIAEoBSIlChBPcmRlckNvZGVSZXF1ZXN0EhEKCW9y",
+            "ZGVyQ29kZRgBIAEoCWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, global::SP.Service.ProductModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -76,11 +79,11 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OrderListResponse), global::SP.Service.OrderListResponse.Parser, new[]{ "Status", "OrderList" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SearchMyOrderRequest), global::SP.Service.SearchMyOrderRequest.Parser, new[]{ "AccountId", "KeyWord", "PageIndex", "PageSize", "Total" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.GetOrderRequest), global::SP.Service.GetOrderRequest.Parser, new[]{ "AccountId", "OrderStatus", "PageIndex", "PageSize", "Total" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.MyOrderRequest), global::SP.Service.MyOrderRequest.Parser, new[]{ "AccountId", "OrderStatus" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.MyOrderRequest), global::SP.Service.MyOrderRequest.Parser, new[]{ "AccountId", "OrderDate" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OrderIdRequest), global::SP.Service.OrderIdRequest.Parser, new[]{ "OrderId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OrderResponse), global::SP.Service.OrderResponse.Parser, new[]{ "Status", "OrderInfo" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AddOrderResponse), global::SP.Service.AddOrderResponse.Parser, new[]{ "Status", "OrderId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.UpdateOrderRequest), global::SP.Service.UpdateOrderRequest.Parser, new[]{ "OrderStatus", "OrderId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.UpdateOrderRequest), global::SP.Service.UpdateOrderRequest.Parser, new[]{ "OrderStatus", "OrderId", "PayWay" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SchoolLeadRequest), global::SP.Service.SchoolLeadRequest.Parser, new[]{ "AccountId", "OrderStatus" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SchoolLeadOrder), global::SP.Service.SchoolLeadOrder.Parser, new[]{ "OrderId", "Amount", "OrderCode", "OrderDate", "PayDate", "Account", "Address", "Shop", "ShoppingCartList", "OrderStatus" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SchoolLeadOrderListResponse), global::SP.Service.SchoolLeadOrderListResponse.Parser, new[]{ "Status", "OrderInfo" }, null, null, null),
@@ -88,7 +91,9 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.Trade), global::SP.Service.Trade.Parser, new[]{ "AccountId", "Amount", "CartId", "CreateTime", "Quantity", "Subject" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TradeListResponse), global::SP.Service.TradeListResponse.Parser, new[]{ "Status", "TradeList", "Total" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SchoolLeadFinanceResponse), global::SP.Service.SchoolLeadFinanceResponse.Parser, new[]{ "Status", "AccountId", "HaveAmount", "UseAmount", "ActiveAmount" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AddCashApplyRequest), global::SP.Service.AddCashApplyRequest.Parser, new[]{ "AccountId", "Alipay", "Money" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AddCashApplyRequest), global::SP.Service.AddCashApplyRequest.Parser, new[]{ "AccountId", "Alipay", "Money" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.UpdateOrderCodeRequest), global::SP.Service.UpdateOrderCodeRequest.Parser, new[]{ "OrderStatus", "OrderCode", "PayWay" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OrderCodeRequest), global::SP.Service.OrderCodeRequest.Parser, new[]{ "OrderCode" }, null, null, null)
           }));
     }
     #endregion
@@ -1650,7 +1655,7 @@ namespace SP.Service {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public MyOrderRequest(MyOrderRequest other) : this() {
       accountId_ = other.accountId_;
-      orderStatus_ = other.orderStatus_;
+      orderDate_ = other.orderDate_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1673,18 +1678,18 @@ namespace SP.Service {
       }
     }
 
-    /// <summary>Field number for the "orderStatus" field.</summary>
-    public const int OrderStatusFieldNumber = 2;
-    private int orderStatus_;
+    /// <summary>Field number for the "orderDate" field.</summary>
+    public const int OrderDateFieldNumber = 2;
+    private string orderDate_ = "";
     /// <summary>
     ///*
-    /// 订单类型
+    /// 订单日期
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int OrderStatus {
-      get { return orderStatus_; }
+    public string OrderDate {
+      get { return orderDate_; }
       set {
-        orderStatus_ = value;
+        orderDate_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -1702,7 +1707,7 @@ namespace SP.Service {
         return true;
       }
       if (AccountId != other.AccountId) return false;
-      if (OrderStatus != other.OrderStatus) return false;
+      if (OrderDate != other.OrderDate) return false;
       return true;
     }
 
@@ -1710,7 +1715,7 @@ namespace SP.Service {
     public override int GetHashCode() {
       int hash = 1;
       if (AccountId.Length != 0) hash ^= AccountId.GetHashCode();
-      if (OrderStatus != 0) hash ^= OrderStatus.GetHashCode();
+      if (OrderDate.Length != 0) hash ^= OrderDate.GetHashCode();
       return hash;
     }
 
@@ -1725,9 +1730,9 @@ namespace SP.Service {
         output.WriteRawTag(10);
         output.WriteString(AccountId);
       }
-      if (OrderStatus != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(OrderStatus);
+      if (OrderDate.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(OrderDate);
       }
     }
 
@@ -1737,8 +1742,8 @@ namespace SP.Service {
       if (AccountId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountId);
       }
-      if (OrderStatus != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(OrderStatus);
+      if (OrderDate.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(OrderDate);
       }
       return size;
     }
@@ -1751,8 +1756,8 @@ namespace SP.Service {
       if (other.AccountId.Length != 0) {
         AccountId = other.AccountId;
       }
-      if (other.OrderStatus != 0) {
-        OrderStatus = other.OrderStatus;
+      if (other.OrderDate.Length != 0) {
+        OrderDate = other.OrderDate;
       }
     }
 
@@ -1768,8 +1773,8 @@ namespace SP.Service {
             AccountId = input.ReadString();
             break;
           }
-          case 16: {
-            OrderStatus = input.ReadInt32();
+          case 18: {
+            OrderDate = input.ReadString();
             break;
           }
         }
@@ -2253,6 +2258,7 @@ namespace SP.Service {
     public UpdateOrderRequest(UpdateOrderRequest other) : this() {
       orderStatus_ = other.orderStatus_;
       orderId_ = other.orderId_;
+      payWay_ = other.payWay_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2290,6 +2296,21 @@ namespace SP.Service {
       }
     }
 
+    /// <summary>Field number for the "payWay" field.</summary>
+    public const int PayWayFieldNumber = 3;
+    private int payWay_;
+    /// <summary>
+    ///*
+    /// 订单支付方式
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int PayWay {
+      get { return payWay_; }
+      set {
+        payWay_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as UpdateOrderRequest);
@@ -2305,6 +2326,7 @@ namespace SP.Service {
       }
       if (OrderStatus != other.OrderStatus) return false;
       if (OrderId != other.OrderId) return false;
+      if (PayWay != other.PayWay) return false;
       return true;
     }
 
@@ -2313,6 +2335,7 @@ namespace SP.Service {
       int hash = 1;
       if (OrderStatus != 0) hash ^= OrderStatus.GetHashCode();
       if (OrderId.Length != 0) hash ^= OrderId.GetHashCode();
+      if (PayWay != 0) hash ^= PayWay.GetHashCode();
       return hash;
     }
 
@@ -2331,6 +2354,10 @@ namespace SP.Service {
         output.WriteRawTag(18);
         output.WriteString(OrderId);
       }
+      if (PayWay != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(PayWay);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2341,6 +2368,9 @@ namespace SP.Service {
       }
       if (OrderId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(OrderId);
+      }
+      if (PayWay != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PayWay);
       }
       return size;
     }
@@ -2355,6 +2385,9 @@ namespace SP.Service {
       }
       if (other.OrderId.Length != 0) {
         OrderId = other.OrderId;
+      }
+      if (other.PayWay != 0) {
+        PayWay = other.PayWay;
       }
     }
 
@@ -2372,6 +2405,10 @@ namespace SP.Service {
           }
           case 18: {
             OrderId = input.ReadString();
+            break;
+          }
+          case 24: {
+            PayWay = input.ReadInt32();
             break;
           }
         }
@@ -4174,6 +4211,320 @@ namespace SP.Service {
           }
           case 25: {
             Money = input.ReadDouble();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 添加订单的返回信息
+  /// </summary>
+  public sealed partial class UpdateOrderCodeRequest : pb::IMessage<UpdateOrderCodeRequest> {
+    private static readonly pb::MessageParser<UpdateOrderCodeRequest> _parser = new pb::MessageParser<UpdateOrderCodeRequest>(() => new UpdateOrderCodeRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<UpdateOrderCodeRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.OrderModelReflection.Descriptor.MessageTypes[19]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UpdateOrderCodeRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UpdateOrderCodeRequest(UpdateOrderCodeRequest other) : this() {
+      orderStatus_ = other.orderStatus_;
+      orderCode_ = other.orderCode_;
+      payWay_ = other.payWay_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UpdateOrderCodeRequest Clone() {
+      return new UpdateOrderCodeRequest(this);
+    }
+
+    /// <summary>Field number for the "orderStatus" field.</summary>
+    public const int OrderStatusFieldNumber = 1;
+    private int orderStatus_;
+    /// <summary>
+    ///*
+    /// 订单状态
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int OrderStatus {
+      get { return orderStatus_; }
+      set {
+        orderStatus_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "orderCode" field.</summary>
+    public const int OrderCodeFieldNumber = 2;
+    private string orderCode_ = "";
+    /// <summary>
+    ///*
+    /// 订单编号
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string OrderCode {
+      get { return orderCode_; }
+      set {
+        orderCode_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "payWay" field.</summary>
+    public const int PayWayFieldNumber = 3;
+    private int payWay_;
+    /// <summary>
+    ///*
+    /// 订单支付方式
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int PayWay {
+      get { return payWay_; }
+      set {
+        payWay_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as UpdateOrderCodeRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(UpdateOrderCodeRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (OrderStatus != other.OrderStatus) return false;
+      if (OrderCode != other.OrderCode) return false;
+      if (PayWay != other.PayWay) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (OrderStatus != 0) hash ^= OrderStatus.GetHashCode();
+      if (OrderCode.Length != 0) hash ^= OrderCode.GetHashCode();
+      if (PayWay != 0) hash ^= PayWay.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (OrderStatus != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(OrderStatus);
+      }
+      if (OrderCode.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(OrderCode);
+      }
+      if (PayWay != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(PayWay);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (OrderStatus != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(OrderStatus);
+      }
+      if (OrderCode.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(OrderCode);
+      }
+      if (PayWay != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PayWay);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(UpdateOrderCodeRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.OrderStatus != 0) {
+        OrderStatus = other.OrderStatus;
+      }
+      if (other.OrderCode.Length != 0) {
+        OrderCode = other.OrderCode;
+      }
+      if (other.PayWay != 0) {
+        PayWay = other.PayWay;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            OrderStatus = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            OrderCode = input.ReadString();
+            break;
+          }
+          case 24: {
+            PayWay = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 获取订单的返回信息
+  /// </summary>
+  public sealed partial class OrderCodeRequest : pb::IMessage<OrderCodeRequest> {
+    private static readonly pb::MessageParser<OrderCodeRequest> _parser = new pb::MessageParser<OrderCodeRequest>(() => new OrderCodeRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<OrderCodeRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.OrderModelReflection.Descriptor.MessageTypes[20]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public OrderCodeRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public OrderCodeRequest(OrderCodeRequest other) : this() {
+      orderCode_ = other.orderCode_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public OrderCodeRequest Clone() {
+      return new OrderCodeRequest(this);
+    }
+
+    /// <summary>Field number for the "orderCode" field.</summary>
+    public const int OrderCodeFieldNumber = 1;
+    private string orderCode_ = "";
+    /// <summary>
+    ///*
+    /// 订单编号
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string OrderCode {
+      get { return orderCode_; }
+      set {
+        orderCode_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as OrderCodeRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(OrderCodeRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (OrderCode != other.OrderCode) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (OrderCode.Length != 0) hash ^= OrderCode.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (OrderCode.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(OrderCode);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (OrderCode.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(OrderCode);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(OrderCodeRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.OrderCode.Length != 0) {
+        OrderCode = other.OrderCode;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            OrderCode = input.ReadString();
             break;
           }
         }

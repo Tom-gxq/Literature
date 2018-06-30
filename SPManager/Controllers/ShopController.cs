@@ -6,6 +6,7 @@ using SP.Application.User;
 using SPManager.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -98,7 +99,7 @@ namespace SPManager.Controllers
             var areaList = regionService.GetRegionData(2);
             JsonResult.Add("area", areaList);
             IProductTypeService pservice = IocManager.Instance.Resolve<IProductTypeService>();
-            var ptype = pservice.GetProductTypeList(0,1, 2000);
+            var ptype = pservice.GetAllProductTypeList(0);
             JsonResult.Add("productType", ptype);
 
             return new JsonResult()
@@ -162,6 +163,34 @@ namespace SPManager.Controllers
         {
             IShopAppService service = IocManager.Instance.Resolve<IShopAppService>();
             var result = service.GetShopListByRegionId(regionId);
+            JsonResult.Add("items", result);
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public JsonResult GetFoodShopListByRegionId(int regionId)
+        {
+            string marketId = ConfigurationManager.AppSettings["MarketId"];
+            int id = 0;
+            int.TryParse(marketId, out id);
+            IShopAppService service = IocManager.Instance.Resolve<IShopAppService>();
+            var result = service.GetFoodShopListByRegionId(regionId, id);
+            JsonResult.Add("items", result);
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public JsonResult GetMarketShopListByRegionId(int regionId)
+        {
+            string marketId = ConfigurationManager.AppSettings["MarketId"];
+            int id = 0;
+            int.TryParse(marketId, out id);
+            IShopAppService service = IocManager.Instance.Resolve<IShopAppService>();
+            var result = service.GetMarketShopListByRegionId(regionId, id);
             JsonResult.Add("items", result);
             return new JsonResult()
             {

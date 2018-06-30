@@ -13,12 +13,15 @@ namespace SP.Service.Domain.CommandHandlers
     {
         private IDataRepository<ShoppingCartsDomain> _repository;
         private readonly ShoppingCartReportDatabase _reportDatabase;
+        private readonly ShopReportDatabase _shopReportDatabase;
         private static object lockObj = new object();
 
-        public CreatShoppingCartCommandHandler(IDataRepository<ShoppingCartsDomain> repository, ShoppingCartReportDatabase reportDatabase)
+        public CreatShoppingCartCommandHandler(IDataRepository<ShoppingCartsDomain> repository, ShoppingCartReportDatabase reportDatabase,
+            ShopReportDatabase shopReportDatabase)
         {
             this._repository = repository;
             this._reportDatabase = reportDatabase;
+            this._shopReportDatabase = shopReportDatabase;
         }
 
         public void Execute(CreatShoppingCartCommand command)
@@ -29,7 +32,8 @@ namespace SP.Service.Domain.CommandHandlers
                 var domain = _reportDatabase.GetShoppingCart(command.AccountId, command.ShopId, command.ProductId);
                 if (domain == null)
                 {
-                    aggregate = new ShoppingCartsDomain(command.Id, command.AccountId, command.Quantity, command.ProductId, command.ShopId);
+                    var shop = _shopReportDatabase.GetShopById(command.ShopId);
+                    aggregate = new ShoppingCartsDomain(command.Id, command.AccountId, command.Quantity, command.ProductId, command.ShopId, shop?.OwnerId??string.Empty);
                 }
                 else
                 {

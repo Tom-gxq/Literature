@@ -13,8 +13,9 @@ namespace SP.Service.Domain.Events
         public DateTime CreateTime { get; internal set; }
         public string ProductId { get; internal set; }
         public int ShopId { get; set; }
+        public string ShiperId { get; internal set; }
 
-        public CreatShoppingCartEvent(string accountId, string cartId, int quantity,string productId, DateTime createTime, int shopId)
+        public CreatShoppingCartEvent(string accountId, string cartId, int quantity,string productId, DateTime createTime, int shopId, string shiperId)
         {
             CartId = cartId;
             AccountId = accountId;
@@ -22,6 +23,7 @@ namespace SP.Service.Domain.Events
             ProductId = productId;
             CreateTime = createTime;
             ShopId = shopId;
+            ShiperId = shiperId;
         }
     }
 }
