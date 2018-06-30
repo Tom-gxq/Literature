@@ -1,0 +1,1637 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccountAuthentication">
+          <Key>
+            <PropertyRef Name="AutoId" />
+          </Key>
+          <Property Name="AutoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AuthType" Type="int" Nullable="false" />
+          <Property Name="AccountId" Type="nvarchar" MaxLength="64" />
+          <Property Name="Account" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Token" Type="nvarchar" MaxLength="128" />
+          <Property Name="VerifyCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OAuth2_Access_Token">
+          <Key>
+            <PropertyRef Name="AutoId" />
+          </Key>
+          <Property Name="AutoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccessToken" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="AccountID" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="AppID" Type="varchar" MaxLength="128" />
+          <Property Name="ProjectID" Type="varchar" MaxLength="128" />
+          <Property Name="AccessTokenExpires" Type="datetime" />
+          <Property Name="RefreshToken" Type="varchar" MaxLength="128" />
+          <Property Name="RefreshTokenExpires" Type="datetime" />
+          <Property Name="CreateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SP_Account">
+          <Key>
+            <PropertyRef Name="AccountId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="MobilePhone" Type="nvarchar" MaxLength="32" />
+          <Property Name="Email" Type="nvarchar" MaxLength="128" />
+          <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Status" Type="tinyint" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="AliBind" Type="nvarchar" MaxLength="500" />
+          <Property Name="WxBind" Type="nvarchar" MaxLength="500" />
+          <Property Name="QQBind" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="SP_AccountAddress">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Gender" Type="int" Nullable="false" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="RegionID" Type="nvarchar" MaxLength="64" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="AccountId" Type="nvarchar" MaxLength="64" />
+          <Property Name="IsDefault" Type="int" />
+          <Property Name="Dorm" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="SP_AccountFinance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="HaveAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="UseAmount" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="SP_AccountInfo">
+          <Key>
+            <PropertyRef Name="AccountId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Avatar" Type="nvarchar" MaxLength="500" />
+          <Property Name="Fullname" Type="nvarchar" MaxLength="128" />
+          <Property Name="UserType" Type="tinyint" Nullable="false" />
+          <Property Name="Gender" Type="tinyint" Nullable="false" />
+          <Property Name="Birthdate" Type="datetime" />
+          <Property Name="IM_QQ" Type="nvarchar" MaxLength="16" />
+          <Property Name="WeiXin" Type="nvarchar" MaxLength="128" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="PayPassWord" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="SP_AccountProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="ProductId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="ShopId" Type="int" Nullable="false" />
+          <Property Name="PreStock" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SP_Admin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PassWord" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="IsDel" Type="bit" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SP_Associator">
+          <Key>
+            <PropertyRef Name="AssociatorId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AssociatorId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="AccountId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="KindId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PayOrderCode" Type="nvarchar" MaxLength="128" />
+          <Property Name="PayType" Type="int" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SP_Attribute">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AttributeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DisplaySequence" Type="int" />
+          <Property Name="UseAttributeImage" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Type" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SP_AttributeValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AttributeId" Type="bigint" Nullable="false" />
+          <Property Name="DisplaySequence" Type="int" />
+          <Property Name="ValueStr" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="SP_BrandCategories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrandName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Logo" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CompanyUrl" Type="nvarchar" MaxLength="1000" />
+          <Property Name="MetaKeywords" Type="nvarchar" MaxLength="100" />
+          <Property Name="MetaDescription" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2000" />
+          <Property Name="DisplaySequence" Type="int" />
+        </EntityType>
+        <EntityType Name="SP_Carousel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="DisplaySequence" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="SP_CashApply">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Alipay" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Money" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="UpdateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SP_EventRelation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SysEventId" Type="int" Nullable="false" />
+          <Property Name="ResEventId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="KindId" Type="nvarchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SP_Orders">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="300" />
+          <Property Name="OrderStatus" Type="int" Nullable="false" />
+          <Property Name="CloseReason" Type="nvarchar" MaxLength="1000" />
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="PayDate" Type="datetime" />
+          <Property Name="ShippingDate" Type="datetime" />
+          <Property Name="FinishDate" Type="datetime" />
+          <Property Name="AccountId" Type="nvarchar" MaxLength="64" />
+          <Property Name="ShipToDate" Type="datetime" />
+          <Property Name="Freight" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Meta_Keywords" Type="nvarchar" MaxLength="1000" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="OrderCode" Type="nvarchar" MaxLength="64" />
+          <Property Name="VIPAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="AddressId" Type="int" />
+          <Property Name="OrderAddress" Type="nvarchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="SP_ProductAttribute">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="AttributeId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="AttributeId" Type="bigint" Nullable="false" />
+          <Property Name="ValueId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="SP_ProductImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="ImgPath" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Postion" Type="int" Nullable="false" />
+          <Property Name="DisplaySequence" Type="int" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="IsDel" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SP_ProductRegion">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="DataId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="DataId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SP_Products">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProductCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="ShortDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="Unit" Type="nvarchar" MaxLength="10" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Meta_Keywords" Type="nvarchar" MaxLength="100" />
+          <Property Name="SaleStatus" Type="int" />
+          <Property Name="AddedDate" Type="datetime" />
+          <Property Name="DisplaySequence" Type="int" />
+          <Property Name="MarketPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="BrandId" Type="int" />
+          <Property Name="SuppliersId" Type="nvarchar" MaxLength="64" />
+          <Property Name="TypeId" Type="bigint" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="LastOperater" Type="bigint" />
+          <Property Name="VIPPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SecondTypeId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="SP_ProductSKUs">
+          <Key>
+            <PropertyRef Name="SkuId" />
+          </Key>
+          <Property Name="SkuId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="ShopId" Type="int" />
+          <Property Name="AccountId" Type="nvarchar" MaxLength="64" />
+          <Property Name="ProductId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="SKU" Type="nvarchar" MaxLength="100" />
+          <Property Name="EffectiveTime" Type="datetime" Nullable="false" />
+          <Property Name="Stock" Type="int" Nullable="false" />
+          <Property Name="AlertStock" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="OrderNum" Type="int" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“SP.dbo.SP_ProductType”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="SP_ProductType">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="TypeName" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Kind" Type="int" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="1000" />
+          <Property Name="DisplaySequence" Type="int" />
+          <Property Name="TypePath" Type="nvarchar" MaxLength="255" />
+          <Property Name="TypeLogo" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="SP_ProductTypeBrand">
+          <Key>
+            <PropertyRef Name="TypeId" />
+            <PropertyRef Name="BrandId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeId" Type="bigint" Nullable="false" />
+          <Property Name="BrandId" Type="nvarchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SP_RegionData">
+          <Key>
+            <PropertyRef Name="DataID" />
+          </Key>
+          <Property Name="DataID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ParentDataID" Type="nvarchar" MaxLength="64" />
+          <Property Name="DataType" Type="int" Nullable="false" />
+          <Property Name="Status" Type="tinyint" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SP_RegionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegionId" Type="int" />
+          <Property Name="TypeId" Type="int" />
+          <Property Name="DisplaySequence" Type="int" />
+        </EntityType>
+        <EntityType Name="SP_ResEvent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Kind" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SP_ShippingOrders">
+          <Key>
+            <PropertyRef Name="ShippingOrderId" />
+          </Key>
+          <Property Name="ShippingOrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="ManagerRemark" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ShippingDate" Type="datetime" />
+          <Property Name="ShippedDate" Type="datetime" />
+          <Property Name="ShippingId" Type="nvarchar" MaxLength="64" />
+          <Property Name="ShipTo" Type="nvarchar" MaxLength="64" />
+          <Property Name="ShipOrderNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsShipped" Type="bit" />
+        </EntityType>
+        <EntityType Name="SP_ShipStatistics">
+          <Key>
+            <PropertyRef Name="AccountId" />
+            <PropertyRef Name="CreateTime" />
+          </Key>
+          <Property Name="AccountId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="DormId" Type="int" />
+          <Property Name="Num_NewOrder" Type="int" />
+          <Property Name="Num_OrderAmount" Type="int" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="IsChecked" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SP_Shop">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShopName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="OwnerId" Type="nvarchar" MaxLength="64" />
+          <Property Name="DisplaySequence" Type="int" />
+          <Property Name="MetaKeywords" Type="nvarchar" MaxLength="800" />
+          <Property Name="RegionId" Type="int" />
+          <Property Name="StartTime" Type="nvarchar" MaxLength="10" />
+          <Property Name="EndTime" Type="nvarchar" MaxLength="10" />
+          <Property Name="ShopType" Type="int" />
+          <Property Name="ShopLogo" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="SP_ShopAttribute">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShopId" Type="int" Nullable="false" />
+          <Property Name="AttributeId" Type="bigint" Nullable="false" />
+          <Property Name="ValueId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="SP_ShoppingCarts">
+          <Key>
+            <PropertyRef Name="CartId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CartId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="ProductId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="AccountId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="OrderID" Type="nvarchar" MaxLength="64" />
+          <Property Name="ShopId" Type="int" />
+          <Property Name="IsEnabled" Type="bit" Nullable="false" />
+          <Property Name="IsDeled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SP_ShopProduct">
+          <Key>
+            <PropertyRef Name="ShopId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ShopId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="TypeId" Type="int" />
+        </EntityType>
+        <EntityType Name="SP_Suppliers">
+          <Key>
+            <PropertyRef Name="SuppliersId" />
+          </Key>
+          <Property Name="SuppliersId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="SuppliersName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="DataID" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="CellPhone" Type="nvarchar" MaxLength="20" />
+          <Property Name="TelPhone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="SP_SysEvent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="EventType" Type="int" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“SP.dbo.SP_SysKind”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="SP_SysKind">
+          <Key>
+            <PropertyRef Name="KindId" />
+            <PropertyRef Name="Kind" />
+            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="Unit" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="DiscountValue" />
+          </Key>
+          <Property Name="KindId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Kind" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Unit" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="DiscountValue" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SP_SysStatistics">
+          <Key>
+            <PropertyRef Name="CreateTime" />
+          </Key>
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="Num_NewUser" Type="int" />
+          <Property Name="Num_NewOrder" Type="int" />
+          <Property Name="Num_OrderAmount" Type="int" />
+          <Property Name="Num_NewAssociator" Type="int" />
+          <Property Name="Num_BuyAssociator" Type="int" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="IsChecked" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SP_Trade">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="TradeId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="CartId" Type="nvarchar" MaxLength="64" />
+          <Property Name="Subject" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SP_UserShipping">
+          <Key>
+            <PropertyRef Name="ShippingId" />
+          </Key>
+          <Property Name="ShippingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AddressId" Type="int" Nullable="false" />
+          <Property Name="AccountId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="1000" />
+          <Property Name="TelPhone" Type="nvarchar" MaxLength="30" />
+          <Property Name="CellPhone" Type="nvarchar" MaxLength="30" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="RealName" Type="nvarchar" MaxLength="100" />
+          <Property Name="QQ" Type="nvarchar" MaxLength="100" />
+          <Property Name="WeChat" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityContainer Name="SPModelStoreContainer">
+          <EntitySet Name="AccountAuthentication" EntityType="Self.AccountAuthentication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OAuth2_Access_Token" EntityType="Self.OAuth2_Access_Token" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_Account" EntityType="Self.SP_Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_AccountAddress" EntityType="Self.SP_AccountAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_AccountFinance" EntityType="Self.SP_AccountFinance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_AccountInfo" EntityType="Self.SP_AccountInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_AccountProduct" EntityType="Self.SP_AccountProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_Admin" EntityType="Self.SP_Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_Associator" EntityType="Self.SP_Associator" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_Attribute" EntityType="Self.SP_Attribute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_AttributeValue" EntityType="Self.SP_AttributeValue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_BrandCategories" EntityType="Self.SP_BrandCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_Carousel" EntityType="Self.SP_Carousel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_CashApply" EntityType="Self.SP_CashApply" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_EventRelation" EntityType="Self.SP_EventRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_Orders" EntityType="Self.SP_Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_ProductAttribute" EntityType="Self.SP_ProductAttribute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_ProductImage" EntityType="Self.SP_ProductImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_ProductRegion" EntityType="Self.SP_ProductRegion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_Products" EntityType="Self.SP_Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_ProductSKUs" EntityType="Self.SP_ProductSKUs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_ProductTypeBrand" EntityType="Self.SP_ProductTypeBrand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_RegionData" EntityType="Self.SP_RegionData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_RegionType" EntityType="Self.SP_RegionType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_ResEvent" EntityType="Self.SP_ResEvent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_ShippingOrders" EntityType="Self.SP_ShippingOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_ShipStatistics" EntityType="Self.SP_ShipStatistics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_Shop" EntityType="Self.SP_Shop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_ShopAttribute" EntityType="Self.SP_ShopAttribute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_ShoppingCarts" EntityType="Self.SP_ShoppingCarts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_ShopProduct" EntityType="Self.SP_ShopProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_Suppliers" EntityType="Self.SP_Suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_SysEvent" EntityType="Self.SP_SysEvent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_SysStatistics" EntityType="Self.SP_SysStatistics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_Trade" EntityType="Self.SP_Trade" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_UserShipping" EntityType="Self.SP_UserShipping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_ProductType" EntityType="Self.SP_ProductType" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SP_ProductType].[Id] AS [Id], 
+    [SP_ProductType].[TypeName] AS [TypeName], 
+    [SP_ProductType].[Kind] AS [Kind], 
+    [SP_ProductType].[Remark] AS [Remark], 
+    [SP_ProductType].[DisplaySequence] AS [DisplaySequence], 
+    [SP_ProductType].[TypePath] AS [TypePath], 
+    [SP_ProductType].[TypeLogo] AS [TypeLogo]
+    FROM [dbo].[SP_ProductType] AS [SP_ProductType]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SP_SysKind" EntityType="Self.SP_SysKind" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SP_SysKind].[KindId] AS [KindId], 
+    [SP_SysKind].[Kind] AS [Kind], 
+    [SP_SysKind].[Quantity] AS [Quantity], 
+    [SP_SysKind].[Unit] AS [Unit], 
+    [SP_SysKind].[Price] AS [Price], 
+    [SP_SysKind].[Description] AS [Description], 
+    [SP_SysKind].[DiscountValue] AS [DiscountValue]
+    FROM [dbo].[SP_SysKind] AS [SP_SysKind]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AccountAuthentication">
+          <Key>
+            <PropertyRef Name="AutoId" />
+          </Key>
+          <Property Name="AutoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuthType" Type="Int32" Nullable="false" />
+          <Property Name="AccountId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Account" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Token" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="VerifyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="OAuth2_Access_Token">
+          <Key>
+            <PropertyRef Name="AutoId" />
+          </Key>
+          <Property Name="AutoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccessToken" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AccountID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AppID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="AccessTokenExpires" Type="DateTime" Precision="3" />
+          <Property Name="RefreshToken" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="RefreshTokenExpires" Type="DateTime" Precision="3" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SP_Account">
+          <Key>
+            <PropertyRef Name="AccountId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MobilePhone" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="Byte" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="AliBind" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="WxBind" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="QQBind" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SP_AccountAddress">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="Int32" Nullable="false" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RegionID" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AccountId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="IsDefault" Type="Int32" />
+          <Property Name="Dorm" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SP_AccountFinance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HaveAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="UseAmount" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="SP_AccountInfo">
+          <Key>
+            <PropertyRef Name="AccountId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Avatar" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Fullname" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserType" Type="Byte" Nullable="false" />
+          <Property Name="Gender" Type="Byte" Nullable="false" />
+          <Property Name="Birthdate" Type="DateTime" Precision="3" />
+          <Property Name="IM_QQ" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="WeiXin" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="PayPassWord" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SP_AccountProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShopId" Type="Int32" Nullable="false" />
+          <Property Name="PreStock" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SP_Admin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassWord" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsDel" Type="Boolean" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SP_Associator">
+          <Key>
+            <PropertyRef Name="AssociatorId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssociatorId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AccountId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KindId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PayOrderCode" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PayType" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SP_Attribute">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AttributeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DisplaySequence" Type="Int32" />
+          <Property Name="UseAttributeImage" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SP_AttributeValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AttributeId" Type="Int64" Nullable="false" />
+          <Property Name="DisplaySequence" Type="Int32" />
+          <Property Name="ValueStr" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SP_BrandCategories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrandName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Logo" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyUrl" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="MetaKeywords" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="DisplaySequence" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SP_Carousel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DisplaySequence" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SP_CashApply">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Alipay" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Money" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SP_EventRelation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SysEventId" Type="Int32" Nullable="false" />
+          <Property Name="ResEventId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="KindId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SP_Orders">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="OrderStatus" Type="Int32" Nullable="false" />
+          <Property Name="CloseReason" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PayDate" Type="DateTime" Precision="3" />
+          <Property Name="ShippingDate" Type="DateTime" Precision="3" />
+          <Property Name="FinishDate" Type="DateTime" Precision="3" />
+          <Property Name="AccountId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="ShipToDate" Type="DateTime" Precision="3" />
+          <Property Name="Freight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Meta_Keywords" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="OrderCode" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="VIPAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="AddressId" Type="Int32" />
+          <Property Name="OrderAddress" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SP_ProductAttribute">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="AttributeId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AttributeId" Type="Int64" Nullable="false" />
+          <Property Name="ValueId" Type="Int64" />
+        </EntityType>
+        <EntityType Name="SP_ProductImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ImgPath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Postion" Type="Int32" Nullable="false" />
+          <Property Name="DisplaySequence" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="IsDel" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SP_ProductRegion">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="DataId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SP_Products">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ShortDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Unit" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Meta_Keywords" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SaleStatus" Type="Int32" />
+          <Property Name="AddedDate" Type="DateTime" Precision="3" />
+          <Property Name="DisplaySequence" Type="Int32" />
+          <Property Name="MarketPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BrandId" Type="Int32" />
+          <Property Name="SuppliersId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="TypeId" Type="Int64" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="LastOperater" Type="Int64" />
+          <Property Name="VIPPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SecondTypeId" Type="Int64" />
+        </EntityType>
+        <EntityType Name="SP_ProductSKUs">
+          <Key>
+            <PropertyRef Name="SkuId" />
+          </Key>
+          <Property Name="SkuId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShopId" Type="Int32" />
+          <Property Name="AccountId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="ProductId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SKU" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EffectiveTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Stock" Type="Int32" Nullable="false" />
+          <Property Name="AlertStock" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="OrderNum" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SP_ProductTypeBrand">
+          <Key>
+            <PropertyRef Name="TypeId" />
+            <PropertyRef Name="BrandId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeId" Type="Int64" Nullable="false" />
+          <Property Name="BrandId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SP_RegionData">
+          <Key>
+            <PropertyRef Name="DataID" />
+          </Key>
+          <Property Name="DataID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="ParentDataID" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="DataType" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Byte" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SP_RegionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegionId" Type="Int32" />
+          <Property Name="TypeId" Type="Int32" />
+          <Property Name="DisplaySequence" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SP_ResEvent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Kind" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SP_ShippingOrders">
+          <Key>
+            <PropertyRef Name="ShippingOrderId" />
+          </Key>
+          <Property Name="ShippingOrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ManagerRemark" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="ShippingDate" Type="DateTime" Precision="3" />
+          <Property Name="ShippedDate" Type="DateTime" Precision="3" />
+          <Property Name="ShippingId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="ShipTo" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="ShipOrderNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsShipped" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="SP_ShipStatistics">
+          <Key>
+            <PropertyRef Name="AccountId" />
+            <PropertyRef Name="CreateTime" />
+          </Key>
+          <Property Name="AccountId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DormId" Type="Int32" />
+          <Property Name="Num_NewOrder" Type="Int32" />
+          <Property Name="Num_OrderAmount" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="IsChecked" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SP_Shop">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShopName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OwnerId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="DisplaySequence" Type="Int32" />
+          <Property Name="MetaKeywords" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="RegionId" Type="Int32" />
+          <Property Name="StartTime" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="EndTime" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ShopType" Type="Int32" />
+          <Property Name="ShopLogo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SP_ShopAttribute">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShopId" Type="Int32" Nullable="false" />
+          <Property Name="AttributeId" Type="Int64" Nullable="false" />
+          <Property Name="ValueId" Type="Int64" />
+        </EntityType>
+        <EntityType Name="SP_ShoppingCarts">
+          <Key>
+            <PropertyRef Name="CartId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CartId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AccountId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="OrderID" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="ShopId" Type="Int32" />
+          <Property Name="IsEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeled" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SP_ShopProduct">
+          <Key>
+            <PropertyRef Name="ShopId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ShopId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TypeId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SP_Suppliers">
+          <Key>
+            <PropertyRef Name="SuppliersId" />
+          </Key>
+          <Property Name="SuppliersId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SuppliersName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataID" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CellPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TelPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SP_SysEvent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EventType" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SP_SysStatistics">
+          <Key>
+            <PropertyRef Name="CreateTime" />
+          </Key>
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Num_NewUser" Type="Int32" />
+          <Property Name="Num_NewOrder" Type="Int32" />
+          <Property Name="Num_OrderAmount" Type="Int32" />
+          <Property Name="Num_NewAssociator" Type="Int32" />
+          <Property Name="Num_BuyAssociator" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="IsChecked" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SP_Trade">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TradeId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CartId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="SP_UserShipping">
+          <Key>
+            <PropertyRef Name="ShippingId" />
+          </Key>
+          <Property Name="ShippingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AddressId" Type="Int32" Nullable="false" />
+          <Property Name="AccountId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="TelPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CellPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RealName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="QQ" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="WeChat" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SP_ProductType">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="TypeName" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Kind" Type="Int32" />
+          <Property Name="Remark" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="DisplaySequence" Type="Int32" />
+          <Property Name="TypePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TypeLogo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SP_SysKind">
+          <Key>
+            <PropertyRef Name="KindId" />
+            <PropertyRef Name="Kind" />
+            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="Unit" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="DiscountValue" />
+          </Key>
+          <Property Name="KindId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Kind" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Unit" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DiscountValue" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="SPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AccountAuthentication" EntityType="Self.AccountAuthentication" />
+          <EntitySet Name="OAuth2_Access_Token" EntityType="Self.OAuth2_Access_Token" />
+          <EntitySet Name="SP_Account" EntityType="Self.SP_Account" />
+          <EntitySet Name="SP_AccountAddress" EntityType="Self.SP_AccountAddress" />
+          <EntitySet Name="SP_AccountFinance" EntityType="Self.SP_AccountFinance" />
+          <EntitySet Name="SP_AccountInfo" EntityType="Self.SP_AccountInfo" />
+          <EntitySet Name="SP_AccountProduct" EntityType="Self.SP_AccountProduct" />
+          <EntitySet Name="SP_Admin" EntityType="Self.SP_Admin" />
+          <EntitySet Name="SP_Associator" EntityType="Self.SP_Associator" />
+          <EntitySet Name="SP_Attribute" EntityType="Self.SP_Attribute" />
+          <EntitySet Name="SP_AttributeValue" EntityType="Self.SP_AttributeValue" />
+          <EntitySet Name="SP_BrandCategories" EntityType="Self.SP_BrandCategories" />
+          <EntitySet Name="SP_Carousel" EntityType="Self.SP_Carousel" />
+          <EntitySet Name="SP_CashApply" EntityType="Self.SP_CashApply" />
+          <EntitySet Name="SP_EventRelation" EntityType="Self.SP_EventRelation" />
+          <EntitySet Name="SP_Orders" EntityType="Self.SP_Orders" />
+          <EntitySet Name="SP_ProductAttribute" EntityType="Self.SP_ProductAttribute" />
+          <EntitySet Name="SP_ProductImage" EntityType="Self.SP_ProductImage" />
+          <EntitySet Name="SP_ProductRegion" EntityType="Self.SP_ProductRegion" />
+          <EntitySet Name="SP_Products" EntityType="Self.SP_Products" />
+          <EntitySet Name="SP_ProductSKUs" EntityType="Self.SP_ProductSKUs" />
+          <EntitySet Name="SP_ProductTypeBrand" EntityType="Self.SP_ProductTypeBrand" />
+          <EntitySet Name="SP_RegionData" EntityType="Self.SP_RegionData" />
+          <EntitySet Name="SP_RegionType" EntityType="Self.SP_RegionType" />
+          <EntitySet Name="SP_ResEvent" EntityType="Self.SP_ResEvent" />
+          <EntitySet Name="SP_ShippingOrders" EntityType="Self.SP_ShippingOrders" />
+          <EntitySet Name="SP_ShipStatistics" EntityType="Self.SP_ShipStatistics" />
+          <EntitySet Name="SP_Shop" EntityType="Self.SP_Shop" />
+          <EntitySet Name="SP_ShopAttribute" EntityType="Self.SP_ShopAttribute" />
+          <EntitySet Name="SP_ShoppingCarts" EntityType="Self.SP_ShoppingCarts" />
+          <EntitySet Name="SP_ShopProduct" EntityType="Self.SP_ShopProduct" />
+          <EntitySet Name="SP_Suppliers" EntityType="Self.SP_Suppliers" />
+          <EntitySet Name="SP_SysEvent" EntityType="Self.SP_SysEvent" />
+          <EntitySet Name="SP_SysStatistics" EntityType="Self.SP_SysStatistics" />
+          <EntitySet Name="SP_Trade" EntityType="Self.SP_Trade" />
+          <EntitySet Name="SP_UserShipping" EntityType="Self.SP_UserShipping" />
+          <EntitySet Name="SP_ProductType" EntityType="Self.SP_ProductType" />
+          <EntitySet Name="SP_SysKind" EntityType="Self.SP_SysKind" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SPModelStoreContainer" CdmEntityContainer="SPEntities">
+          <EntitySetMapping Name="AccountAuthentication">
+            <EntityTypeMapping TypeName="SPModel.AccountAuthentication">
+              <MappingFragment StoreEntitySet="AccountAuthentication">
+                <ScalarProperty Name="AutoId" ColumnName="AutoId" />
+                <ScalarProperty Name="AuthType" ColumnName="AuthType" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="VerifyCode" ColumnName="VerifyCode" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OAuth2_Access_Token">
+            <EntityTypeMapping TypeName="SPModel.OAuth2_Access_Token">
+              <MappingFragment StoreEntitySet="OAuth2_Access_Token">
+                <ScalarProperty Name="AutoId" ColumnName="AutoId" />
+                <ScalarProperty Name="AccessToken" ColumnName="AccessToken" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="AppID" ColumnName="AppID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="AccessTokenExpires" ColumnName="AccessTokenExpires" />
+                <ScalarProperty Name="RefreshToken" ColumnName="RefreshToken" />
+                <ScalarProperty Name="RefreshTokenExpires" ColumnName="RefreshTokenExpires" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_Account">
+            <EntityTypeMapping TypeName="SPModel.SP_Account">
+              <MappingFragment StoreEntitySet="SP_Account">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="AliBind" ColumnName="AliBind" />
+                <ScalarProperty Name="WxBind" ColumnName="WxBind" />
+                <ScalarProperty Name="QQBind" ColumnName="QQBind" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_AccountAddress">
+            <EntityTypeMapping TypeName="SPModel.SP_AccountAddress">
+              <MappingFragment StoreEntitySet="SP_AccountAddress">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="Dorm" ColumnName="Dorm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_AccountFinance">
+            <EntityTypeMapping TypeName="SPModel.SP_AccountFinance">
+              <MappingFragment StoreEntitySet="SP_AccountFinance">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="HaveAmount" ColumnName="HaveAmount" />
+                <ScalarProperty Name="UseAmount" ColumnName="UseAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_AccountInfo">
+            <EntityTypeMapping TypeName="SPModel.SP_AccountInfo">
+              <MappingFragment StoreEntitySet="SP_AccountInfo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+                <ScalarProperty Name="IM_QQ" ColumnName="IM_QQ" />
+                <ScalarProperty Name="WeiXin" ColumnName="WeiXin" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="PayPassWord" ColumnName="PayPassWord" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_AccountProduct">
+            <EntityTypeMapping TypeName="SPModel.SP_AccountProduct">
+              <MappingFragment StoreEntitySet="SP_AccountProduct">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+                <ScalarProperty Name="PreStock" ColumnName="PreStock" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_Admin">
+            <EntityTypeMapping TypeName="SPModel.SP_Admin">
+              <MappingFragment StoreEntitySet="SP_Admin">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_Associator">
+            <EntityTypeMapping TypeName="SPModel.SP_Associator">
+              <MappingFragment StoreEntitySet="SP_Associator">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AssociatorId" ColumnName="AssociatorId" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="KindId" ColumnName="KindId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PayOrderCode" ColumnName="PayOrderCode" />
+                <ScalarProperty Name="PayType" ColumnName="PayType" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_Attribute">
+            <EntityTypeMapping TypeName="SPModel.SP_Attribute">
+              <MappingFragment StoreEntitySet="SP_Attribute">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AttributeName" ColumnName="AttributeName" />
+                <ScalarProperty Name="DisplaySequence" ColumnName="DisplaySequence" />
+                <ScalarProperty Name="UseAttributeImage" ColumnName="UseAttributeImage" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_AttributeValue">
+            <EntityTypeMapping TypeName="SPModel.SP_AttributeValue">
+              <MappingFragment StoreEntitySet="SP_AttributeValue">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AttributeId" ColumnName="AttributeId" />
+                <ScalarProperty Name="DisplaySequence" ColumnName="DisplaySequence" />
+                <ScalarProperty Name="ValueStr" ColumnName="ValueStr" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_BrandCategories">
+            <EntityTypeMapping TypeName="SPModel.SP_BrandCategories">
+              <MappingFragment StoreEntitySet="SP_BrandCategories">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="CompanyUrl" ColumnName="CompanyUrl" />
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DisplaySequence" ColumnName="DisplaySequence" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_Carousel">
+            <EntityTypeMapping TypeName="SPModel.SP_Carousel">
+              <MappingFragment StoreEntitySet="SP_Carousel">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="DisplaySequence" ColumnName="DisplaySequence" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_CashApply">
+            <EntityTypeMapping TypeName="SPModel.SP_CashApply">
+              <MappingFragment StoreEntitySet="SP_CashApply">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Alipay" ColumnName="Alipay" />
+                <ScalarProperty Name="Money" ColumnName="Money" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_EventRelation">
+            <EntityTypeMapping TypeName="SPModel.SP_EventRelation">
+              <MappingFragment StoreEntitySet="SP_EventRelation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SysEventId" ColumnName="SysEventId" />
+                <ScalarProperty Name="ResEventId" ColumnName="ResEventId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="KindId" ColumnName="KindId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_Orders">
+            <EntityTypeMapping TypeName="SPModel.SP_Orders">
+              <MappingFragment StoreEntitySet="SP_Orders">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+                <ScalarProperty Name="CloseReason" ColumnName="CloseReason" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="PayDate" ColumnName="PayDate" />
+                <ScalarProperty Name="ShippingDate" ColumnName="ShippingDate" />
+                <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="ShipToDate" ColumnName="ShipToDate" />
+                <ScalarProperty Name="Freight" ColumnName="Freight" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Meta_Keywords" ColumnName="Meta_Keywords" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="OrderCode" ColumnName="OrderCode" />
+                <ScalarProperty Name="VIPAmount" ColumnName="VIPAmount" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="OrderAddress" ColumnName="OrderAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_ProductAttribute">
+            <EntityTypeMapping TypeName="SPModel.SP_ProductAttribute">
+              <MappingFragment StoreEntitySet="SP_ProductAttribute">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="AttributeId" ColumnName="AttributeId" />
+                <ScalarProperty Name="ValueId" ColumnName="ValueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_ProductImage">
+            <EntityTypeMapping TypeName="SPModel.SP_ProductImage">
+              <MappingFragment StoreEntitySet="SP_ProductImage">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ImgPath" ColumnName="ImgPath" />
+                <ScalarProperty Name="Postion" ColumnName="Postion" />
+                <ScalarProperty Name="DisplaySequence" ColumnName="DisplaySequence" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_ProductRegion">
+            <EntityTypeMapping TypeName="SPModel.SP_ProductRegion">
+              <MappingFragment StoreEntitySet="SP_ProductRegion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="DataId" ColumnName="DataId" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_Products">
+            <EntityTypeMapping TypeName="SPModel.SP_Products">
+              <MappingFragment StoreEntitySet="SP_Products">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Meta_Keywords" ColumnName="Meta_Keywords" />
+                <ScalarProperty Name="SaleStatus" ColumnName="SaleStatus" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+                <ScalarProperty Name="DisplaySequence" ColumnName="DisplaySequence" />
+                <ScalarProperty Name="MarketPrice" ColumnName="MarketPrice" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+                <ScalarProperty Name="SuppliersId" ColumnName="SuppliersId" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="LastOperater" ColumnName="LastOperater" />
+                <ScalarProperty Name="VIPPrice" ColumnName="VIPPrice" />
+                <ScalarProperty Name="SecondTypeId" ColumnName="SecondTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_ProductSKUs">
+            <EntityTypeMapping TypeName="SPModel.SP_ProductSKUs">
+              <MappingFragment StoreEntitySet="SP_ProductSKUs">
+                <ScalarProperty Name="SkuId" ColumnName="SkuId" />
+                <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="EffectiveTime" ColumnName="EffectiveTime" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="AlertStock" ColumnName="AlertStock" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="OrderNum" ColumnName="OrderNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_ProductTypeBrand">
+            <EntityTypeMapping TypeName="SPModel.SP_ProductTypeBrand">
+              <MappingFragment StoreEntitySet="SP_ProductTypeBrand">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_RegionData">
+            <EntityTypeMapping TypeName="SPModel.SP_RegionData">
+              <MappingFragment StoreEntitySet="SP_RegionData">
+                <ScalarProperty Name="DataID" ColumnName="DataID" />
+                <ScalarProperty Name="DataName" ColumnName="DataName" />
+                <ScalarProperty Name="ParentDataID" ColumnName="ParentDataID" />
+                <ScalarProperty Name="DataType" ColumnName="DataType" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_RegionType">
+            <EntityTypeMapping TypeName="SPModel.SP_RegionType">
+              <MappingFragment StoreEntitySet="SP_RegionType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="DisplaySequence" ColumnName="DisplaySequence" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_ResEvent">
+            <EntityTypeMapping TypeName="SPModel.SP_ResEvent">
+              <MappingFragment StoreEntitySet="SP_ResEvent">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EventName" ColumnName="EventName" />
+                <ScalarProperty Name="Kind" ColumnName="Kind" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_ShippingOrders">
+            <EntityTypeMapping TypeName="SPModel.SP_ShippingOrders">
+              <MappingFragment StoreEntitySet="SP_ShippingOrders">
+                <ScalarProperty Name="ShippingOrderId" ColumnName="ShippingOrderId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="ManagerRemark" ColumnName="ManagerRemark" />
+                <ScalarProperty Name="ShippingDate" ColumnName="ShippingDate" />
+                <ScalarProperty Name="ShippedDate" ColumnName="ShippedDate" />
+                <ScalarProperty Name="ShippingId" ColumnName="ShippingId" />
+                <ScalarProperty Name="ShipTo" ColumnName="ShipTo" />
+                <ScalarProperty Name="ShipOrderNumber" ColumnName="ShipOrderNumber" />
+                <ScalarProperty Name="IsShipped" ColumnName="IsShipped" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_ShipStatistics">
+            <EntityTypeMapping TypeName="SPModel.SP_ShipStatistics">
+              <MappingFragment StoreEntitySet="SP_ShipStatistics">
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="DormId" ColumnName="DormId" />
+                <ScalarProperty Name="Num_NewOrder" ColumnName="Num_NewOrder" />
+                <ScalarProperty Name="Num_OrderAmount" ColumnName="Num_OrderAmount" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="IsChecked" ColumnName="IsChecked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_Shop">
+            <EntityTypeMapping TypeName="SPModel.SP_Shop">
+              <MappingFragment StoreEntitySet="SP_Shop">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ShopName" ColumnName="ShopName" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="DisplaySequence" ColumnName="DisplaySequence" />
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="ShopType" ColumnName="ShopType" />
+                <ScalarProperty Name="ShopLogo" ColumnName="ShopLogo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_ShopAttribute">
+            <EntityTypeMapping TypeName="SPModel.SP_ShopAttribute">
+              <MappingFragment StoreEntitySet="SP_ShopAttribute">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+                <ScalarProperty Name="AttributeId" ColumnName="AttributeId" />
+                <ScalarProperty Name="ValueId" ColumnName="ValueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_ShoppingCarts">
+            <EntityTypeMapping TypeName="SPModel.SP_ShoppingCarts">
+              <MappingFragment StoreEntitySet="SP_ShoppingCarts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CartId" ColumnName="CartId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+                <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
+                <ScalarProperty Name="IsDeled" ColumnName="IsDeled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_ShopProduct">
+            <EntityTypeMapping TypeName="SPModel.SP_ShopProduct">
+              <MappingFragment StoreEntitySet="SP_ShopProduct">
+                <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_Suppliers">
+            <EntityTypeMapping TypeName="SPModel.SP_Suppliers">
+              <MappingFragment StoreEntitySet="SP_Suppliers">
+                <ScalarProperty Name="SuppliersId" ColumnName="SuppliersId" />
+                <ScalarProperty Name="SuppliersName" ColumnName="SuppliersName" />
+                <ScalarProperty Name="DataID" ColumnName="DataID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+                <ScalarProperty Name="TelPhone" ColumnName="TelPhone" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_SysEvent">
+            <EntityTypeMapping TypeName="SPModel.SP_SysEvent">
+              <MappingFragment StoreEntitySet="SP_SysEvent">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EventName" ColumnName="EventName" />
+                <ScalarProperty Name="EventType" ColumnName="EventType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_SysStatistics">
+            <EntityTypeMapping TypeName="SPModel.SP_SysStatistics">
+              <MappingFragment StoreEntitySet="SP_SysStatistics">
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Num_NewUser" ColumnName="Num_NewUser" />
+                <ScalarProperty Name="Num_NewOrder" ColumnName="Num_NewOrder" />
+                <ScalarProperty Name="Num_OrderAmount" ColumnName="Num_OrderAmount" />
+                <ScalarProperty Name="Num_NewAssociator" ColumnName="Num_NewAssociator" />
+                <ScalarProperty Name="Num_BuyAssociator" ColumnName="Num_BuyAssociator" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="IsChecked" ColumnName="IsChecked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_Trade">
+            <EntityTypeMapping TypeName="SPModel.SP_Trade">
+              <MappingFragment StoreEntitySet="SP_Trade">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="TradeId" ColumnName="TradeId" />
+                <ScalarProperty Name="CartId" ColumnName="CartId" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_UserShipping">
+            <EntityTypeMapping TypeName="SPModel.SP_UserShipping">
+              <MappingFragment StoreEntitySet="SP_UserShipping">
+                <ScalarProperty Name="ShippingId" ColumnName="ShippingId" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="TelPhone" ColumnName="TelPhone" />
+                <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="RealName" ColumnName="RealName" />
+                <ScalarProperty Name="QQ" ColumnName="QQ" />
+                <ScalarProperty Name="WeChat" ColumnName="WeChat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_ProductType">
+            <EntityTypeMapping TypeName="SPModel.SP_ProductType">
+              <MappingFragment StoreEntitySet="SP_ProductType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="Kind" ColumnName="Kind" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="DisplaySequence" ColumnName="DisplaySequence" />
+                <ScalarProperty Name="TypePath" ColumnName="TypePath" />
+                <ScalarProperty Name="TypeLogo" ColumnName="TypeLogo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_SysKind">
+            <EntityTypeMapping TypeName="SPModel.SP_SysKind">
+              <MappingFragment StoreEntitySet="SP_SysKind">
+                <ScalarProperty Name="KindId" ColumnName="KindId" />
+                <ScalarProperty Name="Kind" ColumnName="Kind" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DiscountValue" ColumnName="DiscountValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,31 @@
+﻿{% for(var i =0, j=$data.length; i< j; i++) { %}        
+<tr  class="contenttr">
+    <td class="center">
+        <div>{%=$data[i].AccountInfo.Fullname %}</div>
+    </td>
+    <td class="center">
+        <div>{%=$data[i].Alipay %}</div>
+    </td> 
+    <td class="center">
+        <div>{%=$data[i].Money %}</div>
+    </td> 
+    <td class="center">
+        <div>{%=$data[i].CreateTime.toDate('yyyy-MM-dd hh:mm:ss') %}</div>
+    </td> 
+    <td class="center">
+        <div>
+            {%if($data[i].Status ==0){%}
+            待处理
+            {%}else if($data[i].Status ==1){%}
+            已处理
+            {%}%}
+        </div>
+    </td> 
+    <td data-item_id="{%=$data[i].Id %}" class="center">  
+        {%if($data[i].Status ==0){%}
+        <button class="delete_item lhx_btn btn btn-danger" id="delete">处理</button>
+        {%}else{%}
+        {%}%}
+    </td>
+</tr>
+{% } %}
