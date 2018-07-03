@@ -24,5 +24,6 @@ namespace AgentDashboard.Models
         public string EndTime { get; set; }
         public Nullable<int> ShopType { get; set; }
         public string ShopLogo { get; set; }
+        public Nullable<bool> ShopStatus { get; set; }
     }
 }

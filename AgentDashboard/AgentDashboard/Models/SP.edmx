@@ -383,6 +383,7 @@
           <Property Name="EndTime" Type="nvarchar" MaxLength="10" />
           <Property Name="ShopType" Type="int" />
           <Property Name="ShopLogo" Type="nvarchar" MaxLength="255" />
+          <Property Name="ShopStatus" Type="bit" />
         </EntityType>
         <EntityType Name="SP_ShopAttribute">
           <Key>
@@ -925,6 +926,7 @@
           <Property Name="EndTime" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ShopType" Type="Int32" />
           <Property Name="ShopLogo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ShopStatus" Type="Boolean" />
         </EntityType>
         <EntityType Name="SP_ShopAttribute">
           <Key>
@@ -1481,6 +1483,7 @@
                 <ScalarProperty Name="EndTime" ColumnName="EndTime" />
                 <ScalarProperty Name="ShopType" ColumnName="ShopType" />
                 <ScalarProperty Name="ShopLogo" ColumnName="ShopLogo" />
+                <ScalarProperty Name="ShopStatus" ColumnName="ShopStatus" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

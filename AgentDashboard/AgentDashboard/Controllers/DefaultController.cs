@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgentDashboard.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,17 @@ namespace AgentDashboard.Controllers
         // GET: Default
         public ActionResult Index()
         {
-            return View();
+            SPEntities sp = new SPEntities();
+            var shopList = sp.SP_Shop.ToList();
+            List<ShopViewModel> shopsVM = shopList.Select(x => new ShopViewModel
+            {
+                Id = x.Id,
+                ShopName = x.ShopName,
+                ShopType = x.ShopType,
+                ShopStatus = x.ShopStatus
+            }).ToList();
+
+            return View(shopsVM);
         }
 
         // GET: Default
@@ -64,5 +75,16 @@ namespace AgentDashboard.Controllers
         {
             return View();
         }
+
+        public ActionResult CreateAccount(AccountViewModel vm)
+        {
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult CheckLogin(AccountViewModel vm)
+        {
+            return RedirectToAction("Index");
+        }
+
     }
 }
