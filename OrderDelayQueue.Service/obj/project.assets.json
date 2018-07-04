@@ -40,26 +40,6 @@
           "lib/netstandard1.6/Castle.Windsor.dll": {}
         }
       },
-      "Confluent.Kafka/1.0.0-experimental-3": {
-        "type": "package",
-        "dependencies": {
-          "NETStandard.Library": "1.6.1",
-          "System.Console": "4.3.0",
-          "System.Linq": "4.3.0",
-          "System.Memory": "4.5.0-preview1-26216-02",
-          "System.Runtime.CompilerServices.Unsafe": "4.5.0-preview1-26216-02",
-          "System.Runtime.Extensions": "4.3.0",
-          "System.Runtime.InteropServices": "4.3.0",
-          "System.Threading": "4.3.0",
-          "librdkafka.redist": "0.11.4"
-        },
-        "compile": {
-          "lib/netstandard1.3/Confluent.Kafka.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.3/Confluent.Kafka.dll": {}
-        }
-      },
       "LanguageExt.Core/2.1.22": {
         "type": "package",
         "dependencies": {
@@ -78,58 +58,6 @@
         },
         "runtime": {
           "lib/netstandard2.0/LanguageExt.Core.dll": {}
-        }
-      },
-      "librdkafka.redist/0.11.4": {
-        "type": "package",
-        "build": {
-          "build/_._": {}
-        },
-        "runtimeTargets": {
-          "runtimes/linux-x64/native/debian9-librdkafka.so": {
-            "assetType": "native",
-            "rid": "linux-x64"
-          },
-          "runtimes/linux-x64/native/librdkafka.so": {
-            "assetType": "native",
-            "rid": "linux-x64"
-          },
-          "runtimes/osx-x64/native/librdkafka.dylib": {
-            "assetType": "native",
-            "rid": "osx-x64"
-          },
-          "runtimes/win7-x64/native/librdkafka.dll": {
-            "assetType": "native",
-            "rid": "win7-x64"
-          },
-          "runtimes/win7-x64/native/librdkafkacpp.dll": {
-            "assetType": "native",
-            "rid": "win7-x64"
-          },
-          "runtimes/win7-x64/native/msvcr120.dll": {
-            "assetType": "native",
-            "rid": "win7-x64"
-          },
-          "runtimes/win7-x64/native/zlib.dll": {
-            "assetType": "native",
-            "rid": "win7-x64"
-          },
-          "runtimes/win7-x86/native/librdkafka.dll": {
-            "assetType": "native",
-            "rid": "win7-x86"
-          },
-          "runtimes/win7-x86/native/librdkafkacpp.dll": {
-            "assetType": "native",
-            "rid": "win7-x86"
-          },
-          "runtimes/win7-x86/native/msvcr120.dll": {
-            "assetType": "native",
-            "rid": "win7-x86"
-          },
-          "runtimes/win7-x86/native/zlib.dll": {
-            "assetType": "native",
-            "rid": "win7-x86"
-          }
         }
       },
       "Microsoft.CSharp/4.4.0": {
@@ -1112,19 +1040,6 @@
           "lib/netstandard1.5/System.ComponentModel.TypeConverter.dll": {}
         }
       },
-      "System.Console/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.1.0",
-          "Microsoft.NETCore.Targets": "1.1.0",
-          "System.IO": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Text.Encoding": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.3/System.Console.dll": {}
-        }
-      },
       "System.Data.Common/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -1450,19 +1365,6 @@
           "lib/netstandard1.3/System.Linq.Queryable.dll": {}
         }
       },
-      "System.Memory/4.5.0-preview1-26216-02": {
-        "type": "package",
-        "dependencies": {
-          "System.Numerics.Vectors": "4.5.0-preview1-26216-02",
-          "System.Runtime.CompilerServices.Unsafe": "4.5.0-preview1-26216-02"
-        },
-        "compile": {
-          "ref/netstandard2.0/System.Memory.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Memory.dll": {}
-        }
-      },
       "System.Net.NameResolution/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -1610,15 +1512,6 @@
         },
         "compile": {
           "ref/netstandard1.3/System.Net.Sockets.dll": {}
-        }
-      },
-      "System.Numerics.Vectors/4.5.0-preview1-26216-02": {
-        "type": "package",
-        "compile": {
-          "ref/netstandard2.0/_._": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Numerics.Vectors.dll": {}
         }
       },
       "System.ObjectModel/4.3.0": {
@@ -1814,7 +1707,7 @@
           "ref/netstandard1.5/System.Runtime.dll": {}
         }
       },
-      "System.Runtime.CompilerServices.Unsafe/4.5.0-preview1-26216-02": {
+      "System.Runtime.CompilerServices.Unsafe/4.4.0": {
         "type": "package",
         "compile": {
           "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
@@ -2498,28 +2391,14 @@
           "bin/placeholder/SP.Data.Enum.dll": {}
         }
       },
-      "SP.Producer/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "Confluent.Kafka": "1.0.0-experimental-3",
-          "SP.Service.Entity": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/SP.Producer.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/SP.Producer.dll": {}
-        }
-      },
       "SP.Service.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "D:\\项目构建\\饿家军餐饮平台\\Src\\Literature\\Producer\\SP.Producer.csproj": "1.0.0",
           "Grpc.Service.Core": "1.0.0",
           "RedisCache.Service": "1.0.0",
           "SP.Data.Enum": "1.0.0",
-          "SP.Producer": "1.0.0",
           "SP.Service.Entity": "1.0.0",
           "SP.Service.EntityFramework": "1.0.0"
         },
@@ -2594,21 +2473,6 @@
         "lib/netstandard1.6/Castle.Windsor.xml"
       ]
     },
-    "Confluent.Kafka/1.0.0-experimental-3": {
-      "sha512": "jO4nUOatSVUYW2RhY8yy0V/4tqN8ui9lxk19CpT7pf43SRRP+a2mOxQXBnszUMgk/3MwzQsyZOr1GhZReIVxdQ==",
-      "type": "package",
-      "path": "confluent.kafka/1.0.0-experimental-3",
-      "files": [
-        "confluent.kafka.1.0.0-experimental-3.nupkg.sha512",
-        "confluent.kafka.nuspec",
-        "lib/net45/Confluent.Kafka.dll",
-        "lib/net45/Confluent.Kafka.xml",
-        "lib/net46/Confluent.Kafka.dll",
-        "lib/net46/Confluent.Kafka.xml",
-        "lib/netstandard1.3/Confluent.Kafka.dll",
-        "lib/netstandard1.3/Confluent.Kafka.xml"
-      ]
-    },
     "LanguageExt.Core/2.1.22": {
       "sha512": "4lxRK30BbArpGX6wPqdSJ8k/LgxqFoqYbb6IdG23HM0cmzqRDCSYK8e8UWV4T1UrhW0VK0mbmIKZAq+jX2qr1w==",
       "type": "package",
@@ -2618,37 +2482,6 @@
         "languageext.core.nuspec",
         "lib/net451/LanguageExt.Core.dll",
         "lib/netstandard2.0/LanguageExt.Core.dll"
-      ]
-    },
-    "librdkafka.redist/0.11.4": {
-      "sha512": "7/tR5bBcwlNAnYpbcXh0gfsn492l8it0vrBY7qXCvZZ5SvJ8u3mF9jQVrYBoJeoKuue9UBqT/YjcEwkfOrkzZw==",
-      "type": "package",
-      "path": "librdkafka.redist/0.11.4",
-      "files": [
-        "CONFIGURATION.md",
-        "LICENSES.txt",
-        "README.md",
-        "build/librdkafka.redist.props",
-        "build/native/include/librdkafka/rdkafka.h",
-        "build/native/include/librdkafka/rdkafkacpp.h",
-        "build/native/lib/win7/x64/win7-x64-Release/v120/librdkafka.lib",
-        "build/native/lib/win7/x64/win7-x64-Release/v120/librdkafkacpp.lib",
-        "build/native/lib/win7/x86/win7-x86-Release/v120/librdkafka.lib",
-        "build/native/lib/win7/x86/win7-x86-Release/v120/librdkafkacpp.lib",
-        "build/native/librdkafka.redist.targets",
-        "librdkafka.redist.0.11.4.nupkg.sha512",
-        "librdkafka.redist.nuspec",
-        "runtimes/linux-x64/native/debian9-librdkafka.so",
-        "runtimes/linux-x64/native/librdkafka.so",
-        "runtimes/osx-x64/native/librdkafka.dylib",
-        "runtimes/win7-x64/native/librdkafka.dll",
-        "runtimes/win7-x64/native/librdkafkacpp.dll",
-        "runtimes/win7-x64/native/msvcr120.dll",
-        "runtimes/win7-x64/native/zlib.dll",
-        "runtimes/win7-x86/native/librdkafka.dll",
-        "runtimes/win7-x86/native/librdkafkacpp.dll",
-        "runtimes/win7-x86/native/msvcr120.dll",
-        "runtimes/win7-x86/native/zlib.dll"
       ]
     },
     "Microsoft.CSharp/4.4.0": {
@@ -4312,42 +4145,6 @@
         "system.componentmodel.typeconverter.nuspec"
       ]
     },
-    "System.Console/4.3.0": {
-      "sha512": "DHDrIxiqk1h03m6khKWV2X8p/uvN79rgSqpilL6uzpmSfxfU5ng8VcPtW4qsDsQDHiTv6IPV9TmD5M/vElPNLg==",
-      "type": "package",
-      "path": "system.console/4.3.0",
-      "files": [
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
-        "lib/MonoAndroid10/_._",
-        "lib/MonoTouch10/_._",
-        "lib/net46/System.Console.dll",
-        "lib/xamarinios10/_._",
-        "lib/xamarinmac20/_._",
-        "lib/xamarintvos10/_._",
-        "lib/xamarinwatchos10/_._",
-        "ref/MonoAndroid10/_._",
-        "ref/MonoTouch10/_._",
-        "ref/net46/System.Console.dll",
-        "ref/netstandard1.3/System.Console.dll",
-        "ref/netstandard1.3/System.Console.xml",
-        "ref/netstandard1.3/de/System.Console.xml",
-        "ref/netstandard1.3/es/System.Console.xml",
-        "ref/netstandard1.3/fr/System.Console.xml",
-        "ref/netstandard1.3/it/System.Console.xml",
-        "ref/netstandard1.3/ja/System.Console.xml",
-        "ref/netstandard1.3/ko/System.Console.xml",
-        "ref/netstandard1.3/ru/System.Console.xml",
-        "ref/netstandard1.3/zh-hans/System.Console.xml",
-        "ref/netstandard1.3/zh-hant/System.Console.xml",
-        "ref/xamarinios10/_._",
-        "ref/xamarinmac20/_._",
-        "ref/xamarintvos10/_._",
-        "ref/xamarinwatchos10/_._",
-        "system.console.4.3.0.nupkg.sha512",
-        "system.console.nuspec"
-      ]
-    },
     "System.Data.Common/4.3.0": {
       "sha512": "lm6E3T5u7BOuEH0u18JpbJHxBfOJPuCyl4Kg1RH10ktYLp5uEEE1xKrHW56/We4SnZpGAuCc9N0MJpSDhTHZGQ==",
       "type": "package",
@@ -5409,37 +5206,6 @@
         "system.linq.queryable.nuspec"
       ]
     },
-    "System.Memory/4.5.0-preview1-26216-02": {
-      "sha512": "/qkNiTfseQ35guuSKxqw6cjEYnh+ijwI941QS5669VtTSSXOoyHWUO6JARIvSQ+A2yYFVdKEvTkKrMfaqdyOaw==",
-      "type": "package",
-      "path": "system.memory/4.5.0-preview1-26216-02",
-      "files": [
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/netstandard1.1/System.Memory.dll",
-        "lib/netstandard1.1/System.Memory.xml",
-        "lib/netstandard2.0/System.Memory.dll",
-        "lib/netstandard2.0/System.Memory.xml",
-        "ref/netcoreapp2.1/System.Memory.dll",
-        "ref/netcoreapp2.1/System.Memory.xml",
-        "ref/netstandard1.1/System.Memory.dll",
-        "ref/netstandard1.1/System.Memory.xml",
-        "ref/netstandard2.0/System.Memory.dll",
-        "ref/netstandard2.0/System.Memory.xml",
-        "ref/uap10.0.16300/System.Memory.dll",
-        "ref/uap10.0.16300/System.Memory.xml",
-        "runtimes/unix/lib/netcoreapp2.1/System.Memory.dll",
-        "runtimes/unix/lib/netcoreapp2.1/System.Memory.xml",
-        "runtimes/win/lib/netcoreapp2.1/System.Memory.dll",
-        "runtimes/win/lib/netcoreapp2.1/System.Memory.xml",
-        "runtimes/win/lib/uap10.0.16300/System.Memory.dll",
-        "runtimes/win/lib/uap10.0.16300/System.Memory.xml",
-        "system.memory.4.5.0-preview1-26216-02.nupkg.sha512",
-        "system.memory.nuspec",
-        "useSharedDesignerContext.txt",
-        "version.txt"
-      ]
-    },
     "System.Net.NameResolution/4.3.0": {
       "sha512": "AFYl08R7MrsrEjqpQWTZWBadqXyTzNDaWpMqyxhb0d6sGhV6xMDKueuBXlLL30gz+DIRY6MpdgnHWlCh5wmq9w==",
       "type": "package",
@@ -5704,45 +5470,6 @@
         "ref/xamarinwatchos10/_._",
         "system.net.sockets.4.3.0.nupkg.sha512",
         "system.net.sockets.nuspec"
-      ]
-    },
-    "System.Numerics.Vectors/4.5.0-preview1-26216-02": {
-      "sha512": "FGIOma5l5mVHfnG8Ry5k3WqjWeDGFp1381xGpqwyUBWLs6kzm9Jbss1dUIRoOG4SU55nC0/28toJcq1sYfxPRw==",
-      "type": "package",
-      "path": "system.numerics.vectors/4.5.0-preview1-26216-02",
-      "files": [
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/MonoAndroid10/_._",
-        "lib/MonoTouch10/_._",
-        "lib/net46/System.Numerics.Vectors.dll",
-        "lib/net46/System.Numerics.Vectors.xml",
-        "lib/netstandard1.0/System.Numerics.Vectors.dll",
-        "lib/netstandard1.0/System.Numerics.Vectors.xml",
-        "lib/netstandard2.0/System.Numerics.Vectors.dll",
-        "lib/netstandard2.0/System.Numerics.Vectors.xml",
-        "lib/portable-net45+win8+wp8+wpa81/System.Numerics.Vectors.dll",
-        "lib/portable-net45+win8+wp8+wpa81/System.Numerics.Vectors.xml",
-        "lib/xamarinios10/_._",
-        "lib/xamarinmac20/_._",
-        "lib/xamarintvos10/_._",
-        "lib/xamarinwatchos10/_._",
-        "ref/MonoAndroid10/_._",
-        "ref/MonoTouch10/_._",
-        "ref/net46/System.Numerics.Vectors.dll",
-        "ref/net46/System.Numerics.Vectors.xml",
-        "ref/netstandard1.0/System.Numerics.Vectors.dll",
-        "ref/netstandard1.0/System.Numerics.Vectors.xml",
-        "ref/netstandard2.0/System.Numerics.Vectors.dll",
-        "ref/netstandard2.0/System.Numerics.Vectors.xml",
-        "ref/xamarinios10/_._",
-        "ref/xamarinmac20/_._",
-        "ref/xamarintvos10/_._",
-        "ref/xamarinwatchos10/_._",
-        "system.numerics.vectors.4.5.0-preview1-26216-02.nupkg.sha512",
-        "system.numerics.vectors.nuspec",
-        "useSharedDesignerContext.txt",
-        "version.txt"
       ]
     },
     "System.ObjectModel/4.3.0": {
@@ -6412,10 +6139,10 @@
         "system.runtime.nuspec"
       ]
     },
-    "System.Runtime.CompilerServices.Unsafe/4.5.0-preview1-26216-02": {
-      "sha512": "YH6QzLUg6VzyejRsW9no/xlulcpKjfOC27jWmijyhw8A42ldukXHQDSaE0CP+khK0m2iqAaXoQ0BU49FUDw7Lw==",
+    "System.Runtime.CompilerServices.Unsafe/4.4.0": {
+      "sha512": "9dLLuBxr5GNmOfl2jSMcsHuteEg32BEfUotmmUkmZjpR3RpVHE8YQwt0ow3p6prwA1ME8WqDVZqrr8z6H8G+Kw==",
       "type": "package",
-      "path": "system.runtime.compilerservices.unsafe/4.5.0-preview1-26216-02",
+      "path": "system.runtime.compilerservices.unsafe/4.4.0",
       "files": [
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -6427,7 +6154,7 @@
         "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
         "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
         "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "system.runtime.compilerservices.unsafe.4.5.0-preview1-26216-02.nupkg.sha512",
+        "system.runtime.compilerservices.unsafe.4.4.0.nupkg.sha512",
         "system.runtime.compilerservices.unsafe.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -8033,11 +7760,6 @@
       "path": "../SP.Data.Enum/SP.Data.Enum.csproj",
       "msbuildProject": "../SP.Data.Enum/SP.Data.Enum.csproj"
     },
-    "SP.Producer/1.0.0": {
-      "type": "project",
-      "path": "../Producer/SP.Producer.csproj",
-      "msbuildProject": "../Producer/SP.Producer.csproj"
-    },
     "SP.Service.Domain/1.0.0": {
       "type": "project",
       "path": "../SP.Service.Domain/SP.Service.Domain.csproj",
@@ -8166,5 +7888,16 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "找不到项目“D:\\项目构建\\饿家军餐饮平台\\Src\\Literature\\Producer\\SP.Producer.csproj”。请检查项目引用是否有效以及项目文件是否存在。",
+      "libraryId": "D:\\项目构建\\饿家军餐饮平台\\Src\\Literature\\Producer\\SP.Producer.csproj",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.0"
+      ]
+    }
+  ]
 }
