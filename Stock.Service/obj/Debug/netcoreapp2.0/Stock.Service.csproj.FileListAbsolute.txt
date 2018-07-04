@@ -1,0 +1,7 @@
+D:\项目构建\饿家军餐饮平台\Src\Literature\Stock.Service\bin\Debug\netcoreapp2.0\RPCCommonTool.dll
+D:\项目构建\饿家军餐饮平台\Src\Literature\Stock.Service\bin\Debug\netcoreapp2.0\StockGRPCInterface.dll
+D:\项目构建\饿家军餐饮平台\Src\Literature\Stock.Service\bin\Debug\netcoreapp2.0\RPCCommonTool.pdb
+D:\项目构建\饿家军餐饮平台\Src\Literature\Stock.Service\obj\Debug\netcoreapp2.0\Stock.Service.csprojResolveAssemblyReference.cache
+D:\项目构建\饿家军餐饮平台\Src\Literature\Stock.Service\obj\Debug\netcoreapp2.0\Stock.Service.csproj.CoreCompileInputs.cache
+D:\项目构建\饿家军餐饮平台\Src\Literature\Stock.Service\obj\Debug\netcoreapp2.0\Stock.Service.AssemblyInfoInputs.cache
+D:\项目构建\饿家军餐饮平台\Src\Literature\Stock.Service\obj\Debug\netcoreapp2.0\Stock.Service.AssemblyInfo.cs
