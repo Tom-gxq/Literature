@@ -38,9 +38,30 @@ namespace SP.Service.Domain.Reporting
             var domain = ConvertShopEntityToDomain(shop);
             return domain;
         }
+
+        public List<ShopOwnerDomain> GetAllShopOwnerList(int shopId)
+        {
+            var shopDomainList = new List<ShopOwnerDomain>();
+            var addressList = _repository.GetAllShopOwnerList(shopId);
+            foreach (var item in addressList)
+            {
+                var order = ConvertShopOwnerEntityToDomain(item);
+                shopDomainList.Add(order);
+            }
+            return shopDomainList;
+        }
+        
+
         private ShopDomain ConvertShopEntityToDomain(ShopEntity entity)
         {
             var account = new ShopDomain();
+            account.SetMemento(entity);
+            return account;
+        }
+
+        private ShopOwnerDomain ConvertShopOwnerEntityToDomain(ShopOwnerEntity entity)
+        {
+            var account = new ShopOwnerDomain();
             account.SetMemento(entity);
             return account;
         }

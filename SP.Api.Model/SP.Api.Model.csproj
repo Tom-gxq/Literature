@@ -77,6 +77,7 @@
     <Compile Include="Product\ProductAttributeModel.cs" />
     <Compile Include="Product\ProductImageModel.cs" />
     <Compile Include="Product\ProductModel.cs" />
+    <Compile Include="Product\ProductSkuModel.cs" />
     <Compile Include="Product\ProductTypeModel.cs" />
     <Compile Include="Product\ShopModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

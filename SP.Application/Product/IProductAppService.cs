@@ -34,6 +34,7 @@ namespace SP.Application.Product
         List<ProductImageDto> GetImageList(string productId);
         List<ProductsDto> GetProductListByOrderId(string orderId);
         List<ProductSkuDto> GetProducSkuList(int pageIndex, int pageSize);
+        ProductSkuDto GetProducSkuBySkuId(string skuId);
         long GetProducSkuListCount();
         bool AddProductSku(ProductSkuDto productSku);
         bool DeleteProductSku(string skuId);

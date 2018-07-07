@@ -17,6 +17,8 @@ namespace SP.Service {
     static readonly grpc::Marshaller<global::SP.Service.AccountProductSkuRequest> __Marshaller_AccountProductSkuRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AccountProductSkuRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.OperationSkuRequest> __Marshaller_OperationSkuRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.OperationSkuRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.SkuStatusResponse> __Marshaller_SkuStatusResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.SkuStatusResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.InvSkuRequest> __Marshaller_InvSkuRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.InvSkuRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.SkuListRequest> __Marshaller_SkuListRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.SkuListRequest.Parser.ParseFrom);
 
     static readonly grpc::Method<global::SP.Service.ProductSkuRequest, global::SP.Service.ProductSkuResponse> __Method_GetProductSku = new grpc::Method<global::SP.Service.ProductSkuRequest, global::SP.Service.ProductSkuResponse>(
         grpc::MethodType.Unary,
@@ -44,6 +46,34 @@ namespace SP.Service {
         __ServiceName,
         "RedoProductSku",
         __Marshaller_OperationSkuRequest,
+        __Marshaller_SkuStatusResponse);
+
+    static readonly grpc::Method<global::SP.Service.InvSkuRequest, global::SP.Service.SkuStatusResponse> __Method_AddInvProductSku = new grpc::Method<global::SP.Service.InvSkuRequest, global::SP.Service.SkuStatusResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "AddInvProductSku",
+        __Marshaller_InvSkuRequest,
+        __Marshaller_SkuStatusResponse);
+
+    static readonly grpc::Method<global::SP.Service.InvSkuRequest, global::SP.Service.SkuStatusResponse> __Method_DelInvProductSku = new grpc::Method<global::SP.Service.InvSkuRequest, global::SP.Service.SkuStatusResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "DelInvProductSku",
+        __Marshaller_InvSkuRequest,
+        __Marshaller_SkuStatusResponse);
+
+    static readonly grpc::Method<global::SP.Service.SkuListRequest, global::SP.Service.SkuStatusResponse> __Method_UpdateProductSku = new grpc::Method<global::SP.Service.SkuListRequest, global::SP.Service.SkuStatusResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "UpdateProductSku",
+        __Marshaller_SkuListRequest,
+        __Marshaller_SkuStatusResponse);
+
+    static readonly grpc::Method<global::SP.Service.SkuListRequest, global::SP.Service.SkuStatusResponse> __Method_DelProductSku = new grpc::Method<global::SP.Service.SkuListRequest, global::SP.Service.SkuStatusResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "DelProductSku",
+        __Marshaller_SkuListRequest,
         __Marshaller_SkuStatusResponse);
 
     /// <summary>Service descriptor</summary>
@@ -99,6 +129,54 @@ namespace SP.Service {
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
       public virtual global::System.Threading.Tasks.Task<global::SP.Service.SkuStatusResponse> RedoProductSku(global::SP.Service.OperationSkuRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 添加库存无效标志
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.SkuStatusResponse> AddInvProductSku(global::SP.Service.InvSkuRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 删除库存无效标志
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.SkuStatusResponse> DelInvProductSku(global::SP.Service.InvSkuRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 更新或者添加多个产品库存
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.SkuStatusResponse> UpdateProductSku(global::SP.Service.SkuListRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 删除多个产品库存
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.SkuStatusResponse> DelProductSku(global::SP.Service.SkuListRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -320,6 +398,198 @@ namespace SP.Service {
       {
         return CallInvoker.AsyncUnaryCall(__Method_RedoProductSku, null, options, request);
       }
+      /// <summary>
+      ///*
+      /// 添加库存无效标志
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.SkuStatusResponse AddInvProductSku(global::SP.Service.InvSkuRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return AddInvProductSku(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 添加库存无效标志
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.SkuStatusResponse AddInvProductSku(global::SP.Service.InvSkuRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_AddInvProductSku, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 添加库存无效标志
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.SkuStatusResponse> AddInvProductSkuAsync(global::SP.Service.InvSkuRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return AddInvProductSkuAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 添加库存无效标志
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.SkuStatusResponse> AddInvProductSkuAsync(global::SP.Service.InvSkuRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_AddInvProductSku, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 删除库存无效标志
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.SkuStatusResponse DelInvProductSku(global::SP.Service.InvSkuRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return DelInvProductSku(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 删除库存无效标志
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.SkuStatusResponse DelInvProductSku(global::SP.Service.InvSkuRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_DelInvProductSku, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 删除库存无效标志
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.SkuStatusResponse> DelInvProductSkuAsync(global::SP.Service.InvSkuRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return DelInvProductSkuAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 删除库存无效标志
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.SkuStatusResponse> DelInvProductSkuAsync(global::SP.Service.InvSkuRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_DelInvProductSku, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 更新或者添加多个产品库存
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.SkuStatusResponse UpdateProductSku(global::SP.Service.SkuListRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UpdateProductSku(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 更新或者添加多个产品库存
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.SkuStatusResponse UpdateProductSku(global::SP.Service.SkuListRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_UpdateProductSku, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 更新或者添加多个产品库存
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.SkuStatusResponse> UpdateProductSkuAsync(global::SP.Service.SkuListRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UpdateProductSkuAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 更新或者添加多个产品库存
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.SkuStatusResponse> UpdateProductSkuAsync(global::SP.Service.SkuListRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_UpdateProductSku, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 删除多个产品库存
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.SkuStatusResponse DelProductSku(global::SP.Service.SkuListRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return DelProductSku(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 删除多个产品库存
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.SkuStatusResponse DelProductSku(global::SP.Service.SkuListRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_DelProductSku, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 删除多个产品库存
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.SkuStatusResponse> DelProductSkuAsync(global::SP.Service.SkuListRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return DelProductSkuAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 删除多个产品库存
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.SkuStatusResponse> DelProductSkuAsync(global::SP.Service.SkuListRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_DelProductSku, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override StockServiceClient NewInstance(ClientBaseConfiguration configuration)
       {
@@ -335,7 +605,11 @@ namespace SP.Service {
           .AddMethod(__Method_GetProductSku, serviceImpl.GetProductSku)
           .AddMethod(__Method_GetAccountProductSku, serviceImpl.GetAccountProductSku)
           .AddMethod(__Method_DecreaseProductSku, serviceImpl.DecreaseProductSku)
-          .AddMethod(__Method_RedoProductSku, serviceImpl.RedoProductSku).Build();
+          .AddMethod(__Method_RedoProductSku, serviceImpl.RedoProductSku)
+          .AddMethod(__Method_AddInvProductSku, serviceImpl.AddInvProductSku)
+          .AddMethod(__Method_DelInvProductSku, serviceImpl.DelInvProductSku)
+          .AddMethod(__Method_UpdateProductSku, serviceImpl.UpdateProductSku)
+          .AddMethod(__Method_DelProductSku, serviceImpl.DelProductSku).Build();
     }
 
   }

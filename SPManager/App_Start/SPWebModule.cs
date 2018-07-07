@@ -1,7 +1,6 @@
 ﻿using LibMain.Modules;
 using SP.Application;
 using SP.ManageEntityFramework;
-using Specialty;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +12,7 @@ using System.Web.Routing;
 
 namespace SPManager.App_Start
 {
-    [DependsOn(typeof(ManageEntityFramewrokModule), typeof(SPApplicationModule), typeof(SPWebApiModule))]
+    [DependsOn(typeof(ManageEntityFramewrokModule), typeof(SPApplicationModule))]
     public class SPWebModule : LibMain.Modules.Module
     {
         public override void PreInitialize()

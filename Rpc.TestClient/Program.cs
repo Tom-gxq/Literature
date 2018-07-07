@@ -6,6 +6,7 @@ using static MD.SmsService.Sms;
 using static SP.Service.AccountService;
 using static SP.Service.OrderService;
 using static SP.Service.ProductService;
+using static SP.Service.StockService;
 
 namespace Rpc.TestClient
 {
@@ -39,8 +40,8 @@ namespace Rpc.TestClient
             //testGetAllShopList(client1);
             //testGetShopProductList(client1);
 
-            var client1 = new SmsClient(channel);
-            testSendMessage(client1, args[2]);
+            //var client1 = new SmsClient(channel);
+            //testSendMessage(client1, args[2]);
             //testSetRegisterMobileMessageLimit(client1, args[2]);
             //testCheckIsAllowSendRegisterMobileMessage(client1);
 
@@ -48,6 +49,31 @@ namespace Rpc.TestClient
             //testGetMyOrderList(client1);
 
             //testGetDiscountByAccountId(client);
+
+            var client1 = new StockServiceClient(channel);
+            testUpdateProductSku(client1);
+            testGetAccountProductSku(client1);
+            testGetProductSku(client1);
+            System.Console.WriteLine("---------------------------------------------");
+
+            testDecreaseProductSku(client1);
+            testGetAccountProductSku(client1);
+            testGetProductSku(client1);
+            System.Console.WriteLine("---------------------------------------------");
+
+            testRedoProductSku(client1);
+            testGetAccountProductSku(client1);
+            testGetProductSku(client1);
+            System.Console.WriteLine("---------------------------------------------");
+
+            testAddInvProductSku(client1);
+            testGetAccountProductSku(client1);
+            testGetProductSku(client1);
+            System.Console.WriteLine("---------------------------------------------");
+
+            testDelInvProductSku(client1);
+            testGetAccountProductSku(client1);
+            testGetProductSku(client1);
         }
 
         private static void testRegistAccount(AccountServiceClient client)
@@ -242,7 +268,6 @@ namespace Rpc.TestClient
             var request1 = new ShopProductListRequest()
             {
                 ShopId=3,
-                AttributeId = 2,
                 PageIndex = 1,
                 PageSize = 3
             };
@@ -346,7 +371,7 @@ namespace Rpc.TestClient
             var request1 = new MyOrderRequest()
             {
                 AccountId = "05466232-d202-4f76-ba2f-6b8ddb9e0b8c",
-                OrderStatus = 0,
+                //OrderStatus = 0,
             };
             var list = client.GetMyOrderList(request1);
             Console.WriteLine("GetMyOrderList:" + list.ToString());
@@ -363,5 +388,89 @@ namespace Rpc.TestClient
 
         }
 
+        private static void testUpdateProductSku(StockServiceClient client)
+        {
+            var request1 = new SkuListRequest();
+            request1.Sku.Add(new ProductSku()
+            {
+                 AccountId = "05466232-d202-4f76-ba2f-6b8ddb9e0b8c",
+                 ProductId = "12637c85-ef9c-420d-ae5b-6023012d878f",
+                 ShopId = 10,
+                 Stock = 19
+            });
+            var list = client.UpdateProductSku(request1);
+            Console.WriteLine("UpdateProductSku:" + list.ToString());
+        }
+
+        private static void testDecreaseProductSku(StockServiceClient client)
+        {
+            var request1 = new OperationSkuRequest()
+            {
+                AccountId = "05466232-d202-4f76-ba2f-6b8ddb9e0b8c",
+                ProductId = "12637c85-ef9c-420d-ae5b-6023012d878f",
+                ShopId = 10,
+                Stock = 1
+            };
+            var list = client.DecreaseProductSku(request1);
+            Console.WriteLine("DecreaseProductSku:" + list.ToString());
+        }
+
+        private static void testGetAccountProductSku(StockServiceClient client)
+        {
+            var request1 = new AccountProductSkuRequest()
+            {
+                AccountId = "05466232-d202-4f76-ba2f-6b8ddb9e0b8c",
+                ProductId = "12637c85-ef9c-420d-ae5b-6023012d878f",
+                ShopId = 10,
+            };
+            var list = client.GetAccountProductSku(request1);
+            Console.WriteLine("GetAccountProductSku:" + list.ToString());
+        }
+
+        private static void testRedoProductSku(StockServiceClient client)
+        {
+            var request1 = new OperationSkuRequest()
+            {
+                AccountId = "05466232-d202-4f76-ba2f-6b8ddb9e0b8c",
+                ProductId = "12637c85-ef9c-420d-ae5b-6023012d878f",
+                ShopId = 10,
+                Stock = 1
+            };
+            var list = client.RedoProductSku(request1);
+            Console.WriteLine("RedoProductSku:" + list.ToString());
+        }
+
+        private static void testAddInvProductSku(StockServiceClient client)
+        {
+            var request1 = new InvSkuRequest()
+            {
+                ProductId = "12637c85-ef9c-420d-ae5b-6023012d878f",
+                ShopId = 10,                
+            };
+            var list = client.AddInvProductSku(request1);
+            Console.WriteLine("AddInvProductSku:" + list.ToString());
+        }
+
+        private static void testDelInvProductSku(StockServiceClient client)
+        {
+            var request1 = new InvSkuRequest()
+            {
+                ProductId = "12637c85-ef9c-420d-ae5b-6023012d878f",
+                ShopId = 10,
+            };
+            var list = client.DelInvProductSku(request1);
+            Console.WriteLine("DelInvProductSku:" + list.ToString());
+        }
+
+        private static void testGetProductSku(StockServiceClient client)
+        {
+            var request1 = new ProductSkuRequest()
+            {
+                ProductId = "12637c85-ef9c-420d-ae5b-6023012d878f",
+                ShopId = 10,                
+            };
+            var list = client.GetProductSku(request1);
+            Console.WriteLine("DelInvProductSku:" + list.ToString());
+        }
     }
 }

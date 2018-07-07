@@ -112,6 +112,7 @@ namespace Grpc.Service.Core.Caching
             return Task.FromResult(0);
         }
         public abstract void IncrementValueBy(string key, int count);
+        public abstract void DecrementValueBy(string key, int count);
 
         public abstract void Clear();
 

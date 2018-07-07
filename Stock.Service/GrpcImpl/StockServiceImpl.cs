@@ -98,5 +98,73 @@ namespace Stock.Service.GrpcImpl
             logger.LogInformation(this.prjLicEID, "RedoProductSku {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
+
+        public override Task<SkuStatusResponse> AddInvProductSku(InvSkuRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "AddInvProductSku {Date} {IPAdress} {Status} Connected! ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, "{ProductId} {ShopId}", request.ProductId, request.ShopId);
+            SkuStatusResponse response = null;
+            try
+            {
+                response = ProductSkuBusiness.AddInvProductSku(request.ProductId, request.ShopId);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "AddInvProductSku Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "AddInvProductSku {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+
+        public override Task<SkuStatusResponse> DelInvProductSku(InvSkuRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "DelInvProductSku {Date} {IPAdress} {Status} Connected! ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, "{ProductId} {ShopId}", request.ProductId, request.ShopId);
+            SkuStatusResponse response = null;
+            try
+            {
+                response = ProductSkuBusiness.DelInvProductSku(request.ProductId, request.ShopId);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "DelInvProductSku Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "DelInvProductSku {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+
+        public override Task<SkuStatusResponse> UpdateProductSku(SkuListRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "UpdateProductSku {Date} {IPAdress} {Status} Connected! ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            
+            SkuStatusResponse response = null;
+            try
+            {
+                response = ProductSkuBusiness.UpdateProductSku(request.Sku, request.TimeSpan);               
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "UpdateProductSku Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "UpdateProductSku {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+
+        public override Task<SkuStatusResponse> DelProductSku(SkuListRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "DelProductSku {Date} {IPAdress} {Status} Connected! ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+
+            SkuStatusResponse response = null;
+            try
+            {
+                response = ProductSkuBusiness.DelProductSku(request.Sku);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "DelProductSku Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "DelProductSku {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
     }
 }
