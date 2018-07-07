@@ -1,6 +1,0 @@
-D:\项目构建\饿家军餐饮平台\Src\Literature\StockGRPCInterface\bin\Debug\netstandard2.0\StockGRPCInterface.deps.json
-D:\项目构建\饿家军餐饮平台\Src\Literature\StockGRPCInterface\bin\Debug\netstandard2.0\StockGRPCInterface.dll
-D:\项目构建\饿家军餐饮平台\Src\Literature\StockGRPCInterface\obj\Debug\netstandard2.0\StockGRPCInterface.csprojResolveAssemblyReference.cache
-D:\项目构建\饿家军餐饮平台\Src\Literature\StockGRPCInterface\obj\Debug\netstandard2.0\StockGRPCInterface.csproj.CoreCompileInputs.cache
-D:\项目构建\饿家军餐饮平台\Src\Literature\StockGRPCInterface\obj\Debug\netstandard2.0\StockGRPCInterface.AssemblyInfoInputs.cache
-D:\项目构建\饿家军餐饮平台\Src\Literature\StockGRPCInterface\obj\Debug\netstandard2.0\StockGRPCInterface.AssemblyInfo.cs
