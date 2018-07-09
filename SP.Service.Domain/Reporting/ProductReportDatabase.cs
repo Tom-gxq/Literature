@@ -1,7 +1,10 @@
-﻿using Grpc.Service.Core.Domain.Reporting;
+﻿using Grpc.Service.Core.Dependency;
+using Grpc.Service.Core.Domain.Reporting;
 using SP.Service.Domain.DomainEntity;
+using SP.Service.Domain.Util;
 using SP.Service.Entity;
 using SP.Service.EntityFramework.Repositories;
+using StockGRPCInterface;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -171,6 +174,14 @@ namespace SP.Service.Domain.Reporting
             foreach (var item in productList)
             {
                 var domain = GetProductDomainById(item);
+                var host = OrderCommon.GetHost();
+                var response = StockBusiness.GetProductSku(host, item.ProductId, shopId);
+                if (response.Status == 10001 && response.Sku.Count > 0)
+                {
+                    domain.SkuNum = response.Sku[0].Stock;
+                    domain.SkuId = response.Sku[0].SkuId;
+                    domain.ShopId = response.Sku[0].ShopId;
+                }
                 domainList.Add(domain);
             }
             return domainList;
@@ -182,6 +193,14 @@ namespace SP.Service.Domain.Reporting
             foreach (var item in productList)
             {
                 var domain = GetProductDomainById(item);
+                var host = OrderCommon.GetHost();
+                var response = StockBusiness.GetProductSku(host, item.ProductId, shopId);
+                if(response.Status == 10001&& response.Sku.Count > 0)
+                {
+                    domain.SkuNum = response.Sku[0].Stock;
+                    domain.SkuId = response.Sku[0].SkuId;
+                    domain.ShopId = response.Sku[0].ShopId;
+                }
                 domainList.Add(domain);
             }
             return domainList;
@@ -193,6 +212,6 @@ namespace SP.Service.Domain.Reporting
         public int GetFoodShopProductListCount(int districtId, int shopId,  int pageIndex, int pageSize)
         {
             return _repository.GetFoodShopProductListCount(districtId, shopId, pageIndex, pageSize);
-        }
+        }        
     }
 }

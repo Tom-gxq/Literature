@@ -14,12 +14,15 @@ namespace SP.Service.Domain.CommandHandlers
         private IDataRepository<OrderDomain> _repository;
         private IDataRepository<ProductSkuDomain> _skuRepository;
         private OrderReportDatabase _orderReportDatabase;
+        private ShipOrderReportDatabase _shipOrderReportDatabase;
         public OrderRedolStockCommandHandler(IDataRepository<OrderDomain> repository,
-            IDataRepository<ProductSkuDomain> skuRepository,OrderReportDatabase orderReportDatabase)
+            IDataRepository<ProductSkuDomain> skuRepository,OrderReportDatabase orderReportDatabase,
+            ShipOrderReportDatabase shipOrderReportDatabase)
         {
             this._repository = repository;
             this._skuRepository = skuRepository;
-            _orderReportDatabase = orderReportDatabase;
+            this._orderReportDatabase = orderReportDatabase;
+            this._shipOrderReportDatabase = shipOrderReportDatabase;
         }
 
         public void Execute(OrderRedoStockCommand command)
@@ -28,14 +31,14 @@ namespace SP.Service.Domain.CommandHandlers
             
             if ((orderDomain != null)&&(orderDomain.OrderStatus ==  Data.Enum.OrderStatus.WaitPay))
             {
-                var carts = _orderReportDatabase.GetShoppingCartsByOrderId(command.Id.ToString());
+                var carts = _shipOrderReportDatabase.GetShippingOrdersByOrderId(command.Id.ToString());
                 foreach (var cart in carts)
                 {
-                    if (cart != null && !string.IsNullOrEmpty(cart.CartId))
+                    if (cart != null && !string.IsNullOrEmpty(cart.ShippingId) && !string.IsNullOrEmpty(cart.ProductId))
                     {
-                        System.Console.WriteLine("RedoProductSkuDomainStock OrderId="+ orderDomain.OrderId + "  ProductId="+ cart.ProductId + "  Quantity=" + cart.Quantity+ " OrderDate=" + orderDomain.OrderDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                        System.Console.WriteLine("RedoProductSkuDomainStock OrderId="+ orderDomain.OrderId + "  ProductId="+ cart.ProductId + "  Quantity=" + cart.Stock+ " OrderDate=" + orderDomain.OrderDate.ToString("yyyy-MM-dd HH:mm:ss"));
                         var sku = new ProductSkuDomain();
-                        sku.RedoProductSkuDomainStock(cart.ShopId.Value,cart.ProductId, (cart.Quantity!=null? cart.Quantity.Value:0));
+                        sku.RedoProductSkuDomainStock(cart.ShopId.Value,cart.ProductId, cart.Stock.Value, cart.OrderId,cart.ShippingId);
                         _skuRepository.Save(sku);
                     }
                 }

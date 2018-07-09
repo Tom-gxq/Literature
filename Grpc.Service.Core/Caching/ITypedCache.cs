@@ -75,6 +75,7 @@ namespace Grpc.Service.Core.Caching
         void Set(TKey key, TValue value, TimeSpan? slidingExpireTime = null);
         void HashSet(string hashKey, TKey key, TValue value);
         void IncrementValueBy(TKey key, int count);
+        void DecrementValueBy(string key, int count);
 
         /// <summary>
         /// Saves/Overrides an item in the cache by a key.

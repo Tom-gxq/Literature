@@ -1,9 +1,11 @@
 ﻿using LibMain.Dependency;
+using SP.Api.Model.Product;
 using SP.Application.Product;
 using SP.Application.Product.DTO;
 using SP.Application.Shop;
 using SP.Application.User;
 using SPManager.Models;
+using StockGRPCInterface;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -363,6 +365,18 @@ namespace SPManager.Controllers
                 IProductAppService service = IocManager.Instance.Resolve<IProductAppService>();
                 var result = service.AddProductSku(productSku);
                 JsonResult.Add("result", result);
+                if (result)
+                {
+                    var list = new List<ProductSkuModel>();
+                    list.Add(new ProductSkuModel()
+                    {
+                        accountId = productSku.AccountId,
+                        productId = productSku.ProductId,
+                        shopId = productSku.ShopId,
+                        stock = productSku.Stock
+                    });
+                    ServerStockBusiness.UpdateProductSku(list);
+                }
             }
             catch(Exception ex)
             {
@@ -378,8 +392,22 @@ namespace SPManager.Controllers
         public JsonResult DeleteProductSku(string skuId)
         {
             IProductAppService service = IocManager.Instance.Resolve<IProductAppService>();
+            var productSku = service.GetProducSkuBySkuId(skuId);
             var result = service.DeleteProductSku(skuId);
             JsonResult.Add("result", result);
+
+            if (result)
+            {                
+                var list = new List<ProductSkuModel>();
+                list.Add(new ProductSkuModel()
+                {
+                    accountId = productSku.AccountId,
+                    productId = productSku.ProductId,
+                    shopId = productSku.ShopId,
+                    stock = productSku.Stock
+                });
+                ServerStockBusiness.DelProductSku(list);
+            }
 
             return new JsonResult()
             {
@@ -402,8 +430,24 @@ namespace SPManager.Controllers
         public JsonResult AddOneProductSku(string skuId)
         {
             IProductAppService service = IocManager.Instance.Resolve<IProductAppService>();
+            var productSku = service.GetProducSkuBySkuId(skuId);
+            ServerStockBusiness.AddInvProductSku(productSku.ProductId, productSku.ShopId);
             var result = service.AddOneProductSku(skuId);
             JsonResult.Add("result", result);
+
+            if (result)
+            {                
+                var list = new List<ProductSkuModel>();
+                list.Add(new ProductSkuModel()
+                {
+                    accountId = productSku.AccountId,
+                    productId = productSku.ProductId,
+                    shopId = productSku.ShopId,
+                    stock = productSku.Stock+1
+                });
+                ServerStockBusiness.UpdateProductSku(list);
+            }
+            ServerStockBusiness.DelInvProductSku(productSku.ProductId, productSku.ShopId);
 
             return new JsonResult()
             {
@@ -414,8 +458,24 @@ namespace SPManager.Controllers
         public JsonResult DelOneProductSku(string skuId)
         {
             IProductAppService service = IocManager.Instance.Resolve<IProductAppService>();
+            var productSku = service.GetProducSkuBySkuId(skuId);
+            ServerStockBusiness.AddInvProductSku(productSku.ProductId, productSku.ShopId);
             var result = service.DelOneProductSku(skuId);
             JsonResult.Add("result", result);
+
+            if (result)
+            {
+                var list = new List<ProductSkuModel>();
+                list.Add(new ProductSkuModel()
+                {
+                    accountId = productSku.AccountId,
+                    productId = productSku.ProductId,
+                    shopId = productSku.ShopId,
+                    stock = productSku.Stock-1
+                });
+                ServerStockBusiness.UpdateProductSku(list);
+            }
+            ServerStockBusiness.DelInvProductSku(productSku.ProductId, productSku.ShopId);
 
             return new JsonResult()
             {

@@ -131,6 +131,12 @@ namespace Grpc.Service.Core.Caching
         {
             InternalCache.IncrementValueBy(key.ToString(), count);
         }
-        
+
+        public void DecrementValueBy(string key, int count)
+        {
+            InternalCache.DecrementValueBy(key.ToString(), count);
+        }
+
+
     }
 }

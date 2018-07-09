@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SPManager</RootNamespace>
     <AssemblyName>SPManager</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -52,6 +52,12 @@
     </Reference>
     <Reference Include="Castle.Windsor, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.4.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.4.1\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="Grpc.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d754f35622e28bad, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grpc.Core.1.6.1\lib\net45\Grpc.Core.dll</HintPath>
     </Reference>
     <Reference Include="Lib.Web">
       <HintPath>..\Lib\Lib.Web.dll</HintPath>
@@ -106,6 +112,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Interactive.Async, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Interactive.Async.3.1.1\lib\net46\System.Interactive.Async.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
@@ -545,6 +554,14 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RPCCommonTool\RPCCommonTool.csproj">
+      <Project>{5500a323-6854-4a1b-884e-6c2011b8ac71}</Project>
+      <Name>RPCCommonTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SP.Api.Model\SP.Api.Model.csproj">
+      <Project>{3a637592-a435-45bf-82bf-7ecd0ae7f5cb}</Project>
+      <Name>SP.Api.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SP.Application\SP.Application.csproj">
       <Project>{d0190ddb-ec06-4335-b29b-ea030a8443a6}</Project>
       <Name>SP.Application</Name>
@@ -557,9 +574,9 @@
       <Project>{80c2b3dc-097b-490c-8951-4d47215e16e9}</Project>
       <Name>SP.ManageEntityFramework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Specialty\SP.WebApi.csproj">
-      <Project>{e8bb97e9-6ab7-4a9d-b550-c3f4cd285b3f}</Project>
-      <Name>SP.WebApi</Name>
+    <ProjectReference Include="..\StockGRPCInterface\StockGRPCInterface.csproj">
+      <Project>{11ab8b31-19e1-485c-90f0-e0977bbc7c26}</Project>
+      <Name>StockGRPCInterface</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
@@ -596,7 +613,9 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Grpc.Core.1.6.1\build\net45\Grpc.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Grpc.Core.1.6.1\build\net45\Grpc.Core.targets'))" />
   </Target>
+  <Import Project="..\packages\Grpc.Core.1.6.1\build\net45\Grpc.Core.targets" Condition="Exists('..\packages\Grpc.Core.1.6.1\build\net45\Grpc.Core.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

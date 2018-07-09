@@ -44,5 +44,14 @@ namespace SP.Service.EntityFramework.Repositories
                 return db.Single<ShopEntity>(x=>x.Id == shopId);
             }
         }
+
+        public List<ShopOwnerEntity> GetAllShopOwnerList(int shopId)
+        {
+            using (var db = OpenDbConnection())
+            {
+                var q = db.From<ShopOwnerEntity>().Where(x => x.ShopId == shopId);
+                return db.Select(q);
+            }
+        }
     }
 }

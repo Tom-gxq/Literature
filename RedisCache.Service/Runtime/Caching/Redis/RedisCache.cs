@@ -140,9 +140,17 @@ namespace RedisCache.Service.Runtime.Caching.Redis
         public override void IncrementValueBy(string key, int count)
         {
             _database.StringIncrement(GetLocalizedKey(key), count);
-            
         }
-        
+        /// <summary>
+        /// 减量
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public override void DecrementValueBy(string key, int count)
+        {
+            _database.StringDecrement(GetLocalizedKey(key), count);
+        }
 
         public override void Remove(string key)
         {

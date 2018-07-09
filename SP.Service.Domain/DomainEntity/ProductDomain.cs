@@ -51,7 +51,7 @@ namespace SP.Service.Domain.DomainEntity
             {
                 var productFull = memento as ProductFullEntity;
                 this.SkuNum = productFull.Stock != null ? productFull.Stock.Value : 0;
-                this.SkuId = productFull.SkuId;
+                this.SkuId = !string.IsNullOrEmpty(productFull.SkuId) ? productFull.SkuId : string.Empty;
                 this.Price = productFull.Price != null ? productFull.Price.Value : 0;
                 this.ShopId = productFull.ShopId != null ? productFull.ShopId.Value : 0;
             }

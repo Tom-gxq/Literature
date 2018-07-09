@@ -103,6 +103,20 @@ namespace SP.Api.Cache
                 return true;
             }
         }
+        /// <summary>
+        /// 减量
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public bool DecrementValueBy(string key, int count)
+        {
+            using (IRedisClient redis = prcm.GetClient())
+            {
+                redis.DecrementValueBy(key.ToLower(), count);
+                return true;
+            }
+        }
 
         /// <summary>
         /// 获取单体
