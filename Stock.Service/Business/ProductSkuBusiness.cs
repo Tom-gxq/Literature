@@ -2,9 +2,11 @@
 using Grpc.Service.Core.Caching;
 using Grpc.Service.Core.Dependency;
 using SP.Service;
+using SP.Service.Domain.Commands.StockShip;
 using SP.Service.Domain.DomainEntity;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Stock.Service.Business
@@ -18,6 +20,7 @@ namespace Stock.Service.Business
         public static ProductSkuResponse GetProductSku(string productId, int shopId)
         {
             var response = new ProductSkuResponse();
+            response.Status = 10002;
             var domainList = ServiceLocator.ReportDatabase.GetAllShopOwnerList(shopId);
             var cache = IocManager.Instance.Resolve<ICacheManager>().GetCache<string, string>("CacheItems");
             if (cache != null)
@@ -31,6 +34,7 @@ namespace Stock.Service.Business
                     sku.ShopId = shopId;
                     sku.Stock = 0;
                     response.Sku.Add(sku);
+                    response.Status = 10001;
                     return response;
                 }
                 foreach (ShopOwnerDomain domain in domainList)
@@ -63,6 +67,7 @@ namespace Stock.Service.Business
                         }
                     }
                 }
+                response.Status = 10001;
             }
             return response;
         }
@@ -103,22 +108,56 @@ namespace Stock.Service.Business
             return response;
         }
 
-        public static SkuStatusResponse DecreaseProductSku(string accountId, string productId, int shopId, int stock)
+        public static SkuStatusResponse DecreaseProductSku(string orderId, string accountId, string productId, int shopId, int stock)
         {
             var response = new SkuStatusResponse();
             response.Status = 10002;
+            var domainList = ServiceLocator.ReportDatabase.GetAllShopOwnerList(shopId);
             var cache = IocManager.Instance.Resolve<ICacheManager>().GetCache<string, string>("CacheItems");
             if (cache != null)
             {
-                string key = string.Format(CacheKey, RedisKeyPrefix, accountId, productId, shopId);
-                try
+                foreach (ShopOwnerDomain domain in domainList)
                 {
-                    cache.DecrementValueBy(key, stock);
-                    response.Status = 10001;
+                    string stockKey = string.Format(CacheKey, RedisKeyPrefix, domain.OwnerId, productId, shopId);
+                    object obj = cache.GetOrDefault(stockKey);                    
+                    try
+                    {
+                        domain.Stock = Convert.ToInt32(obj);
+                    }
+                    catch (Exception ex)
+                    {
+                        domain.Stock = 0;
+                    }
                 }
-                catch(Exception ex)
+                var list = domainList.OrderByDescending(x=>x.Stock).ToList();
+                foreach (var item in list)
                 {
-                    Console.WriteLine("DecreaseProductSku ex=" + ex.Message);
+                    var decStock = 0;
+                    if(item.Stock >= stock)
+                    {
+                        decStock = stock;
+                        stock = 0;
+                    }
+                    else
+                    {
+                        decStock = item.Stock;
+                        stock = stock - decStock;
+                    }
+                    string key = string.Format(CacheKey, RedisKeyPrefix, item.OwnerId, productId, shopId);
+                    try
+                    {
+                        cache.DecrementValueBy(key, decStock);
+                        response.Status = 10001;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("DecreaseProductSku ex=" + ex.Message);
+                    }
+                    ServiceLocator.CommandBus.Send(new CreatShipOrderCommand(orderId, item.OwnerId, accountId, DateTime.Now, decStock, productId,shopId));
+                    if (stock == 0)
+                    {
+                        break;
+                    }
                 }
             }
             return response;

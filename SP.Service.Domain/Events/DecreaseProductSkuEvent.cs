@@ -10,11 +10,17 @@ namespace SP.Service.Domain.Events
         public int ShopId { get; set; }
         public string ProductId { get; set; }
         public int DecStock { get; set; }
-        public DecreaseProductSkuEvent(int shopId, string productId,int decStock)
+        public string OrderId { get; set; }
+        public string Host { get; set; }
+        public string AccountId  { get; set; }
+        public DecreaseProductSkuEvent(int shopId, string productId,int decStock, string orderId, string host,string accountId)
         {
             this.ProductId = productId;
             this.DecStock = decStock;
             this.ShopId = shopId;
+            this.OrderId = orderId;
+            this.Host = host;
+            this.AccountId = accountId;
         }
     }
 }

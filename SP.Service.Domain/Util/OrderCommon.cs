@@ -1,4 +1,5 @@
 ﻿using Grpc.Service.Core.Dependency;
+using Microsoft.Extensions.Configuration;
 using SP.Service.EntityFramework.Repositories;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,17 @@ namespace SP.Service.Domain.Util
                 OrderCodeAfter++;
                 return tempCode;
             }
+        }
+
+        public static string GetHost()
+        {
+            var config = IocManager.Instance.Resolve<IConfigurationRoot>();
+            string host = string.Empty;
+            if (config != null)
+            {
+                host = config.GetSection("stockservice_host").Value?.ToString() ?? string.Empty;
+            }
+            return host;
         }
     }
 }

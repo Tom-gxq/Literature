@@ -34,7 +34,7 @@ namespace StockGRPCInterface
             return reuslt;
         }
 
-        public static SkuStatusResponse DecreaseProductSku(string host, string accountId, string productId, int shopId,int stock)
+        public static SkuStatusResponse DecreaseProductSku(string host, string orderId, string accountId, string productId, int shopId,int stock)
         {
             var helper = new StockClientHelper(host);
             var client = helper.GetClient();
@@ -44,6 +44,7 @@ namespace StockGRPCInterface
                 ProductId = productId,
                 ShopId = shopId,
                 Stock = stock,
+                OrderId = orderId
             };
             var reuslt = client.DecreaseProductSku(request1);
             helper.Dispose();

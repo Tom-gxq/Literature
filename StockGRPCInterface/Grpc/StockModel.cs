@@ -30,12 +30,12 @@ namespace SP.Service {
             "A3NrdRgCIAMoCzIWLlNQLlNlcnZpY2UuUHJvZHVjdFNrdSJQChhBY2NvdW50",
             "UHJvZHVjdFNrdVJlcXVlc3QSDgoGc2hvcElkGAEgASgFEhEKCXByb2R1Y3RJ",
             "ZBgCIAEoCRIRCglhY2NvdW50SWQYAyABKAkiIwoRU2t1U3RhdHVzUmVzcG9u",
-            "c2USDgoGc3RhdHVzGAEgASgFIloKE09wZXJhdGlvblNrdVJlcXVlc3QSDgoG",
+            "c2USDgoGc3RhdHVzGAEgASgFImsKE09wZXJhdGlvblNrdVJlcXVlc3QSDgoG",
             "c2hvcElkGAEgASgFEhEKCXByb2R1Y3RJZBgCIAEoCRIRCglhY2NvdW50SWQY",
-            "AyABKAkSDQoFc3RvY2sYBCABKAUiMgoNSW52U2t1UmVxdWVzdBIOCgZzaG9w",
-            "SWQYASABKAUSEQoJcHJvZHVjdElkGAIgASgJIkcKDlNrdUxpc3RSZXF1ZXN0",
-            "EiMKA3NrdRgBIAMoCzIWLlNQLlNlcnZpY2UuUHJvZHVjdFNrdRIQCgh0aW1l",
-            "U3BhbhgCIAEoA2IGcHJvdG8z"));
+            "AyABKAkSDQoFc3RvY2sYBCABKAUSDwoHb3JkZXJJZBgFIAEoCSIyCg1JbnZT",
+            "a3VSZXF1ZXN0Eg4KBnNob3BJZBgBIAEoBRIRCglwcm9kdWN0SWQYAiABKAki",
+            "RwoOU2t1TGlzdFJlcXVlc3QSIwoDc2t1GAEgAygLMhYuU1AuU2VydmljZS5Q",
+            "cm9kdWN0U2t1EhAKCHRpbWVTcGFuGAIgASgDYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -44,7 +44,7 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ProductSkuResponse), global::SP.Service.ProductSkuResponse.Parser, new[]{ "Status", "Sku" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountProductSkuRequest), global::SP.Service.AccountProductSkuRequest.Parser, new[]{ "ShopId", "ProductId", "AccountId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SkuStatusResponse), global::SP.Service.SkuStatusResponse.Parser, new[]{ "Status" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OperationSkuRequest), global::SP.Service.OperationSkuRequest.Parser, new[]{ "ShopId", "ProductId", "AccountId", "Stock" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OperationSkuRequest), global::SP.Service.OperationSkuRequest.Parser, new[]{ "ShopId", "ProductId", "AccountId", "Stock", "OrderId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.InvSkuRequest), global::SP.Service.InvSkuRequest.Parser, new[]{ "ShopId", "ProductId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SkuListRequest), global::SP.Service.SkuListRequest.Parser, new[]{ "Sku", "TimeSpan" }, null, null, null)
           }));
@@ -954,6 +954,7 @@ namespace SP.Service {
       productId_ = other.productId_;
       accountId_ = other.accountId_;
       stock_ = other.stock_;
+      orderId_ = other.orderId_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1021,6 +1022,21 @@ namespace SP.Service {
       }
     }
 
+    /// <summary>Field number for the "orderId" field.</summary>
+    public const int OrderIdFieldNumber = 5;
+    private string orderId_ = "";
+    /// <summary>
+    ///*
+    /// 操作涉及到的订单
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string OrderId {
+      get { return orderId_; }
+      set {
+        orderId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as OperationSkuRequest);
@@ -1038,6 +1054,7 @@ namespace SP.Service {
       if (ProductId != other.ProductId) return false;
       if (AccountId != other.AccountId) return false;
       if (Stock != other.Stock) return false;
+      if (OrderId != other.OrderId) return false;
       return true;
     }
 
@@ -1048,6 +1065,7 @@ namespace SP.Service {
       if (ProductId.Length != 0) hash ^= ProductId.GetHashCode();
       if (AccountId.Length != 0) hash ^= AccountId.GetHashCode();
       if (Stock != 0) hash ^= Stock.GetHashCode();
+      if (OrderId.Length != 0) hash ^= OrderId.GetHashCode();
       return hash;
     }
 
@@ -1074,6 +1092,10 @@ namespace SP.Service {
         output.WriteRawTag(32);
         output.WriteInt32(Stock);
       }
+      if (OrderId.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(OrderId);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1090,6 +1112,9 @@ namespace SP.Service {
       }
       if (Stock != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Stock);
+      }
+      if (OrderId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(OrderId);
       }
       return size;
     }
@@ -1110,6 +1135,9 @@ namespace SP.Service {
       }
       if (other.Stock != 0) {
         Stock = other.Stock;
+      }
+      if (other.OrderId.Length != 0) {
+        OrderId = other.OrderId;
       }
     }
 
@@ -1135,6 +1163,10 @@ namespace SP.Service {
           }
           case 32: {
             Stock = input.ReadInt32();
+            break;
+          }
+          case 42: {
+            OrderId = input.ReadString();
             break;
           }
         }

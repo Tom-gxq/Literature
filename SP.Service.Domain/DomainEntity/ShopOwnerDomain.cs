@@ -14,6 +14,7 @@ namespace SP.Service.Domain.DomainEntity
 
         public int ShopId { get; set; }
         public string OwnerId { get; set; }
+        public int Stock { get; set; }
 
         public ShopOwnerDomain()
         {

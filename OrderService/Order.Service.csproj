@@ -26,6 +26,7 @@
     <ProjectReference Include="..\SP.Service.Domain\SP.Service.Domain.csproj" />
     <ProjectReference Include="..\SP.Service.EntityFramework\SP.Service.EntityFramework.csproj" />
     <ProjectReference Include="..\SP.Service.Entity\SP.Service.Entity.csproj" />
+    <ProjectReference Include="..\StockGRPCInterface\StockGRPCInterface.csproj" />
   </ItemGroup>
 
 </Project>

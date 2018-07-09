@@ -72,7 +72,7 @@ namespace Stock.Service.GrpcImpl
             SkuStatusResponse response = null;
             try
             {
-                response = ProductSkuBusiness.DecreaseProductSku(request.AccountId,request.ProductId, request.ShopId, request.Stock);
+                response = ProductSkuBusiness.DecreaseProductSku(request.OrderId,request.AccountId,request.ProductId, request.ShopId, request.Stock);
             }
             catch (Exception ex)
             {

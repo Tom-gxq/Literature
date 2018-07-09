@@ -101,7 +101,7 @@ namespace SP.Service.Domain.CommandHandlers
                                     {
                                         System.Console.WriteLine("EditProductSkuDomainStock Quantity=" + shoppingCart.Quantity);
                                         var sku = new ProductSkuDomain();
-                                        sku.EditProductSkuDomainStock(cartDomain.ShopId, shoppingCart.ProductId, cartDomain.Quantity);
+                                        sku.EditProductSkuDomainStock(cartDomain.ShopId, shoppingCart.ProductId, cartDomain.Quantity, command.Id.ToString(), command.AccountId);
                                         _skuRepository.Save(sku);
                                     }
                                 }
