@@ -1,7 +1,10 @@
-﻿using Grpc.Service.Core.Domain;
+﻿using Grpc.Service.Core.Dependency;
+using Grpc.Service.Core.Domain;
 using Grpc.Service.Core.Domain.Entity;
 using Grpc.Service.Core.Domain.Repositories;
+using Microsoft.Extensions.Configuration;
 using SP.Service.Domain.Events;
+using SP.Service.Domain.Util;
 using SP.Service.Entity;
 using System;
 using System.Collections.Generic;
@@ -30,13 +33,15 @@ namespace SP.Service.Domain.DomainEntity
         {
             ApplyChange(new ProductSkuOrderNumEvent(shopId, productId, orderNum));
         }
-        public void EditProductSkuDomainStock(int shopId,string productId, int stock)
+        public void EditProductSkuDomainStock(int shopId,string productId, int stock, string orderId,string accountId)
         {
-            ApplyChange(new DecreaseProductSkuEvent(shopId,productId, stock));
+            string host = OrderCommon.GetHost();
+            ApplyChange(new DecreaseProductSkuEvent(shopId,productId, stock, orderId, host, accountId));
         }
-        public void RedoProductSkuDomainStock(int shopId, string productId, int stock)
+        public void RedoProductSkuDomainStock(int shopId, string productId, int stock,string orderId,string accountId)
         {
-            ApplyChange(new RedoProductSkuEvent(shopId,productId, stock));
+            string host = OrderCommon.GetHost();
+            ApplyChange(new RedoProductSkuEvent(shopId, productId, stock, orderId, host, accountId));
         }
         public void Handle(DecreaseProductSkuEvent e)
         {
@@ -89,5 +94,6 @@ namespace SP.Service.Domain.DomainEntity
                 OrderNum = this.OrderNum
             };
         }
+        
     }
 }

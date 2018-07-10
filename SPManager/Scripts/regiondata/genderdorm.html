@@ -1,0 +1,32 @@
+﻿<div id="main">
+    <div id="wizard">
+        <div class="items" id="">
+            <div class="page">
+                <div class="contactInfo">
+                    <ul>
+                        <li style="width:100%">
+                            <span class="grayfont span">区域名:</span>
+                            <input tabindex="1" class="input-text width400 Check txtName"  style="width:200px" type="text" value="{%=$data.result.ParentDataName %}" />
+                            <input tabindex="1" class="input-text width400 Check txtName" style="width:60px" type="text" value="{%=$data.result.DataName %}"  />
+                            <input id="parentdataId" class="input-text width400 Check parentdataId" type="hidden" value="{%=$data.result.DataId %}" />
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">起始值:</span>                            
+                            <input id="start" class="input-text width400 Check txtAccount" style="width:60px" type="text" value=""  />
+                            <span class="grayfont span" style="width:20px">&nbsp;</span>   
+                            <span class="grayfont span">结束值:</span>
+                            <input id="end" class="input-text width400 Check txtAccount" style="width:60px" type="text" value="" />
+                        </li>                        
+
+                    </ul>
+                </div>
+                <div class="btn_nav right">
+                    <input type="button" class="next " id="sub" value="生成" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" class="prev" id="cacel" value="取消" />                    
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

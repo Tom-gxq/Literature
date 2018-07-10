@@ -105,6 +105,27 @@ define(function (require, exports, module) {
                         return { keyWord: request.term };
                     }
                 });
+                var completeInfo = require('complete');
+                completeInfo.createComplete({
+                    element: "#account",
+                    url: '/Account/SearchAccount',
+                    selectCallback: function (value, text) {
+                        _this.bindCompanyInfo(value, text);
+                    },
+                    asyncCallback: function (response, data) {
+                        console.log(data);
+                        response($.map(data.items, function (item) {
+                            return {
+                                label: item.Fullname,
+                                valueKey: item.AccountId
+                            }
+                        }));
+                    },
+                    data: function (request) {
+                        $(".clipLoader").show();
+                        return { keywords: request.term };
+                    }
+                });
                 $("#inputResEvent").change(function () {
                     //_this.bindSysKindInfo($(this).val());
                 })
@@ -122,6 +143,7 @@ define(function (require, exports, module) {
                 Stock: divElement.find('#stock').val(),
                 AlertStock: divElement.find('#alertstock').val(),
                 Price: divElement.find('#price').val(),
+                AccountId: divElement.find('#accountid').val(),
             };
             type = $.param(type, true);
             Global.post("/Product/AddProductSku", type, function (data) {
@@ -135,7 +157,11 @@ define(function (require, exports, module) {
         //绑定店铺信息
         bindShopId: function (shopId, name) {
             $("#shopId").val(shopId);
-        }
+        },
+        //绑定公司信息
+        bindCompanyInfo: function (accountId, name) {
+            $("#accountid").val(accountId);
+        },
 
     };
 

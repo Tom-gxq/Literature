@@ -1,0 +1,48 @@
+﻿{% for(var i =0, j=$data.length; i
+< j; i++) { %}        
+<tr  class="contenttr">
+    <td>
+        <input type="checkbox"  value="{%=$data[i].SkuId %}" >
+    </td>
+    <td class="center">
+        <div>{%=$data[i].DataName %}</div>
+    </td>
+    <td class="center">
+        <div>{%=$data[i].ShopName %}</div>
+    </td>
+    <td class="center">
+        <div>{%=$data[i].ProductName %}</div>
+    </td>
+    <td class="center">
+        <div>{%=$data[i].SKU %}</div>
+    </td>
+    <td class="center">
+        <div>{%=$data[i].Stock %}</div>
+    </td>
+    <td class="center">
+        <div>{%=$data[i].OrderNum %}</div>
+    </td>
+    <td class="center">
+        <div>
+            {%=$data[i].AlertStock %}
+        </div>
+    </td> 
+    <td class="center">
+        <div>
+            {%=$data[i].Price %}
+        </div>
+    </td>
+    <td class="center">
+        <div>
+            {%=$data[i].EffectiveTime.toDate('yyyy-MM-dd')%}
+        </div>
+    </td>
+    <td data-item_id="{%=$data[i].SkuId %}" class="center">  
+        <button class="addOne_item lhx_btn btn btn-danger" style="display:none" id="addOne">递增</button>
+        <button class="delOne_item lhx_btn btn btn-danger" style="display:none" id="delOne">递减</button>
+        <button class="delete_item lhx_btn btn btn-danger" style="display:none" id="delete">删除</button>
+        <button class="edit_item lhx_btn btn btn-primary" id="edit">编辑</button>
+        <button class="confirm_item lhx_btn btn btn-primary" style="display:none" id="confirm">同步缓存</button>
+    </td>
+</tr>
+{% } %}

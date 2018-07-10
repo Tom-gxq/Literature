@@ -1,6 +1,7 @@
 ﻿using Grpc.Service.Core.Domain.Handlers;
 using SP.Service.Domain.Events;
 using SP.Service.Domain.Reporting;
+using StockGRPCInterface;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,27 +24,21 @@ namespace SP.Service.Domain.EventHandlers
                 System.Console.WriteLine("DecreaseProductSkuEvent ShopId=" + handle.ShopId + "  ProductId=" + handle.ProductId);
                 lock (lockObjSecond)
                 {
-                    var domaint = _reportDatabase.GetProductSkuByProductId(handle.ShopId, handle.ProductId);
-                    if (domaint != null && !string.IsNullOrEmpty(domaint.SkuId) && domaint.Stock  > 0&& domaint.Stock >= handle.DecStock)
+                    var response = StockBusiness.GetProductSku(handle.Host, handle.ProductId, handle.ShopId);
+                    if(response.Status == 10001&& response.Sku.Count > 0 && response.Sku[0].Stock > handle.DecStock)
                     {
-                        System.Console.WriteLine("Stock=" + domaint.Stock);
-                        var result = _reportDatabase.UpdateProductSkuStock(new Entity.ProductSkuEntity()
-                        {
-                            SkuId = domaint.SkuId,
-                            Stock = domaint.Stock - handle.DecStock
-                        });
-                        System.Console.WriteLine("result=" + result);
-                        if (!result)
+                        var result = StockBusiness.DecreaseProductSku(handle.Host,handle.OrderId, handle.AccountId, handle.ProductId, handle.ShopId, handle.DecStock);
+                        if (result.Status != 10001)
                         {
                             throw new ProductSkuException(string.Format($"ShopId={handle.ShopId} " +
-                                $"ProductId={handle.ProductId} domaint.Stock={domaint.Stock} " +
+                                $"ProductId={handle.ProductId} domaint.Stock={response.Sku[0].Stock} " +
                                 $"DecStock={handle.DecStock}"));
                         }
                     }
                     else
                     {
                         throw new ProductSkuException(string.Format($"ShopId={handle.ShopId} " +
-                                                        $"ProductId={handle.ProductId} domaint.Stock={domaint?.Stock??0} " +
+                                                        $"ProductId={handle.ProductId} domaint.Stock={(response.Sku.Count > 0 ? (response.Sku[0]?.Stock?? 0):0)} " +
                                                         $"DecStock={handle.DecStock}"));
                     }
                 }
@@ -57,13 +52,9 @@ namespace SP.Service.Domain.EventHandlers
                 var domaint = _reportDatabase.GetProductSkuByProductId(handle.ShopId, handle.ProductId);
                 if (domaint != null && !string.IsNullOrEmpty(domaint.SkuId))
                 {
-                    System.Console.WriteLine("Stock=" + domaint.Stock);
-                    var result = _reportDatabase.RedoProductSkuStock(new Entity.ProductSkuEntity()
-                    {
-                        SkuId = domaint.SkuId,
-                        Stock = domaint.Stock + handle.RedoStock
-                    });
-                    System.Console.WriteLine("result=" + result);
+                    System.Console.WriteLine("RedoProductSkuEvent Stock=" + domaint.Stock);
+                    var response = StockBusiness.RedoProductSku(handle.Host, handle.AccountId, handle.ProductId, handle.ShopId, handle.RedoStock);
+                    System.Console.WriteLine("RedoProductSkuEvent result=" + response.Status);
                 }
             }
         }

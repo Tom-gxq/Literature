@@ -158,6 +158,7 @@ namespace ProductGRPCInterface
                     domain.vipPrice = item.VipPrice;
                     domain.productCode = item.ProductCode;
                     domain.unit = item.Unit;
+                    domain.shopId = item.ShopId;
                     if (item.Brand != null)
                     {
                         domain.brand = new BrandModel()

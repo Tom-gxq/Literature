@@ -452,6 +452,12 @@ namespace SP.Application.Product
             }
             return result;
         }
+        public ProductSkuDto GetProducSkuBySkuId(string skuId)
+        {
+            var repository = IocManager.Instance.Resolve<ProductSkuRespository>();
+            var entity = repository.GetProductSkuById(skuId);
+            return ConvertSkuFromRepositoryEntity(entity);
+        }
         public List<ProductsDto> SearchProductByKeyWord(string keyWord, int pageIndex, int pageSize)
         {
             var retList = new List<ProductsDto>();
@@ -638,6 +644,28 @@ namespace SP.Application.Product
                 ShopId = (productSku.ShopId != null ? productSku.ShopId.Value : 0),
                 ShopName = productSku.ShopName,
                 DataName = productSku.DataName,
+            };
+
+            return skuDto;
+        }
+        private static ProductSkuDto ConvertSkuFromRepositoryEntity(ProductSkuEntity productSku)
+        {
+            if (productSku == null)
+            {
+                return null;
+            }
+            var skuDto = new ProductSkuDto
+            {
+                SKU = (!string.IsNullOrEmpty(productSku.SKU) ? productSku.SKU : string.Empty),
+                AlertStock = (productSku.AlertStock != null ? productSku.AlertStock.Value : 0),
+                EffectiveTime = productSku.EffectiveTime.Value,
+                Price = (productSku.Price != null ? productSku.Price.Value : 0),
+                ProductId = productSku.ProductId,
+                SkuId = productSku.Id,
+                Stock = productSku.Stock.Value,
+                OrderNum = (productSku.OrderNum != null ? productSku.OrderNum.Value : 0),
+                ShopId = (productSku.ShopId != null ? productSku.ShopId.Value : 0),
+                AccountId = productSku.AccountId??string.Empty
             };
 
             return skuDto;

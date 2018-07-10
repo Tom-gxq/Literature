@@ -104,6 +104,7 @@ namespace Grpc.Service.Core.Caching
         /// <param name="key">Key</param>
         Task RemoveAsync(string key);
         void IncrementValueBy(string key, int count);
+        void DecrementValueBy(string key, int count);
 
         /// <summary>
         /// Clears all items in this cache.
