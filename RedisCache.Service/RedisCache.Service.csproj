@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CSRedis.NetCore\CSRedis.NetCore.csproj" />
     <ProjectReference Include="..\Grpc.Service.Core\Grpc.Service.Core.csproj" />
   </ItemGroup>
 

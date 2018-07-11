@@ -1,0 +1,16 @@
+D:\项目构建\Redis\csredis\CSRedis.NetCore\bin\Debug\netstandard2.0\CSRedis.NetCore.deps.json
+D:\项目构建\Redis\csredis\CSRedis.NetCore\bin\Debug\netstandard2.0\CSRedis.NetCore.dll
+D:\项目构建\Redis\csredis\CSRedis.NetCore\bin\Debug\netstandard2.0\CSRedis.NetCore.pdb
+D:\项目构建\Redis\csredis\CSRedis.NetCore\obj\Debug\netstandard2.0\CSRedis.NetCore.csproj.CoreCompileInputs.cache
+D:\项目构建\Redis\csredis\CSRedis.NetCore\obj\Debug\netstandard2.0\CSRedis.NetCore.AssemblyInfoInputs.cache
+D:\项目构建\Redis\csredis\CSRedis.NetCore\obj\Debug\netstandard2.0\CSRedis.NetCore.AssemblyInfo.cs
+D:\项目构建\Redis\csredis\CSRedis.NetCore\obj\Debug\netstandard2.0\CSRedis.NetCore.dll
+D:\项目构建\Redis\csredis\CSRedis.NetCore\obj\Debug\netstandard2.0\CSRedis.NetCore.pdb
+D:\项目构建\饿家军餐饮平台\Src\Literature\CSRedis.NetCore\bin\Debug\netstandard2.0\CSRedis.NetCore.deps.json
+D:\项目构建\饿家军餐饮平台\Src\Literature\CSRedis.NetCore\bin\Debug\netstandard2.0\CSRedis.NetCore.dll
+D:\项目构建\饿家军餐饮平台\Src\Literature\CSRedis.NetCore\bin\Debug\netstandard2.0\CSRedis.NetCore.pdb
+D:\项目构建\饿家军餐饮平台\Src\Literature\CSRedis.NetCore\obj\Debug\netstandard2.0\CSRedis.NetCore.csproj.CoreCompileInputs.cache
+D:\项目构建\饿家军餐饮平台\Src\Literature\CSRedis.NetCore\obj\Debug\netstandard2.0\CSRedis.NetCore.AssemblyInfoInputs.cache
+D:\项目构建\饿家军餐饮平台\Src\Literature\CSRedis.NetCore\obj\Debug\netstandard2.0\CSRedis.NetCore.AssemblyInfo.cs
+D:\项目构建\饿家军餐饮平台\Src\Literature\CSRedis.NetCore\obj\Debug\netstandard2.0\CSRedis.NetCore.dll
+D:\项目构建\饿家军餐饮平台\Src\Literature\CSRedis.NetCore\obj\Debug\netstandard2.0\CSRedis.NetCore.pdb
