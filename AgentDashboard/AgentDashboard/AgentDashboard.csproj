@@ -146,6 +146,9 @@
     <Content Include="vendor\jquery\jquery.slim.js" />
     <Content Include="vendor\jquery\jquery.slim.min.js" />
     <Content Include="Views\Default\ForgotPassword.cshtml" />
+    <Content Include="Views\Default\Details.cshtml" />
+    <Content Include="Views\Default\HumanManager.cshtml" />
+    <Content Include="Views\Default\DataAnalyze.cshtml" />
     <EntityDeploy Include="Models\SP.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SP.Designer.cs</LastGenOutput>
@@ -153,9 +156,6 @@
     <Content Include="Models\SP.edmx.diagram">
       <DependentUpon>SP.edmx</DependentUpon>
     </Content>
-    <Content Include="Views\Default\Details.cshtml" />
-    <Content Include="Views\Default\HumanManager.cshtml" />
-    <Content Include="Views\Default\DataAnalyze.cshtml" />
     <None Include="Views\Default\Index.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -168,9 +168,11 @@
     <Compile Include="Models\AccountAuthentication.cs">
       <DependentUpon>SP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\OAuth2_Access_Token.cs">
       <DependentUpon>SP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ShopViewModel.cs" />
     <Compile Include="Models\SP.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
