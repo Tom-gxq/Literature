@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AccountAuthentication">
           <Key>
             <PropertyRef Name="AutoId" />
@@ -353,8 +353,10 @@
           <Property Name="ShippedDate" Type="datetime" />
           <Property Name="ShippingId" Type="nvarchar" MaxLength="64" />
           <Property Name="ShipTo" Type="nvarchar" MaxLength="64" />
-          <Property Name="ShipOrderNumber" Type="nvarchar" MaxLength="100" />
           <Property Name="IsShipped" Type="bit" />
+          <Property Name="Stock" Type="int" />
+          <Property Name="ProductId" Type="nvarchar" MaxLength="64" />
+          <Property Name="ShopId" Type="int" />
         </EntityType>
         <EntityType Name="SP_ShipStatistics">
           <Key>
@@ -393,6 +395,18 @@
           <Property Name="ShopId" Type="int" Nullable="false" />
           <Property Name="AttributeId" Type="bigint" Nullable="false" />
           <Property Name="ValueId" Type="bigint" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“SP.dbo.SP_ShopOwner”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="SP_ShopOwner">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ShopId" />
+            <PropertyRef Name="OwnerId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShopId" Type="int" Nullable="false" />
+          <Property Name="OwnerId" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="SP_ShoppingCarts">
           <Key>
@@ -546,6 +560,13 @@
     [SP_ProductType].[TypeLogo] AS [TypeLogo]
     FROM [dbo].[SP_ProductType] AS [SP_ProductType]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="SP_ShopOwner" EntityType="Self.SP_ShopOwner" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SP_ShopOwner].[Id] AS [Id], 
+    [SP_ShopOwner].[ShopId] AS [ShopId], 
+    [SP_ShopOwner].[OwnerId] AS [OwnerId]
+    FROM [dbo].[SP_ShopOwner] AS [SP_ShopOwner]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="SP_SysKind" EntityType="Self.SP_SysKind" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [SP_SysKind].[KindId] AS [KindId], 
@@ -558,8 +579,7 @@
     FROM [dbo].[SP_SysKind] AS [SP_SysKind]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -896,8 +916,10 @@
           <Property Name="ShippedDate" Type="DateTime" Precision="3" />
           <Property Name="ShippingId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
           <Property Name="ShipTo" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="ShipOrderNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="IsShipped" Type="Boolean" />
+          <Property Name="Stock" Type="Int32" />
+          <Property Name="ProductId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="ShopId" Type="Int32" />
         </EntityType>
         <EntityType Name="SP_ShipStatistics">
           <Key>
@@ -1091,7 +1113,18 @@
           <EntitySet Name="SP_UserShipping" EntityType="Self.SP_UserShipping" />
           <EntitySet Name="SP_ProductType" EntityType="Self.SP_ProductType" />
           <EntitySet Name="SP_SysKind" EntityType="Self.SP_SysKind" />
+          <EntitySet Name="SP_ShopOwner" EntityType="SPModel.SP_ShopOwner" />
         </EntityContainer>
+        <EntityType Name="SP_ShopOwner">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ShopId" />
+            <PropertyRef Name="OwnerId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShopId" Type="Int32" Nullable="false" />
+          <Property Name="OwnerId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1445,6 +1478,9 @@
           <EntitySetMapping Name="SP_ShippingOrders">
             <EntityTypeMapping TypeName="SPModel.SP_ShippingOrders">
               <MappingFragment StoreEntitySet="SP_ShippingOrders">
+                <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
                 <ScalarProperty Name="ShippingOrderId" ColumnName="ShippingOrderId" />
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
                 <ScalarProperty Name="ManagerRemark" ColumnName="ManagerRemark" />
@@ -1452,7 +1488,6 @@
                 <ScalarProperty Name="ShippedDate" ColumnName="ShippedDate" />
                 <ScalarProperty Name="ShippingId" ColumnName="ShippingId" />
                 <ScalarProperty Name="ShipTo" ColumnName="ShipTo" />
-                <ScalarProperty Name="ShipOrderNumber" ColumnName="ShipOrderNumber" />
                 <ScalarProperty Name="IsShipped" ColumnName="IsShipped" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1611,6 +1646,15 @@
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="DiscountValue" ColumnName="DiscountValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_ShopOwner">
+            <EntityTypeMapping TypeName="SPModel.SP_ShopOwner">
+              <MappingFragment StoreEntitySet="SP_ShopOwner">
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

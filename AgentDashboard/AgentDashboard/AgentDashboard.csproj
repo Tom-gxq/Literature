@@ -156,6 +156,7 @@
     <Content Include="Models\SP.edmx.diagram">
       <DependentUpon>SP.edmx</DependentUpon>
     </Content>
+    <Content Include="Views\Default\ShopDetails.cshtml" />
     <None Include="Views\Default\Index.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -172,6 +173,7 @@
     <Compile Include="Models\OAuth2_Access_Token.cs">
       <DependentUpon>SP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ShopDetailsViewModel.cs" />
     <Compile Include="Models\ShopViewModel.cs" />
     <Compile Include="Models\SP.Context.cs">
       <AutoGen>True</AutoGen>
@@ -270,6 +272,9 @@
       <DependentUpon>SP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SP_ShopAttribute.cs">
+      <DependentUpon>SP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_ShopOwner.cs">
       <DependentUpon>SP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SP_ShoppingCarts.cs">

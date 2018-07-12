@@ -35,6 +35,9 @@ namespace AgentDashboard.Controllers
             List<ShopViewModel> shopsVM = null;
             using (SPEntities sp = new SPEntities())
             {
+                ViewBag.TotalPages = Math.Ceiling((Double)sp.SP_Shop.Count() / 20.00d);
+                ViewBag.CurrentPage = 1;
+
                 var shopList = sp.SP_Shop.OrderByDescending(n => n.RegionId).OrderByDescending(n=>n.Id).Skip(GetStartRowNo(1, 20)).Take(20).ToList();
                 shopsVM = shopList.Select(x => new ShopViewModel
                 {
@@ -46,6 +49,24 @@ namespace AgentDashboard.Controllers
             }
 
             return View(shopsVM);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="shopId">店铺Id</param>
+        /// <returns></returns>
+        public ActionResult ShopDetails(int shopId)
+        {
+            using (SPEntities sp = new SPEntities())
+            {
+                var shop = sp.SP_Shop.SingleOrDefault(n => n.Id == shopId);
+                if (shop != null)
+                {
+                }
+            }
+
+            return View();
         }
 
         /// <summary>
