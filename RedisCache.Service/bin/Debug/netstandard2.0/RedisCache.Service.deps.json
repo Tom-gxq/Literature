@@ -9,6 +9,7 @@
     ".NETStandard,Version=v2.0/": {
       "RedisCache.Service/1.0.0": {
         "dependencies": {
+          "CSRedis.NetCore": "1.0.0",
           "Grpc.Service.Core": "1.0.0",
           "NETStandard.Library": "2.0.0",
           "StackExchange.Redis": "1.2.6"
@@ -1279,6 +1280,11 @@
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
         }
       },
+      "CSRedis.NetCore/1.0.0": {
+        "runtime": {
+          "CSRedis.NetCore.dll": {}
+        }
+      },
       "Grpc.Service.Core/1.0.0": {
         "dependencies": {
           "Castle.Core": "4.2.0",
@@ -2183,6 +2189,11 @@
       "sha512": "sha512-lJ8AxvkX7GQxpC6GFCeBj8ThYVyQczx2+f/cWHJU8tjS7YfI6Cv6bon70jVEgs2CiFbmmM8b9j1oZVx0dSI2Ww==",
       "path": "system.xml.xmldocument/4.3.0",
       "hashPath": "system.xml.xmldocument.4.3.0.nupkg.sha512"
+    },
+    "CSRedis.NetCore/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "Grpc.Service.Core/1.0.0": {
       "type": "project",

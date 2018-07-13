@@ -14,5 +14,6 @@ namespace SP.Api.Model.Order
         public string orderId { get; set; }
         public int orderStatus { get; set; }
         public int addressId { get; set; }
+        public int orderType { get; set; }
     }
 }

@@ -273,5 +273,71 @@ namespace ProductGRPCInterface
             }
             return list;
         }
+
+        public static bool UpdateOpenShopStatus(int shopId,int status)
+        {
+            var client = ProductClientHelper.GetClient();
+            var request1 = new OpenShopStatusRequest()
+            {
+                ShopId = shopId,
+                Status = status
+            };
+            var result = client.UpdateOpenShopStatus(request1);
+            if(result.Status == 10001)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool AddProduct(SellerProductModel model)
+        {
+            var client = ProductClientHelper.GetClient();
+            var request1 = new ProductRequest()
+            {
+                AccountId = model.accountId,
+                ImagePath = model.imagePath,
+                MainType = model.mainType,
+                MarketPrice = model.marketPrice,
+                ProductName = model.productName,
+                PurchasePrice = model.purchasePrice,
+                SecondType = model.secondType
+
+            };
+            var result = client.AddProduct(request1);
+            if (result.Status == 10001)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool UpdateProduct(SellerProductModel model)
+        {
+            var client = ProductClientHelper.GetClient();
+            var request1 = new ProductRequest()
+            {
+                AccountId = model.accountId,
+                ImagePath = model.imagePath,
+                MarketPrice = model.marketPrice,
+                ProductName = model.productName,
+                PurchasePrice = model.purchasePrice,
+
+            };
+            var result = client.AddProduct(request1);
+            if (result.Status == 10001)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

@@ -24,7 +24,6 @@ D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Service.Entity\bin\Debug
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Service.Entity\bin\Debug\netstandard2.0\SP.Service.Entity.pdb
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Service.Entity\bin\Debug\netstandard2.0\Grpc.Service.Core.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Service.Entity\bin\Debug\netstandard2.0\Grpc.Service.Core.pdb
-D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Service.Entity\obj\Debug\netstandard2.0\SP.Service.Entity.csprojResolveAssemblyReference.cache
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Service.Entity\obj\Debug\netstandard2.0\SP.Service.Entity.csproj.CoreCompileInputs.cache
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Service.Entity\obj\Debug\netstandard2.0\SP.Service.Entity.AssemblyInfoInputs.cache
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Service.Entity\obj\Debug\netstandard2.0\SP.Service.Entity.AssemblyInfo.cs

@@ -23,57 +23,57 @@ namespace SP.Service {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChBPcmRlck1vZGVsLnByb3RvEgpTUC5TZXJ2aWNlGhFDb21tb25Nb2RlbC5w",
-            "cm90bxoSUHJvZHVjdE1vZGVsLnByb3RvIlgKD0FkZE9yZGVyUmVxdWVzdBIR",
+            "cm90bxoSUHJvZHVjdE1vZGVsLnByb3RvImsKD0FkZE9yZGVyUmVxdWVzdBIR",
             "CglhY2NvdW50SWQYASABKAkSDwoHY2FydElkcxgCIAMoCRIOCgZyZW1hcmsY",
-            "AyABKAkSEQoJYWRkcmVzc0lkGAQgASgFIiUKE09yZGVyU3RhdHVzUmVzcG9u",
-            "c2USDgoGc3RhdHVzGAEgASgFIqUCCgVPcmRlchIPCgdvcmRlcklkGAEgASgJ",
-            "Eg4KBnJlbWFyaxgCIAEoCRITCgtvcmRlclN0YXR1cxgDIAEoBRITCgtjbG9z",
-            "ZVJlYXNvbhgEIAEoCRIRCglvcmRlckRhdGUYBSABKAMSDwoHcGF5RGF0ZRgG",
-            "IAEoAxIUCgxzaGlwcGluZ0RhdGUYByABKAMSEgoKZmluaXNoRGF0ZRgIIAEo",
-            "AxIRCglhY2NvdW50SWQYCSABKAkSEgoKc2hpcFRvRGF0ZRgKIAEoAxIPCgdm",
-            "cmVpZ2h0GAsgASgDEg4KBmFtb3VudBgMIAEoARIoCgtwcm9kdWN0TGlzdBgN",
-            "IAMoCzITLlNQLlNlcnZpY2UuUHJvZHVjdBIRCglvcmRlckNvZGUYDiABKAki",
-            "SQoRT3JkZXJMaXN0UmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEiQKCW9yZGVy",
-            "TGlzdBgCIAMoCzIRLlNQLlNlcnZpY2UuT3JkZXIibgoUU2VhcmNoTXlPcmRl",
-            "clJlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEg8KB2tleVdvcmQYAiABKAkS",
-            "EQoJcGFnZUluZGV4GAMgASgFEhAKCHBhZ2VTaXplGAQgASgFEg0KBXRvdGFs",
-            "GAUgASgDIm0KD0dldE9yZGVyUmVxdWVzdBIRCglhY2NvdW50SWQYASABKAkS",
-            "EwoLb3JkZXJTdGF0dXMYAiABKAUSEQoJcGFnZUluZGV4GAMgASgFEhAKCHBh",
-            "Z2VTaXplGAQgASgFEg0KBXRvdGFsGAUgASgDIjYKDk15T3JkZXJSZXF1ZXN0",
-            "EhEKCWFjY291bnRJZBgBIAEoCRIRCglvcmRlckRhdGUYAiABKAkiIQoOT3Jk",
-            "ZXJJZFJlcXVlc3QSDwoHb3JkZXJJZBgBIAEoCSJFCg1PcmRlclJlc3BvbnNl",
-            "Eg4KBnN0YXR1cxgBIAEoBRIkCglvcmRlckluZm8YAiABKAsyES5TUC5TZXJ2",
-            "aWNlLk9yZGVyIjMKEEFkZE9yZGVyUmVzcG9uc2USDgoGc3RhdHVzGAEgASgF",
-            "Eg8KB29yZGVySWQYAiABKAkiSgoSVXBkYXRlT3JkZXJSZXF1ZXN0EhMKC29y",
-            "ZGVyU3RhdHVzGAEgASgFEg8KB29yZGVySWQYAiABKAkSDgoGcGF5V2F5GAMg",
-            "ASgFIjsKEVNjaG9vbExlYWRSZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIT",
-            "CgtvcmRlclN0YXR1cxgCIAEoBSKiAgoPU2Nob29sTGVhZE9yZGVyEg8KB29y",
-            "ZGVySWQYASABKAkSDgoGYW1vdW50GAIgASgBEhEKCW9yZGVyQ29kZRgDIAEo",
-            "CRIRCglvcmRlckRhdGUYBCABKAMSDwoHcGF5RGF0ZRgFIAEoAxIoCgdhY2Nv",
-            "dW50GAYgASgLMhcuU1AuU2VydmljZS5BY2NvdW50SW5mbxIkCgdhZGRyZXNz",
-            "GAcgASgLMhMuU1AuU2VydmljZS5BZGRyZXNzEh4KBHNob3AYCCABKAsyEC5T",
-            "UC5TZXJ2aWNlLlNob3ASMgoQc2hvcHBpbmdDYXJ0TGlzdBgJIAMoCzIYLlNQ",
-            "LlNlcnZpY2UuU2hvcHBpbmdDYXJ0EhMKC29yZGVyU3RhdHVzGAogASgFIl0K",
-            "G1NjaG9vbExlYWRPcmRlckxpc3RSZXNwb25zZRIOCgZzdGF0dXMYASABKAUS",
-            "LgoJb3JkZXJJbmZvGAIgAygLMhsuU1AuU2VydmljZS5TY2hvb2xMZWFkT3Jk",
-            "ZXIiRgoMVHJhZGVSZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIRCglwYWdl",
-            "SW5kZXgYAyABKAUSEAoIcGFnZVNpemUYBCABKAUicQoFVHJhZGUSEQoJYWNj",
-            "b3VudElkGAEgASgJEg4KBmFtb3VudBgCIAEoARIOCgZjYXJ0SWQYAyABKAkS",
-            "EgoKY3JlYXRlVGltZRgEIAEoAxIQCghxdWFudGl0eRgFIAEoBRIPCgdzdWJq",
-            "ZWN0GAYgASgFIlgKEVRyYWRlTGlzdFJlc3BvbnNlEg4KBnN0YXR1cxgBIAEo",
-            "BRIkCgl0cmFkZUxpc3QYAiADKAsyES5TUC5TZXJ2aWNlLlRyYWRlEg0KBXRv",
-            "dGFsGAUgASgDInsKGVNjaG9vbExlYWRGaW5hbmNlUmVzcG9uc2USDgoGc3Rh",
-            "dHVzGAEgASgFEhEKCWFjY291bnRJZBgCIAEoCRISCgpoYXZlQW1vdW50GAMg",
-            "ASgBEhEKCXVzZUFtb3VudBgEIAEoARIUCgxhY3RpdmVBbW91bnQYBSABKAEi",
-            "RwoTQWRkQ2FzaEFwcGx5UmVxdWVzdBIRCglhY2NvdW50SWQYASABKAkSDgoG",
-            "YWxpcGF5GAIgASgJEg0KBW1vbmV5GAMgASgBIlAKFlVwZGF0ZU9yZGVyQ29k",
-            "ZVJlcXVlc3QSEwoLb3JkZXJTdGF0dXMYASABKAUSEQoJb3JkZXJDb2RlGAIg",
-            "ASgJEg4KBnBheVdheRgDIAEoBSIlChBPcmRlckNvZGVSZXF1ZXN0EhEKCW9y",
-            "ZGVyQ29kZRgBIAEoCWIGcHJvdG8z"));
+            "AyABKAkSEQoJYWRkcmVzc0lkGAQgASgFEhEKCW9yZGVyVHlwZRgFIAEoBSIl",
+            "ChNPcmRlclN0YXR1c1Jlc3BvbnNlEg4KBnN0YXR1cxgBIAEoBSKlAgoFT3Jk",
+            "ZXISDwoHb3JkZXJJZBgBIAEoCRIOCgZyZW1hcmsYAiABKAkSEwoLb3JkZXJT",
+            "dGF0dXMYAyABKAUSEwoLY2xvc2VSZWFzb24YBCABKAkSEQoJb3JkZXJEYXRl",
+            "GAUgASgDEg8KB3BheURhdGUYBiABKAMSFAoMc2hpcHBpbmdEYXRlGAcgASgD",
+            "EhIKCmZpbmlzaERhdGUYCCABKAMSEQoJYWNjb3VudElkGAkgASgJEhIKCnNo",
+            "aXBUb0RhdGUYCiABKAMSDwoHZnJlaWdodBgLIAEoAxIOCgZhbW91bnQYDCAB",
+            "KAESKAoLcHJvZHVjdExpc3QYDSADKAsyEy5TUC5TZXJ2aWNlLlByb2R1Y3QS",
+            "EQoJb3JkZXJDb2RlGA4gASgJIkkKEU9yZGVyTGlzdFJlc3BvbnNlEg4KBnN0",
+            "YXR1cxgBIAEoBRIkCglvcmRlckxpc3QYAiADKAsyES5TUC5TZXJ2aWNlLk9y",
+            "ZGVyIm4KFFNlYXJjaE15T3JkZXJSZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEo",
+            "CRIPCgdrZXlXb3JkGAIgASgJEhEKCXBhZ2VJbmRleBgDIAEoBRIQCghwYWdl",
+            "U2l6ZRgEIAEoBRINCgV0b3RhbBgFIAEoAyJtCg9HZXRPcmRlclJlcXVlc3QS",
+            "EQoJYWNjb3VudElkGAEgASgJEhMKC29yZGVyU3RhdHVzGAIgASgFEhEKCXBh",
+            "Z2VJbmRleBgDIAEoBRIQCghwYWdlU2l6ZRgEIAEoBRINCgV0b3RhbBgFIAEo",
+            "AyI2Cg5NeU9yZGVyUmVxdWVzdBIRCglhY2NvdW50SWQYASABKAkSEQoJb3Jk",
+            "ZXJEYXRlGAIgASgJIiEKDk9yZGVySWRSZXF1ZXN0Eg8KB29yZGVySWQYASAB",
+            "KAkiRQoNT3JkZXJSZXNwb25zZRIOCgZzdGF0dXMYASABKAUSJAoJb3JkZXJJ",
+            "bmZvGAIgASgLMhEuU1AuU2VydmljZS5PcmRlciIzChBBZGRPcmRlclJlc3Bv",
+            "bnNlEg4KBnN0YXR1cxgBIAEoBRIPCgdvcmRlcklkGAIgASgJIkoKElVwZGF0",
+            "ZU9yZGVyUmVxdWVzdBITCgtvcmRlclN0YXR1cxgBIAEoBRIPCgdvcmRlcklk",
+            "GAIgASgJEg4KBnBheVdheRgDIAEoBSI7ChFTY2hvb2xMZWFkUmVxdWVzdBIR",
+            "CglhY2NvdW50SWQYASABKAkSEwoLb3JkZXJTdGF0dXMYAiABKAUiogIKD1Nj",
+            "aG9vbExlYWRPcmRlchIPCgdvcmRlcklkGAEgASgJEg4KBmFtb3VudBgCIAEo",
+            "ARIRCglvcmRlckNvZGUYAyABKAkSEQoJb3JkZXJEYXRlGAQgASgDEg8KB3Bh",
+            "eURhdGUYBSABKAMSKAoHYWNjb3VudBgGIAEoCzIXLlNQLlNlcnZpY2UuQWNj",
+            "b3VudEluZm8SJAoHYWRkcmVzcxgHIAEoCzITLlNQLlNlcnZpY2UuQWRkcmVz",
+            "cxIeCgRzaG9wGAggASgLMhAuU1AuU2VydmljZS5TaG9wEjIKEHNob3BwaW5n",
+            "Q2FydExpc3QYCSADKAsyGC5TUC5TZXJ2aWNlLlNob3BwaW5nQ2FydBITCgtv",
+            "cmRlclN0YXR1cxgKIAEoBSJdChtTY2hvb2xMZWFkT3JkZXJMaXN0UmVzcG9u",
+            "c2USDgoGc3RhdHVzGAEgASgFEi4KCW9yZGVySW5mbxgCIAMoCzIbLlNQLlNl",
+            "cnZpY2UuU2Nob29sTGVhZE9yZGVyIkYKDFRyYWRlUmVxdWVzdBIRCglhY2Nv",
+            "dW50SWQYASABKAkSEQoJcGFnZUluZGV4GAMgASgFEhAKCHBhZ2VTaXplGAQg",
+            "ASgFInEKBVRyYWRlEhEKCWFjY291bnRJZBgBIAEoCRIOCgZhbW91bnQYAiAB",
+            "KAESDgoGY2FydElkGAMgASgJEhIKCmNyZWF0ZVRpbWUYBCABKAMSEAoIcXVh",
+            "bnRpdHkYBSABKAUSDwoHc3ViamVjdBgGIAEoBSJYChFUcmFkZUxpc3RSZXNw",
+            "b25zZRIOCgZzdGF0dXMYASABKAUSJAoJdHJhZGVMaXN0GAIgAygLMhEuU1Au",
+            "U2VydmljZS5UcmFkZRINCgV0b3RhbBgFIAEoAyJ7ChlTY2hvb2xMZWFkRmlu",
+            "YW5jZVJlc3BvbnNlEg4KBnN0YXR1cxgBIAEoBRIRCglhY2NvdW50SWQYAiAB",
+            "KAkSEgoKaGF2ZUFtb3VudBgDIAEoARIRCgl1c2VBbW91bnQYBCABKAESFAoM",
+            "YWN0aXZlQW1vdW50GAUgASgBIkcKE0FkZENhc2hBcHBseVJlcXVlc3QSEQoJ",
+            "YWNjb3VudElkGAEgASgJEg4KBmFsaXBheRgCIAEoCRINCgVtb25leRgDIAEo",
+            "ASJQChZVcGRhdGVPcmRlckNvZGVSZXF1ZXN0EhMKC29yZGVyU3RhdHVzGAEg",
+            "ASgFEhEKCW9yZGVyQ29kZRgCIAEoCRIOCgZwYXlXYXkYAyABKAUiJQoQT3Jk",
+            "ZXJDb2RlUmVxdWVzdBIRCglvcmRlckNvZGUYASABKAliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, global::SP.Service.ProductModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AddOrderRequest), global::SP.Service.AddOrderRequest.Parser, new[]{ "AccountId", "CartIds", "Remark", "AddressId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AddOrderRequest), global::SP.Service.AddOrderRequest.Parser, new[]{ "AccountId", "CartIds", "Remark", "AddressId", "OrderType" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OrderStatusResponse), global::SP.Service.OrderStatusResponse.Parser, new[]{ "Status" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.Order), global::SP.Service.Order.Parser, new[]{ "OrderId", "Remark", "OrderStatus", "CloseReason", "OrderDate", "PayDate", "ShippingDate", "FinishDate", "AccountId", "ShipToDate", "Freight", "Amount", "ProductList", "OrderCode" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OrderListResponse), global::SP.Service.OrderListResponse.Parser, new[]{ "Status", "OrderList" }, null, null, null),
@@ -132,6 +132,7 @@ namespace SP.Service {
       cartIds_ = other.cartIds_.Clone();
       remark_ = other.remark_;
       addressId_ = other.addressId_;
+      orderType_ = other.orderType_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -198,6 +199,21 @@ namespace SP.Service {
       }
     }
 
+    /// <summary>Field number for the "orderType" field.</summary>
+    public const int OrderTypeFieldNumber = 5;
+    private int orderType_;
+    /// <summary>
+    ///*
+    /// 订单类别
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int OrderType {
+      get { return orderType_; }
+      set {
+        orderType_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as AddOrderRequest);
@@ -215,6 +231,7 @@ namespace SP.Service {
       if(!cartIds_.Equals(other.cartIds_)) return false;
       if (Remark != other.Remark) return false;
       if (AddressId != other.AddressId) return false;
+      if (OrderType != other.OrderType) return false;
       return true;
     }
 
@@ -225,6 +242,7 @@ namespace SP.Service {
       hash ^= cartIds_.GetHashCode();
       if (Remark.Length != 0) hash ^= Remark.GetHashCode();
       if (AddressId != 0) hash ^= AddressId.GetHashCode();
+      if (OrderType != 0) hash ^= OrderType.GetHashCode();
       return hash;
     }
 
@@ -248,6 +266,10 @@ namespace SP.Service {
         output.WriteRawTag(32);
         output.WriteInt32(AddressId);
       }
+      if (OrderType != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(OrderType);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -262,6 +284,9 @@ namespace SP.Service {
       }
       if (AddressId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(AddressId);
+      }
+      if (OrderType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(OrderType);
       }
       return size;
     }
@@ -280,6 +305,9 @@ namespace SP.Service {
       }
       if (other.AddressId != 0) {
         AddressId = other.AddressId;
+      }
+      if (other.OrderType != 0) {
+        OrderType = other.OrderType;
       }
     }
 
@@ -305,6 +333,10 @@ namespace SP.Service {
           }
           case 32: {
             AddressId = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            OrderType = input.ReadInt32();
             break;
           }
         }

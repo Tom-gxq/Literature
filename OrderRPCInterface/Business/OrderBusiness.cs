@@ -19,7 +19,8 @@ namespace OrderGRPCInterface.Business
             {
                 AccountId = order.accountId,
                 Remark = order.remark != null ? order.remark: string.Empty,
-                AddressId = order.addressId
+                AddressId = order.addressId,
+                OrderType = order.orderType
             };
             order.cartIds.ForEach(x=> request.CartIds.Add(x));
             var result = client.AddMyOrder(request);

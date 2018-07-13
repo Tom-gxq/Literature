@@ -581,6 +581,43 @@ namespace AccountGRPCInterface
                 return null;
             }
         }
+        public static bool UpdateAccountIDInfo(string accountId, int dormId,int userType,string fullName)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request1 = new AccountIDRequest()
+            {
+                AccountId = accountId,
+                DormId = dormId,
+                UserType = userType,
+                FullName = fullName
+            };
+            var reuslt = client.UpdateAccountIDInfo(request1);
+            if (reuslt.Status == 10001)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool ApplyPartner(string accountId, int dormId, int userType, string fullName)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request1 = new AccountIdRequest()
+            {
+                AccountId = accountId,
+            };
+            var reuslt = client.ApplyPartner(request1);
+            if (reuslt.Status == 10001)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         private static long GetTimestamp(DateTime d)
         {
