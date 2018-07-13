@@ -339,5 +339,161 @@ namespace ProductGRPCInterface
                 return false;
             }
         }
+        public static List<SellerProductModel> GetDistributorMarketProduct(int dormId,int typeId,int pageIndex,int pageSize)
+        {
+            var client = ProductClientHelper.GetClient();
+            var request1 = new ShopProductRequest()
+            {
+                DormId = dormId,
+                TypeId = typeId,
+                PageIndex = pageIndex,
+                PageSize = pageSize
+            };
+            var result = client.GetDistributorMarketProduct(request1);
+            var list = new List<SellerProductModel>();
+            if (result.Status == 10001)
+            {
+                foreach (var item in result.ProductList)
+                {
+                    var domain = new SellerProductModel();
+                    domain.productName = item.ProductName;
+                    domain.marketPrice = item.MarketPrice;
+                    domain.purchasePrice = item.PurchasePrice;
+                    domain.mainType = item.MainType;
+                    domain.secondType = item.SecondType;
+                    domain.imagePath = item.ImagePath;                    
+                    list.Add(domain);
+                }
+            }
+            return list;
+        }
+        public static List<SellerProductModel> GetDistributorFoodShopProductList(int dormId, int typeId, int pageIndex, int pageSize)
+        {
+            var client = ProductClientHelper.GetClient();
+            var request1 = new ShopProductRequest()
+            {
+                DormId = dormId,
+                TypeId = typeId,
+                PageIndex = pageIndex,
+                PageSize = pageSize
+            };
+            var result = client.GetDistributorFoodShopProductList(request1);
+            var list = new List<SellerProductModel>();
+            if (result.Status == 10001)
+            {
+                foreach (var item in result.ProductList)
+                {
+                    var domain = new SellerProductModel();
+                    domain.productName = item.ProductName;
+                    domain.marketPrice = item.MarketPrice;
+                    domain.purchasePrice = item.PurchasePrice;
+                    domain.mainType = item.MainType;
+                    domain.secondType = item.SecondType;
+                    domain.imagePath = item.ImagePath;
+                    list.Add(domain);
+                }
+            }
+            return list;
+        }
+
+        public static List<SellerProductModel> GetSellerMarketProduct(int dormId, int typeId, int pageIndex, int pageSize)
+        {
+            var client = ProductClientHelper.GetClient();
+            var request1 = new ShopProductRequest()
+            {
+                DormId = dormId,
+                TypeId = typeId,
+                PageIndex = pageIndex,
+                PageSize = pageSize
+            };
+            var result = client.GetSellerMarketProduct(request1);
+            var list = new List<SellerProductModel>();
+            if (result.Status == 10001)
+            {
+                foreach (var item in result.ProductList)
+                {
+                    var domain = new SellerProductModel();
+                    domain.productName = item.ProductName;
+                    domain.marketPrice = item.MarketPrice;
+                    domain.purchasePrice = item.PurchasePrice;
+                    domain.mainType = item.MainType;
+                    domain.secondType = item.SecondType;
+                    domain.imagePath = item.ImagePath;
+                    list.Add(domain);
+                }
+            }
+            return list;
+        }
+        public static List<SellerProductModel> GetSellerFoodShopProductList(int dormId, int typeId, int pageIndex, int pageSize)
+        {
+            var client = ProductClientHelper.GetClient();
+            var request1 = new ShopProductRequest()
+            {
+                DormId = dormId,
+                TypeId = typeId,
+                PageIndex = pageIndex,
+                PageSize = pageSize
+            };
+            var result = client.GetSellerFoodShopProductList(request1);
+            var list = new List<SellerProductModel>();
+            if (result.Status == 10001)
+            {
+                foreach (var item in result.ProductList)
+                {
+                    var domain = new SellerProductModel();
+                    domain.productName = item.ProductName;
+                    domain.marketPrice = item.MarketPrice;
+                    domain.purchasePrice = item.PurchasePrice;
+                    domain.mainType = item.MainType;
+                    domain.secondType = item.SecondType;
+                    domain.imagePath = item.ImagePath;
+                    list.Add(domain);
+                }
+            }
+            return list;
+        }
+        public static List<ProductTypeModel> GetAllProductTypeList(int kind)
+        {
+            var client = ProductClientHelper.GetClient();
+            var request1 = new KindRequest()
+            {
+                 Kind = kind
+            };
+            var result = client.GetAllProductTypeList(request1);
+            var list = new List<ProductTypeModel>();
+            if (result.Status == 10001)
+            {
+                foreach (var item in result.ProductTypeList)
+                {
+                    var domain = new ProductTypeModel();
+                    domain.typeId = item.TypeId;
+                    domain.typeName = item.TypeName;
+                    domain.typePath = item.TypePath;
+                    domain.typeLogo = item.TypeLogo;
+                    list.Add(domain);
+                }
+            }
+            return list;
+        }
+        public static SellerProductModel GetSellerProductDetail(string productId)
+        {
+            var client = ProductClientHelper.GetClient();
+            var request1 = new ProductIdRequest()
+            {
+                ProductId = productId
+            };
+            var result = client.GetSellerProductDetail(request1);
+            var model = new SellerProductModel();
+            if (result.Status == 10001)
+            {
+                model.imagePath = result.Product.ImagePath;
+                model.mainType = result.Product.MainType;
+                model.secondType = result.Product.SecondType;
+                model.productName = result.Product.ProductName;
+                model.purchasePrice = result.Product.PurchasePrice;
+                model.marketPrice = result.Product.MarketPrice;
+            }
+            return model;
+        }
     }
 }

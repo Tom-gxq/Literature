@@ -19,7 +19,7 @@ namespace WebApiGateway.Controllers.Seller
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var list = AccountBusiness.GetAccountFullInfo(currentAccount.AccountId);
+                var list = ProductBusiness.GetDistributorMarketProduct(dormId, typeId, pageIndex, pageSize);
                 JsonResult.Add("accountInfo", list);
                 JsonResult.Add("status", 0);
             }
@@ -37,7 +37,7 @@ namespace WebApiGateway.Controllers.Seller
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var list = AccountBusiness.GetAccountFullInfo(currentAccount.AccountId);
+                var list = ProductBusiness.GetDistributorFoodShopProductList(dormId, typeId, pageIndex, pageSize);
                 JsonResult.Add("accountInfo", list);
                 JsonResult.Add("status", 0);
             }
@@ -56,7 +56,7 @@ namespace WebApiGateway.Controllers.Seller
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var list = AccountBusiness.GetAccountFullInfo(currentAccount.AccountId);
+                var list = ProductBusiness.GetSellerMarketProduct(dormId, typeId, pageIndex, pageSize);
                 JsonResult.Add("accountInfo", list);
                 JsonResult.Add("status", 0);
             }
@@ -74,7 +74,7 @@ namespace WebApiGateway.Controllers.Seller
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var list = AccountBusiness.GetAccountFullInfo(currentAccount.AccountId);
+                var list = ProductBusiness.GetSellerFoodShopProductList(dormId, typeId, pageIndex, pageSize);
                 JsonResult.Add("accountInfo", list);
                 JsonResult.Add("status", 0);
             }
@@ -93,7 +93,7 @@ namespace WebApiGateway.Controllers.Seller
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var list = AccountBusiness.GetAccountFullInfo(currentAccount.AccountId);
+                var list = ProductBusiness.GetAllProductTypeList(kind);
                 JsonResult.Add("accountInfo", list);
                 JsonResult.Add("status", 0);
             }
@@ -112,8 +112,8 @@ namespace WebApiGateway.Controllers.Seller
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var list = AccountBusiness.GetAccountFullInfo(currentAccount.AccountId);
-                JsonResult.Add("accountInfo", list);
+                product.accountId = currentAccount.AccountId;
+                var list = ProductBusiness.AddProduct(product);
                 JsonResult.Add("status", 0);
             }
             catch (Exception ex)
@@ -131,8 +131,8 @@ namespace WebApiGateway.Controllers.Seller
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var list = AccountBusiness.GetAccountFullInfo(currentAccount.AccountId);
-                JsonResult.Add("accountInfo", list);
+                var model = ProductBusiness.GetSellerProductDetail(productId);
+                JsonResult.Add("product", model);
                 JsonResult.Add("status", 0);
             }
             catch (Exception ex)
@@ -150,8 +150,8 @@ namespace WebApiGateway.Controllers.Seller
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var list = AccountBusiness.GetAccountFullInfo(currentAccount.AccountId);
-                JsonResult.Add("accountInfo", list);
+                product.accountId = currentAccount.AccountId;
+                var list = ProductBusiness.UpdateProduct(product);
                 JsonResult.Add("status", 0);
             }
             catch (Exception ex)
