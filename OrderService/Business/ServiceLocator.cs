@@ -15,6 +15,7 @@ namespace Order.Service.Business
         private static AssociatorReportDatabase _associatorReportDatabase;
         private static TradeReportDatabase _tradeReportDatabase;
         private static AccountFinanceReportDatabase _financeReportDatabase;
+        private static CashApplyReportDatabase _cashApplyReportDatabase;
         private static bool _isInitialized;
         private static readonly object _lockThis = new object();
 
@@ -29,6 +30,7 @@ namespace Order.Service.Business
                     _associatorReportDatabase = IocManager.Instance.Resolve(typeof(AssociatorReportDatabase)) as AssociatorReportDatabase;
                     _tradeReportDatabase = IocManager.Instance.Resolve(typeof(TradeReportDatabase)) as TradeReportDatabase;
                     _financeReportDatabase = IocManager.Instance.Resolve(typeof(AccountFinanceReportDatabase)) as AccountFinanceReportDatabase;
+                    _cashApplyReportDatabase = IocManager.Instance.Resolve(typeof(CashApplyReportDatabase)) as CashApplyReportDatabase;
                     _isInitialized = true;
                 }
             }
@@ -52,6 +54,10 @@ namespace Order.Service.Business
         public static AccountFinanceReportDatabase FinanceReportDatabase
         {
             get { return _financeReportDatabase; }
+        }
+        public static CashApplyReportDatabase CashApplyReportDatabase
+        {
+            get { return _cashApplyReportDatabase; }
         }
     }
 }

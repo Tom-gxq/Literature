@@ -62,14 +62,15 @@ namespace SP.Service {
             "KAESDgoGY2FydElkGAMgASgJEhIKCmNyZWF0ZVRpbWUYBCABKAMSEAoIcXVh",
             "bnRpdHkYBSABKAUSDwoHc3ViamVjdBgGIAEoBSJYChFUcmFkZUxpc3RSZXNw",
             "b25zZRIOCgZzdGF0dXMYASABKAUSJAoJdHJhZGVMaXN0GAIgAygLMhEuU1Au",
-            "U2VydmljZS5UcmFkZRINCgV0b3RhbBgFIAEoAyJ7ChlTY2hvb2xMZWFkRmlu",
-            "YW5jZVJlc3BvbnNlEg4KBnN0YXR1cxgBIAEoBRIRCglhY2NvdW50SWQYAiAB",
-            "KAkSEgoKaGF2ZUFtb3VudBgDIAEoARIRCgl1c2VBbW91bnQYBCABKAESFAoM",
-            "YWN0aXZlQW1vdW50GAUgASgBIkcKE0FkZENhc2hBcHBseVJlcXVlc3QSEQoJ",
-            "YWNjb3VudElkGAEgASgJEg4KBmFsaXBheRgCIAEoCRINCgVtb25leRgDIAEo",
-            "ASJQChZVcGRhdGVPcmRlckNvZGVSZXF1ZXN0EhMKC29yZGVyU3RhdHVzGAEg",
-            "ASgFEhEKCW9yZGVyQ29kZRgCIAEoCRIOCgZwYXlXYXkYAyABKAUiJQoQT3Jk",
-            "ZXJDb2RlUmVxdWVzdBIRCglvcmRlckNvZGUYASABKAliBnByb3RvMw=="));
+            "U2VydmljZS5UcmFkZRINCgV0b3RhbBgFIAEoAyKQAQoZU2Nob29sTGVhZEZp",
+            "bmFuY2VSZXNwb25zZRIOCgZzdGF0dXMYASABKAUSEQoJYWNjb3VudElkGAIg",
+            "ASgJEhIKCmhhdmVBbW91bnQYAyABKAESEQoJdXNlQW1vdW50GAQgASgBEhQK",
+            "DGFjdGl2ZUFtb3VudBgFIAEoARITCgthcHBseUFtb3VudBgGIAEoASJHChNB",
+            "ZGRDYXNoQXBwbHlSZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIOCgZhbGlw",
+            "YXkYAiABKAkSDQoFbW9uZXkYAyABKAEiUAoWVXBkYXRlT3JkZXJDb2RlUmVx",
+            "dWVzdBITCgtvcmRlclN0YXR1cxgBIAEoBRIRCglvcmRlckNvZGUYAiABKAkS",
+            "DgoGcGF5V2F5GAMgASgFIiUKEE9yZGVyQ29kZVJlcXVlc3QSEQoJb3JkZXJD",
+            "b2RlGAEgASgJYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, global::SP.Service.ProductModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -90,7 +91,7 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TradeRequest), global::SP.Service.TradeRequest.Parser, new[]{ "AccountId", "PageIndex", "PageSize" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.Trade), global::SP.Service.Trade.Parser, new[]{ "AccountId", "Amount", "CartId", "CreateTime", "Quantity", "Subject" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TradeListResponse), global::SP.Service.TradeListResponse.Parser, new[]{ "Status", "TradeList", "Total" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SchoolLeadFinanceResponse), global::SP.Service.SchoolLeadFinanceResponse.Parser, new[]{ "Status", "AccountId", "HaveAmount", "UseAmount", "ActiveAmount" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SchoolLeadFinanceResponse), global::SP.Service.SchoolLeadFinanceResponse.Parser, new[]{ "Status", "AccountId", "HaveAmount", "UseAmount", "ActiveAmount", "ApplyAmount" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AddCashApplyRequest), global::SP.Service.AddCashApplyRequest.Parser, new[]{ "AccountId", "Alipay", "Money" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.UpdateOrderCodeRequest), global::SP.Service.UpdateOrderCodeRequest.Parser, new[]{ "OrderStatus", "OrderCode", "PayWay" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OrderCodeRequest), global::SP.Service.OrderCodeRequest.Parser, new[]{ "OrderCode" }, null, null, null)
@@ -3858,6 +3859,7 @@ namespace SP.Service {
       haveAmount_ = other.haveAmount_;
       useAmount_ = other.useAmount_;
       activeAmount_ = other.activeAmount_;
+      applyAmount_ = other.applyAmount_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3928,6 +3930,17 @@ namespace SP.Service {
       }
     }
 
+    /// <summary>Field number for the "applyAmount" field.</summary>
+    public const int ApplyAmountFieldNumber = 6;
+    private double applyAmount_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public double ApplyAmount {
+      get { return applyAmount_; }
+      set {
+        applyAmount_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as SchoolLeadFinanceResponse);
@@ -3946,6 +3959,7 @@ namespace SP.Service {
       if (HaveAmount != other.HaveAmount) return false;
       if (UseAmount != other.UseAmount) return false;
       if (ActiveAmount != other.ActiveAmount) return false;
+      if (ApplyAmount != other.ApplyAmount) return false;
       return true;
     }
 
@@ -3957,6 +3971,7 @@ namespace SP.Service {
       if (HaveAmount != 0D) hash ^= HaveAmount.GetHashCode();
       if (UseAmount != 0D) hash ^= UseAmount.GetHashCode();
       if (ActiveAmount != 0D) hash ^= ActiveAmount.GetHashCode();
+      if (ApplyAmount != 0D) hash ^= ApplyAmount.GetHashCode();
       return hash;
     }
 
@@ -3987,6 +4002,10 @@ namespace SP.Service {
         output.WriteRawTag(41);
         output.WriteDouble(ActiveAmount);
       }
+      if (ApplyAmount != 0D) {
+        output.WriteRawTag(49);
+        output.WriteDouble(ApplyAmount);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4005,6 +4024,9 @@ namespace SP.Service {
         size += 1 + 8;
       }
       if (ActiveAmount != 0D) {
+        size += 1 + 8;
+      }
+      if (ApplyAmount != 0D) {
         size += 1 + 8;
       }
       return size;
@@ -4029,6 +4051,9 @@ namespace SP.Service {
       }
       if (other.ActiveAmount != 0D) {
         ActiveAmount = other.ActiveAmount;
+      }
+      if (other.ApplyAmount != 0D) {
+        ApplyAmount = other.ApplyAmount;
       }
     }
 
@@ -4058,6 +4083,10 @@ namespace SP.Service {
           }
           case 41: {
             ActiveAmount = input.ReadDouble();
+            break;
+          }
+          case 49: {
+            ApplyAmount = input.ReadDouble();
             break;
           }
         }

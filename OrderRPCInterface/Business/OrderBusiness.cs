@@ -337,6 +337,7 @@ namespace OrderGRPCInterface.Business
                 model.accountId = result.AccountId;
                 model.useAmount = result.UseAmount;
                 model.activeAmount = result.ActiveAmount;
+                model.applyAmount = result.ApplyAmount;
             }
             return model;
         }

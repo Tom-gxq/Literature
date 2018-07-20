@@ -169,6 +169,7 @@ namespace Order.Service.Business
                 result.HaveAmount = finance.HaveAmount;
                 result.UseAmount = finance.UseAmount;
                 result.ActiveAmount = ServiceLocator.TradeReportDatabase.GetLatelyTrade(accountId);
+                result.ApplyAmount = ServiceLocator.CashApplyReportDatabase.GetAllApplyNum(accountId);
                 result.Status = 10001;
             }
             return result;
