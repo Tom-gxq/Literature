@@ -249,5 +249,181 @@ namespace Product.Service.GrpcImpl
             logger.LogInformation(this.prjLicEID, "GetProductTypeList {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
+
+        public override Task<ResultResponse> UpdateOpenShopStatus(OpenShopStatusRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} UpdateOpenShopStatus Connected!",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, " {ShopId} {Status} ",request.ShopId, request.Status);
+            var response = new ResultResponse();
+            response.Status = 10002;
+            try
+            {
+                response = ProductBusiness.UpdateOpenShopStatus(request.ShopId, request.Status);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "UpdateOpenShopStatus Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "UpdateOpenShopStatus {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+
+        public override Task<ResultResponse> AddProduct(ProductRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} AddProduct Connected!",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, " {AccountId} {MainType} {SecondType} {ProductName} {MarketPrice} {PurchasePrice} {ImagePath} ", 
+                request.AccountId, request.MainType, request.SecondType, request.ProductName, request.MarketPrice, request.PurchasePrice, request.ImagePath);
+            var response = new ResultResponse();
+            response.Status = 10002;
+            try
+            {
+                response = ProductBusiness.AddProduct(request.AccountId, request.MainType, request.SecondType, request.ProductName, request.MarketPrice, request.PurchasePrice, request.ImagePath);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "AddProduct Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "AddProduct {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+
+        public override Task<ResultResponse> UpdateProduct(ProductRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} UpdateProduct Connected!",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, " {AccountId}  {ProductName} {MarketPrice} {PurchasePrice} {ImagePath} ",
+                request.AccountId, request.ProductName, request.MarketPrice, request.PurchasePrice, request.ImagePath);
+            var response = new ResultResponse();
+            response.Status = 10002;
+            try
+            {
+                response = ProductBusiness.UpdateProduct(request.ProductId,  request.ProductName, request.MarketPrice, request.PurchasePrice, request.ImagePath);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "UpdateProduct Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "UpdateProduct {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+
+        public override Task<ResultResponse> UpdateProductSaleStatus(ProductSaleStatusRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} UpdateProductSaleStatus Connected!",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, " {ProductId}  {Status} ", request.ProductId, request.Status);
+            var response = new ResultResponse();
+            response.Status = 10002;
+            try
+            {
+                response = ProductBusiness.UpdateProductSaleStatus(request.ProductId, request.Status);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "UpdateProductSaleStatus Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "UpdateProductSaleStatus {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+
+        public override Task<ProductDetailResponse> GetSellerProductDetail(ProductIdRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "GetSellerProductDetail {Date} {IPAdress} {Status} Connected! {ProductId}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.ProductId);
+            ProductDetailResponse response = null;
+            try
+            {
+                response = ProductBusiness.GetSellerProductDetail(request.ProductId);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "GetSellerProductDetail Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "GetSellerProductDetail {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+
+        public override Task<SellerProductListResponse> GetDistributorMarketProduct(ShopProductRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "GetDistributorMarketProduct {Date} {IPAdress} {Status} Connected! ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, "{TypeId} {SecondTypeId} {PageIndex} {PageSize}", request.TypeId, request.SecondTypeId, request.PageIndex, request.PageSize);
+            SellerProductListResponse response = null;
+            try
+            {
+                response = ProductBusiness.GetDistributorMarketProduct(request.TypeId, request.SecondTypeId, request.PageIndex, request.PageSize);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "GetDistributorMarketProduct Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "GetDistributorMarketProduct {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+
+        public override Task<SellerProductListResponse> GetDistributorFoodShopProductList(SellerShopProductRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "GetDistributorFoodShopProductList {Date} {IPAdress} {Status} Connected! ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, "{AccountId} {TypeId} {SecondTypeId} {PageIndex} {PageSize}", request.AccountId,request.TypeId, request.SecondTypeId, request.PageIndex, request.PageSize);
+            SellerProductListResponse response = null;
+            try
+            {
+                response = ProductBusiness.GetDistributorProduct(request.AccountId,request.SecondTypeId, request.PageIndex, request.PageSize);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "GetDistributorFoodShopProductList Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "GetDistributorFoodShopProductList {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+        public override Task<SellerProductListResponse> GetSellerMarketProduct(SellerShopProductRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "GetSellerMarketProduct {Date} {IPAdress} {Status} Connected! ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, "{AccountId} {TypeId} {SecondTypeId} {PageIndex} {PageSize}", request.AccountId,request.TypeId, request.SecondTypeId, request.PageIndex, request.PageSize);
+            SellerProductListResponse response = null;
+            try
+            {
+                response = ProductBusiness.GetSellerProduct(request.AccountId,request.TypeId, request.SecondTypeId, request.PageIndex, request.PageSize);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "GetSellerMarketProduct Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "GetSellerMarketProduct {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+        public override Task<SellerProductListResponse> GetSellerFoodShopProductList(SellerShopProductRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "GetSellerFoodShopProductList {Date} {IPAdress} {Status} Connected! ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, "{AccountId} {TypeId} {SecondTypeId} {PageIndex} {PageSize}", request.AccountId, request.TypeId, request.SecondTypeId, request.PageIndex, request.PageSize);
+            SellerProductListResponse response = null;
+            try
+            {
+                response = ProductBusiness.GetSellerProduct(request.AccountId, request.TypeId, request.SecondTypeId, request.PageIndex, request.PageSize);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "GetSellerFoodShopProductList Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "GetSellerFoodShopProductList {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+
+        public override Task<ProductTypeListResponse> GetAllProductTypeList(KindRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "GetAllProductTypeList {Date} {IPAdress} {Status} Connected!  Kind={Kind} ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(),request.Kind);
+            ProductTypeListResponse response = null;
+            try
+            {
+                response = ProductBusiness.GetAllProductTypeList(request.Kind);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "GetAllProductTypeList Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "GetAllProductTypeList {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
     }
 }

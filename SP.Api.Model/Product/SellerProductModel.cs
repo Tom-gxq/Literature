@@ -11,11 +11,11 @@ namespace SP.Api.Model.Product
         /**
         * 商品分类
         */
-        public int mainType { get; set; }
+        public long mainType { get; set; }
         /**
         * 商品小分类
         */
-        public int secondType { get; set; }
+        public long secondType { get; set; }
         /**
         * 商品名
         */
@@ -33,5 +33,6 @@ namespace SP.Api.Model.Product
         */
         public double purchasePrice { get; set; }
         public string accountId { get; set; }
+        public string productId { get; set; }
     }
 }

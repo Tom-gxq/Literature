@@ -241,7 +241,7 @@ namespace OrderGRPCInterface.Business
                     domain.orderStatus = item.OrderStatus;
                     domain.orderCode = item.OrderCode;
                     domain.orderDate = new DateTime(item.OrderDate).ToString("yyyy-MM-dd");
-                    domain.payDate = new DateTime(item.PayDate).ToString("yyyy-MM-dd");
+                    domain.payDate = new DateTime(item.PayDate).ToString("yyyy-MM-dd HH:mm:ss");
                     if(item.Account != null)
                     {
                         domain.account = new SP.Api.Model.Account.AccountModel();

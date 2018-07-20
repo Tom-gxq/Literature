@@ -16,10 +16,11 @@ using SP.Service.Domain.Reporting;
 using System.Linq;
 using SP.Service.Domain.DelayQueue;
 using Newtonsoft.Json.Linq;
+using SP.Service.Domain.Commands.Order;
 
 namespace SP.Service.Domain.CommandHandlers
 {
-    public class CreateOrderCommandHandler : ICommandHandler<CreateOrderCommand>
+    public class CreateOrderCommandHandler : ICommandHandler<CreateOrderCommand>, ICommandHandler<CreatePurchaseOrderCommand>
     {
         private IDataRepository<OrderDomain> _repository;
         private IDataRepository<ShoppingCartsDomain> _cartRepository;
@@ -33,6 +34,8 @@ namespace SP.Service.Domain.CommandHandlers
         private AssociatorReportDatabase _associatorReportDatabase;
         private static object lockObj = new object();
         private static object lockObjSecond = new object();
+        private static object lockPurchaseObj = new object();
+        private static object lockPurchaseObjSecond = new object();
 
 
         public CreateOrderCommandHandler(IDataRepository<OrderDomain> repository, OrderReportDatabase orderReportDatabase, 
@@ -122,6 +125,64 @@ namespace SP.Service.Domain.CommandHandlers
                         data.Add("orderDate", command.OrderDate.ToString("yyyy-MM-dd HH:mm:ss"));
                         var queue = new SP.Service.Domain.DelayQueue.DelayQueue();
                         queue.Push(data);
+                    }
+                    else
+                    {
+                        throw new ProductSkuException("");
+                    }
+                }
+            }
+        }
+
+        public void Execute(CreatePurchaseOrderCommand command)
+        {
+            lock (lockPurchaseObj)
+            {
+                lock (lockPurchaseObjSecond)
+                {
+                    var address = _addressReportDatabase.GetAddressById(command.AddressId, command.AccountId);
+                    var cartList = new List<ShoppingCartsDomain>();
+                    var groupList = command.CartIds.Distinct();
+                    foreach (var item in groupList)
+                    {
+                        var shoppingCart = _orderReportDatabase.GetShoppingCartsById(item);
+
+                        if (shoppingCart != null && string.IsNullOrEmpty(shoppingCart.OrderId))
+                        {
+                            var cartDomain = new ShoppingCartsDomain();
+                            cartDomain.SetMemento(shoppingCart);
+                            var product = _productReportDatabase.GetProductById(shoppingCart.ProductId);
+                            cartDomain.SetMemenProductto(product);
+
+                            if (cartDomain.ShopId > 0 && cartDomain.Product != null
+                                    && !string.IsNullOrEmpty(cartDomain.Product.ProductId))
+                            {
+                                //var skuDomain = _skuReportDatabase.GetProductSkuByProductId(cartDomain.ShopId, cartDomain.Product.ProductId);
+                                //if (!string.IsNullOrEmpty(shoppingCart?.OrderId) && (skuDomain?.Stock ?? 0) < cartDomain.Quantity)
+                                //{
+                                //    throw new ProductSkuException(string.Format($"ShopId={skuDomain.ShopId} " +
+                                //    $"ProductId={skuDomain.ProductId} domaint.Stock={skuDomain.Stock} " +
+                                //    $"DecStock={cartDomain.Quantity}"));
+                                //}
+                                //else
+                                //{
+                                //System.Console.WriteLine("EditProductSkuDomainStock Quantity=" + shoppingCart.Quantity);
+                                //var sku = new ProductSkuDomain();
+                                //sku.EditProductSkuDomainStock(cartDomain.ShopId, shoppingCart.ProductId, cartDomain.Quantity, command.Id.ToString(), command.AccountId);
+                                //_skuRepository.Save(sku);
+                                //}
+                            }
+
+                            cartList.Add(cartDomain);
+                        }
+                    }
+                    if (cartList.Count > 0)
+                    {
+                        var account = _accountReportDatabase.GetAccountById(command.AccountId);
+                        var aggregate = new OrderDomain();
+                        aggregate.PurchaseOrderDomain(command.Id, command.Remark, command.OrderStatus, command.OrderDate, command.AccountId, cartList, command.AddressId, address?.Address??string.Empty, account?.MobilePhone??string.Empty);
+                        _repository.Save(aggregate);
+                        
                     }
                     else
                     {

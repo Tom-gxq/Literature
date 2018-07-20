@@ -2,6 +2,7 @@
 using SP.Api.Model.Product;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 
 using System.Web;
@@ -13,14 +14,16 @@ namespace WebApiGateway.Controllers.Seller
 {
     public class SellerProductController : BaseController
     {
-        public ActionResult GetMarketProduct(int dormId,int typeId, int pageIndex, int pageSize)
+        public ActionResult GetMarketProduct(int typeId,  int pageIndex, int pageSize)
         {
             var result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var list = ProductBusiness.GetDistributorMarketProduct(dormId, typeId, pageIndex, pageSize);
-                JsonResult.Add("accountInfo", list);
+                string mainTypeConf = ConfigurationManager.AppSettings["MainType.Market"];
+                var mainTypeId = int.Parse(mainTypeConf);
+                var list = ProductBusiness.GetDistributorMarketProduct(mainTypeId, typeId, pageIndex, pageSize);
+                JsonResult.Add("prouctList", list);
                 JsonResult.Add("status", 0);
             }
             catch (Exception ex)
@@ -31,14 +34,14 @@ namespace WebApiGateway.Controllers.Seller
             result.Data = JsonResult;
             return result;
         }
-        public ActionResult GetFoodShopProductList(int dormId, int typeId, int pageIndex, int pageSize)
+        public ActionResult GetFoodShopProductList(int typeId, int pageIndex, int pageSize)
         {
             var result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var list = ProductBusiness.GetDistributorFoodShopProductList(dormId, typeId, pageIndex, pageSize);
-                JsonResult.Add("accountInfo", list);
+                var list = ProductBusiness.GetDistributorFoodShopProductList(currentAccount.AccountId, typeId, pageIndex, pageSize);
+                JsonResult.Add("prouctList", list);
                 JsonResult.Add("status", 0);
             }
             catch (Exception ex)
@@ -50,14 +53,16 @@ namespace WebApiGateway.Controllers.Seller
             return result;
         }
 
-        public ActionResult GetSellerMarketProduct(int dormId, int typeId, int pageIndex, int pageSize)
+        public ActionResult GetSellerMarketProduct(int typeId, int pageIndex, int pageSize)
         {
             var result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var list = ProductBusiness.GetSellerMarketProduct(dormId, typeId, pageIndex, pageSize);
-                JsonResult.Add("accountInfo", list);
+                string mainTypeConf = ConfigurationManager.AppSettings["MainType.Market"];
+                var mainTypeId = int.Parse(mainTypeConf);
+                var list = ProductBusiness.GetSellerMarketProduct(currentAccount.AccountId, mainTypeId, typeId, pageIndex, pageSize);
+                JsonResult.Add("prouctList", list);
                 JsonResult.Add("status", 0);
             }
             catch (Exception ex)
@@ -68,14 +73,16 @@ namespace WebApiGateway.Controllers.Seller
             result.Data = JsonResult;
             return result;
         }
-        public ActionResult GetSellerFoodShopProductList(int dormId, int typeId, int pageIndex, int pageSize)
+        public ActionResult GetSellerFoodShopProductList(int typeId, int pageIndex, int pageSize)
         {
             var result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var list = ProductBusiness.GetSellerFoodShopProductList(dormId, typeId, pageIndex, pageSize);
-                JsonResult.Add("accountInfo", list);
+                string mainTypeConf = ConfigurationManager.AppSettings["MainType.Food"];
+                var mainTypeId = int.Parse(mainTypeConf);
+                var list = ProductBusiness.GetSellerFoodShopProductList(currentAccount.AccountId, mainTypeId, typeId, pageIndex, pageSize);
+                JsonResult.Add("prouctList", list);
                 JsonResult.Add("status", 0);
             }
             catch (Exception ex)
@@ -94,7 +101,7 @@ namespace WebApiGateway.Controllers.Seller
             try
             {
                 var list = ProductBusiness.GetAllProductTypeList(kind);
-                JsonResult.Add("accountInfo", list);
+                JsonResult.Add("productTypeList", list);
                 JsonResult.Add("status", 0);
             }
             catch (Exception ex)
@@ -152,6 +159,24 @@ namespace WebApiGateway.Controllers.Seller
             {
                 product.accountId = currentAccount.AccountId;
                 var list = ProductBusiness.UpdateProduct(product);
+                JsonResult.Add("status", 0);
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+
+        public ActionResult UpdateProductSaleStatus(string productId,int status)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                var list = ProductBusiness.UpdateProductSaleStatus(productId, status);
                 JsonResult.Add("status", 0);
             }
             catch (Exception ex)

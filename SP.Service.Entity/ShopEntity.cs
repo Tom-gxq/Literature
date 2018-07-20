@@ -21,5 +21,6 @@ namespace SP.Service.Entity
         public string EndTime { get; set; }
         public int? ShopType { get; set; }
         public string ShopLogo { get; set; }
+        public bool? ShopStatus { get; set; }
     }
 }

@@ -17,5 +17,25 @@ namespace SP.Service.EntityFramework.Repositories
             var result = this.Select(x => x.ProductId == productId);
             return result;
         }
+
+        public bool Add(ProductImageEntity image)
+        {
+            var result = this.Insert(image);
+            return result > 0;
+        }
+
+        public int Update(ProductImageEntity product)
+        {
+            using (var db = OpenDbConnection())
+            {
+                return this.UpdateNonDefaults(product, x => x.ProductId == product.ProductId
+                && x.Postion == product.Postion && x.DisplaySequence == product.DisplaySequence);
+            }
+        }
+        public ProductImageEntity GetProductImageById(string productId)
+        {
+            var result = this.Single(x => x.ProductId == productId && x.Postion==0 &&x.DisplaySequence==1);
+            return result;
+        }
     }
 }

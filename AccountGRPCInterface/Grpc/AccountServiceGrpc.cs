@@ -60,6 +60,7 @@ namespace SP.Service {
     static readonly grpc::Marshaller<global::SP.Service.OtherAccountRequest> __Marshaller_OtherAccountRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.OtherAccountRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.GetOtherAccountRequest> __Marshaller_GetOtherAccountRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.GetOtherAccountRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.AccountIDRequest> __Marshaller_AccountIDRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AccountIDRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.ApplyPartnerRequest> __Marshaller_ApplyPartnerRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.ApplyPartnerRequest.Parser.ParseFrom);
 
     static readonly grpc::Method<global::SP.Service.RegistRequest, global::SP.Service.AccountResultResponse> __Method_RegistAccount = new grpc::Method<global::SP.Service.RegistRequest, global::SP.Service.AccountResultResponse>(
         grpc::MethodType.Unary,
@@ -390,11 +391,11 @@ namespace SP.Service {
         __Marshaller_AccountIDRequest,
         __Marshaller_AccountResultResponse);
 
-    static readonly grpc::Method<global::SP.Service.AccountIdRequest, global::SP.Service.AccountResultResponse> __Method_ApplyPartner = new grpc::Method<global::SP.Service.AccountIdRequest, global::SP.Service.AccountResultResponse>(
+    static readonly grpc::Method<global::SP.Service.ApplyPartnerRequest, global::SP.Service.AccountResultResponse> __Method_ApplyPartner = new grpc::Method<global::SP.Service.ApplyPartnerRequest, global::SP.Service.AccountResultResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "ApplyPartner",
-        __Marshaller_AccountIdRequest,
+        __Marshaller_ApplyPartnerRequest,
         __Marshaller_AccountResultResponse);
 
     /// <summary>Service descriptor</summary>
@@ -977,7 +978,7 @@ namespace SP.Service {
       /// <param name="request">The request received from the client.</param>
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
-      public virtual global::System.Threading.Tasks.Task<global::SP.Service.AccountResultResponse> ApplyPartner(global::SP.Service.AccountIdRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.AccountResultResponse> ApplyPartner(global::SP.Service.ApplyPartnerRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -3272,7 +3273,7 @@ namespace SP.Service {
       /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
       /// <param name="cancellationToken">An optional token for canceling the call.</param>
       /// <returns>The response received from the server.</returns>
-      public virtual global::SP.Service.AccountResultResponse ApplyPartner(global::SP.Service.AccountIdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      public virtual global::SP.Service.AccountResultResponse ApplyPartner(global::SP.Service.ApplyPartnerRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
         return ApplyPartner(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
@@ -3283,7 +3284,7 @@ namespace SP.Service {
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
       /// <returns>The response received from the server.</returns>
-      public virtual global::SP.Service.AccountResultResponse ApplyPartner(global::SP.Service.AccountIdRequest request, grpc::CallOptions options)
+      public virtual global::SP.Service.AccountResultResponse ApplyPartner(global::SP.Service.ApplyPartnerRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_ApplyPartner, null, options, request);
       }
@@ -3296,7 +3297,7 @@ namespace SP.Service {
       /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
       /// <param name="cancellationToken">An optional token for canceling the call.</param>
       /// <returns>The call object.</returns>
-      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> ApplyPartnerAsync(global::SP.Service.AccountIdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> ApplyPartnerAsync(global::SP.Service.ApplyPartnerRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
         return ApplyPartnerAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
@@ -3307,7 +3308,7 @@ namespace SP.Service {
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
       /// <returns>The call object.</returns>
-      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> ApplyPartnerAsync(global::SP.Service.AccountIdRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> ApplyPartnerAsync(global::SP.Service.ApplyPartnerRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_ApplyPartner, null, options, request);
       }

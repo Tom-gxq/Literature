@@ -50,7 +50,13 @@ namespace SP.Service.Domain.Reporting
             }
             return shopDomainList;
         }
-        
+
+        public bool UpdateOpenShopStatus(int shopId,bool status)
+        {
+            var result = _repository.UpdateOpenShopStatus(shopId, status);
+            return result > 0;
+        }
+
 
         private ShopDomain ConvertShopEntityToDomain(ShopEntity entity)
         {

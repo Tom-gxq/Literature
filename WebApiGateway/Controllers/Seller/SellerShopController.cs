@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProductGRPCInterface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,15 +11,21 @@ namespace WebApiGateway.Controllers.Seller
 {
     public class SellerShopController : BaseController
     {
-        public ActionResult UpdateOpenShopStatus(int shopId,int status)
+        public ActionResult UpdateOpenShopStatus(int shopId,bool status)
         {
             var result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var list = AccountBusiness.GetAccountFullInfo(currentAccount.AccountId);
-                JsonResult.Add("accountInfo", list);
-                JsonResult.Add("status", 0);
+                var ret = ProductBusiness.UpdateOpenShopStatus(shopId, status);
+                if (ret)
+                {
+                    JsonResult.Add("status", 0);
+                }
+                else
+                {
+                    JsonResult.Add("status", 2);
+                }
             }
             catch (Exception ex)
             {

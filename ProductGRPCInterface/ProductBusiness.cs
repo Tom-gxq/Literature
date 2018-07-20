@@ -274,7 +274,7 @@ namespace ProductGRPCInterface
             return list;
         }
 
-        public static bool UpdateOpenShopStatus(int shopId,int status)
+        public static bool UpdateOpenShopStatus(int shopId,bool status)
         {
             var client = ProductClientHelper.GetClient();
             var request1 = new OpenShopStatusRequest()
@@ -327,9 +327,10 @@ namespace ProductGRPCInterface
                 MarketPrice = model.marketPrice,
                 ProductName = model.productName,
                 PurchasePrice = model.purchasePrice,
+                ProductId = model.productId
 
             };
-            var result = client.AddProduct(request1);
+            var result = client.UpdateProduct(request1);
             if (result.Status == 10001)
             {
                 return true;
@@ -339,12 +340,32 @@ namespace ProductGRPCInterface
                 return false;
             }
         }
-        public static List<SellerProductModel> GetDistributorMarketProduct(int dormId,int typeId,int pageIndex,int pageSize)
+
+        public static bool UpdateProductSaleStatus(string productId, int status)
+        {
+            var client = ProductClientHelper.GetClient();
+            var request1 = new ProductSaleStatusRequest()
+            { 
+                ProductId = productId,
+                Status = status
+
+            };
+            var result = client.UpdateProductSaleStatus(request1);
+            if (result.Status == 10001)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static List<SellerProductModel> GetDistributorMarketProduct(int typeId, int secondTypeId, int pageIndex,int pageSize)
         {
             var client = ProductClientHelper.GetClient();
             var request1 = new ShopProductRequest()
             {
-                DormId = dormId,
+                SecondTypeId = secondTypeId,
                 TypeId = typeId,
                 PageIndex = pageIndex,
                 PageSize = pageSize
@@ -361,19 +382,20 @@ namespace ProductGRPCInterface
                     domain.purchasePrice = item.PurchasePrice;
                     domain.mainType = item.MainType;
                     domain.secondType = item.SecondType;
-                    domain.imagePath = item.ImagePath;                    
+                    domain.imagePath = item.ImagePath;
+                    domain.productId = item.ProductId;
                     list.Add(domain);
                 }
             }
             return list;
         }
-        public static List<SellerProductModel> GetDistributorFoodShopProductList(int dormId, int typeId, int pageIndex, int pageSize)
+        public static List<SellerProductModel> GetDistributorFoodShopProductList(string accountId,int secondTypeId,  int pageIndex, int pageSize)
         {
             var client = ProductClientHelper.GetClient();
-            var request1 = new ShopProductRequest()
-            {
-                DormId = dormId,
-                TypeId = typeId,
+            var request1 = new SellerShopProductRequest()
+            {             
+                AccountId = accountId,
+                SecondTypeId = secondTypeId,
                 PageIndex = pageIndex,
                 PageSize = pageSize
             };
@@ -390,19 +412,21 @@ namespace ProductGRPCInterface
                     domain.mainType = item.MainType;
                     domain.secondType = item.SecondType;
                     domain.imagePath = item.ImagePath;
+                    domain.productId = item.ProductId;
                     list.Add(domain);
                 }
             }
             return list;
         }
 
-        public static List<SellerProductModel> GetSellerMarketProduct(int dormId, int typeId, int pageIndex, int pageSize)
+        public static List<SellerProductModel> GetSellerMarketProduct(string accountId, int typeId, int secondTypeId, int pageIndex, int pageSize)
         {
             var client = ProductClientHelper.GetClient();
-            var request1 = new ShopProductRequest()
+            var request1 = new SellerShopProductRequest()
             {
-                DormId = dormId,
+                AccountId = accountId,
                 TypeId = typeId,
+                SecondTypeId = secondTypeId,
                 PageIndex = pageIndex,
                 PageSize = pageSize
             };
@@ -419,18 +443,20 @@ namespace ProductGRPCInterface
                     domain.mainType = item.MainType;
                     domain.secondType = item.SecondType;
                     domain.imagePath = item.ImagePath;
+                    domain.productId = item.ProductId;
                     list.Add(domain);
                 }
             }
             return list;
         }
-        public static List<SellerProductModel> GetSellerFoodShopProductList(int dormId, int typeId, int pageIndex, int pageSize)
+        public static List<SellerProductModel> GetSellerFoodShopProductList(string accountId, int typeId,int secondTypeId, int pageIndex, int pageSize)
         {
             var client = ProductClientHelper.GetClient();
-            var request1 = new ShopProductRequest()
+            var request1 = new SellerShopProductRequest()
             {
-                DormId = dormId,
+                AccountId = accountId,
                 TypeId = typeId,
+                SecondTypeId = secondTypeId,
                 PageIndex = pageIndex,
                 PageSize = pageSize
             };
@@ -447,6 +473,7 @@ namespace ProductGRPCInterface
                     domain.mainType = item.MainType;
                     domain.secondType = item.SecondType;
                     domain.imagePath = item.ImagePath;
+                    domain.productId = item.ProductId;
                     list.Add(domain);
                 }
             }
@@ -492,6 +519,7 @@ namespace ProductGRPCInterface
                 model.productName = result.Product.ProductName;
                 model.purchasePrice = result.Product.PurchasePrice;
                 model.marketPrice = result.Product.MarketPrice;
+                model.productId = result.Product.ProductId;
             }
             return model;
         }

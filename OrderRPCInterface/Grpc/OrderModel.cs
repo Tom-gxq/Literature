@@ -204,7 +204,7 @@ namespace SP.Service {
     private int orderType_;
     /// <summary>
     ///*
-    /// 订单类别
+    /// 订单类别(0,售卖订单 1，采购订单)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int OrderType {

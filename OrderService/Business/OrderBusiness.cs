@@ -28,7 +28,16 @@ namespace Order.Service.Business
             }
             System.Console.WriteLine("##########################################################################");
 
-            ServiceLocator.CommandBus.Send(new CreateOrderCommand(orderId, request.Remark, request.AccountId, cartIds, request.AddressId));
+            switch (request.OrderType)
+            {
+                case 0:
+                   ServiceLocator.CommandBus.Send(new CreateOrderCommand(orderId, request.Remark, request.AccountId, cartIds, request.AddressId));
+                    break;
+                case 1:
+                    ServiceLocator.CommandBus.Send(new CreatePurchaseOrderCommand(orderId, request.Remark, request.AccountId, cartIds, request.AddressId,request.OrderType));
+                    break;
+            }
+
             
             return orderId.ToString();
         }

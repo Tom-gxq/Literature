@@ -1,4 +1,5 @@
-﻿using OrderGRPCInterface.Business;
+﻿using AccountGRPCInterface;
+using OrderGRPCInterface.Business;
 using SP.Api.Model.Order;
 using SP.Api.Model.Seller;
 using System;
@@ -13,14 +14,13 @@ namespace WebApiGateway.Controllers.Seller
 {
     public class ShipOrderController : BaseController
     {
-        public ActionResult ApplyPartner()
+        public ActionResult ApplyPartner(int dormId)
         {
             var result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                model.AccountId = currentAccount.AccountId;
-                var retValue = AccountBusiness.UpdateAccountIDInfo(model);
+                var retValue = AccountBusiness.ApplyPartner(currentAccount.AccountId, dormId);
                 if (retValue)
                 {
                     JsonResult.Add("status", 0);

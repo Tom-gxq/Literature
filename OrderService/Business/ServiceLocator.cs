@@ -24,7 +24,7 @@ namespace Order.Service.Business
             {
                 lock (_lockThis)
                 {
-                    _commandBus = IocManager.Instance.Resolve(typeof(ICommandBus)) as ICommandBus; ;
+                    _commandBus = IocManager.Instance.Resolve(typeof(ICommandBus)) as ICommandBus;
                     _reportDatabase = IocManager.Instance.Resolve(typeof(OrderReportDatabase)) as OrderReportDatabase;
                     _associatorReportDatabase = IocManager.Instance.Resolve(typeof(AssociatorReportDatabase)) as AssociatorReportDatabase;
                     _tradeReportDatabase = IocManager.Instance.Resolve(typeof(TradeReportDatabase)) as TradeReportDatabase;
