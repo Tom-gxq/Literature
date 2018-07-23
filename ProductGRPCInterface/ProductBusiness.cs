@@ -474,6 +474,7 @@ namespace ProductGRPCInterface
                     domain.secondType = item.SecondType;
                     domain.imagePath = item.ImagePath;
                     domain.productId = item.ProductId;
+                    domain.saleStatus = (item.SaleStatus == 1);
                     list.Add(domain);
                 }
             }

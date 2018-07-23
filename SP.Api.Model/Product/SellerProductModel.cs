@@ -34,5 +34,6 @@ namespace SP.Api.Model.Product
         public double purchasePrice { get; set; }
         public string accountId { get; set; }
         public string productId { get; set; }
+        public bool saleStatus { get; set; }
     }
 }

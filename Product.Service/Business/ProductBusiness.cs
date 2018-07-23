@@ -542,6 +542,7 @@ namespace Product.Service.Business
                 product.MainType = item.TypeId;
                 product.SecondType = item.SecondTypeId;
                 product.ProductId = item.ProductId;
+                product.SaleStatus = item.SaleStatus;
                 var image = ServiceLocator.ProductImageReportDatabase.GetProductImage(item.ProductId);
                 if (image != null)
                 {

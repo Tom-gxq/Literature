@@ -78,23 +78,23 @@ namespace SP.Service {
             "ZUlkGAMgASgDEhQKDHNlY29uZFR5cGVJZBgEIAEoAyIbCgtLaW5kUmVxdWVz",
             "dBIMCgRraW5kGAEgASgFIlsKF1Byb2R1Y3RUeXBlTGlzdFJlc3BvbnNlEg4K",
             "BnN0YXR1cxgBIAEoBRIwCg9wcm9kdWN0VHlwZUxpc3QYAiADKAsyFy5TUC5T",
-            "ZXJ2aWNlLlByb2R1Y3RUeXBlIpwBCg1TZWxsZXJQcm9kdWN0EhAKCG1haW5U",
+            "ZXJ2aWNlLlByb2R1Y3RUeXBlIrABCg1TZWxsZXJQcm9kdWN0EhAKCG1haW5U",
             "eXBlGAEgASgDEhIKCnNlY29uZFR5cGUYAiABKAMSEwoLcHJvZHVjdE5hbWUY",
             "AyABKAkSEQoJaW1hZ2VQYXRoGAQgASgJEhMKC21hcmtldFByaWNlGAUgASgB",
-            "EhUKDXB1cmNoYXNlUHJpY2UYBiABKAESEQoJcHJvZHVjdElkGAcgASgJIlMK",
-            "FVByb2R1Y3REZXRhaWxSZXNwb25zZRIOCgZzdGF0dXMYASABKAUSKgoHcHJv",
-            "ZHVjdBgCIAEoCzIZLlNQLlNlcnZpY2UuU2VsbGVyUHJvZHVjdCKwAQoOUHJv",
-            "ZHVjdFJlcXVlc3QSEAoIbWFpblR5cGUYASABKAMSEgoKc2Vjb25kVHlwZRgC",
-            "IAEoAxITCgtwcm9kdWN0TmFtZRgDIAEoCRIRCglpbWFnZVBhdGgYBCABKAkS",
-            "EwoLbWFya2V0UHJpY2UYBSABKAESFQoNcHVyY2hhc2VQcmljZRgGIAEoARIR",
-            "CglhY2NvdW50SWQYByABKAkSEQoJcHJvZHVjdElkGAggASgJImoKGVNlbGxl",
-            "clByb2R1Y3RMaXN0UmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEi4KC3Byb2R1",
-            "Y3RMaXN0GAIgAygLMhkuU1AuU2VydmljZS5TZWxsZXJQcm9kdWN0Eg0KBXRv",
-            "dGFsGAQgASgDIngKGFNlbGxlclNob3BQcm9kdWN0UmVxdWVzdBIRCglwYWdl",
-            "SW5kZXgYASABKAUSEAoIcGFnZVNpemUYAiABKAUSDgoGdHlwZUlkGAMgASgD",
-            "EhQKDHNlY29uZFR5cGVJZBgEIAEoAxIRCglhY2NvdW50SWQYBSABKAkiPQoY",
-            "UHJvZHVjdFNhbGVTdGF0dXNSZXF1ZXN0EhEKCXByb2R1Y3RJZBgFIAEoCRIO",
-            "CgZzdGF0dXMYASABKAViBnByb3RvMw=="));
+            "EhUKDXB1cmNoYXNlUHJpY2UYBiABKAESEQoJcHJvZHVjdElkGAcgASgJEhIK",
+            "CnNhbGVTdGF0dXMYCCABKAUiUwoVUHJvZHVjdERldGFpbFJlc3BvbnNlEg4K",
+            "BnN0YXR1cxgBIAEoBRIqCgdwcm9kdWN0GAIgASgLMhkuU1AuU2VydmljZS5T",
+            "ZWxsZXJQcm9kdWN0IrABCg5Qcm9kdWN0UmVxdWVzdBIQCghtYWluVHlwZRgB",
+            "IAEoAxISCgpzZWNvbmRUeXBlGAIgASgDEhMKC3Byb2R1Y3ROYW1lGAMgASgJ",
+            "EhEKCWltYWdlUGF0aBgEIAEoCRITCgttYXJrZXRQcmljZRgFIAEoARIVCg1w",
+            "dXJjaGFzZVByaWNlGAYgASgBEhEKCWFjY291bnRJZBgHIAEoCRIRCglwcm9k",
+            "dWN0SWQYCCABKAkiagoZU2VsbGVyUHJvZHVjdExpc3RSZXNwb25zZRIOCgZz",
+            "dGF0dXMYASABKAUSLgoLcHJvZHVjdExpc3QYAiADKAsyGS5TUC5TZXJ2aWNl",
+            "LlNlbGxlclByb2R1Y3QSDQoFdG90YWwYBCABKAMieAoYU2VsbGVyU2hvcFBy",
+            "b2R1Y3RSZXF1ZXN0EhEKCXBhZ2VJbmRleBgBIAEoBRIQCghwYWdlU2l6ZRgC",
+            "IAEoBRIOCgZ0eXBlSWQYAyABKAMSFAoMc2Vjb25kVHlwZUlkGAQgASgDEhEK",
+            "CWFjY291bnRJZBgFIAEoCSI9ChhQcm9kdWN0U2FsZVN0YXR1c1JlcXVlc3QS",
+            "EQoJcHJvZHVjdElkGAUgASgJEg4KBnN0YXR1cxgBIAEoBWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -126,7 +126,7 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ShopProductRequest), global::SP.Service.ShopProductRequest.Parser, new[]{ "PageIndex", "PageSize", "TypeId", "SecondTypeId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.KindRequest), global::SP.Service.KindRequest.Parser, new[]{ "Kind" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ProductTypeListResponse), global::SP.Service.ProductTypeListResponse.Parser, new[]{ "Status", "ProductTypeList" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SellerProduct), global::SP.Service.SellerProduct.Parser, new[]{ "MainType", "SecondType", "ProductName", "ImagePath", "MarketPrice", "PurchasePrice", "ProductId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SellerProduct), global::SP.Service.SellerProduct.Parser, new[]{ "MainType", "SecondType", "ProductName", "ImagePath", "MarketPrice", "PurchasePrice", "ProductId", "SaleStatus" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ProductDetailResponse), global::SP.Service.ProductDetailResponse.Parser, new[]{ "Status", "Product" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ProductRequest), global::SP.Service.ProductRequest.Parser, new[]{ "MainType", "SecondType", "ProductName", "ImagePath", "MarketPrice", "PurchasePrice", "AccountId", "ProductId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SellerProductListResponse), global::SP.Service.SellerProductListResponse.Parser, new[]{ "Status", "ProductList", "Total" }, null, null, null),
@@ -5575,6 +5575,7 @@ namespace SP.Service {
       marketPrice_ = other.marketPrice_;
       purchasePrice_ = other.purchasePrice_;
       productId_ = other.productId_;
+      saleStatus_ = other.saleStatus_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5687,6 +5688,21 @@ namespace SP.Service {
       }
     }
 
+    /// <summary>Field number for the "saleStatus" field.</summary>
+    public const int SaleStatusFieldNumber = 8;
+    private int saleStatus_;
+    /// <summary>
+    ///*
+    /// 商品上下架状态
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int SaleStatus {
+      get { return saleStatus_; }
+      set {
+        saleStatus_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as SellerProduct);
@@ -5707,6 +5723,7 @@ namespace SP.Service {
       if (MarketPrice != other.MarketPrice) return false;
       if (PurchasePrice != other.PurchasePrice) return false;
       if (ProductId != other.ProductId) return false;
+      if (SaleStatus != other.SaleStatus) return false;
       return true;
     }
 
@@ -5720,6 +5737,7 @@ namespace SP.Service {
       if (MarketPrice != 0D) hash ^= MarketPrice.GetHashCode();
       if (PurchasePrice != 0D) hash ^= PurchasePrice.GetHashCode();
       if (ProductId.Length != 0) hash ^= ProductId.GetHashCode();
+      if (SaleStatus != 0) hash ^= SaleStatus.GetHashCode();
       return hash;
     }
 
@@ -5758,6 +5776,10 @@ namespace SP.Service {
         output.WriteRawTag(58);
         output.WriteString(ProductId);
       }
+      if (SaleStatus != 0) {
+        output.WriteRawTag(64);
+        output.WriteInt32(SaleStatus);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5783,6 +5805,9 @@ namespace SP.Service {
       }
       if (ProductId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(ProductId);
+      }
+      if (SaleStatus != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(SaleStatus);
       }
       return size;
     }
@@ -5812,6 +5837,9 @@ namespace SP.Service {
       }
       if (other.ProductId.Length != 0) {
         ProductId = other.ProductId;
+      }
+      if (other.SaleStatus != 0) {
+        SaleStatus = other.SaleStatus;
       }
     }
 
@@ -5849,6 +5877,10 @@ namespace SP.Service {
           }
           case 58: {
             ProductId = input.ReadString();
+            break;
+          }
+          case 64: {
+            SaleStatus = input.ReadInt32();
             break;
           }
         }
