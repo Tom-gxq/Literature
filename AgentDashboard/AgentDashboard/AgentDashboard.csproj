@@ -99,8 +99,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\AgentDashboard.css" />
+    <Content Include="css\regionMgr.png" />
     <Content Include="css\sb-admin.css" />
     <Content Include="css\sb-admin.min.css" />
+    <Content Include="css\ShopMgr.png" />
     <Content Include="Global.asax" />
     <Content Include="js\sb-admin-charts.js" />
     <Content Include="js\sb-admin-charts.min.js" />
@@ -157,6 +160,7 @@
       <DependentUpon>SP.edmx</DependentUpon>
     </Content>
     <Content Include="Views\Default\ShopDetails.cshtml" />
+    <Content Include="Views\Default\HumanManagerDemo.cshtml" />
     <None Include="Views\Default\Index.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -386,6 +390,7 @@
     <Content Include="Views\Default\ShopManager.cshtml" />
     <Content Include="Views\Default\RegionManager.cshtml" />
     <Content Include="Views\Default\OrderManager.cshtml" />
+    <Content Include="Views\Default\ShopManagerDemo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

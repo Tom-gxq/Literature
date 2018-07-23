@@ -13,6 +13,16 @@ namespace AgentDashboard.Controllers
 {
     public class DefaultController : Controller
     {
+        public ActionResult HumanManagerDemo()
+        {
+            return View();
+        }
+
+        public ActionResult ShopManagerDemo()
+        {
+            return View();
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -58,15 +68,69 @@ namespace AgentDashboard.Controllers
         /// <returns></returns>
         public ActionResult ShopDetails(int shopId)
         {
+            ShopDetailsViewModel vm = new ShopDetailsViewModel();
             using (SPEntities sp = new SPEntities())
             {
                 var shop = sp.SP_Shop.SingleOrDefault(n => n.Id == shopId);
-                if (shop != null)
+                vm.ShopName = shop?.ShopName;
+                DateTime startTime;
+                bool isSuccess = DateTime.TryParse(shop?.StartTime, out startTime);
+                if (isSuccess)
                 {
+                    vm.StartTime = startTime;
+                }
+                else
+                {
+                    vm.StartTime = new DateTime(0);
+                }
+                DateTime endTime;
+                isSuccess = DateTime.TryParse(shop?.EndTime, out endTime);
+                if (isSuccess)
+                {
+                    vm.EndTime = endTime;
+                }
+                else
+                {
+                    vm.EndTime = new DateTime(0);
+                }
+
+                var shopOwnerList = sp.SP_ShopOwner.Where(n => n.ShopId == shopId);
+
+                if (shopOwnerList != null)
+                {
+                    vm.DeliverManCount = shopOwnerList.Count();
+                    vm.DeliverMen = new List<DeliverManViewModel>();
+
+                    foreach (var shopOwner in shopOwnerList)
+                    {
+                        var deliverMan = new DeliverManViewModel();
+                        deliverMan.Products = new List<ProductsViewModel>();
+
+                        var account = sp.SP_AccountInfo.SingleOrDefault(n => n.AccountId == shopOwner.OwnerId);
+                        deliverMan.Name = account.Fullname;
+
+                        ProductsViewModel procduct = new ProductsViewModel();
+
+                        var deliverProducts = sp.SP_AccountProduct.Where(n => n.AccountId == account.AccountId && n.ShopId == shop.Id);
+
+                        foreach (var deliverProduct in deliverProducts)
+                        {
+                            procduct.Id = deliverProduct.ProductId;
+                            var productStock = sp.SP_ProductSKUs.SingleOrDefault(n => n.ProductId == procduct.Id);
+                            procduct.Stocks = productStock.Stock;
+                            procduct.PreStocks = deliverProduct.PreStock;
+
+                            var procdutInfo = sp.SP_Products.SingleOrDefault(n => n.ProductId == procduct.Id);
+                            procduct.Name = procdutInfo.ProductName;
+                            deliverMan.Products.Add(procduct);
+                        }
+
+                        vm.DeliverMen.Add(deliverMan);
+                    }
                 }
             }
 
-            return View();
+            return View(vm);
         }
 
         /// <summary>
