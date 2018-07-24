@@ -865,5 +865,43 @@ namespace Account.Service.GrpcImpl
             logger.LogInformation(this.prjLicEID, "GetOtherAccount {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
+
+        public override Task<AccountResultResponse> UpdateAccountIDInfo(AccountIDRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} UpdateAccountIDInfo Connected!",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, " {AccountId} {DormId} {FullName} {UserType} ",
+                request.AccountId, request.DormId, request.FullName, request.UserType);
+            AccountResultResponse response = new AccountResultResponse();
+            response.Status = 10002;
+            try
+            {
+                response = AccountBusiness.UpdateAccountIDInfo(request.AccountId, request.DormId, request.FullName, request.UserType);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "UpdateAccountIDInfo Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "UpdateAccountIDInfo {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+        public override Task<AccountResultResponse> ApplyPartner(ApplyPartnerRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} ApplyPartner Connected!",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, " {AccountId} {DormId} ", request.AccountId, request.DormId);
+            AccountResultResponse response = new AccountResultResponse();
+            response.Status = 10002;
+            try
+            {
+                response = AccountBusiness.ApplyPartner(request.AccountId, request.DormId);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "ApplyPartner Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "ApplyPartner {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
     }
 }

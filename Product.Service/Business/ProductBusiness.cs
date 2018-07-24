@@ -1,4 +1,5 @@
 ﻿using SP.Service;
+using SP.Service.Domain.Commands.Product;
 using SP.Service.Domain.DomainEntity;
 using System;
 using System.Collections.Generic;
@@ -403,5 +404,178 @@ namespace Product.Service.Business
             }
             return result;
         }
+
+        public static ResultResponse UpdateOpenShopStatus(int shopId, bool status)
+        {
+            var result = new ResultResponse();
+            result.Status = 10002;
+            var ret = ServiceLocator.ShopReportDatabase.UpdateOpenShopStatus(shopId, status);
+            if(ret)
+            {
+                result.Status = 10001;
+            }
+            else
+            {
+                result.Status = 10003;
+            }
+            return result;
+        }
+
+        public static ResultResponse AddProduct(string accountId, long mainType, long secondType, string productName, double marketPrice, double purchasePrice, string imagePath)
+        {
+            ServiceLocator.CommandBus.Send(new CreateProductCommand(Guid.NewGuid(), mainType, secondType, productName, accountId, marketPrice, purchasePrice, imagePath));
+            var result = new ResultResponse();
+            result.Status = 10001;
+            return result;
+        }
+
+        public static ResultResponse UpdateProduct(string productId, string productName, double marketPrice, double purchasePrice, string imagePath)
+        {
+            ServiceLocator.CommandBus.Send(new EditProductCommand(new Guid(productId), productName, marketPrice, purchasePrice, imagePath));
+            var result = new ResultResponse();
+            result.Status = 10001;
+            return result;
+        }
+
+        public static ResultResponse UpdateProductSaleStatus(string productId, int status)
+        {
+            ServiceLocator.CommandBus.Send(new EditSaleStatusCommand(new Guid(productId), status));
+            var result = new ResultResponse();
+            result.Status = 10001;
+            return result;
+        }
+
+        public static ProductDetailResponse GetSellerProductDetail(string productId)
+        {
+            var result = new ProductDetailResponse();
+            result.Status = 10002;
+            var product = ServiceLocator.ReportDatabase.GetProductById(productId);
+            if (product != null)
+            {
+                result.Product = new SellerProduct();
+                result.Product.MainType = product.TypeId!=null? product.TypeId.Value:0;
+                result.Product.SecondType = product.SecondTypeId != null ? product.SecondTypeId.Value : 0;
+                result.Product.ProductName = product.ProductName;
+                result.Product.MarketPrice = product.MarketPrice != null ? product.MarketPrice.Value : 0;
+                result.Product.PurchasePrice = product.PurchasePrice != null ? product.PurchasePrice.Value : 0;
+                result.Product.ProductId = product.ProductId;
+                var image = ServiceLocator.ProductImageReportDatabase.GetProductImage(productId);
+                if (image != null)
+                {
+                    result.Product.ImagePath = image.ImgPath;
+                }
+                result.Status = 10001;
+            }
+            
+            return result;
+        }
+        public static SellerProductListResponse GetDistributorProduct(string accountId,long secondTypeId, int pageIndex, int pageSize)
+        {
+            var result = new SellerProductListResponse();
+            result.Status = 10002;
+            var account = ServiceLocator.AddressDatabase.GetDefaultSelectedAddress(accountId);
+            if (account != null)
+            {
+                var list = ServiceLocator.ReportDatabase.GetDistributorProduct(account.DistrictId, secondTypeId, pageIndex, pageSize);
+                foreach (var item in list)
+                {
+                    var product = new SellerProduct();
+                    product.ProductName = item.ProductName;
+                    product.PurchasePrice = item.PurchasePrice;
+                    product.MarketPrice = item.MarketPrice;
+                    product.MainType = item.TypeId;
+                    product.SecondType = item.SecondTypeId;
+                    product.ProductId = item.ProductId;
+                    var image = ServiceLocator.ProductImageReportDatabase.GetProductImage(item.ProductId);
+                    if (image != null)
+                    {
+                        product.ImagePath = image.ImgPath;
+                    }
+                    result.ProductList.Add(product);
+                }
+                result.Total = ServiceLocator.ReportDatabase.GetDistributorProductCount(account.DistrictId, secondTypeId);
+                result.Status = 10001;
+            }
+            else
+            {
+                result.Status = 10003;//没有默认地址
+            }
+            return result;
+        }
+        public static SellerProductListResponse GetDistributorMarketProduct(long typeId, long secondTypeId, int pageIndex, int pageSize)
+        {
+            var result = new SellerProductListResponse();
+            result.Status = 10002;
+            var list = ServiceLocator.ReportDatabase.GetDistributorMarketProduct(typeId, secondTypeId, pageIndex, pageSize);
+            foreach (var item in list)
+            {
+                var product = new SellerProduct();
+                product.ProductName = item.ProductName;
+                product.PurchasePrice = item.PurchasePrice;
+                product.MarketPrice = item.MarketPrice;
+                product.MainType = item.TypeId;
+                product.SecondType = item.SecondTypeId;
+                product.ProductId = item.ProductId;
+                var image = ServiceLocator.ProductImageReportDatabase.GetProductImage(item.ProductId);
+                if (image != null)
+                {
+                    product.ImagePath = image.ImgPath;
+                }
+                result.ProductList.Add(product);
+            }
+            result.Total = ServiceLocator.ReportDatabase.GetDistributorMarketProductCount(typeId, secondTypeId);
+            result.Status = 10001;
+            return result;
+        }
+
+        public static SellerProductListResponse GetSellerProduct(string accountId,long typeId, long secondTypeId, int pageIndex, int pageSize)
+        {
+            var result = new SellerProductListResponse();
+            result.Status = 10002;
+            var list = ServiceLocator.ReportDatabase.GetSellerProduct(accountId, typeId, secondTypeId, pageIndex, pageSize);
+            foreach (var item in list)
+            {
+                var product = new SellerProduct();
+                product.ProductName = item.ProductName;
+                product.PurchasePrice = item.PurchasePrice;
+                product.MarketPrice = item.MarketPrice;
+                product.MainType = item.TypeId;
+                product.SecondType = item.SecondTypeId;
+                product.ProductId = item.ProductId;
+                product.SaleStatus = item.SaleStatus; 
+                var image = ServiceLocator.ProductImageReportDatabase.GetProductImage(item.ProductId);
+                if (image != null)
+                {
+                    product.ImagePath = image.ImgPath;
+                }
+                result.ProductList.Add(product);
+            }
+            result.Total = ServiceLocator.ReportDatabase.GetSellerProductCount(accountId, typeId, secondTypeId);
+            result.Status = 10001;
+            return result;
+        }
+
+        public static ProductTypeListResponse GetAllProductTypeList(int typeKind)
+        {
+            var result = new ProductTypeListResponse();
+            result.Status = 10002;
+            var list = ServiceLocator.ProductTypeReportDatabase.GetProductTypeByKind(typeKind);
+            if (list != null)
+            {
+                foreach (var item in list)
+                {
+                    var type = new SP.Service.ProductType();
+                    type.TypeId = item.Id;
+                    type.TypeName = item.TypeName;
+                    type.TypePath = string.IsNullOrEmpty(item.TypePath) ? string.Empty : item.TypePath;
+                    type.Kind = item.Kind;
+                    type.TypeLogo = string.IsNullOrEmpty(item.TypeLogo) ? string.Empty : item.TypeLogo;
+                    result.ProductTypeList.Add(type);
+                }
+                result.Status = 10001;
+            }
+            return result;
+        }
+
     }
 }

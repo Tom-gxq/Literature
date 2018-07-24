@@ -59,6 +59,8 @@ namespace SP.Service {
     static readonly grpc::Marshaller<global::SP.Service.BingAccountRequest> __Marshaller_BingAccountRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.BingAccountRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.OtherAccountRequest> __Marshaller_OtherAccountRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.OtherAccountRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.GetOtherAccountRequest> __Marshaller_GetOtherAccountRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.GetOtherAccountRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.AccountIDRequest> __Marshaller_AccountIDRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AccountIDRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.ApplyPartnerRequest> __Marshaller_ApplyPartnerRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.ApplyPartnerRequest.Parser.ParseFrom);
 
     static readonly grpc::Method<global::SP.Service.RegistRequest, global::SP.Service.AccountResultResponse> __Method_RegistAccount = new grpc::Method<global::SP.Service.RegistRequest, global::SP.Service.AccountResultResponse>(
         grpc::MethodType.Unary,
@@ -381,6 +383,20 @@ namespace SP.Service {
         "GetOtherAccount",
         __Marshaller_GetOtherAccountRequest,
         __Marshaller_AccountResponse);
+
+    static readonly grpc::Method<global::SP.Service.AccountIDRequest, global::SP.Service.AccountResultResponse> __Method_UpdateAccountIDInfo = new grpc::Method<global::SP.Service.AccountIDRequest, global::SP.Service.AccountResultResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "UpdateAccountIDInfo",
+        __Marshaller_AccountIDRequest,
+        __Marshaller_AccountResultResponse);
+
+    static readonly grpc::Method<global::SP.Service.ApplyPartnerRequest, global::SP.Service.AccountResultResponse> __Method_ApplyPartner = new grpc::Method<global::SP.Service.ApplyPartnerRequest, global::SP.Service.AccountResultResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ApplyPartner",
+        __Marshaller_ApplyPartnerRequest,
+        __Marshaller_AccountResultResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -939,6 +955,30 @@ namespace SP.Service {
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
       public virtual global::System.Threading.Tasks.Task<global::SP.Service.AccountResponse> GetOtherAccount(global::SP.Service.GetOtherAccountRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 更新用户身份
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.AccountResultResponse> UpdateAccountIDInfo(global::SP.Service.AccountIDRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 成为合伙人
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.AccountResultResponse> ApplyPartner(global::SP.Service.ApplyPartnerRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -3176,6 +3216,102 @@ namespace SP.Service {
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetOtherAccount, null, options, request);
       }
+      /// <summary>
+      ///*
+      /// 更新用户身份
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResultResponse UpdateAccountIDInfo(global::SP.Service.AccountIDRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UpdateAccountIDInfo(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 更新用户身份
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResultResponse UpdateAccountIDInfo(global::SP.Service.AccountIDRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_UpdateAccountIDInfo, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 更新用户身份
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> UpdateAccountIDInfoAsync(global::SP.Service.AccountIDRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UpdateAccountIDInfoAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 更新用户身份
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> UpdateAccountIDInfoAsync(global::SP.Service.AccountIDRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_UpdateAccountIDInfo, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 成为合伙人
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResultResponse ApplyPartner(global::SP.Service.ApplyPartnerRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return ApplyPartner(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 成为合伙人
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResultResponse ApplyPartner(global::SP.Service.ApplyPartnerRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ApplyPartner, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 成为合伙人
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> ApplyPartnerAsync(global::SP.Service.ApplyPartnerRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return ApplyPartnerAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 成为合伙人
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> ApplyPartnerAsync(global::SP.Service.ApplyPartnerRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ApplyPartner, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override AccountServiceClient NewInstance(ClientBaseConfiguration configuration)
       {
@@ -3233,7 +3369,9 @@ namespace SP.Service {
           .AddMethod(__Method_UpdateAccountMobile, serviceImpl.UpdateAccountMobile)
           .AddMethod(__Method_BindOtherAccount, serviceImpl.BindOtherAccount)
           .AddMethod(__Method_CreateOtherAccount, serviceImpl.CreateOtherAccount)
-          .AddMethod(__Method_GetOtherAccount, serviceImpl.GetOtherAccount).Build();
+          .AddMethod(__Method_GetOtherAccount, serviceImpl.GetOtherAccount)
+          .AddMethod(__Method_UpdateAccountIDInfo, serviceImpl.UpdateAccountIDInfo)
+          .AddMethod(__Method_ApplyPartner, serviceImpl.ApplyPartner).Build();
     }
 
   }

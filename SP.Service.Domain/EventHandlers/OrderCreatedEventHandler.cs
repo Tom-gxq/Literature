@@ -25,13 +25,17 @@ namespace SP.Service.Domain.EventHandlers
                 Amount = handle.Amount,
                 VIPAmount = handle.VIPAmount,
                 AccountId = handle.AccountId,
-                OrderDate =handle.OrderDate,
+                OrderDate = handle.OrderDate,
                 OrderStatus = (int)handle.OrderStatus,
                 OrderCode = orderCode,
                 AddressId = handle.AddressId,
                 OrderAddress = handle.Address,
                 Meta_Keywords = $"{orderCode}|{handle.Mobile}",
                 IsVip = handle.IsVip,
+                IsAliPay = false,
+                IsWxPay = false,
+                OrderType = handle.OrderType
+
             };
 
             _reportDatabase.Add(item);

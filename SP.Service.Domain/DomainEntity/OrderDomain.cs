@@ -31,6 +31,7 @@ namespace SP.Service.Domain.DomainEntity
         public long Freight { get; internal set; }
         public double Amount { get; internal set; }
         public double VIPAmount { get; internal set; }
+        public double PurchaseAmount { get; internal set; }
         public string OrderCode { get; internal set; }
         public List<ProductDomain> Products { get; internal set; }
         public int AdressId { get; internal set; }
@@ -51,6 +52,13 @@ namespace SP.Service.Domain.DomainEntity
             var mobilePhone = mobile?.Replace("+86","")??string.Empty;
             ApplyChange(new OrderCreatedEvent(id, remark, orderStatus, orderDate, accountId, this.Amount,this.VIPAmount, addressId, address, mobilePhone, isvip));
         }
+        public void PurchaseOrderDomain(Guid id, string remark, OrderStatus orderStatus, DateTime orderDate, string accountId,
+            List<ShoppingCartsDomain> shoppingCarts, int addressId, string address, string mobile)
+        {
+            SumPurchaseOrderAmount(shoppingCarts, id);
+            var mobilePhone = mobile?.Replace("+86", "") ?? string.Empty;
+            ApplyChange(new OrderCreatedEvent(id, remark, orderStatus, orderDate, accountId, this.PurchaseAmount, this.VIPAmount, addressId, address, mobilePhone,false,1));
+        }
 
         private void SumOrderAmount(List<ShoppingCartsDomain> shoppingCarts, Guid orderId)
         {
@@ -65,6 +73,19 @@ namespace SP.Service.Domain.DomainEntity
                 if (item.Product != null && item.Product.VIPPrice != null)
                 {
                     this.VIPAmount += item.Quantity * item.Product.VIPPrice.Value;
+                }
+                ApplyChange(new UpdateShoppingCartOrderIDEvent(item.CartId, orderId.ToString()));
+            }
+        }
+        private void SumPurchaseOrderAmount(List<ShoppingCartsDomain> shoppingCarts, Guid orderId)
+        {
+            this.Amount = 0;
+            this.VIPAmount = 0;
+            foreach (var item in shoppingCarts)
+            {
+                if (item.Product != null && item.Product.PurchasePrice != null)
+                {
+                    this.PurchaseAmount += item.Quantity * item.Product.PurchasePrice.Value;
                 }
                 ApplyChange(new UpdateShoppingCartOrderIDEvent(item.CartId, orderId.ToString()));
             }

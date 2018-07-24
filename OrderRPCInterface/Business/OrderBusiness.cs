@@ -19,7 +19,8 @@ namespace OrderGRPCInterface.Business
             {
                 AccountId = order.accountId,
                 Remark = order.remark != null ? order.remark: string.Empty,
-                AddressId = order.addressId
+                AddressId = order.addressId,
+                OrderType = order.orderType
             };
             order.cartIds.ForEach(x=> request.CartIds.Add(x));
             var result = client.AddMyOrder(request);
@@ -240,7 +241,7 @@ namespace OrderGRPCInterface.Business
                     domain.orderStatus = item.OrderStatus;
                     domain.orderCode = item.OrderCode;
                     domain.orderDate = new DateTime(item.OrderDate).ToString("yyyy-MM-dd");
-                    domain.payDate = new DateTime(item.PayDate).ToString("yyyy-MM-dd");
+                    domain.payDate = new DateTime(item.PayDate).ToString("yyyy-MM-dd HH:mm:ss");
                     if(item.Account != null)
                     {
                         domain.account = new SP.Api.Model.Account.AccountModel();
@@ -336,6 +337,7 @@ namespace OrderGRPCInterface.Business
                 model.accountId = result.AccountId;
                 model.useAmount = result.UseAmount;
                 model.activeAmount = result.ActiveAmount;
+                model.applyAmount = result.ApplyAmount;
             }
             return model;
         }

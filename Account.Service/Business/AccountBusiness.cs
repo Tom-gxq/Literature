@@ -363,5 +363,19 @@ namespace Account.Service.Business
             }
             return result;
         }
+        public static AccountResultResponse UpdateAccountIDInfo(string accountId, int dormId, string fullName, int userType)
+        {
+            ServiceLocator.CommandBus.Send(new CreateAccountIDCardCommand(new Guid(accountId), dormId, fullName, userType));
+            var result = new AccountResultResponse();
+            result.Status = 10001;
+            return result;
+        }
+        public static AccountResultResponse ApplyPartner(string accountId,int dormId)
+        {
+            ServiceLocator.CommandBus.Send(new CreateApplyPartnerCommand(new Guid(accountId),dormId));
+            var result = new AccountResultResponse();
+            result.Status = 10001;
+            return result;
+        }
     }
 }

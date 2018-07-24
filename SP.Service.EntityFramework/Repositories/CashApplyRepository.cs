@@ -3,6 +3,7 @@ using SP.Service.Entity;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Linq;
 using System.Text;
 
 namespace SP.Service.EntityFramework.Repositories
@@ -18,6 +19,12 @@ namespace SP.Service.EntityFramework.Repositories
         {
             var result = this.Insert(account);
             return result > 0;
+        }
+
+        public List<CashApplyEntity> GetAllApply(string accountId)
+        {
+            return this.Select(x=>x.Status == 0 && x.AccountId == accountId)
+                .OrderByDescending(x=>x.CreateTime).ToList();
         }
     }
 }

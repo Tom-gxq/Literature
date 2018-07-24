@@ -2477,6 +2477,16 @@
           "bin/placeholder/Aliyun.Acs.Core.dll": {}
         }
       },
+      "CSRedis.NetCore/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/CSRedis.NetCore.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CSRedis.NetCore.dll": {}
+        }
+      },
       "Grpc.Service.Core/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
@@ -2501,6 +2511,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "CSRedis.NetCore": "1.0.0",
           "Grpc.Service.Core": "1.0.0",
           "StackExchange.Redis": "1.2.6"
         },
@@ -7938,6 +7949,11 @@
       "type": "project",
       "path": "../aliyun-net-sdk-core/aliyun-net-sdk-core.csproj",
       "msbuildProject": "../aliyun-net-sdk-core/aliyun-net-sdk-core.csproj"
+    },
+    "CSRedis.NetCore/1.0.0": {
+      "type": "project",
+      "path": "../CSRedis.NetCore/CSRedis.NetCore.csproj",
+      "msbuildProject": "../CSRedis.NetCore/CSRedis.NetCore.csproj"
     },
     "Grpc.Service.Core/1.0.0": {
       "type": "project",

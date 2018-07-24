@@ -31,5 +31,7 @@ namespace SP.Service.Entity
         public bool? IsVip { get; set; }
         public bool? IsWxPay { get; set; }
         public bool? IsAliPay { get; set; }
+        public int? OrderType { get; set; }
+        public string ShiperId { get; set; }
     }
 }

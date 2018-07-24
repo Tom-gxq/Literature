@@ -28,7 +28,16 @@ namespace Order.Service.Business
             }
             System.Console.WriteLine("##########################################################################");
 
-            ServiceLocator.CommandBus.Send(new CreateOrderCommand(orderId, request.Remark, request.AccountId, cartIds, request.AddressId));
+            switch (request.OrderType)
+            {
+                case 0:
+                   ServiceLocator.CommandBus.Send(new CreateOrderCommand(orderId, request.Remark, request.AccountId, cartIds, request.AddressId));
+                    break;
+                case 1:
+                    ServiceLocator.CommandBus.Send(new CreatePurchaseOrderCommand(orderId, request.Remark, request.AccountId, cartIds, request.AddressId,request.OrderType));
+                    break;
+            }
+
             
             return orderId.ToString();
         }
@@ -160,6 +169,7 @@ namespace Order.Service.Business
                 result.HaveAmount = finance.HaveAmount;
                 result.UseAmount = finance.UseAmount;
                 result.ActiveAmount = ServiceLocator.TradeReportDatabase.GetLatelyTrade(accountId);
+                result.ApplyAmount = ServiceLocator.CashApplyReportDatabase.GetAllApplyNum(accountId);
                 result.Status = 10001;
             }
             return result;

@@ -48,16 +48,24 @@ namespace RedisCache.Service.Runtime.Caching.Redis
         private string GetDefaultConnectionString()
         {
             var connStr = this.Configuration.GetSection(SentinelKey)?.Value??string.Empty;
-            using (var sentinel = new RedisSentinelClient(connStr, 26379))
+            try
             {
-                var masterRedisName = this.Configuration.GetSection(MasterRedisNameKey)?.Value;
-                sentinel.SentinelsAsync(masterRedisName);
-                System.Console.WriteLine("sentinel:"+ sentinel.ToString());                
-                var master = sentinel.Slaves(masterRedisName);//这个就是在Sentinel上面为Master主机起的名字，要一致 
-                if(master != null && master.Length > 0)
+                connStr = string.Empty;
+                using (var sentinel = new RedisSentinelClient(connStr, 26379))
                 {
-                    connStr =$"{master[0].MasterHost}:{master[0].MasterPort}" ;
+                    var masterRedisName = this.Configuration.GetSection(MasterRedisNameKey)?.Value;
+                    sentinel.SentinelsAsync(masterRedisName);
+                    System.Console.WriteLine("sentinel:" + sentinel.Host);
+                    var master = sentinel.Slaves(masterRedisName);//这个就是在Sentinel上面为Master主机起的名字，要一致 
+                    if (master != null && master.Length > 0)
+                    {
+                        connStr = $"{master[0].MasterHost}:{master[0].MasterPort}";
+                    }
                 }
+            }
+            catch
+            {
+
             }
             if (string.IsNullOrEmpty(connStr))
             {

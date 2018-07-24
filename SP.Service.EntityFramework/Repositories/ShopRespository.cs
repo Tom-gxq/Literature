@@ -53,5 +53,15 @@ namespace SP.Service.EntityFramework.Repositories
                 return db.Select(q);
             }
         }
+        public int UpdateOpenShopStatus(int shopId, bool status)
+        {
+            using (var db = OpenDbConnection())
+            {
+                return this.UpdateNonDefaults(new ShopEntity()
+                {
+                    ShopStatus = status
+                }, x => x.Id == shopId);
+            }
+        }
     }
 }
