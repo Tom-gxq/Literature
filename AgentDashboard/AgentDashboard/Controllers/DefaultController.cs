@@ -1,6 +1,10 @@
 ﻿using AgentDashboard.Models;
+using LibMain.Dependency;
+using SP.Application.Order;
+using SP.Application.Product;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.IO;
@@ -139,8 +143,26 @@ namespace AgentDashboard.Controllers
         }
 
         public ActionResult OrderManager()
-        {
-            return View();
+        { 
+            IOrderAppService service = IocManager.Instance.Resolve<IOrderAppService>();
+            var list = service.GetOrderList(0, 1, 20);
+            IProductAppService productService = IocManager.Instance.Resolve<IProductAppService>();
+            foreach (var item in list)
+            {
+                item.ProductList = productService.GetProductListByOrderId(item.OrderId);
+                foreach (var pitem in item.ProductList)
+                {
+                    string domain = ConfigurationManager.AppSettings["Qiniu.Domain"];
+                    foreach (var pimg in pitem.ProductImage)
+                    {
+                        if (!string.IsNullOrEmpty(pimg.ImgPath) && !string.IsNullOrEmpty(domain))
+                        {
+                            pimg.ImgPath = domain + pimg.ImgPath;
+                        }
+                    }
+                }
+            }
+            return View(list);
         }
 
         public ActionResult CreateAccount(AccountViewModel vm)
