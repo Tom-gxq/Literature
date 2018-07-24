@@ -111,8 +111,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\AgentDashboard.css" />
+    <Content Include="css\regionMgr.png" />
     <Content Include="css\sb-admin.css" />
     <Content Include="css\sb-admin.min.css" />
+    <Content Include="css\ShopMgr.png" />
     <Content Include="Global.asax" />
     <Content Include="js\sb-admin-charts.js" />
     <Content Include="js\sb-admin-charts.min.js" />
@@ -168,6 +171,8 @@
     <Content Include="Models\SP.edmx.diagram">
       <DependentUpon>SP.edmx</DependentUpon>
     </Content>
+    <Content Include="Views\Default\ShopDetails.cshtml" />
+    <Content Include="Views\Default\HumanManagerDemo.cshtml" />
     <None Include="Views\Default\Index.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -184,6 +189,7 @@
     <Compile Include="Models\OAuth2_Access_Token.cs">
       <DependentUpon>SP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ShopDetailsViewModel.cs" />
     <Compile Include="Models\ShopViewModel.cs" />
     <Compile Include="Models\SP.Context.cs">
       <AutoGen>True</AutoGen>
@@ -282,6 +288,9 @@
       <DependentUpon>SP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SP_ShopAttribute.cs">
+      <DependentUpon>SP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_ShopOwner.cs">
       <DependentUpon>SP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SP_ShoppingCarts.cs">
@@ -393,6 +402,7 @@
     <Content Include="Views\Default\ShopManager.cshtml" />
     <Content Include="Views\Default\RegionManager.cshtml" />
     <Content Include="Views\Default\OrderManager.cshtml" />
+    <Content Include="Views\Default\ShopManagerDemo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -17,6 +17,16 @@ namespace AgentDashboard.Controllers
 {
     public class DefaultController : Controller
     {
+        public ActionResult HumanManagerDemo()
+        {
+            return View();
+        }
+
+        public ActionResult ShopManagerDemo()
+        {
+            return View();
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -39,6 +49,9 @@ namespace AgentDashboard.Controllers
             List<ShopViewModel> shopsVM = null;
             using (SPEntities sp = new SPEntities())
             {
+                ViewBag.TotalPages = Math.Ceiling((Double)sp.SP_Shop.Count() / 20.00d);
+                ViewBag.CurrentPage = 1;
+
                 var shopList = sp.SP_Shop.OrderByDescending(n => n.RegionId).OrderByDescending(n=>n.Id).Skip(GetStartRowNo(1, 20)).Take(20).ToList();
                 shopsVM = shopList.Select(x => new ShopViewModel
                 {
@@ -50,6 +63,78 @@ namespace AgentDashboard.Controllers
             }
 
             return View(shopsVM);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="shopId">店铺Id</param>
+        /// <returns></returns>
+        public ActionResult ShopDetails(int shopId)
+        {
+            ShopDetailsViewModel vm = new ShopDetailsViewModel();
+            using (SPEntities sp = new SPEntities())
+            {
+                var shop = sp.SP_Shop.SingleOrDefault(n => n.Id == shopId);
+                vm.ShopName = shop?.ShopName;
+                DateTime startTime;
+                bool isSuccess = DateTime.TryParse(shop?.StartTime, out startTime);
+                if (isSuccess)
+                {
+                    vm.StartTime = startTime;
+                }
+                else
+                {
+                    vm.StartTime = new DateTime(0);
+                }
+                DateTime endTime;
+                isSuccess = DateTime.TryParse(shop?.EndTime, out endTime);
+                if (isSuccess)
+                {
+                    vm.EndTime = endTime;
+                }
+                else
+                {
+                    vm.EndTime = new DateTime(0);
+                }
+
+                var shopOwnerList = sp.SP_ShopOwner.Where(n => n.ShopId == shopId);
+
+                if (shopOwnerList != null)
+                {
+                    vm.DeliverManCount = shopOwnerList.Count();
+                    vm.DeliverMen = new List<DeliverManViewModel>();
+
+                    foreach (var shopOwner in shopOwnerList)
+                    {
+                        var deliverMan = new DeliverManViewModel();
+                        deliverMan.Products = new List<ProductsViewModel>();
+
+                        var account = sp.SP_AccountInfo.SingleOrDefault(n => n.AccountId == shopOwner.OwnerId);
+                        deliverMan.Name = account.Fullname;
+
+                        ProductsViewModel procduct = new ProductsViewModel();
+
+                        var deliverProducts = sp.SP_AccountProduct.Where(n => n.AccountId == account.AccountId && n.ShopId == shop.Id);
+
+                        foreach (var deliverProduct in deliverProducts)
+                        {
+                            procduct.Id = deliverProduct.ProductId;
+                            var productStock = sp.SP_ProductSKUs.SingleOrDefault(n => n.ProductId == procduct.Id);
+                            procduct.Stocks = productStock.Stock;
+                            procduct.PreStocks = deliverProduct.PreStock;
+
+                            var procdutInfo = sp.SP_Products.SingleOrDefault(n => n.ProductId == procduct.Id);
+                            procduct.Name = procdutInfo.ProductName;
+                            deliverMan.Products.Add(procduct);
+                        }
+
+                        vm.DeliverMen.Add(deliverMan);
+                    }
+                }
+            }
+
+            return View(vm);
         }
 
         /// <summary>
