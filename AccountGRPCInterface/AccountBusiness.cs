@@ -1,5 +1,6 @@
 ﻿using SP.Api.Model;
 using SP.Api.Model.Account;
+using SP.Api.Model.Seller;
 using SP.Service;
 using System;
 using System.Collections.Generic;
@@ -579,6 +580,44 @@ namespace AccountGRPCInterface
             else
             {
                 return null;
+            }
+        }
+        public static bool UpdateAccountIDInfo(AccountIDModel model)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request1 = new AccountIDRequest()
+            {
+                AccountId = model.AccountId,
+                DormId = model.DormId,
+                UserType = model.UserType,
+                FullName = model.FullName
+            };
+            var reuslt = client.UpdateAccountIDInfo(request1);
+            if (reuslt.Status == 10001)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool ApplyPartner(string accountId,int dormId)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request1 = new ApplyPartnerRequest()
+            {
+                AccountId = accountId,
+                DormId = dormId
+            };
+            var reuslt = client.ApplyPartner(request1);
+            if (reuslt.Status == 10001)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 

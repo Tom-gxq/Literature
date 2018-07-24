@@ -14,7 +14,7 @@ namespace SP.Service.EntityFramework.Repositories
             DbConnection = context.GetConnectionString();
         }
 
-        public ProductTypeEntity GetProductTypeById(int typeId)
+        public ProductTypeEntity GetProductTypeById(long typeId)
         {
             var result = this.Single(x => x.Id == typeId);
             return result;

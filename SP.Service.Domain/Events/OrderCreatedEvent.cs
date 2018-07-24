@@ -18,8 +18,11 @@ namespace SP.Service.Domain.Events
         public string Address { get; internal set; }
         public string Mobile { get; internal set; }
         public bool IsVip { get; internal set; }
+        public int OrderType { get; set; }
 
-        public OrderCreatedEvent(Guid aggregateId, string remark, OrderStatus orderStatus, DateTime orderDate, string accountId, double amount, double vipAmount, int addressId, string address,string mobile, bool isvip)
+        public OrderCreatedEvent(Guid aggregateId, string remark, OrderStatus orderStatus, 
+            DateTime orderDate, string accountId, double amount, double vipAmount, int addressId, 
+            string address,string mobile, bool isvip,int orderType=0)
         {
             AggregateId = aggregateId;
             Remark = remark;
@@ -32,6 +35,7 @@ namespace SP.Service.Domain.Events
             Address = address;
             Mobile = mobile;
             IsVip = isvip;
+            OrderType = orderType;
         }
     }
 }

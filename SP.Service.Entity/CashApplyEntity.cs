@@ -15,5 +15,6 @@ namespace SP.Service.Entity
         public string Alipay { get; set; }
         public double Money { get; set; }
         public DateTime? CreateTime { get; set; }
+        public int? Status { get; set; }
     }
 }

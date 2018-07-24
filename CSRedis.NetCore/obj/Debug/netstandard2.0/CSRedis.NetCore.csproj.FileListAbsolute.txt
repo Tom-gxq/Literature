@@ -14,3 +14,4 @@ D:\项目构建\饿家军餐饮平台\Src\Literature\CSRedis.NetCore\obj\Debug\n
 D:\项目构建\饿家军餐饮平台\Src\Literature\CSRedis.NetCore\obj\Debug\netstandard2.0\CSRedis.NetCore.AssemblyInfo.cs
 D:\项目构建\饿家军餐饮平台\Src\Literature\CSRedis.NetCore\obj\Debug\netstandard2.0\CSRedis.NetCore.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\CSRedis.NetCore\obj\Debug\netstandard2.0\CSRedis.NetCore.pdb
+D:\项目构建\饿家军餐饮平台\Src\Literature\CSRedis.NetCore\obj\Debug\netstandard2.0\CSRedis.NetCore.csprojResolveAssemblyReference.cache

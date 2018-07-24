@@ -212,6 +212,74 @@ namespace SP.Service.Domain.Reporting
         public int GetFoodShopProductListCount(int districtId, int shopId,  int pageIndex, int pageSize)
         {
             return _repository.GetFoodShopProductListCount(districtId, shopId, pageIndex, pageSize);
-        }        
+        }
+
+        public bool Add(ProductEntity item)
+        {
+            return _repository.Add(item);
+        }
+        public bool Update(ProductEntity item)
+        {
+            var ret= _repository.Update(item);
+            return ret > 0;
+        }
+        public List<ProductDomain> GetDistributorMarketProduct(long typeId, long secondTypeId, int pageIndex, int pageSize)
+        {
+            var domainList = new List<ProductDomain>();
+            var productList = _repository.GetDistributorMarketProduct(typeId, secondTypeId, pageIndex, pageSize);
+            foreach (var item in productList)
+            {
+                var domain = new ProductDomain();
+                domain.SetMemento(item);
+                domainList.Add(domain);
+            }
+            return domainList;
+        }
+        public int GetDistributorMarketProductCount(long typeId, long secondTypeId)
+        {
+            var domainList = new List<ProductDomain>();
+            var count = _repository.GetDistributorMarketProductCount(typeId, secondTypeId);
+
+            return count;
+        }
+        public List<ProductDomain> GetDistributorProduct(int districtId, long secondTypeId, int pageIndex, int pageSize)
+        {
+            var domainList = new List<ProductDomain>();
+            var productList = _repository.GetDistributorProduct(districtId, secondTypeId, pageIndex, pageSize);
+            foreach (var item in productList)
+            {
+                var domain = new ProductDomain();
+                domain.SetMemento(item);
+                domainList.Add(domain);
+            }
+            return domainList;
+        }
+        public int GetDistributorProductCount(long districtId, long secondTypeId)
+        {
+            var domainList = new List<ProductDomain>();
+            var count = _repository.GetDistributorProductCount(districtId, secondTypeId);
+            
+            return count;
+        }
+
+        public List<ProductDomain> GetSellerProduct(string accountId, long typeId, long secondTypeId, int pageIndex, int pageSize)
+        {
+            var domainList = new List<ProductDomain>();
+            var productList = _repository.GetSellerProduct(accountId,typeId, secondTypeId, pageIndex, pageSize);
+            foreach (var item in productList)
+            {
+                var domain = new ProductDomain();
+                domain.SetMemento(item);
+                domainList.Add(domain);
+            }
+            return domainList;
+        }
+        public int GetSellerProductCount(string accountId, long typeId, long secondTypeId)
+        {
+            var domainList = new List<ProductDomain>();
+            var count = _repository.GetSellerProductCount(accountId,typeId, secondTypeId);
+
+            return count;
+        }
     }
 }

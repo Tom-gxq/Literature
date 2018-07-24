@@ -2035,6 +2035,16 @@
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
         }
       },
+      "CSRedis.NetCore/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/CSRedis.NetCore.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CSRedis.NetCore.dll": {}
+        }
+      },
       "Grpc.Service.Core/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
@@ -6940,6 +6950,11 @@
         "system.xml.xmldocument.nuspec"
       ]
     },
+    "CSRedis.NetCore/1.0.0": {
+      "type": "project",
+      "path": "../CSRedis.NetCore/CSRedis.NetCore.csproj",
+      "msbuildProject": "../CSRedis.NetCore/CSRedis.NetCore.csproj"
+    },
     "Grpc.Service.Core/1.0.0": {
       "type": "project",
       "path": "../Grpc.Service.Core/Grpc.Service.Core.csproj",
@@ -6948,6 +6963,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
+      "CSRedis.NetCore >= 1.0.0",
       "Grpc.Service.Core >= 1.0.0",
       "NETStandard.Library >= 2.0.0",
       "StackExchange.Redis >= 1.2.6"
@@ -6991,6 +7007,9 @@
           "projectReferences": {
             "D:\\项目构建\\饿家军餐饮平台\\Src\\Literature\\Grpc.Service.Core\\Grpc.Service.Core.csproj": {
               "projectPath": "D:\\项目构建\\饿家军餐饮平台\\Src\\Literature\\Grpc.Service.Core\\Grpc.Service.Core.csproj"
+            },
+            "D:\\项目构建\\饿家军餐饮平台\\Src\\Literature\\CSRedis.NetCore\\CSRedis.NetCore.csproj": {
+              "projectPath": "D:\\项目构建\\饿家军餐饮平台\\Src\\Literature\\CSRedis.NetCore\\CSRedis.NetCore.csproj"
             }
           }
         }

@@ -136,5 +136,82 @@ namespace SP.Service.EntityFramework.Repositories
                 return db.Select(q);
             }
         }
+
+        public bool Add(ProductEntity account)
+        {
+            var result = this.Insert(account);
+            return result > 0;
+        }
+        public int Update(ProductEntity product)
+        {
+            using (var db = OpenDbConnection())
+            {
+                return this.UpdateNonDefaults(product, x => x.ProductId == product.ProductId);
+            }
+        }
+
+        public List<ProductEntity> GetDistributorMarketProduct(long typeId, long secondTypeId, int pageIndex, int pageSize)
+        {
+            using (var db = OpenDbConnection())
+            {
+                var q = db.From<ProductEntity>();
+                q = q.Where(a => a.SaleStatus == 1 && a.TypeId == typeId && a.SecondTypeId == secondTypeId);
+                q = q.Limit((pageIndex - 1) * pageSize, (pageIndex - 1) * pageSize + pageSize);
+                return db.Select(q);
+            }
+        }
+        public int GetDistributorMarketProductCount(long typeId, long secondTypeId)
+        {
+            using (var db = OpenDbConnection())
+            {
+                var q = db.From<ProductEntity>();
+                q = q.Where(a => a.SaleStatus == 1 && a.TypeId == typeId && a.SecondTypeId == secondTypeId);
+                return db.Select(q).Count();
+            }
+        }
+
+        public List<ProductEntity> GetDistributorProduct(int districtId, long secondTypeId, int pageIndex, int pageSize)
+        {
+            using (var db = OpenDbConnection())
+            {
+                var q = db.From<ProductEntity>();
+                q = q.Join<ProductEntity,ShopProductEntity>((a,e) => a.ProductId == e.ProductId && a.SaleStatus == 1);
+                q = q.Join<ShopProductEntity,ShopEntity>((a, e) => e.RegionId == districtId && e.Id == a.ShopId && e.ShopType == secondTypeId);
+                
+                q = q.Limit((pageIndex - 1) * pageSize, (pageIndex - 1) * pageSize + pageSize);
+                return db.Select(q);
+            }
+        }
+        public int GetDistributorProductCount(long districtId, long secondTypeId)
+        {
+            using (var db = OpenDbConnection())
+            {
+                var q = db.From<ProductEntity>();
+                q = q.Join<ProductEntity, ShopProductEntity>((a, e) => a.ProductId == e.ProductId && a.SaleStatus == 1);
+                q = q.Join<ShopProductEntity, ShopEntity>((a, e) => e.RegionId == districtId && e.Id == a.ShopId && e.ShopType == secondTypeId);
+                return db.Select(q).Count();
+            }
+        }
+
+
+        public List<ProductEntity> GetSellerProduct(string accountId,long typeId, long secondTypeId, int pageIndex, int pageSize)
+        {
+            using (var db = OpenDbConnection())
+            {
+                var q = db.From<ProductEntity>();
+                q = q.Where(a => a.SaleStatus == 1 && a.TypeId == typeId && a.SecondTypeId == secondTypeId && a.SuppliersId == accountId);
+                q = q.Limit((pageIndex - 1) * pageSize, (pageIndex - 1) * pageSize + pageSize);
+                return db.Select(q);
+            }
+        }
+        public int GetSellerProductCount(string accountId, long typeId, long secondTypeId)
+        {
+            using (var db = OpenDbConnection())
+            {
+                var q = db.From<ProductEntity>();
+                q = q.Where(a => a.SaleStatus == 1 && a.TypeId == typeId && a.SecondTypeId == secondTypeId && a.SuppliersId == accountId);
+                return db.Select(q).Count();
+            }
+        }
     }
 }

@@ -118,8 +118,11 @@ namespace SP.Service {
             "dGFyGAQgASgJEhAKCGZ1bGxOYW1lGAUgASgJEg4KBmdlbmRlchgGIAEoCCJB",
             "ChZHZXRPdGhlckFjY291bnRSZXF1ZXN0EhEKCW90aGVyVHlwZRgCIAEoBRIU",
             "CgxvdGhlckFjY291bnQYAyABKAkiPgoUQWNjb3VudE1vYmlsZVJlcXVlc3QS",
-            "EQoJYWNjb3VudElkGAEgASgJEhMKC21vYmlsZVBob25lGAIgASgJYgZwcm90",
-            "bzM="));
+            "EQoJYWNjb3VudElkGAEgASgJEhMKC21vYmlsZVBob25lGAIgASgJIlkKEEFj",
+            "Y291bnRJRFJlcXVlc3QSEAoIdXNlclR5cGUYASABKAUSDgoGZG9ybUlkGAIg",
+            "ASgFEhEKCWFjY291bnRJZBgDIAEoCRIQCghmdWxsTmFtZRgEIAEoCSI4ChNB",
+            "cHBseVBhcnRuZXJSZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIOCgZkb3Jt",
+            "SWQYAiABKAViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -173,7 +176,9 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.BingAccountRequest), global::SP.Service.BingAccountRequest.Parser, new[]{ "AccountId", "OtherType", "OtherAccount", "Avatar", "FullName", "Gender" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OtherAccountRequest), global::SP.Service.OtherAccountRequest.Parser, new[]{ "MobilePhone", "OtherType", "OtherAccount", "Avatar", "FullName", "Gender" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.GetOtherAccountRequest), global::SP.Service.GetOtherAccountRequest.Parser, new[]{ "OtherType", "OtherAccount" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountMobileRequest), global::SP.Service.AccountMobileRequest.Parser, new[]{ "AccountId", "MobilePhone" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountMobileRequest), global::SP.Service.AccountMobileRequest.Parser, new[]{ "AccountId", "MobilePhone" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountIDRequest), global::SP.Service.AccountIDRequest.Parser, new[]{ "UserType", "DormId", "AccountId", "FullName" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ApplyPartnerRequest), global::SP.Service.ApplyPartnerRequest.Parser, new[]{ "AccountId", "DormId" }, null, null, null)
           }));
     }
     #endregion
@@ -9979,6 +9984,384 @@ namespace SP.Service {
           }
           case 18: {
             MobilePhone = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 更新用户身份的请求参数
+  /// </summary>
+  public sealed partial class AccountIDRequest : pb::IMessage<AccountIDRequest> {
+    private static readonly pb::MessageParser<AccountIDRequest> _parser = new pb::MessageParser<AccountIDRequest>(() => new AccountIDRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<AccountIDRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[51]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AccountIDRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AccountIDRequest(AccountIDRequest other) : this() {
+      userType_ = other.userType_;
+      dormId_ = other.dormId_;
+      accountId_ = other.accountId_;
+      fullName_ = other.fullName_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AccountIDRequest Clone() {
+      return new AccountIDRequest(this);
+    }
+
+    /// <summary>Field number for the "userType" field.</summary>
+    public const int UserTypeFieldNumber = 1;
+    private int userType_;
+    /// <summary>
+    ///*
+    ///  用户身份类型
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int UserType {
+      get { return userType_; }
+      set {
+        userType_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "dormId" field.</summary>
+    public const int DormIdFieldNumber = 2;
+    private int dormId_;
+    /// <summary>
+    ///*
+    /// 用户宿舍ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int DormId {
+      get { return dormId_; }
+      set {
+        dormId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "accountId" field.</summary>
+    public const int AccountIdFieldNumber = 3;
+    private string accountId_ = "";
+    /// <summary>
+    ///*
+    ///  AccountId
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AccountId {
+      get { return accountId_; }
+      set {
+        accountId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "fullName" field.</summary>
+    public const int FullNameFieldNumber = 4;
+    private string fullName_ = "";
+    /// <summary>
+    ///*
+    ///  用户昵称
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string FullName {
+      get { return fullName_; }
+      set {
+        fullName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as AccountIDRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(AccountIDRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (UserType != other.UserType) return false;
+      if (DormId != other.DormId) return false;
+      if (AccountId != other.AccountId) return false;
+      if (FullName != other.FullName) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (UserType != 0) hash ^= UserType.GetHashCode();
+      if (DormId != 0) hash ^= DormId.GetHashCode();
+      if (AccountId.Length != 0) hash ^= AccountId.GetHashCode();
+      if (FullName.Length != 0) hash ^= FullName.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (UserType != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(UserType);
+      }
+      if (DormId != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(DormId);
+      }
+      if (AccountId.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(AccountId);
+      }
+      if (FullName.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(FullName);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (UserType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UserType);
+      }
+      if (DormId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(DormId);
+      }
+      if (AccountId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountId);
+      }
+      if (FullName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(FullName);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(AccountIDRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.UserType != 0) {
+        UserType = other.UserType;
+      }
+      if (other.DormId != 0) {
+        DormId = other.DormId;
+      }
+      if (other.AccountId.Length != 0) {
+        AccountId = other.AccountId;
+      }
+      if (other.FullName.Length != 0) {
+        FullName = other.FullName;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            UserType = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            DormId = input.ReadInt32();
+            break;
+          }
+          case 26: {
+            AccountId = input.ReadString();
+            break;
+          }
+          case 34: {
+            FullName = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 用户ID的请求参数
+  /// </summary>
+  public sealed partial class ApplyPartnerRequest : pb::IMessage<ApplyPartnerRequest> {
+    private static readonly pb::MessageParser<ApplyPartnerRequest> _parser = new pb::MessageParser<ApplyPartnerRequest>(() => new ApplyPartnerRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ApplyPartnerRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[52]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ApplyPartnerRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ApplyPartnerRequest(ApplyPartnerRequest other) : this() {
+      accountId_ = other.accountId_;
+      dormId_ = other.dormId_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ApplyPartnerRequest Clone() {
+      return new ApplyPartnerRequest(this);
+    }
+
+    /// <summary>Field number for the "accountId" field.</summary>
+    public const int AccountIdFieldNumber = 1;
+    private string accountId_ = "";
+    /// <summary>
+    ///*
+    ///  AccountId
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AccountId {
+      get { return accountId_; }
+      set {
+        accountId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "dormId" field.</summary>
+    public const int DormIdFieldNumber = 2;
+    private int dormId_;
+    /// <summary>
+    ///*
+    /// 用户宿舍ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int DormId {
+      get { return dormId_; }
+      set {
+        dormId_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ApplyPartnerRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ApplyPartnerRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (AccountId != other.AccountId) return false;
+      if (DormId != other.DormId) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (AccountId.Length != 0) hash ^= AccountId.GetHashCode();
+      if (DormId != 0) hash ^= DormId.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (AccountId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(AccountId);
+      }
+      if (DormId != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(DormId);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (AccountId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountId);
+      }
+      if (DormId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(DormId);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ApplyPartnerRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.AccountId.Length != 0) {
+        AccountId = other.AccountId;
+      }
+      if (other.DormId != 0) {
+        DormId = other.DormId;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            AccountId = input.ReadString();
+            break;
+          }
+          case 16: {
+            DormId = input.ReadInt32();
             break;
           }
         }

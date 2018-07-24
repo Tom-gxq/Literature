@@ -19,5 +19,13 @@ namespace SP.Service.Domain.Reporting
         {
             return _repository.Add(item);
         }
+
+        public double GetAllApplyNum(string accountId)
+        {
+            double total = 0;
+            var list = _repository.GetAllApply(accountId);
+            list.ForEach(x => total +=  x.Money );
+            return total;
+        }
     }
 }

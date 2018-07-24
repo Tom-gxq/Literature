@@ -20,7 +20,8 @@
           "RedisCache.Service": "1.0.0",
           "SP.Service.Domain": "1.0.0",
           "SP.Service.Entity": "1.0.0",
-          "SP.Service.EntityFramework": "1.0.0"
+          "SP.Service.EntityFramework": "1.0.0",
+          "StockGRPCInterface": "1.0.0"
         },
         "runtime": {
           "Order.Service.dll": {}
@@ -1613,6 +1614,11 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
+      "CSRedis.NetCore/1.0.0": {
+        "runtime": {
+          "CSRedis.NetCore.dll": {}
+        }
+      },
       "Grpc.Service.Core/1.0.0": {
         "dependencies": {
           "Castle.Core": "4.2.0",
@@ -1641,6 +1647,7 @@
       },
       "RedisCache.Service/1.0.0": {
         "dependencies": {
+          "CSRedis.NetCore": "1.0.0",
           "Grpc.Service.Core": "1.0.0",
           "StackExchange.Redis": "1.2.6"
         },
@@ -1679,7 +1686,8 @@
           "SP.Data.Enum": "1.0.0",
           "SP.Producer": "1.0.0",
           "SP.Service.Entity": "1.0.0",
-          "SP.Service.EntityFramework": "1.0.0"
+          "SP.Service.EntityFramework": "1.0.0",
+          "StockGRPCInterface": "1.0.0"
         },
         "runtime": {
           "SP.Service.Domain.dll": {}
@@ -1701,6 +1709,17 @@
         },
         "runtime": {
           "SP.Service.EntityFramework.dll": {}
+        }
+      },
+      "StockGRPCInterface/1.0.0": {
+        "dependencies": {
+          "Google.Protobuf": "3.4.1",
+          "Grpc.Core": "1.6.1",
+          "RPCCommonTool": "1.0.0",
+          "SP.Api.Model": "1.0.0"
+        },
+        "runtime": {
+          "StockGRPCInterface.dll": {}
         }
       }
     }
@@ -2719,6 +2738,11 @@
       "path": "system.xml.xmldocument/4.3.0",
       "hashPath": "system.xml.xmldocument.4.3.0.nupkg.sha512"
     },
+    "CSRedis.NetCore/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Grpc.Service.Core/1.0.0": {
       "type": "project",
       "serviceable": false,
@@ -2765,6 +2789,11 @@
       "sha512": ""
     },
     "SP.Service.EntityFramework/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "StockGRPCInterface/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

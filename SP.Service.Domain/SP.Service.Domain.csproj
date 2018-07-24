@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Compile Remove="EventHandlers\AccountPayPwdCreateEventHandler.cs" />
+    <Compile Remove="Events\AccountInfoEditUserTypeEvent.cs" />
     <Compile Remove="Events\AliBindEvent.cs" />
   </ItemGroup>
 
