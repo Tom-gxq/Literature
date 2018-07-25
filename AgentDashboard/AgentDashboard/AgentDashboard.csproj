@@ -48,6 +48,9 @@
     <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.Windsor, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -67,6 +70,30 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Nito.AsyncEx, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nito.AsyncEx.3.0.1\lib\net45\Nito.AsyncEx.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Concurrent, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nito.AsyncEx.3.0.1\lib\net45\Nito.AsyncEx.Concurrent.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Enlightenment, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nito.AsyncEx.3.0.1\lib\net45\Nito.AsyncEx.Enlightenment.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common, Version=4.5.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ServiceStack.Common.4.5.4\lib\net45\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e06fbc6124f57c43, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ServiceStack.Interfaces.4.5.4\lib\portable-wp80+sl5+net45+win8+wpa81+monotouch+monoandroid+xamarin.ios10\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis, Version=4.5.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ServiceStack.Redis.4.5.4\lib\net45\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=4.5.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ServiceStack.Text.4.5.4\lib\net45\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=1.1.36.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Collections.Immutable.1.1.36\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -117,12 +144,85 @@
     <Content Include="css\sb-admin.min.css" />
     <Content Include="css\ShopMgr.png" />
     <Content Include="Global.asax" />
+    <Content Include="js\global.js" />
+    <Content Include="js\order\list-item.html" />
+    <Content Include="js\order\order.js" />
+    <Content Include="js\order\style.css" />
+    <Content Include="js\plug\autocomplete.js" />
+    <Content Include="js\plug\datapager\css\style.css" />
+    <Content Include="js\plug\datapager\images\next.png" />
+    <Content Include="js\plug\datapager\images\previous.png" />
+    <Content Include="js\plug\datapager\images\snext.png" />
+    <Content Include="js\plug\datapager\images\sprevious.png" />
+    <Content Include="js\plug\datapager\jquery.paginate.js" />
+    <Content Include="js\plug\doT.js" />
+    <Content Include="js\plug\easydialog\easydialog.css" />
+    <Content Include="js\plug\easydialog\easydialog.js" />
+    <Content Include="js\plug\jquery\css\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="js\plug\jquery\css\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="js\plug\jquery\css\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="js\plug\jquery\css\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="js\plug\jquery\css\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="js\plug\jquery\css\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="js\plug\jquery\css\images\ui-icons_222222_256x240.png" />
+    <Content Include="js\plug\jquery\css\images\ui-icons_454545_256x240.png" />
+    <Content Include="js\plug\jquery\css\jquery-ui.css" />
+    <Content Include="js\plug\jquery\css\jquery.ui.accordion.css" />
+    <Content Include="js\plug\jquery\css\jquery.ui.all.css" />
+    <Content Include="js\plug\jquery\css\jquery.ui.autocomplete.css" />
+    <Content Include="js\plug\jquery\css\jquery.ui.base.css" />
+    <Content Include="js\plug\jquery\css\jquery.ui.button.css" />
+    <Content Include="js\plug\jquery\css\jquery.ui.core.css" />
+    <Content Include="js\plug\jquery\css\jquery.ui.datepicker.css" />
+    <Content Include="js\plug\jquery\css\jquery.ui.dialog.css" />
+    <Content Include="js\plug\jquery\css\jquery.ui.progressbar.css" />
+    <Content Include="js\plug\jquery\css\jquery.ui.resizable.css" />
+    <Content Include="js\plug\jquery\css\jquery.ui.selectable.css" />
+    <Content Include="js\plug\jquery\css\jquery.ui.slider.css" />
+    <Content Include="js\plug\jquery\css\jquery.ui.tabs.css" />
+    <Content Include="js\plug\jquery\css\jquery.ui.theme.css" />
+    <Content Include="js\plug\jquery\jquery-1.11.1.js" />
+    <Content Include="js\plug\jquery\jquery-ui-1.10.2.js" />
+    <Content Include="js\plug\json.js" />
+    <Content Include="js\plug\plupload\i18n\zh_CN.js" />
+    <Content Include="js\plug\plupload\jquery.plupload.queue\css\jquery.plupload.queue.css" />
+    <Content Include="js\plug\plupload\jquery.plupload.queue\img\backgrounds.gif" />
+    <Content Include="js\plug\plupload\jquery.plupload.queue\img\buttons-disabled.png" />
+    <Content Include="js\plug\plupload\jquery.plupload.queue\img\buttons.png" />
+    <Content Include="js\plug\plupload\jquery.plupload.queue\img\delete.gif" />
+    <Content Include="js\plug\plupload\jquery.plupload.queue\img\done.gif" />
+    <Content Include="js\plug\plupload\jquery.plupload.queue\img\error.gif" />
+    <Content Include="js\plug\plupload\jquery.plupload.queue\img\throbber.gif" />
+    <Content Include="js\plug\plupload\jquery.plupload.queue\img\transp50.png" />
+    <Content Include="js\plug\plupload\jquery.plupload.queue\jquery.plupload.queue.js" />
+    <Content Include="js\plug\plupload\jquery.plupload.queue\jquery.plupload.queue.min.js" />
+    <Content Include="js\plug\plupload\jquery.ui.plupload\css\jquery.ui.plupload.css" />
+    <Content Include="js\plug\plupload\jquery.ui.plupload\img\loading.gif" />
+    <Content Include="js\plug\plupload\jquery.ui.plupload\img\plupload.png" />
+    <Content Include="js\plug\plupload\jquery.ui.plupload\jquery.ui.plupload.js" />
+    <Content Include="js\plug\plupload\jquery.ui.plupload\jquery.ui.plupload.min.js" />
+    <Content Include="js\plug\plupload\moxie.js" />
+    <Content Include="js\plug\plupload\moxie.min.js" />
+    <Content Include="js\plug\plupload\Moxie.swf" />
+    <Content Include="js\plug\plupload\plupload.dev.js" />
+    <Content Include="js\plug\plupload\plupload.full.min.js" />
+    <Content Include="js\plug\plupload\plupload.min.js" />
+    <Content Include="js\plug\qiniu\carouse.js" />
+    <Content Include="js\plug\qiniu\css\highlight.css" />
+    <Content Include="js\plug\qiniu\highlight.js" />
+    <Content Include="js\plug\qiniu\main.js" />
+    <Content Include="js\plug\qiniu\producttype.js" />
+    <Content Include="js\plug\qiniu\qiniu.js" />
+    <Content Include="js\plug\qiniu\shop.js" />
+    <Content Include="js\plug\qiniu\ui.js" />
     <Content Include="js\sb-admin-charts.js" />
     <Content Include="js\sb-admin-charts.min.js" />
     <Content Include="js\sb-admin-datatables.js" />
     <Content Include="js\sb-admin-datatables.min.js" />
     <Content Include="js\sb-admin.js" />
     <Content Include="js\sb-admin.min.js" />
+    <Content Include="js\seajs\sea-config.js" />
+    <Content Include="js\seajs\sea.js" />
     <Content Include="Models\SP.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SP.Context.cs</LastGenOutput>
@@ -173,11 +273,13 @@
     </Content>
     <Content Include="Views\Default\ShopDetails.cshtml" />
     <Content Include="Views\Default\HumanManagerDemo.cshtml" />
+    <Content Include="js\plug\plupload\Moxie.xap" />
     <None Include="Views\Default\Index.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SPWebModule.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -189,6 +291,7 @@
     <Compile Include="Models\OAuth2_Access_Token.cs">
       <DependentUpon>SP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PageModel.cs" />
     <Compile Include="Models\ShopDetailsViewModel.cs" />
     <Compile Include="Models\ShopViewModel.cs" />
     <Compile Include="Models\SP.Context.cs">
