@@ -1,6 +1,10 @@
 ﻿using AgentDashboard.Models;
+using LibMain.Dependency;
+using SP.Application.Order;
+using SP.Application.Product;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.IO;
@@ -48,7 +52,9 @@ namespace AgentDashboard.Controllers
                 ViewBag.TotalPages = Math.Ceiling((Double)sp.SP_Shop.Count() / 20.00d);
                 ViewBag.CurrentPage = 1;
 
-                var shopList = sp.SP_Shop.OrderByDescending(n => n.RegionId).OrderByDescending(n=>n.Id).Skip(GetStartRowNo(1, 20)).Take(20).ToList();
+                var shopList = sp.SP_Shop.OrderByDescending(n => n.RegionId).OrderByDescending(n=>n.Id)
+                    //.Skip(GetStartRowNo(1, 20)).Take(20).ToList();
+                    .ToList();
                 shopsVM = shopList.Select(x => new ShopViewModel
                 {
                     Id = x.Id,
@@ -226,6 +232,41 @@ namespace AgentDashboard.Controllers
         public ActionResult OrderManager()
         {
             return View();
+        }
+        public JsonResult GetOrderList(int status, int pageIndex, int pageSize)
+        {
+            Dictionary<string, object> JsonResult = new Dictionary<string, object>();
+            IOrderAppService service = IocManager.Instance.Resolve<IOrderAppService>();
+            var list = service.GetOrderList(status, pageIndex, pageSize);
+            var total = service.GetOrderListCount(status);
+            PageModel jObject = new PageModel();
+            jObject.Total = (int)total;
+            jObject.Pages = (int)Math.Ceiling(Convert.ToDouble(total) / pageSize);
+            jObject.Index = pageIndex;
+            JsonResult.Add("data", jObject);
+
+            IProductAppService productService = IocManager.Instance.Resolve<IProductAppService>();
+            foreach (var item in list)
+            {
+                item.ProductList = productService.GetProductListByOrderId(item.OrderId);
+                foreach (var pitem in item.ProductList)
+                {
+                    string domain = ConfigurationManager.AppSettings["Qiniu.Domain"];
+                    foreach (var pimg in pitem.ProductImage)
+                    {
+                        if (!string.IsNullOrEmpty(pimg.ImgPath) && !string.IsNullOrEmpty(domain))
+                        {
+                            pimg.ImgPath = domain + pimg.ImgPath;
+                        }
+                    }
+                }
+            }
+            JsonResult.Add("result", list);
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
         }
 
         public ActionResult CreateAccount(AccountViewModel vm)

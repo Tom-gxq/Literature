@@ -199,7 +199,7 @@ namespace SP.Service.EntityFramework.Repositories
             using (var db = OpenDbConnection())
             {
                 var q = db.From<ProductEntity>();
-                q = q.Where(a => a.SaleStatus == 1 && a.TypeId == typeId && a.SecondTypeId == secondTypeId && a.SuppliersId == accountId);
+                q = q.Where(a =>  a.TypeId == typeId && a.SecondTypeId == secondTypeId && a.SuppliersId == accountId);
                 q = q.Limit((pageIndex - 1) * pageSize, (pageIndex - 1) * pageSize + pageSize);
                 return db.Select(q);
             }
@@ -209,7 +209,7 @@ namespace SP.Service.EntityFramework.Repositories
             using (var db = OpenDbConnection())
             {
                 var q = db.From<ProductEntity>();
-                q = q.Where(a => a.SaleStatus == 1 && a.TypeId == typeId && a.SecondTypeId == secondTypeId && a.SuppliersId == accountId);
+                q = q.Where(a =>  a.TypeId == typeId && a.SecondTypeId == secondTypeId && a.SuppliersId == accountId);
                 return db.Select(q).Count();
             }
         }
