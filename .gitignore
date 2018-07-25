@@ -2145,3 +2145,5 @@ SPManager/bin/Castle.Windsor.dll
 SPManager/bin/ServiceStack.Common.dll
 SPManager/bin/ServiceStack.Interfaces.dll
 SPManager/bin/ServiceStack.Text.dll
+AgentDashboard\AgentDashboard\bin\*.*
+AgentDashboard/AgentDashboard/bin/*
