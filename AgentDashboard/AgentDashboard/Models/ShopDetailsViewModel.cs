@@ -29,5 +29,7 @@ namespace AgentDashboard.Models
         public string Name { get; set; }
         public int PreStocks { get; set; }
         public int Stocks { get; set; }
+        public string Description { get; set; }
+        public string ImagePath { get; set; }
     }
 }

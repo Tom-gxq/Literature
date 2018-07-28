@@ -17,7 +17,7 @@ namespace AgentDashboard.Controllers
 {
     public class DefaultController : Controller
     {
-        public ActionResult HumanManagerDemo()
+        public ActionResult DeliverymanViewer()
         {
             return View();
         }
@@ -128,6 +128,10 @@ namespace AgentDashboard.Controllers
 
                             var procdutInfo = sp.SP_Products.SingleOrDefault(n => n.ProductId == procduct.Id);
                             procduct.Name = procdutInfo.ProductName;
+                            procduct.Description = procdutInfo?.Description;
+
+                            var procdutImageInfo = sp.SP_ProductImage.SingleOrDefault(n => n.ProductId == procduct.Id);
+                            procduct.ImagePath = procduct?.ImagePath;
                             deliverMan.Products.Add(procduct);
                         }
 
@@ -211,6 +215,16 @@ namespace AgentDashboard.Controllers
 
         public ActionResult HumanManager()
         {
+            try
+            {
+                using (SPEntities spEntity = new SPEntities())
+                {
+                    //spEntity.SP_Account
+                }
+            }
+            catch (Exception)
+            {
+            }
             return View();
         }
 
