@@ -11,14 +11,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>后台管理页面</title>
+    <title>人员管理页面</title>
     <!-- Bootstrap core CSS-->
-    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom fonts for this template-->
     <link href="~/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- Page level plugin CSS-->
     <link href="~/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet"/>
     <!-- Custom styles for this template-->
     <link href="~/css/sb-admin.css" rel="stylesheet">
 </head>
@@ -81,6 +80,13 @@
                     </a>
                 </li>
             </ul>
+            <ul class="navbar-nav sidenav-toggler">
+                <li class="nav-item">
+                    <a class="nav-link text-center" id="sidenavToggler">
+                        <i class="fa fa-fw fa-angle-left"></i>
+                    </a>
+                </li>
+            </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
@@ -99,161 +105,161 @@
                 </li>
                 <li class="breadcrumb-item active">人员管理</li>
             </ol>
-            <!-- Icon Cards-->
-            @*<div class="row">
-                <div class="col-3"><span>学校</span><select class="form-control w-100"></select></div>
-                <div class="col-3"><span>院区</span><select class="form-control w-100"></select></div>
-                <div class="col-3"><span>类别</span><select class="form-control w-100"></select></div>
-                <div class="col-3">
-                    <span>搜索</span>
-                    <span class="input-group-append">
-                        <input class="form-control form-text glyphicon-search" />
-                        <button class="btn btn-primary" type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
-                </div>
-            </div>*@
-            <div class="row">
-                <div class="col-12">
+
+            <div class="row mb-3">
+                <div class="container-fluid">
                     <div class="card">
                         <div class="card-header">
                             <i class="fa fa-table"></i>
                             人员管理表
                         </div>
                         <div class="card-body">
-                            <table class="table table-bordered" id="dataTable">
-                                <thead>
-                                    <tr>
-                                        <th>名称</th>
-                                        <th>电话</th>
-                                        <th>负责区</th>
-                                        <th>类别</th>
-                                        <th>操作</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>名称</th>
-                                        <th>电话</th>
-                                        <th>负责区</th>
-                                        <th>类别</th>
-                                        <th>操作</th>
-                                    </tr>
-                                </tfoot>
-                                <tbody>
-                                    <tr>
-                                        <td>配送员1</td>
-                                        <td>13079801167</td>
-                                        <td>男3</td>
-                                        <td>早餐</td>
-                                        <td>
-                                            <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
-                                            <a class="btn btn-primary text-white" role="button">删除</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>配送员2</td>
-                                        <td>1388976540</td>
-                                        <td>男2</td>
-                                        <td>午餐</td>
-                                        <td>
-                                            <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
-                                            <a class="btn btn-primary text-white" role="button">删除</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>配送员3</td>
-                                        <td>18907654123</td>
-                                        <td>男1</td>
-                                        <td>晚餐</td>
-                                        <td>
-                                            <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
-                                            <a class="btn btn-primary text-white" role="button">删除</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>配送员4</td>
-                                        <td>19928391356</td>
-                                        <td>男7</td>
-                                        <td>早餐</td>
-                                        <td>
-                                            <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
-                                            <a class="btn btn-primary text-white" role="button">删除</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>配送员5</td>
-                                        <td>13987652876</td>
-                                        <td>男5</td>
-                                        <td>午餐</td>
-                                        <td>
-                                            <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
-                                            <a class="btn btn-primary text-white" role="button">删除</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>配送员6</td>
-                                        <td>13987653447</td>
-                                        <td>男5</td>
-                                        <td>午餐</td>
-                                        <td>
-                                            <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
-                                            <a class="btn btn-primary text-white" role="button">删除</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>配送员7</td>
-                                        <td>13987659754</td>
-                                        <td>男8</td>
-                                        <td>午餐</td>
-                                        <td>
-                                            <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
-                                            <a class="btn btn-primary text-white" role="button">删除</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>配送员8</td>
-                                        <td>13987653991</td>
-                                        <td>女1</td>
-                                        <td>早餐</td>
-                                        <td>
-                                            <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
-                                            <a class="btn btn-primary text-white" role="button">删除</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>配送员9</td>
-                                        <td>13987651989</td>
-                                        <td>女5</td>
-                                        <td>午餐</td>
-                                        <td>
-                                            <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
-                                            <a class="btn btn-primary text-white" role="button">删除</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>配送员10</td>
-                                        <td>13987652487</td>
-                                        <td>男5</td>
-                                        <td>午餐</td>
-                                        <td>
-                                            <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
-                                            <a class="btn btn-primary text-white" role="button">删除</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>配送员10</td>
-                                        <td>13987652487</td>
-                                        <td>男5</td>
-                                        <td>午餐</td>
-                                        <td>
-                                            <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
-                                            <a class="btn btn-primary text-white" role="button">删除</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="row mb-3">
+                                <div class="col-3"><span>学校</span><select class="form-control w-100"></select></div>
+                                <div class="col-3"><span>院区</span><select class="form-control w-100"></select></div>
+                                <div class="col-3"><span>类别</span><select class="form-control w-100"></select></div>
+                                <div class="col-3">
+                                    <span>&nbsp;</span>
+                                    <button class="btn btn-primary w-100" type="button">
+                                        <i class="fa fa-search"></i>
+                                        检索
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <table class="table table-bordered" id="dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>电话</th>
+                                            <th>负责区</th>
+                                            <th>类别</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>电话</th>
+                                            <th>负责区</th>
+                                            <th>类别</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <tr>
+                                            <td>配送员1</td>
+                                            <td>13079801167</td>
+                                            <td>男3</td>
+                                            <td>早餐</td>
+                                            <td>
+                                                <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
+                                                <a class="btn btn-primary text-white" role="button">删除</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>配送员2</td>
+                                            <td>1388976540</td>
+                                            <td>男2</td>
+                                            <td>午餐</td>
+                                            <td>
+                                                <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
+                                                <a class="btn btn-primary text-white" role="button">删除</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>配送员3</td>
+                                            <td>18907654123</td>
+                                            <td>男1</td>
+                                            <td>晚餐</td>
+                                            <td>
+                                                <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
+                                                <a class="btn btn-primary text-white" role="button">删除</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>配送员4</td>
+                                            <td>19928391356</td>
+                                            <td>男7</td>
+                                            <td>早餐</td>
+                                            <td>
+                                                <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
+                                                <a class="btn btn-primary text-white" role="button">删除</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>配送员5</td>
+                                            <td>13987652876</td>
+                                            <td>男5</td>
+                                            <td>午餐</td>
+                                            <td>
+                                                <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
+                                                <a class="btn btn-primary text-white" role="button">删除</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>配送员6</td>
+                                            <td>13987653447</td>
+                                            <td>男5</td>
+                                            <td>午餐</td>
+                                            <td>
+                                                <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
+                                                <a class="btn btn-primary text-white" role="button">删除</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>配送员7</td>
+                                            <td>13987659754</td>
+                                            <td>男8</td>
+                                            <td>午餐</td>
+                                            <td>
+                                                <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
+                                                <a class="btn btn-primary text-white" role="button">删除</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>配送员8</td>
+                                            <td>13987653991</td>
+                                            <td>女1</td>
+                                            <td>早餐</td>
+                                            <td>
+                                                <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
+                                                <a class="btn btn-primary text-white" role="button">删除</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>配送员9</td>
+                                            <td>13987651989</td>
+                                            <td>女5</td>
+                                            <td>午餐</td>
+                                            <td>
+                                                <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
+                                                <a class="btn btn-primary text-white" role="button">删除</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>配送员10</td>
+                                            <td>13987652487</td>
+                                            <td>男5</td>
+                                            <td>午餐</td>
+                                            <td>
+                                                <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
+                                                <a class="btn btn-primary text-white" role="button">删除</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>配送员10</td>
+                                            <td>13987652487</td>
+                                            <td>男5</td>
+                                            <td>午餐</td>
+                                            <td>
+                                                <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
+                                                <a class="btn btn-primary text-white" role="button">删除</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -292,12 +298,12 @@
         </div>
         <!-- Bootstrap core JavaScript-->
         <script src="~/vendor/jquery/jquery.min.js"></script>
-        <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.js"></script>
+        <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <!-- Core plugin JavaScript-->
         <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
         <!-- Page level plugin JavaScript-->
         <script src="~/vendor/chart.js/Chart.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+        <script src="~/vendor/datatables/jquery.dataTables.js"></script>
         <script src="~/vendor/datatables/dataTables.bootstrap4.js"></script>
         <!-- Custom scripts for all pages-->
         <script src="~/js/sb-admin.min.js"></script>
