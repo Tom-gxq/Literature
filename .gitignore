@@ -2147,3 +2147,12 @@ SPManager/bin/ServiceStack.Interfaces.dll
 SPManager/bin/ServiceStack.Text.dll
 AgentDashboard\AgentDashboard\bin\*.*
 AgentDashboard/AgentDashboard/bin/*
+AccountGRPCInterface/bin/Debug/netstandard2.0/RPCCommonTool.dll
+AccountGRPCInterface/bin/Debug/netstandard2.0/RPCCommonTool.pdb
+AccountGRPCInterface/bin/Debug/netstandard2.0/SP.Api.Model.dll
+AccountGRPCInterface/bin/Debug/netstandard2.0/SP.Api.Model.pdb
+AccountGRPCInterface/obj/Debug/netstandard2.0/AccountGRPCInterface.csprojResolveAssemblyReference.cache
+OrderRPCInterface/bin/Debug/netstandard2.0/RPCCommonTool.dll
+OrderRPCInterface/bin/Debug/netstandard2.0/RPCCommonTool.pdb
+OrderRPCInterface/bin/Debug/netstandard2.0/SP.Api.Model.dll
+OrderRPCInterface/bin/Debug/netstandard2.0/SP.Api.Model.pdb
