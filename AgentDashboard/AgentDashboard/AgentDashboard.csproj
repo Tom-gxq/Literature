@@ -273,7 +273,7 @@
       <DependentUpon>SP.edmx</DependentUpon>
     </Content>
     <Content Include="Views\Default\ShopDetails.cshtml" />
-    <Content Include="Views\Default\HumanManagerDemo.cshtml" />
+    <Content Include="Views\Default\DeliverymanViewer.cshtml" />
     <Content Include="js\plug\plupload\Moxie.xap" />
     <None Include="Views\Default\Index.cshtml" />
     <Content Include="Web.config" />
