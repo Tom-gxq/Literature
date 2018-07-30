@@ -91,6 +91,7 @@
     <Compile Include="Repositories\ResEventRespository.cs" />
     <Compile Include="Repositories\ShopProductRespository.cs" />
     <Compile Include="Repositories\ShopRespository.cs" />
+    <Compile Include="Repositories\SupplersRepository.cs" />
     <Compile Include="Repositories\SysKindRespository.cs" />
   </ItemGroup>
   <ItemGroup>

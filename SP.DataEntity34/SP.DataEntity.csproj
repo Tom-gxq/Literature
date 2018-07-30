@@ -90,6 +90,7 @@
     <Compile Include="ShopEntity.cs" />
     <Compile Include="ShoppingCartsEntity.cs" />
     <Compile Include="ShopProductEntity.cs" />
+    <Compile Include="SuppliersEntity.cs" />
     <Compile Include="SysEventEntity.cs" />
     <Compile Include="SysKindEntity.cs" />
   </ItemGroup>

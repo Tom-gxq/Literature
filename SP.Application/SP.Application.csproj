@@ -101,6 +101,9 @@
     <Compile Include="SPApplicationModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SPAppServiceBase.cs" />
+    <Compile Include="Suppler\DTO\SupplerDto.cs" />
+    <Compile Include="Suppler\ISupplerAppService.cs" />
+    <Compile Include="Suppler\SupplerAppService.cs" />
     <Compile Include="User\AccountAppService.cs" />
     <Compile Include="User\AdminAppService.cs" />
     <Compile Include="User\DTO\AccountInfoDto.cs" />

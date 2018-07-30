@@ -223,6 +223,7 @@
     <Content Include="js\sb-admin.min.js" />
     <Content Include="js\seajs\sea-config.js" />
     <Content Include="js\seajs\sea.js" />
+    <Content Include="js\seller\seller.js" />
     <Content Include="Models\SP.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SP.Context.cs</LastGenOutput>
@@ -292,6 +293,7 @@
       <DependentUpon>SP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PageModel.cs" />
+    <Compile Include="Models\SellerViewModel.cs" />
     <Compile Include="Models\ShopDetailsViewModel.cs" />
     <Compile Include="Models\ShopViewModel.cs" />
     <Compile Include="Models\SP.Context.cs">

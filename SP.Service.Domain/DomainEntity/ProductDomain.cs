@@ -92,12 +92,12 @@ namespace SP.Service.Domain.DomainEntity
             this.ProductId = product.ProductId;
             this.ProductName = product.ProductName;
             this.ProductCode = product.ProductCode;
-            this.MarketPrice = product.MarketPrice.Value;
+            this.MarketPrice = product.MarketPrice != null? product.MarketPrice.Value:0;
             this.VipPrice = product.VIPPrice != null ? product.VIPPrice.Value : 0;
             this.ShortDescription = product.ShortDescription;
             this.Description = product.Description;
             this.Unit = product.Unit;            
-            this.SaleStatus = product.SaleStatus.Value;
+            this.SaleStatus = product.SaleStatus != null? product.SaleStatus.Value:0;
             this.AddedDate = product.AddedDate != null ? product.AddedDate.Value : DateTime.MinValue;
             this.PurchasePrice = product.PurchasePrice != null ? product.PurchasePrice.Value : 0;
             this.SecondTypeId = product.SecondTypeId != null ? product.SecondTypeId.Value : 0;

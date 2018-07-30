@@ -2,6 +2,7 @@
 using LibMain.Dependency;
 using SP.Application.Order;
 using SP.Application.Product;
+using SP.Application.Suppler;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -221,7 +222,67 @@ namespace AgentDashboard.Controllers
 
         public ActionResult ShopManager()
         {
-            return View();
+            List<SellerViewModel> shopsVM = null;
+            ISupplerAppService service = IocManager.Instance.Resolve<ISupplerAppService>();
+            var list = service.GetSupplerList();
+
+            shopsVM = list.Select(x => new SellerViewModel
+            {
+                AccountId = x.AccountId,
+                SellerName = x.SuppliersName,
+                LogoPath = x.LogoPath
+            }).ToList();
+
+            return View(shopsVM);
+        }
+        [HttpPost]
+        public ActionResult DelSeller(int id)
+        {            
+            ISupplerAppService service = IocManager.Instance.Resolve<ISupplerAppService>();
+            var list = service.DelSuppler(id);
+
+            return Json(String.Empty);
+        }
+        public JsonResult SearchProductByKeyWord(string keywords)
+        {
+            Dictionary<string, object> JsonResult = new Dictionary<string, object>();
+            IProductAppService service = IocManager.Instance.Resolve<IProductAppService>();
+            var result = service.SearchProductByKeyWord(keywords, 1, 30);
+            JsonResult.Add("items", result);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public JsonResult SearchSellerData(string name)
+        {
+            Dictionary<string, object> JsonResult = new Dictionary<string, object>();
+            ISupplerAppService service = IocManager.Instance.Resolve<ISupplerAppService>();
+            var result = service.SearchSellerData(name);
+            JsonResult.Add("items", result);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public ActionResult SearchSeller(string productId="",int sellerId=0,int type=-1)
+        {
+            List<SellerViewModel> shopsVM = null;
+            ISupplerAppService service = IocManager.Instance.Resolve<ISupplerAppService>();
+            var list = service.SearchSuppler(productId, sellerId, type,1,20);
+
+            shopsVM = list.Select(x => new SellerViewModel
+            {
+                AccountId = x.AccountId,
+                SellerName = x.SuppliersName,
+                LogoPath = x.LogoPath
+            }).ToList();
+
+            return View(shopsVM);
         }
 
         public ActionResult RegionManager()

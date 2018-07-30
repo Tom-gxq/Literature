@@ -25,7 +25,8 @@ namespace SP.Service.Domain.EventHandlers
                 ShipTo = handle.ShipTo,
                 Stock = handle.Stock,
                 ShippingDate = handle.ShippingDate,
-                ShopId = handle.ShopId
+                ShopId = handle.ShopId,
+                IsShipped = false,
             };
 
             _reportDatabase.Add(item);

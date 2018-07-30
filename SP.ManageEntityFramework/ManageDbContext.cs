@@ -30,6 +30,7 @@ namespace SP.ManageEntityFramework
         public IDbSet<SysKindEntity> SysKind { get; set; }
         public IDbSet<CarouselEntity> Carousel { get; set; }
         public IDbSet<CashApplyEntity> CashApply { get; set; }
+        public IDbSet<SuppliersEntity> Suppliers { get; set; }
 
         public ManageDbContext()
             : base("Default")

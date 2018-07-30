@@ -1,0 +1,127 @@
+﻿using Lib.Application.Services;
+using LibMain.Dependency;
+using LibMain.Domain.Repositories;
+using SP.Application.Suppler.DTO;
+using SP.DataEntity;
+using SP.ManageEntityFramework.Repositories;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SP.Application.Suppler
+{
+    public class SupplerAppService : ApplicationService, ISupplerAppService
+    {
+        private readonly IRepository<SuppliersEntity, int> _shopRepository;
+        public SupplerAppService(IRepository<SuppliersEntity, int> shopRepository)
+        {
+            _shopRepository = shopRepository;
+        }
+        public bool AddSuppler(SupplerDto dto)
+        {
+            var result = _shopRepository.Insert(new SuppliersEntity()
+            {
+                SuppliersName = dto.SuppliersName,
+                Status = 0,
+                AccountId = dto.AccountId,
+                AlipayNo = dto.AlipayNo,
+                AuthorizationPath = dto.AuthorizationPath,
+                LicensePath = dto.LicensePath,
+                LogoPath = dto.LogoPath,
+                PermitPath = dto.PermitPath,
+                TelPhone = dto.TelPhone,
+                CreateTime = DateTime.Now
+            });
+            return result != null;
+        }
+
+        public bool DelSuppler(int id)
+        {
+            var repository = IocManager.Instance.Resolve<SupplersRepository>();
+            return repository.UpdateSupplerStatus(new SuppliersEntity()
+            {
+                 Id = id,
+                 Status = 1
+            });
+        }
+        public List<SupplerDto> GetSupplerList()
+        {
+            var retList = new List<SupplerDto>();
+            var repository = IocManager.Instance.Resolve<SupplersRepository>();
+            var list = repository.GeAllSupplerList();
+            foreach (var item in list)
+            {
+                var entity = ConvertFromRepositoryEntity(item);
+
+                retList.Add(entity);
+            }
+
+            return retList;
+        }
+        public List<SupplerDto> SearchSuppler(string productId, int supplerId, int type, int pageIndex, int pageSize)
+        {
+            var retList = new List<SupplerDto>();
+            var repository = IocManager.Instance.Resolve<SupplersRepository>();
+            var list = repository.GeAllSupplerList();
+            foreach (var item in list)
+            {
+                var entity = ConvertFromRepositoryEntity(item);
+
+                retList.Add(entity);
+            }
+
+            return retList;
+        }
+        public int SearchSupplerCount(string productId, int supplerId, int type)
+        {
+            var repository = IocManager.Instance.Resolve<SupplersRepository>();
+            var count = repository.SearchSupplerCount(productId, supplerId, type);
+            return count;
+        }
+        public SupplerDto GetSupplerDetail(int id)
+        {
+            var repository = IocManager.Instance.Resolve<SupplersRepository>();
+            var entity =  repository.GetSupplerById(id);
+            return ConvertFromRepositoryEntity(entity);
+        }
+        public List<SupplerDto> SearchSellerData(string name)
+        {
+            var retList = new List<SupplerDto>();
+            var repository = IocManager.Instance.Resolve<SupplersRepository>();
+            var list = repository.SearchSellerData(name);
+            foreach (var item in list)
+            {
+                var entity = ConvertFromRepositoryEntity(item);
+
+                retList.Add(entity);
+            }
+
+            return retList;
+        }
+        private static SupplerDto ConvertFromRepositoryEntity(SuppliersEntity entity)
+        {
+            if (entity == null)
+            {
+                return null;
+            }
+            var shopDto = new SupplerDto
+            {
+                Id = entity.Id.Value,
+                AccountId = entity.AccountId,
+                AlipayNo = entity.AlipayNo,
+                AuthorizationPath = entity.AuthorizationPath,
+                LicensePath = entity.LicensePath,
+                LogoPath = entity.LogoPath,
+                PermitPath = entity.PermitPath,
+                SuppliersName = entity.SuppliersName,
+                TelPhone = entity.TelPhone,
+                CreateTime = entity.CreateTime!= null ? entity.CreateTime.Value:DateTime.MinValue,
+                UpdateTime = entity.UpdateTime != null ? entity.UpdateTime.Value : DateTime.MinValue,
+            };
+
+            return shopDto;
+        }
+    }
+}
