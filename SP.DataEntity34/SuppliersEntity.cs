@@ -12,7 +12,18 @@ namespace SP.DataEntity
     public class SuppliersEntity : Entity
     {
         [AutoIncrement]
-        public int? Id { get; set; }
+        public override int Id
+        {
+            get
+            {
+                return base.Id;
+            }
+
+            set
+            {
+                base.Id = value;
+            }
+        }
         public string SuppliersName { get; set; }
         public string AccountId { get; set; }
         public string LogoPath { get; set; }

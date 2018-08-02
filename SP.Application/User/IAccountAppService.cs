@@ -11,5 +11,6 @@ namespace SP.Application.User
     public interface IAccountAppService :IApplicationService
     {
         List<AccountInfoDto> SearchAccount(string keywords);
+        AccountInfoDto GetAccountInfo(string accountId);
     }
 }

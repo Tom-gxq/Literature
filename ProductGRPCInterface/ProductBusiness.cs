@@ -292,6 +292,10 @@ namespace ProductGRPCInterface
                 return false;
             }
         }
+        public static bool GetShopStatus(string accountId)
+        {
+            return true;
+        }
 
         public static bool AddProduct(SellerProductModel model)
         {

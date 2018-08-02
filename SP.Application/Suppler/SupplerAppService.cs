@@ -43,7 +43,24 @@ namespace SP.Application.Suppler
             return repository.UpdateSupplerStatus(new SuppliersEntity()
             {
                  Id = id,
-                 Status = 1
+                 Status = 1,
+                 UpdateTime = DateTime.Now
+            });
+        }
+        public bool UpdateSeller(SupplerDto dto)
+        {
+            var repository = IocManager.Instance.Resolve<SupplersRepository>();
+            return repository.UpdateSuppler(new SuppliersEntity()
+            {
+                Id = dto.Id,
+                AlipayNo = string.IsNullOrEmpty(dto.AlipayNo)?null: dto.AlipayNo,
+                AuthorizationPath = string.IsNullOrEmpty(dto.AuthorizationPath) ? null : dto.AuthorizationPath,
+                LicensePath = string.IsNullOrEmpty(dto.LicensePath) ? null : dto.LicensePath,
+                LogoPath = string.IsNullOrEmpty(dto.LogoPath) ? null : dto.LogoPath,
+                PermitPath = string.IsNullOrEmpty(dto.PermitPath) ? null : dto.PermitPath,
+                SuppliersName= string.IsNullOrEmpty(dto.SuppliersName) ? null : dto.SuppliersName,
+                TelPhone = string.IsNullOrEmpty(dto.TelPhone) ? null : dto.TelPhone,
+                UpdateTime = DateTime.Now
             });
         }
         public List<SupplerDto> GetSupplerList()
@@ -108,7 +125,7 @@ namespace SP.Application.Suppler
             }
             var shopDto = new SupplerDto
             {
-                Id = entity.Id.Value,
+                Id = entity.Id,
                 AccountId = entity.AccountId,
                 AlipayNo = entity.AlipayNo,
                 AuthorizationPath = entity.AuthorizationPath,

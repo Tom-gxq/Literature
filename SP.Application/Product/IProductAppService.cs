@@ -44,5 +44,6 @@ namespace SP.Application.Product
         List<ProductSkuDto> SearchProducSku(int schoolId, int districtId, int shopId, string productId, int skuStatus);
         List<ProductSkuDto> GetMarketSkuList(int pageIndex, int pageSize, int marketId);
         long GetMarketSkuListCount(int marketId);
+        List<ProductsDto> GetSellerProductListByTypeId(string accountId, int typeId);
     }
 }

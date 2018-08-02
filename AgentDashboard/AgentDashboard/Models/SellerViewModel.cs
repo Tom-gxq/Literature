@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SP.Application.Product.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,7 @@ namespace AgentDashboard.Models
     {
         public int SellerId { get; set; }
         public string AccountId { get; set; }
+        public string AccountName { get; set; }
         public string SellerName { get; set; }
         public string LogoPath { get; set; }
         public string TelNumber { get; set; }
@@ -28,5 +30,7 @@ namespace AgentDashboard.Models
         /// 支付宝提现账号
         /// </summary>
         public string AlipayNo { get; set; }
+        public List<ProductTypeModel> TypeList { get; set; }
+        public List<List<ProductsDto>> ProductDic { get; set; }
     }
 }

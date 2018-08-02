@@ -26,6 +26,11 @@ namespace SP.ManageEntityFramework.Repositories
             var result = this.UpdateNonDefaults(entity, x => x.Id == entity.Id);
             return result > 0;
         }
+        public bool UpdateSuppler(SuppliersEntity entity)
+        {
+            var result = this.UpdateNonDefaults(entity, x => x.Id == entity.Id);
+            return result > 0;
+        }
 
         public List<SuppliersEntity> GeAllSupplerList()
         {

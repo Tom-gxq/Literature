@@ -13,6 +13,10 @@ define(function (require, exports, module) {
     var datapager = require('datapager');
     var easydialog = require("easydialog");
     var Global = common.Global;
+    var addSeller = require('add-seller');
+    var addlic = require('add-lic');
+    var addpermit = require('add-permit');
+    var addauth = require('add-auth');
     //基础扩展
     var base = {
         bindElements: function () {
@@ -79,12 +83,13 @@ define(function (require, exports, module) {
             var _self = this;
             
             $(".card-delete-icon").click(function () {
-                var dataId = obj.toElement.getAttribute("dataid");
+                var dataId = this.getAttribute("dataid");
                 Global.post('DelSeller', {
                     id: dataId
                 },
                     function (data) {
-                        
+                        //重新加载页面
+                        window.location.href = '/Default/ShopManager';
                     }
                 );
             });
@@ -92,16 +97,85 @@ define(function (require, exports, module) {
                 window.location.href = 'SearchSeller';
             });
             $("#btnAdd").click(function (obj) {
-                var dataId = obj.toElement.getAttribute("dataid");
-                Global.post('DelSeller', {
-                    id: dataId
-                },
-                    function (data) {
-                        if (data && data.result) {
-                            item.remove();
+                //弹出添加的操作框
+                addSeller.init({
+                    stepOne: true,
+                    dialogID: 'wizard',
+                    header: '添加商家',
+                    callBack: function (result) {
+                        alert("result=" + result)
+                        if (result) {
+                            //重新加载页面
+                            window.location.href = '/Default/ShopManager';
+                        } else {
+                            alert('添加商家失败');
                         }
                     }
-                );
+                });
+            });
+
+            $(".card-body").click(function (obj) {
+                console.log(this.getAttribute("dataid"));
+                if (this.getAttribute("dataid") > 0) {                    
+                    window.location.href = '/Default/SellerDetails?sellerId=' + this.getAttribute("dataid");
+                }
+            });
+            $(".card-footer").find(".lic").click(function (obj) {
+                console.log(this.getAttribute("dataid"));
+                //弹出添加的操作框
+                addlic.init({
+                    stepOne: true,
+                    dialogID: 'wizard',
+                    header: '添加商家营业执照',
+                    objId: this.getAttribute("dataid"),
+                    callBack: function (result) {
+                        alert("result=" + result)
+                        if (result) {
+                            //重新加载页面
+                            window.location.href = '/Default/ShopManager';
+                        } else {
+                            alert('添加失败');
+                        }
+                    }
+                });
+            });
+            $(".card-footer").find(".permit").click(function (obj) {
+                console.log(this.getAttribute("id"));
+                //弹出添加的操作框
+                addpermit.init({
+                    stepOne: true,
+                    dialogID: 'wizard',
+                    header: '添加商家营业许可',
+                    objId: this.getAttribute("dataid"),
+                    callBack: function (result) {
+                        alert("result=" + result)
+                        if (result) {
+                            //重新加载页面
+                            window.location.href = '/Default/ShopManager';
+                        } else {
+                            alert('添加失败');
+                        }
+                    }
+                });
+            });
+            $(".card-footer").find(".auth").click(function (obj) {
+                console.log(this.getAttribute("id"));
+                //弹出添加的操作框
+                addauth.init({
+                    stepOne: true,
+                    dialogID: 'wizard',
+                    header: '添加商家授权函',
+                    objId: this.getAttribute("dataid"),
+                    callBack: function (result) {
+                        alert("result=" + result)
+                        if (result) {
+                            //重新加载页面
+                            window.location.href = '/Default/ShopManager';
+                        } else {
+                            alert('添加失败');
+                        }
+                    }
+                });
             });
             var completeInfo = require('complete');
             completeInfo.createComplete({

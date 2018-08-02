@@ -1,8 +1,15 @@
-﻿using AgentDashboard.Models;
+﻿using AccountGRPCInterface;
+using AgentDashboard.Models;
 using LibMain.Dependency;
+using SP.Api.Cache;
+using SP.Api.Model.Account;
 using SP.Application.Order;
 using SP.Application.Product;
+using SP.Application.Product.DTO;
 using SP.Application.Suppler;
+using SP.Application.Suppler.DTO;
+using SP.Application.User;
+using SP.Application.User.DTO;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -10,9 +17,11 @@ using System.Data.Entity;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using WebApiGateway.App_Start.Crypt;
 
 namespace AgentDashboard.Controllers
 {
@@ -131,8 +140,9 @@ namespace AgentDashboard.Controllers
                             procduct.Name = procdutInfo.ProductName;
                             procduct.Description = procdutInfo?.Description;
 
+                            string domain = ConfigurationManager.AppSettings["Qiniu.Domain"];
                             var procdutImageInfo = sp.SP_ProductImage.SingleOrDefault(n => n.ProductId == procduct.Id);
-                            procduct.ImagePath = procduct?.ImagePath;
+                            procduct.ImagePath = !string.IsNullOrEmpty(procduct?.ImagePath)? domain+ procduct.ImagePath:string.Empty;
                             deliverMan.Products.Add(procduct);
                         }
 
@@ -239,12 +249,13 @@ namespace AgentDashboard.Controllers
             List<SellerViewModel> shopsVM = null;
             ISupplerAppService service = IocManager.Instance.Resolve<ISupplerAppService>();
             var list = service.GetSupplerList();
-
+            
             shopsVM = list.Select(x => new SellerViewModel
             {
+                SellerId = x.Id,
                 AccountId = x.AccountId,
                 SellerName = x.SuppliersName,
-                LogoPath = x.LogoPath
+                LogoPath = x.LogoPath,
             }).ToList();
 
             return View(shopsVM);
@@ -291,12 +302,144 @@ namespace AgentDashboard.Controllers
 
             shopsVM = list.Select(x => new SellerViewModel
             {
+                SellerId = x.Id,
                 AccountId = x.AccountId,
                 SellerName = x.SuppliersName,
                 LogoPath = x.LogoPath
             }).ToList();
 
             return View(shopsVM);
+        }
+        public JsonResult AddSeller(SellerViewModel model )
+        {
+            Dictionary<string, object> JsonResult = new Dictionary<string, object>();
+            ISupplerAppService service = IocManager.Instance.Resolve<ISupplerAppService>();
+            
+            var ret = service.AddSuppler(new SupplerDto()
+            {
+                 AccountId = model.AccountId,
+                 AlipayNo = model.AlipayNo,
+                 SuppliersName = model.SellerName,
+                 LogoPath = model.LogoPath,
+                 TelPhone = model.TelNumber
+            });
+            JsonResult.Add("status", ret);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public JsonResult SearchAccountByKeyWord(string keywords)
+        {
+            Dictionary<string, object> JsonResult = new Dictionary<string, object>();
+            IAccountAppService service = IocManager.Instance.Resolve<IAccountAppService>();
+            var result = service.SearchAccount(keywords);
+            JsonResult.Add("items", result);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public JsonResult UpdateSeller(SellerViewModel model)
+        {
+            Dictionary<string, object> JsonResult = new Dictionary<string, object>();
+            ISupplerAppService service = IocManager.Instance.Resolve<ISupplerAppService>();
+            var ret = service.UpdateSeller(new SupplerDto()
+            {
+                Id = model.SellerId,
+                AlipayNo = model.AlipayNo,
+                SuppliersName = model.SellerName,
+                LogoPath = model.LogoPath,
+                TelPhone = model.TelNumber,
+                AuthorizationPath = model.AuthorizationPath,
+                LicensePath = model.LicensePath,
+                PermitPath = model.PermitPath,                
+            });
+            JsonResult.Add("status", ret);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public ActionResult SellerDetails(int sellerId)
+        {
+            ISupplerAppService service = IocManager.Instance.Resolve<ISupplerAppService>();
+            var dto = service.GetSupplerDetail(sellerId);
+            
+            AccountInfoDto accountInfo = null;
+            if (!string.IsNullOrEmpty(dto?.AccountId))
+            {
+                IAccountAppService accountService = IocManager.Instance.Resolve<IAccountAppService>();
+                accountInfo = accountService.GetAccountInfo(dto.AccountId);
+            }
+            
+            string domain = ConfigurationManager.AppSettings["Qiniu.Domain"];
+            var vm = new SellerViewModel
+            {
+                SellerId = dto.Id,
+                AccountId = dto.AccountId,
+                SellerName = dto.SuppliersName,
+                LogoPath = dto.LogoPath,//!string.IsNullOrEmpty(dto.LogoPath) ?domain+dto.LogoPath:string.Empty,
+                AlipayNo = dto.AlipayNo,
+                AuthorizationPath = dto.AuthorizationPath,//!string.IsNullOrEmpty(dto.AuthorizationPath) ? domain + dto.AuthorizationPath : string.Empty,
+                LicensePath = dto.LicensePath,//!string.IsNullOrEmpty(dto.LicensePath) ? domain + dto.LicensePath : string.Empty,
+                PermitPath = dto.PermitPath,//!string.IsNullOrEmpty(dto.PermitPath) ? domain + dto.PermitPath : string.Empty,
+                TelNumber = dto.TelPhone,
+                AccountName = accountInfo?.Fullname??string.Empty,
+                TypeList = new List<ProductTypeModel>(),
+                ProductDic = new List<List<ProductsDto>>()
+            };
+            IProductTypeService typeService = IocManager.Instance.Resolve<IProductTypeService>();
+            var account = MDSession.Session["Account"] as AccountModel;
+            var typeList = new List<ProductTypeDto>();
+            if (account != null)
+            {
+                typeList = typeService.GetTypeList(account.AccountId, 1, 30);
+                typeList.ForEach(x=> vm.TypeList.Add(new ProductTypeModel()
+                {
+                     TypeId = x.TypeId,
+                     TypeName = x.TypeName
+                }));
+                IProductAppService productService = IocManager.Instance.Resolve<IProductAppService>();
+                foreach (var item in typeList)
+                {
+                    var pList = productService.GetSellerProductListByTypeId(account.AccountId, item.TypeId);
+                    foreach(var p in pList)
+                    {
+                        if(p.ProductImage != null && p.ProductImage.Count > 0)
+                        {
+                            p.ProductImage[0].ImgPath = !string.IsNullOrEmpty(p.ProductImage[0]?.ImgPath) ? domain + p.ProductImage[0].ImgPath : string.Empty;
+                        }
+                    }
+                    vm.ProductDic.Add(pList);
+                }
+            }
+
+            
+            return View(vm);
+        }
+        public JsonResult GetProductTypeList()
+        {
+            Dictionary<string, object> JsonResult = new Dictionary<string, object>();
+            IProductTypeService service = IocManager.Instance.Resolve<IProductTypeService>();
+            var account = MDSession.Session["Account"] as AccountInfo;
+            if (account != null)
+            {
+                var result = service.GetTypeList(account.AccountId, 1, 30);
+                JsonResult.Add("result", result);
+            }
+            
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
         }
 
         public ActionResult RegionManager()
@@ -351,7 +494,62 @@ namespace AgentDashboard.Controllers
 
         public ActionResult CheckLogin(AccountViewModel vm)
         {
-            return RedirectToAction("Index");
+            //必须字段
+            if (!string.IsNullOrEmpty(vm.UserName))
+            {
+                var account = CheckAccount(vm.UserName);
+                //加密密码
+                var password = StringCrypt.Encrypt(vm.Password, ConfigInfo.ConfigInfoData.CryptKey.MessageKey);
+                var accountEntity = AccountBusiness.GetAccount(account);
+                if (accountEntity == null)
+                {
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    if (accountEntity.Password != password)
+                    {
+                        return RedirectToAction("Login"); //密码错误
+                    }
+                    else
+                    {
+                       
+                        MDSession.Session.Clear();
+                        MDSession.Session["Account"] = AccountInfoCache.GetAccountInfoByAccountId(accountEntity.AccountId);
+                    }
+                }
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Login");
+        }
+        private static string CheckAccount(string account)
+        {
+            if (!ValidateAccount(account))
+                return string.Empty;
+
+            if (!account.StartsWith("86") && !account.StartsWith("+"))
+                account = "86" + account;
+
+            if (!account.Contains("+"))
+                account = "+" + account;
+
+            return account;
+        }
+        private static bool ValidateAccount(string account)
+        {
+            if (string.IsNullOrWhiteSpace(account))
+                return false;
+
+            if (account.Length < 5 || (!ValidateEmail(account) && !Regex.IsMatch(account, @"^[+]?\d+$")))
+                return false;
+
+            return true;
+        }
+        private static bool ValidateEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+            return Regex.IsMatch(email, @"^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)*\.[\w-]+$");
         }
 
     }

@@ -12,6 +12,7 @@ namespace SP.Application.Suppler
     {
         bool AddSuppler(SupplerDto dto);
         bool DelSuppler(int id);
+        bool UpdateSeller(SupplerDto dto);
         List<SupplerDto> GetSupplerList();
         List<SupplerDto> SearchSuppler(string productId,int supplerId,int type, int pageIndex, int pageSize);
         int SearchSupplerCount(string productId, int supplerId, int type);

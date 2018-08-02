@@ -26,6 +26,15 @@ namespace SP.Application.User
 
             return retList;
         }
+        public AccountInfoDto GetAccountInfo(string accountId)
+        {
+            var retList = new List<AccountInfoDto>();
+            var repository = IocManager.Instance.Resolve<AccountRespository>();
+            var item = repository.GetAccountInfoById(accountId);
+            var entity = ConvertFromRepositoryEntity(item);
+
+            return entity;
+        }
 
         private static AccountInfoDto ConvertFromRepositoryEntity(AccountInfoEntity accountInfo)
         {

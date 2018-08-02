@@ -501,6 +501,31 @@ namespace SP.Application.Product
             var count = repository.GetMarketSkuListCount(marketId);
             return count;
         }
+        public List<ProductsDto> GetSellerProductListByTypeId(string accountId, int typeId)
+        {
+            var retList = new List<ProductsDto>();
+            var repository = IocManager.Instance.Resolve<ProductsRespository>();
+            var list = repository.GetSellerProductListByTypeId(accountId, typeId);
+            foreach (var item in list)
+            {
+                var product = ConvertFromRepositoryEntity(item, string.Empty);
+                if (product != null)
+                {
+                    var imageList = repository.GetImageListByProductId(product.ProductId).OrderBy(x => x.DisplaySequence).ToList();
+                    product.ProductImage = new List<ProductImageDto>();
+                    foreach (var img in imageList)
+                    {
+                        var image = ConvertImageFromRepositoryEntity(img);
+                        if (image != null)
+                        {
+                            product.ProductImage.Add(image);
+                        }
+                    }
+                }
+                retList.Add(product);
+            }
+            return retList;
+        }
 
         private static ProductsDto ConvertFromRepositoryEntity(ProductEntity product,string lastOperater="")
         {

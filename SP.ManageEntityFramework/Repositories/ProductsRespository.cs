@@ -179,5 +179,15 @@ namespace SP.ManageEntityFramework.Repositories
                 return db.Select(q);
             }
         }
+
+        public List<ProductEntity> GetSellerProductListByTypeId(string accountId, int typeId)
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<ProductEntity>();
+                q = q.Where(x=>x.SuppliersId == accountId && x.SecondTypeId == typeId);
+                return db.Select(q);
+            }
+        }
     }
 }

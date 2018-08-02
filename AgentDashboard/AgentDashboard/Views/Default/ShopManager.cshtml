@@ -217,12 +217,17 @@
                     {
                         <div class="col-xl-3 col-sm-6 mb-3">
                             <div class="card text-white bg-primary o-hidden h-100">
-                                <div class="card-body">                                    
-                                    <div class="card-delete-icon" >
+                                <div class="card-body" dataid="@seller.SellerId">                                    
+                                    <div class="card-delete-icon" dataid="@seller.SellerId">
                                         <i class="fa fa-fw fa-close" dataid="@seller.SellerId"></i>
                                     </div>
                                     <div class="mr-5">@seller.SellerName</div>
-                                </div>                                
+                                </div> 
+                                <div class="card-footer text-white clearfix small z-1" >
+                                    <input dataid="@seller.SellerId"  class="lic"  type="button" style="float: left;" value="执照"/>
+                                    <input dataid="@seller.SellerId" class="permit"   type="button" style="float: left;" value="经营许可" />
+                                    <input dataid="@seller.SellerId" class="auth" type="button" style="float: left;" value="授权函" />
+                                </div>
                             </div>
                         </div>
                      }
@@ -282,6 +287,12 @@
                 OrderList.SellerController.init({ el: '', url: '' });
             });
         </script>
+        <script type="text/javascript" src="/js/plug/plupload/plupload.full.min.js"></script>
+        <script type="text/javascript" src="/js/plug/plupload/i18n/zh_CN.js"></script>
+        <script type="text/javascript" src="/js/plug/qiniu/ui.js"></script>
+        <script type="text/javascript" src="/js/plug/qiniu/qiniu.js"></script>
+        <script type="text/javascript" src="/js/plug/qiniu/highlight.js"></script>
+        <script type="text/javascript" src="/js/plug/qiniu/main.js"></script>
     </div>
 </body>
 

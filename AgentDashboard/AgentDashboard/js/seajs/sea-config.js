@@ -20,8 +20,6 @@ seajs.config({
         'jqueryui': 'plug/jquery/jquery-ui-1.10.2.js',
         'multiselect': 'plug/multiselect/jquery.multiselect.js',
         'json': 'plug/json.js',
-
-        'daterangepicker': 'plug/daterange/js/daterangepicker.jquery.js',
         // 模版
         'dot': 'plug/dot.js',
         // 对话框
@@ -43,7 +41,14 @@ seajs.config({
         'qiniu': 'plug/qiniu/qiniu.js',
         // 七牛上传
         'qiniumain': 'plug/qiniu/main.js',
-        
+        // 七牛上传
+        'qiniusellerlogo': 'plug/qiniu/sellerlogo.js',
+        // 七牛上传
+        'qiniusellerlic': 'plug/qiniu/sellerlic.js',
+        // 七牛上传
+        'qiniusellerpermit': 'plug/qiniu/sellerpermit.js',
+        // 七牛上传
+        'qiniusellerauth': 'plug/qiniu/sellerauth.js',
         // 表情插件
         'facebase': 'plug/face/facebase.js',
         // 表情插件
@@ -56,7 +61,14 @@ seajs.config({
         'happy': 'plug/form/happy.js',
         // 单个修改
         'singleedit': 'plug/singleedit/singleedit.js',
-        
+        // 添加商家
+        'add-seller': 'seller/addseller.js',
+        // 添加商家营业执照
+        'add-lic': 'seller/addlic.js',
+        // 添加商家营业许可
+        'add-permit': 'seller/addpermit.js',
+        // 添加商家授权函
+        'add-auth': 'seller/addauth.js',
         //zrender，图标插件echarts的底层组件
         'zrender': 'plug/zrender/zrender.js'
     },
