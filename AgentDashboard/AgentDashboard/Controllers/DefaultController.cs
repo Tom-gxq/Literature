@@ -62,7 +62,7 @@ namespace AgentDashboard.Controllers
                 ViewBag.TotalPages = Math.Ceiling((Double)sp.SP_Shop.Count() / 20.00d);
                 ViewBag.CurrentPage = 1;
 
-                var shopList = sp.SP_Shop.OrderByDescending(n => n.RegionId).OrderByDescending(n=>n.Id)
+                var shopList = sp.SP_Shop.Where(n=>n.ShopType == 1)?.OrderByDescending(n => n.RegionId).OrderByDescending(n=>n.Id)
                     //.Skip(GetStartRowNo(1, 20)).Take(20).ToList();
                     .ToList();
                 shopsVM = shopList.Select(x => new ShopViewModel
@@ -216,7 +216,25 @@ namespace AgentDashboard.Controllers
 
         public ActionResult SuperMarket()
         {
-            return View();
+            List<ShopViewModel> shopsVM = null;
+            using (SPEntities sp = new SPEntities())
+            {
+                ViewBag.TotalPages = Math.Ceiling((Double)sp.SP_Shop.Count() / 20.00d);
+                ViewBag.CurrentPage = 1;
+
+                var shopList = sp.SP_Shop.Where(n => n.ShopType == 5)?.OrderByDescending(n => n.RegionId).OrderByDescending(n => n.Id)
+                    //.Skip(GetStartRowNo(1, 20)).Take(20).ToList();
+                    .ToList();
+                shopsVM = shopList.Select(x => new ShopViewModel
+                {
+                    Id = x.Id,
+                    ShopName = x.ShopName,
+                    ShopType = x.ShopType,
+                    ShopStatus = x.ShopStatus
+                }).ToList();
+            }
+
+            return View(shopsVM);
         }
 
         public ActionResult Details()
