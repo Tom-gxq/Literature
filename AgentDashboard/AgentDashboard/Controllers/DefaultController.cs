@@ -1,8 +1,10 @@
 ﻿using AccountGRPCInterface;
 using AgentDashboard.Models;
 using LibMain.Dependency;
+using ProductGRPCInterface;
 using SP.Api.Cache;
 using SP.Api.Model.Account;
+using SP.Api.Model.Product;
 using SP.Application.Order;
 using SP.Application.Product;
 using SP.Application.Product.DTO;
@@ -403,23 +405,23 @@ namespace AgentDashboard.Controllers
                 SellerId = dto.Id,
                 AccountId = dto.AccountId,
                 SellerName = dto.SuppliersName,
-                LogoPath = dto.LogoPath,//!string.IsNullOrEmpty(dto.LogoPath) ?domain+dto.LogoPath:string.Empty,
+                LogoPath = !string.IsNullOrEmpty(dto.LogoPath) ?domain+dto.LogoPath:string.Empty,
                 AlipayNo = dto.AlipayNo,
-                AuthorizationPath = dto.AuthorizationPath,//!string.IsNullOrEmpty(dto.AuthorizationPath) ? domain + dto.AuthorizationPath : string.Empty,
-                LicensePath = dto.LicensePath,//!string.IsNullOrEmpty(dto.LicensePath) ? domain + dto.LicensePath : string.Empty,
-                PermitPath = dto.PermitPath,//!string.IsNullOrEmpty(dto.PermitPath) ? domain + dto.PermitPath : string.Empty,
+                AuthorizationPath = !string.IsNullOrEmpty(dto.AuthorizationPath) ? domain + dto.AuthorizationPath : string.Empty,
+                LicensePath = !string.IsNullOrEmpty(dto.LicensePath) ? domain + dto.LicensePath : string.Empty,
+                PermitPath = !string.IsNullOrEmpty(dto.PermitPath) ? domain + dto.PermitPath : string.Empty,
                 TelNumber = dto.TelPhone,
                 AccountName = accountInfo?.Fullname??string.Empty,
-                TypeList = new List<ProductTypeModel>(),
+                TypeList = new List<Models.ProductTypeModel>(),
                 ProductDic = new List<List<ProductsDto>>()
             };
             IProductTypeService typeService = IocManager.Instance.Resolve<IProductTypeService>();
-            var account = MDSession.Session["Account"] as AccountModel;
+            
             var typeList = new List<ProductTypeDto>();
-            if (account != null)
+            if (!string.IsNullOrEmpty(dto.AccountId))
             {
-                typeList = typeService.GetTypeList(account.AccountId, 1, 30);
-                typeList.ForEach(x=> vm.TypeList.Add(new ProductTypeModel()
+                typeList = typeService.GetTypeList(dto.AccountId, 1, 30);
+                typeList.ForEach(x=> vm.TypeList.Add(new Models.ProductTypeModel()
                 {
                      TypeId = x.TypeId,
                      TypeName = x.TypeName
@@ -427,7 +429,7 @@ namespace AgentDashboard.Controllers
                 IProductAppService productService = IocManager.Instance.Resolve<IProductAppService>();
                 foreach (var item in typeList)
                 {
-                    var pList = productService.GetSellerProductListByTypeId(account.AccountId, item.TypeId);
+                    var pList = productService.GetSellerProductListByTypeId(dto.AccountId, item.TypeId);
                     foreach(var p in pList)
                     {
                         if(p.ProductImage != null && p.ProductImage.Count > 0)
@@ -459,7 +461,38 @@ namespace AgentDashboard.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-
+        public JsonResult GetProductDetail(string productId)
+        {
+            Dictionary<string, object> JsonResult = new Dictionary<string, object>();
+            IProductTypeService typeService = IocManager.Instance.Resolve<IProductTypeService>();
+            var typeList = typeService.GetAllProductTypeList(0);
+            JsonResult.Add("types", typeList);
+            var stypeList = typeService.GetAllProductTypeList(1);
+            JsonResult.Add("secondTypes", stypeList);
+            
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public ActionResult AddProduct(SellerProductModel product)
+        {
+            Dictionary<string, object> JsonResult = new Dictionary<string, object>();
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                var list = ProductBusiness.AddProduct(product);
+                JsonResult.Add("status", 0);
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
         public ActionResult RegionManager()
         {
             return View();

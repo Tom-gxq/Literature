@@ -69,6 +69,8 @@ seajs.config({
         'add-permit': 'seller/addpermit.js',
         // 添加商家授权函
         'add-auth': 'seller/addauth.js',
+        // 添加商家产品
+        'add-product': 'sellerdetail/addproduct.js',
         //zrender，图标插件echarts的底层组件
         'zrender': 'plug/zrender/zrender.js'
     },

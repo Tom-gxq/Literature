@@ -237,6 +237,10 @@
     <Content Include="js\sb-admin.min.js" />
     <Content Include="js\seajs\sea-config.js" />
     <Content Include="js\seajs\sea.js" />
+    <Content Include="js\sellerdetail\addproduct.html" />
+    <Content Include="js\sellerdetail\addproduct.js" />
+    <Content Include="js\sellerdetail\detail.js" />
+    <Content Include="js\sellerdetail\style.css" />
     <Content Include="js\seller\addauth.html" />
     <Content Include="js\seller\addauth.js" />
     <Content Include="js\seller\addpermit.html" />
@@ -553,6 +557,10 @@
     <ProjectReference Include="..\..\AccountGRPCInterface\AccountGRPCInterface.csproj">
       <Project>{58b02e58-2afa-4e00-8c3d-d1275a408226}</Project>
       <Name>AccountGRPCInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProductGRPCInterface\ProductGRPCInterface.csproj">
+      <Project>{9c6e35fb-207d-42e8-bf68-0afbbec8a34b}</Project>
+      <Name>ProductGRPCInterface</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\RPCCommonTool\RPCCommonTool.csproj">
       <Project>{5500a323-6854-4a1b-884e-6c2011b8ac71}</Project>

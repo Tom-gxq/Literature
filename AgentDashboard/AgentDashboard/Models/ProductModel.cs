@@ -7,23 +7,31 @@ namespace AgentDashboard.Models
 {
     public class ProductModel
     {
-        public string ProductId { get; set; }
+        /**
+        * 商品分类
+        */
+        public long MainType { get; set; }
+        /**
+        * 商品小分类
+        */
+        public long SecondType { get; set; }
+        /**
+        * 商品名
+        */
         public string ProductName { get; set; }
-        public string ProductCode { get; set; }
-        public string ShortDescription { get; set; }
-        public string Unit { get; set; }
-        public string Description { get; set; }
-        public int SaleStatus { get; set; }
-        public int ShopId { get; set; }
-        public DateTime AddedDate { get; set; }
-        public int DisplaySequence { get; set; }
-        public decimal MarketPrice { get; set; }
-        public decimal VIPPrice { get; set; }
-        public DateTime UpdateTime { get; set; }
-        public string LastOperater { get; set; }
-        public int TypeId { get; set; }
-        public int SecondTypeId { get; set; }
-        public string ProductImage { get; set; }
-        public int Quantity { get; set; }
+        /**
+        * 商品图片路径
+        */
+        public string imagePath { get; set; }
+        /**
+        * 售货价格
+        */
+        public double MarketPrice { get; set; }
+        /**
+        * 拿货价格
+        */
+        public double PurchasePrice { get; set; }
+        public string AccountId { get; set; }
+        public bool SaleStatus { get; set; }
     }
 }
