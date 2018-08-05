@@ -8,6 +8,8 @@ namespace AgentDashboard.Models
     public class ShopDetailsViewModel
     {
         public String ShopName { get; set; }
+        public int TypeId { get; set; }
+        public int ShopId { get; set; }
         public int DeliverManCount { get; set; }
 
         public DateTime StartTime { get; set; }
@@ -19,6 +21,7 @@ namespace AgentDashboard.Models
     public class DeliverManViewModel
     {
         public string Name { get; set; }
+        public string AccountId { get; set; }
 
         public List<ProductsViewModel> Products { get; set; }
     }

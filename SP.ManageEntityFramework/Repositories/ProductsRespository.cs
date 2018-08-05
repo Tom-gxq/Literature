@@ -179,6 +179,21 @@ namespace SP.ManageEntityFramework.Repositories
                 return db.Select(q);
             }
         }
+        public List<ProductEntity> SearchTypeProductByKeyWord(string keyWord, int typeId, int pageIndex, int pageSize)
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<ProductEntity>();
+
+                if (!string.IsNullOrEmpty(keyWord))
+                {
+                    q = q.Where(x =>x.TypeId == typeId && x.Meta_Keywords.Contains(keyWord));
+                }
+                q = q.OrderByDescending(x => x.UpdateTime);
+                q = q.Limit((pageIndex - 1) * pageSize, pageSize);
+                return db.Select(q);
+            }
+        }
 
         public List<ProductEntity> GetSellerProductListByTypeId(string accountId, int typeId)
         {

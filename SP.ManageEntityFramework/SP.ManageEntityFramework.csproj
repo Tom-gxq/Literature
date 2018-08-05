@@ -73,6 +73,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountFinanceRepository.cs" />
     <Compile Include="Repositories\AccountInfoRepository.cs" />
+    <Compile Include="Repositories\AccountProductRespository.cs" />
     <Compile Include="Repositories\AccountRespository.cs" />
     <Compile Include="Repositories\AdminRespository.cs" />
     <Compile Include="Repositories\AttributeRespository.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Repositories\RegionTypeRespository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\ResEventRespository.cs" />
+    <Compile Include="Repositories\ShopOwnerRespository.cs" />
     <Compile Include="Repositories\ShopProductRespository.cs" />
     <Compile Include="Repositories\ShopRespository.cs" />
     <Compile Include="Repositories\SupplersRepository.cs" />

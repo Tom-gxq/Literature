@@ -159,6 +159,12 @@
     <Content Include="css\sb-admin.min.css" />
     <Content Include="css\ShopMgr.png" />
     <Content Include="Global.asax" />
+    <Content Include="js\addowner\addowner.html" />
+    <Content Include="js\addowner\addowner.js" />
+    <Content Include="js\food\addproduct.html" />
+    <Content Include="js\food\addproduct.js" />
+    <Content Include="js\food\food.js" />
+    <Content Include="js\food\style.css" />
     <Content Include="js\global.js" />
     <Content Include="js\order\list-item.html" />
     <Content Include="js\order\order.js" />
@@ -304,6 +310,7 @@
     <Content Include="js\plug\plupload\Moxie.xap" />
     <Content Include="Views\Default\AddSeller.cshtml" />
     <Content Include="Views\Default\SellerDetails.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Views\Default\Index.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>

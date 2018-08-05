@@ -240,6 +240,16 @@ namespace SP.Application.Shop
             return repository.DelShopProductByShopId(ShopId);
         }
 
+        public bool AddShopOwner(ShopOwnerDto dto)
+        {
+            var repository = IocManager.Instance.Resolve<ShopOwnerRespository>();
+            return repository.AddShopOwner(new ShopOwnerEntity()
+            {
+                OwnerId = dto.OwnerId,
+                ShopId = dto.ShopId
+            });
+        }
+
         private static ShopDto ConvertFromRepositoryEntity(ShopEntity shop)
         {
             if (shop == null)

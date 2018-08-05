@@ -118,6 +118,8 @@
                 <div class="row">
                     <div class="col-1">
                         <p class="offset-2">@Model.ShopName</p>
+                        <input type="hidden" id="shopId" value="@Model.ShopId"/>
+                        <input type="hidden" id="typeId" value="@Model.TypeId" />
                     </div>
                 </div>
 
@@ -133,22 +135,19 @@
                             @foreach (var deliverman in Model.DeliverMen)
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link" id="@deliverman.Name-tab" data-toggle="tab" href="#@deliverman.Name" role="tab" aria-controls="@deliverman.Name" aria-selected="true">@deliverman.Name</a>
+                                    <a class="nav-link" id="@deliverman.AccountId" data-toggle="tab" href="#@deliverman.Name" role="tab" aria-controls="@deliverman.Name" aria-selected="true">@deliverman.Name</a>
                                 </li>
                             }
 
-                            @*@if (Model.DeliverMen.Count < 5)
-                                {
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="delivermanAdd-tab" data-toggle="tab" href="#" role="tab"><span class="font-weight-bold">+</span></a>
-                                    </li>
-                                }*@
+                            <li class="nav-item">
+                                <a class="nav-link addowner" id="delivermanAdd-tab" data-toggle="tab" href="#" role="tab"><span class="font-weight-bold">+</span></a>
+                            </li>
 
                         </ul>
                         <div class="tab-content" id="myTabContent">
                             @foreach (var deliverman in Model.DeliverMen)
                             {
-                                <div class="tab-pane fade show active" id="@deliverman.Name" role="tabpanel" aria-labelledby="@deliverman.Name-tab">
+                                <div class="tab-pane fade show active" id="@deliverman.Name" role="tabpanel" aria-labelledby="@deliverman.AccountId">
                                     <div class="card-deck">
                                         @foreach (var product in deliverman.Products)
                                         {
@@ -168,14 +167,11 @@
                                                 </div>
                                             </div>
                                         }
-                                        @if (deliverman.Products.Count == 0)
-                                        {
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <p class="card-text"><a href="#"><h1>+</h1></a></p>
-                                                </div>
+                                        <div class="card cardadd">
+                                            <div class="card-body">
+                                                <p class="card-text account" dataid="@deliverman.AccountId"><a href="#"><h1>+</h1></a></p>
                                             </div>
-                                        }
+                                        </div>
                                     </div>
                                 </div>
                             }
@@ -254,6 +250,14 @@
                 //})
             });
 
+        </script>
+        <script type="text/javascript" src="/js/seajs/sea.js"></script>
+        <script type="text/javascript" src="/js/seajs/sea-config.js"></script>
+        <script type="text/javascript">
+            seajs.use(["/js/food/food"], function (OrderList) {
+                var $ = OrderList.jQuery;
+                OrderList.FoodProductController.init({ el: '', url: '' });
+            });
         </script>
     </div>
 </body>

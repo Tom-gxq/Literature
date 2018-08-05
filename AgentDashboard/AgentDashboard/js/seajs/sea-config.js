@@ -71,6 +71,12 @@ seajs.config({
         'add-auth': 'seller/addauth.js',
         // 添加商家产品
         'add-product': 'sellerdetail/addproduct.js',
+        // 添加餐饮产品
+        'add-foodproduct': 'food/addproduct.js',
+        // 添加超市产品
+        'add-marketproduct': 'market/addproduct.js',
+        // 添加配送人员
+        'add-owner': 'addowner/addowner.js',
         //zrender，图标插件echarts的底层组件
         'zrender': 'plug/zrender/zrender.js'
     },

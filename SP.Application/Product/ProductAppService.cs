@@ -470,6 +470,18 @@ namespace SP.Application.Product
             }
             return retList;
         }
+        public List<ProductsDto> SearchTypeProductByKeyWord(string keyWord, int typeId, int pageIndex, int pageSize)
+        {
+            var retList = new List<ProductsDto>();
+            var repository = IocManager.Instance.Resolve<ProductsRespository>();
+            var list = repository.SearchTypeProductByKeyWord(keyWord, typeId, pageIndex, pageSize);
+            foreach (var item in list)
+            {
+                var order = ConvertFromRepositoryEntity(item, string.Empty);
+                retList.Add(order);
+            }
+            return retList;
+        }
         public List<ProductSkuDto> SearchProducSku(int schoolId, int districtId, int shopId, string productId, int skuStatus)
         {
             var retList = new List<ProductSkuDto>();
@@ -525,6 +537,18 @@ namespace SP.Application.Product
                 retList.Add(product);
             }
             return retList;
+        }
+        public bool AddFoodProduct(AccountProductDto product)
+        {
+            var repository = IocManager.Instance.Resolve<AccountProductRespository>();
+            return repository.AddAccountProduct(new AccountProductEntity()
+            {                
+                ProductId = product.ProductId,
+                ShopId = product.ShopId,
+                AccountId = product.AccountId,
+                PreStock = product.PreStock,
+                Status = product.Status
+            });
         }
 
         private static ProductsDto ConvertFromRepositoryEntity(ProductEntity product,string lastOperater="")

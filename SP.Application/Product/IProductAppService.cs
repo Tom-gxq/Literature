@@ -45,5 +45,7 @@ namespace SP.Application.Product
         List<ProductSkuDto> GetMarketSkuList(int pageIndex, int pageSize, int marketId);
         long GetMarketSkuListCount(int marketId);
         List<ProductsDto> GetSellerProductListByTypeId(string accountId, int typeId);
+        bool AddFoodProduct(AccountProductDto product);
+        List<ProductsDto> SearchTypeProductByKeyWord(string keyWord,int typeId, int pageIndex, int pageSize);
     }
 }

@@ -8,6 +8,8 @@ using SP.Api.Model.Product;
 using SP.Application.Order;
 using SP.Application.Product;
 using SP.Application.Product.DTO;
+using SP.Application.Shop;
+using SP.Application.Shop.DTO;
 using SP.Application.Suppler;
 using SP.Application.Suppler.DTO;
 using SP.Application.User;
@@ -72,8 +74,18 @@ namespace AgentDashboard.Controllers
                     Id = x.Id,
                     ShopName = x.ShopName,
                     ShopType = x.ShopType,
-                    ShopStatus = x.ShopStatus
+                    ShopStatus = x.ShopStatus,
+                    RegionId = x.RegionId,
                 }).ToList();
+                foreach(var item in shopsVM)
+                {
+                    if (item.RegionId != null)
+                    {
+                        IRegionAppService service = IocManager.Instance.Resolve<IRegionAppService>();
+                        var region = service.GetRegionDataDetail(item.RegionId.Value);
+                        item.DistrictName = region.DataName;
+                    }
+                }
             }
 
             return View(shopsVM);
@@ -87,10 +99,13 @@ namespace AgentDashboard.Controllers
         public ActionResult ShopDetails(int shopId)
         {
             ShopDetailsViewModel vm = new ShopDetailsViewModel();
+            
             using (SPEntities sp = new SPEntities())
             {
                 var shop = sp.SP_Shop.SingleOrDefault(n => n.Id == shopId);
                 vm.ShopName = shop?.ShopName;
+                vm.ShopId = shop?.Id??0;
+                vm.TypeId = shop?.ShopType??0;
                 DateTime startTime;
                 bool isSuccess = DateTime.TryParse(shop?.StartTime, out startTime);
                 if (isSuccess)
@@ -126,17 +141,25 @@ namespace AgentDashboard.Controllers
 
                         var account = sp.SP_AccountInfo.SingleOrDefault(n => n.AccountId == shopOwner.OwnerId);
                         deliverMan.Name = account.Fullname;
+                        deliverMan.AccountId = account.AccountId;
 
-                        ProductsViewModel procduct = new ProductsViewModel();
+                        
 
                         var deliverProducts = sp.SP_AccountProduct.Where(n => n.AccountId == account.AccountId && n.ShopId == shop.Id);
 
                         foreach (var deliverProduct in deliverProducts)
                         {
+                            ProductsViewModel procduct = new ProductsViewModel();
                             procduct.Id = deliverProduct.ProductId;
-                            var productStock = sp.SP_ProductSKUs.SingleOrDefault(n => n.ProductId == procduct.Id);
-                            procduct.Stocks = productStock.Stock;
-                            procduct.PreStocks = deliverProduct.PreStock;
+                            DateTime now = DateTime.Parse(DateTime.Now.ToShortDateString());
+                            var productStock = sp.SP_ProductSKUs.SingleOrDefault(n => n.ProductId == procduct.Id 
+                            && n.AccountId == account.AccountId && n.ShopId == shopId 
+                            && n.EffectiveTime >= now);
+                            if (productStock != null)
+                            {
+                                procduct.Stocks = productStock.Stock;
+                                procduct.PreStocks = deliverProduct.PreStock;
+                            }
 
                             var procdutInfo = sp.SP_Products.SingleOrDefault(n => n.ProductId == procduct.Id);
                             procduct.Name = procdutInfo.ProductName;
@@ -144,7 +167,7 @@ namespace AgentDashboard.Controllers
 
                             string domain = ConfigurationManager.AppSettings["Qiniu.Domain"];
                             var procdutImageInfo = sp.SP_ProductImage.SingleOrDefault(n => n.ProductId == procduct.Id);
-                            procduct.ImagePath = !string.IsNullOrEmpty(procduct?.ImagePath)? domain+ procduct.ImagePath:string.Empty;
+                            procduct.ImagePath = !string.IsNullOrEmpty(procdutImageInfo?.ImgPath)? domain+ procdutImageInfo.ImgPath : string.Empty;
                             deliverMan.Products.Add(procduct);
                         }
 
@@ -156,6 +179,47 @@ namespace AgentDashboard.Controllers
             return View(vm);
         }
 
+        [HttpPost]
+        public JsonResult AddFoodProduct(string accountId,int shopId,string productId,int preStock)
+        {
+            Dictionary<string, object> JsonResult = new Dictionary<string, object>();
+            IProductAppService service = IocManager.Instance.Resolve<IProductAppService>();
+
+            var ret = service.AddFoodProduct(new AccountProductDto()
+            {
+                AccountId = accountId,
+                ProductId = productId,
+                ShopId = shopId,
+                PreStock = preStock,
+                Status = 0,
+            });
+            JsonResult.Add("status", ret);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        [HttpPost]
+        public JsonResult AddShopOwner(string accountId, int shopId)
+        {
+            Dictionary<string, object> JsonResult = new Dictionary<string, object>();
+            IShopAppService service = IocManager.Instance.Resolve<IShopAppService>();
+
+            var ret = service.AddShopOwner(new ShopOwnerDto()
+            {
+                OwnerId = accountId,
+                ShopId = shopId,
+            });
+            JsonResult.Add("status", ret);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -232,8 +296,18 @@ namespace AgentDashboard.Controllers
                     Id = x.Id,
                     ShopName = x.ShopName,
                     ShopType = x.ShopType,
-                    ShopStatus = x.ShopStatus
+                    ShopStatus = x.ShopStatus,
+                    RegionId = x.RegionId,
                 }).ToList();
+                foreach (var item in shopsVM)
+                {
+                    if (item.RegionId != null)
+                    {
+                        IRegionAppService service = IocManager.Instance.Resolve<IRegionAppService>();
+                        var region = service.GetRegionDataDetail(item.RegionId.Value);
+                        item.DistrictName = region.DataName;
+                    }
+                }
             }
 
             return View(shopsVM);
@@ -293,6 +367,19 @@ namespace AgentDashboard.Controllers
             Dictionary<string, object> JsonResult = new Dictionary<string, object>();
             IProductAppService service = IocManager.Instance.Resolve<IProductAppService>();
             var result = service.SearchProductByKeyWord(keywords, 1, 30);
+            JsonResult.Add("items", result);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public JsonResult SearchTypeProductByKeyWord(string keywords,int typeId)
+        {
+            Dictionary<string, object> JsonResult = new Dictionary<string, object>();
+            IProductAppService service = IocManager.Instance.Resolve<IProductAppService>();
+            var result = service.SearchTypeProductByKeyWord(keywords, typeId,1, 30);
             JsonResult.Add("items", result);
 
             return new JsonResult()

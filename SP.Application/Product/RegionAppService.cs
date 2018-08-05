@@ -130,6 +130,16 @@ namespace SP.Application.Product
                     if (parent != null && parent.DataName != null)
                     {
                         entity.ParentDataName = parent.DataName;
+                        
+                        if (parent.ParentDataID != null && parent.ParentDataID.Value > 0)
+                        {
+                            var district = repository.GetRegionDataDetail(parent.ParentDataID.Value);
+                            if (district != null && district.DataName != null)
+                            {
+                                entity.DistrictID = district.Id;
+                                entity.DistrictName = district.DataName;
+                            }
+                        }
                     }
                 }
                 return entity;

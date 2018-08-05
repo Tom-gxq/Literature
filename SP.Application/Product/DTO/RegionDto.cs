@@ -17,5 +17,7 @@ namespace SP.Application.Product.DTO
         public int Status { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime UpdateTime { get; set; }
+        public int DistrictID { get; set; }
+        public string DistrictName { get; set; }
     }
 }
