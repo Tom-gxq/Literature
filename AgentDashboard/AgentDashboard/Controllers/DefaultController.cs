@@ -1,5 +1,6 @@
 ﻿using AccountGRPCInterface;
 using AgentDashboard.Models;
+using ChartJs.Models;
 using LibMain.Dependency;
 using ProductGRPCInterface;
 using SP.Api.Cache;
@@ -690,5 +691,25 @@ namespace AgentDashboard.Controllers
             return Regex.IsMatch(email, @"^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)*\.[\w-]+$");
         }
 
+        /// <summary>
+        /// Line Chart.js data
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult GetLineChartData()
+        {
+            Chart _chart = new Chart();
+            _chart.labels = new string[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "Novemeber", "December" };
+            _chart.datasets = new List<Datasets>();
+            List<Datasets> _dataSet = new List<Datasets>();
+            _dataSet.Add(new Datasets()
+            {
+                label = "Current Year",
+                data = new int[] { 28, 48, 40, 19, 86, 27, 90, 20, 45, 65, 34, 22 },
+                borderColor = new string[] { "#800080" },
+                borderWidth = "1"
+            });
+            _chart.datasets = _dataSet;
+            return Json(_chart, JsonRequestBehavior.AllowGet);
+        }
     }
 }
