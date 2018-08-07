@@ -326,6 +326,7 @@
       <DependentUpon>SP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModel.cs" />
+    <Compile Include="Models\Chart.cs" />
     <Compile Include="Models\OAuth2_Access_Token.cs">
       <DependentUpon>SP.tt</DependentUpon>
     </Compile>
