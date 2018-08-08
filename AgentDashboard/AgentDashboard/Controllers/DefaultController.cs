@@ -639,6 +639,7 @@ namespace AgentDashboard.Controllers
                 //加密密码
                 var password = StringCrypt.Encrypt(vm.Password, ConfigInfo.ConfigInfoData.CryptKey.MessageKey);
                 var accountEntity = AccountBusiness.GetAccount(account);
+                AccountModel accountModel = null;
                 if (accountEntity == null)
                 {
                     return RedirectToAction("Login");
@@ -653,10 +654,14 @@ namespace AgentDashboard.Controllers
                     {
                        
                         MDSession.Session.Clear();
-                        MDSession.Session["Account"] = AccountInfoCache.GetAccountInfoByAccountId(accountEntity.AccountId);
+                        accountModel = AccountInfoCache.GetAccountInfoByAccountId(accountEntity.AccountId);
+                        MDSession.Session["Account"] = accountModel;
                     }
                 }
-                return RedirectToAction("Index");
+                if (accountModel.UserType > 0)
+                {
+                    return RedirectToAction("Index");
+                }
             }
             return RedirectToAction("Login");
         }

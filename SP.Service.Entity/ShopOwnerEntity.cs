@@ -12,5 +12,6 @@ namespace SP.Service.Entity
         [AutoIncrement]
         public int? ShopId { get; set; }
         public string OwnerId { get; set; }
+        public bool? ShopStatus { get; set; }
     }
 }

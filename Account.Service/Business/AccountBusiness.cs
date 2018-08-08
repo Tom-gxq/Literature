@@ -55,6 +55,9 @@ namespace Account.Service.Business
                 result.AliBind = !string.IsNullOrEmpty(account.AliBind) ? account.AliBind : string.Empty;
                 result.WxBind = !string.IsNullOrEmpty(account.WxBind) ? account.WxBind : string.Empty;
                 result.QQBind = !string.IsNullOrEmpty(account.QQBind) ? account.QQBind : string.Empty;
+                var accountInfo = ServiceLocator.AccountInfoReportDatabase.GetAccountInfoById(accountId);
+                
+                result.UserType = accountInfo != null ? accountInfo.UserType : 0;
             }
             return result;
         }

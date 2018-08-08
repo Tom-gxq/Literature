@@ -11,9 +11,11 @@ namespace SP.Service.Domain.Reporting
     public class ShopReportDatabase : IReportDatabase
     {
         private readonly ShopRespository _repository;
-        public ShopReportDatabase(ShopRespository repository)
+        private readonly ShopOwnerRespository _shopOwnerRepository;
+        public ShopReportDatabase(ShopRespository repository, ShopOwnerRespository shopOwnerRepository)
         {
             _repository = repository;
+            _shopOwnerRepository = shopOwnerRepository;
         }
 
         public List<ShopDomain> GetAllShopList(int regionId, int shopType, int pageIndex, int pageSize)
@@ -42,7 +44,7 @@ namespace SP.Service.Domain.Reporting
         public List<ShopOwnerDomain> GetAllShopOwnerList(int shopId)
         {
             var shopDomainList = new List<ShopOwnerDomain>();
-            var addressList = _repository.GetAllShopOwnerList(shopId);
+            var addressList = _shopOwnerRepository.GetAllShopOwnerList(shopId);
             foreach (var item in addressList)
             {
                 var order = ConvertShopOwnerEntityToDomain(item);
@@ -51,12 +53,18 @@ namespace SP.Service.Domain.Reporting
             return shopDomainList;
         }
 
-        public bool UpdateOpenShopStatus(int shopId,bool status)
+        public bool UpdateOpenShopStatus(string accountId, bool status)
         {
-            var result = _repository.UpdateOpenShopStatus(shopId, status);
+            var result = _shopOwnerRepository.UpdateOpenShopStatus(accountId, status);
             return result > 0;
         }
 
+        public ShopOwnerDomain GetShopStatus(string accountId)
+        {            
+            var shopOwner = _shopOwnerRepository.GetShopStatus(accountId);
+            var entity = ConvertShopOwnerEntityToDomain(shopOwner);
+            return entity;
+        }
 
         private ShopDomain ConvertShopEntityToDomain(ShopEntity entity)
         {

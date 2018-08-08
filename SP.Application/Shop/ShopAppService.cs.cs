@@ -246,7 +246,8 @@ namespace SP.Application.Shop
             return repository.AddShopOwner(new ShopOwnerEntity()
             {
                 OwnerId = dto.OwnerId,
-                ShopId = dto.ShopId
+                ShopId = dto.ShopId,
+                ShopStatus = false,
             });
         }
 

@@ -405,11 +405,11 @@ namespace Product.Service.Business
             return result;
         }
 
-        public static ResultResponse UpdateOpenShopStatus(int shopId, bool status)
+        public static ResultResponse UpdateOpenShopStatus(string accountId, bool status)
         {
             var result = new ResultResponse();
             result.Status = 10002;
-            var ret = ServiceLocator.ShopReportDatabase.UpdateOpenShopStatus(shopId, status);
+            var ret = ServiceLocator.ShopReportDatabase.UpdateOpenShopStatus(accountId, status);
             if(ret)
             {
                 result.Status = 10001;
@@ -572,6 +572,19 @@ namespace Product.Service.Business
                     type.TypeLogo = string.IsNullOrEmpty(item.TypeLogo) ? string.Empty : item.TypeLogo;
                     result.ProductTypeList.Add(type);
                 }
+                result.Status = 10001;
+            }
+            return result;
+        }
+
+        public static ShopStatusResponse GetShopStatus(string accountId)
+        {
+            var result = new ShopStatusResponse();
+            result.Status = 10002;
+            var shopOwner = ServiceLocator.ShopReportDatabase.GetShopStatus(accountId);
+            if (shopOwner != null)
+            {
+                result.ShopStatus = shopOwner.ShopStatus;
                 result.Status = 10001;
             }
             return result;

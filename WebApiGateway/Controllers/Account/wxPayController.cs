@@ -156,6 +156,60 @@ namespace WebApiGateway.Controllers.Account
         }
 
         /// <summary>
+        /// 采购订单支付微信接口
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
+        public ActionResult GetWXManagePrePay(string orderId)
+        {
+            var order = OrderBusiness.GetOrderByOrderId(orderId);
+            if (order != null && order.orderStatus > 1)
+            {
+                return Json(new { status = 1, msg = "订单已付", result = "" }, JsonRequestBehavior.AllowGet); ;
+            }
+            //************************************************支付参数接收********************************
+            ///获取金额
+            string detail = "饿家军";
+
+            //根据appid和appappsecret获取refresh_token
+            //string url_token = string.Format("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}", appId, appsecret);
+            //string returnStr = tokenservice.GetToken(appId, appsecret);
+            //时间戳
+            var timeStamp = TenpayUtil.getTimestamp();
+            //随机验证码
+            var nonceStr = TenpayUtil.getNoncestr().Replace("-", "");
+            WxPrePayModel wxPrePaymodel = new WxPrePayModel();
+            wxPrePaymodel.appid = ManagePaymaxConfig.WX_APPID;
+            wxPrePaymodel.mch_id = ManagePaymaxConfig.WX_MCHID;
+            wxPrePaymodel.nonce_str = nonceStr;
+            wxPrePaymodel.body = detail;
+            wxPrePaymodel.out_trade_no = order.orderCode;
+            wxPrePaymodel.total_fee = (order.amount * 100).ToString();
+            wxPrePaymodel.spbill_create_ip = Request.UserHostAddress;
+            wxPrePaymodel.notify_url = ManagePaymaxConfig.WX_NOTIFYURL;
+            wxPrePaymodel.trade_type = "APP";
+            wxPrePaymodel.fee_type = "CNY";
+            //设置package订单参数
+            Hashtable packageParameter = new Hashtable();
+            packageParameter.Add("appid", ManagePaymaxConfig.WX_APPID);//开放账号ID  
+            packageParameter.Add("mch_id", ManagePaymaxConfig.WX_MCHID); //商户号
+            packageParameter.Add("nonce_str", nonceStr); //随机字符串
+            packageParameter.Add("body", detail); //商品描述    
+            packageParameter.Add("out_trade_no", order.orderCode); //商家订单号 
+            packageParameter.Add("total_fee", (order.amount * 100).ToString()); //商品金额,以分为单位    
+            packageParameter.Add("spbill_create_ip", Request.UserHostAddress); //订单生成的机器IP，指用户浏览器端IP  
+            packageParameter.Add("notify_url", ManagePaymaxConfig.WX_NOTIFYURL); //接收财付通通知的URL  
+            packageParameter.Add("trade_type", "APP");//交易类型  
+            packageParameter.Add("fee_type", "CNY"); //币种，1人民币   66  
+            //获取签名
+            var sign = Common.CreateMd5Sign("key", ManagePaymaxConfig.WX_APIKEY, packageParameter, Request.ContentEncoding.BodyName);
+
+            wxPrePaymodel.sign = sign;
+
+            //将参数对象直接返回给客户端
+            return Json(new { status = 0, msg = "", result = wxPrePaymodel }, JsonRequestBehavior.AllowGet);
+        }
+        /// <summary>
         /// 将类对象拼接成调起支付字符串
         /// </summary>
         /// <param name="_model"></param>
@@ -198,15 +252,7 @@ namespace WebApiGateway.Controllers.Account
             sb.Append("</xml>");
             return sb.ToString();
         }
-
         
-
-        
-
-        /// <summary>
-        /// 微信支付异步回调方法
-        /// </summary>
-        /// <returns></returns>
         
     }
 }

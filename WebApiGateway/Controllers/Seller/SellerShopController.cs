@@ -11,13 +11,13 @@ namespace WebApiGateway.Controllers.Seller
 {
     public class SellerShopController : BaseController
     {
-        public ActionResult UpdateOpenShopStatus(int shopId,bool status)
+        public ActionResult UpdateOpenShopStatus(bool status)
         {
             var result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var ret = ProductBusiness.UpdateOpenShopStatus(shopId, status);
+                var ret = ProductBusiness.UpdateOpenShopStatus(currentAccount.AccountId, status);
                 if (ret)
                 {
                     JsonResult.Add("status", 0);

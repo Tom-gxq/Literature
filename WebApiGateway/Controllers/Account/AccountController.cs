@@ -84,7 +84,24 @@ namespace WebApiGateway.Controllers.Account
             result.Data = JsonResult;
             return result;
         }
-        
+        public ActionResult GetAlipayManageStr(string orderId)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                var payStr = GetAlipayManageParam(orderId);
+                JsonResult.Add("payStr", payStr);
+                JsonResult.Add("status", 0);
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
         private string GetAlipayParam(string orderId)
         {
             var content = new JObject();
@@ -149,7 +166,55 @@ namespace WebApiGateway.Controllers.Account
             //页面输出的response.Body就是orderString 可以直接给客户端请求，无需再做处理。
             return response.Body;
         }
-        
+
+        private string GetAlipayManageParam(string orderId)
+        {
+            var content = new JObject();
+            StringBuilder body = new StringBuilder();
+            try
+            {
+                var order = OrderBusiness.GetOrderByOrderId(orderId);
+                if (order != null && order.orderStatus > 1)
+                {
+                    return string.Empty;
+                }
+                content.Add("total_amount", order.amount);
+                content.Add("out_trade_no", order.orderCode);
+
+                foreach (var item in order.productList)
+                {
+                    body.Append(!string.IsNullOrEmpty(item.productName) ? (item.productName + " ") : string.Empty);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+
+            var client = Common.GetAlipayManageClient();
+            //实例化具体API对应的request类,类名称和接口名称对应,当前调用接口名称如：alipay.trade.app.pay
+            AlipayTradeAppPayRequest request = new AlipayTradeAppPayRequest();
+            //SDK已经封装掉了公共参数，这里只需要传入业务参数。以下方法为sdk的model入参方式(model和biz_content同时存在的情况下取biz_content)。
+            AlipayTradeAppPayModel model = new AlipayTradeAppPayModel();
+            model.Body = !string.IsNullOrEmpty(body?.ToString()) ? body.ToString() : "饿家军采购";
+            model.Subject = "饿家军";
+            model.TotalAmount = content["total_amount"].Value<string>();
+            model.ProductCode = "QUICK_MSECURITY_PAY";
+            model.OutTradeNo = content["out_trade_no"].Value<string>();
+            model.TimeoutExpress = "1m";//支付超时时间
+            model.SellerId = "1725219681@qq.com";
+
+
+            request.SetBizModel(model);
+            request.SetNotifyUrl(AlipayManageConfig.Notify_Url);
+
+            //这里和普通的接口调用不同，使用的是sdkExecute
+            AlipayTradeAppPayResponse response = client.SdkExecute(request);
+            //HttpUtility.HtmlEncode是为了输出到页面时防止被浏览器将关键参数html转义，实际打印到日志以及http传输不会有这个问题
+            //Response.Write(HttpUtility.HtmlEncode(response.Body));
+            //页面输出的response.Body就是orderString 可以直接给客户端请求，无需再做处理。
+            return response.Body;
+        }
+
 
         private static string GetCurrentPath()
         {

@@ -27,5 +27,6 @@ namespace SP.DataEntity
 
         public string OwnerId { get; set; }
         public int? ShopId { get; set; }
+        public bool? ShopStatus { get; set; }
     }
 }

@@ -254,12 +254,12 @@ namespace Product.Service.GrpcImpl
         {
             logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} UpdateOpenShopStatus Connected!",
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
-            logger.LogInformation(this.prjLicEID, " {ShopId} {Status} ",request.ShopId, request.Status);
+            logger.LogInformation(this.prjLicEID, " {AccountId} {Status} ", request.AccountId, request.Status);
             var response = new ResultResponse();
             response.Status = 10002;
             try
             {
-                response = ProductBusiness.UpdateOpenShopStatus(request.ShopId, request.Status);
+                response = ProductBusiness.UpdateOpenShopStatus(request.AccountId, request.Status);
             }
             catch (Exception ex)
             {
@@ -423,6 +423,22 @@ namespace Product.Service.GrpcImpl
                 logger.LogError(this.prjLicEID, ex, "GetAllProductTypeList Exception");
             }
             logger.LogInformation(this.prjLicEID, "GetAllProductTypeList {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+
+        public override Task<ShopStatusResponse> GetShopStatus(AccountIdRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "GetShopStatus {Date} {IPAdress} {Status} Connected!  AccountId={AccountId} ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.AccountId);
+            ShopStatusResponse response = null;
+            try
+            {
+                response = ProductBusiness.GetShopStatus(request.AccountId);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "GetShopStatus Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "GetShopStatus {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
     }

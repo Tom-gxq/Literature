@@ -159,6 +159,8 @@
   <ItemGroup>
     <Compile Include="App_Start\AlipayConfig.cs" />
     <Compile Include="App_Start\AlipayCore.cs" />
+    <Compile Include="App_Start\AlipayManageConfig.cs" />
+    <Compile Include="App_Start\AlipayManageNotify.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\Common.cs" />
     <Compile Include="App_Start\Enum\AccountResult.cs" />

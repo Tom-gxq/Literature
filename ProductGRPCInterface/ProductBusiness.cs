@@ -274,12 +274,12 @@ namespace ProductGRPCInterface
             return list;
         }
 
-        public static bool UpdateOpenShopStatus(int shopId,bool status)
+        public static bool UpdateOpenShopStatus(string accountId, bool status)
         {
             var client = ProductClientHelper.GetClient();
             var request1 = new OpenShopStatusRequest()
             {
-                ShopId = shopId,
+                AccountId = accountId,
                 Status = status
             };
             var result = client.UpdateOpenShopStatus(request1);
@@ -294,7 +294,21 @@ namespace ProductGRPCInterface
         }
         public static bool GetShopStatus(string accountId)
         {
-            return true;
+            var client = ProductClientHelper.GetClient();
+            var request1 = new AccountIdRequest()
+            {
+                AccountId = accountId
+            };
+            var result = client.GetShopStatus(request1);
+            
+            if (result.Status == 10001)
+            {
+                return result.ShopStatus;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public static bool AddProduct(SellerProductModel model)
