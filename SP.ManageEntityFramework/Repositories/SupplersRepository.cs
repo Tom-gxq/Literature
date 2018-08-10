@@ -117,5 +117,10 @@ namespace SP.ManageEntityFramework.Repositories
                 return db.Select(q);
             }
         }
+
+        public SuppliersEntity GetSellerDataByAccountId(string accountId)
+        {
+            return this.Single(x=>x.AccountId == accountId);
+        }
     }
 }

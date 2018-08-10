@@ -97,9 +97,10 @@ define(function (require, exports, module) {
             var type = {
                 shopId: $('#shopId').val(),
                 accountId: $("#leaderId").val(),
+                shopType: $("#typeId").val()
             };
             type = $.param(type, true);
-            alert(type);
+            
             Global.post("/Default/AddShopOwner", type, function (data) {
                 _this.setting.callBack(data);
             });

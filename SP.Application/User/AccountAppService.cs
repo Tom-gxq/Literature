@@ -36,6 +36,18 @@ namespace SP.Application.User
             return entity;
         }
 
+        public bool UpdateAccountUserType(string accountId,int userType)
+        {
+            var retList = new List<AccountInfoDto>();
+            var repository = IocManager.Instance.Resolve<AccountInfoRepository>();
+            var result = repository.UpdateAccountFullInfo(new AccountInfoEntity()
+            {
+                AccountId = accountId,
+                UserType = userType
+            });
+            return result;
+        }
+
         private static AccountInfoDto ConvertFromRepositoryEntity(AccountInfoEntity accountInfo)
         {
             if (accountInfo == null)

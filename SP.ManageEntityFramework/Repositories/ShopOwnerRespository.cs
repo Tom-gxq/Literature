@@ -20,5 +20,10 @@ namespace SP.ManageEntityFramework.Repositories
             var result = this.Insert(data);
             return result > 0;
         }
+
+        public ShopOwnerEntity GetShopOwnerByAccountId(string accountId)
+        {
+            return this.Single(x=>x.OwnerId == accountId);
+        }
     }
 }

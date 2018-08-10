@@ -97,11 +97,37 @@ define(function (require, exports, module) {
                     typeId: $("#typeId").val(),
                     callBack: function (result) {
 
-                        if (result) {
-                            //重新加载页面
-                            window.location.href = '/Default/ShopDetails?shopId=' + $("#shopId").val();
-                        } else {
-                            alert('添加配送人员失败');
+                        switch (result.status)
+                        {
+                            case 0:
+                                //重新加载页面
+                                window.location.href = '/Default/ShopDetails?shopId=' + $("#shopId").val();
+                                break;
+                            case 1:
+                                easydialog.open({
+                                    container: {
+                                        content: '该用户已经是其它店铺的配送人员，不能任职多个店铺'
+                                    }
+                                });
+                                setTimeout(function () { easydialog.close(); },1500);
+                                break;
+                            case 2:
+                                easydialog.open({
+                                    container: {
+                                        content: '该用户已经是商户，不能任职店铺配送人员'
+                                    }
+                                });
+                                setTimeout(function () { easydialog.close(); }, 1500);
+                                break;
+                            case -1:
+                            default:
+                                easydialog.open({
+                                    container: {
+                                        content: '添加配送人员失败'
+                                    }
+                                });
+                                setTimeout(function () { easydialog.close(); }, 1500);
+                                break;
                         }
                     }
                 });

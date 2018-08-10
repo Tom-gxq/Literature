@@ -66,8 +66,10 @@ namespace AgentDashboard.Controllers
             {
                 ViewBag.TotalPages = Math.Ceiling((Double)sp.SP_Shop.Count() / 20.00d);
                 ViewBag.CurrentPage = 1;
+                string food = ConfigurationManager.AppSettings["MainType.Food"];
+                int foodId = int.Parse(food);
 
-                var shopList = sp.SP_Shop.Where(n=>n.ShopType == 1)?.OrderByDescending(n => n.RegionId).OrderByDescending(n=>n.Id)
+                var shopList = sp.SP_Shop.Where(n=>n.ShopType == foodId)?.OrderByDescending(n => n.RegionId).OrderByDescending(n=>n.Id)
                     //.Skip(GetStartRowNo(1, 20)).Take(20).ToList();
                     .ToList();
                 shopsVM = shopList.Select(x => new ShopViewModel
@@ -203,17 +205,48 @@ namespace AgentDashboard.Controllers
             };
         }
         [HttpPost]
-        public JsonResult AddShopOwner(string accountId, int shopId)
+        public JsonResult AddShopOwner(string accountId, int shopId,int shopType)
         {
             Dictionary<string, object> JsonResult = new Dictionary<string, object>();
             IShopAppService service = IocManager.Instance.Resolve<IShopAppService>();
-
-            var ret = service.AddShopOwner(new ShopOwnerDto()
+            var owner = service.GetShopOwnerByAccountId(accountId);
+            if (owner != null)
             {
-                OwnerId = accountId,
-                ShopId = shopId,
-            });
-            JsonResult.Add("status", ret);
+                JsonResult.Add("status", 1);
+            }
+            else
+            {
+                ISupplerAppService sellerService = IocManager.Instance.Resolve<ISupplerAppService>();
+                var seller = sellerService.GetSellerDataByAccountId(accountId);
+                if (seller != null)
+                {
+                    JsonResult.Add("status", 2);
+                }
+                else
+                {
+                    var ret = service.AddShopOwner(new ShopOwnerDto()
+                    {
+                        OwnerId = accountId,
+                        ShopId = shopId,
+                    });
+                    if(ret)
+                    {
+                        //更新用户角色
+                        IAccountAppService accountService = IocManager.Instance.Resolve<IAccountAppService>();
+                        string market = ConfigurationManager.AppSettings["MainType.Market"];
+                        int marketId = int.Parse(market);
+                        if (marketId == shopType)
+                        {
+                            accountService.UpdateAccountUserType(accountId, 3);
+                        }
+                        else
+                        {
+                            accountService.UpdateAccountUserType(accountId, 2);
+                        }
+                    }
+                    JsonResult.Add("status", ret?0:-1);
+                }
+            }
 
             return new JsonResult()
             {
@@ -288,8 +321,10 @@ namespace AgentDashboard.Controllers
             {
                 ViewBag.TotalPages = Math.Ceiling((Double)sp.SP_Shop.Count() / 20.00d);
                 ViewBag.CurrentPage = 1;
+                string market = ConfigurationManager.AppSettings["MainType.Market"];
+                int marketId = int.Parse(market);
 
-                var shopList = sp.SP_Shop.Where(n => n.ShopType == 5)?.OrderByDescending(n => n.RegionId).OrderByDescending(n => n.Id)
+                var shopList = sp.SP_Shop.Where(n => n.ShopType == marketId)?.OrderByDescending(n => n.RegionId).OrderByDescending(n => n.Id)
                     //.Skip(GetStartRowNo(1, 20)).Take(20).ToList();
                     .ToList();
                 shopsVM = shopList.Select(x => new ShopViewModel
@@ -422,16 +457,38 @@ namespace AgentDashboard.Controllers
         {
             Dictionary<string, object> JsonResult = new Dictionary<string, object>();
             ISupplerAppService service = IocManager.Instance.Resolve<ISupplerAppService>();
-            
-            var ret = service.AddSuppler(new SupplerDto()
+            IShopAppService shopService = IocManager.Instance.Resolve<IShopAppService>();
+
+            var owner = shopService.GetShopOwnerByAccountId(model.AccountId);
+            if (owner != null)
             {
-                 AccountId = model.AccountId,
-                 AlipayNo = model.AlipayNo,
-                 SuppliersName = model.SellerName,
-                 LogoPath = model.LogoPath,
-                 TelPhone = model.TelNumber
-            });
-            JsonResult.Add("status", ret);
+                JsonResult.Add("status", 1);
+            }
+            else
+            {
+                var seller = service.GetSellerDataByAccountId(model.AccountId);
+                if (seller != null)
+                {
+                    JsonResult.Add("status", 2);
+                }
+                else
+                {
+                    var ret = service.AddSuppler(new SupplerDto()
+                    {
+                        AccountId = model.AccountId,
+                        AlipayNo = model.AlipayNo,
+                        SuppliersName = model.SellerName,
+                        LogoPath = model.LogoPath,
+                        TelPhone = model.TelNumber
+                    });
+                    if(ret)
+                    {
+                        IAccountAppService accountService = IocManager.Instance.Resolve<IAccountAppService>();
+                        accountService.UpdateAccountUserType(model.AccountId, 1);
+                    }
+                    JsonResult.Add("status", ret);
+                }
+            }
 
             return new JsonResult()
             {
@@ -659,10 +716,7 @@ namespace AgentDashboard.Controllers
                         MDSession.Session["Account"] = accountModel;
                     }
                 }
-                if (accountModel.UserType > 0)
-                {
-                    return RedirectToAction("Index");
-                }
+                return RedirectToAction("Index");
             }
             return RedirectToAction("Login");
         }

@@ -24,5 +24,6 @@ namespace SP.Application.Shop
         List<ShopDto> GetFoodShopListByRegionId(int regionId, int marketId);
         List<ShopDto> GetMarketShopListByRegionId(int regionId,int marketId);
         bool AddShopOwner(ShopOwnerDto dto);
+        ShopOwnerDto GetShopOwnerByAccountId(string accountId);
     }
 }

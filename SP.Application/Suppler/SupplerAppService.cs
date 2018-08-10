@@ -117,6 +117,15 @@ namespace SP.Application.Suppler
 
             return retList;
         }
+
+        public SupplerDto GetSellerDataByAccountId(string accountId)
+        {
+            var retList = new List<SupplerDto>();
+            var repository = IocManager.Instance.Resolve<SupplersRepository>();
+            var entity = repository.GetSellerDataByAccountId(accountId);
+            
+            return ConvertFromRepositoryEntity(entity);
+        }
         private static SupplerDto ConvertFromRepositoryEntity(SuppliersEntity entity)
         {
             if (entity == null)

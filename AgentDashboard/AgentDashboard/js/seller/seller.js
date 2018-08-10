@@ -103,12 +103,36 @@ define(function (require, exports, module) {
                     dialogID: 'wizard',
                     header: '添加商家',
                     callBack: function (result) {
-                        alert("result=" + result)
-                        if (result) {
-                            //重新加载页面
-                            window.location.href = '/Default/ShopManager';
-                        } else {
-                            alert('添加商家失败');
+                        switch (result.status) {
+                            case 0:
+                                //重新加载页面
+                                window.location.href = '/Default/ShopManager';
+                                break;
+                            case 1:
+                                easydialog.open({
+                                    container: {
+                                        content: '该用户已经是其它店铺的配送人员，不能成为商户'
+                                    }
+                                });
+                                setTimeout(function () { easydialog.close(); }, 1500);
+                                break;
+                            case 2:
+                                easydialog.open({
+                                    container: {
+                                        content: '该用户已经是商户'
+                                    }
+                                });
+                                setTimeout(function () { easydialog.close(); }, 1500);
+                                break;
+                            case -1:
+                            default:
+                                easydialog.open({
+                                    container: {
+                                        content: '添加商家失败'
+                                    }
+                                });
+                                setTimeout(function () { easydialog.close(); }, 1500);
+                                break;
                         }
                     }
                 });

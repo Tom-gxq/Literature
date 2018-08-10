@@ -250,6 +250,12 @@ namespace SP.Application.Shop
                 ShopStatus = false,
             });
         }
+        public ShopOwnerDto GetShopOwnerByAccountId(string accountId)
+        {
+            var repository = IocManager.Instance.Resolve<ShopOwnerRespository>();
+            var entity = repository.GetShopOwnerByAccountId(accountId);
+            return ConvertFromRepositoryEntity(entity);
+        }
 
         private static ShopDto ConvertFromRepositoryEntity(ShopEntity shop)
         {
@@ -286,6 +292,21 @@ namespace SP.Application.Shop
             };
 
             return accountInfoDto;
+        }
+
+        private static ShopOwnerDto ConvertFromRepositoryEntity(ShopOwnerEntity shop)
+        {
+            if (shop == null)
+            {
+                return null;
+            }
+            var shopDto = new ShopOwnerDto
+            {
+                OwnerId = shop.OwnerId,
+                ShopId = shop.ShopId.Value,                
+            };
+
+            return shopDto;
         }
     }
 }
