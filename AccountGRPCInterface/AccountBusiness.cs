@@ -54,6 +54,7 @@ namespace AccountGRPCInterface
                 model.AliBind = reuslt.AliBind;
                 model.WxBind = reuslt.WxBind;
                 model.QQBind = reuslt.QQBind;
+                model.UserType = reuslt.UserType;
                 return model;
             }
             else

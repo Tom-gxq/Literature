@@ -84,6 +84,76 @@ namespace WebApiGateway.Controllers
             Common.WriteLog(error+ "   result="+ result);
             return result;
         }
+
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.HttpPost]
+        public string AlipayManage_Notify()
+        {
+            Common.WriteLog("--- AlipayManage_Notify ---");
+
+            SortedDictionary<string, string> sPara = GetRequestPost(Request);
+            string error = string.Empty;
+            string result = string.Empty;
+            if (sPara.Count > 0)//判断是否有带返回参数
+            {
+                AlipayManageNotify aliNotify = new AlipayManageNotify();
+                bool verifyResult = aliNotify.Verify(sPara, Request.Form["notify_id"], Request.Form["sign"]);
+
+                error = error + "verifyResult|" + verifyResult;
+                double total_amount = 0;
+                double buyer_pay_amount = 0;
+                double receipt_amount = 0;
+                if (Request.Form.AllKeys.Contains("total_amount") && !string.IsNullOrEmpty(Request.Form["total_amount"]))
+                {
+                    total_amount = double.Parse(Request.Form["total_amount"]);
+                }
+                if (Request.Form.AllKeys.Contains("buyer_pay_amount") && !string.IsNullOrEmpty(Request.Form["buyer_pay_amount"]))
+                {
+                    buyer_pay_amount = double.Parse(Request.Form["buyer_pay_amount"]);
+                }
+                if (Request.Form.AllKeys.Contains("receipt_amount") && !string.IsNullOrEmpty(Request.Form["receipt_amount"]))
+                {
+                    receipt_amount = double.Parse(Request.Form["receipt_amount"]);
+                }
+                if (total_amount != buyer_pay_amount || total_amount != receipt_amount)
+                {
+                    result = "客户付款失败";
+                }
+                else if (verifyResult)//验证成功
+                {
+                    //商户订单号
+                    string out_trade_no = Request.Form["out_trade_no"];
+                    //支付宝交易号
+                    string trade_no = Request.Form["trade_no"];
+                    //交易状态
+                    string trade_status = Request.Form["trade_status"];
+                    string price = string.Empty;
+
+                    error = error + DateTime.Now + "alipayManageNotify||||out_trade_no|" + out_trade_no + "trade_no|" + trade_no;
+
+
+                    var retVal = UpdateOrderState(out_trade_no);
+                    if (retVal)
+                    {
+                        result = "success";
+                    }
+                    else
+                    {
+                        result = "订单更新失败";
+                    }
+                }
+                else//验证失败
+                {
+                    result = "fail";
+                }
+            }
+            else
+            {
+                result = "无通知参数";
+            }
+            Common.WriteLog(error + "   result=" + result);
+            return result;
+        }
         #region 支付宝通知
         /// <summary>
         /// 获取支付宝POST过来通知消息，并以“参数名=参数值”的形式组成数组

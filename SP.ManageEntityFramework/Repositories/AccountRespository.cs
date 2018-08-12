@@ -29,5 +29,13 @@ namespace SP.ManageEntityFramework.Repositories
                 return db.Select(q);
             }
         }
+        public AccountInfoEntity GetAccountInfoById(string accountId)
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<AccountInfoEntity>();
+                return db.Single<AccountInfoEntity>(x=>x.AccountId == accountId);
+            }
+        }
     }
 }

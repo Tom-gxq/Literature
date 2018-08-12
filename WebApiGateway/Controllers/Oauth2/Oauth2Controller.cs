@@ -170,8 +170,10 @@ namespace WebApiGateway.Controllers.Oauth2
                         try
                         {
                             MDSession.Session.Clear();
-                            MDSession.Session["Account"] = AccountInfoCache.GetAccountInfoByAccountId(accountId);
+                            var accountInfo = AccountInfoCache.GetAccountInfoByAccountId(accountId);
+                            MDSession.Session["Account"] = accountInfo;
                             accessTokenModel = new TokenModel();
+                            accessTokenModel.UserType = accountInfo.UserType;
                             TokenCache.Add(accessTokenModel, accountId);
                         }
                         catch(Exception ex)
@@ -231,7 +233,7 @@ namespace WebApiGateway.Controllers.Oauth2
                         LoginErrorCache.Delete(username.ToLower());
 
                         accessTokenModel = new TokenModel();
-
+                        accessTokenModel.UserType = userType;
                         TokenCache.Add(accessTokenModel, accountId);
                         
                     }
@@ -290,12 +292,12 @@ namespace WebApiGateway.Controllers.Oauth2
                     if (expires >= DateTime.Now)
                     {
                         accountId = tokenModel.AccountId;
-
+                        var account = AccountInfoCache.GetAccountInfoByAccountId(accountId);                        
                         accessTokenModel = new TokenModel();
+                        accessTokenModel.UserType = account.UserType;
                         TokenCache.Add(accessTokenModel, accountId);
 
-                        var account = AccountInfoCache.GetAccountInfoByAccountId(accountId);
-
+                        
                         try
                         {
                             MDSession.Session.Clear();
@@ -345,8 +347,10 @@ namespace WebApiGateway.Controllers.Oauth2
                     try
                     {
                         MDSession.Session.Clear();
-                        MDSession.Session["Account"] = AccountInfoCache.GetAccountInfoByAccountId(accountId);
+                        var accountInfo = AccountInfoCache.GetAccountInfoByAccountId(accountId);
+                        MDSession.Session["Account"] = accountInfo;
                         accessTokenModel = new TokenModel();
+                        accessTokenModel.UserType = accountInfo.UserType;
                         TokenCache.Add(accessTokenModel, accountId);
                     }catch(Exception ex)
                     {
@@ -401,9 +405,11 @@ namespace WebApiGateway.Controllers.Oauth2
                     {
                         accountResult = AccountResult.AccountSuccess;
                         accountId = accountEntity.AccountId;
+                        var accountInfo = AccountInfoCache.GetAccountInfoByAccountId(accountEntity.AccountId);
+                        userType = accountInfo.UserType;
 
                         MDSession.Session.Clear();
-                        MDSession.Session["Account"] = AccountInfoCache.GetAccountInfoByAccountId(accountEntity.AccountId);
+                        MDSession.Session["Account"] = accountInfo;
                     }
                 }
             }

@@ -45,23 +45,7 @@ namespace SP.Service.EntityFramework.Repositories
             }
         }
 
-        public List<ShopOwnerEntity> GetAllShopOwnerList(int shopId)
-        {
-            using (var db = OpenDbConnection())
-            {
-                var q = db.From<ShopOwnerEntity>().Where(x => x.ShopId == shopId);
-                return db.Select(q);
-            }
-        }
-        public int UpdateOpenShopStatus(int shopId, bool status)
-        {
-            using (var db = OpenDbConnection())
-            {
-                return this.UpdateNonDefaults(new ShopEntity()
-                {
-                    ShopStatus = status
-                }, x => x.Id == shopId);
-            }
-        }
+        
+        
     }
 }

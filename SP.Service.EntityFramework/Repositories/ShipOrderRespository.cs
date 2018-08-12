@@ -35,7 +35,7 @@ namespace SP.Service.EntityFramework.Repositories
             using (var db = OpenDbConnection())
             {
                 var q = db.From<ShippingOrdersEntity>();
-                q = q.Where(x => x.OrderId == orderId && x.IsShipped != true && x.ShippingId == accountId && x.ProductId == productId);
+                q = q.Where(x => x.OrderId == orderId &&( x.IsShipped != true || x.IsShipped == null) && x.ShippingId == accountId && x.ProductId == productId);
                 return db.Single(q);
             }
         }

@@ -72,29 +72,31 @@ namespace SP.Service {
             "KAsyFC5TUC5TZXJ2aWNlLkNhcm91c2VsIlcKFVRpdGxlVHlwZUxpc3RSZXNw",
             "b25zZRIOCgZzdGF0dXMYASABKAUSLgoNdGl0bGVUeXBlTGlzdBgCIAMoCzIX",
             "LlNQLlNlcnZpY2UuUHJvZHVjdFR5cGUiIAoOUmVzdWx0UmVzcG9uc2USDgoG",
-            "c3RhdHVzGAEgASgFIjcKFU9wZW5TaG9wU3RhdHVzUmVxdWVzdBIOCgZzaG9w",
-            "SWQYASABKAUSDgoGc3RhdHVzGAIgASgIIl8KElNob3BQcm9kdWN0UmVxdWVz",
-            "dBIRCglwYWdlSW5kZXgYASABKAUSEAoIcGFnZVNpemUYAiABKAUSDgoGdHlw",
-            "ZUlkGAMgASgDEhQKDHNlY29uZFR5cGVJZBgEIAEoAyIbCgtLaW5kUmVxdWVz",
-            "dBIMCgRraW5kGAEgASgFIlsKF1Byb2R1Y3RUeXBlTGlzdFJlc3BvbnNlEg4K",
-            "BnN0YXR1cxgBIAEoBRIwCg9wcm9kdWN0VHlwZUxpc3QYAiADKAsyFy5TUC5T",
-            "ZXJ2aWNlLlByb2R1Y3RUeXBlIrABCg1TZWxsZXJQcm9kdWN0EhAKCG1haW5U",
-            "eXBlGAEgASgDEhIKCnNlY29uZFR5cGUYAiABKAMSEwoLcHJvZHVjdE5hbWUY",
-            "AyABKAkSEQoJaW1hZ2VQYXRoGAQgASgJEhMKC21hcmtldFByaWNlGAUgASgB",
-            "EhUKDXB1cmNoYXNlUHJpY2UYBiABKAESEQoJcHJvZHVjdElkGAcgASgJEhIK",
-            "CnNhbGVTdGF0dXMYCCABKAUiUwoVUHJvZHVjdERldGFpbFJlc3BvbnNlEg4K",
-            "BnN0YXR1cxgBIAEoBRIqCgdwcm9kdWN0GAIgASgLMhkuU1AuU2VydmljZS5T",
-            "ZWxsZXJQcm9kdWN0IrABCg5Qcm9kdWN0UmVxdWVzdBIQCghtYWluVHlwZRgB",
-            "IAEoAxISCgpzZWNvbmRUeXBlGAIgASgDEhMKC3Byb2R1Y3ROYW1lGAMgASgJ",
-            "EhEKCWltYWdlUGF0aBgEIAEoCRITCgttYXJrZXRQcmljZRgFIAEoARIVCg1w",
-            "dXJjaGFzZVByaWNlGAYgASgBEhEKCWFjY291bnRJZBgHIAEoCRIRCglwcm9k",
-            "dWN0SWQYCCABKAkiagoZU2VsbGVyUHJvZHVjdExpc3RSZXNwb25zZRIOCgZz",
-            "dGF0dXMYASABKAUSLgoLcHJvZHVjdExpc3QYAiADKAsyGS5TUC5TZXJ2aWNl",
-            "LlNlbGxlclByb2R1Y3QSDQoFdG90YWwYBCABKAMieAoYU2VsbGVyU2hvcFBy",
-            "b2R1Y3RSZXF1ZXN0EhEKCXBhZ2VJbmRleBgBIAEoBRIQCghwYWdlU2l6ZRgC",
-            "IAEoBRIOCgZ0eXBlSWQYAyABKAMSFAoMc2Vjb25kVHlwZUlkGAQgASgDEhEK",
-            "CWFjY291bnRJZBgFIAEoCSI9ChhQcm9kdWN0U2FsZVN0YXR1c1JlcXVlc3QS",
-            "EQoJcHJvZHVjdElkGAUgASgJEg4KBnN0YXR1cxgBIAEoBWIGcHJvdG8z"));
+            "c3RhdHVzGAEgASgFIl8KElNob3BQcm9kdWN0UmVxdWVzdBIRCglwYWdlSW5k",
+            "ZXgYASABKAUSEAoIcGFnZVNpemUYAiABKAUSDgoGdHlwZUlkGAMgASgDEhQK",
+            "DHNlY29uZFR5cGVJZBgEIAEoAyIbCgtLaW5kUmVxdWVzdBIMCgRraW5kGAEg",
+            "ASgFIlsKF1Byb2R1Y3RUeXBlTGlzdFJlc3BvbnNlEg4KBnN0YXR1cxgBIAEo",
+            "BRIwCg9wcm9kdWN0VHlwZUxpc3QYAiADKAsyFy5TUC5TZXJ2aWNlLlByb2R1",
+            "Y3RUeXBlIrABCg1TZWxsZXJQcm9kdWN0EhAKCG1haW5UeXBlGAEgASgDEhIK",
+            "CnNlY29uZFR5cGUYAiABKAMSEwoLcHJvZHVjdE5hbWUYAyABKAkSEQoJaW1h",
+            "Z2VQYXRoGAQgASgJEhMKC21hcmtldFByaWNlGAUgASgBEhUKDXB1cmNoYXNl",
+            "UHJpY2UYBiABKAESEQoJcHJvZHVjdElkGAcgASgJEhIKCnNhbGVTdGF0dXMY",
+            "CCABKAUiUwoVUHJvZHVjdERldGFpbFJlc3BvbnNlEg4KBnN0YXR1cxgBIAEo",
+            "BRIqCgdwcm9kdWN0GAIgASgLMhkuU1AuU2VydmljZS5TZWxsZXJQcm9kdWN0",
+            "IsIBCg5Qcm9kdWN0UmVxdWVzdBIQCghtYWluVHlwZRgBIAEoAxISCgpzZWNv",
+            "bmRUeXBlGAIgASgDEhMKC3Byb2R1Y3ROYW1lGAMgASgJEhEKCWltYWdlUGF0",
+            "aBgEIAEoCRITCgttYXJrZXRQcmljZRgFIAEoARIVCg1wdXJjaGFzZVByaWNl",
+            "GAYgASgBEhEKCWFjY291bnRJZBgHIAEoCRIRCglwcm9kdWN0SWQYCCABKAkS",
+            "EAoIdmlwUHJpY2UYCSABKAEiagoZU2VsbGVyUHJvZHVjdExpc3RSZXNwb25z",
+            "ZRIOCgZzdGF0dXMYASABKAUSLgoLcHJvZHVjdExpc3QYAiADKAsyGS5TUC5T",
+            "ZXJ2aWNlLlNlbGxlclByb2R1Y3QSDQoFdG90YWwYBCABKAMieAoYU2VsbGVy",
+            "U2hvcFByb2R1Y3RSZXF1ZXN0EhEKCXBhZ2VJbmRleBgBIAEoBRIQCghwYWdl",
+            "U2l6ZRgCIAEoBRIOCgZ0eXBlSWQYAyABKAMSFAoMc2Vjb25kVHlwZUlkGAQg",
+            "ASgDEhEKCWFjY291bnRJZBgFIAEoCSI9ChhQcm9kdWN0U2FsZVN0YXR1c1Jl",
+            "cXVlc3QSEQoJcHJvZHVjdElkGAUgASgJEg4KBnN0YXR1cxgBIAEoBSI4ChJT",
+            "aG9wU3RhdHVzUmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEhIKCnNob3BTdGF0",
+            "dXMYAiABKAgiOgoVT3BlblNob3BTdGF0dXNSZXF1ZXN0EhEKCWFjY291bnRJ",
+            "ZBgBIAEoCRIOCgZzdGF0dXMYAiABKAhiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -122,16 +124,17 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.CarouselListResponse), global::SP.Service.CarouselListResponse.Parser, new[]{ "Status", "CarouselList" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TitleTypeListResponse), global::SP.Service.TitleTypeListResponse.Parser, new[]{ "Status", "TitleTypeList" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ResultResponse), global::SP.Service.ResultResponse.Parser, new[]{ "Status" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OpenShopStatusRequest), global::SP.Service.OpenShopStatusRequest.Parser, new[]{ "ShopId", "Status" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ShopProductRequest), global::SP.Service.ShopProductRequest.Parser, new[]{ "PageIndex", "PageSize", "TypeId", "SecondTypeId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.KindRequest), global::SP.Service.KindRequest.Parser, new[]{ "Kind" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ProductTypeListResponse), global::SP.Service.ProductTypeListResponse.Parser, new[]{ "Status", "ProductTypeList" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SellerProduct), global::SP.Service.SellerProduct.Parser, new[]{ "MainType", "SecondType", "ProductName", "ImagePath", "MarketPrice", "PurchasePrice", "ProductId", "SaleStatus" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ProductDetailResponse), global::SP.Service.ProductDetailResponse.Parser, new[]{ "Status", "Product" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ProductRequest), global::SP.Service.ProductRequest.Parser, new[]{ "MainType", "SecondType", "ProductName", "ImagePath", "MarketPrice", "PurchasePrice", "AccountId", "ProductId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ProductRequest), global::SP.Service.ProductRequest.Parser, new[]{ "MainType", "SecondType", "ProductName", "ImagePath", "MarketPrice", "PurchasePrice", "AccountId", "ProductId", "VipPrice" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SellerProductListResponse), global::SP.Service.SellerProductListResponse.Parser, new[]{ "Status", "ProductList", "Total" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SellerShopProductRequest), global::SP.Service.SellerShopProductRequest.Parser, new[]{ "PageIndex", "PageSize", "TypeId", "SecondTypeId", "AccountId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ProductSaleStatusRequest), global::SP.Service.ProductSaleStatusRequest.Parser, new[]{ "ProductId", "Status" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ProductSaleStatusRequest), global::SP.Service.ProductSaleStatusRequest.Parser, new[]{ "ProductId", "Status" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ShopStatusResponse), global::SP.Service.ShopStatusResponse.Parser, new[]{ "Status", "ShopStatus" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OpenShopStatusRequest), global::SP.Service.OpenShopStatusRequest.Parser, new[]{ "AccountId", "Status" }, null, null, null)
           }));
     }
     #endregion
@@ -4890,163 +4893,6 @@ namespace SP.Service {
 
   /// <summary>
   ///*
-  /// 店铺的请求参数
-  /// </summary>
-  public sealed partial class OpenShopStatusRequest : pb::IMessage<OpenShopStatusRequest> {
-    private static readonly pb::MessageParser<OpenShopStatusRequest> _parser = new pb::MessageParser<OpenShopStatusRequest>(() => new OpenShopStatusRequest());
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<OpenShopStatusRequest> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[24]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public OpenShopStatusRequest() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public OpenShopStatusRequest(OpenShopStatusRequest other) : this() {
-      shopId_ = other.shopId_;
-      status_ = other.status_;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public OpenShopStatusRequest Clone() {
-      return new OpenShopStatusRequest(this);
-    }
-
-    /// <summary>Field number for the "shopId" field.</summary>
-    public const int ShopIdFieldNumber = 1;
-    private int shopId_;
-    /// <summary>
-    ///*
-    /// 店铺ID
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ShopId {
-      get { return shopId_; }
-      set {
-        shopId_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "status" field.</summary>
-    public const int StatusFieldNumber = 2;
-    private bool status_;
-    /// <summary>
-    ///*
-    /// 店铺营业状态
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Status {
-      get { return status_; }
-      set {
-        status_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as OpenShopStatusRequest);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(OpenShopStatusRequest other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (ShopId != other.ShopId) return false;
-      if (Status != other.Status) return false;
-      return true;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (ShopId != 0) hash ^= ShopId.GetHashCode();
-      if (Status != false) hash ^= Status.GetHashCode();
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (ShopId != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(ShopId);
-      }
-      if (Status != false) {
-        output.WriteRawTag(16);
-        output.WriteBool(Status);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (ShopId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ShopId);
-      }
-      if (Status != false) {
-        size += 1 + 1;
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(OpenShopStatusRequest other) {
-      if (other == null) {
-        return;
-      }
-      if (other.ShopId != 0) {
-        ShopId = other.ShopId;
-      }
-      if (other.Status != false) {
-        Status = other.Status;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            input.SkipLastField();
-            break;
-          case 8: {
-            ShopId = input.ReadInt32();
-            break;
-          }
-          case 16: {
-            Status = input.ReadBool();
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  /// <summary>
-  ///*
   /// 获取配送员的产品列表的请求参数
   /// </summary>
   public sealed partial class ShopProductRequest : pb::IMessage<ShopProductRequest> {
@@ -5056,7 +4902,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[25]; }
+      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[24]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5277,7 +5123,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[26]; }
+      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[25]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5402,7 +5248,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[27]; }
+      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[26]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5551,7 +5397,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[28]; }
+      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[27]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5900,7 +5746,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[29]; }
+      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[28]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6063,7 +5909,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[30]; }
+      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[29]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6088,6 +5934,7 @@ namespace SP.Service {
       purchasePrice_ = other.purchasePrice_;
       accountId_ = other.accountId_;
       productId_ = other.productId_;
+      vipPrice_ = other.vipPrice_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6215,6 +6062,21 @@ namespace SP.Service {
       }
     }
 
+    /// <summary>Field number for the "vipPrice" field.</summary>
+    public const int VipPriceFieldNumber = 9;
+    private double vipPrice_;
+    /// <summary>
+    ///*
+    /// 会员价格
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public double VipPrice {
+      get { return vipPrice_; }
+      set {
+        vipPrice_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as ProductRequest);
@@ -6236,6 +6098,7 @@ namespace SP.Service {
       if (PurchasePrice != other.PurchasePrice) return false;
       if (AccountId != other.AccountId) return false;
       if (ProductId != other.ProductId) return false;
+      if (VipPrice != other.VipPrice) return false;
       return true;
     }
 
@@ -6250,6 +6113,7 @@ namespace SP.Service {
       if (PurchasePrice != 0D) hash ^= PurchasePrice.GetHashCode();
       if (AccountId.Length != 0) hash ^= AccountId.GetHashCode();
       if (ProductId.Length != 0) hash ^= ProductId.GetHashCode();
+      if (VipPrice != 0D) hash ^= VipPrice.GetHashCode();
       return hash;
     }
 
@@ -6292,6 +6156,10 @@ namespace SP.Service {
         output.WriteRawTag(66);
         output.WriteString(ProductId);
       }
+      if (VipPrice != 0D) {
+        output.WriteRawTag(73);
+        output.WriteDouble(VipPrice);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6320,6 +6188,9 @@ namespace SP.Service {
       }
       if (ProductId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(ProductId);
+      }
+      if (VipPrice != 0D) {
+        size += 1 + 8;
       }
       return size;
     }
@@ -6352,6 +6223,9 @@ namespace SP.Service {
       }
       if (other.ProductId.Length != 0) {
         ProductId = other.ProductId;
+      }
+      if (other.VipPrice != 0D) {
+        VipPrice = other.VipPrice;
       }
     }
 
@@ -6395,6 +6269,10 @@ namespace SP.Service {
             ProductId = input.ReadString();
             break;
           }
+          case 73: {
+            VipPrice = input.ReadDouble();
+            break;
+          }
         }
       }
     }
@@ -6412,7 +6290,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[31]; }
+      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[30]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6593,7 +6471,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[32]; }
+      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[31]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6846,7 +6724,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[33]; }
+      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[32]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6984,6 +6862,320 @@ namespace SP.Service {
           }
           case 42: {
             ProductId = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 获取配送人员营业状态的返回信息
+  /// </summary>
+  public sealed partial class ShopStatusResponse : pb::IMessage<ShopStatusResponse> {
+    private static readonly pb::MessageParser<ShopStatusResponse> _parser = new pb::MessageParser<ShopStatusResponse>(() => new ShopStatusResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ShopStatusResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[33]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ShopStatusResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ShopStatusResponse(ShopStatusResponse other) : this() {
+      status_ = other.status_;
+      shopStatus_ = other.shopStatus_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ShopStatusResponse Clone() {
+      return new ShopStatusResponse(this);
+    }
+
+    /// <summary>Field number for the "status" field.</summary>
+    public const int StatusFieldNumber = 1;
+    private int status_;
+    /// <summary>
+    ///*
+    /// 添加状态10001为正常10002为异常
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Status {
+      get { return status_; }
+      set {
+        status_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "shopStatus" field.</summary>
+    public const int ShopStatusFieldNumber = 2;
+    private bool shopStatus_;
+    /// <summary>
+    ///*
+    /// 配送人员营业状态
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool ShopStatus {
+      get { return shopStatus_; }
+      set {
+        shopStatus_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ShopStatusResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ShopStatusResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Status != other.Status) return false;
+      if (ShopStatus != other.ShopStatus) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Status != 0) hash ^= Status.GetHashCode();
+      if (ShopStatus != false) hash ^= ShopStatus.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Status != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Status);
+      }
+      if (ShopStatus != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(ShopStatus);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Status != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Status);
+      }
+      if (ShopStatus != false) {
+        size += 1 + 1;
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ShopStatusResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Status != 0) {
+        Status = other.Status;
+      }
+      if (other.ShopStatus != false) {
+        ShopStatus = other.ShopStatus;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            Status = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            ShopStatus = input.ReadBool();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 配送人员营业状态的请求参数
+  /// </summary>
+  public sealed partial class OpenShopStatusRequest : pb::IMessage<OpenShopStatusRequest> {
+    private static readonly pb::MessageParser<OpenShopStatusRequest> _parser = new pb::MessageParser<OpenShopStatusRequest>(() => new OpenShopStatusRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<OpenShopStatusRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[34]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public OpenShopStatusRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public OpenShopStatusRequest(OpenShopStatusRequest other) : this() {
+      accountId_ = other.accountId_;
+      status_ = other.status_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public OpenShopStatusRequest Clone() {
+      return new OpenShopStatusRequest(this);
+    }
+
+    /// <summary>Field number for the "accountId" field.</summary>
+    public const int AccountIdFieldNumber = 1;
+    private string accountId_ = "";
+    /// <summary>
+    ///*
+    /// 配送人员ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AccountId {
+      get { return accountId_; }
+      set {
+        accountId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "status" field.</summary>
+    public const int StatusFieldNumber = 2;
+    private bool status_;
+    /// <summary>
+    ///*
+    /// 营业状态
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Status {
+      get { return status_; }
+      set {
+        status_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as OpenShopStatusRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(OpenShopStatusRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (AccountId != other.AccountId) return false;
+      if (Status != other.Status) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (AccountId.Length != 0) hash ^= AccountId.GetHashCode();
+      if (Status != false) hash ^= Status.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (AccountId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(AccountId);
+      }
+      if (Status != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(Status);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (AccountId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountId);
+      }
+      if (Status != false) {
+        size += 1 + 1;
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(OpenShopStatusRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.AccountId.Length != 0) {
+        AccountId = other.AccountId;
+      }
+      if (other.Status != false) {
+        Status = other.Status;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            AccountId = input.ReadString();
+            break;
+          }
+          case 16: {
+            Status = input.ReadBool();
             break;
           }
         }

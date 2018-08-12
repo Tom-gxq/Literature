@@ -72,6 +72,7 @@
     <Compile Include="Product\AttributeAppService.cs" />
     <Compile Include="Product\AttributeValueAppService.cs" />
     <Compile Include="Product\BrandAppService.cs" />
+    <Compile Include="Product\DTO\AccountProductDto.cs" />
     <Compile Include="Product\DTO\AttributeDto.cs" />
     <Compile Include="Product\DTO\AttributeValueDto.cs" />
     <Compile Include="Product\DTO\BrandDto.cs" />
@@ -95,12 +96,16 @@
     <Compile Include="Product\ProductTypeService.cs" />
     <Compile Include="Product\RegionAppService.cs" />
     <Compile Include="Shop\DTO\ShopDto.cs" />
+    <Compile Include="Shop\DTO\ShopOwnerDto.cs" />
     <Compile Include="Shop\DTO\ShopProductDto.cs" />
     <Compile Include="Shop\IShopAppService.cs" />
     <Compile Include="Shop\ShopAppService.cs.cs" />
     <Compile Include="SPApplicationModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SPAppServiceBase.cs" />
+    <Compile Include="Suppler\DTO\SupplerDto.cs" />
+    <Compile Include="Suppler\ISupplerAppService.cs" />
+    <Compile Include="Suppler\SupplerAppService.cs" />
     <Compile Include="User\AccountAppService.cs" />
     <Compile Include="User\AdminAppService.cs" />
     <Compile Include="User\DTO\AccountInfoDto.cs" />

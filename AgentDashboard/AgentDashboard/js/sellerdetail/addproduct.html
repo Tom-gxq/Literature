@@ -1,0 +1,62 @@
+﻿<div id="main">
+    <div id="wizard" >
+        <div class="items" id="{%=$data%}">
+            <div class="page">
+                <div class="contactInfo" >
+                    <ul >
+                        <li style="width:100%">
+                            <span class="grayfont span">分类:</span>
+                            <select id="inputTypeForm" class="select small newselect" style="height: 35px;">
+                                <option value="0" selected="">&nbsp;</option>
+                                {% for(var i =0, j=$data.types.length; i< j; i++) { %}
+                                <option value="{%=$data.types[i].TypeId%}" >{%=$data.types[i].TypeName%}</option>
+                                {% } %}
+                            </select>
+                            <select id="inputSecondTypeForm" class="select small newselect" style="height: 35px;">
+                                <option value="0" selected="">&nbsp;</option>
+                                {% for(var i =0, j=$data.secondTypes.length; i< j; i++) { %}
+                                <option value="{%=$data.secondTypes[i].TypeId%}" >{%=$data.secondTypes[i].TypeName%}</option>
+                                {% } %}
+                            </select>   
+                        </li>                
+                        <li style="width:100%">
+                            <span class="grayfont span">商家名称:</span>
+                            <input id="productName" tabindex="1" class="input-text width200 Check telphone" type="text" value="" placeholder="商家名称" />
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">拿货价:</span>
+                            <input id="purchasePrice" tabindex="1" class="input-text width200 Check alipay" type="text" value="" placeholder="拿货价" />
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">售出价:</span>
+                            <input id="marketPrice" tabindex="1" class="input-text width200 Check alipay" type="text" value="" placeholder="售出价" />
+                            
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">会员价:</span>
+                            <input id="vipPrice" tabindex="1" class="input-text width200 Check alipay" type="text" value="" placeholder="会员价" />
+
+                        </li>
+                        <li style="width:100%">
+                            <div id="container">
+                                <div id="preview">
+                                    <a class="btn-lg btnfont" id="pickfiles" href="#">
+                                        <i class="fa fa-fw fa-plus"></i>
+                                        <span>商品图片选择文件</span>
+                                    </a>
+                                </div>
+                                <input tabindex="1" id="imgPath" class="input-text width400 Check sequence" type="hidden" value="" />
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="btn_nav right">
+                    <input type="button" class="next " id="sub" value="确定" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" class="prev" id="cacel" value="取消" />                    
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

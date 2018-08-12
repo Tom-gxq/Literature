@@ -57,6 +57,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Google.Protobuf, Version=3.4.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Protobuf.3.4.1\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="Grpc.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d754f35622e28bad, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Grpc.Core.1.6.1\lib\net45\Grpc.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Lib.Web">
       <HintPath>..\..\Lib\Lib.Web.dll</HintPath>
     </Reference>
@@ -70,6 +76,9 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Nito.AsyncEx, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Nito.AsyncEx.3.0.1\lib\net45\Nito.AsyncEx.dll</HintPath>
     </Reference>
@@ -78,6 +87,9 @@
     </Reference>
     <Reference Include="Nito.AsyncEx.Enlightenment, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Nito.AsyncEx.3.0.1\lib\net45\Nito.AsyncEx.Enlightenment.dll</HintPath>
+    </Reference>
+    <Reference Include="Qiniu, Version=7.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Qiniu.7.3.0\lib\Net40\Qiniu.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.Common, Version=4.5.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ServiceStack.Common.4.5.4\lib\net45\ServiceStack.Common.dll</HintPath>
@@ -95,6 +107,9 @@
       <HintPath>..\..\packages\System.Collections.Immutable.1.1.36\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Interactive.Async, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Interactive.Async.3.1.1\lib\net46\System.Interactive.Async.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
@@ -144,6 +159,12 @@
     <Content Include="css\sb-admin.min.css" />
     <Content Include="css\ShopMgr.png" />
     <Content Include="Global.asax" />
+    <Content Include="js\addowner\addowner.html" />
+    <Content Include="js\addowner\addowner.js" />
+    <Content Include="js\food\addproduct.html" />
+    <Content Include="js\food\addproduct.js" />
+    <Content Include="js\food\food.js" />
+    <Content Include="js\food\style.css" />
     <Content Include="js\global.js" />
     <Content Include="js\order\list-item.html" />
     <Content Include="js\order\order.js" />
@@ -207,13 +228,12 @@
     <Content Include="js\plug\plupload\plupload.dev.js" />
     <Content Include="js\plug\plupload\plupload.full.min.js" />
     <Content Include="js\plug\plupload\plupload.min.js" />
-    <Content Include="js\plug\qiniu\carouse.js" />
     <Content Include="js\plug\qiniu\css\highlight.css" />
     <Content Include="js\plug\qiniu\highlight.js" />
     <Content Include="js\plug\qiniu\main.js" />
     <Content Include="js\plug\qiniu\producttype.js" />
     <Content Include="js\plug\qiniu\qiniu.js" />
-    <Content Include="js\plug\qiniu\shop.js" />
+    <Content Include="js\plug\qiniu\sellerlogo.js" />
     <Content Include="js\plug\qiniu\ui.js" />
     <Content Include="js\sb-admin-charts.js" />
     <Content Include="js\sb-admin-charts.min.js" />
@@ -223,6 +243,20 @@
     <Content Include="js\sb-admin.min.js" />
     <Content Include="js\seajs\sea-config.js" />
     <Content Include="js\seajs\sea.js" />
+    <Content Include="js\sellerdetail\addproduct.html" />
+    <Content Include="js\sellerdetail\addproduct.js" />
+    <Content Include="js\sellerdetail\detail.js" />
+    <Content Include="js\sellerdetail\style.css" />
+    <Content Include="js\seller\addauth.html" />
+    <Content Include="js\seller\addauth.js" />
+    <Content Include="js\seller\addpermit.html" />
+    <Content Include="js\seller\addpermit.js" />
+    <Content Include="js\seller\addlic.html" />
+    <Content Include="js\seller\addlic.js" />
+    <Content Include="js\seller\addseller.html" />
+    <Content Include="js\seller\addseller.js" />
+    <Content Include="js\seller\seller.js" />
+    <Content Include="js\seller\style.css" />
     <Content Include="Models\SP.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SP.Context.cs</LastGenOutput>
@@ -274,6 +308,9 @@
     <Content Include="Views\Default\ShopDetails.cshtml" />
     <Content Include="Views\Default\DeliverymanViewer.cshtml" />
     <Content Include="js\plug\plupload\Moxie.xap" />
+    <Content Include="Views\Default\AddSeller.cshtml" />
+    <Content Include="Views\Default\SellerDetails.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Views\Default\Index.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -281,6 +318,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SPWebModule.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\QiniuController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -288,10 +326,14 @@
       <DependentUpon>SP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModel.cs" />
+    <Compile Include="Models\Chart.cs" />
     <Compile Include="Models\OAuth2_Access_Token.cs">
       <DependentUpon>SP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PageModel.cs" />
+    <Compile Include="Models\ProductModel.cs" />
+    <Compile Include="Models\ProductTypeModel.cs" />
+    <Compile Include="Models\SellerViewModel.cs" />
     <Compile Include="Models\ShopDetailsViewModel.cs" />
     <Compile Include="Models\ShopViewModel.cs" />
     <Compile Include="Models\SP.Context.cs">
@@ -520,6 +562,26 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\AccountGRPCInterface\AccountGRPCInterface.csproj">
+      <Project>{58b02e58-2afa-4e00-8c3d-d1275a408226}</Project>
+      <Name>AccountGRPCInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProductGRPCInterface\ProductGRPCInterface.csproj">
+      <Project>{9c6e35fb-207d-42e8-bf68-0afbbec8a34b}</Project>
+      <Name>ProductGRPCInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RPCCommonTool\RPCCommonTool.csproj">
+      <Project>{5500a323-6854-4a1b-884e-6c2011b8ac71}</Project>
+      <Name>RPCCommonTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SP.Api.Cache\SP.Api.Caching.csproj">
+      <Project>{82f494cd-bccf-4056-98c4-da2da324903a}</Project>
+      <Name>SP.Api.Caching</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SP.Api.Model\SP.Api.Model.csproj">
+      <Project>{3a637592-a435-45bf-82bf-7ecd0ae7f5cb}</Project>
+      <Name>SP.Api.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\SP.Application\SP.Application.csproj">
       <Project>{d0190ddb-ec06-4335-b29b-ea030a8443a6}</Project>
       <Name>SP.Application</Name>
@@ -564,7 +626,9 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\..\packages\Grpc.Core.1.6.1\build\net45\Grpc.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Grpc.Core.1.6.1\build\net45\Grpc.Core.targets'))" />
   </Target>
+  <Import Project="..\..\packages\Grpc.Core.1.6.1\build\net45\Grpc.Core.targets" Condition="Exists('..\..\packages\Grpc.Core.1.6.1\build\net45\Grpc.Core.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

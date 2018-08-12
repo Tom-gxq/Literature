@@ -214,8 +214,9 @@ namespace SP.Service.Domain.Reporting
                 var product = productReportDatabase.GetProductDomainById(cart.ProductId);
                 shoppingCart.SetMemenProductto(product.GetMemento());
                 var shipReportDatabase = IocManager.Instance.Resolve(typeof(ShipOrderReportDatabase)) as ShipOrderReportDatabase;
-                var ship = shipReportDatabase.GetShippingOrders(cart.ProductId, accountId, cart.ProductId);
-                shoppingCart.Quantity = (ship.Stock != null ? ship.Stock.Value : 0);
+                Console.WriteLine($"OrderId=[{order.OrderId}],accountId=[{accountId}],ProductId=[{cart.ProductId}]");
+                var ship = shipReportDatabase.GetShippingOrders(order.OrderId, accountId, cart.ProductId);
+                shoppingCart.Quantity = (ship?.Stock != null ? ship.Stock.Value : 0);
                 shoppingCart.CalculateAmount();
                 shoppingCartList.Add(shoppingCart);
             }

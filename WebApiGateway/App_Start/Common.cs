@@ -575,6 +575,49 @@ namespace WebApiGateway.App_Start
 
             return client;
         }
+
+        public static IAopClient GetAlipayManageClient()
+        {
+            //支付宝网关地址
+            // -----沙箱地址-----
+            //string serverUrl = "http://openapi.alipaydev.com/gateway.do";
+            // -----线上地址-----
+            string serverUrl = "https://openapi.alipay.com/gateway.do";
+            //应用ID
+            string appId = "2018072660803348";
+            //商户私钥
+            string privateKeyPem = "MIIEogIBAAKCAQEA0Lwqcl56YhrLM4xvYsVUG2sSisPM67YwjqFjlyrRfh4QYr6A" +
+                            "8ftWZggw4EEyC/7QlZct26L//iQx0xJCJdeZX1Prp+AO5BP6A/LTihrHRSImnKk6" +
+                            "bshNK8ftGRVV+gn5xpAcGSVXNmMTau/13YT5oImyAN2N57+Vfw5khZjrDQSdnI/v" +
+                            "1ZOHMh+6M1CpooGnXFUQhfvuOUz8tnG3rhPRUeJx+OI/WokSwDvssceCw7J1tq1y" +
+                            "FajsT3veBAH4Lf0CkxQ14cdOhzw1AKyB7QqRpUPVS7s/8m5Dj7BpmOhlNdaC8Qxo" +
+                            "mStQ47/AMfgf0ckVPxC4y4TIFLLEE0r/P+qqWQIDAQABAoIBABhxEB9YRMhcDtM4" +
+                            "bIqKRLD5NrCdAM/RA5qP91NqJiG4b37Ag+TR42oLJ3365FtXOSFrFGmVipg9sL/g" +
+                            "cXJw7nqlHwEHUXcPh8USmAah4BeOSisp/befKLoprO+0+d5PcLn5gfDH2JB7xXhO" +
+                            "JOINghV0Si2jw8wROPYpv0eNgmiBnZZkgOeWMSa0+7A0orAESXR/wCNyDqM+6tpU" +
+                            "5VxSSC88G36Uisl+T2rygYqpUvxUJKiIw6ybPLK+AtjnZFnjSMfULs2WswN8EAcd" +
+                            "WXQSV2VDYt9o89LUPkNkaZvrLvBAW0uhTPpcGY3ojcZ076J3mc6d90mKhaV/U4M6" +
+                            "fLTPzMkCgYEA99xlzm7i5V+RY9hYElSpbqQqL67fdETdiXu/D1sAaU5gzoBjyCwO" +
+                            "ZTVWWVYALAu4rg/yKya1He0W09P5Je9diwOepjfeAhEAdEn6mIX95yXHvEKr+KeS" +
+                            "gOHPLBrpD8vjz57Qx24nqPhv9cqN+bmoqciHaPDN6UYxl9q3Cx5f1Y8CgYEA15bc" +
+                            "06u1E+GyWi91qLIoPCmdrhgWvFz/oEoeSQJsudO527ESAHzWUbIQMU9F+5elahbF" +
+                            "i3l/NHb8tI6RJxF3adiNBm5IBO7kTPvnM3rOGf+PCpj6WrcB4x3gznYIC5M0Kq58" +
+                            "MWzlgHz0h6bGFZFhU/iDHDr+9CfxKO7rn9JlnZcCgYBhICNgtkEBIublGjTA0h4m" +
+                            "tfu1/a+gbw/kvPIMgVty6Hy0zsjK+sCVVkZE8ZdVqy4uPx9lW2CjnnFQhoLeI6Mj" +
+                            "Q0La3Y+IfcMQzqB9PhxVhI91LScYZAnbqSC2psDnKL1XcWNcksTFyLyOs1XZIrB9" +
+                            "/49YRuxZWeE7IUCTAc8J7wKBgGOP/meassN9xdo0dMf1jvNJ3NIbudQ/tqYV1Kqu" +
+                            "/ftLtlepDMFA5dFQxH2hOJaaUAAQiCaDc6WNFeNku9ApFtbA9U/0+jmdAb4zz3BM" +
+                            "1IXZKfwg7e2a+roigEGY7No7nyne7uf8fHi8PEmxUWWAgExBRntxG3EySQM4Y4Sp" +
+                            "q9f9AoGAMqLW2Wlu/odEOivSnwvUkTL0zfyEQz31L7gavgQv6wkgfA9O4bpJtIEe" +
+                            "gQ8+dsdr9ez45yEXiuPc++xhs6RzivwejhguhsmAqclYV3w4Wr5kwjzL+5NYIWUe" +
+                            "+t4DMzqBHDC2USq/wzcGwTJdE/i8e7LUNtjDB61L3Lr8FcxAOMQ=";
+            string publicKeyPem = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0Lwqcl56YhrLM4xvYsVUG2sSisPM67YwjqFjlyrRfh4QYr6A8ftWZggw4EEyC/7QlZct26L//iQx0xJCJdeZX1Prp+AO5BP6A/LTihrHRSImnKk6bshNK8ftGRVV+gn5xpAcGSVXNmMTau/13YT5oImyAN2N57+Vfw5khZjrDQSdnI/v1ZOHMh+6M1CpooGnXFUQhfvuOUz8tnG3rhPRUeJx+OI/WokSwDvssceCw7J1tq1yFajsT3veBAH4Lf0CkxQ14cdOhzw1AKyB7QqRpUPVS7s/8m5Dj7BpmOhlNdaC8QxomStQ47/AMfgf0ckVPxC4y4TIFLLEE0r/P+qqWQIDAQAB";
+
+            IAopClient client = new DefaultAopClient(serverUrl, appId, privateKeyPem, "json", "1.0", "RSA2", publicKeyPem, "utf-8", false);
+
+
+            return client;
+        }
         /// <summary>
         /// 创建微信的package签名
         /// </summary>

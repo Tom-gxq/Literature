@@ -18,6 +18,7 @@ namespace WebApiGateway.Controllers.Base
         public string response_type = "code";//返回类型，支持code、token，默认值为code。
 
         public string  accountId, format, state = string.Empty;
+        public int userType;
 
         public AccountResult accountResult = AccountResult.AccountError;
         public TokenModel accessTokenModel = null;
@@ -53,6 +54,7 @@ namespace WebApiGateway.Controllers.Base
                     if (expires >= DateTime.Now)
                     {
                         accountId = tokenModel.AccountId;
+                        userType = tokenModel.UserType;
                     }
                     else
                         error_code = ApiEnum.ErrorCode.BaseDisabledToken;

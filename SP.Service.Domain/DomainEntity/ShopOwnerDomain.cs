@@ -15,6 +15,7 @@ namespace SP.Service.Domain.DomainEntity
         public int ShopId { get; set; }
         public string OwnerId { get; set; }
         public int Stock { get; set; }
+        public bool ShopStatus { get; set; }
 
         public ShopOwnerDomain()
         {
@@ -27,6 +28,7 @@ namespace SP.Service.Domain.DomainEntity
             {
                 ShopId = this.ShopId,
                 OwnerId = this.OwnerId,
+                ShopStatus = this.ShopStatus
             };
         }
 
@@ -37,6 +39,7 @@ namespace SP.Service.Domain.DomainEntity
                 var entity = memento as ShopOwnerEntity;
                 this.ShopId = entity.ShopId.Value;
                 this.OwnerId = entity.OwnerId;
+                this.ShopStatus = entity.ShopStatus!= null? entity.ShopStatus.Value:false;
             }
         }
     }

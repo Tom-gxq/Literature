@@ -19,5 +19,6 @@ namespace SP.Api.Model.Account
         public string AliBind { get; set; }
         public string WxBind { get; set; }
         public string QQBind { get; set; }
+        public int  UserType { get; set; }
     }
 }

@@ -14,9 +14,10 @@ namespace SP.Service.Domain.Commands.Product
         public double MarketPrice { get; set; }
         public double PurchasePrice { get; set; }
         public string ImagePath { get; set; }
+        public double VIPPrice { get; set; }
 
         public CreateProductCommand(Guid id, long mainType, long secondType, string productName, 
-            string suppliersId,double marketPrice,double purchasePrice,string imagePath)
+            string suppliersId,double marketPrice,double purchasePrice,string imagePath, double vipPrice)
         {
             base.Id = id;
             this.MainType = mainType;
@@ -26,6 +27,7 @@ namespace SP.Service.Domain.Commands.Product
             this.MarketPrice = marketPrice;
             this.PurchasePrice = purchasePrice;
             this.ImagePath = imagePath;
+            this.VIPPrice = vipPrice;
         }
     }
 }

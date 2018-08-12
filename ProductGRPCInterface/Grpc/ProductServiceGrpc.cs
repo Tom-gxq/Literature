@@ -40,6 +40,8 @@ namespace SP.Service {
     static readonly grpc::Marshaller<global::SP.Service.ProductRequest> __Marshaller_ProductRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.ProductRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.ProductDetailResponse> __Marshaller_ProductDetailResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.ProductDetailResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.ProductSaleStatusRequest> __Marshaller_ProductSaleStatusRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.ProductSaleStatusRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.AccountIdRequest> __Marshaller_AccountIdRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AccountIdRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.ShopStatusResponse> __Marshaller_ShopStatusResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.ShopStatusResponse.Parser.ParseFrom);
 
     static readonly grpc::Method<global::SP.Service.ProductListRequest, global::SP.Service.ProductListResponse> __Method_GetProductList = new grpc::Method<global::SP.Service.ProductListRequest, global::SP.Service.ProductListResponse>(
         grpc::MethodType.Unary,
@@ -208,6 +210,13 @@ namespace SP.Service {
         "UpdateProductSaleStatus",
         __Marshaller_ProductSaleStatusRequest,
         __Marshaller_ResultResponse);
+
+    static readonly grpc::Method<global::SP.Service.AccountIdRequest, global::SP.Service.ShopStatusResponse> __Method_GetShopStatus = new grpc::Method<global::SP.Service.AccountIdRequest, global::SP.Service.ShopStatusResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetShopStatus",
+        __Marshaller_AccountIdRequest,
+        __Marshaller_ShopStatusResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -502,6 +511,18 @@ namespace SP.Service {
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
       public virtual global::System.Threading.Tasks.Task<global::SP.Service.ResultResponse> UpdateProductSaleStatus(global::SP.Service.ProductSaleStatusRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 获取配送人员营业状态
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.ShopStatusResponse> GetShopStatus(global::SP.Service.AccountIdRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -1683,6 +1704,54 @@ namespace SP.Service {
       {
         return CallInvoker.AsyncUnaryCall(__Method_UpdateProductSaleStatus, null, options, request);
       }
+      /// <summary>
+      ///*
+      /// 获取配送人员营业状态
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.ShopStatusResponse GetShopStatus(global::SP.Service.AccountIdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetShopStatus(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取配送人员营业状态
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.ShopStatusResponse GetShopStatus(global::SP.Service.AccountIdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetShopStatus, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 获取配送人员营业状态
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.ShopStatusResponse> GetShopStatusAsync(global::SP.Service.AccountIdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetShopStatusAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取配送人员营业状态
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.ShopStatusResponse> GetShopStatusAsync(global::SP.Service.AccountIdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetShopStatus, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override ProductServiceClient NewInstance(ClientBaseConfiguration configuration)
       {
@@ -1718,7 +1787,8 @@ namespace SP.Service {
           .AddMethod(__Method_AddProduct, serviceImpl.AddProduct)
           .AddMethod(__Method_UpdateProduct, serviceImpl.UpdateProduct)
           .AddMethod(__Method_GetSellerProductDetail, serviceImpl.GetSellerProductDetail)
-          .AddMethod(__Method_UpdateProductSaleStatus, serviceImpl.UpdateProductSaleStatus).Build();
+          .AddMethod(__Method_UpdateProductSaleStatus, serviceImpl.UpdateProductSaleStatus)
+          .AddMethod(__Method_GetShopStatus, serviceImpl.GetShopStatus).Build();
     }
 
   }

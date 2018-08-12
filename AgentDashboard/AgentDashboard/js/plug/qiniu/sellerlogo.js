@@ -97,7 +97,7 @@ define(function (require, exports, module) {
                         if (res.key != null && res.key != "")
                         {
                             $('#preview').append('<img src="' + sourceLink + '" style="width:45px;height:45px"/>');
-                            $('#imgPath').val(sourceLink);
+                            $('#imgPath').val(res.key);
                         }
                         console.log(sourceLink);
                     },

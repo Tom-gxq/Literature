@@ -18,5 +18,8 @@ namespace AgentDashboard.Models
         public Nullable<int> ShopType { get; set; }
         public string ShopLogo { get; set; }
         public Nullable<bool> ShopStatus { get; set; }
+        public string BuildingName { get; set; }
+        public int DistrictID { get; set; }
+        public string DistrictName { get; set; }
     }
 }

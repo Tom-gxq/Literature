@@ -84,9 +84,8 @@ namespace SP.Service.EntityFramework.Repositories
                 var q = db.From<OrdersEntity>();
 
                 q = q.Join<OrdersEntity, ShoppingCartsEntity>((e, a) => a.OrderId == e.OrderId && e.OrderStatus == orderStatus 
-                && e.OrderType == 0 && e.ShiperId == accountId && e.OrderDate >= DateTime.Parse(DateTime.Now.ToShortDateString()));
-                q = q.Join<ShoppingCartsEntity, ShopEntity>((e, a) => a.Id == e.ShopId );
-                q = q.Join<ShoppingCartsEntity, ShippingOrdersEntity>((e, a) => a.ShopId == e.Id && a.ShippingId == accountId && e.OrderId == a.OrderId );
+                && e.OrderType == 0  && e.OrderDate >= DateTime.Parse(DateTime.Now.ToShortDateString()));
+                q = q.Join<ShoppingCartsEntity, ShippingOrdersEntity>((e, a) => a.ShopId == e.ShopId && a.ShippingId == accountId && e.OrderId == a.OrderId );
                 if (orderStatus == 2)
                 {
                     q = q.OrderBy(x => x.OrderCode);

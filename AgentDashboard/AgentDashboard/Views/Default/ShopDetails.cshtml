@@ -46,12 +46,12 @@
                         <span class="nav-link-text">校园超市</span>
                     </a>
                 </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="更多">
+                @*<li class="nav-item" data-toggle="tooltip" data-placement="right" title="更多">
                     <a class="nav-link" href="Details">
                         <i class="fa fa-fw fa-address-book"></i>
                         <span class="nav-link-text">更多</span>
                     </a>
-                </li>
+                </li>*@
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="人员管理">
                     <a class="nav-link" href="HumanManager">
                         <i class="fa fa-fw fa-android"></i>
@@ -106,10 +106,20 @@
                 <li class="breadcrumb-item">
                     <a href="Index">后台管理</a>
                 </li>
+                @if (Model.isMarket)
+                {
+                <li class="breadcrumb-item">
+                    <a href="javascript:history.back()">超市</a>
+                </li>
+                <li class="breadcrumb-item active">超市详细</li>
+                }
+                else
+                {
                 <li class="breadcrumb-item">
                     <a href="javascript:history.back()">餐厅</a>
                 </li>
                 <li class="breadcrumb-item active">餐厅详细</li>
+                }
             </ol>
 
             @if (Model != null)
@@ -118,390 +128,92 @@
                 <div class="row">
                     <div class="col-1">
                         <p class="offset-2">@Model.ShopName</p>
+                        <input type="hidden" id="shopId" value="@Model.ShopId"/>
+                        <input type="hidden" id="typeId" value="@Model.TypeId" />
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-12">
-                        <p class="text-center">配送员人数<Lable>5</Lable>人</p>
+                        <p class="text-center">配送员人数<Lable>@Model.DeliverManCount</Lable>人</p>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-12 justify-content-center">
+                    <div class="col-10 justify-content-center">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            @foreach (var deliverman in Model.DeliverMen)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" id="@deliverman.AccountId" data-toggle="tab" href="#@deliverman.Name" role="tab" aria-controls="@deliverman.Name" aria-selected="true">@deliverman.Name</a>
+                                </li>
+                            }
+
                             <li class="nav-item">
-                                <a class="nav-link active" id="deliverman1-tab" data-toggle="tab" href="#deliverman1" role="tab" aria-controls="deliverman1" aria-selected="true">配送员1</a>
+                                <a class="nav-link addowner" id="delivermanAdd-tab" data-toggle="tab" href="#" role="tab"><span class="font-weight-bold">+</span></a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="deliverman2-tab" data-toggle="tab" href="#deliverman2" role="tab" aria-controls="deliverman2" aria-selected="false">配送员2</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="deliverman3-tab" data-toggle="tab" href="#deliverman3" role="tab" aria-controls="deliverman3" aria-selected="false">配送员3</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="deliverman4-tab" data-toggle="tab" href="#deliverman4" role="tab" aria-controls="deliverman4" aria-selected="false">配送员4</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="deliverman5-tab" data-toggle="tab" href="#deliverman5" role="tab" aria-controls="deliverman5" aria-selected="false">配送员5</a>
-                            </li>
+
                         </ul>
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="deliverman1" role="tabpanel" aria-labelledby="deliverman1-tab">
-                                <div class="card-deck">
-                                    <div class="card">
-                                        <img class="card-img-top" src="..." alt="产品1图片" width="100" height="100">
-                                        <div class="card-body">
-                                            <h5 class="card-title">产品1</h5>
-                                            <p class="card-text">产品1的详细说明</p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <label>库存</label><input type="text" class="form-control form-text w-75 h-50" />
+                            @foreach (var deliverman in Model.DeliverMen)
+                            {
+                                <div class="tab-pane fade show active" id="@deliverman.Name" role="tabpanel" aria-labelledby="@deliverman.AccountId">
+                                    <div class="card-deck">
+                                        @foreach (var product in deliverman.Products)
+                                        {
+                                            <div class="card">
+                                                <img class="card-img-top" src="@product.ImagePath" width="100" height="100">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">@product.Name</h5>
+                                                    <p class="card-text">@product.Description</p>
+                                                </div>
+                                                @if (!Model.isMarket)
+                                                {
+                                                <div class="card-footer">
+                                                    <div class="row">
+                                                        <label>库存</label><input type="text" class="form-control form-text w-75 h-50" value="@product.Stocks" />
+                                                    </div>
+                                                    <div class="row">
+                                                        <label>预存</label><input type="text" class="form-control form-text w-75 h-50" value="@product.PreStocks" />
+                                                    </div>
+                                                </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="card-footer">
+                                                        <div class="row">
+                                                            <label>库存</label><input type="text" class="form-control form-text w-75 h-50" disabled value="@product.Stocks" />
+                                                        </div>
+                                                    </div>
+                                                }
                                             </div>
-                                            <div class="row">
-                                                <label>预存</label><input type="text" class="form-control form-text w-75 h-50" />
+                                        }
+                                        <div class="card cardadd">
+                                            <div class="card-body">
+                                                <p class="card-text account" dataid="@deliverman.AccountId"><a href="#"><h1>+</h1></a></p>
                                             </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <img class="card-img-top" src="..." alt="产品2图片" width="100" height="100">
-                                        <div class="card-body">
-                                            <h5 class="card-title">产品2</h5>
-                                            <p class="card-text">产品2的详细说明</p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <label>库存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-                                            <div class="row">
-                                                <label>预存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <img class="card-img-top" src="..." alt="产品3图片" width="100" height="100">
-                                        <div class="card-body">
-                                            <h5 class="card-title">产品3</h5>
-                                            <p class="card-text">产品3的详细说明</p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <label>库存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-                                            <div class="row">
-                                                <label>预存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <img class="card-img-top" src="..." alt="产品4图片" width="100" height="100">
-                                        <div class="card-body">
-                                            <h5 class="card-title">产品4</h5>
-                                            <p class="card-text">产品4的详细说明</p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <label>库存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-                                            <div class="row">
-                                                <label>预存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane fade" id="deliverman2" role="tabpanel" aria-labelledby="deliverman2-tab">
-                                <div class="card-deck">
-                                    <div class="card">
-                                        <img class="card-img-top" src="..." alt="产品1图片" width="100" height="100">
-                                        <div class="card-body">
-                                            <h5 class="card-title">产品1</h5>
-                                            <p class="card-text">产品1的详细说明</p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <label>库存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-                                            <div class="row">
-                                                <label>预存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
+                            }
 
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <img class="card-img-top" src="..." alt="产品2图片" width="100" height="100">
-                                        <div class="card-body">
-                                            <h5 class="card-title">产品2</h5>
-                                            <p class="card-text">产品2的详细说明</p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <label>库存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-                                            <div class="row">
-                                                <label>预存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <img class="card-img-top" src="..." alt="产品3图片" width="100" height="100">
-                                        <div class="card-body">
-                                            <h5 class="card-title">产品3</h5>
-                                            <p class="card-text">产品3的详细说明</p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <label>库存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-                                            <div class="row">
-                                                <label>预存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <img class="card-img-top" src="..." alt="产品4图片" width="100" height="100">
-                                        <div class="card-body">
-                                            <h5 class="card-title">产品4</h5>
-                                            <p class="card-text">产品4的详细说明</p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <label>库存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-                                            <div class="row">
-                                                <label>预存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="deliverman3" role="tabpanel" aria-labelledby="deliverman3-tab">
-                                <div class="card-deck">
-                                    <div class="card">
-                                        <img class="card-img-top" src="..." alt="产品1图片" width="100" height="100">
-                                        <div class="card-body">
-                                            <h5 class="card-title">产品1</h5>
-                                            <p class="card-text">产品1的详细说明</p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <label>库存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-                                            <div class="row">
-                                                <label>预存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <img class="card-img-top" src="..." alt="产品2图片" width="100" height="100">
-                                        <div class="card-body">
-                                            <h5 class="card-title">产品2</h5>
-                                            <p class="card-text">产品2的详细说明</p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <label>库存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-                                            <div class="row">
-                                                <label>预存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <img class="card-img-top" src="..." alt="产品3图片" width="100" height="100">
-                                        <div class="card-body">
-                                            <h5 class="card-title">产品3</h5>
-                                            <p class="card-text">产品3的详细说明</p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <label>库存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-                                            <div class="row">
-                                                <label>预存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <img class="card-img-top" src="..." alt="产品4图片" width="100" height="100">
-                                        <div class="card-body">
-                                            <h5 class="card-title">产品4</h5>
-                                            <p class="card-text">产品4的详细说明</p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <label>库存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-                                            <div class="row">
-                                                <label>预存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="deliverman4" role="tabpanel" aria-labelledby="deliverman4-tab">
-                                <div class="card-deck">
-                                    <div class="card">
-                                        <img class="card-img-top" src="..." alt="产品1图片" width="100" height="100">
-                                        <div class="card-body">
-                                            <h5 class="card-title">产品1</h5>
-                                            <p class="card-text">产品1的详细说明</p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <label>库存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-                                            <div class="row">
-                                                <label>预存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <img class="card-img-top" src="..." alt="产品2图片" width="100" height="100">
-                                        <div class="card-body">
-                                            <h5 class="card-title">产品2</h5>
-                                            <p class="card-text">产品2的详细说明</p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <label>库存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-                                            <div class="row">
-                                                <label>预存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <img class="card-img-top" src="..." alt="产品3图片" width="100" height="100">
-                                        <div class="card-body">
-                                            <h5 class="card-title">产品3</h5>
-                                            <p class="card-text">产品3的详细说明</p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <label>库存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-                                            <div class="row">
-                                                <label>预存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <img class="card-img-top" src="..." alt="产品4图片" width="100" height="100">
-                                        <div class="card-body">
-                                            <h5 class="card-title">产品4</h5>
-                                            <p class="card-text">产品4的详细说明</p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <label>库存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-                                            <div class="row">
-                                                <label>预存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="deliverman5" role="tabpanel" aria-labelledby="deliverman5-tab">
-                                <div class="card-deck">
-                                    <div class="card">
-                                        <img class="card-img-top" src="..." alt="产品1图片" width="100" height="100">
-                                        <div class="card-body">
-                                            <h5 class="card-title">产品1</h5>
-                                            <p class="card-text">产品1的详细说明</p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <label>库存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-                                            <div class="row">
-                                                <label>预存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <img class="card-img-top" src="..." alt="产品2图片" width="100" height="100">
-                                        <div class="card-body">
-                                            <h5 class="card-title">产品2</h5>
-                                            <p class="card-text">产品2的详细说明</p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <label>库存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-                                            <div class="row">
-                                                <label>预存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <img class="card-img-top" src="..." alt="产品3图片" width="100" height="100">
-                                        <div class="card-body">
-                                            <h5 class="card-title">产品3</h5>
-                                            <p class="card-text">产品3的详细说明</p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <label>库存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-                                            <div class="row">
-                                                <label>预存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <img class="card-img-top" src="..." alt="产品4图片" width="100" height="100">
-                                        <div class="card-body">
-                                            <h5 class="card-title">产品4</h5>
-                                            <p class="card-text">产品4的详细说明</p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <label>库存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-                                            <div class="row">
-                                                <label>预存</label><input type="text" class="form-control form-text w-75 h-50" />
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
-
+                if (!Model.isMarket)
+                {
                 <div class="row justify-content-center">
                     <p>营业时间</p>
-                    <input type="text" style="width:50px; height:30px; text-align:center" value="@Model.StartTime.Hour.ToString("00")"/>
+                    <input type="text" style="width:50px; height:30px; text-align:center" value="@Model.StartTime.Hour.ToString("00")" />
                     <p>:</p>
-                    <input type="text" style="width:50px; height:30px; text-align:center" value="@Model.StartTime.Minute.ToString("00")"/>
+                    <input type="text" style="width:50px; height:30px; text-align:center" value="@Model.StartTime.Minute.ToString("00")" />
                     <p>--</p>
-                    <input type="text" style="width:50px; height:30px; text-align:center" value="@Model.EndTime.Hour.ToString("00")"/>
+                    <input type="text" style="width:50px; height:30px; text-align:center" value="@Model.EndTime.Hour.ToString("00")" />
                     <p>:</p>
-                    <input type="text"style="width:50px; height:30px; text-align:center" value="@Model.EndTime.Minute.ToString("00")"/>
+                    <input type="text" style="width:50px; height:30px; text-align:center" value="@Model.EndTime.Minute.ToString("00")" />
                 </div>
-            }
+                 }
+             }
 
         </div>
         <!-- /.container-fluid-->
@@ -550,9 +262,9 @@
         <!-- Custom scripts for this page-->
         <script src="~/js/sb-admin-datatables.min.js"></script>
         <script>
-            //$(function () {
-            //    $('#myTab li:eq(1) a').tab('show');
-            //});
+            $(function () {
+                $('#myTab li:eq(0) a').tab('show');
+            });
 
             $(document).ready(function () {
                 //$('#myTab a').click(function (e) {
@@ -561,6 +273,14 @@
                 //})
             });
 
+        </script>
+        <script type="text/javascript" src="/js/seajs/sea.js"></script>
+        <script type="text/javascript" src="/js/seajs/sea-config.js"></script>
+        <script type="text/javascript">
+            seajs.use(["/js/food/food"], function (OrderList) {
+                var $ = OrderList.jQuery;
+                OrderList.FoodProductController.init({ el: '', url: '' });
+            });
         </script>
     </div>
 </body>

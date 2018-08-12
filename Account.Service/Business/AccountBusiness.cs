@@ -55,6 +55,9 @@ namespace Account.Service.Business
                 result.AliBind = !string.IsNullOrEmpty(account.AliBind) ? account.AliBind : string.Empty;
                 result.WxBind = !string.IsNullOrEmpty(account.WxBind) ? account.WxBind : string.Empty;
                 result.QQBind = !string.IsNullOrEmpty(account.QQBind) ? account.QQBind : string.Empty;
+                var accountInfo = ServiceLocator.AccountInfoReportDatabase.GetAccountInfoById(accountId);
+                
+                result.UserType = accountInfo != null ? accountInfo.UserType : 0;
             }
             return result;
         }
@@ -80,14 +83,18 @@ namespace Account.Service.Business
         {
             var account = ServiceLocator.ReportDatabase.GetAccessToken(userKey);
             var result = new AccessTokenResponse();
-            result.Status = 10001;
+            result.Status = 10002;
             result.AccessToken = new AccessToken();
-            result.AccessToken.AccountId = account.AccountId;
-            result.AccessToken.AccessToken_ = account.AccessToken;
-            result.AccessToken.AccessTokenExpires = account.AccessTokenExpires.Ticks;
-            result.AccessToken.CreateTime = account.CreateTime.Ticks;
-            result.AccessToken.RefreshToken = account.RefreshToken;
-            result.AccessToken.RefreshTokenExpires = account.RefreshTokenExpires.Ticks;
+            if (account != null)
+            {
+                result.Status = 10001;
+                result.AccessToken.AccountId = account.AccountId;
+                result.AccessToken.AccessToken_ = account.AccessToken;
+                result.AccessToken.AccessTokenExpires = account.AccessTokenExpires.Ticks;
+                result.AccessToken.CreateTime = account.CreateTime.Ticks;
+                result.AccessToken.RefreshToken = account.RefreshToken;
+                result.AccessToken.RefreshTokenExpires = account.RefreshTokenExpires.Ticks;
+            }
             return result;
         }
 

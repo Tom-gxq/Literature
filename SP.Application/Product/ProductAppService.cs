@@ -470,6 +470,18 @@ namespace SP.Application.Product
             }
             return retList;
         }
+        public List<ProductsDto> SearchTypeProductByKeyWord(string keyWord, int typeId, int pageIndex, int pageSize)
+        {
+            var retList = new List<ProductsDto>();
+            var repository = IocManager.Instance.Resolve<ProductsRespository>();
+            var list = repository.SearchTypeProductByKeyWord(keyWord, typeId, pageIndex, pageSize);
+            foreach (var item in list)
+            {
+                var order = ConvertFromRepositoryEntity(item, string.Empty);
+                retList.Add(order);
+            }
+            return retList;
+        }
         public List<ProductSkuDto> SearchProducSku(int schoolId, int districtId, int shopId, string productId, int skuStatus)
         {
             var retList = new List<ProductSkuDto>();
@@ -500,6 +512,43 @@ namespace SP.Application.Product
             var repository = IocManager.Instance.Resolve<ProductSkuRespository>();
             var count = repository.GetMarketSkuListCount(marketId);
             return count;
+        }
+        public List<ProductsDto> GetSellerProductListByTypeId(string accountId, int typeId)
+        {
+            var retList = new List<ProductsDto>();
+            var repository = IocManager.Instance.Resolve<ProductsRespository>();
+            var list = repository.GetSellerProductListByTypeId(accountId, typeId);
+            foreach (var item in list)
+            {
+                var product = ConvertFromRepositoryEntity(item, string.Empty);
+                if (product != null)
+                {
+                    var imageList = repository.GetImageListByProductId(product.ProductId).OrderBy(x => x.DisplaySequence).ToList();
+                    product.ProductImage = new List<ProductImageDto>();
+                    foreach (var img in imageList)
+                    {
+                        var image = ConvertImageFromRepositoryEntity(img);
+                        if (image != null)
+                        {
+                            product.ProductImage.Add(image);
+                        }
+                    }
+                }
+                retList.Add(product);
+            }
+            return retList;
+        }
+        public bool AddFoodProduct(AccountProductDto product)
+        {
+            var repository = IocManager.Instance.Resolve<AccountProductRespository>();
+            return repository.AddAccountProduct(new AccountProductEntity()
+            {                
+                ProductId = product.ProductId,
+                ShopId = product.ShopId,
+                AccountId = product.AccountId,
+                PreStock = product.PreStock,
+                Status = product.Status
+            });
         }
 
         private static ProductsDto ConvertFromRepositoryEntity(ProductEntity product,string lastOperater="")

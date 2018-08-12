@@ -29,7 +29,8 @@ namespace SP.Service.Domain.EventHandlers
                 PurchasePrice = handle.PurchasePrice,
                 SaleStatus = 0,
                 Meta_Keywords = handle.ProductName+"|",
-                AddedDate = DateTime.Now
+                AddedDate = DateTime.Now,
+                VIPPrice = handle.VipPrice
             });
         }
         public void Handle(ProductEditEvent handle)
