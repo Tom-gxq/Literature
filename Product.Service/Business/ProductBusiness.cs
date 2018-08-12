@@ -421,9 +421,9 @@ namespace Product.Service.Business
             return result;
         }
 
-        public static ResultResponse AddProduct(string accountId, long mainType, long secondType, string productName, double marketPrice, double purchasePrice, string imagePath)
+        public static ResultResponse AddProduct(string accountId, long mainType, long secondType, string productName, double marketPrice, double purchasePrice, string imagePath, double vipPrice)
         {
-            ServiceLocator.CommandBus.Send(new CreateProductCommand(Guid.NewGuid(), mainType, secondType, productName, accountId, marketPrice, purchasePrice, imagePath));
+            ServiceLocator.CommandBus.Send(new CreateProductCommand(Guid.NewGuid(), mainType, secondType, productName, accountId, marketPrice, purchasePrice, imagePath, vipPrice));
             var result = new ResultResponse();
             result.Status = 10001;
             return result;

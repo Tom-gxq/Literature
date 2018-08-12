@@ -322,7 +322,8 @@ namespace ProductGRPCInterface
                 MarketPrice = model.marketPrice,
                 ProductName = model.productName,
                 PurchasePrice = model.purchasePrice,
-                SecondType = model.secondType
+                SecondType = model.secondType,
+                VipPrice = model.vipPrice,
 
             };
             var result = client.AddProduct(request1);

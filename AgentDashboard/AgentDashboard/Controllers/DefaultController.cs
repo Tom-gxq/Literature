@@ -109,6 +109,16 @@ namespace AgentDashboard.Controllers
                 vm.ShopName = shop?.ShopName;
                 vm.ShopId = shop?.Id??0;
                 vm.TypeId = shop?.ShopType??0;
+                string market = ConfigurationManager.AppSettings["MainType.Market"];
+                int marketId = int.Parse(market);
+                if(vm.TypeId == marketId)
+                {
+                    vm.isMarket = true;
+                }
+                else
+                {
+                    vm.isMarket = false;
+                }
                 DateTime startTime;
                 bool isSuccess = DateTime.TryParse(shop?.StartTime, out startTime);
                 if (isSuccess)
@@ -165,7 +175,7 @@ namespace AgentDashboard.Controllers
                             }
 
                             var procdutInfo = sp.SP_Products.SingleOrDefault(n => n.ProductId == procduct.Id);
-                            procduct.Name = procdutInfo.ProductName;
+                            procduct.Name = procdutInfo?.ProductName??string.Empty;
                             procduct.Description = procdutInfo?.Description;
 
                             string domain = ConfigurationManager.AppSettings["Qiniu.Domain"];
@@ -323,7 +333,7 @@ namespace AgentDashboard.Controllers
                 ViewBag.CurrentPage = 1;
                 string market = ConfigurationManager.AppSettings["MainType.Market"];
                 int marketId = int.Parse(market);
-
+                
                 var shopList = sp.SP_Shop.Where(n => n.ShopType == marketId)?.OrderByDescending(n => n.RegionId).OrderByDescending(n => n.Id)
                     //.Skip(GetStartRowNo(1, 20)).Take(20).ToList();
                     .ToList();
@@ -606,6 +616,7 @@ namespace AgentDashboard.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        
         public JsonResult GetProductDetail(string productId)
         {
             Dictionary<string, object> JsonResult = new Dictionary<string, object>();
@@ -615,6 +626,26 @@ namespace AgentDashboard.Controllers
             var stypeList = typeService.GetAllProductTypeList(1);
             JsonResult.Add("secondTypes", stypeList);
             
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public JsonResult GetChildType(int parentTypeId)
+        {
+            Dictionary<string, object> JsonResult = new Dictionary<string, object>();
+            string market = ConfigurationManager.AppSettings["MainType.Market"];
+            int marketId = int.Parse(market);
+            int kind = 1;
+            if(marketId != parentTypeId)
+            {
+                kind = 2;
+            }
+            IProductTypeService service = IocManager.Instance.Resolve<IProductTypeService>();
+            var result = service.GetAllProductTypeList(kind);
+            JsonResult.Add("items", result);
+
             return new JsonResult()
             {
                 Data = JsonResult,

@@ -78,5 +78,6 @@ namespace SP.ManageEntityFramework.Repositories
                 return db.Select(q);
             }
         }
+        
     }
 }

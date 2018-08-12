@@ -279,7 +279,7 @@ namespace Product.Service.GrpcImpl
             response.Status = 10002;
             try
             {
-                response = ProductBusiness.AddProduct(request.AccountId, request.MainType, request.SecondType, request.ProductName, request.MarketPrice, request.PurchasePrice, request.ImagePath);
+                response = ProductBusiness.AddProduct(request.AccountId, request.MainType, request.SecondType, request.ProductName, request.MarketPrice, request.PurchasePrice, request.ImagePath, request.VipPrice);
             }
             catch (Exception ex)
             {

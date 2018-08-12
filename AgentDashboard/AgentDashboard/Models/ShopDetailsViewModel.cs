@@ -16,6 +16,7 @@ namespace AgentDashboard.Models
         public DateTime EndTime { get; set; }
 
         public List<DeliverManViewModel> DeliverMen { get; set; }
+        public bool isMarket { get; set; }
     }
 
     public class DeliverManViewModel

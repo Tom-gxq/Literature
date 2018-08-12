@@ -133,6 +133,8 @@ namespace SP.Application.Product
             return total;
         }
 
+        
+
         private static ProductTypeDto ConvertFromRepositoryEntity(ProductTypeEntity productType)
         {
             if (productType == null)

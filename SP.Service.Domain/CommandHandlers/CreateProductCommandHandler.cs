@@ -18,7 +18,7 @@ namespace SP.Service.Domain.CommandHandlers
 
         public void Execute(CreateProductCommand command)
         {            
-            var aggregate = new ProductDomain(command.Id, command.MainType, command.SecondType, command.ProductName, command.SuppliersId, command.MarketPrice, command.PurchasePrice, command.ImagePath);
+            var aggregate = new ProductDomain(command.Id, command.MainType, command.SecondType, command.ProductName, command.SuppliersId, command.MarketPrice, command.PurchasePrice, command.ImagePath, command.VIPPrice);
             
             _repository.Save(aggregate);
         }

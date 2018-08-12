@@ -75,6 +75,10 @@ define(function (require, exports, module) {
                             });
                             qiniu.QiniuMainController.init();
 
+                            $("#inputTypeForm").change(function () {
+                                _this.bindMainTypeInfo($(this).val());
+                            });
+
                             var completeInfo = require('complete');
                             completeInfo.createComplete({
                                 element: "#leader",
@@ -118,6 +122,7 @@ define(function (require, exports, module) {
                 purchasePrice: divElement.find('#purchasePrice').val(),
                 imagePath: divElement.find('#imgPath').val(),
                 accountId: $('#accountId').val(),
+                vipPrice: divElement.find('#vipPrice').val(),
             };
             type = $.param(type, true);
             alert(type);
@@ -129,6 +134,20 @@ define(function (require, exports, module) {
         bindAccountId: function (accountId, name) {
             $("#leaderId").val(accountId);
         },
+        //绑定学区信息
+        bindMainTypeInfo: function (parentId) {
+            $("#inputSecondTypeForm").empty();
+            $("#inputSecondTypeForm").append($("<option/>").text("").attr("value", "0"));
+            var data = {
+                parentTypeId: parentId
+            }
+            data = $.param(data, true);
+            Global.get("/Default/GetChildType", data, function (msg) {
+                $(msg.items).each(function (index, itemData) {
+                    $("#inputSecondTypeForm").append($("<option/>").text(itemData.TypeName).attr("value", itemData.TypeId));
+                });
+            })
+        }
     };
 
     //对外公布方法

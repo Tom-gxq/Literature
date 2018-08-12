@@ -41,9 +41,9 @@ namespace SP.Service.Domain.DomainEntity
         {
 
         }
-        public ProductDomain(Guid id,long mainType,long secondType, string productName,string suppliersId, double marketPrice,double purchasePrice,string imagePath)
+        public ProductDomain(Guid id,long mainType,long secondType, string productName,string suppliersId, double marketPrice,double purchasePrice,string imagePath, double vipPrice)
         {
-            ApplyChange(new ProductCreatedEvent(id, mainType, secondType, productName, suppliersId, marketPrice, purchasePrice));
+            ApplyChange(new ProductCreatedEvent(id, mainType, secondType, productName, suppliersId, marketPrice, purchasePrice, vipPrice));
             ApplyChange(new ProductImageCreatedEvent(id,imagePath));
         }
         public void EditProduct(Guid id, string productName, double marketPrice, double purchasePrice, string imagePath)

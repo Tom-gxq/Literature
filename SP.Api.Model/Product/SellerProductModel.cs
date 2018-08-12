@@ -32,6 +32,10 @@ namespace SP.Api.Model.Product
         * 拿货价格
         */
         public double purchasePrice { get; set; }
+        /**
+        * 会员价格
+        */
+        public double vipPrice { get; set; }
         public string accountId { get; set; }
         public string productId { get; set; }
         public bool saleStatus { get; set; } 
