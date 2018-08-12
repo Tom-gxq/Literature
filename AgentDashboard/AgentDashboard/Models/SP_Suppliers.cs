@@ -14,12 +14,18 @@ namespace AgentDashboard.Models
     
     public partial class SP_Suppliers
     {
-        public string SuppliersId { get; set; }
+        public int Id { get; set; }
         public string SuppliersName { get; set; }
-        public string DataID { get; set; }
-        public string Address { get; set; }
-        public string CellPhone { get; set; }
+        public string AccountId { get; set; }
+        public string LogoPath { get; set; }
+        public string LicensePath { get; set; }
         public string TelPhone { get; set; }
-        public string Remark { get; set; }
+        public string PermitPath { get; set; }
+        public string AuthorizationPath { get; set; }
+        public string AlipayNo { get; set; }
+        public int Status { get; set; }
+        public System.DateTime CreateTime { get; set; }
+        public Nullable<System.DateTime> UpdateTime { get; set; }
+        public Nullable<int> Type { get; set; }
     }
 }

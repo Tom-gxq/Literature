@@ -19,7 +19,7 @@ namespace AgentDashboard.Models
         public string Alipay { get; set; }
         public Nullable<decimal> Money { get; set; }
         public Nullable<System.DateTime> CreateTime { get; set; }
-        public int Status { get; set; }
         public Nullable<System.DateTime> UpdateTime { get; set; }
+        public int Status { get; set; }
     }
 }

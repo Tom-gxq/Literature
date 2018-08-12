@@ -37,11 +37,6 @@ namespace AgentDashboard.Controllers
             return View();
         }
 
-        public ActionResult ShopManagerDemo()
-        {
-            return View();
-        }
-
         /// <summary>
         /// 
         /// </summary>
@@ -800,6 +795,182 @@ namespace AgentDashboard.Controllers
             });
             _chart.datasets = _dataSet;
             return Json(_chart, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="day"></param>
+        /// <returns></returns>
+        public JsonResult GetUserNameLineChartData(int day)
+        {
+            Chart chart = new Chart();
+            List<string> dayList = new List<string>();
+            
+            for (int i = day - 1; i > 0; i--)
+            {
+                double dDay = -i;
+                dayList.Add(DateTime.Now.AddDays(dDay).ToString("yyyy/MM/dd"));
+            }
+
+            dayList.Add(DateTime.Now.ToString("yyyy/MM/dd"));
+
+            chart.labels = dayList.ToArray();
+
+            List<int> userCntList = new List<int>();
+            using (SPEntities spEntity = new SPEntities())
+            {
+                foreach (var strDay in dayList)
+                {
+                    DateTime dateTime = DateTime.Parse(strDay);
+                    int? newUserCnt = spEntity.SP_SysStatistics.SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_NewUser;
+                    userCntList.Add(newUserCnt ?? 0);
+                }
+            }
+
+            List<Datasets> dataSet = new List<Datasets>();
+            dataSet.Add(new Datasets()
+            {
+                label = DateTime.Now.ToString("yyyy"),
+                data = userCntList.ToArray(),
+                borderColor = new string[] { "#800080" },
+                borderWidth = "1"
+            });
+
+            chart.datasets = dataSet;
+            return Json(chart, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="day"></param>
+        /// <returns></returns>
+        public JsonResult GetNewOrderChartData(int day)
+        {
+            Chart chart = new Chart();
+            List<string> dayList = new List<string>();
+
+            for (int i = day - 1; i > 0; i--)
+            {
+                double dDay = -i;
+                dayList.Add(DateTime.Now.AddDays(dDay).ToString("yyyy/MM/dd"));
+            }
+
+            dayList.Add(DateTime.Now.ToString("yyyy/MM/dd"));
+
+            chart.labels = dayList.ToArray();
+
+            List<int> newOderCnt = new List<int>();
+            using (SPEntities spEntity = new SPEntities())
+            {
+                foreach (var strDay in dayList)
+                {
+                    DateTime dateTime = DateTime.Parse(strDay);
+                    int? newOrder = spEntity.SP_SysStatistics.SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_NewOrder;
+                    newOderCnt.Add(newOrder ?? 0);
+                }
+            }
+
+            List<Datasets> dataSet = new List<Datasets>();
+            dataSet.Add(new Datasets()
+            {
+                label = DateTime.Now.ToString("yyyy"),
+                data = newOderCnt.ToArray(),
+                borderColor = new string[] { "#800080" },
+                borderWidth = "1"
+            });
+
+            chart.datasets = dataSet;
+            return Json(chart, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="day"></param>
+        /// <returns></returns>
+        public JsonResult GetNewAssociatorChartData(int day)
+        {
+            Chart chart = new Chart();
+            List<string> dayList = new List<string>();
+
+            for (int i = day - 1; i > 0; i--)
+            {
+                double dDay = -i;
+                dayList.Add(DateTime.Now.AddDays(dDay).ToString("yyyy/MM/dd"));
+            }
+
+            dayList.Add(DateTime.Now.ToString("yyyy/MM/dd"));
+
+            chart.labels = dayList.ToArray();
+
+            List<int> newAssociatorCnt = new List<int>();
+            using (SPEntities spEntity = new SPEntities())
+            {
+                foreach (var strDay in dayList)
+                {
+                    DateTime dateTime = DateTime.Parse(strDay);
+                    int? newAssociator = spEntity.SP_SysStatistics.SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_NewAssociator;
+                    newAssociatorCnt.Add(newAssociator ?? 0);
+                }
+            }
+
+            List<Datasets> dataSet = new List<Datasets>();
+            dataSet.Add(new Datasets()
+            {
+                label = DateTime.Now.ToString("yyyy"),
+                data = newAssociatorCnt.ToArray(),
+                borderColor = new string[] { "#800080" },
+                borderWidth = "1"
+            });
+
+            chart.datasets = dataSet;
+            return Json(chart, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="day"></param>
+        /// <returns></returns>
+        public JsonResult GetOrderAmountChartData(int day)
+        {
+            Chart chart = new Chart();
+            List<string> dayList = new List<string>();
+
+            for (int i = day - 1; i > 0; i--)
+            {
+                double dDay = -i;
+                dayList.Add(DateTime.Now.AddDays(dDay).ToString("yyyy/MM/dd"));
+            }
+
+            dayList.Add(DateTime.Now.ToString("yyyy/MM/dd"));
+
+            chart.labels = dayList.ToArray();
+
+            List<int> orderAmountList = new List<int>();
+            using (SPEntities spEntity = new SPEntities())
+            {
+                foreach (var strDay in dayList)
+                {
+                    DateTime dateTime = DateTime.Parse(strDay);
+                    int? orderAmount = spEntity.SP_SysStatistics.SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_NewAssociator;
+                    orderAmountList.Add(orderAmount ?? 0);
+                }
+            }
+
+            List<Datasets> dataSet = new List<Datasets>();
+            dataSet.Add(new Datasets()
+            {
+                label = DateTime.Now.ToString("yyyy"),
+                data = orderAmountList.ToArray(),
+                borderColor = new string[] { "#800080" },
+                borderWidth = "1"
+            });
+
+            chart.datasets = dataSet;
+            return Json(chart, JsonRequestBehavior.AllowGet);
         }
     }
 }

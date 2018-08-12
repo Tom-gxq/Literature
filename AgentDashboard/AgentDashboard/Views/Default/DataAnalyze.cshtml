@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>后台管理页面</title>
+    <title>数据分析页面</title>
     <!-- Bootstrap core CSS-->
     <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom fonts for this template-->
@@ -117,59 +117,58 @@
                             <div class="card mb-3">
                                 <div class="card-header">
                                     <i class="fa fa-area-chart"></i> 用户注册数
-                                    <button class="btn btn-primary">7天</button>
-                                    <button class="btn btn-primary">15天</button>
-                                    <button class="btn btn-primary">30天</button>
+                                    <button class="btn btn-primary text-white" onclick="GetNewUserAreaChart(7)">7天</button>
+                                    <button class="btn btn-primary text-white" onclick="GetNewUserAreaChart(15)">15天</button>
+                                    <button class="btn btn-primary text-white" onclick="GetNewUserAreaChart(30)">30天</button>
                                 </div>
                                 <div class="card-body">
                                     <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-                                    <canvas id="myAreaChart" width="967" height="290" class="chartjs-render-monitor" style="display: block; width: 967px; height: 290px;"></canvas>
+                                    <canvas id="NewUserCntChart" width="967" height="290" class="chartjs-render-monitor" style="display: block; width: 967px; height: 290px;"></canvas>
                                 </div>
-                                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                                <div class="card-footer small text-muted">Updated @DateTime.Now.ToString("yyyy/MM//dd HH:mm:ss")</div>
                             </div>
 
                             <div class="card mb-3">
                                 <div class="card-header">
                                     <i class="fa fa-area-chart"></i> 订单数
-                                    <button class="btn btn-primary">7天</button>
-                                    <button class="btn btn-primary">15天</button>
-                                    <button class="btn btn-primary">30天</button>
+                                    <button class="btn btn-primary text-white" onclick="GetNewOrderAreaChart(7)">7天</button>
+                                    <button class="btn btn-primary text-white" onclick="GetNewOrderAreaChart(15)">15天</button>
+                                    <button class="btn btn-primary text-white" onclick="GetNewOrderAreaChart(30)">30天</button>
                                 </div>
                                 <div class="card-body">
                                     <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-                                    <canvas id="myAreaChart" width="967" height="290" class="chartjs-render-monitor" style="display: block; width: 967px; height: 290px;"></canvas>
+                                    <canvas id="NewOderCntChart" width="967" height="290" class="chartjs-render-monitor" style="display: block; width: 967px; height: 290px;"></canvas>
                                 </div>
-                                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                                <div class="card-footer small text-muted">Updated @DateTime.Now.ToString("yyyy/MM//dd HH:mm:ss")</div>
                             </div>
 
                             <div class="card mb-3">
                                 <div class="card-header">
                                     <i class="fa fa-area-chart"></i> 会员数
-                                    <button class="btn btn-primary">7天</button>
-                                    <button class="btn btn-primary">15天</button>
-                                    <button class="btn btn-primary">30天</button>
+                                    <button class="btn btn-primary text-white" onclick="GetNewAssociatorAreaChart(7)">7天</button>
+                                    <button class="btn btn-primary text-white" onclick="GetNewAssociatorAreaChart(15)">15天</button>
+                                    <button class="btn btn-primary text-white" onclick="GetNewAssociatorAreaChart(30)">30天</button>
                                 </div>
                                 <div class="card-body">
                                     <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-                                    <canvas id="myAreaChart" width="967" height="290" class="chartjs-render-monitor" style="display: block; width: 967px; height: 290px;"></canvas>
+                                    <canvas id="NewAssociatorCntChart" width="967" height="290" class="chartjs-render-monitor" style="display: block; width: 967px; height: 290px;"></canvas>
                                 </div>
-                                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                                <div class="card-footer small text-muted">Updated @DateTime.Now.ToString("yyyy/MM//dd HH:mm:ss")</div>
                             </div>
 
                             <div class="card mb-3">
                                 <div class="card-header">
                                     <i class="fa fa-area-chart"></i> 交易金额数
-                                    <button class="btn btn-primary">7天</button>
-                                    <button class="btn btn-primary">15天</button>
-                                    <button class="btn btn-primary">30天</button>
+                                    <button class="btn btn-primary text-white" onclick="GetOrderAmountAreaChart(7)">7天</button>
+                                    <button class="btn btn-primary text-white" onclick="GetOrderAmountAreaChart(15)">15天</button>
+                                    <button class="btn btn-primary text-white" onclick="GetOrderAmountAreaChart(30)">30天</button>
                                 </div>
                                 <div class="card-body">
                                     <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-                                    <canvas id="myAreaChart" width="967" height="290" class="chartjs-render-monitor" style="display: block; width: 967px; height: 290px;"></canvas>
+                                    <canvas id="OrderAmountChart" width="967" height="290" class="chartjs-render-monitor" style="display: block; width: 967px; height: 290px;"></canvas>
                                 </div>
-                                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                                <div class="card-footer small text-muted">Updated @DateTime.Now.ToString("yyyy/MM//dd HH:mm:ss")</div>
                             </div>
-
 
                         </div>
                     </div>
@@ -216,9 +215,148 @@
         <script src="~/vendor/chart.js/Chart.min.js"></script>
         <script src="~/vendor/datatables/dataTables.bootstrap4.js"></script>
         <!-- Custom scripts for all pages-->
-        <script src="~/js/sb-admin.min.js"></script>
+        <script src="~/js/sb-admin.js"></script>
         <!-- Custom scripts for this page-->
         <script src="~/js/sb-admin-charts.min.js"></script>
+        <script>
+            function GetNewUserAreaChart(day) {
+                //----Line Chart---------
+                var c = document.getElementById("NewUserCntChart");
+                var ctx = c.getContext("2d");
+                var tData = $.getValues("GetUserNameLineChartData?day=" + day);
+                var myLineChart = new Chart(ctx, {
+                    type: 'line',
+                    data: tData,
+                    options: {
+                        scales: {
+                            xAxes: [{
+                                time: {
+                                    unit: 'date'
+                                },
+                                gridLines: {
+                                    display: false
+                                },
+                            }],
+                            yAxes: [{
+                                ticks: {
+                                    min: 0,
+                                    max:100,
+                                    maxTicksLimit: 5
+                                },
+                                gridLines: {
+                                    color: "rgba(0, 0, 0, .125)",
+                                }
+                            }],
+                        },
+                    }
+                });
+            };
+
+            function GetNewOrderAreaChart(day) {
+                //----Line Chart---------
+                var c = document.getElementById("NewOderCntChart");
+                var ctx = c.getContext("2d");
+                var tData = $.getValues("GetNewOrderChartData?day=" + day);
+                var myLineChart = new Chart(ctx, {
+                    type: 'line',
+                    data: tData,
+                    options: {
+                        scales: {
+                            xAxes: [{
+                                time: {
+                                    unit: 'date'
+                                },
+                                gridLines: {
+                                    display: false
+                                },
+                            }],
+                            yAxes: [{
+                                ticks: {
+                                    min: 0,
+                                    max: 1000,
+                                    maxTicksLimit: 5
+                                },
+                                gridLines: {
+                                    color: "rgba(0, 0, 0, .125)",
+                                }
+                            }],
+                        },
+                    }
+                });
+            };
+
+            function GetNewAssociatorAreaChart(day) {
+                //----Line Chart---------
+                var c = document.getElementById("NewAssociatorCntChart");
+                var ctx = c.getContext("2d");
+                var tData = $.getValues("GetNewAssociatorChartData?day=" + day);
+                var myLineChart = new Chart(ctx, {
+                    type: 'line',
+                    data: tData,
+                    options: {
+                        scales: {
+                            xAxes: [{
+                                time: {
+                                    unit: 'date'
+                                },
+                                gridLines: {
+                                    display: false
+                                },
+                            }],
+                            yAxes: [{
+                                ticks: {
+                                    min: 0,
+                                    max: 100,
+                                    maxTicksLimit: 5
+                                },
+                                gridLines: {
+                                    color: "rgba(0, 0, 0, .125)",
+                                }
+                            }],
+                        },
+                    }
+                });
+            };
+
+            function GetOrderAmountAreaChart(day) {
+                //----Line Chart---------
+                var c = document.getElementById("OrderAmountChart");
+                var ctx = c.getContext("2d");
+                var tData = $.getValues("GetOrderAmountChartData?day=" + day);
+                var myLineChart = new Chart(ctx, {
+                    type: 'line',
+                    data: tData,
+                    options: {
+                        scales: {
+                            xAxes: [{
+                                time: {
+                                    unit: 'date'
+                                },
+                                gridLines: {
+                                    display: false
+                                },
+                            }],
+                            yAxes: [{
+                                ticks: {
+                                    min: 0,
+                                    max: 10000,
+                                    maxTicksLimit: 5
+                                },
+                                gridLines: {
+                                    color: "rgba(0, 0, 0, .125)",
+                                }
+                            }],
+                        },
+                    }
+                });
+            };
+
+            GetNewUserAreaChart(7);
+            GetNewOrderAreaChart(7);
+            GetNewAssociatorAreaChart(7);
+            GetOrderAmountAreaChart(7);
+            
+        </script>
     </div>
 </body>
 

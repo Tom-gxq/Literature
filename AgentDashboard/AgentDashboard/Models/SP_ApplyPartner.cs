@@ -12,9 +12,13 @@ namespace AgentDashboard.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SP_ShopProduct
+    public partial class SP_ApplyPartner
     {
-        public int ShopId { get; set; }
-        public string ProductId { get; set; }
+        public int Id { get; set; }
+        public string AccountId { get; set; }
+        public int DormId { get; set; }
+        public int Status { get; set; }
+        public System.DateTime CreateTime { get; set; }
+        public Nullable<System.DateTime> UpdateTime { get; set; }
     }
 }

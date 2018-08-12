@@ -33,6 +33,7 @@ namespace AgentDashboard.Models
         public virtual DbSet<SP_AccountInfo> SP_AccountInfo { get; set; }
         public virtual DbSet<SP_AccountProduct> SP_AccountProduct { get; set; }
         public virtual DbSet<SP_Admin> SP_Admin { get; set; }
+        public virtual DbSet<SP_ApplyPartner> SP_ApplyPartner { get; set; }
         public virtual DbSet<SP_Associator> SP_Associator { get; set; }
         public virtual DbSet<SP_Attribute> SP_Attribute { get; set; }
         public virtual DbSet<SP_AttributeValue> SP_AttributeValue { get; set; }
@@ -46,6 +47,7 @@ namespace AgentDashboard.Models
         public virtual DbSet<SP_ProductRegion> SP_ProductRegion { get; set; }
         public virtual DbSet<SP_Products> SP_Products { get; set; }
         public virtual DbSet<SP_ProductSKUs> SP_ProductSKUs { get; set; }
+        public virtual DbSet<SP_ProductType> SP_ProductType { get; set; }
         public virtual DbSet<SP_ProductTypeBrand> SP_ProductTypeBrand { get; set; }
         public virtual DbSet<SP_RegionData> SP_RegionData { get; set; }
         public virtual DbSet<SP_RegionType> SP_RegionType { get; set; }
@@ -61,8 +63,7 @@ namespace AgentDashboard.Models
         public virtual DbSet<SP_SysStatistics> SP_SysStatistics { get; set; }
         public virtual DbSet<SP_Trade> SP_Trade { get; set; }
         public virtual DbSet<SP_UserShipping> SP_UserShipping { get; set; }
-        public virtual DbSet<SP_ProductType> SP_ProductType { get; set; }
-        public virtual DbSet<SP_SysKind> SP_SysKind { get; set; }
         public virtual DbSet<SP_ShopOwner> SP_ShopOwner { get; set; }
+        public virtual DbSet<SP_SysKind> SP_SysKind { get; set; }
     }
 }

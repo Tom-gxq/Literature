@@ -24,6 +24,6 @@ namespace AgentDashboard.Models
         public string OrderID { get; set; }
         public Nullable<int> ShopId { get; set; }
         public bool IsEnabled { get; set; }
-        public bool IsDeled { get; set; }
+        public string ShiperId { get; set; }
     }
 }
