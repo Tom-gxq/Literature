@@ -14,13 +14,14 @@ namespace AgentDashboard.Models
     
     public partial class SP_SysStatistics
     {
+        public int Id { get; set; }
         public System.DateTime CreateTime { get; set; }
         public Nullable<int> Num_NewUser { get; set; }
         public Nullable<int> Num_NewOrder { get; set; }
-        public Nullable<int> Num_OrderAmount { get; set; }
+        public Nullable<decimal> Num_OrderAmount { get; set; }
         public Nullable<int> Num_NewAssociator { get; set; }
         public Nullable<int> Num_BuyAssociator { get; set; }
         public Nullable<System.DateTime> UpdateTime { get; set; }
-        public bool IsChecked { get; set; }
+        public Nullable<bool> IsChecked { get; set; }
     }
 }

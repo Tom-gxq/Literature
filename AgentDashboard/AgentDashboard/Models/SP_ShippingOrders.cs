@@ -21,6 +21,7 @@ namespace AgentDashboard.Models
         public Nullable<System.DateTime> ShippedDate { get; set; }
         public string ShippingId { get; set; }
         public string ShipTo { get; set; }
+        public string ShipOrderNumber { get; set; }
         public Nullable<bool> IsShipped { get; set; }
         public Nullable<int> Stock { get; set; }
         public string ProductId { get; set; }

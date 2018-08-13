@@ -33,5 +33,6 @@ namespace AgentDashboard.Models
         public Nullable<long> LastOperater { get; set; }
         public Nullable<decimal> VIPPrice { get; set; }
         public Nullable<long> SecondTypeId { get; set; }
+        public Nullable<decimal> PurchasePrice { get; set; }
     }
 }

@@ -33,5 +33,11 @@ namespace AgentDashboard.Models
         public Nullable<decimal> VIPAmount { get; set; }
         public Nullable<int> AddressId { get; set; }
         public string OrderAddress { get; set; }
+        public Nullable<int> ShopId { get; set; }
+        public Nullable<bool> IsVip { get; set; }
+        public Nullable<bool> IsWxPay { get; set; }
+        public Nullable<bool> IsAliPay { get; set; }
+        public string ShiperId { get; set; }
+        public int OrderType { get; set; }
     }
 }

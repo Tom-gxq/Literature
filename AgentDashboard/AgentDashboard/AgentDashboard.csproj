@@ -369,6 +369,9 @@
     <Compile Include="Models\SP_Admin.cs">
       <DependentUpon>SP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SP_ApplyPartner.cs">
+      <DependentUpon>SP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SP_Associator.cs">
       <DependentUpon>SP.tt</DependentUpon>
     </Compile>
@@ -547,7 +550,6 @@
     <Content Include="Views\Default\ShopManager.cshtml" />
     <Content Include="Views\Default\RegionManager.cshtml" />
     <Content Include="Views\Default\OrderManager.cshtml" />
-    <Content Include="Views\Default\ShopManagerDemo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
