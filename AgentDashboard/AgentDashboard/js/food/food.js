@@ -133,6 +133,24 @@ define(function (require, exports, module) {
                 });
             });
 
+            $(".fa-close").click(function (obj) {
+                console.log($(this).attr("dataid"));
+                var type = {
+                    shopId:$('#shopId').val(),
+                    accountId: $(this).attr("dataid"),
+                };
+                type = $.param(type, true);
+                Global.post("/Default/DelShopOwner", type, function (data) {
+                    easydialog.open({
+                        container: {
+                            content: '删除成功'
+                        }
+                    });
+                    setTimeout(function () { easydialog.close(); }, 1500);
+                    setTimeout(function () { window.location.href = '/Default/ShopDetails?shopId=' + $("#shopId").val(); }, 1500);
+                });
+            });
+
             var completeInfo = require('complete');
             completeInfo.createComplete({
                 element: "#distribution",

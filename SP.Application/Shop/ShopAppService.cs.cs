@@ -250,6 +250,11 @@ namespace SP.Application.Shop
                 ShopStatus = false,
             });
         }
+        public bool DelShopOwner(int shopId,string accountId)
+        {
+            var repository = IocManager.Instance.Resolve<ShopOwnerRespository>();
+            return repository.DelShopOwner(shopId, accountId);
+        }
         public ShopOwnerDto GetShopOwnerByAccountId(string accountId)
         {
             var repository = IocManager.Instance.Resolve<ShopOwnerRespository>();

@@ -1,4 +1,5 @@
 ﻿using Lib.EntityFramework.EntityFramework;
+using ServiceStack.OrmLite;
 using SP.DataEntity;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,18 @@ namespace SP.ManageEntityFramework.Repositories
         public ShopOwnerEntity GetShopOwnerByAccountId(string accountId)
         {
             return this.Single(x=>x.OwnerId == accountId);
+        }
+
+        public bool DelShopOwner(int shopId, string accountId)
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                using (var cmd = db.SqlProc("DelShopOwner", new { ShopId = shopId, OwnerId = accountId }))
+                {                     
+                    var results = cmd.ExecuteNonQuery();
+                }
+            }
+            return true;
         }
     }
 }

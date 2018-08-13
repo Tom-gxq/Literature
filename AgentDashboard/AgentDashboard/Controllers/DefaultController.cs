@@ -264,6 +264,19 @@ namespace AgentDashboard.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        [HttpPost]
+        public JsonResult DelShopOwner(int shopId,string accountId)
+        {
+            Dictionary<string, object> JsonResult = new Dictionary<string, object>();
+            IShopAppService service = IocManager.Instance.Resolve<IShopAppService>();
+            var ret = service.DelShopOwner(shopId, accountId);
+            JsonResult.Add("status", ret ? 0 : -1);
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
         /// <summary>
         /// 
         /// </summary>

@@ -145,7 +145,7 @@
                             @foreach (var deliverman in Model.DeliverMen)
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link" id="@deliverman.AccountId" data-toggle="tab" href="#@deliverman.Name" role="tab" aria-controls="@deliverman.Name" aria-selected="true">@deliverman.Name</a>
+                                    <a class="nav-link" id="@deliverman.AccountId" data-toggle="tab" href="#@deliverman.Name" role="tab" aria-controls="@deliverman.Name" aria-selected="true">@deliverman.Name<i class="fa fa-fw fa-close" dataid="@deliverman.AccountId"></i></a>
                                 </li>
                             }
 
@@ -155,9 +155,11 @@
 
                         </ul>
                         <div class="tab-content" id="myTabContent">
-                            @foreach (var deliverman in Model.DeliverMen)
+                            
+                            @for(int i= 0; i<Model.DeliverMen.Count;i++ )
                             {
-                                <div class="tab-pane fade show active" id="@deliverman.Name" role="tabpanel" aria-labelledby="@deliverman.AccountId">
+                                var deliverman = Model.DeliverMen[i];
+                                <div class="tab-pane fade show @i==0?active:''" id="@deliverman.Name" role="tabpanel" aria-labelledby="@deliverman.AccountId">
                                     <div class="card-deck">
                                         @foreach (var product in deliverman.Products)
                                         {
