@@ -664,9 +664,284 @@ namespace AgentDashboard.Controllers
             result.Data = JsonResult;
             return result;
         }
+
         public ActionResult RegionManager()
         {
-            return View();
+            RegionDataViewModel viewModel = new RegionDataViewModel();
+
+            using (SPEntities sp = new SPEntities())
+            {
+                var regionList = sp.SP_RegionData.Where(n => n.DataType == 1).ToList();
+                viewModel.Universities = new Dictionary<int, string>();
+
+                foreach (var region in regionList)
+                {
+                    viewModel.Universities.Add(region.DataID, region.DataName);
+                }
+            }
+
+            return View(viewModel);
+        }
+
+        public void DeleteRoom(int id)
+        {
+            using (SPEntities spEntity = new SPEntities())
+            {
+                DbContextTransaction transcation = null;
+
+                try
+                {
+                    var room = spEntity.SP_RegionData.SingleOrDefault(n => n.DataID == id);
+                    if (room != null)
+                    {
+                        transcation = spEntity.Database.BeginTransaction();
+                        spEntity.SP_RegionData.Remove(room);
+                        spEntity.SaveChanges();
+                        transcation.Commit();
+                    }
+                }
+                catch (Exception)
+                {
+                    transcation.Rollback();
+                    throw;
+                }
+                finally
+                {
+                    if (transcation != null) transcation.Dispose();
+                }
+            }
+        }
+
+        public void UpdateRoomName(string name, int dataId)
+        {
+            using (SPEntities spEntity = new SPEntities())
+            {
+                DbContextTransaction transcation = null;
+
+                try
+                {
+                    var room = spEntity.SP_RegionData.SingleOrDefault(n => n.DataID == dataId);
+                    if (room != null)
+                    {
+                        transcation = spEntity.Database.BeginTransaction();
+                        room.DataName = name;
+                        room.UpdateTime = DateTime.Now;
+                        spEntity.SaveChanges();
+                        transcation.Commit();
+                    }
+                }
+                catch (Exception)
+                {
+                    transcation.Rollback();
+                    throw;
+                }
+                finally
+                {
+                    if (transcation != null) transcation.Dispose();
+                }
+            }
+        }
+
+        public void CreateRoom(string name, int dataId, string parentDataId)
+        {
+            using (SPEntities spEntity = new SPEntities())
+            {
+                DbContextTransaction transcation = null;
+
+                try
+                {
+                    if ((dataId == -1) && (!string.IsNullOrEmpty(name) && (name != "?")))
+                    {
+                        transcation = spEntity.Database.BeginTransaction();
+                        spEntity.SP_RegionData.Add(new SP_RegionData() { DataName = name, DataType = 4, Status = 1, ParentDataID= parentDataId, CreateTime = DateTime.Now });
+                        spEntity.SaveChanges();
+                        transcation.Commit();
+                    }
+                }
+                catch (Exception)
+                {
+                    transcation.Rollback();
+                    throw;
+                }
+                finally
+                {
+                    if (transcation != null) transcation.Dispose();
+                }
+            }
+        }
+
+        public JsonResult GetColleges(int dataId)
+        {
+            List<dynamic> viewModelList = new List<dynamic>();
+            using (SPEntities spEntity = new SPEntities())
+            {
+                var colleges = spEntity.SP_RegionData.Where(n => n.ParentDataID == dataId.ToString())?.ToList();
+                foreach (var item in colleges)
+                {
+                    viewModelList.Add(new { ID = item.DataID, Name = item.DataName });
+                }
+            }
+
+            return Json(viewModelList, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetBuilding(int dataId)
+        {
+            List<dynamic> viewModelList = new List<dynamic>();
+            using (SPEntities spEntity = new SPEntities())
+            {
+                var colleges = spEntity.SP_RegionData.Where(n => n.ParentDataID == dataId.ToString())?.ToList();
+                foreach (var item in colleges)
+                {
+                    viewModelList.Add(new { ID = item.DataID, Name = item.DataName });
+                }
+            }
+
+            return Json(viewModelList, JsonRequestBehavior.AllowGet);
+        }
+
+        class RegionData
+        {
+            public List<University> Universities;
+        }
+
+        class University
+        {
+            public int ID;
+            public string Name;
+            public List<College> Colleges;
+        };
+
+        class College
+        {
+            public int ID;
+            public string Name;
+            public List<Building> Buildings;
+        }
+
+        class Building
+        {
+            public int ID;
+            public string Name;
+            public List<Room> Rooms;
+        }
+
+        class Room
+        {
+            public int ID;
+            public string Name;
+            public string ParentDataID;
+            public int DataType;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="universityId"></param>
+        /// <param name="collegeId"></param>
+        /// <param name="buildingId"></param>
+        /// <returns></returns>
+        public JsonResult GetRegionData(int universityId, int collegeId, int buildingId)
+        {
+            University universityItem = new University();
+
+            using (SPEntities sp = new SPEntities())
+            {
+                var university = sp.SP_RegionData.SingleOrDefault(n => n.DataID == universityId);
+                universityItem.ID = university.DataID;
+                universityItem.Name = university.DataName;
+                universityItem.Colleges = new List<College>();
+
+                if (collegeId != -1)
+                {
+                    var college = sp.SP_RegionData.SingleOrDefault(n => n.DataID == collegeId);
+                    if (college != null)
+                    {
+                        College collegeItem= new College() { ID = college.DataID, Name = college.DataName };
+                        collegeItem.Buildings = new List<Building>();
+                        universityItem.Colleges.Add(collegeItem);
+
+                        if (buildingId != -1)
+                        {
+                            var building = sp.SP_RegionData.SingleOrDefault(n => n.DataID == buildingId);
+                            if (building != null)
+                            {
+                                Building buildingItem = new Building() { ID = building.DataID, Name = building.DataName };
+                                buildingItem.Rooms = new List<Room>();
+                                collegeItem.Buildings.Add(buildingItem);
+                                var rooms = sp.SP_RegionData.Where(n => n.ParentDataID == building.DataID.ToString());
+                                if (rooms != null)
+                                {
+                                    foreach (var room in rooms)
+                                    {
+                                        Room roomItem = new Room() { ID = room.DataID, Name = room.DataName };
+                                        buildingItem.Rooms.Add(roomItem);
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            var buildings = sp.SP_RegionData.Where(n => n.ParentDataID == collegeId.ToString());
+                            if (buildings != null)
+                            {
+                                collegeItem.Buildings = new List<Building>();
+
+                                foreach (var building in buildings)
+                                {
+                                    Building buildingItem = new Building() { ID = building.DataID, Name = building.DataName };
+                                    buildingItem.Rooms = new List<Room>();
+                                    collegeItem.Buildings.Add(buildingItem);
+                                    var rooms = sp.SP_RegionData.Where(n => n.ParentDataID == building.DataID.ToString());
+                                    if (rooms != null)
+                                    {
+                                        foreach (var room in rooms)
+                                        {
+                                            Room roomItem = new Room() { ID=room.DataID, Name=room.DataName };
+                                            buildingItem.Rooms.Add(roomItem);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    var colleges = sp.SP_RegionData.Where(n => n.ParentDataID == universityId.ToString());
+                    if (colleges != null)
+                    {
+                        foreach (var college in colleges)
+                        {
+                            College collegeItem = new College() { ID = college.DataID, Name = college.DataName };
+                            collegeItem.Buildings = new List<Building>();
+                            universityItem.Colleges.Add(collegeItem);
+
+                            var buildings = sp.SP_RegionData.Where(n => n.ParentDataID == college.DataID.ToString());
+                            if(buildings != null)
+                            {
+                                foreach (var build in buildings)
+                                {
+                                    Building buildingItem = new Building() { ID=build.DataID, Name=build.DataName };
+                                    buildingItem.Rooms = new List<Room>();
+                                    collegeItem.Buildings.Add(buildingItem);
+                                    var rooms = sp.SP_RegionData.Where(n => n.ParentDataID == build.DataID.ToString());
+                                    if(rooms!= null)
+                                    {
+                                        foreach (var room in rooms)
+                                        {
+                                            Room roomItem = new Room() { ID=room.DataID, Name=room.DataName };
+                                            buildingItem.Rooms.Add(roomItem);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return Json(universityItem, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult OrderManager()
@@ -774,27 +1049,6 @@ namespace AgentDashboard.Controllers
             if (string.IsNullOrWhiteSpace(email))
                 return false;
             return Regex.IsMatch(email, @"^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)*\.[\w-]+$");
-        }
-
-        /// <summary>
-        /// Line Chart.js data
-        /// </summary>
-        /// <returns></returns>
-        public JsonResult GetLineChartData()
-        {
-            Chart _chart = new Chart();
-            _chart.labels = new string[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "Novemeber", "December" };
-            _chart.datasets = new List<Datasets>();
-            List<Datasets> _dataSet = new List<Datasets>();
-            _dataSet.Add(new Datasets()
-            {
-                label = "Current Year",
-                data = new int[] { 28, 48, 40, 19, 86, 27, 90, 20, 45, 65, 34, 22 },
-                borderColor = new string[] { "#800080" },
-                borderWidth = "1"
-            });
-            _chart.datasets = _dataSet;
-            return Json(_chart, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>

@@ -333,6 +333,7 @@
     <Compile Include="Models\PageModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\ProductTypeModel.cs" />
+    <Compile Include="Models\RegionDataViewModel.cs" />
     <Compile Include="Models\SellerViewModel.cs" />
     <Compile Include="Models\ShopDetailsViewModel.cs" />
     <Compile Include="Models\ShopViewModel.cs" />
