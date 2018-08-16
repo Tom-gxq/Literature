@@ -800,40 +800,6 @@ namespace AgentDashboard.Controllers
             return Json(viewModelList, JsonRequestBehavior.AllowGet);
         }
 
-        class RegionData
-        {
-            public List<University> Universities;
-        }
-
-        class University
-        {
-            public int ID;
-            public string Name;
-            public List<College> Colleges;
-        };
-
-        class College
-        {
-            public int ID;
-            public string Name;
-            public List<Building> Buildings;
-        }
-
-        class Building
-        {
-            public int ID;
-            public string Name;
-            public List<Room> Rooms;
-        }
-
-        class Room
-        {
-            public int ID;
-            public string Name;
-            public string ParentDataID;
-            public int DataType;
-        }
-
         /// <summary>
         /// 
         /// </summary>
@@ -874,7 +840,8 @@ namespace AgentDashboard.Controllers
                                 {
                                     foreach (var room in rooms)
                                     {
-                                        Room roomItem = new Room() { ID = room.DataID, Name = room.DataName };
+                                        bool isDanger = (sp.SP_ShipStatistics.Count(n => n.DormId == room.DataID && n.CreateTime >= DateTime.Now.AddDays(-30)) == 0);
+                                        Room roomItem = new Room() { ID = room.DataID, Name = room.DataName, IsDanger= isDanger };
                                         buildingItem.Rooms.Add(roomItem);
                                     }
                                 }
@@ -897,7 +864,8 @@ namespace AgentDashboard.Controllers
                                     {
                                         foreach (var room in rooms)
                                         {
-                                            Room roomItem = new Room() { ID=room.DataID, Name=room.DataName };
+                                            bool isDanger = (sp.SP_ShipStatistics.Count(n => n.DormId == room.DataID && n.CreateTime >= DateTime.Now.AddDays(-30)) == 0);
+                                            Room roomItem = new Room() { ID = room.DataID, Name = room.DataName, IsDanger = isDanger };
                                             buildingItem.Rooms.Add(roomItem);
                                         }
                                     }
@@ -930,7 +898,9 @@ namespace AgentDashboard.Controllers
                                     {
                                         foreach (var room in rooms)
                                         {
-                                            Room roomItem = new Room() { ID=room.DataID, Name=room.DataName };
+                                            DateTime thirtyDayAgo = DateTime.Now.AddDays(-30);
+                                            bool isDanger = (sp.SP_ShipStatistics.Count(n => n.DormId == room.DataID && n.CreateTime >= thirtyDayAgo) == 0);
+                                            Room roomItem = new Room() { ID = room.DataID, Name = room.DataName, IsDanger = isDanger };
                                             buildingItem.Rooms.Add(roomItem);
                                         }
                                     }
