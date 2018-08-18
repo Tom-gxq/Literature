@@ -42,14 +42,7 @@ namespace WebApiGateway.Controllers.Seller
             try
             {
                 var ret = ProductBusiness.GetShopStatus(currentAccount.AccountId);
-                if (ret)
-                {
-                    JsonResult.Add("status", 0);
-                }
-                else
-                {
-                    JsonResult.Add("status", 2);
-                }
+                JsonResult.Add("status", 0);
                 JsonResult.Add("shopStatus", ret);
             }
             catch (Exception ex)

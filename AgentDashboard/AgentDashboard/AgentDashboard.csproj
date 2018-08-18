@@ -596,6 +596,10 @@
       <Project>{80c2b3dc-097b-490c-8951-4d47215e16e9}</Project>
       <Name>SP.ManageEntityFramework</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\StockGRPCInterface\StockGRPCInterface.csproj">
+      <Project>{11ab8b31-19e1-485c-90f0-e0977bbc7c26}</Project>
+      <Name>StockGRPCInterface</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -116,6 +116,13 @@ namespace SP.Service {
         __Marshaller_OrderCodeRequest,
         __Marshaller_OrderResponse);
 
+    static readonly grpc::Method<global::SP.Service.UpdateOrderRequest, global::SP.Service.OrderStatusResponse> __Method_UpdateShipOrderStatus = new grpc::Method<global::SP.Service.UpdateOrderRequest, global::SP.Service.OrderStatusResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "UpdateShipOrderStatus",
+        __Marshaller_UpdateOrderRequest,
+        __Marshaller_OrderStatusResponse);
+
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
@@ -265,6 +272,18 @@ namespace SP.Service {
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
       public virtual global::System.Threading.Tasks.Task<global::SP.Service.OrderResponse> GetOrderByOrderCode(global::SP.Service.OrderCodeRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 更新我的订单（采购订单）的状态
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.OrderStatusResponse> UpdateShipOrderStatus(global::SP.Service.UpdateOrderRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -870,6 +889,54 @@ namespace SP.Service {
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetOrderByOrderCode, null, options, request);
       }
+      /// <summary>
+      ///*
+      /// 更新我的订单（采购订单）的状态
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.OrderStatusResponse UpdateShipOrderStatus(global::SP.Service.UpdateOrderRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UpdateShipOrderStatus(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 更新我的订单（采购订单）的状态
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.OrderStatusResponse UpdateShipOrderStatus(global::SP.Service.UpdateOrderRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_UpdateShipOrderStatus, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 更新我的订单（采购订单）的状态
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.OrderStatusResponse> UpdateShipOrderStatusAsync(global::SP.Service.UpdateOrderRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UpdateShipOrderStatusAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 更新我的订单（采购订单）的状态
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.OrderStatusResponse> UpdateShipOrderStatusAsync(global::SP.Service.UpdateOrderRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_UpdateShipOrderStatus, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override OrderServiceClient NewInstance(ClientBaseConfiguration configuration)
       {
@@ -893,7 +960,8 @@ namespace SP.Service {
           .AddMethod(__Method_GetSchoolLeadFinance, serviceImpl.GetSchoolLeadFinance)
           .AddMethod(__Method_AddCashApply, serviceImpl.AddCashApply)
           .AddMethod(__Method_UpdateOrderStatusByOrderCode, serviceImpl.UpdateOrderStatusByOrderCode)
-          .AddMethod(__Method_GetOrderByOrderCode, serviceImpl.GetOrderByOrderCode).Build();
+          .AddMethod(__Method_GetOrderByOrderCode, serviceImpl.GetOrderByOrderCode)
+          .AddMethod(__Method_UpdateShipOrderStatus, serviceImpl.UpdateShipOrderStatus).Build();
     }
 
   }

@@ -21,11 +21,11 @@ namespace SP.Service.Domain.EventHandlers
         {
             lock (lockObj)
             {
-                System.Console.WriteLine("DecreaseProductSkuEvent ShopId=" + handle.ShopId + "  ProductId=" + handle.ProductId);
+                System.Console.WriteLine("DecreaseProductSkuEvent ShopId=" + handle.ShopId + "  ProductId=" + handle.ProductId+ " DecStock="+ handle.DecStock);
                 lock (lockObjSecond)
                 {
                     var response = StockBusiness.GetProductSku(handle.Host, handle.ProductId, handle.ShopId);
-                    if(response.Status == 10001&& response.Sku.Count > 0 && response.Sku[0].Stock > handle.DecStock)
+                    if(response.Sku.Count > 0 && response.Sku[0].Stock >= handle.DecStock)
                     {
                         var result = StockBusiness.DecreaseProductSku(handle.Host,handle.OrderId, handle.AccountId, handle.ProductId, handle.ShopId, handle.DecStock);
                         if (result.Status != 10001)

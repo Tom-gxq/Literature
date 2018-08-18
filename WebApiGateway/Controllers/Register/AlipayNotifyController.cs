@@ -132,7 +132,7 @@ namespace WebApiGateway.Controllers
                     error = error + DateTime.Now + "alipayManageNotify||||out_trade_no|" + out_trade_no + "trade_no|" + trade_no;
 
 
-                    var retVal = UpdateOrderState(out_trade_no);
+                    var retVal = UpdateShipOrderState(out_trade_no);
                     if (retVal)
                     {
                         result = "success";
@@ -195,6 +195,28 @@ namespace WebApiGateway.Controllers
                     {
                         retValue = OrderBusiness.UpdateOrderStatusByOrderCode(orderCode, 2,2);
                     }                    
+                }
+                catch (Exception ex)
+                {
+                    Common.WriteLog(ex.ToString());
+                }
+            }
+            return retValue;
+        }
+        private bool UpdateShipOrderState(string orderCode)
+        {
+            bool retValue = false;
+            string orderID = string.Empty;
+            string orderPrice = string.Empty;
+            if (!string.IsNullOrEmpty(orderCode))
+            {
+                try
+                {
+                    var order = OrderBusiness.GetOrderByOrderCode(orderCode);
+                    if (order != null && order.orderStatus == 1)
+                    {
+                        retValue = OrderBusiness.UpdateShipOrderStatus(order.orderId, 2, 2);
+                    }
                 }
                 catch (Exception ex)
                 {

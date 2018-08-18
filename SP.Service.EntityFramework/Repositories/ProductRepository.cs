@@ -70,10 +70,10 @@ namespace SP.Service.EntityFramework.Repositories
             using (var db = OpenDbConnection())
             {
                 var q = db.From<ProductEntity>();
-                q = q.Join<ProductEntity, ShopProductEntity>((e, a) => a.ProductId == e.ProductId && e.SaleStatus == 1 
+                q = q.Join<ProductEntity, AccountProductEntity>((e, a) => a.ProductId == e.ProductId && e.SaleStatus == 1 
                 && (e.SecondTypeId == typeId || e.TypeId == typeId));
-                q = q.Join<ShopProductEntity, ShopEntity>((a, b) => a.ShopId == b.Id && b.RegionId == districtId);
-                q = q.LeftJoin<ShopProductEntity, ProductSkuEntity>((e, a) => a.ProductId == e.ProductId && e.ShopId==a.ShopId 
+                q = q.Join<AccountProductEntity, ShopEntity>((a, b) => a.ShopId == b.Id && b.RegionId == districtId);
+                q = q.LeftJoin<AccountProductEntity, ProductSkuEntity>((e, a) => a.ProductId == e.ProductId && e.ShopId==a.ShopId 
                 && a.EffectiveTime >= DateTime.Parse(DateTime.Now.ToShortDateString()));
                 
                 //q = q.Join<ProductEntity, ProductRegionEntity>((e, a) => a.ProductId == e.ProductId && a.DataId == districtId);
@@ -86,7 +86,7 @@ namespace SP.Service.EntityFramework.Repositories
             using (var db = OpenDbConnection())
             {
                 var q = db.From<ProductEntity>();
-                q = q.Join<ProductEntity, ShopProductEntity>((e, a) => a.ShopId == shopId && a.ProductId == e.ProductId && e.SaleStatus == 1);
+                q = q.Join<ProductEntity, AccountProductEntity>((e, a) => a.ShopId == shopId && a.ProductId == e.ProductId && e.SaleStatus == 1);
                 //q = q.LeftJoin<ShopProductEntity, ProductSkuEntity>((e, a) => a.ProductId == e.ProductId && e.ShopId == a.ShopId
                 //&& a.EffectiveTime >= DateTime.Parse(DateTime.Now.ToShortDateString()));
                 //q = q.Join<ProductEntity, ProductRegionEntity>((e, a) => a.ProductId == e.ProductId && a.DataId == districtId);
@@ -100,9 +100,9 @@ namespace SP.Service.EntityFramework.Repositories
             using (var db = OpenDbConnection())
             {
                 var q = db.From<ProductEntity>();
-                q = q.Join<ProductEntity,ShopProductEntity>((e, a) =>  a.ProductId == e.ProductId && e.SaleStatus == 1 
+                q = q.Join<ProductEntity, AccountProductEntity>((e, a) =>  a.ProductId == e.ProductId && e.SaleStatus == 1 
                 && (e.SecondTypeId == typeId || e.TypeId == typeId));
-                q = q.Join<ShopProductEntity, ShopEntity>((a,b)=>a.ShopId == b.Id && b.RegionId== districtId);
+                q = q.Join<AccountProductEntity, ShopEntity>((a,b)=>a.ShopId == b.Id && b.RegionId== districtId);
                 //q = q.Join<ProductEntity, ProductRegionEntity>((e, a) => a.ProductId == e.ProductId && a.DataId == districtId);
                 return db.Select(q).Count();
             }
@@ -112,7 +112,7 @@ namespace SP.Service.EntityFramework.Repositories
             using (var db = OpenDbConnection())
             {
                 var q = db.From<ProductEntity>();
-                q = q.Join<ProductEntity, ShopProductEntity>((e, a) => a.ShopId == shopId && a.ProductId == e.ProductId && e.SaleStatus == 1);
+                q = q.Join<ProductEntity, AccountProductEntity>((e, a) => a.ShopId == shopId && a.ProductId == e.ProductId && e.SaleStatus == 1);
                 return db.Select(q).Count();
             }
         }
@@ -175,8 +175,8 @@ namespace SP.Service.EntityFramework.Repositories
             using (var db = OpenDbConnection())
             {
                 var q = db.From<ProductEntity>();
-                q = q.Join<ProductEntity,ShopProductEntity>((a,e) => a.ProductId == e.ProductId && a.SaleStatus == 1);
-                q = q.Join<ShopProductEntity,ShopEntity>((a, e) => e.RegionId == districtId && e.Id == a.ShopId && e.ShopType == secondTypeId);
+                q = q.Join<ProductEntity, AccountProductEntity>((a,e) => a.ProductId == e.ProductId && a.SaleStatus == 1);
+                q = q.Join<AccountProductEntity, ShopEntity>((a, e) => e.RegionId == districtId && e.Id == a.ShopId && e.ShopType == secondTypeId);
                 
                 q = q.Limit((pageIndex - 1) * pageSize, (pageIndex - 1) * pageSize + pageSize);
                 return db.Select(q);
@@ -187,8 +187,8 @@ namespace SP.Service.EntityFramework.Repositories
             using (var db = OpenDbConnection())
             {
                 var q = db.From<ProductEntity>();
-                q = q.Join<ProductEntity, ShopProductEntity>((a, e) => a.ProductId == e.ProductId && a.SaleStatus == 1);
-                q = q.Join<ShopProductEntity, ShopEntity>((a, e) => e.RegionId == districtId && e.Id == a.ShopId && e.ShopType == secondTypeId);
+                q = q.Join<ProductEntity, AccountProductEntity>((a, e) => a.ProductId == e.ProductId && a.SaleStatus == 1);
+                q = q.Join<AccountProductEntity, ShopEntity>((a, e) => e.RegionId == districtId && e.Id == a.ShopId && e.ShopType == secondTypeId);
                 return db.Select(q).Count();
             }
         }

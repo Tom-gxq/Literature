@@ -553,8 +553,7 @@ namespace WebApiGateway.App_Start
         #region 获取时间戳
         public static double GetTimestamp(DateTime d)
         {
-            TimeSpan ts = d.ToUniversalTime() - new DateTime(1970, 1, 1);
-            return ts.TotalMilliseconds;     //精确到毫秒
+            return (d.ToUniversalTime().Ticks - 621355968000000000) / 10000000;     //精确到毫秒
         }
         #endregion
         public static IAopClient GetAlipayClient()
@@ -581,7 +580,7 @@ namespace WebApiGateway.App_Start
             //支付宝网关地址
             // -----沙箱地址-----
             //string serverUrl = "http://openapi.alipaydev.com/gateway.do";
-            // -----线上地址-----
+            // -----线上地址---
             string serverUrl = "https://openapi.alipay.com/gateway.do";
             //应用ID
             string appId = "2018072660803348";

@@ -550,6 +550,17 @@ namespace SP.Application.Product
                 Status = product.Status
             });
         }
+        public bool UpdateAccountPreStock(AccountProductDto product)
+        {
+            var repository = IocManager.Instance.Resolve<AccountProductRespository>();
+            return repository.UpdateAccountPreStock(new AccountProductEntity()
+            {
+                ProductId = product.ProductId,
+                ShopId = product.ShopId,
+                AccountId = product.AccountId,
+                PreStock = product.PreStock,
+            });
+        }
 
         private static ProductsDto ConvertFromRepositoryEntity(ProductEntity product,string lastOperater="")
         {

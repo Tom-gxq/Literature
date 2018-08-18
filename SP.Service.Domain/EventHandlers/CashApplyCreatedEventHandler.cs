@@ -22,7 +22,8 @@ namespace SP.Service.Domain.EventHandlers
                 AccountId = handle.AccountId,
                 Alipay = handle.Alipay,
                 Money = handle.Money,
-                CreateTime = DateTime.Now
+                CreateTime = DateTime.Now,
+                Status = 0
             };
 
             _reportDatabase.Add(item);

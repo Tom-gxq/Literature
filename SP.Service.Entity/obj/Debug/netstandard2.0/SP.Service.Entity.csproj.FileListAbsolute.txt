@@ -29,4 +29,3 @@ D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Service.Entity\obj\Debug
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Service.Entity\obj\Debug\netstandard2.0\SP.Service.Entity.AssemblyInfo.cs
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Service.Entity\obj\Debug\netstandard2.0\SP.Service.Entity.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Service.Entity\obj\Debug\netstandard2.0\SP.Service.Entity.pdb
-D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Service.Entity\obj\Debug\netstandard2.0\SP.Service.Entity.csprojResolveAssemblyReference.cache

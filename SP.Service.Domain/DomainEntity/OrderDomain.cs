@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using SP.Data.Enum;
 using SP.Producer;
 using SP.Service.Domain.Events;
+using SP.Service.Domain.Util;
 using SP.Service.Entity;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,8 @@ namespace SP.Service.Domain.DomainEntity
 {
     public class OrderDomain : AggregateRoot<Guid>,
         IHandle<OrderCreatedEvent>, IHandle<UpdateShoppingCartOrderIDEvent>,
-        IHandle<KafkaAddEvent>, IOriginator
+        IHandle<KafkaAddEvent>, IHandle<ShipOrderEditEvent>, IHandle<ProductSkuEditEvent>,
+        IOriginator
     {
         public string OrderId { get; internal set; }
         public string Remark { get; internal set; }
@@ -96,6 +98,15 @@ namespace SP.Service.Domain.DomainEntity
             ApplyChange(new OrderEditEvent(id, orderStatus, payWay));
             
         }
+        public void EditShipOrderDomainStatus(Guid id, OrderStatus orderStatus, OrderPay payWay)
+        {
+            ApplyChange(new ShipOrderEditEvent(id, orderStatus, payWay));
+            if (orderStatus == OrderStatus.Success)
+            {
+                string host = OrderCommon.GetHost();
+                ApplyChange(new ProductSkuEditEvent(id, host));
+            }
+        }
         public void AddKafkaInfo(OrderStatus orderStatus,int buildingId)
         {
             if (orderStatus == OrderStatus.Payed)
@@ -137,6 +148,15 @@ namespace SP.Service.Domain.DomainEntity
         public void Handle(KafkaAddEvent e)
         {
 
+        }
+        public void Handle(ShipOrderEditEvent e)
+        {
+            this.OrderId = e.CommandId;
+            this.OrderStatus = e.OrderStatus;
+        }
+        public void Handle(ProductSkuEditEvent e)
+        {
+            this.OrderId = e.CommandId;
         }
 
         public BaseEntity GetMemento()

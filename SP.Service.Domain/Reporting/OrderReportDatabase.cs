@@ -90,10 +90,10 @@ namespace SP.Service.Domain.Reporting
 
             return ConvertOrderEntityToLeadOrderDomain(order);
         }
-        public List<LeadOrderDomain> GetSchoolLeadList(string accountId, int orderStatus)
+        public List<LeadOrderDomain> GetSchoolLeadList(string accountId, int orderStatus, int orderType)
         {
             var domainList = new List<LeadOrderDomain>();
-            var list = _repository.GetSchoolLeadList(accountId, orderStatus);
+            var list = _repository.GetSchoolLeadList(accountId, orderStatus, orderType);
             var result = list.GroupBy(s => s.OrderId);
             foreach (var item in result)
             {
@@ -144,6 +144,8 @@ namespace SP.Service.Domain.Reporting
             {                
                 var productReportDatabase = IocManager.Instance.Resolve(typeof(ProductReportDatabase)) as ProductReportDatabase; ;
                 var product = productReportDatabase.GetProductDomainById(cart.ProductId);
+                
+                product.Quantity = cart.Quantity ?? 0;
                 productList.Add(product);
             }
             order.SetMemenProductto(productList);

@@ -52,7 +52,8 @@ namespace SP.Api.Cache
             return new
             {
                 accountInfo.AccountId,
-                accountInfo.MobilePhone
+                accountInfo.MobilePhone,
+                accountInfo.UserType
             };
         }
     }

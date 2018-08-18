@@ -38,13 +38,13 @@ namespace WebApiGateway.Controllers.Seller
             result.Data = JsonResult;
             return result;
         }
-        public ActionResult GetSchoolLeadList(int orderStatus)
+        public ActionResult GetSchoolLeadList(int orderStatus,int orderType=0)
         {
             var result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var list = OrderBusiness.GetSchoolLeadList(currentAccount.AccountId, orderStatus);
+                var list = OrderBusiness.GetSchoolLeadList(currentAccount.AccountId, orderStatus, orderType);
                 JsonResult.Add("orderList", list);
                 JsonResult.Add("status", 0);
             }
@@ -99,6 +99,38 @@ namespace WebApiGateway.Controllers.Seller
                 else
                 {
                     JsonResult.Add("status", 2);
+                }
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+
+        public ActionResult UpdateShipOrderStatus(string orderId, int orderStatus)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                if (orderStatus == 5)
+                {
+                    var retValue = OrderBusiness.UpdateShipOrderStatus(orderId, orderStatus);
+                    if (retValue)
+                    {
+                        JsonResult.Add("status", 0);
+                    }
+                    else
+                    {
+                        JsonResult.Add("status", 2);
+                    }
+                }
+                else
+                {
+                    JsonResult.Add("status", 0);
                 }
             }
             catch (Exception ex)

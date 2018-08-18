@@ -74,7 +74,8 @@ namespace Stock.Service.Business
 
         public static ProductSkuResponse GetAccountProductSku(string productId, int shopId,string accountId)
         {
-            var response = new ProductSkuResponse();           
+            var response = new ProductSkuResponse();
+            response.Status = 10002;
             var cache = IocManager.Instance.Resolve<ICacheManager>().GetCache<string, string>("CacheItems");
             if (cache != null)
             {
@@ -104,6 +105,7 @@ namespace Stock.Service.Business
                     sku.Stock = 0;
                 }
                 response.Sku.Add(sku);
+                response.Status = 10001;
             }
             return response;
         }

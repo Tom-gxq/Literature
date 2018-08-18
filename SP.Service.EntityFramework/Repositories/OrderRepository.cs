@@ -77,14 +77,22 @@ namespace SP.Service.EntityFramework.Repositories
             return string.Empty;
         }
 
-        public List<OrdersEntity> GetSchoolLeadList(string accountId,int orderStatus)
+        public List<OrdersEntity> GetSchoolLeadList(string accountId,int orderStatus,int orderType)
         {
             using (var db = OpenDbConnection())
             {
                 var q = db.From<OrdersEntity>();
 
-                q = q.Join<OrdersEntity, ShoppingCartsEntity>((e, a) => a.OrderId == e.OrderId && e.OrderStatus == orderStatus 
-                && e.OrderType == 0  && e.OrderDate >= DateTime.Parse(DateTime.Now.ToShortDateString()));
+                if (orderType == 1)
+                {
+                    q = q.Join<OrdersEntity, ShoppingCartsEntity>((e, a) => a.OrderId == e.OrderId 
+                    && e.OrderStatus == orderStatus && e.OrderType == orderType );
+                }
+                else
+                {
+                    q = q.Join<OrdersEntity, ShoppingCartsEntity>((e, a) => a.OrderId == e.OrderId && e.OrderStatus == orderStatus
+                    && e.OrderType == orderType && e.OrderDate >= DateTime.Parse(DateTime.Now.ToShortDateString()));
+                }
                 q = q.Join<ShoppingCartsEntity, ShippingOrdersEntity>((e, a) => a.ShopId == e.ShopId && a.ShippingId == accountId && e.OrderId == a.OrderId );
                 if (orderStatus == 2)
                 {

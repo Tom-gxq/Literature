@@ -36,6 +36,7 @@ namespace SP.Service.Domain.DomainEntity
         public string SuppliersId { get; internal set; }
         public double PurchasePrice { get; internal set; }
         public string ImagePath { get; internal set; }
+        public int Quantity { get; set; }
 
         public ProductDomain()
         {
@@ -102,6 +103,7 @@ namespace SP.Service.Domain.DomainEntity
             this.PurchasePrice = product.PurchasePrice != null ? product.PurchasePrice.Value : 0;
             this.SecondTypeId = product.SecondTypeId != null ? product.SecondTypeId.Value : 0;
             this.TypeId = product.TypeId != null ? product.TypeId.Value : 0;
+            this.SuppliersId = product.SuppliersId;
 
             if (memento is ProductFullEntity)
             {

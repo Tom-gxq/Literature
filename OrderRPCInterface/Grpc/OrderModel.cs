@@ -46,31 +46,31 @@ namespace SP.Service {
             "bmZvGAIgASgLMhEuU1AuU2VydmljZS5PcmRlciIzChBBZGRPcmRlclJlc3Bv",
             "bnNlEg4KBnN0YXR1cxgBIAEoBRIPCgdvcmRlcklkGAIgASgJIkoKElVwZGF0",
             "ZU9yZGVyUmVxdWVzdBITCgtvcmRlclN0YXR1cxgBIAEoBRIPCgdvcmRlcklk",
-            "GAIgASgJEg4KBnBheVdheRgDIAEoBSI7ChFTY2hvb2xMZWFkUmVxdWVzdBIR",
-            "CglhY2NvdW50SWQYASABKAkSEwoLb3JkZXJTdGF0dXMYAiABKAUiogIKD1Nj",
-            "aG9vbExlYWRPcmRlchIPCgdvcmRlcklkGAEgASgJEg4KBmFtb3VudBgCIAEo",
-            "ARIRCglvcmRlckNvZGUYAyABKAkSEQoJb3JkZXJEYXRlGAQgASgDEg8KB3Bh",
-            "eURhdGUYBSABKAMSKAoHYWNjb3VudBgGIAEoCzIXLlNQLlNlcnZpY2UuQWNj",
-            "b3VudEluZm8SJAoHYWRkcmVzcxgHIAEoCzITLlNQLlNlcnZpY2UuQWRkcmVz",
-            "cxIeCgRzaG9wGAggASgLMhAuU1AuU2VydmljZS5TaG9wEjIKEHNob3BwaW5n",
-            "Q2FydExpc3QYCSADKAsyGC5TUC5TZXJ2aWNlLlNob3BwaW5nQ2FydBITCgtv",
-            "cmRlclN0YXR1cxgKIAEoBSJdChtTY2hvb2xMZWFkT3JkZXJMaXN0UmVzcG9u",
-            "c2USDgoGc3RhdHVzGAEgASgFEi4KCW9yZGVySW5mbxgCIAMoCzIbLlNQLlNl",
-            "cnZpY2UuU2Nob29sTGVhZE9yZGVyIkYKDFRyYWRlUmVxdWVzdBIRCglhY2Nv",
-            "dW50SWQYASABKAkSEQoJcGFnZUluZGV4GAMgASgFEhAKCHBhZ2VTaXplGAQg",
-            "ASgFInEKBVRyYWRlEhEKCWFjY291bnRJZBgBIAEoCRIOCgZhbW91bnQYAiAB",
-            "KAESDgoGY2FydElkGAMgASgJEhIKCmNyZWF0ZVRpbWUYBCABKAMSEAoIcXVh",
-            "bnRpdHkYBSABKAUSDwoHc3ViamVjdBgGIAEoBSJYChFUcmFkZUxpc3RSZXNw",
-            "b25zZRIOCgZzdGF0dXMYASABKAUSJAoJdHJhZGVMaXN0GAIgAygLMhEuU1Au",
-            "U2VydmljZS5UcmFkZRINCgV0b3RhbBgFIAEoAyKQAQoZU2Nob29sTGVhZEZp",
-            "bmFuY2VSZXNwb25zZRIOCgZzdGF0dXMYASABKAUSEQoJYWNjb3VudElkGAIg",
-            "ASgJEhIKCmhhdmVBbW91bnQYAyABKAESEQoJdXNlQW1vdW50GAQgASgBEhQK",
-            "DGFjdGl2ZUFtb3VudBgFIAEoARITCgthcHBseUFtb3VudBgGIAEoASJHChNB",
-            "ZGRDYXNoQXBwbHlSZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIOCgZhbGlw",
-            "YXkYAiABKAkSDQoFbW9uZXkYAyABKAEiUAoWVXBkYXRlT3JkZXJDb2RlUmVx",
-            "dWVzdBITCgtvcmRlclN0YXR1cxgBIAEoBRIRCglvcmRlckNvZGUYAiABKAkS",
-            "DgoGcGF5V2F5GAMgASgFIiUKEE9yZGVyQ29kZVJlcXVlc3QSEQoJb3JkZXJD",
-            "b2RlGAEgASgJYgZwcm90bzM="));
+            "GAIgASgJEg4KBnBheVdheRgDIAEoBSJOChFTY2hvb2xMZWFkUmVxdWVzdBIR",
+            "CglhY2NvdW50SWQYASABKAkSEwoLb3JkZXJTdGF0dXMYAiABKAUSEQoJb3Jk",
+            "ZXJUeXBlGAMgASgFIqICCg9TY2hvb2xMZWFkT3JkZXISDwoHb3JkZXJJZBgB",
+            "IAEoCRIOCgZhbW91bnQYAiABKAESEQoJb3JkZXJDb2RlGAMgASgJEhEKCW9y",
+            "ZGVyRGF0ZRgEIAEoAxIPCgdwYXlEYXRlGAUgASgDEigKB2FjY291bnQYBiAB",
+            "KAsyFy5TUC5TZXJ2aWNlLkFjY291bnRJbmZvEiQKB2FkZHJlc3MYByABKAsy",
+            "Ey5TUC5TZXJ2aWNlLkFkZHJlc3MSHgoEc2hvcBgIIAEoCzIQLlNQLlNlcnZp",
+            "Y2UuU2hvcBIyChBzaG9wcGluZ0NhcnRMaXN0GAkgAygLMhguU1AuU2Vydmlj",
+            "ZS5TaG9wcGluZ0NhcnQSEwoLb3JkZXJTdGF0dXMYCiABKAUiXQobU2Nob29s",
+            "TGVhZE9yZGVyTGlzdFJlc3BvbnNlEg4KBnN0YXR1cxgBIAEoBRIuCglvcmRl",
+            "ckluZm8YAiADKAsyGy5TUC5TZXJ2aWNlLlNjaG9vbExlYWRPcmRlciJGCgxU",
+            "cmFkZVJlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEhEKCXBhZ2VJbmRleBgD",
+            "IAEoBRIQCghwYWdlU2l6ZRgEIAEoBSJxCgVUcmFkZRIRCglhY2NvdW50SWQY",
+            "ASABKAkSDgoGYW1vdW50GAIgASgBEg4KBmNhcnRJZBgDIAEoCRISCgpjcmVh",
+            "dGVUaW1lGAQgASgDEhAKCHF1YW50aXR5GAUgASgFEg8KB3N1YmplY3QYBiAB",
+            "KAUiWAoRVHJhZGVMaXN0UmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEiQKCXRy",
+            "YWRlTGlzdBgCIAMoCzIRLlNQLlNlcnZpY2UuVHJhZGUSDQoFdG90YWwYBSAB",
+            "KAMikAEKGVNjaG9vbExlYWRGaW5hbmNlUmVzcG9uc2USDgoGc3RhdHVzGAEg",
+            "ASgFEhEKCWFjY291bnRJZBgCIAEoCRISCgpoYXZlQW1vdW50GAMgASgBEhEK",
+            "CXVzZUFtb3VudBgEIAEoARIUCgxhY3RpdmVBbW91bnQYBSABKAESEwoLYXBw",
+            "bHlBbW91bnQYBiABKAEiRwoTQWRkQ2FzaEFwcGx5UmVxdWVzdBIRCglhY2Nv",
+            "dW50SWQYASABKAkSDgoGYWxpcGF5GAIgASgJEg0KBW1vbmV5GAMgASgBIlAK",
+            "FlVwZGF0ZU9yZGVyQ29kZVJlcXVlc3QSEwoLb3JkZXJTdGF0dXMYASABKAUS",
+            "EQoJb3JkZXJDb2RlGAIgASgJEg4KBnBheVdheRgDIAEoBSIlChBPcmRlckNv",
+            "ZGVSZXF1ZXN0EhEKCW9yZGVyQ29kZRgBIAEoCWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, global::SP.Service.ProductModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -85,7 +85,7 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OrderResponse), global::SP.Service.OrderResponse.Parser, new[]{ "Status", "OrderInfo" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AddOrderResponse), global::SP.Service.AddOrderResponse.Parser, new[]{ "Status", "OrderId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.UpdateOrderRequest), global::SP.Service.UpdateOrderRequest.Parser, new[]{ "OrderStatus", "OrderId", "PayWay" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SchoolLeadRequest), global::SP.Service.SchoolLeadRequest.Parser, new[]{ "AccountId", "OrderStatus" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SchoolLeadRequest), global::SP.Service.SchoolLeadRequest.Parser, new[]{ "AccountId", "OrderStatus", "OrderType" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SchoolLeadOrder), global::SP.Service.SchoolLeadOrder.Parser, new[]{ "OrderId", "Amount", "OrderCode", "OrderDate", "PayDate", "Account", "Address", "Shop", "ShoppingCartList", "OrderStatus" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SchoolLeadOrderListResponse), global::SP.Service.SchoolLeadOrderListResponse.Parser, new[]{ "Status", "OrderInfo" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TradeRequest), global::SP.Service.TradeRequest.Parser, new[]{ "AccountId", "PageIndex", "PageSize" }, null, null, null),
@@ -2480,6 +2480,7 @@ namespace SP.Service {
     public SchoolLeadRequest(SchoolLeadRequest other) : this() {
       accountId_ = other.accountId_;
       orderStatus_ = other.orderStatus_;
+      orderType_ = other.orderType_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2517,6 +2518,21 @@ namespace SP.Service {
       }
     }
 
+    /// <summary>Field number for the "orderType" field.</summary>
+    public const int OrderTypeFieldNumber = 3;
+    private int orderType_;
+    /// <summary>
+    ///*
+    /// 订单类别(0,售卖订单 1，采购订单) ，默认为 0
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int OrderType {
+      get { return orderType_; }
+      set {
+        orderType_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as SchoolLeadRequest);
@@ -2532,6 +2548,7 @@ namespace SP.Service {
       }
       if (AccountId != other.AccountId) return false;
       if (OrderStatus != other.OrderStatus) return false;
+      if (OrderType != other.OrderType) return false;
       return true;
     }
 
@@ -2540,6 +2557,7 @@ namespace SP.Service {
       int hash = 1;
       if (AccountId.Length != 0) hash ^= AccountId.GetHashCode();
       if (OrderStatus != 0) hash ^= OrderStatus.GetHashCode();
+      if (OrderType != 0) hash ^= OrderType.GetHashCode();
       return hash;
     }
 
@@ -2558,6 +2576,10 @@ namespace SP.Service {
         output.WriteRawTag(16);
         output.WriteInt32(OrderStatus);
       }
+      if (OrderType != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(OrderType);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2568,6 +2590,9 @@ namespace SP.Service {
       }
       if (OrderStatus != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(OrderStatus);
+      }
+      if (OrderType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(OrderType);
       }
       return size;
     }
@@ -2582,6 +2607,9 @@ namespace SP.Service {
       }
       if (other.OrderStatus != 0) {
         OrderStatus = other.OrderStatus;
+      }
+      if (other.OrderType != 0) {
+        OrderType = other.OrderType;
       }
     }
 
@@ -2599,6 +2627,10 @@ namespace SP.Service {
           }
           case 16: {
             OrderStatus = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            OrderType = input.ReadInt32();
             break;
           }
         }

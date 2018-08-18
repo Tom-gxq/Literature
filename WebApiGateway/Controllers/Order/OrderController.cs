@@ -115,6 +115,31 @@ namespace WebApiGateway.Controllers.Order
             return result;
         }
 
-        
+        [System.Web.Mvc.HttpPost]
+        public ActionResult AddCashApply(string alipay, double money)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                var retValue = OrderBusiness.AddCashApply(currentAccount.AccountId, alipay, money);
+                if (retValue)
+                {
+                    JsonResult.Add("status", 0);
+                }
+                else
+                {
+                    JsonResult.Add("status", 2);
+                }
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+
     }
 }

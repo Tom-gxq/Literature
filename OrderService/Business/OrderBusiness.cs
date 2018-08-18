@@ -66,11 +66,11 @@ namespace Order.Service.Business
             }
             return result;
         }
-        public static SchoolLeadOrderListResponse GetSchoolLeadList(string accountId, int status)
+        public static SchoolLeadOrderListResponse GetSchoolLeadList(string accountId, int status, int orderType)
         {
             var result = new SchoolLeadOrderListResponse();
             result.Status = 10002;
-            var list = ServiceLocator.ReportDatabase.GetSchoolLeadList(accountId, status);
+            var list = ServiceLocator.ReportDatabase.GetSchoolLeadList(accountId, status, orderType);
             if (list != null)
             {
                 foreach (var item in list)
@@ -133,6 +133,10 @@ namespace Order.Service.Business
         public static void UpdateOrderStatus(string orderId, int orderStatus,int payWay)
         {
             ServiceLocator.CommandBus.Send(new EditOrderCommand(new Guid(orderId), (OrderStatus)orderStatus,(OrderPay)payWay));           
+        }
+        public static void UpdateShipOrderStatus(string orderId, int orderStatus, int payWay)
+        {
+            ServiceLocator.CommandBus.Send(new EditPurchaseOrderCommand(new Guid(orderId), (OrderStatus)orderStatus, (OrderPay)payWay));
         }
 
         public static TradeListResponse GetSchoolLeadTradeList(string accountId, int pageIndex, int pageSize)
@@ -268,7 +272,7 @@ namespace Order.Service.Business
             if (entity.Shop != null)
             {
                 order.Shop = new Shop();
-                order.Shop.ShopName = entity.Shop.ShopName;
+                order.Shop.ShopName = entity.Shop.ShopName??string.Empty;
                 order.Shop.StartTime = !string.IsNullOrEmpty(entity.Shop.StartTime)? entity.Shop.StartTime:string.Empty;
                 order.Shop.EndTime = !string.IsNullOrEmpty(entity.Shop.EndTime) ? entity.Shop.EndTime : string.Empty;
                 order.Shop.ShopId = entity.Shop.Id;

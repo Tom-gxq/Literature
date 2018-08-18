@@ -47,5 +47,6 @@ namespace SP.Application.Product
         List<ProductsDto> GetSellerProductListByTypeId(string accountId, int typeId);
         bool AddFoodProduct(AccountProductDto product);
         List<ProductsDto> SearchTypeProductByKeyWord(string keyWord,int typeId, int pageIndex, int pageSize);
+        bool UpdateAccountPreStock(AccountProductDto product);
     }
 }

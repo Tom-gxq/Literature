@@ -195,8 +195,8 @@ namespace WebApiGateway.Controllers.Account
             AlipayTradeAppPayRequest request = new AlipayTradeAppPayRequest();
             //SDK已经封装掉了公共参数，这里只需要传入业务参数。以下方法为sdk的model入参方式(model和biz_content同时存在的情况下取biz_content)。
             AlipayTradeAppPayModel model = new AlipayTradeAppPayModel();
-            model.Body = !string.IsNullOrEmpty(body?.ToString()) ? body.ToString() : "饿家军采购";
-            model.Subject = "饿家军";
+            model.Body = !string.IsNullOrEmpty(body?.ToString().Trim()) ? body.ToString().Trim() : "饿家军采购";
+            model.Subject = "饿家军采购";
             model.TotalAmount = content["total_amount"].Value<string>();
             model.ProductCode = "QUICK_MSECURITY_PAY";
             model.OutTradeNo = content["out_trade_no"].Value<string>();

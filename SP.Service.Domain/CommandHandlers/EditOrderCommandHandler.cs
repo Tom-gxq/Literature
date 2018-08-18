@@ -12,7 +12,8 @@ using System.Text;
 
 namespace SP.Service.Domain.CommandHandlers
 {
-    public class EditOrderCommandHandler : ICommandHandler<EditOrderCommand>,ICommandHandler<EditOrderCodeCommand>
+    public class EditOrderCommandHandler : ICommandHandler<EditOrderCommand>,
+        ICommandHandler<EditOrderCodeCommand>,ICommandHandler<EditPurchaseOrderCommand>
     {
         private IDataRepository<OrderDomain> _repository;
         private IDataRepository<TradeDomain> _tradeRepository;
@@ -62,6 +63,17 @@ namespace SP.Service.Domain.CommandHandlers
                 throw new OrderCodeUpdateException(command.OrderCode);
             }
         }
+
+        public void Execute(EditPurchaseOrderCommand command)
+        {
+            var aggregate = new OrderDomain();
+            aggregate.EditShipOrderDomainStatus(command.Id, command.OrderStatus, command.PayWay);
+            _repository.Save(aggregate);
+
+            var order = _orderReportDatabase.GetLeadOrderDomainByOrderId(command.Id.ToString());
+            CaclCommsion(order, command.OrderStatus);
+        }
+
         private void CaclCommsion(LeadOrderDomain order, OrderStatus orderStatus)
         {
             double commsion = 0;

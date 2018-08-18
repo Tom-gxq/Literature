@@ -150,6 +150,48 @@ define(function (require, exports, module) {
                     setTimeout(function () { window.location.href = '/Default/ShopDetails?shopId=' + $("#shopId").val(); }, 1500);
                 });
             });
+            $(".stock").keypress(function (event) {                
+                if (event.keyCode == 13) {
+                    console.log($(this).parent().parent(".card-footer").attr("aid"));
+                    var type = {
+                        shopId: $('#shopId').val(),
+                        accountId: $(this).parent().parent(".card-footer").attr("aid"),
+                        productId: $(this).parent().parent(".card-footer").attr("dataid"),
+                        stock: $(this).val(),
+                    };
+                    type = $.param(type, true);
+                    Global.post("/Default/UpdateStock", type, function (data) {
+                        easydialog.open({
+                            container: {
+                                content: '更新成功'
+                            }
+                        });
+                        setTimeout(function () { easydialog.close(); }, 1500);
+                        setTimeout(function () { window.location.href = '/Default/ShopDetails?shopId=' + $("#shopId").val(); }, 1500);
+                    });
+                }
+            });
+
+            $(".prestock").keypress(function (event) {
+                if (event.keyCode == 13) {
+                    var type = {
+                        shopId: $('#shopId').val(),
+                        accountId: $(this).parent().parent(".card-footer").attr("aid"),
+                        productId: $(this).parent().parent(".card-footer").attr("dataid"),
+                        stock: $(this).val(),
+                    };
+                    type = $.param(type, true);
+                    Global.post("/Default/UpdatePreStock", type, function (data) {
+                        easydialog.open({
+                            container: {
+                                content: '更新成功'
+                            }
+                        });
+                        setTimeout(function () { easydialog.close(); }, 1500);
+                        setTimeout(function () { window.location.href = '/Default/ShopDetails?shopId=' + $("#shopId").val(); }, 1500);
+                    });
+                }
+            });
 
             var completeInfo = require('complete');
             completeInfo.createComplete({

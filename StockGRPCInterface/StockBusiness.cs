@@ -1,5 +1,7 @@
-﻿using SP.Service;
+﻿using SP.Api.Model.Product;
+using SP.Service;
 using System;
+using System.Collections.Generic;
 
 namespace StockGRPCInterface
 {
@@ -65,6 +67,26 @@ namespace StockGRPCInterface
             var reuslt = client.RedoProductSku(request1);
             helper.Dispose();
             return reuslt;
+        }
+
+        public static SkuStatusResponse UpdateProductSku(string host, List<ProductSkuModel> list)
+        {
+            var helper = new StockClientHelper(host);
+            var client = helper.GetClient();
+            var request = new SkuListRequest();
+            foreach (var model in list)
+            {
+                ProductSku sku = new ProductSku();
+                sku.AccountId = model.accountId ?? string.Empty;
+                sku.ProductId = model.productId;
+                sku.ShopId = model.shopId;
+                sku.SkuId = model.skuId ?? string.Empty;
+                sku.Stock = model.stock;
+                request.Sku.Add(sku);
+            }
+            var result = client.UpdateProductSku(request);
+            helper.Dispose();
+            return result;
         }
     }
 }

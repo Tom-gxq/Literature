@@ -15,6 +15,7 @@ using SP.Application.Suppler;
 using SP.Application.Suppler.DTO;
 using SP.Application.User;
 using SP.Application.User.DTO;
+using StockGRPCInterface;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -148,35 +149,31 @@ namespace AgentDashboard.Controllers
                         deliverMan.Products = new List<ProductsViewModel>();
 
                         var account = sp.SP_AccountInfo.SingleOrDefault(n => n.AccountId == shopOwner.OwnerId);
-                        deliverMan.Name = account.Fullname;
-                        deliverMan.AccountId = account.AccountId;
-
-                        
-
-                        var deliverProducts = sp.SP_AccountProduct.Where(n => n.AccountId == account.AccountId && n.ShopId == shop.Id);
-
-                        foreach (var deliverProduct in deliverProducts)
+                        deliverMan.Name = account?.Fullname??string.Empty;
+                        deliverMan.AccountId = account?.AccountId ?? string.Empty;
+                                                
+                        if (account != null)
                         {
-                            ProductsViewModel procduct = new ProductsViewModel();
-                            procduct.Id = deliverProduct.ProductId;
-                            DateTime now = DateTime.Parse(DateTime.Now.ToShortDateString());
-                            var productStock = sp.SP_ProductSKUs.SingleOrDefault(n => n.ProductId == procduct.Id 
-                            && n.AccountId == account.AccountId && n.ShopId == shopId 
-                            && n.EffectiveTime >= now);
-                            if (productStock != null)
+                            var deliverProducts = sp.SP_AccountProduct.Where(n => n.AccountId == account.AccountId && n.ShopId == shop.Id);
+                            foreach (var deliverProduct in deliverProducts.ToList())
                             {
-                                procduct.Stocks = productStock.Stock;
+                                ProductsViewModel procduct = new ProductsViewModel();
+                                procduct.Id = deliverProduct.ProductId;
+                                DateTime now = DateTime.Parse(DateTime.Now.ToShortDateString());
+                                
+                                var productStock =  ServerStockBusiness.GetAccountProductStock(account.AccountId, procduct.Id, shopId);
+                                procduct.Stocks = productStock;
                                 procduct.PreStocks = deliverProduct.PreStock;
+
+                                var procdutInfo = sp.SP_Products.SingleOrDefault(n => n.ProductId == procduct.Id);
+                                procduct.Name = procdutInfo?.ProductName ?? string.Empty;
+                                procduct.Description = procdutInfo?.Description;
+
+                                string domain = ConfigurationManager.AppSettings["Qiniu.Domain"];
+                                var procdutImageInfo = sp.SP_ProductImage.SingleOrDefault(n => n.ProductId == procduct.Id);
+                                procduct.ImagePath = !string.IsNullOrEmpty(procdutImageInfo?.ImgPath) ? domain + procdutImageInfo.ImgPath : string.Empty;
+                                deliverMan.Products.Add(procduct);
                             }
-
-                            var procdutInfo = sp.SP_Products.SingleOrDefault(n => n.ProductId == procduct.Id);
-                            procduct.Name = procdutInfo?.ProductName??string.Empty;
-                            procduct.Description = procdutInfo?.Description;
-
-                            string domain = ConfigurationManager.AppSettings["Qiniu.Domain"];
-                            var procdutImageInfo = sp.SP_ProductImage.SingleOrDefault(n => n.ProductId == procduct.Id);
-                            procduct.ImagePath = !string.IsNullOrEmpty(procdutImageInfo?.ImgPath)? domain+ procdutImageInfo.ImgPath : string.Empty;
-                            deliverMan.Products.Add(procduct);
                         }
 
                         vm.DeliverMen.Add(deliverMan);
@@ -576,7 +573,7 @@ namespace AgentDashboard.Controllers
                 TelNumber = dto.TelPhone,
                 AccountName = accountInfo?.Fullname??string.Empty,
                 TypeList = new List<Models.ProductTypeModel>(),
-                ProductDic = new List<List<ProductsDto>>()
+                ProductDic = new Dictionary<int, List<ProductsDto>>()
             };
             IProductTypeService typeService = IocManager.Instance.Resolve<IProductTypeService>();
             
@@ -600,7 +597,7 @@ namespace AgentDashboard.Controllers
                             p.ProductImage[0].ImgPath = !string.IsNullOrEmpty(p.ProductImage[0]?.ImgPath) ? domain + p.ProductImage[0].ImgPath : string.Empty;
                         }
                     }
-                    vm.ProductDic.Add(pList);
+                    vm.ProductDic.Add(item.TypeId,pList);
                 }
             }
 
@@ -984,6 +981,47 @@ namespace AgentDashboard.Controllers
 
             chart.datasets = dataSet;
             return Json(chart, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult UpdateStock(string productId,string accountId, int shopId, int stock)
+        {
+            Dictionary<string, object> JsonResult = new Dictionary<string, object>();
+            var list = new List<ProductSkuModel>();
+            list.Add(new ProductSkuModel()
+            {
+                accountId = accountId,
+                productId = productId,
+                shopId = shopId,
+                stock = stock
+            });
+            var ret = ServerStockBusiness.UpdateProductSku(list);
+
+            JsonResult.Add("status", ret?0:1);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult UpdatePreStock(string productId, string accountId, int shopId,int stock)
+        {
+            Dictionary<string, object> JsonResult = new Dictionary<string, object>();
+            IProductAppService service = IocManager.Instance.Resolve<IProductAppService>();
+            var ret = service.UpdateAccountPreStock(new AccountProductDto()
+            {
+                 AccountId = accountId,
+                 ProductId = productId,
+                 ShopId = shopId,
+                 PreStock = stock
+            });
+            JsonResult.Add("status", ret?0:1);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
         }
     }
 }

@@ -85,5 +85,32 @@ namespace StockGRPCInterface
             }
             return ret;
         }
+
+        public static int GetAccountProductStock(string accountId,string productId,int shopId)
+        {
+            var client = ServerClientHelper.GetClient();
+            var request1 = new AccountProductSkuRequest()
+            {
+                AccountId = accountId,
+                ProductId = productId,
+                ShopId = shopId
+            };
+            if (client != null)
+            {
+                var reuslt = client.GetAccountProductSku(request1);
+                if (reuslt.Sku.Count > 0)
+                {
+                    return reuslt.Sku[0].Stock;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else
+            {
+                return -1;
+            }
+        }
     }
 }

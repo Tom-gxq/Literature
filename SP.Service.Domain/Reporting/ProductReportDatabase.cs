@@ -175,12 +175,11 @@ namespace SP.Service.Domain.Reporting
             {
                 var domain = GetProductDomainById(item);
                 var host = OrderCommon.GetHost();
-                var response = StockBusiness.GetProductSku(host, item.ProductId, shopId);
-                if (response.Status == 10001 && response.Sku.Count > 0)
+                var response = StockBusiness.GetProductSku(host, item.ProductId, domain.ShopId);
+                if (response.Sku != null && response.Sku.Count > 0)
                 {
                     domain.SkuNum = response.Sku[0].Stock;
                     domain.SkuId = response.Sku[0].SkuId;
-                    domain.ShopId = response.Sku[0].ShopId;
                 }
                 domainList.Add(domain);
             }

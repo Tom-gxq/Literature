@@ -28,5 +28,10 @@ namespace SP.Service.Domain.Reporting
         {
             return _repository.GetShippingOrders(orderId, accountId, productId);
         }
+
+        public ShippingOrdersEntity GetShippingOrders(string orderId, string accountId)
+        {
+            return _repository.GetShippingOrders(orderId, accountId);
+        }
     }
 }

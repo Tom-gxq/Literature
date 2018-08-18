@@ -20,5 +20,11 @@ namespace SP.ManageEntityFramework.Repositories
             var result = this.Insert(data);
             return result > 0;
         }
+
+        public bool UpdateAccountPreStock(AccountProductEntity data)
+        {
+            var ret = this.UpdateNonDefaults(data ,x=>x.AccountId == data.AccountId&& x.ShopId == data.ShopId&& x.ProductId == data.ProductId);
+            return ret > 0;
+        }
     }
 }

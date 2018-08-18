@@ -171,12 +171,12 @@
                                                 </div>
                                                 @if (!Model.isMarket)
                                                 {
-                                                <div class="card-footer">
-                                                    <div class="row">
-                                                        <label>库存</label><input type="text" class="form-control form-text w-75 h-50" value="@product.Stocks" />
+                                                <div class="card-footer" dataid="@product.Id" aid="@deliverman.AccountId">
+                                                    <div class="row" >
+                                                        <label>库存</label><input type="text" class="form-control form-text w-75 h-50 stock" value="@product.Stocks" />
                                                     </div>
                                                     <div class="row">
-                                                        <label>预存</label><input type="text" class="form-control form-text w-75 h-50" value="@product.PreStocks" />
+                                                        <label>预存</label><input type="text" class="form-control form-text w-75 h-50 prestock" value="@product.PreStocks" />
                                                     </div>
                                                 </div>
                                                 }
@@ -190,11 +190,14 @@
                                                 }
                                             </div>
                                         }
+                                        @if (!Model.isMarket)
+                                        {
                                         <div class="card cardadd">
                                             <div class="card-body">
                                                 <p class="card-text account" dataid="@deliverman.AccountId"><a href="#"><h1>+</h1></a></p>
                                             </div>
                                         </div>
+                                         }
                                     </div>
                                 </div>
                             }

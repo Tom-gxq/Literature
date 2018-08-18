@@ -16,7 +16,7 @@ namespace SP.Api.Model.Order
         public double amount { get; set; }
         public string orderCode { get; set; }
         public string orderDate { get; set; }
-        public string payDate { get; set; }
+        public long payDate { get; set; }
         public AccountModel account { get; set; }
         public AddressModel address { get; set; }
         public ShopModel shop { get; set; }        

@@ -203,6 +203,23 @@ namespace OrderGRPCInterface.Business
             }
             return status;
         }
+        public static bool UpdateShipOrderStatus(string orderId, int orderStatus, int payWay = 0)
+        {
+            bool status = false;
+            var client = OrderClientHelper.GetClient();
+            var request = new UpdateOrderRequest()
+            {
+                OrderId = orderId,
+                OrderStatus = orderStatus,
+                PayWay = payWay
+            };
+            var result = client.UpdateShipOrderStatus(request);
+            if (result.Status == 10001)
+            {
+                status = true;
+            }
+            return status;
+        }
         public static bool AddCashApply(string accountId,string alipay, double money)
         {
             bool status = false;
@@ -221,13 +238,14 @@ namespace OrderGRPCInterface.Business
             return status;
         }
 
-        public static List<LeadOrderModel> GetSchoolLeadList(string accountId, int orderStatus)
+        public static List<LeadOrderModel> GetSchoolLeadList(string accountId, int orderStatus,int orderType)
         {
             var client = OrderClientHelper.GetClient();
             var request1 = new SchoolLeadRequest()
             {
                 AccountId = accountId,
-                OrderStatus = orderStatus
+                OrderStatus = orderStatus,
+                OrderType = orderType
             };
             var result = client.GetSchoolLeadList(request1);
             var list = new List<LeadOrderModel>();
@@ -241,7 +259,7 @@ namespace OrderGRPCInterface.Business
                     domain.orderStatus = item.OrderStatus;
                     domain.orderCode = item.OrderCode;
                     domain.orderDate = new DateTime(item.OrderDate).ToString("yyyy-MM-dd");
-                    domain.payDate = new DateTime(item.PayDate).ToString("yyyy-MM-dd HH:mm:ss");
+                    domain.payDate = GetTimestamp(new DateTime(item.PayDate));
                     if(item.Account != null)
                     {
                         domain.account = new SP.Api.Model.Account.AccountModel();
@@ -359,7 +377,7 @@ namespace OrderGRPCInterface.Business
             }
             return status;
         }
-
+        
         public static OrderInfoModel GetOrderByOrderCode(string orderCode)
         {
             var client = OrderClientHelper.GetClient();

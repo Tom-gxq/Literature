@@ -13,15 +13,15 @@ namespace WebApiGateway.App_Start
         private static string public_key = "";
         private static string input_charset = "";
         private static string sign_type = "";
-        private static string notify_url = "http://api.ejiajunxy.cn/AlipayNotify/AlipayManage_Notify";
+        //private static string notify_url = "http://api.ejiajunxy.cn/AlipayNotify/AlipayManage_Notify";
         //Sandbox
-        //private static string notify_url = "http://s1api.ejiajunxy.cn/AlipayNotify/AlipayManage_Notify";
+        private static string notify_url = "http://s1api.ejiajunxy.cn/AlipayNotify/AlipayManage_Notify";
         #endregion
 
         static AlipayManageConfig()
         {
             //合作身份者ID，以2088开头由16位纯数字组成的字符串
-            partner = "2018072660803348";
+            partner = "2088521158402583";
 
             //商户的私钥
             private_key = "MIIEogIBAAKCAQEA0Lwqcl56YhrLM4xvYsVUG2sSisPM67YwjqFjlyrRfh4QYr6A" +
@@ -51,7 +51,7 @@ namespace WebApiGateway.App_Start
                             "+t4DMzqBHDC2USq/wzcGwTJdE/i8e7LUNtjDB61L3Lr8FcxAOMQ=";
 
             //支付宝的公钥，无需修改该值
-            public_key = @"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0Lwqcl56YhrLM4xvYsVUG2sSisPM67YwjqFjlyrRfh4QYr6A8ftWZggw4EEyC/7QlZct26L//iQx0xJCJdeZX1Prp+AO5BP6A/LTihrHRSImnKk6bshNK8ftGRVV+gn5xpAcGSVXNmMTau/13YT5oImyAN2N57+Vfw5khZjrDQSdnI/v1ZOHMh+6M1CpooGnXFUQhfvuOUz8tnG3rhPRUeJx+OI/WokSwDvssceCw7J1tq1yFajsT3veBAH4Lf0CkxQ14cdOhzw1AKyB7QqRpUPVS7s/8m5Dj7BpmOhlNdaC8QxomStQ47/AMfgf0ckVPxC4y4TIFLLEE0r/P+qqWQIDAQAB";
+            public_key = @"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgVKas9ep+tOxGybBpVN4ALXc2DUM0ivZse/4S+mmMrF8yy/tvqUm9vB6sB1JVn2U/cGEaRDMmUPIr3KG9Noiw6roEndcVPullWMMuGxkGgS7OU23pvF61R7PJFAnTqviLBNHAdrVFU0WfQ6cTXgat2pEq858JOtIF+dqTOIaGMR4MBe8XbUYEBXJ/UyroDJkBWZCX6xnz7r2ReB+kgTp5jPMkofs+KMRnNhLxp+H6hvb324P42jrqDechcdBUeAjCo7+iMv85tS/1TcLMp4qt8QXvf5R6viNHdJPsqXLSM+HMxZxlroHMH5u62dFKVbf1DMVzLzWrVrRCpoLDCbPbwIDAQAB";
 
             input_charset = "utf-8";
 

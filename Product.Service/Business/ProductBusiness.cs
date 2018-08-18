@@ -326,7 +326,7 @@ namespace Product.Service.Business
             product.Description = !string.IsNullOrEmpty(entity.Description) ? entity.Description : string.Empty;
             product.SaleStatus = entity.SaleStatus;
             product.ShortDescription = !string.IsNullOrEmpty(entity.ShortDescription) ? entity.ShortDescription : string.Empty;
-            product.Unit = entity.Unit;
+            product.Unit = !string.IsNullOrEmpty(entity.Unit) ? entity.Unit : string.Empty; ;
             product.SkuNum = entity.SkuNum;
             product.AddedDate = entity.AddedDate.Ticks;
             product.VipPrice = entity.VipPrice;
