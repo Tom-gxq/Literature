@@ -162,52 +162,37 @@
             </div>
 
             <div class="row">
-                <div class="col-12 justify-content-center">
+                <div class="col-10 justify-content-center">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        @for (int i = 0; i < Model.TypeList.Count; i++)
+                        @foreach (var type in Model.TypeList)
                         {
-                            if (i == 0)
-                            {
                             <li class="nav-item">
-                                <a class="nav-link active" id="deliverman1-tab_@Model.TypeList[i].TypeId" data-toggle="tab" href="#deliverman1"  role="tab" aria-controls="tab_@Model.TypeList[i].TypeId" aria-selected="true">@Model.TypeList[i].TypeName</a>
+                                <a class="nav-link" id="@type.TypeId" data-toggle="tab" href="#@type.TypeName" role="tab" aria-controls="@type.TypeName" aria-selected="true">@type.TypeName<i class="fa fa-fw fa-close" dataid="@type.TypeId"></i></a>
                             </li>
-                            }
-                            else
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link" id="deliverman1-tab_@Model.TypeList[i].TypeId" data-toggle="tab" href="#deliverman1" role="tab" aria-controls="tab_@Model.TypeList[i].TypeId" aria-selected="true">@Model.TypeList[i].TypeName</a>
-                                </li>
-                            }
                         }
-                        
                     </ul>
-                    <div class="tab-content" id="myTabContent" style="">
+                    <div class="tab-content" id="myTabContent">
+
                         @using SP.Application.Product.DTO
                         @{int j = 0;}
                         @foreach (var key in Model.ProductDic.Keys)
                         {
                             var list = Model.ProductDic[key];
-                            <div class="tab-pane fade show @j==0?active:''" id="tab_@key" role="tabpanel" aria-labelledby="@key">
+                            <div class="tab-pane fade show @j==0?active:''" id="@key.TypeName" role="tabpanel" aria-labelledby="@key.TypeId">
                                 <div class="card-deck">
-                                    @for (int i = 0; i < list.Count; i++)
+                                    @foreach (var product in list)
                                     {
-                                        <div class="card" style="width:200px;height:196px;float: left">
-                                            <div class="card-body">
-
-                                                <img class="card-img-top" src="
-                                         @if (@list[i].ProductImage.Count > 0)
+                                        <div class="card" style="width:200px;height:196px;float: left;margin-right: 1px;margin-left: 1px;flex:0%">
+                                            <img class="card-img-top" src="
+                                         @if (@product.ProductImage.Count > 0)
                                          {
-                                             @list[i].ProductImage[0].ImgPath
+                                             @product.ProductImage[0].ImgPath
                                          }" alt="" style="width:80px;height:80px">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">@list[i].ProductName</h5>
-                                                </div>
-                                                @*<div class="card-footer">
-                            <div class="row">
-                                <label>库存</label><input type="text" class="form-control form-text w-75 h-50" />
-                            </div>
-                        </div>*@
+
+                                            <div class="card-body">
+                                                <h5 class="card-title">@product.ProductName</h5>
                                             </div>
+
                                         </div>
                                     }
                                     <div class="card cardadd" style="width:200px;height:196px;text-align:center;">
@@ -217,12 +202,9 @@
                                     </div>
                                 </div>
                             </div>
-                            j++;
-                        }                        
+                        }
+
                     </div>
-
-
-
                 </div>
             </div>
             <!--trade infomation-->
@@ -257,6 +239,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -293,7 +276,7 @@
     </div>
     <!-- Bootstrap core JavaScript-->
     <script src="~/vendor/jquery/jquery.min.js"></script>
-    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js?v=1"></script>
     <!-- Core plugin JavaScript-->
     <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Page level plugin JavaScript-->
@@ -305,6 +288,20 @@
     <!-- Custom scripts for this page-->
     <script src="~/js/sb-admin-datatables.min.js"></script>
     <script src="~/js/sb-admin-charts.min.js"></script>
+    <script>
+        $(function () {
+            $('#myTab li:eq(0) a').tab('show');
+        });
+
+        $(document).ready(function () {
+            //$('#myTab a').click(function (e) {
+            //    e.preventDefault()
+            //    $(this).tab('show')
+            //})
+        });
+
+    </script>
+
     <script type="text/javascript" src="/js/seajs/sea.js"></script>
     <script type="text/javascript" src="/js/seajs/sea-config.js"></script>
     <script type="text/javascript">

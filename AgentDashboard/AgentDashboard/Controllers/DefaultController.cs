@@ -573,7 +573,7 @@ namespace AgentDashboard.Controllers
                 TelNumber = dto.TelPhone,
                 AccountName = accountInfo?.Fullname??string.Empty,
                 TypeList = new List<Models.ProductTypeModel>(),
-                ProductDic = new Dictionary<int, List<ProductsDto>>()
+                ProductDic = new Dictionary<ProductTypeDto, List<ProductsDto>>()
             };
             IProductTypeService typeService = IocManager.Instance.Resolve<IProductTypeService>();
             
@@ -594,10 +594,10 @@ namespace AgentDashboard.Controllers
                     {
                         if(p.ProductImage != null && p.ProductImage.Count > 0)
                         {
-                            p.ProductImage[0].ImgPath = !string.IsNullOrEmpty(p.ProductImage[0]?.ImgPath) ? domain + p.ProductImage[0].ImgPath : string.Empty;
+                            p.ProductImage[0].ImgPath = !string.IsNullOrEmpty(p.ProductImage[0]?.ImgPath) && !p.ProductImage[0].ImgPath.StartsWith("http://") ? domain + p.ProductImage[0].ImgPath : string.Empty;
                         }
                     }
-                    vm.ProductDic.Add(item.TypeId,pList);
+                    vm.ProductDic.Add(item,pList);
                 }
             }
 
