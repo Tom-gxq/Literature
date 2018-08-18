@@ -1,4 +1,5 @@
-﻿@{
+﻿@model  AgentDashboard.Models.RegionDataViewModel
+@{
     Layout = null;
 }
 
@@ -115,409 +116,44 @@
                         </div>
                         <div class="card-body">
                             <div class="row mb-3">
-                                <div class="col-2"><span class="mb-2">学校</span><select class="form-control w-100"></select></div>
-                                <div class="col-2"><span class="mb-2">院区</span><select class="form-control w-100"></select></div>
-                                <div class="col-2"><span class="mb-2">幢</span><select class="form-control w-100"></select></div>
-                                <div class="col-2"><span class="mb-2">房间</span><select class="form-control w-100"></select></div>
-                                <div class="col-2">
+                                <div class="col-4">
+                                    <span class="mb-2">学校</span>
+                                    <select id="select_university" class="form-control w-100">
+                                        <option value="-1">请选择</option>
+                                        @if (Model != null)
+                                        {
+                                            foreach (var item in Model.Universities)
+                                            {
+                                                <option value="@item.Key">@item.Value</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-4">
+                                    <span class="mb-2">院区</span>
+                                    <select id="select_college" class="form-control w-100">
+                                        <option value="-1">请选择</option>
+                                    </select>
+                                </div>
+                                <div class="col-3">
+                                    <span class="mb-2">幢</span>
+                                    <select id="select_building" class="form-control w-100">
+                                        <option value="-1">请选择</option>
+                                    </select>
+                                </div>
+                                <div class="col-1">
                                     <span class="mb-2">&nbsp;</span>
-                                    <button class="btn btn-primary w-100" type="button">
+                                    <button id="btn_search" class="btn btn-primary w-100" type="button">
                                         <i class="fa fa-search"></i>
                                         检索
                                     </button>
                                 </div>
-                                <div class="col-1">
-                                    <span class="mb-2">&nbsp;</span>
-                                    <button class="btn btn-primary w-100">增加</button>
-                                </div>
-                                <div class="col-1">
-                                    <span class="mb-2">&nbsp;</span>
-                                    <button class="btn btn-primary w-100">修改</button>
-                                </div>
                             </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <i class="fa fa-building"></i>
-                                            <span>院区</span><span>男3</span><span>幢1</span>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>101</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>102</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>103</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>104</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>105</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>106</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>107</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>108</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>109</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>110</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>111</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>112</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <i class="fa fa-building"></i>
-                                            <span>院区</span><span>男3</span><span>幢2</span>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>101</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>102</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>103</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>104</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>105</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>106</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>107</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>108</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>109</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>110</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>111</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>112</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <i class="fa fa-building"></i>
-                                            <span>院区</span><span>男3</span><span>幢3</span>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>101</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>102</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>103</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>104</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>105</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>106</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>107</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>108</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>109</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>110</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>111</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>112</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <i class="fa fa-building"></i>
-                                            <span>院区</span><span>男3</span><span>幢4</span>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>101</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>102</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>103</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>104</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>105</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>106</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>107</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>108</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>109</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>110</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>111</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-sm-3 mb-3">
-                                                    <div class="card o-hidden">
-                                                        <div class="card-body">
-                                                            <div>112</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div id="div_region" class="row">
                             </div>
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
         </div>
@@ -557,14 +193,178 @@
         <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <!-- Core plugin JavaScript-->
         <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
-        <!-- Page level plugin JavaScript-->
-        <script src="~/vendor/chart.js/Chart.min.js"></script>
         <script src="~/vendor/datatables/jquery.dataTables.js"></script>
         <script src="~/vendor/datatables/dataTables.bootstrap4.js"></script>
         <!-- Custom scripts for all pages-->
-        <script src="~/js/sb-admin.min.js"></script>
-        <!-- Custom scripts for this page-->
-        <script src="~/js/sb-admin-charts.min.js"></script>
+        <script src="~/js/sb-admin.js"></script>
+        <script>
+            function getRoom(room) {
+                var cardCol = $("<div></div>")
+                    .addClass("col-xl-1 col-sm-3 mb-3")
+                var cardHidden = $("<div></div>")
+                    .addClass("card o-hidden")
+                    .appendTo(cardCol);
+                var roomCardBody = $("<div></div>")
+                    .addClass("card-body")
+                    .appendTo(cardHidden);
+                var cardCloseIcon = $("<div></div>")
+                    .addClass("card-delete-icon")
+                    .appendTo(roomCardBody);
+                var cardHerf = $("<a></a>")
+                    .addClass("float-right")
+                    .attr("href", "javascript:void(0);")
+                    .appendTo(cardCloseIcon);
+                cardHerf.click(function () {
+                    $.post("DeleteRoom?id=" + room.ID);
+                    cardCol.remove();
+                });
+
+                var cardDelIcon = $("<i></i>")
+                    .addClass("fa fa-window-close fa-lg")
+                    .appendTo(cardHerf);
+                var cardText = $("<div></div>")
+                    .addClass("text-center")
+                    .text(room.Name)
+                    .appendTo(roomCardBody);
+                var inputText = $("<input></input>")
+                    .attr("type", "textbox")
+                    .addClass("text-center w-75")
+                    .val(room.Name);
+
+                cardText.dblclick(function ()
+                {
+                    cardText.empty();
+                    inputText.appendTo(cardText);
+                    inputText.focus();
+                    inputText.blur(function () {
+                        if (room.ID != -1) {
+                            $.post("UpdateRoomName?name=" + inputText.val(), "&dataId=" + room.ID);
+                        }
+                        else {
+                            $.post("CreateRoom?name=" + inputText.val(), "&dataId=" + room.ID + "&parentDataId=" + room.ParentDataID);
+                        }
+                        cardText.empty();
+                        cardText.text(inputText.val());
+                    });
+                });
+
+                if (room.IsDanger) {
+                    roomCardBody.addClass("bg-danger");
+                }
+
+                return cardCol;
+            };
+
+            $(document).ready(function () {
+                $("#select_university").change(function () {
+                    var tData = $.getValues("GetColleges?dataId=" + $(this).val());
+                    $("#select_college").empty();
+                    $("<option></option>")
+                        .val(-1)
+                        .text("请选择")
+                        .appendTo($("#select_college"));
+
+                    $.each(tData, function (i, item)
+                    {
+                        $("<option></option>")
+                            .val(item["ID"])
+                            .text(item["Name"])
+                            .appendTo($("#select_college"));
+                    });
+
+                    $("#select_building").empty();
+                    $("<option></option>")
+                        .val(-1)
+                        .text("请选择")
+                        .appendTo($("#select_building"));
+                });
+
+                $("#select_college").change(function ()
+                {
+                    var tData = $.getValues("GetBuilding?dataId=" + $(this).val());
+                    $("#select_building").empty();
+                    $("<option></option>")
+                        .val(-1)
+                        .text("请选择")
+                        .appendTo($("#select_building"));
+
+                    $.each(tData, function (i, item) {
+                        $("<option></option>")
+                            .val(item["ID"])
+                            .text(item["Name"])
+                            .appendTo($("#select_building"));
+                    });
+                });
+
+                $("#btn_search").click(function ()
+                {
+                    if ($("#select_university").val() == -1) {
+                        alert("请选择学校!");
+                        return;
+                    }
+
+                    var university = $("#select_university").val();
+                    var college = $("#select_college").val();
+                    var building = $("#select_building").val();
+                    var data = $.getValues("GetRegionData?universityId=" + university + "&collegeId=" + college + "&buildingId=" + building);
+                    $("#div_region").empty();
+                    var col_12 = $("<div></div>")
+                        .addClass("col-12")
+                        .appendTo($("#div_region"));
+
+                    $.each(data["Colleges"], function (i, college) {
+                        $.each(college["Buildings"], function (j, building) {
+                            var card = $("<div></div>")
+                                .addClass("card")
+                                .appendTo(col_12);
+                            var cardHeader = $("<div></div>")
+                                .addClass("card-header")
+                                .appendTo(card);
+                            var carIcon = $("<i></i>")
+                                .addClass("fa fa-building")
+                                .appendTo(cardHeader);
+                            $("<span></span>")
+                                .text(college["Name"])
+                                .appendTo(cardHeader);
+                            $("<span></span>")
+                                .text(building["Name"])
+                                .appendTo(cardHeader);
+                            var cardBody = $("<div></div>")
+                                .addClass("card-body")
+                                .appendTo(card);
+                            var cardRow = $("<div></div>")
+                                .addClass("row")
+                                .appendTo(cardBody);
+                            $.each(building["Rooms"], function (k, room) {
+                                getRoom(room).appendTo(cardRow);
+                            });
+
+                            var cardCol = $("<div></div>")
+                                .addClass("col-xl-1 col-sm-3 mb-3")
+                                .appendTo(cardRow);
+                            var cardHidden = $("<div></div>")
+                                .addClass("card o-hidden")
+                                .appendTo(cardCol);
+                            var roomCardBody = $("<div></div>")
+                                .addClass("card-body")
+                                .appendTo(cardHidden);
+                            var cardAddIcon = $("<div></div>")
+                                .addClass("text-center")
+                                .appendTo(roomCardBody);
+                            var cardHerf = $("<a></a>")
+                                .attr("href", "javascript:void(0);")
+                                .appendTo(cardAddIcon);
+                            cardHerf.click(function () {
+                                getRoom({ ID: -1, Name: "?", ParentDataID: building["ID"] }).insertBefore(cardCol);
+                            });
+                            var cardDelIcon = $("<i></i>")
+                                .addClass("fa fa-plus")
+                                .appendTo(cardHerf);
+                        });
+                    });
+                });
+            });
+        </script>
     </div>
 </body>
 
