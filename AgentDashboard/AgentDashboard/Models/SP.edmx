@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AccountAuthentication">
           <Key>
             <PropertyRef Name="AutoId" />
@@ -328,6 +328,15 @@
           <Property Name="TypeId" Type="bigint" Nullable="false" />
           <Property Name="BrandId" Type="nvarchar" MaxLength="64" Nullable="false" />
         </EntityType>
+        <EntityType Name="SP_RegionAccount">
+          <Key>
+            <PropertyRef Name="AccountId" />
+            <PropertyRef Name="RegionId" />
+          </Key>
+          <Property Name="AccountId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="RegionId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="SP_RegionData">
           <Key>
             <PropertyRef Name="DataID" />
@@ -560,6 +569,7 @@
           <EntitySet Name="SP_ProductSKUs" EntityType="Self.SP_ProductSKUs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SP_ProductType" EntityType="Self.SP_ProductType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SP_ProductTypeBrand" EntityType="Self.SP_ProductTypeBrand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SP_RegionAccount" EntityType="Self.SP_RegionAccount" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SP_RegionData" EntityType="Self.SP_RegionData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SP_RegionType" EntityType="Self.SP_RegionType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SP_ResEvent" EntityType="Self.SP_ResEvent" Schema="dbo" store:Type="Tables" />
@@ -593,8 +603,7 @@
     FROM [dbo].[SP_SysKind] AS [SP_SysKind]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1165,7 +1174,17 @@
           <EntitySet Name="SP_UserShipping" EntityType="Self.SP_UserShipping" />
           <EntitySet Name="SP_ShopOwner" EntityType="Self.SP_ShopOwner" />
           <EntitySet Name="SP_SysKind" EntityType="Self.SP_SysKind" />
+          <EntitySet Name="SP_RegionAccount" EntityType="SPModel.SP_RegionAccount" />
         </EntityContainer>
+        <EntityType Name="SP_RegionAccount">
+          <Key>
+            <PropertyRef Name="AccountId" />
+            <PropertyRef Name="RegionId" />
+          </Key>
+          <Property Name="AccountId" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="RegionId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1723,6 +1742,15 @@
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="DiscountValue" ColumnName="DiscountValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SP_RegionAccount">
+            <EntityTypeMapping TypeName="SPModel.SP_RegionAccount">
+              <MappingFragment StoreEntitySet="SP_RegionAccount">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

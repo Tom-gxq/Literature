@@ -1,4 +1,5 @@
-﻿@{
+﻿@model  AgentDashboard.Models.RegionDataViewModel
+@{
     Layout = null;
 }
 
@@ -115,10 +116,32 @@
                         </div>
                         <div class="card-body">
                             <div class="row mb-3">
-                                <div class="col-3"><span>学校</span><select class="form-control w-100"></select></div>
-                                <div class="col-3"><span>院区</span><select class="form-control w-100"></select></div>
-                                <div class="col-3"><span>类别</span><select class="form-control w-100"></select></div>
+                                <div class="col-4">
+                                    <span>学校</span>
+                                    <select id="select_university" class="form-control w-100">
+                                        <option value="-1">请选择</option>
+                                        @if (Model != null)
+                                        {
+                                            foreach (var item in Model.Universities)
+                                            {
+                                                <option value="@item.Key">@item.Value</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-4">
+                                    <span>院区</span>
+                                    <select id="select_college" class="form-control w-100">
+                                        <option value="-1">请选择</option>
+                                    </select>
+                                </div>
                                 <div class="col-3">
+                                    <span>类别</span>
+                                    <select id="select_type" class="form-control w-100">
+                                        <option value="-1">请选择</option>
+                                    </select>
+                                </div>
+                                <div class="col-1">
                                     <span>&nbsp;</span>
                                     <button class="btn btn-primary w-100" type="button">
                                         <i class="fa fa-search"></i>
@@ -147,116 +170,21 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <tr>
-                                            <td>配送员1</td>
-                                            <td>13079801167</td>
-                                            <td>男3</td>
-                                            <td>早餐</td>
-                                            <td>
-                                                <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
-                                                <a class="btn btn-primary text-white" role="button">删除</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>配送员2</td>
-                                            <td>1388976540</td>
-                                            <td>男2</td>
-                                            <td>午餐</td>
-                                            <td>
-                                                <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
-                                                <a class="btn btn-primary text-white" role="button">删除</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>配送员3</td>
-                                            <td>18907654123</td>
-                                            <td>男1</td>
-                                            <td>晚餐</td>
-                                            <td>
-                                                <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
-                                                <a class="btn btn-primary text-white" role="button">删除</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>配送员4</td>
-                                            <td>19928391356</td>
-                                            <td>男7</td>
-                                            <td>早餐</td>
-                                            <td>
-                                                <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
-                                                <a class="btn btn-primary text-white" role="button">删除</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>配送员5</td>
-                                            <td>13987652876</td>
-                                            <td>男5</td>
-                                            <td>午餐</td>
-                                            <td>
-                                                <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
-                                                <a class="btn btn-primary text-white" role="button">删除</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>配送员6</td>
-                                            <td>13987653447</td>
-                                            <td>男5</td>
-                                            <td>午餐</td>
-                                            <td>
-                                                <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
-                                                <a class="btn btn-primary text-white" role="button">删除</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>配送员7</td>
-                                            <td>13987659754</td>
-                                            <td>男8</td>
-                                            <td>午餐</td>
-                                            <td>
-                                                <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
-                                                <a class="btn btn-primary text-white" role="button">删除</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>配送员8</td>
-                                            <td>13987653991</td>
-                                            <td>女1</td>
-                                            <td>早餐</td>
-                                            <td>
-                                                <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
-                                                <a class="btn btn-primary text-white" role="button">删除</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>配送员9</td>
-                                            <td>13987651989</td>
-                                            <td>女5</td>
-                                            <td>午餐</td>
-                                            <td>
-                                                <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
-                                                <a class="btn btn-primary text-white" role="button">删除</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>配送员10</td>
-                                            <td>13987652487</td>
-                                            <td>男5</td>
-                                            <td>午餐</td>
-                                            <td>
-                                                <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
-                                                <a class="btn btn-primary text-white" role="button">删除</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>配送员10</td>
-                                            <td>13987652487</td>
-                                            <td>男5</td>
-                                            <td>午餐</td>
-                                            <td>
-                                                <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
-                                                <a class="btn btn-primary text-white" role="button">删除</a>
-                                            </td>
-                                        </tr>
+                                        @*@if (Model != null)
+                                        {
+                                            foreach (var deliverMan in Model)
+                                            {
+                                                <tr>
+                                                    <td>@deliverMan.FullName</td>
+                                                    <td>@deliverMan.CellPhoneNo</td>
+                                                    <td>@deliverMan.RegionName</td>
+                                                    <td>@deliverMan.TypeName</td>
+                                                    <td>
+                                                        <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }*@
                                     </tbody>
                                 </table>
                             </div>
@@ -302,14 +230,120 @@
         <!-- Core plugin JavaScript-->
         <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
         <!-- Page level plugin JavaScript-->
-        <script src="~/vendor/chart.js/Chart.min.js"></script>
         <script src="~/vendor/datatables/jquery.dataTables.js"></script>
         <script src="~/vendor/datatables/dataTables.bootstrap4.js"></script>
         <!-- Custom scripts for all pages-->
-        <script src="~/js/sb-admin.min.js"></script>
+        <script src="~/js/sb-admin.js"></script>
         <!-- Custom scripts for this page-->
         <script src="~/js/sb-admin-datatables.js"></script>
-        <script src="~/js/sb-admin-charts.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#select_university").change(function () {
+                    var tData = $.getValues("GetColleges?dataId=" + $(this).val());
+                    $("#select_college").empty();
+                    $("<option></option>")
+                        .val(-1)
+                        .text("请选择")
+                        .appendTo($("#select_college"));
+
+                    $.each(tData, function (i, item) {
+                        $("<option></option>")
+                            .val(item["ID"])
+                            .text(item["Name"])
+                            .appendTo($("#select_college"));
+                    });
+
+                    $("#select_type").empty();
+                    $("<option></option>")
+                        .val(-1)
+                        .text("请选择")
+                        .appendTo($("#select_type"));
+                });
+
+                $("#select_college").change(function () {
+                    var tData = $.getValues("GetBuilding?dataId=" + $(this).val());
+                    $("#select_building").empty();
+                    $("<option></option>")
+                        .val(-1)
+                        .text("请选择")
+                        .appendTo($("#select_building"));
+
+                    $.each(tData, function (i, item) {
+                        $("<option></option>")
+                            .val(item["ID"])
+                            .text(item["Name"])
+                            .appendTo($("#select_building"));
+                    });
+                });
+
+                $("#btn_search").click(function () {
+                    if ($("#select_university").val() == -1) {
+                        alert("请选择学校!");
+                        return;
+                    }
+
+                    var university = $("#select_university").val();
+                    var college = $("#select_college").val();
+                    var type = $("#select_type").val();
+                    //var data = $.getValues("GetRegionData?universityId=" + university + "&collegeId=" + college + "&typeId=" + type);
+                    //$("#div_region").empty();
+                    //var col_12 = $("<div></div>")
+                    //    .addClass("col-12")
+                    //    .appendTo($("#div_region"));
+
+                    //$.each(data["Colleges"], function (i, college) {
+                    //    $.each(college["Buildings"], function (j, building) {
+                    //        var card = $("<div></div>")
+                    //            .addClass("card")
+                    //            .appendTo(col_12);
+                    //        var cardHeader = $("<div></div>")
+                    //            .addClass("card-header")
+                    //            .appendTo(card);
+                    //        var carIcon = $("<i></i>")
+                    //            .addClass("fa fa-building")
+                    //            .appendTo(cardHeader);
+                    //        $("<span></span>")
+                    //            .text(college["Name"])
+                    //            .appendTo(cardHeader);
+                    //        $("<span></span>")
+                    //            .text(building["Name"])
+                    //            .appendTo(cardHeader);
+                    //        var cardBody = $("<div></div>")
+                    //            .addClass("card-body")
+                    //            .appendTo(card);
+                    //        var cardRow = $("<div></div>")
+                    //            .addClass("row")
+                    //            .appendTo(cardBody);
+                    //        $.each(building["Rooms"], function (k, room) {
+                    //            getRoom(room).appendTo(cardRow);
+                    //        });
+
+                    //        var cardCol = $("<div></div>")
+                    //            .addClass("col-xl-1 col-sm-3 mb-3")
+                    //            .appendTo(cardRow);
+                    //        var cardHidden = $("<div></div>")
+                    //            .addClass("card o-hidden")
+                    //            .appendTo(cardCol);
+                    //        var roomCardBody = $("<div></div>")
+                    //            .addClass("card-body")
+                    //            .appendTo(cardHidden);
+                    //        var cardAddIcon = $("<div></div>")
+                    //            .addClass("text-center")
+                    //            .appendTo(roomCardBody);
+                    //        var cardHerf = $("<a></a>")
+                    //            .attr("href", "javascript:void(0);")
+                    //            .appendTo(cardAddIcon);
+                    //        cardHerf.click(function () {
+                    //            getRoom({ ID: -1, Name: "?", ParentDataID: building["ID"] }).insertBefore(cardCol);
+                    //        });
+                    //        var cardDelIcon = $("<i></i>")
+                    //            .addClass("fa fa-plus")
+                    //            .appendTo(cardHerf);
+                    //    });
+                    //});
+                });
+            });
+        </script>
     </div>
 </body>
 
