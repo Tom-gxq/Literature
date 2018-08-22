@@ -89,6 +89,7 @@ define(function (require, exports, module) {
                 DataName: divElement.find('.txtName').val(),
                 ParentDataID: divElement.find('.dataId').val(),
                 DataType: divElement.find('.newselect').val(),
+                DisplaySequence: divElement.find('.txtSequence').val(),
 
             };
             user = $.param(user, true);

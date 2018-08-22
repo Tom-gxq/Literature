@@ -197,6 +197,13 @@ namespace SP.Service {
         __Marshaller_ProductRequest,
         __Marshaller_ResultResponse);
 
+    static readonly grpc::Method<global::SP.Service.ProductIdRequest, global::SP.Service.ResultResponse> __Method_DelProduct = new grpc::Method<global::SP.Service.ProductIdRequest, global::SP.Service.ResultResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "DelProduct",
+        __Marshaller_ProductIdRequest,
+        __Marshaller_ResultResponse);
+
     static readonly grpc::Method<global::SP.Service.ProductIdRequest, global::SP.Service.ProductDetailResponse> __Method_GetSellerProductDetail = new grpc::Method<global::SP.Service.ProductIdRequest, global::SP.Service.ProductDetailResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
@@ -487,6 +494,18 @@ namespace SP.Service {
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
       public virtual global::System.Threading.Tasks.Task<global::SP.Service.ResultResponse> UpdateProduct(global::SP.Service.ProductRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 删除产品
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.ResultResponse> DelProduct(global::SP.Service.ProductIdRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -1610,6 +1629,54 @@ namespace SP.Service {
       }
       /// <summary>
       ///*
+      /// 删除产品
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.ResultResponse DelProduct(global::SP.Service.ProductIdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return DelProduct(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 删除产品
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.ResultResponse DelProduct(global::SP.Service.ProductIdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_DelProduct, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 删除产品
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.ResultResponse> DelProductAsync(global::SP.Service.ProductIdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return DelProductAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 删除产品
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.ResultResponse> DelProductAsync(global::SP.Service.ProductIdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_DelProduct, null, options, request);
+      }
+      /// <summary>
+      ///*
       /// 获取产品详情
       /// </summary>
       /// <param name="request">The request to send to the server.</param>
@@ -1786,6 +1853,7 @@ namespace SP.Service {
           .AddMethod(__Method_GetAllProductTypeList, serviceImpl.GetAllProductTypeList)
           .AddMethod(__Method_AddProduct, serviceImpl.AddProduct)
           .AddMethod(__Method_UpdateProduct, serviceImpl.UpdateProduct)
+          .AddMethod(__Method_DelProduct, serviceImpl.DelProduct)
           .AddMethod(__Method_GetSellerProductDetail, serviceImpl.GetSellerProductDetail)
           .AddMethod(__Method_UpdateProductSaleStatus, serviceImpl.UpdateProductSaleStatus)
           .AddMethod(__Method_GetShopStatus, serviceImpl.GetShopStatus).Build();

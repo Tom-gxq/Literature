@@ -38,6 +38,7 @@ namespace SP.Api.Model.Product
         public double vipPrice { get; set; }
         public string accountId { get; set; }
         public string productId { get; set; }
-        public bool saleStatus { get; set; } 
+        public bool saleStatus { get; set; }
+        public string suppliersId { get; set; }
     }
 }

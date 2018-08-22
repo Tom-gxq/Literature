@@ -82,7 +82,7 @@ namespace AgentDashboard.Controllers
                     {
                         IRegionAppService service = IocManager.Instance.Resolve<IRegionAppService>();
                         var region = service.GetRegionDataDetail(item.RegionId.Value);
-                        item.DistrictName = region.DataName;
+                        item.DistrictName = region?.DataName??string.Empty;
                     }
                 }
             }
@@ -389,11 +389,19 @@ namespace AgentDashboard.Controllers
             return View();
         }
 
-        public ActionResult ShopManager()
+        public ActionResult ShopManager(string productId = "", int sellerId = 0, int type = -1)
         {
             List<SellerViewModel> shopsVM = null;
             ISupplerAppService service = IocManager.Instance.Resolve<ISupplerAppService>();
-            var list = service.GetSupplerList();
+            List<SupplerDto> list = null;
+            if (string.IsNullOrEmpty(productId) && sellerId == 0 && type == -1)
+            {
+                list = service.GetSupplerList();
+            }
+            else
+            {
+                list = service.SearchSuppler(productId, sellerId, type, 1, 20);
+            }
             
             shopsVM = list.Select(x => new SellerViewModel
             {
@@ -501,7 +509,7 @@ namespace AgentDashboard.Controllers
                         IAccountAppService accountService = IocManager.Instance.Resolve<IAccountAppService>();
                         accountService.UpdateAccountUserType(model.AccountId, 1);
                     }
-                    JsonResult.Add("status", ret);
+                    JsonResult.Add("status", ret ? 0 : -1);
                 }
             }
 
@@ -540,6 +548,25 @@ namespace AgentDashboard.Controllers
                 PermitPath = model.PermitPath,                
             });
             JsonResult.Add("status", ret);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public JsonResult SearchOrderListByKeyWord(string keyWord, int pageIndex, int pageSize)
+        {
+            Dictionary<string, object> JsonResult = new Dictionary<string, object>();
+            IOrderAppService service = IocManager.Instance.Resolve<IOrderAppService>();
+            var result = service.SearchOrderListByKeyWord(keyWord, pageIndex, pageSize);
+            JsonResult.Add("result", result);
+            var total = service.SearchOrderListByKeyWordCount(keyWord);
+            PageModel jObject = new PageModel();
+            jObject.Total = (int)total;
+            jObject.Pages = (int)Math.Ceiling(Convert.ToDouble(total) / pageSize);
+            jObject.Index = pageIndex;
+            JsonResult.Add("data", jObject);
 
             return new JsonResult()
             {
@@ -670,6 +697,31 @@ namespace AgentDashboard.Controllers
             catch (Exception ex)
             {
                 JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+        public ActionResult DelProduct(string productId,string suplierId)
+        {
+            Dictionary<string, object> JsonResult = new Dictionary<string, object>();
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                var product = ProductBusiness.GetSellerProductDetail(productId);
+                if(product.suppliersId == suplierId)
+                {
+                    var list = ProductBusiness.DelProduct(productId);
+                    JsonResult.Add("status", 0);
+                }
+                else
+                {
+                    JsonResult.Add("status", 1);
+                }
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("status", -1);
             }
             result.Data = JsonResult;
             return result;

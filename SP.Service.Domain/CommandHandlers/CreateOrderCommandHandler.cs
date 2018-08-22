@@ -17,6 +17,7 @@ using System.Linq;
 using SP.Service.Domain.DelayQueue;
 using Newtonsoft.Json.Linq;
 using SP.Service.Domain.Commands.Order;
+using SP.Service.Domain.Util;
 
 namespace SP.Service.Domain.CommandHandlers
 {
@@ -93,7 +94,8 @@ namespace SP.Service.Domain.CommandHandlers
                                 }
                                 if (cartDomain.Product != null && !string.IsNullOrEmpty(cartDomain.Product.ProductId))
                                 {
-                                    var skuDomain = _skuReportDatabase.GetProductSkuByProductId(cartDomain.ShopId, cartDomain.Product.ProductId);
+                                    string host = OrderCommon.GetHost();
+                                    var skuDomain = _skuReportDatabase.GetProductSkuByProductId(cartDomain.ShopId, cartDomain.Product.ProductId, host);
                                     if (!string.IsNullOrEmpty(shoppingCart?.OrderId) && (skuDomain?.Stock ?? 0) < cartDomain.Quantity)
                                     {
                                         throw new ProductSkuException(string.Format($"ShopId={skuDomain.ShopId} " +

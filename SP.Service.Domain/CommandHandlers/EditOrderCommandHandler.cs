@@ -22,11 +22,12 @@ namespace SP.Service.Domain.CommandHandlers
         private OrderReportDatabase _orderReportDatabase;
         private AccountFinanceReportDatabase _financeReportDatabase;
         private AddressReportDatabase _addressReportDatabase;
+        private ShipOrderReportDatabase _shipReportDatabase;
 
         public EditOrderCommandHandler(IDataRepository<OrderDomain> repository, IDataRepository<TradeDomain> tradeRepository,
             IDataRepository<AccountFinanceDomain> financeRepository, OrderReportDatabase orderReportDatabase, 
             IDataRepository<ProductSkuDomain> skuRepository, AccountFinanceReportDatabase financeReportDatabase,
-            AddressReportDatabase addressReportDatabase)
+            AddressReportDatabase addressReportDatabase, ShipOrderReportDatabase shipReportDatabase)
         {
             this._repository = repository;
             this._tradeRepository = tradeRepository;
@@ -35,6 +36,7 @@ namespace SP.Service.Domain.CommandHandlers
             this._skuRepository = skuRepository;
             this._financeReportDatabase = financeReportDatabase;
             this._addressReportDatabase = addressReportDatabase;
+            this._shipReportDatabase = shipReportDatabase;
         }
 
         public void Execute(EditOrderCommand command)
@@ -125,14 +127,15 @@ namespace SP.Service.Domain.CommandHandlers
                 }
                 else if (orderStatus == Data.Enum.OrderStatus.Payed)
                 {
-                    foreach (var cart in order.ShoppingCarts)
+                    var list = _shipReportDatabase.GetShippingOrdersByOrderId(order.OrderId);
+                    foreach (var ship in list)
                     {
-                        if (cart != null && !string.IsNullOrEmpty(cart.CartId))
+                        if (ship != null && ship.Id > 0)
                         {
-                            System.Console.WriteLine("Payed EditProductSkuDomainStock Quantity=" + cart.Quantity);
+                            System.Console.WriteLine("Payed EditProductSkuDomainStock Quantity=" + ship.Stock);
                             var sku = new ProductSkuDomain();
                             //sku.EditProductSkuDomainStock(cart.Product.ProductId, cart.Quantity);
-                            sku.EditProductSkuOrderNum(cart.ShopId,cart.Product.ProductId, cart.Quantity);
+                            sku.EditProductSkuOrderNum(ship.ShopId.Value, ship.ProductId, ship.ShippingId, ship.Stock.Value);
                             _skuRepository.Save(sku);
                         }
                     }

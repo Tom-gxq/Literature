@@ -164,7 +164,8 @@ namespace SP.Application.Product
                 DataType = region.DataType,
                 DataName = region.DataName,
                 ParentDataID = region.ParentDataID,
-                UpdateTime = DateTime.Now
+                UpdateTime = DateTime.Now,
+                DisplaySequence = region.DisplaySequence
             });
         }
         public List<RegionTypeDto> GetRegionTypeList(int pageIndex, int pageSize)
@@ -236,6 +237,7 @@ namespace SP.Application.Product
                 ParentDataName = string.Empty,
                 CreateTime = region.CreateTime != null ? region.CreateTime.Value: DateTime.MinValue,
                 UpdateTime = region.UpdateTime != null ? region.UpdateTime.Value : DateTime.MinValue,                
+                DisplaySequence = region.DisplaySequence
             };
             if (regionDto.ParentDataID > 0)
             {

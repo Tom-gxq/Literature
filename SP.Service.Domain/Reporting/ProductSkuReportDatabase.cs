@@ -2,6 +2,7 @@
 using SP.Service.Domain.DomainEntity;
 using SP.Service.Entity;
 using SP.Service.EntityFramework.Repositories;
+using StockGRPCInterface;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,12 +16,27 @@ namespace SP.Service.Domain.Reporting
         {
             _repository = repository;
         }
-        public ProductSkuDomain GetProductSkuByProductId(int shopId,string productId)
+        public ProductSkuDomain GetProductSkuByProductId(int shopId,string productId, string host)
         {
-            var sku = _repository.GetProductSkuByProductId(shopId,productId);
-
-            return ConvertSkuEntityToDomain(sku); ;
+            //var sku = _repository.GetProductSkuByProductId(shopId,productId, accountId);
+            //return ConvertSkuEntityToDomain(sku);
+            var response = StockBusiness.GetProductSku(host,productId, shopId);
+            ProductSkuDomain domain = new ProductSkuDomain();
+            domain.ShopId = shopId;
+            domain.ProductId = productId;
+            if (response != null && response.Sku != null && response.Sku.Count > 0)
+            {
+                domain.Stock = response.Sku[0].Stock;
+            }
+            return domain;
         }
+        public ProductSkuDomain GetProductSku(int shopId, string productId, string accountId)
+        {
+            var sku = _repository.GetProductSkuByProductId(shopId, productId, accountId);
+            return ConvertSkuEntityToDomain(sku);
+
+        }
+
         public bool UpdateProductSkuStock(ProductSkuEntity entity)
         {
             var result = _repository.UpdateProductSkuStock(entity);

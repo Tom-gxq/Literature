@@ -49,13 +49,10 @@ namespace SP.Service.Domain.EventHandlers
             lock (lockObj)
             {
                 System.Console.WriteLine("RedoProductSkuEvent ShopId=" + handle.ShopId + "  ProductId=" + handle.ProductId);
-                var domaint = _reportDatabase.GetProductSkuByProductId(handle.ShopId, handle.ProductId);
-                if (domaint != null && !string.IsNullOrEmpty(domaint.SkuId))
-                {
-                    System.Console.WriteLine("RedoProductSkuEvent Stock=" + domaint.Stock);
-                    var response = StockBusiness.RedoProductSku(handle.Host, handle.AccountId, handle.ProductId, handle.ShopId, handle.RedoStock);
-                    System.Console.WriteLine("RedoProductSkuEvent result=" + response.Status);
-                }
+                
+                System.Console.WriteLine("RedoProductSkuEvent Stock=" + handle.RedoStock + " Host="+ handle.Host);
+                var response = StockBusiness.RedoProductSku(handle.Host, handle.AccountId, handle.ProductId, handle.ShopId, handle.RedoStock);
+                System.Console.WriteLine("RedoProductSkuEvent result=" + response.Status);
             }
         }
     }

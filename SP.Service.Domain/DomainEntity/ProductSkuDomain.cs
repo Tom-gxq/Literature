@@ -29,9 +29,9 @@ namespace SP.Service.Domain.DomainEntity
         {
 
         }
-        public void EditProductSkuOrderNum(int shopId, string productId, int orderNum)
+        public void EditProductSkuOrderNum(int shopId, string productId, string accountId, int orderNum)
         {
-            ApplyChange(new ProductSkuOrderNumEvent(shopId, productId, orderNum));
+            ApplyChange(new ProductSkuOrderNumEvent(shopId, productId, accountId, orderNum));
         }
         public void EditProductSkuDomainStock(int shopId,string productId, int stock, string orderId,string accountId)
         {

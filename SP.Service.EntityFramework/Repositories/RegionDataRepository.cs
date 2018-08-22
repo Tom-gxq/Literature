@@ -3,6 +3,7 @@ using ServiceStack.OrmLite;
 using SP.Service.Entity;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SP.Service.EntityFramework.Repositories
@@ -16,7 +17,8 @@ namespace SP.Service.EntityFramework.Repositories
 
         public List<RegionDataEntity> GetRegionDataList(int dataType)
         {
-            return this.Select(x => x.Status == 1 && x.DataType == dataType);
+            return this.Select(x => x.Status == 1 && x.DataType == dataType)
+                .OrderBy(x => x.DisplaySequence).ToList();
         }
 
         public RegionEntity GetRegionData(int dataId)
@@ -52,7 +54,8 @@ namespace SP.Service.EntityFramework.Repositories
 
         public List<RegionDataEntity> GetChildRegionData(int dataId)
         {
-            return this.Select(x => x.Status == 1 && x.ParentDataID == dataId);
+            return this.Select(x => x.Status == 1 && x.ParentDataID == dataId)
+                .OrderBy(x=>x.DisplaySequence).ToList();
         }
 
         public List<RegionDataEntity>  GetSelectedRegionDataList(string accountId)
@@ -62,6 +65,7 @@ namespace SP.Service.EntityFramework.Repositories
             {
                 var q = db.From<RegionDataEntity>();
                 q = q.Join<RegionDataEntity, AccountAddressEntity>((a, e) => e.AccountId == accountId && a.DataID == e.RegionID && e.RegionID > 1);
+                q = q.OrderBy(x=>x.DisplaySequence);
                 return db.Select<RegionDataEntity>(q);
             }
         }

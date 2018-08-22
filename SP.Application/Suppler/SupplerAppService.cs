@@ -81,7 +81,7 @@ namespace SP.Application.Suppler
         {
             var retList = new List<SupplerDto>();
             var repository = IocManager.Instance.Resolve<SupplersRepository>();
-            var list = repository.GeAllSupplerList();
+            var list = repository.SearchSuppler(productId, supplerId, type, pageIndex, pageSize);
             foreach (var item in list)
             {
                 var entity = ConvertFromRepositoryEntity(item);

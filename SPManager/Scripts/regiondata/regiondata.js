@@ -106,7 +106,7 @@ define(function (require, exports, module) {
                 if (event.keyCode == 13)
                     _self.getBrandList(1, {});
 
-            });
+            });            
             $(".btn_table_selectAll").click(function () {
                 $('.contenttr').find("input").prop("checked", true);
             });
@@ -217,6 +217,10 @@ define(function (require, exports, module) {
                 });
                 event.stopPropagation();
                 return false;
+            });
+            item.find(".child").click(function (event) {
+                $("#dataId").val($(this).attr('dataid'));
+                _self.getBrandList(1, {});
             });
         },
         /**

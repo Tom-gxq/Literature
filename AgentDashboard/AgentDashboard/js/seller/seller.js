@@ -93,8 +93,11 @@ define(function (require, exports, module) {
                     }
                 );
             });
-            $("#btnSearch").click(function () {                
-                window.location.href = 'SearchSeller';
+            $("#btnSearch").click(function () {   
+                var productId = $("#productId").val();
+                var sellerId = $("#sellerId").val();
+                var type = $("#selleType").val();
+                window.location.href = 'ShopManager?productId=' + productId + '&sellerId=' + sellerId + '&type=' + type;
             });
             $("#btnAdd").click(function (obj) {
                 //弹出添加的操作框
@@ -232,8 +235,8 @@ define(function (require, exports, module) {
 
                     response($.map(data.items, function (item) {
                         return {
-                            label: item.ProductName,
-                            valueKey: item.ProductId
+                            label: item.SuppliersName,
+                            valueKey: item.Id
                         }
                     }));
                 },

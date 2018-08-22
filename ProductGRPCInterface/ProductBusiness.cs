@@ -359,6 +359,23 @@ namespace ProductGRPCInterface
                 return false;
             }
         }
+        public static bool DelProduct(string productId)
+        {
+            var client = ProductClientHelper.GetClient();
+            var request1 = new ProductIdRequest()
+            {                
+                 ProductId = productId
+            };
+            var result = client.DelProduct(request1);
+            if (result.Status == 10001)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         public static bool UpdateProductSaleStatus(string productId, int status)
         {
@@ -540,6 +557,7 @@ namespace ProductGRPCInterface
                 model.purchasePrice = result.Product.PurchasePrice;
                 model.marketPrice = result.Product.MarketPrice;
                 model.productId = result.Product.ProductId;
+                model.suppliersId = result.Product.SuppliersId;
             }
             return model;
         }

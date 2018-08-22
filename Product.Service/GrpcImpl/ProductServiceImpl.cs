@@ -309,6 +309,24 @@ namespace Product.Service.GrpcImpl
             return Task.FromResult(response);
         }
 
+        public override Task<ResultResponse> DelProduct(ProductIdRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} DelProduct Connected!",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, " {ProductId}  ",request.ProductId );
+            var response = new ResultResponse();
+            response.Status = 10002;
+            try
+            {
+                response = ProductBusiness.DelProduct(request.ProductId);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "DelProduct Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "DelProduct {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
         public override Task<ResultResponse> UpdateProductSaleStatus(ProductSaleStatusRequest request, ServerCallContext context)
         {
             logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} UpdateProductSaleStatus Connected!",

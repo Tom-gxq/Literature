@@ -120,7 +120,7 @@ namespace SP.ManageEntityFramework.Repositories
 
         public SuppliersEntity GetSellerDataByAccountId(string accountId)
         {
-            return this.Single(x=>x.AccountId == accountId);
+            return this.Single(x=>x.AccountId == accountId && x.Status == 0);
         }
     }
 }

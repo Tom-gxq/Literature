@@ -19,5 +19,6 @@ namespace SP.Application.Product.DTO
         public DateTime UpdateTime { get; set; }
         public int DistrictID { get; set; }
         public string DistrictName { get; set; }
+        public int? DisplaySequence { get; set; }
     }
 }

@@ -209,6 +209,35 @@
         <script src="~/js/sb-admin.min.js"></script>
         <!-- Custom scripts for this page-->
         <script src="~/js/sb-admin-charts.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("input[type='checkbox']").each(function (i) {
+                    var chkId = $(this).attr("Id");
+                    $("#" + chkId).change(function () {
+                        var id = chkId.split("_")[1];
+                        var labelId = "Lable_" + id;
+                        var jsonObj = [];
+                        var isChecked = $(this).prop("checked");
+                        jsonObj.push({ Id: id, ShopStatus: isChecked });
+                        var shopStatus = "闭店";
+                        if (isChecked) {
+                            shopStatus = "开店";
+                        }
+
+                        $.ajax({
+                            type: "POST",
+                            url: "UpdateShopStatus",
+                            data: JSON.stringify(jsonObj),
+                            dataType: "json",
+                            success: function (response) {
+                                $("#" + labelId).text(shopStatus)
+                            }
+                        });
+                    });
+                });
+            });
+
+        </script>
     </div>
 </body>
 

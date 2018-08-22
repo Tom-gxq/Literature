@@ -50,6 +50,14 @@ namespace SP.ManageEntityFramework.Repositories
                 return db.Select(q);
             }
         }
+        public long SearchOrderListByKeyWordCount(string keyWord)
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<OrdersEntity>().Where(x => x.Meta_Keywords.Contains(keyWord));
+                return db.Select(q).Count();
+            }
+        }
         public List<ShoppingCartsEntity> GetOrderProduct(string orderId)
         {
             using (var db = Context.OpenDbConnection())

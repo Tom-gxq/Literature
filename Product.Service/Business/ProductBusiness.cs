@@ -437,6 +437,14 @@ namespace Product.Service.Business
             return result;
         }
 
+        public static ResultResponse DelProduct(string productId)
+        {
+            ServiceLocator.CommandBus.Send(new DelProductCommand(new Guid(productId)));
+            var result = new ResultResponse();
+            result.Status = 10001;
+            return result;
+        }
+
         public static ResultResponse UpdateProductSaleStatus(string productId, int status)
         {
             ServiceLocator.CommandBus.Send(new EditSaleStatusCommand(new Guid(productId), status));
@@ -459,6 +467,7 @@ namespace Product.Service.Business
                 result.Product.MarketPrice = product.MarketPrice != null ? product.MarketPrice.Value : 0;
                 result.Product.PurchasePrice = product.PurchasePrice != null ? product.PurchasePrice.Value : 0;
                 result.Product.ProductId = product.ProductId;
+                result.Product.SuppliersId = product.SuppliersId;
                 var image = ServiceLocator.ProductImageReportDatabase.GetProductImage(productId);
                 if (image != null)
                 {

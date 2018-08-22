@@ -57,6 +57,10 @@ namespace SP.Service.Domain.DomainEntity
         {
             ApplyChange(new SaleStatusEditEvent(id, status));
         }
+        public void DelProduct(Guid id)
+        {
+            ApplyChange(new ProductDelEvent(id));
+        }
         public void Handle(ProductCreatedEvent e)
         {
             this.Id = e.AggregateId;
@@ -82,6 +86,10 @@ namespace SP.Service.Domain.DomainEntity
         public void Handle(SaleStatusEditEvent e)
         {
             this.SaleStatus = e.Status;
+        }
+        public void Handle(ProductDelEvent e)
+        {
+            this.ProductId = e.AggregateId.ToString();
         }
         public void SetMemento(BaseEntity memento)
         {

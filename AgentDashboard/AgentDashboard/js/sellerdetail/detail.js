@@ -83,7 +83,40 @@ define(function (require, exports, module) {
                     }
                 });
             });
-
+            $(".fa-close").click(function (obj) {
+                var dataId = this.getAttribute("dataid");
+                var leaderId = $("#leaderId").val();
+                Global.post('DelProduct', {
+                    productId: dataId,
+                    suplierId: leaderId
+                },
+                    function (data) {
+                        switch (data.status) {
+                            case 0:
+                                //重新加载页面
+                                window.location.href = '/Default/SellerDetails?sellerId=' + $("#sellerId").val();
+                                break;
+                            case 1:
+                                easydialog.open({
+                                    container: {
+                                        content: '该产品不是这个负责人的'
+                                    }
+                                });
+                                setTimeout(function () { easydialog.close(); }, 1500);
+                                break;
+                            
+                            default:
+                                easydialog.open({
+                                    container: {
+                                        content: '删除商家产品失败'
+                                    }
+                                });
+                                setTimeout(function () { easydialog.close(); }, 1500);
+                                break;
+                        }
+                    }
+                );
+            });
             
             var completeInfo = require('complete');
             completeInfo.createComplete({

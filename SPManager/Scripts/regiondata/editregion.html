@@ -6,6 +6,8 @@
                     <ul>
                         <li style="width:100%">
                             <input tabindex="1" class="input-text width400 Check txtId" type="hidden" value="{%=$data.DataId %}" />
+                            <span class="grayfont span">排序:</span>
+                            <input tabindex="1" class="input-text width400 Check txtSequence" type="text" value="" placeholder="{%=$data.DisplaySequence %}" />
                         </li>
                         <li style="width:100%">
                             <span class="grayfont span">区域名:</span>
@@ -22,6 +24,8 @@
                                 <option value="0" selected="">&nbsp;</option>
                                 <option value="1" {%=$data.DataType==1?'selected':'' %}>学校</option>
                                 <option value="2" {%=$data.DataType==2?'selected':'' %}>院区</option>
+                                <option value="3" {%=$data.DataType ==3?'selected':'' %}>栋</option>
+                                <option value="4" {%=$data.DataType ==4?'selected':'' %}>宿舍</option>
                             </select>
                         </li>
                     </ul>

@@ -213,5 +213,14 @@ namespace SP.Service.EntityFramework.Repositories
                 return db.Select(q).Count();
             }
         }
+        public int Del(string prductId)
+        {
+            using (var db = OpenDbConnection())
+            {
+                var result = this.Delete(x => x.ProductId == prductId);
+                return result;
+            }
+        }
+
     }
 }

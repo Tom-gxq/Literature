@@ -9,12 +9,14 @@ namespace SP.Service.Domain.Events
     {
         public int ShopId { get; set; }
         public string ProductId { get; set; }
+        public string AccountId { get; set; }
         public int OrderNum { get; set; }
-        public ProductSkuOrderNumEvent(int shopId, string productId, int orderNum)
+        public ProductSkuOrderNumEvent(int shopId, string productId, string accountId, int orderNum)
         {
             this.ProductId = productId;
             this.OrderNum = orderNum;
             this.ShopId = shopId;
+            this.AccountId = accountId;
         }
     }
 }

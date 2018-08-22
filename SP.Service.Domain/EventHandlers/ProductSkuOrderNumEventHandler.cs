@@ -1,6 +1,7 @@
 ﻿using Grpc.Service.Core.Domain.Handlers;
 using SP.Service.Domain.Events;
 using SP.Service.Domain.Reporting;
+using SP.Service.Domain.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,7 +20,7 @@ namespace SP.Service.Domain.EventHandlers
         {
             lock (lockObj)
             {
-                var domaint = _reportDatabase.GetProductSkuByProductId(handle.ShopId, handle.ProductId);
+                var domaint = _reportDatabase.GetProductSku(handle.ShopId, handle.ProductId, handle.AccountId);
                 if (domaint != null && !string.IsNullOrEmpty(domaint.SkuId))
                 {
                     var result = _reportDatabase.UpdateProductSkuOrderNum(new Entity.ProductSkuEntity()

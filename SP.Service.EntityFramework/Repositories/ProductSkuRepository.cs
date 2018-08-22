@@ -12,9 +12,9 @@ namespace SP.Service.EntityFramework.Repositories
         {
             DbConnection = context.GetConnectionString();
         }
-        public ProductSkuEntity GetProductSkuByProductId(int shopId, string productId)
+        public ProductSkuEntity GetProductSkuByProductId(int shopId, string productId,string accountId)
         {
-            var result = this.Single(x =>x.ShopId == shopId && x.ProductId == productId 
+            var result = this.Single(x =>x.ShopId == shopId && x.ProductId == productId && x.AccountId== accountId
             && x.EffectiveTime >= DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd")));
             return result;
         }

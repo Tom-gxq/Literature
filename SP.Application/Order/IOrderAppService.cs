@@ -16,5 +16,6 @@ namespace SP.Application.Order
         bool UpdateOrderStatus(string orderId, int status);
         bool DeleteOrderById(string orderId);
         List<OrderDto> SearchOrderListByKeyWord(string keyWord, int pageIndex, int pageSize);
+        long SearchOrderListByKeyWordCount(string keyWord);
     }
 }

@@ -21,15 +21,17 @@
 </tr>
 <tr class="contenttr">
     <td >
-        {% for(var ii =0, jj=$data[i].ProductList.length; ii< jj; ii++) { %}
-        {%if($data[i].ProductList[ii].ProductImage.length>0){%}
-        <img src="{%=$data[i].ProductList[ii].ProductImage[0].ImgPath %}" width="40px" height="40px">
-        {%}else{%}
-        <img src="" width="40px" height="40px"/>
-        {%}%}
-        <div>{%=$data[i].ProductList[ii].ProductName %}</div>
-        <div>¥{%=$data[i].ProductList[ii].MarketPrice %}</div>
-        <div>数量：{%=$data[i].ProductList[ii].Quantity %}</div>
+        {%if($data[i].ProductList !=null){%}
+            {% for(var ii =0, jj=$data[i].ProductList.length; ii< jj; ii++) { %}
+                {%if($data[i].ProductList[ii].ProductImage.length>0){%}
+                <img src="{%=$data[i].ProductList[ii].ProductImage[0].ImgPath %}" width="40px" height="40px">
+                {%}else{%}
+                <img src="" width="40px" height="40px"/>
+                {%}%}
+                <div>{%=$data[i].ProductList[ii].ProductName %}</div>
+                <div>¥{%=$data[i].ProductList[ii].MarketPrice %}</div>
+                <div>数量：{%=$data[i].ProductList[ii].Quantity %}</div>
+            {% } %}
         {% } %}
     </td>
     <td class="center">

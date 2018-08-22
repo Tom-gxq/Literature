@@ -4,11 +4,11 @@
     <td>
         <input type="checkbox"  value="{%=$data[i].DataId %}" >
     </td>
-    <td class="center">
-        <div>{%=$data[i].DataName %}</div>
+    <td class="center" >
+        <div class="child" dataid="{%=$data[i].DataId %}"><a href="#">{%=$data[i].DataName %}</a></div>
     </td>
     <td>
-        <p></p>
+        <div class="child" >{%=$data[i].DisplaySequence %}</div>
     </td>    
     <td data-item_id="{%=$data[i].DataId %}" class="center"> 
         {%if($data[i].DataType ==2){%}

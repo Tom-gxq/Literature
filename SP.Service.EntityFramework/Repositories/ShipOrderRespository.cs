@@ -25,7 +25,7 @@ namespace SP.Service.EntityFramework.Repositories
             using (var db = OpenDbConnection())
             {
                 var q = db.From<ShippingOrdersEntity>();
-                q = q.Where(x=>x.OrderId == orderId && x.IsShipped != true);
+                q = q.Where(x=>x.OrderId == orderId && (x.IsShipped == false || x.IsShipped == null));
                 return db.Select(q);
             }
         }

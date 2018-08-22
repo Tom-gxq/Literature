@@ -27,6 +27,7 @@ namespace SP.Service.Domain.CommandHandlers
 
         public void Execute(OrderRedoStockCommand command)
         {
+            System.Console.WriteLine($"OrderRedoStockCommand Handler ");
             var orderDomain = _orderReportDatabase.GetOrderByOrderId(command.Id.ToString());
             
             if ((orderDomain != null)&&(orderDomain.OrderStatus ==  Data.Enum.OrderStatus.WaitPay))
@@ -34,9 +35,10 @@ namespace SP.Service.Domain.CommandHandlers
                 var carts = _shipOrderReportDatabase.GetShippingOrdersByOrderId(command.Id.ToString());
                 foreach (var cart in carts)
                 {
+                    System.Console.WriteLine("RedoProductSkuDomainStock OrderId=" + orderDomain.OrderId + "  ProductId=" + cart.ProductId + "  ShippingId=" + cart.ShippingId??string.Empty);
                     if (cart != null && !string.IsNullOrEmpty(cart.ShippingId) && !string.IsNullOrEmpty(cart.ProductId))
                     {
-                        System.Console.WriteLine("RedoProductSkuDomainStock OrderId="+ orderDomain.OrderId + "  ProductId="+ cart.ProductId + "  Quantity=" + cart.Stock+ " OrderDate=" + orderDomain.OrderDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                        System.Console.WriteLine("RedoProductSkuDomainStock  Quantity=" + cart.Stock+ " OrderDate=" + orderDomain.OrderDate.ToString("yyyy-MM-dd HH:mm:ss"));
                         var sku = new ProductSkuDomain();
                         sku.RedoProductSkuDomainStock(cart.ShopId.Value,cart.ProductId, cart.Stock.Value, cart.OrderId,cart.ShippingId);
                         _skuRepository.Save(sku);

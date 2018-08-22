@@ -23,7 +23,7 @@ namespace SP.Service {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChRQcm9kdWN0U2VydmljZS5wcm90bxIKU1AuU2VydmljZRoRQ29tbW9uTW9k",
-            "ZWwucHJvdG8aElByb2R1Y3RNb2RlbC5wcm90bzLoEQoOUHJvZHVjdFNlcnZp",
+            "ZWwucHJvdG8aElByb2R1Y3RNb2RlbC5wcm90bzKyEgoOUHJvZHVjdFNlcnZp",
             "Y2USUwoOR2V0UHJvZHVjdExpc3QSHi5TUC5TZXJ2aWNlLlByb2R1Y3RMaXN0",
             "UmVxdWVzdBofLlNQLlNlcnZpY2UuUHJvZHVjdExpc3RSZXNwb25zZSIAElQK",
             "EEdldFByb2R1Y3REZXRhaWwSHC5TUC5TZXJ2aWNlLlByb2R1Y3RJZFJlcXVl",
@@ -68,13 +68,15 @@ namespace SP.Service {
             "bnNlIgASRgoKQWRkUHJvZHVjdBIaLlNQLlNlcnZpY2UuUHJvZHVjdFJlcXVl",
             "c3QaGi5TUC5TZXJ2aWNlLlJlc3VsdFJlc3BvbnNlIgASSQoNVXBkYXRlUHJv",
             "ZHVjdBIaLlNQLlNlcnZpY2UuUHJvZHVjdFJlcXVlc3QaGi5TUC5TZXJ2aWNl",
-            "LlJlc3VsdFJlc3BvbnNlIgASWwoWR2V0U2VsbGVyUHJvZHVjdERldGFpbBIc",
-            "LlNQLlNlcnZpY2UuUHJvZHVjdElkUmVxdWVzdBohLlNQLlNlcnZpY2UuUHJv",
-            "ZHVjdERldGFpbFJlc3BvbnNlIgASXQoXVXBkYXRlUHJvZHVjdFNhbGVTdGF0",
-            "dXMSJC5TUC5TZXJ2aWNlLlByb2R1Y3RTYWxlU3RhdHVzUmVxdWVzdBoaLlNQ",
-            "LlNlcnZpY2UuUmVzdWx0UmVzcG9uc2UiABJPCg1HZXRTaG9wU3RhdHVzEhwu",
-            "U1AuU2VydmljZS5BY2NvdW50SWRSZXF1ZXN0Gh4uU1AuU2VydmljZS5TaG9w",
-            "U3RhdHVzUmVzcG9uc2UiAGIGcHJvdG8z"));
+            "LlJlc3VsdFJlc3BvbnNlIgASSAoKRGVsUHJvZHVjdBIcLlNQLlNlcnZpY2Uu",
+            "UHJvZHVjdElkUmVxdWVzdBoaLlNQLlNlcnZpY2UuUmVzdWx0UmVzcG9uc2Ui",
+            "ABJbChZHZXRTZWxsZXJQcm9kdWN0RGV0YWlsEhwuU1AuU2VydmljZS5Qcm9k",
+            "dWN0SWRSZXF1ZXN0GiEuU1AuU2VydmljZS5Qcm9kdWN0RGV0YWlsUmVzcG9u",
+            "c2UiABJdChdVcGRhdGVQcm9kdWN0U2FsZVN0YXR1cxIkLlNQLlNlcnZpY2Uu",
+            "UHJvZHVjdFNhbGVTdGF0dXNSZXF1ZXN0GhouU1AuU2VydmljZS5SZXN1bHRS",
+            "ZXNwb25zZSIAEk8KDUdldFNob3BTdGF0dXMSHC5TUC5TZXJ2aWNlLkFjY291",
+            "bnRJZFJlcXVlc3QaHi5TUC5TZXJ2aWNlLlNob3BTdGF0dXNSZXNwb25zZSIA",
+            "YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, global::SP.Service.ProductModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null));

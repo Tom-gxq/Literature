@@ -222,6 +222,11 @@ namespace SP.Service.Domain.Reporting
             var ret= _repository.Update(item);
             return ret > 0;
         }
+        public bool Del(string prductId)
+        {
+            var ret = _repository.Del(prductId);
+            return ret > 0;
+        }
         public List<ProductDomain> GetDistributorMarketProduct(long typeId, long secondTypeId, int pageIndex, int pageSize)
         {
             var domainList = new List<ProductDomain>();

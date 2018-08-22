@@ -29,7 +29,8 @@ namespace SP.ManageEntityFramework.Repositories
         {
             using (var db = Context.OpenDbConnection())
             {
-                var q = db.From<RegionEntity>().Where(x=>x.DataType == dataType);
+                var q = db.From<RegionEntity>().Where(x=>x.DataType == dataType)
+                    .OrderBy(x=>x.DisplaySequence);
                 return db.Select(q);
             }
         }
@@ -37,7 +38,8 @@ namespace SP.ManageEntityFramework.Repositories
         {
             using (var db = Context.OpenDbConnection())
             {
-                var q = db.From<RegionEntity>().Where(x => x.ParentDataID == parentId && x.DataName == dataName);
+                var q = db.From<RegionEntity>().Where(x => x.ParentDataID == parentId && x.DataName == dataName)
+                    .OrderBy(x => x.DisplaySequence);
                 return db.Single(q);
             }
         }
@@ -47,7 +49,8 @@ namespace SP.ManageEntityFramework.Repositories
         {
             using (var db = Context.OpenDbConnection())
             {
-                var q = db.From<RegionEntity>().Where(x => x.DataName.Contains(dataName));
+                var q = db.From<RegionEntity>().Where(x => x.DataName.Contains(dataName))
+                    .OrderBy(x => x.DisplaySequence);
                 return db.Select(q);
             }
         }
@@ -56,7 +59,8 @@ namespace SP.ManageEntityFramework.Repositories
         {
             using (var db = Context.OpenDbConnection())
             {
-                var q = db.From<RegionEntity>().Where(x => x.ParentDataID == parentId);
+                var q = db.From<RegionEntity>().Where(x => x.ParentDataID == parentId)
+                    .OrderBy(x => x.DisplaySequence);
                 return db.Select(q);
             }
         }
@@ -65,7 +69,8 @@ namespace SP.ManageEntityFramework.Repositories
         {
             using (var db = Context.OpenDbConnection())
             {
-                var q = db.From<RegionEntity>().Where(x => x.ParentDataID == parentId);
+                var q = db.From<RegionEntity>().Where(x => x.ParentDataID == parentId)
+                    .OrderBy(x => x.DisplaySequence);
                 q = q.Limit((pageIndex - 1) * pageSize, pageSize);
                 return db.Select(q);
             }

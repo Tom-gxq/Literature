@@ -75,6 +75,13 @@ namespace SP.Application.Order
             return retList;
         }
 
+        public long SearchOrderListByKeyWordCount(string keyWord)
+        {
+            var repository = IocManager.Instance.Resolve<OrdersRespository>();
+            var count = repository.SearchOrderListByKeyWordCount(keyWord);
+            return count;
+        }
+
 
         private static OrderDto ConvertFromRepositoryEntity(OrdersEntity order)
         {
