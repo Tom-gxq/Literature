@@ -269,10 +269,6 @@
                 });
 
                 $("#btn_search").click(function () {
-                    if ($("#select_university").val() == -1) {
-                        alert("请选择学校!");
-                        return;
-                    }
 
                     var tblBody = $("#dataTable tbody");
                     tblBody.empty();
@@ -281,7 +277,7 @@
                     var college = $("#select_college").val();
                     var type = $("#select_type").val();
 
-                    var data = $.getValues("GetDeliveryManInfo?universityId=" + university + "&colleageId=" + college + "&typeId=" + type);
+                    var data = $.getValues("GetDeliveryManInfo?unversityId=" + university + "&colleageId=" + college + "&typeId=" + type);
 
                     $.each(data, function (i, item) {
                         var tblTR = $("<tr></tr>").appendTo(tblBody);

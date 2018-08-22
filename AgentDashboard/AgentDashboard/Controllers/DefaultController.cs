@@ -388,11 +388,11 @@ namespace AgentDashboard.Controllers
         /// <param name="colleageId"></param>
         /// <param name="productType"></param>
         /// <returns></returns>
-        public JsonResult GetDeliveryManInfo(int unversityId = -1, int colleageId = -1, int typeId = -1)
+        public JsonResult GetDeliveryManInfo(int unversityId, int colleageId, int typeId)
         {
             IProductTypeService service = IocManager.Instance.Resolve<IProductTypeService>();
             var accountSession = MDSession.Session["Account"] as AccountInfo;
-            string accountId = "72a362ef-8e11-429b-b4d2-f7f67fcfd9a6";// accountSession?.AccountId;
+            string accountId = "72a362ef-8e11-429b-b4d2-f7f67fcfd9a6";//accountSession?.AccountId;//
 
             List<HumanManagerViewModel> vmList = new List<HumanManagerViewModel>();
 
@@ -415,7 +415,7 @@ namespace AgentDashboard.Controllers
                             }
                             else
                             {
-                                shops = spEntity.SP_Shop.Where(n => n.RegionId == regionData.DataID).Where(n => n.RegionId == unversityId);
+                                shops = spEntity.SP_Shop.Where(n => n.RegionId == regionData.DataID);
                             }
                         }
                         else
