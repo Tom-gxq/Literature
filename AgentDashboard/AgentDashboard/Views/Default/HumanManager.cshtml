@@ -1,5 +1,4 @@
-﻿@model  AgentDashboard.Models.RegionDataViewModel
-@{
+﻿@{
     Layout = null;
 }
 
@@ -120,13 +119,6 @@
                                     <span>学校</span>
                                     <select id="select_university" class="form-control w-100">
                                         <option value="-1">请选择</option>
-                                        @if (Model != null)
-                                        {
-                                            foreach (var item in Model.Universities)
-                                            {
-                                                <option value="@item.Key">@item.Value</option>
-                                            }
-                                        }
                                     </select>
                                 </div>
                                 <div class="col-4">
@@ -143,7 +135,7 @@
                                 </div>
                                 <div class="col-1">
                                     <span>&nbsp;</span>
-                                    <button class="btn btn-primary w-100" type="button">
+                                    <button id="btn_search" class="btn btn-primary w-100" type="button">
                                         <i class="fa fa-search"></i>
                                         检索
                                     </button>
@@ -170,21 +162,6 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        @*@if (Model != null)
-                                        {
-                                            foreach (var deliverMan in Model)
-                                            {
-                                                <tr>
-                                                    <td>@deliverMan.FullName</td>
-                                                    <td>@deliverMan.CellPhoneNo</td>
-                                                    <td>@deliverMan.RegionName</td>
-                                                    <td>@deliverMan.TypeName</td>
-                                                    <td>
-                                                        <a class="btn btn-primary text-white" role="button" href="DeliverymanViewer">查看</a>
-                                                    </td>
-                                                </tr>
-                                            }
-                                        }*@
                                     </tbody>
                                 </table>
                             </div>
@@ -238,6 +215,43 @@
         <script src="~/js/sb-admin-datatables.js"></script>
         <script>
             $(document).ready(function () {
+
+                $("#select_university").empty();
+                $("<option></option>")
+                    .val(-1)
+                    .text("请选择")
+                    .appendTo($("#select_university"));
+
+                var universityData = $.getValues("GetUniversity");
+                $.each(universityData, function (i, item) {
+                    $("<option></option>")
+                        .val(item["ID"])
+                        .text(item["Name"])
+                        .appendTo($("#select_university"));
+                });
+
+                $("#select_type").empty();
+                $("<option></option>")
+                    .val(-1)
+                    .text("请选择")
+                    .appendTo($("#select_type"));
+
+                var typeData = $.getValues("GetProductType?kind=1");
+                $.each(typeData, function (i, item) {
+                    $("<option></option>")
+                        .val(item["ID"])
+                        .text(item["Name"])
+                        .appendTo($("#select_type"));
+                });
+
+                typeData = $.getValues("GetProductType?kind=2");
+                $.each(typeData, function (i, item) {
+                    $("<option></option>")
+                        .val(item["ID"])
+                        .text(item["Name"])
+                        .appendTo($("#select_type"));
+                });
+
                 $("#select_university").change(function () {
                     var tData = $.getValues("GetColleges?dataId=" + $(this).val());
                     $("#select_college").empty();
@@ -252,95 +266,33 @@
                             .text(item["Name"])
                             .appendTo($("#select_college"));
                     });
-
-                    $("#select_type").empty();
-                    $("<option></option>")
-                        .val(-1)
-                        .text("请选择")
-                        .appendTo($("#select_type"));
-                });
-
-                $("#select_college").change(function () {
-                    var tData = $.getValues("GetBuilding?dataId=" + $(this).val());
-                    $("#select_building").empty();
-                    $("<option></option>")
-                        .val(-1)
-                        .text("请选择")
-                        .appendTo($("#select_building"));
-
-                    $.each(tData, function (i, item) {
-                        $("<option></option>")
-                            .val(item["ID"])
-                            .text(item["Name"])
-                            .appendTo($("#select_building"));
-                    });
                 });
 
                 $("#btn_search").click(function () {
-                    if ($("#select_university").val() == -1) {
-                        alert("请选择学校!");
-                        return;
-                    }
+
+                    var tblBody = $("#dataTable tbody");
+                    tblBody.empty();
 
                     var university = $("#select_university").val();
                     var college = $("#select_college").val();
                     var type = $("#select_type").val();
-                    //var data = $.getValues("GetRegionData?universityId=" + university + "&collegeId=" + college + "&typeId=" + type);
-                    //$("#div_region").empty();
-                    //var col_12 = $("<div></div>")
-                    //    .addClass("col-12")
-                    //    .appendTo($("#div_region"));
 
-                    //$.each(data["Colleges"], function (i, college) {
-                    //    $.each(college["Buildings"], function (j, building) {
-                    //        var card = $("<div></div>")
-                    //            .addClass("card")
-                    //            .appendTo(col_12);
-                    //        var cardHeader = $("<div></div>")
-                    //            .addClass("card-header")
-                    //            .appendTo(card);
-                    //        var carIcon = $("<i></i>")
-                    //            .addClass("fa fa-building")
-                    //            .appendTo(cardHeader);
-                    //        $("<span></span>")
-                    //            .text(college["Name"])
-                    //            .appendTo(cardHeader);
-                    //        $("<span></span>")
-                    //            .text(building["Name"])
-                    //            .appendTo(cardHeader);
-                    //        var cardBody = $("<div></div>")
-                    //            .addClass("card-body")
-                    //            .appendTo(card);
-                    //        var cardRow = $("<div></div>")
-                    //            .addClass("row")
-                    //            .appendTo(cardBody);
-                    //        $.each(building["Rooms"], function (k, room) {
-                    //            getRoom(room).appendTo(cardRow);
-                    //        });
+                    var data = $.getValues("GetDeliveryManInfo?unversityId=" + university + "&colleageId=" + college + "&typeId=" + type);
 
-                    //        var cardCol = $("<div></div>")
-                    //            .addClass("col-xl-1 col-sm-3 mb-3")
-                    //            .appendTo(cardRow);
-                    //        var cardHidden = $("<div></div>")
-                    //            .addClass("card o-hidden")
-                    //            .appendTo(cardCol);
-                    //        var roomCardBody = $("<div></div>")
-                    //            .addClass("card-body")
-                    //            .appendTo(cardHidden);
-                    //        var cardAddIcon = $("<div></div>")
-                    //            .addClass("text-center")
-                    //            .appendTo(roomCardBody);
-                    //        var cardHerf = $("<a></a>")
-                    //            .attr("href", "javascript:void(0);")
-                    //            .appendTo(cardAddIcon);
-                    //        cardHerf.click(function () {
-                    //            getRoom({ ID: -1, Name: "?", ParentDataID: building["ID"] }).insertBefore(cardCol);
-                    //        });
-                    //        var cardDelIcon = $("<i></i>")
-                    //            .addClass("fa fa-plus")
-                    //            .appendTo(cardHerf);
-                    //    });
-                    //});
+                    $.each(data, function (i, item) {
+                        var tblTR = $("<tr></tr>").appendTo(tblBody);
+                        $("<td></td>").text(item["FullName"]).appendTo(tblTR);
+                        $("<td></td>").text(item["CellPhoneNo"]).appendTo(tblTR);
+                        $("<td></td>").text(item["RegionName"]).appendTo(tblTR);
+                        $("<td></td>").text(item["TypeName"]).appendTo(tblTR);
+                        var lastTD = $("<td></td>").appendTo(tblTR);
+                        $("<a></a>")
+                            .addClass("btn btn-primary text-white")
+                            .text("查看")
+                            .attr("role", "button")
+                            .attr("href", "DeliverymanViewer")
+                            .appendTo(lastTD);
+                    });
                 });
             });
         </script>

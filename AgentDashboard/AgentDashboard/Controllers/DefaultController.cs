@@ -371,39 +371,23 @@ namespace AgentDashboard.Controllers
 
         public ActionResult HumanManager()
         {
-            RegionDataViewModel viewModel = new RegionDataViewModel();
+            return View();
+        }
 
-            using (SPEntities sp = new SPEntities())
+        public JsonResult GetProductType(int kind)
+        {
+            List<dynamic> productTypeList = new List<dynamic>();
+
+            using (SPEntities spEntities = new SPEntities())
             {
-                var regionList = sp.SP_RegionData.Where(n => n.DataType == 1).ToList();
-                viewModel.Universities = new Dictionary<int, string>();
-
-                foreach (var region in regionList)
+                var productTypes = spEntities.SP_ProductType.Where(n => n.Kind == kind)?.ToList();
+                foreach (var productType in productTypes)
                 {
-                    viewModel.Universities.Add(region.DataID, region.DataName);
+                    productTypeList.Add(new { ID = productType.Id, Kind = kind, Name = productType.TypeName });
                 }
             }
 
-            return View(viewModel);
-        }
-
-        public List<HumanManagerViewModel> GetDeliverManInfo()
-        {
-            List<HumanManagerViewModel> delivermanInfo = null;
-
-            try
-            {
-                IProductTypeService service = IocManager.Instance.Resolve<IProductTypeService>();
-                var account = MDSession.Session["Account"] as AccountInfo;
-                string accountId = account?.AccountId;
-
-                delivermanInfo = GetDeliveryManInfo("72a362ef-8e11-429b-b4d2-f7f67fcfd9a6");
-            }
-            catch (Exception)
-            {
-            }
-
-            return delivermanInfo;
+            return Json(productTypeList, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -414,8 +398,12 @@ namespace AgentDashboard.Controllers
         /// <param name="colleageId"></param>
         /// <param name="productType"></param>
         /// <returns></returns>
-        public List<HumanManagerViewModel> GetDeliveryManInfo(string accountId, int unversityId = -1, int colleageId = -1, int productType = -1)
+        public JsonResult GetDeliveryManInfo(int unversityId, int colleageId, int typeId)
         {
+            IProductTypeService service = IocManager.Instance.Resolve<IProductTypeService>();
+            var accountSession = MDSession.Session["Account"] as AccountInfo;
+            string accountId = "72a362ef-8e11-429b-b4d2-f7f67fcfd9a6";//accountSession?.AccountId;//
+
             List<HumanManagerViewModel> vmList = new List<HumanManagerViewModel>();
 
             using (SPEntities spEntity = new SPEntities())
@@ -437,7 +425,7 @@ namespace AgentDashboard.Controllers
                             }
                             else
                             {
-                                shops = spEntity.SP_Shop.Where(n => n.RegionId == regionData.DataID).Where(n => n.RegionId == unversityId);
+                                shops = spEntity.SP_Shop.Where(n => n.RegionId == regionData.DataID);
                             }
                         }
                         else
@@ -474,7 +462,7 @@ namespace AgentDashboard.Controllers
                 }
             }
 
-            return vmList;
+            return Json(vmList, JsonRequestBehavior.AllowGet);
         }
 
 
@@ -924,6 +912,23 @@ namespace AgentDashboard.Controllers
                     if (transcation != null) transcation.Dispose();
                 }
             }
+        }
+
+        public JsonResult GetUniversity()
+        {
+            List<dynamic> universityList = new List<dynamic>();
+
+            using (SPEntities sp = new SPEntities())
+            {
+                var regionList = sp.SP_RegionData.Where(n => n.DataType == 1)?.ToList();
+
+                foreach (var region in regionList)
+                {
+                    universityList.Add(new { ID = region.DataID, Name = region.DataName });
+                }
+            }
+
+            return Json(universityList, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetColleges(int dataId)
