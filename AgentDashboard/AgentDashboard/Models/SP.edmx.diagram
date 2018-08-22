@@ -45,6 +45,7 @@
         <EntityTypeShape EntityType="SPModel.SP_UserShipping" Width="1.5" PointX="16.75" PointY="13.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SPModel.SP_ShopOwner" Width="1.5" PointX="6.75" PointY="17.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SPModel.SP_SysKind" Width="1.5" PointX="8.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_RegionAccount" Width="1.5" PointX="15.375" PointY="17.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

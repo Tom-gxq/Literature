@@ -65,5 +65,6 @@ namespace AgentDashboard.Models
         public virtual DbSet<SP_UserShipping> SP_UserShipping { get; set; }
         public virtual DbSet<SP_ShopOwner> SP_ShopOwner { get; set; }
         public virtual DbSet<SP_SysKind> SP_SysKind { get; set; }
+        public virtual DbSet<SP_RegionAccount> SP_RegionAccount { get; set; }
     }
 }

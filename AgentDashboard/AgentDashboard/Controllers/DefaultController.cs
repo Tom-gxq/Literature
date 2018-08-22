@@ -371,18 +371,112 @@ namespace AgentDashboard.Controllers
 
         public ActionResult HumanManager()
         {
+            RegionDataViewModel viewModel = new RegionDataViewModel();
+
+            using (SPEntities sp = new SPEntities())
+            {
+                var regionList = sp.SP_RegionData.Where(n => n.DataType == 1).ToList();
+                viewModel.Universities = new Dictionary<int, string>();
+
+                foreach (var region in regionList)
+                {
+                    viewModel.Universities.Add(region.DataID, region.DataName);
+                }
+            }
+
+            return View(viewModel);
+        }
+
+        public List<HumanManagerViewModel> GetDeliverManInfo()
+        {
+            List<HumanManagerViewModel> delivermanInfo = null;
+
             try
             {
-                using (SPEntities spEntity = new SPEntities())
-                {
-                    //spEntity.SP_Account
-                }
+                IProductTypeService service = IocManager.Instance.Resolve<IProductTypeService>();
+                var account = MDSession.Session["Account"] as AccountInfo;
+                string accountId = account?.AccountId;
+
+                delivermanInfo = GetDeliveryManInfo("72a362ef-8e11-429b-b4d2-f7f67fcfd9a6");
             }
             catch (Exception)
             {
             }
-            return View();
+
+            return delivermanInfo;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="unversityId"></param>
+        /// <param name="colleageId"></param>
+        /// <param name="productType"></param>
+        /// <returns></returns>
+        public List<HumanManagerViewModel> GetDeliveryManInfo(string accountId, int unversityId = -1, int colleageId = -1, int productType = -1)
+        {
+            List<HumanManagerViewModel> vmList = new List<HumanManagerViewModel>();
+
+            using (SPEntities spEntity = new SPEntities())
+            {
+                var regionAccounts = spEntity.SP_RegionAccount.Where(n => n.AccountId == accountId);
+
+                foreach (var regionAccount in regionAccounts)
+                {
+                    var regionDatas = spEntity.SP_RegionData.Where(n => n.ParentDataID == regionAccount.RegionId.ToString());
+
+                    foreach (var regionData in regionDatas)
+                    {
+                        IQueryable<SP_Shop> shops = null;
+                        if (unversityId != -1)
+                        {
+                            if (colleageId != -1)
+                            {
+                                shops = spEntity.SP_Shop.Where(n => n.RegionId == regionData.DataID).Where(n => n.RegionId == colleageId);
+                            }
+                            else
+                            {
+                                shops = spEntity.SP_Shop.Where(n => n.RegionId == regionData.DataID).Where(n => n.RegionId == unversityId);
+                            }
+                        }
+                        else
+                        {
+                            shops = spEntity.SP_Shop.Where(n => n.RegionId == regionData.DataID);
+                        }
+
+                        foreach (var shop in shops)
+                        {
+                            var shopOwners = spEntity.SP_ShopOwner.Where(n => n.ShopId == shop.Id);
+
+                            foreach (var shopOwner in shopOwners)
+                            {
+                                var accountInfo = spEntity.SP_AccountInfo.SingleOrDefault(n => n.AccountId == shopOwner.OwnerId);
+                                var account = spEntity.SP_Account.SingleOrDefault(n => n.AccountId == shopOwner.OwnerId);
+
+                                if ((accountInfo != null) && (account != null))
+                                {
+                                    if (vmList.Where(n => n.AccountId == account.AccountId).Count() == 0)
+                                    {
+                                        HumanManagerViewModel viewModel = new HumanManagerViewModel();
+                                        viewModel.AccountId = account.AccountId;
+                                        viewModel.FullName = accountInfo.Fullname;
+                                        viewModel.CellPhoneNo = account.MobilePhone;
+                                        viewModel.RegionName = regionData.DataName;
+                                        viewModel.TypeName = spEntity.SP_ProductType.SingleOrDefault(n => n.Id == shop.ShopType).TypeName;
+                                        viewModel.Birthday = accountInfo.Birthdate?.ToString("yyyy/MM/dd");
+                                        vmList.Add(viewModel);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return vmList;
+        }
+
 
         public ActionResult DataAnalyze()
         {
@@ -902,7 +996,8 @@ namespace AgentDashboard.Controllers
                                 {
                                     foreach (var room in rooms)
                                     {
-                                        bool isDanger = (sp.SP_ShipStatistics.Count(n => n.DormId == room.DataID && n.CreateTime >= DateTime.Now.AddDays(-30)) == 0);
+                                        DateTime thirtyDayAgo = DateTime.Now.AddDays(-30);
+                                        bool isDanger = (sp.SP_ShipStatistics.Count(n => n.DormId == room.DataID && n.CreateTime >= thirtyDayAgo) == 0);
                                         Room roomItem = new Room() { ID = room.DataID, Name = room.DataName, IsDanger= isDanger };
                                         buildingItem.Rooms.Add(roomItem);
                                     }
@@ -926,7 +1021,8 @@ namespace AgentDashboard.Controllers
                                     {
                                         foreach (var room in rooms)
                                         {
-                                            bool isDanger = (sp.SP_ShipStatistics.Count(n => n.DormId == room.DataID && n.CreateTime >= DateTime.Now.AddDays(-30)) == 0);
+                                            DateTime thirtyDayAgo = DateTime.Now.AddDays(-30);
+                                            bool isDanger = (sp.SP_ShipStatistics.Count(n => n.DormId == room.DataID && n.CreateTime >= thirtyDayAgo) == 0);
                                             Room roomItem = new Room() { ID = room.DataID, Name = room.DataName, IsDanger = isDanger };
                                             buildingItem.Rooms.Add(roomItem);
                                         }
