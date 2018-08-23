@@ -32,9 +32,26 @@ namespace AgentDashboard.Controllers
 {
     public class DefaultController : Controller
     {
-        public ActionResult DeliverymanViewer()
+        public ActionResult DeliverymanViewer(string accountId)
         {
-            return View();
+            DeliverymanViewerViewModel viewModel = new DeliverymanViewerViewModel();
+
+            using (SPEntities sPEntities = new SPEntities())
+            {
+                var act = sPEntities.SP_Account.SingleOrDefault(n => n.AccountId == accountId);
+                var actInfo = sPEntities.SP_AccountInfo.SingleOrDefault(n => n.AccountId == accountId);
+                var regionAct = sPEntities.SP_RegionAccount.SingleOrDefault(n => n.AccountId == accountId);
+                var regionData = sPEntities.SP_RegionData.SingleOrDefault(n => n.DataID == regionAct.RegionId);
+                var shopOwner = sPEntities.SP_ShopOwner.SingleOrDefault(n => n.OwnerId == accountId);
+                var shop = sPEntities.SP_Shop.SingleOrDefault(n => n.Id == shopOwner.ShopId);
+                var productType = sPEntities.SP_ProductType.SingleOrDefault(n => n.Id == shop.ShopType);
+                viewModel.FullName = actInfo.Fullname;
+                viewModel.Birthday = actInfo.Birthdate;
+                viewModel.Phone = act.MobilePhone;
+                viewModel.Region = String.Format("{0},{1}", regionData.DataName, productType.TypeName);
+            }
+
+            return View(viewModel);
         }
 
         /// <summary>
