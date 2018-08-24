@@ -1,4 +1,5 @@
-﻿@{
+﻿@model AgentDashboard.Models.DeliverymanViewerViewModel
+@{
     Layout = null;
 }
 
@@ -123,7 +124,7 @@
                                             <label>名字</label>
                                         </div>
                                         <div class="col-11">
-                                            <input type="text" class="form-control" readonly/>
+                                            <input type="text" class="form-control" value="@Model.FullName" readonly/>
                                         </div>
                                     </div>
                                     <div class="row form-group">
@@ -131,7 +132,7 @@
                                             <label>电话</label>
                                         </div>
                                         <div class="col-11">
-                                            <input type="text" class="form-control" readonly/>
+                                            <input type="text" class="form-control" value="@Model.Phone" readonly/>
                                         </div>
                                     </div>
                                     <div class="row form-group">
@@ -149,7 +150,7 @@
                                             <label>生日</label>
                                         </div>
                                         <div class="col-11">
-                                            <input type="text" class="form-control" readonly/>
+                                            <input type="text" class="form-control" value="@Model.Birthday" readonly/>
                                         </div>
                                     </div>
                                     <div class="row form-group">
@@ -165,7 +166,7 @@
                                             <label>区类</label>
                                         </div>
                                         <div class="col-11">
-                                            <input type="text" class="form-control" readonly/>
+                                            <input type="text" class="form-control" value="@Model.Region" readonly/>
                                         </div>
                                     </div>
                                 </div>

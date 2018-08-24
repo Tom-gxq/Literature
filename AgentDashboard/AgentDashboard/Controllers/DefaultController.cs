@@ -38,17 +38,34 @@ namespace AgentDashboard.Controllers
 
             using (SPEntities sPEntities = new SPEntities())
             {
+                string regionDataName = string.Empty;
+                string productTypeName = string.Empty;
+
                 var act = sPEntities.SP_Account.SingleOrDefault(n => n.AccountId == accountId);
                 var actInfo = sPEntities.SP_AccountInfo.SingleOrDefault(n => n.AccountId == accountId);
                 var regionAct = sPEntities.SP_RegionAccount.SingleOrDefault(n => n.AccountId == accountId);
-                var regionData = sPEntities.SP_RegionData.SingleOrDefault(n => n.DataID == regionAct.RegionId);
-                var shopOwner = sPEntities.SP_ShopOwner.SingleOrDefault(n => n.OwnerId == accountId);
-                var shop = sPEntities.SP_Shop.SingleOrDefault(n => n.Id == shopOwner.ShopId);
-                var productType = sPEntities.SP_ProductType.SingleOrDefault(n => n.Id == shop.ShopType);
-                viewModel.FullName = actInfo.Fullname;
-                viewModel.Birthday = actInfo.Birthdate;
-                viewModel.Phone = act.MobilePhone;
-                viewModel.Region = String.Format("{0},{1}", regionData.DataName, productType.TypeName);
+                if (regionAct != null)
+                {
+                    var regionData = sPEntities.SP_RegionData.SingleOrDefault(n => n.DataID == regionAct.RegionId);
+                    regionDataName = regionData?.DataName;
+                    if (regionData != null)
+                    {
+                        var shopOwner = sPEntities.SP_ShopOwner.First(n => n.OwnerId == accountId);
+                        if (shopOwner != null)
+                        {
+                            var shop = sPEntities.SP_Shop.SingleOrDefault(n => n.Id == shopOwner.ShopId);
+                            if (shop != null)
+                            {
+                                var productType = sPEntities.SP_ProductType.SingleOrDefault(n => n.Id == shop.ShopType);
+                                productTypeName = productType?.TypeName;
+                            }
+                        }
+                    }
+                }
+                viewModel.FullName = actInfo?.Fullname;
+                viewModel.Birthday = (actInfo?.Birthdate == null)? string.Empty : ((DateTime)actInfo?.Birthdate).ToString("yyyy/MM/dd");
+                viewModel.Phone = act?.MobilePhone;
+                viewModel.Region = String.Format("{0},{1}", regionDataName, productTypeName);
             }
 
             return View(viewModel);
