@@ -11,9 +11,9 @@ namespace wx.pay
 	    /**微信商户号**/
 	    public static readonly string WX_MCHID = "1502431921";
         /**异步通知地址**/
-        //public static readonly string WX_NOTIFYURL = "http://api.ejiajunxy.cn/WXNotify/WXPay_Notify";
+        public static readonly string WX_NOTIFYURL = "http://api.ejiajunxy.cn/WXNotify/WXPay_Notify";
         //Sandbox
-        public static readonly string WX_NOTIFYURL = "http://s1api.ejiajunxy.cn/WXNotify/WXPay_Notify";
+        //public static readonly string WX_NOTIFYURL = "http://s1api.ejiajunxy.cn/WXNotify/WXPay_Notify";
         /**微信支付方式**/
         public static readonly string WX_TRADETYPE = "APP";
 	    /**微信接口地址**/

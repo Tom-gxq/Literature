@@ -402,37 +402,73 @@ namespace AgentDashboard.Controllers
         {
             IProductTypeService service = IocManager.Instance.Resolve<IProductTypeService>();
             var accountSession = MDSession.Session["Account"] as AccountInfo;
-            string accountId = "72a362ef-8e11-429b-b4d2-f7f67fcfd9a6";//accountSession?.AccountId;//
+            string accountId = accountSession?.AccountId;//"72a362ef-8e11-429b-b4d2-f7f67fcfd9a6";
 
             List<HumanManagerViewModel> vmList = new List<HumanManagerViewModel>();
 
             using (SPEntities spEntity = new SPEntities())
             {
-                var regionAccounts = spEntity.SP_RegionAccount.Where(n => n.AccountId == accountId);
-
-                foreach (var regionAccount in regionAccounts)
+                if (unversityId == -1)
                 {
-                    var regionDatas = spEntity.SP_RegionData.Where(n => n.ParentDataID == regionAccount.RegionId.ToString());
+                    var regionAccounts = spEntity.SP_RegionAccount.Where(n => n.AccountId == accountId);
 
-                    foreach (var regionData in regionDatas)
+                    foreach (var regionAccount in regionAccounts)
                     {
-                        IQueryable<SP_Shop> shops = null;
-                        if (unversityId != -1)
+                        var regionDatas = spEntity.SP_RegionData.Where(n => n.ParentDataID == regionAccount.RegionId.ToString());
+
+                        foreach (var regionData in regionDatas)
                         {
-                            if (colleageId != -1)
+                            IQueryable<SP_Shop> shops = null;
+                            if (unversityId != -1)
                             {
-                                shops = spEntity.SP_Shop.Where(n => n.RegionId == regionData.DataID).Where(n => n.RegionId == colleageId);
+                                if (colleageId != -1)
+                                {
+                                    shops = spEntity.SP_Shop.Where(n => n.RegionId == regionData.DataID).Where(n => n.RegionId == colleageId);
+                                }
+                                else
+                                {
+                                    shops = spEntity.SP_Shop.Where(n => n.RegionId == regionData.DataID);
+                                }
                             }
                             else
                             {
                                 shops = spEntity.SP_Shop.Where(n => n.RegionId == regionData.DataID);
                             }
-                        }
-                        else
-                        {
-                            shops = spEntity.SP_Shop.Where(n => n.RegionId == regionData.DataID);
-                        }
 
+                            foreach (var shop in shops)
+                            {
+                                var shopOwners = spEntity.SP_ShopOwner.Where(n => n.ShopId == shop.Id);
+
+                                foreach (var shopOwner in shopOwners)
+                                {
+                                    var accountInfo = spEntity.SP_AccountInfo.SingleOrDefault(n => n.AccountId == shopOwner.OwnerId);
+                                    var account = spEntity.SP_Account.SingleOrDefault(n => n.AccountId == shopOwner.OwnerId);
+
+                                    if ((accountInfo != null) && (account != null))
+                                    {
+                                        if (vmList.Where(n => n.AccountId == account.AccountId).Count() == 0)
+                                        {
+                                            HumanManagerViewModel viewModel = new HumanManagerViewModel();
+                                            viewModel.AccountId = account.AccountId;
+                                            viewModel.FullName = accountInfo.Fullname;
+                                            viewModel.CellPhoneNo = account.MobilePhone;
+                                            viewModel.RegionName = regionData.DataName;
+                                            viewModel.TypeName = spEntity.SP_ProductType.SingleOrDefault(n => n.Id == shop.ShopType).TypeName;
+                                            viewModel.Birthday = accountInfo.Birthdate?.ToString("yyyy/MM/dd");
+                                            vmList.Add(viewModel);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (colleageId != -1)
+                    {
+                        var region = spEntity.SP_RegionData.Single(n => n.DataID == colleageId);
+                        var shops = spEntity.SP_Shop.Where(n => n.RegionId == colleageId);
                         foreach (var shop in shops)
                         {
                             var shopOwners = spEntity.SP_ShopOwner.Where(n => n.ShopId == shop.Id);
@@ -450,10 +486,45 @@ namespace AgentDashboard.Controllers
                                         viewModel.AccountId = account.AccountId;
                                         viewModel.FullName = accountInfo.Fullname;
                                         viewModel.CellPhoneNo = account.MobilePhone;
-                                        viewModel.RegionName = regionData.DataName;
+                                        viewModel.RegionName = region?.DataName??string.Empty;
                                         viewModel.TypeName = spEntity.SP_ProductType.SingleOrDefault(n => n.Id == shop.ShopType).TypeName;
                                         viewModel.Birthday = accountInfo.Birthdate?.ToString("yyyy/MM/dd");
                                         vmList.Add(viewModel);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        var regionDataList = spEntity.SP_RegionData.Where(n => n.ParentDataID == unversityId.ToString());
+
+                        foreach (var region in regionDataList)
+                        {
+                            var shops = spEntity.SP_Shop.Where(n => n.RegionId == region.DataID);
+
+                            foreach (var shop in shops)
+                            {
+                                var shopOwners = spEntity.SP_ShopOwner.Where(n => n.ShopId == shop.Id);
+
+                                foreach (var shopOwner in shopOwners)
+                                {
+                                    var accountInfo = spEntity.SP_AccountInfo.SingleOrDefault(n => n.AccountId == shopOwner.OwnerId);
+                                    var account = spEntity.SP_Account.SingleOrDefault(n => n.AccountId == shopOwner.OwnerId);
+
+                                    if ((accountInfo != null) && (account != null))
+                                    {
+                                        if (vmList.Where(n => n.AccountId == account.AccountId).Count() == 0)
+                                        {
+                                            HumanManagerViewModel viewModel = new HumanManagerViewModel();
+                                            viewModel.AccountId = account.AccountId;
+                                            viewModel.FullName = accountInfo.Fullname;
+                                            viewModel.CellPhoneNo = account.MobilePhone;
+                                            viewModel.RegionName = region.DataName;
+                                            viewModel.TypeName = spEntity.SP_ProductType.SingleOrDefault(n => n.Id == shop.ShopType).TypeName;
+                                            viewModel.Birthday = accountInfo.Birthdate?.ToString("yyyy/MM/dd");
+                                            vmList.Add(viewModel);
+                                        }
                                     }
                                 }
                             }

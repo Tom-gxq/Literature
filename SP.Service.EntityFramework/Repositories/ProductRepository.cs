@@ -71,8 +71,9 @@ namespace SP.Service.EntityFramework.Repositories
             {
                 var q = db.From<ProductEntity>();
                 q = q.Join<ProductEntity, AccountProductEntity>((e, a) => a.ProductId == e.ProductId && e.SaleStatus == 1 
-                && (e.SecondTypeId == typeId || e.TypeId == typeId));
-                q = q.Join<AccountProductEntity, ShopEntity>((a, b) => a.ShopId == b.Id && b.RegionId == districtId);
+                && (e.SecondTypeId == typeId || e.TypeId == typeId) );
+                q = q.Join<AccountProductEntity, ShopOwnerEntity>((s, so) => s.ShopId==so.ShopId && s.AccountId==so.OwnerId && so.ShopStatus==true);
+                q = q.Join<AccountProductEntity, ShopEntity>((a, b) => a.ShopId == b.Id && b.RegionId == districtId && b.ShopStatus == true);
                 q = q.LeftJoin<AccountProductEntity, ProductSkuEntity>((e, a) => a.ProductId == e.ProductId && e.ShopId==a.ShopId 
                 && a.EffectiveTime >= DateTime.Parse(DateTime.Now.ToShortDateString()));
                 

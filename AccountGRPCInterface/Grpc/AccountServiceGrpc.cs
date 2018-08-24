@@ -34,6 +34,7 @@ namespace SP.Service {
     static readonly grpc::Marshaller<global::SP.Service.RegionDataResponse> __Marshaller_RegionDataResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.RegionDataResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.ShoppingCartRequest> __Marshaller_ShoppingCartRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.ShoppingCartRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.ShoppingCartResultResponse> __Marshaller_ShoppingCartResultResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.ShoppingCartResultResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.GetShoppingCartRequest> __Marshaller_GetShoppingCartRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.GetShoppingCartRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.ShoppingCartListResponse> __Marshaller_ShoppingCartListResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.ShoppingCartListResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.MyShoppingCartRequest> __Marshaller_MyShoppingCartRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.MyShoppingCartRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.ShoppingCartCountResponse> __Marshaller_ShoppingCartCountResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.ShoppingCartCountResponse.Parser.ParseFrom);
@@ -195,11 +196,11 @@ namespace SP.Service {
         __Marshaller_ShoppingCartRequest,
         __Marshaller_ShoppingCartResultResponse);
 
-    static readonly grpc::Method<global::SP.Service.AccountIdRequest, global::SP.Service.ShoppingCartListResponse> __Method_GetMyShoppingCartList = new grpc::Method<global::SP.Service.AccountIdRequest, global::SP.Service.ShoppingCartListResponse>(
+    static readonly grpc::Method<global::SP.Service.GetShoppingCartRequest, global::SP.Service.ShoppingCartListResponse> __Method_GetMyShoppingCartList = new grpc::Method<global::SP.Service.GetShoppingCartRequest, global::SP.Service.ShoppingCartListResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "GetMyShoppingCartList",
-        __Marshaller_AccountIdRequest,
+        __Marshaller_GetShoppingCartRequest,
         __Marshaller_ShoppingCartListResponse);
 
     static readonly grpc::Method<global::SP.Service.MyShoppingCartRequest, global::SP.Service.ShoppingCartListResponse> __Method_GetMyShoppingCartListByOrderId = new grpc::Method<global::SP.Service.MyShoppingCartRequest, global::SP.Service.ShoppingCartListResponse>(
@@ -642,7 +643,7 @@ namespace SP.Service {
       /// <param name="request">The request received from the client.</param>
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
-      public virtual global::System.Threading.Tasks.Task<global::SP.Service.ShoppingCartListResponse> GetMyShoppingCartList(global::SP.Service.AccountIdRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.ShoppingCartListResponse> GetMyShoppingCartList(global::SP.Service.GetShoppingCartRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -1929,7 +1930,7 @@ namespace SP.Service {
       /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
       /// <param name="cancellationToken">An optional token for canceling the call.</param>
       /// <returns>The response received from the server.</returns>
-      public virtual global::SP.Service.ShoppingCartListResponse GetMyShoppingCartList(global::SP.Service.AccountIdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      public virtual global::SP.Service.ShoppingCartListResponse GetMyShoppingCartList(global::SP.Service.GetShoppingCartRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
         return GetMyShoppingCartList(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
@@ -1940,7 +1941,7 @@ namespace SP.Service {
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
       /// <returns>The response received from the server.</returns>
-      public virtual global::SP.Service.ShoppingCartListResponse GetMyShoppingCartList(global::SP.Service.AccountIdRequest request, grpc::CallOptions options)
+      public virtual global::SP.Service.ShoppingCartListResponse GetMyShoppingCartList(global::SP.Service.GetShoppingCartRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_GetMyShoppingCartList, null, options, request);
       }
@@ -1953,7 +1954,7 @@ namespace SP.Service {
       /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
       /// <param name="cancellationToken">An optional token for canceling the call.</param>
       /// <returns>The call object.</returns>
-      public virtual grpc::AsyncUnaryCall<global::SP.Service.ShoppingCartListResponse> GetMyShoppingCartListAsync(global::SP.Service.AccountIdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.ShoppingCartListResponse> GetMyShoppingCartListAsync(global::SP.Service.GetShoppingCartRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
         return GetMyShoppingCartListAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
@@ -1964,7 +1965,7 @@ namespace SP.Service {
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
       /// <returns>The call object.</returns>
-      public virtual grpc::AsyncUnaryCall<global::SP.Service.ShoppingCartListResponse> GetMyShoppingCartListAsync(global::SP.Service.AccountIdRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.ShoppingCartListResponse> GetMyShoppingCartListAsync(global::SP.Service.GetShoppingCartRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetMyShoppingCartList, null, options, request);
       }

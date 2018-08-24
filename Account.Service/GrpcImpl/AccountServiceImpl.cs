@@ -382,7 +382,7 @@ namespace Account.Service.GrpcImpl
             return Task.FromResult(response);
         }
 
-        public override Task<ShoppingCartListResponse> GetMyShoppingCartList(AccountIdRequest request, ServerCallContext context)
+        public override Task<ShoppingCartListResponse> GetMyShoppingCartList(GetShoppingCartRequest request, ServerCallContext context)
         {
             logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} GetMyShoppingCartList Connected! AccountId:[{AccountId}] ",
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.AccountId);
@@ -390,7 +390,7 @@ namespace Account.Service.GrpcImpl
             response.Status = 10002;
             try
             {
-                response = ShoppingCartBusiness.GetMyShoppingCartList(request.AccountId);
+                response = ShoppingCartBusiness.GetMyShoppingCartList(request.AccountId, request.UserType);
             }
             catch (Exception ex)
             {
@@ -407,7 +407,7 @@ namespace Account.Service.GrpcImpl
             response.Status = 10002;
             try
             {
-                response = ShoppingCartBusiness.GetMyShoppingCartListByOrderId(request.AccountId, request.OrderId);
+                response = ShoppingCartBusiness.GetMyShoppingCartListByOrderId(request.AccountId, request.OrderId, request.UserType);
             }
             catch (Exception ex)
             {

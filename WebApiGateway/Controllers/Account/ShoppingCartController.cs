@@ -45,7 +45,7 @@ namespace WebApiGateway.Controllers.Account
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var list = ShoppingCartBusiness.GetMyShoppingCartList(currentAccount.AccountId);
+                var list = ShoppingCartBusiness.GetMyShoppingCartList(currentAccount.AccountId, currentAccount.UserType);
                 double amount = 0;
                 list.ForEach(x => amount += x.Amount);
                 JsonResult.Add("shoppingcartList", list);
@@ -135,7 +135,7 @@ namespace WebApiGateway.Controllers.Account
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var model = ShoppingCartBusiness.GetMyPreOrderList(currentAccount.AccountId);                
+                var model = ShoppingCartBusiness.GetMyPreOrderList(currentAccount.AccountId, currentAccount.UserType);                
                 JsonResult.Add("preOrder", model);
                 JsonResult.Add("status", 0);
             }
@@ -153,7 +153,7 @@ namespace WebApiGateway.Controllers.Account
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var model = ShoppingCartBusiness.GetMyShoppingCartListByOrderId(currentAccount.AccountId, orderId);
+                var model = ShoppingCartBusiness.GetMyShoppingCartListByOrderId(currentAccount.AccountId, orderId, currentAccount.UserType);
                 JsonResult.Add("preOrder", model);
                 JsonResult.Add("status", 0);
             }

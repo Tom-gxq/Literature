@@ -18,7 +18,7 @@ namespace Account.Service.Business
             return result;
         }
 
-        public static ShoppingCartListResponse GetMyShoppingCartList(string accountId)
+        public static ShoppingCartListResponse GetMyShoppingCartList(string accountId,int userType)
         {
             var result = new ShoppingCartListResponse();
             result.Status = 10001;
@@ -40,22 +40,31 @@ namespace Account.Service.Business
                         shoppingCart.ProductId = item.Product.ProductId;
                         shoppingCart.ProductName = item.Product.ProductName;                        
                     }
-                    if (memberList.Count > 0)
+                    if (memberList.Count > 0 && userType != 3)
                     {
                         shoppingCart.Amount = item.VIPAmount;
-                        shoppingCart.UnitPrice = item.Product.VIPPrice != null ? item.Product.VIPPrice.Value : 0;
+                        shoppingCart.UnitPrice = item.Product?.VIPPrice != null ? item.Product.VIPPrice.Value : 0;
                     }
                     else
                     {
-                        shoppingCart.Amount = item.Amount;
-                        shoppingCart.UnitPrice = item.Product.MarketPrice != null ? item.Product.MarketPrice.Value : 0;
+                        System.Console.WriteLine("userType="+ userType);
+                        if (userType == 3)
+                        {                            
+                            shoppingCart.UnitPrice = item.Product?.PurchasePrice != null ? item.Product.PurchasePrice.Value : 0;
+                            shoppingCart.Amount = shoppingCart.UnitPrice*item.Quantity;
+                        }
+                        else
+                        {
+                            shoppingCart.Amount = item.Amount;
+                            shoppingCart.UnitPrice = item.Product?.MarketPrice != null ? item.Product.MarketPrice.Value : 0;
+                        }
                     }
                     result.ShoppingCartList.Add(shoppingCart);
                 }
             }
             return result;
         }
-        public static ShoppingCartListResponse GetMyShoppingCartListByOrderId(string accountId,string orderId)
+        public static ShoppingCartListResponse GetMyShoppingCartListByOrderId(string accountId,string orderId,int userType)
         {
             var result = new ShoppingCartListResponse();
             result.Status = 10001;
@@ -77,15 +86,23 @@ namespace Account.Service.Business
                         shoppingCart.ProductId = item.Product.ProductId;
                         shoppingCart.ProductName = item.Product.ProductName;
                     }
-                    if (memberList.Count > 0)
+                    if (memberList.Count > 0 && userType != 3)
                     {
                         shoppingCart.Amount = item.VIPAmount;
                         shoppingCart.UnitPrice = item.Product.VIPPrice != null ? item.Product.VIPPrice.Value : 0;
                     }
                     else
                     {
-                        shoppingCart.Amount = item.Amount;
-                        shoppingCart.UnitPrice = item.Product.MarketPrice != null ? item.Product.MarketPrice.Value : 0;
+                        if (userType == 3)
+                        {
+                            shoppingCart.UnitPrice = item.Product?.PurchasePrice != null ? item.Product.PurchasePrice.Value : 0;
+                            shoppingCart.Amount = shoppingCart.UnitPrice * item.Quantity;
+                        }
+                        else
+                        {
+                            shoppingCart.Amount = item.Amount;
+                            shoppingCart.UnitPrice = item.Product.MarketPrice != null ? item.Product.MarketPrice.Value : 0;
+                        }
                     }
                     result.ShoppingCartList.Add(shoppingCart);
                 }

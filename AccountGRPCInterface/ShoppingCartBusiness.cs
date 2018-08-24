@@ -30,13 +30,14 @@ namespace AccountGRPCInterface
             }
         }
 
-        public static List<ShoppingCartModel> GetMyShoppingCartList(string accountId)
+        public static List<ShoppingCartModel> GetMyShoppingCartList(string accountId,int userType=0)
         {
             string reuslt = string.Empty;
             var client = AccountClientHelper.GetClient();
-            var request1 = new AccountIdRequest()
+            var request1 = new GetShoppingCartRequest()
             {
                 AccountId = accountId,
+                UserType = userType
             };
             var result = client.GetMyShoppingCartList(request1);
             var list = new List<ShoppingCartModel>();
@@ -146,14 +147,15 @@ namespace AccountGRPCInterface
             }
         }
 
-        public static PreOrderModel GetMyPreOrderList(string accountId)
+        public static PreOrderModel GetMyPreOrderList(string accountId,int userType)
         {
             string reuslt = string.Empty;
             var model = new PreOrderModel();
             var client = AccountClientHelper.GetClient();
-            var request1 = new AccountIdRequest()
+            var request1 = new GetShoppingCartRequest()
             {
                 AccountId = accountId,
+                UserType = userType
             };
             var result = client.GetMyShoppingCartList(request1);
             var list = new List<ShoppingCartModel>();
@@ -183,7 +185,11 @@ namespace AccountGRPCInterface
             list.ForEach(x => amount += x.Amount);
             model.amoutTotal = amount;
 
-            var addressResult = client.GetDefaultSelectedAddress(request1);
+            var request2 = new AccountIdRequest()
+            {
+                AccountId = accountId,
+            };
+            var addressResult = client.GetDefaultSelectedAddress(request2);
             var addressDomain = new AddressModel();
             if (result.Status == 10001)
             {
@@ -204,7 +210,7 @@ namespace AccountGRPCInterface
             return model;
         }
 
-        public static PreOrderModel GetMyShoppingCartListByOrderId(string accountId, string orderId)
+        public static PreOrderModel GetMyShoppingCartListByOrderId(string accountId, string orderId,int userType)
         {
             string reuslt = string.Empty;
             var model = new PreOrderModel();
@@ -212,7 +218,8 @@ namespace AccountGRPCInterface
             var request1 = new MyShoppingCartRequest()
             {
                 AccountId = accountId,
-                OrderId = orderId
+                OrderId = orderId,
+                UserType = userType
             };
             var result = client.GetMyShoppingCartListByOrderId(request1);
             var list = new List<ShoppingCartModel>();

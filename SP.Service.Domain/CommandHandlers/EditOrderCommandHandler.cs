@@ -73,9 +73,31 @@ namespace SP.Service.Domain.CommandHandlers
             _repository.Save(aggregate);
 
             var order = _orderReportDatabase.GetLeadOrderDomainByOrderId(command.Id.ToString());
-            CaclCommsion(order, command.OrderStatus);
+            CaclSellerCommsion(order, command.OrderStatus);
         }
 
+        private void CaclSellerCommsion(LeadOrderDomain order, OrderStatus orderStatus)
+        {            
+            if (order != null && orderStatus == Data.Enum.OrderStatus.Success)
+            {
+                var shipOrder = _shipReportDatabase.GetShippingOrdersByOrderId(order.OrderId);
+                if (shipOrder != null && shipOrder.Count > 0)
+                {
+                    var finance = _financeReportDatabase.GetAccountFinanceDetail(shipOrder[0].ShippingId);
+                    if (finance != null && !string.IsNullOrEmpty(finance.AccountId))
+                    {
+                        var financeDomain = new AccountFinanceDomain();
+                        financeDomain.EditHaveAmount(finance.AccountId, order.Amount);
+                        _financeRepository.Save(financeDomain);
+                    }
+                    else
+                    {
+                        var financeDomain = new AccountFinanceDomain(shipOrder[0].ShippingId, order.Amount);
+                        _financeRepository.Save(financeDomain);
+                    }
+                }
+            }
+        }
         private void CaclCommsion(LeadOrderDomain order, OrderStatus orderStatus)
         {
             double commsion = 0;

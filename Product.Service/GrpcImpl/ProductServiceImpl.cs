@@ -144,7 +144,8 @@ namespace Product.Service.GrpcImpl
 
         public override Task<ShopListResponse> GetAllShopList(ShopListRequest request, ServerCallContext context)
         {
-            logger.LogInformation(this.prjLicEID, "GetAllShopList {Date} {IPAdress} {Status} Connected! ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, "GetAllShopList {Date} {IPAdress} {Status} Connected! DistrictId:[{DistrictId}] ShopType:[{ShopType}]", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), 
+                context.Peer, context.Status.ToString(), request.DistrictId, request.ShopType);
             ShopListResponse response = null;
             try
             {
@@ -160,7 +161,7 @@ namespace Product.Service.GrpcImpl
 
         public override Task<ProductListResponse> GetShopProductList(ShopProductListRequest request, ServerCallContext context)
         {
-            logger.LogInformation(this.prjLicEID, "GetShopProductList {Date} {IPAdress} {Status} Connected! ShopId:[{ShopId}] TypeId:[{TypeId}]", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.ShopId, request.TypeId);
+            logger.LogInformation(this.prjLicEID, "GetShopProductList {Date} {IPAdress} {Status} Connected! DistrictId:[{DistrictId}] ShopId:[{ShopId}] TypeId:[{TypeId}]", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.DistrictId, request.ShopId, request.TypeId);
             ProductListResponse response = null;
             try
             {
@@ -175,7 +176,7 @@ namespace Product.Service.GrpcImpl
         }
         public override Task<ProductListResponse> GetFoodShopProductList(ShopProductListRequest request, ServerCallContext context)
         {
-            logger.LogInformation(this.prjLicEID, "GetFoodShopProductList {Date} {IPAdress} {Status} Connected! ShopId:[{ShopId}] ]", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.ShopId);
+            logger.LogInformation(this.prjLicEID, "GetFoodShopProductList {Date} {IPAdress} {Status} Connected! DistrictId:[{DistrictId}]  ShopId:[{ShopId}] ]", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.DistrictId,request.ShopId);
             ProductListResponse response = null;
             try
             {

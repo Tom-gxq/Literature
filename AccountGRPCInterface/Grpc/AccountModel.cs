@@ -107,22 +107,24 @@ namespace SP.Service {
             "Y2lhdG9ySWQYASABKAkiUAoSQXNzb2NpYXRvclJlc3BvbnNlEg4KBnN0YXR1",
             "cxgBIAEoBRIqCgphc3NvY2lhdG9yGAIgASgLMhYuU1AuU2VydmljZS5Bc3Nv",
             "Y2lhdG9yIkUKHVVwZGF0ZUFzc29jaWF0b3JTdGF0dXNSZXF1ZXN0EhQKDGFz",
-            "c29jaWF0b3JJZBgBIAEoCRIOCgZzdGF0dXMYAiABKAUiOwoVTXlTaG9wcGlu",
+            "c29jaWF0b3JJZBgBIAEoCRIOCgZzdGF0dXMYAiABKAUiTQoVTXlTaG9wcGlu",
             "Z0NhcnRSZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIPCgdvcmRlcklkGAIg",
-            "ASgJIjkKFEFjY291bnRQYXlQd2RSZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEo",
-            "CRIOCgZwYXlQd2QYAiABKAkiggEKEkJpbmdBY2NvdW50UmVxdWVzdBIRCglh",
-            "Y2NvdW50SWQYASABKAkSEQoJb3RoZXJUeXBlGAIgASgFEhQKDG90aGVyQWNj",
-            "b3VudBgDIAEoCRIOCgZhdmF0YXIYBCABKAkSEAoIZnVsbE5hbWUYBSABKAkS",
-            "DgoGZ2VuZGVyGAYgASgIIoUBChNPdGhlckFjY291bnRSZXF1ZXN0EhMKC21v",
-            "YmlsZVBob25lGAEgASgJEhEKCW90aGVyVHlwZRgCIAEoBRIUCgxvdGhlckFj",
-            "Y291bnQYAyABKAkSDgoGYXZhdGFyGAQgASgJEhAKCGZ1bGxOYW1lGAUgASgJ",
-            "Eg4KBmdlbmRlchgGIAEoCCJBChZHZXRPdGhlckFjY291bnRSZXF1ZXN0EhEK",
-            "CW90aGVyVHlwZRgCIAEoBRIUCgxvdGhlckFjY291bnQYAyABKAkiPgoUQWNj",
-            "b3VudE1vYmlsZVJlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEhMKC21vYmls",
-            "ZVBob25lGAIgASgJIlkKEEFjY291bnRJRFJlcXVlc3QSEAoIdXNlclR5cGUY",
-            "ASABKAUSDgoGZG9ybUlkGAIgASgFEhEKCWFjY291bnRJZBgDIAEoCRIQCghm",
-            "dWxsTmFtZRgEIAEoCSI4ChNBcHBseVBhcnRuZXJSZXF1ZXN0EhEKCWFjY291",
-            "bnRJZBgBIAEoCRIOCgZkb3JtSWQYAiABKAViBnByb3RvMw=="));
+            "ASgJEhAKCHVzZXJUeXBlGAMgASgFIjkKFEFjY291bnRQYXlQd2RSZXF1ZXN0",
+            "EhEKCWFjY291bnRJZBgBIAEoCRIOCgZwYXlQd2QYAiABKAkiggEKEkJpbmdB",
+            "Y2NvdW50UmVxdWVzdBIRCglhY2NvdW50SWQYASABKAkSEQoJb3RoZXJUeXBl",
+            "GAIgASgFEhQKDG90aGVyQWNjb3VudBgDIAEoCRIOCgZhdmF0YXIYBCABKAkS",
+            "EAoIZnVsbE5hbWUYBSABKAkSDgoGZ2VuZGVyGAYgASgIIoUBChNPdGhlckFj",
+            "Y291bnRSZXF1ZXN0EhMKC21vYmlsZVBob25lGAEgASgJEhEKCW90aGVyVHlw",
+            "ZRgCIAEoBRIUCgxvdGhlckFjY291bnQYAyABKAkSDgoGYXZhdGFyGAQgASgJ",
+            "EhAKCGZ1bGxOYW1lGAUgASgJEg4KBmdlbmRlchgGIAEoCCJBChZHZXRPdGhl",
+            "ckFjY291bnRSZXF1ZXN0EhEKCW90aGVyVHlwZRgCIAEoBRIUCgxvdGhlckFj",
+            "Y291bnQYAyABKAkiPgoUQWNjb3VudE1vYmlsZVJlcXVlc3QSEQoJYWNjb3Vu",
+            "dElkGAEgASgJEhMKC21vYmlsZVBob25lGAIgASgJIlkKEEFjY291bnRJRFJl",
+            "cXVlc3QSEAoIdXNlclR5cGUYASABKAUSDgoGZG9ybUlkGAIgASgFEhEKCWFj",
+            "Y291bnRJZBgDIAEoCRIQCghmdWxsTmFtZRgEIAEoCSI4ChNBcHBseVBhcnRu",
+            "ZXJSZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIOCgZkb3JtSWQYAiABKAUi",
+            "PQoWR2V0U2hvcHBpbmdDYXJ0UmVxdWVzdBIRCglhY2NvdW50SWQYASABKAkS",
+            "EAoIdXNlclR5cGUYAiABKAViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -171,14 +173,15 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AssociatorIdRequest), global::SP.Service.AssociatorIdRequest.Parser, new[]{ "AssociatorId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AssociatorResponse), global::SP.Service.AssociatorResponse.Parser, new[]{ "Status", "Associator" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.UpdateAssociatorStatusRequest), global::SP.Service.UpdateAssociatorStatusRequest.Parser, new[]{ "AssociatorId", "Status" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.MyShoppingCartRequest), global::SP.Service.MyShoppingCartRequest.Parser, new[]{ "AccountId", "OrderId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.MyShoppingCartRequest), global::SP.Service.MyShoppingCartRequest.Parser, new[]{ "AccountId", "OrderId", "UserType" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountPayPwdRequest), global::SP.Service.AccountPayPwdRequest.Parser, new[]{ "AccountId", "PayPwd" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.BingAccountRequest), global::SP.Service.BingAccountRequest.Parser, new[]{ "AccountId", "OtherType", "OtherAccount", "Avatar", "FullName", "Gender" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OtherAccountRequest), global::SP.Service.OtherAccountRequest.Parser, new[]{ "MobilePhone", "OtherType", "OtherAccount", "Avatar", "FullName", "Gender" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.GetOtherAccountRequest), global::SP.Service.GetOtherAccountRequest.Parser, new[]{ "OtherType", "OtherAccount" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountMobileRequest), global::SP.Service.AccountMobileRequest.Parser, new[]{ "AccountId", "MobilePhone" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountIDRequest), global::SP.Service.AccountIDRequest.Parser, new[]{ "UserType", "DormId", "AccountId", "FullName" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ApplyPartnerRequest), global::SP.Service.ApplyPartnerRequest.Parser, new[]{ "AccountId", "DormId" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ApplyPartnerRequest), global::SP.Service.ApplyPartnerRequest.Parser, new[]{ "AccountId", "DormId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.GetShoppingCartRequest), global::SP.Service.GetShoppingCartRequest.Parser, new[]{ "AccountId", "UserType" }, null, null, null)
           }));
     }
     #endregion
@@ -636,7 +639,7 @@ namespace SP.Service {
     private int userType_;
     /// <summary>
     ///*
-    /// 用户类别(0，商家 1，餐饮配送员 2，超市配送员)
+    /// 用户类别(0，普通用户 1，商家 2，餐饮配送员 3，超市配送员)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int UserType {
@@ -8856,6 +8859,7 @@ namespace SP.Service {
     public MyShoppingCartRequest(MyShoppingCartRequest other) : this() {
       accountId_ = other.accountId_;
       orderId_ = other.orderId_;
+      userType_ = other.userType_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8893,6 +8897,21 @@ namespace SP.Service {
       }
     }
 
+    /// <summary>Field number for the "userType" field.</summary>
+    public const int UserTypeFieldNumber = 3;
+    private int userType_;
+    /// <summary>
+    ///*
+    /// 用户类别(0,普通用户 1，商家 2，餐饮配送员 3，超市配送员)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int UserType {
+      get { return userType_; }
+      set {
+        userType_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as MyShoppingCartRequest);
@@ -8908,6 +8927,7 @@ namespace SP.Service {
       }
       if (AccountId != other.AccountId) return false;
       if (OrderId != other.OrderId) return false;
+      if (UserType != other.UserType) return false;
       return true;
     }
 
@@ -8916,6 +8936,7 @@ namespace SP.Service {
       int hash = 1;
       if (AccountId.Length != 0) hash ^= AccountId.GetHashCode();
       if (OrderId.Length != 0) hash ^= OrderId.GetHashCode();
+      if (UserType != 0) hash ^= UserType.GetHashCode();
       return hash;
     }
 
@@ -8934,6 +8955,10 @@ namespace SP.Service {
         output.WriteRawTag(18);
         output.WriteString(OrderId);
       }
+      if (UserType != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(UserType);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8944,6 +8969,9 @@ namespace SP.Service {
       }
       if (OrderId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(OrderId);
+      }
+      if (UserType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UserType);
       }
       return size;
     }
@@ -8958,6 +8986,9 @@ namespace SP.Service {
       }
       if (other.OrderId.Length != 0) {
         OrderId = other.OrderId;
+      }
+      if (other.UserType != 0) {
+        UserType = other.UserType;
       }
     }
 
@@ -8975,6 +9006,10 @@ namespace SP.Service {
           }
           case 18: {
             OrderId = input.ReadString();
+            break;
+          }
+          case 24: {
+            UserType = input.ReadInt32();
             break;
           }
         }
@@ -10394,6 +10429,163 @@ namespace SP.Service {
           }
           case 16: {
             DormId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 用户ID的请求参数
+  /// </summary>
+  public sealed partial class GetShoppingCartRequest : pb::IMessage<GetShoppingCartRequest> {
+    private static readonly pb::MessageParser<GetShoppingCartRequest> _parser = new pb::MessageParser<GetShoppingCartRequest>(() => new GetShoppingCartRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<GetShoppingCartRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[53]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public GetShoppingCartRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public GetShoppingCartRequest(GetShoppingCartRequest other) : this() {
+      accountId_ = other.accountId_;
+      userType_ = other.userType_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public GetShoppingCartRequest Clone() {
+      return new GetShoppingCartRequest(this);
+    }
+
+    /// <summary>Field number for the "accountId" field.</summary>
+    public const int AccountIdFieldNumber = 1;
+    private string accountId_ = "";
+    /// <summary>
+    ///*
+    ///  AccountId
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AccountId {
+      get { return accountId_; }
+      set {
+        accountId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "userType" field.</summary>
+    public const int UserTypeFieldNumber = 2;
+    private int userType_;
+    /// <summary>
+    ///*
+    /// 用户类别(0,普通用户 1，商家 2，餐饮配送员 3，超市配送员)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int UserType {
+      get { return userType_; }
+      set {
+        userType_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as GetShoppingCartRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(GetShoppingCartRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (AccountId != other.AccountId) return false;
+      if (UserType != other.UserType) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (AccountId.Length != 0) hash ^= AccountId.GetHashCode();
+      if (UserType != 0) hash ^= UserType.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (AccountId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(AccountId);
+      }
+      if (UserType != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(UserType);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (AccountId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountId);
+      }
+      if (UserType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UserType);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(GetShoppingCartRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.AccountId.Length != 0) {
+        AccountId = other.AccountId;
+      }
+      if (other.UserType != 0) {
+        UserType = other.UserType;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            AccountId = input.ReadString();
+            break;
+          }
+          case 16: {
+            UserType = input.ReadInt32();
             break;
           }
         }

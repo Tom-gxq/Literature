@@ -146,6 +146,7 @@ namespace SP.Service.Domain.Reporting
                 var product = productReportDatabase.GetProductDomainById(cart.ProductId);
                 
                 product.Quantity = cart.Quantity ?? 0;
+                System.Console.WriteLine($"OrderId={cart?.OrderId??string.Empty} Quantity={cart.Quantity ?? 0}");
                 productList.Add(product);
             }
             order.SetMemenProductto(productList);
@@ -216,9 +217,9 @@ namespace SP.Service.Domain.Reporting
                 var product = productReportDatabase.GetProductDomainById(cart.ProductId);
                 shoppingCart.SetMemenProductto(product.GetMemento());
                 var shipReportDatabase = IocManager.Instance.Resolve(typeof(ShipOrderReportDatabase)) as ShipOrderReportDatabase;
-                Console.WriteLine($"OrderId=[{order.OrderId}],accountId=[{accountId}],ProductId=[{cart.ProductId}]");
-                var ship = shipReportDatabase.GetShippingOrders(order.OrderId, accountId, cart.ProductId);
-                shoppingCart.Quantity = (ship?.Stock != null ? ship.Stock.Value : 0);
+                //Console.WriteLine($"OrderId=[{order.OrderId}],accountId=[{accountId}],ProductId=[{cart.ProductId}]");
+                //var ship = shipReportDatabase.GetShippingOrders(order.OrderId, accountId, cart.ProductId);
+                //shoppingCart.Quantity = (ship?.Stock != null ? ship.Stock.Value : 0);
                 shoppingCart.CalculateAmount();
                 shoppingCartList.Add(shoppingCart);
             }

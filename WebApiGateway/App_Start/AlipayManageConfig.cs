@@ -13,9 +13,9 @@ namespace WebApiGateway.App_Start
         private static string public_key = "";
         private static string input_charset = "";
         private static string sign_type = "";
-        //private static string notify_url = "http://api.ejiajunxy.cn/AlipayNotify/AlipayManage_Notify";
+        private static string notify_url = "http://api.ejiajunxy.cn/AlipayNotify/AlipayManage_Notify";
         //Sandbox
-        private static string notify_url = "http://s1api.ejiajunxy.cn/AlipayNotify/AlipayManage_Notify";
+        //private static string notify_url = "http://s1api.ejiajunxy.cn/AlipayNotify/AlipayManage_Notify";
         #endregion
 
         static AlipayManageConfig()

@@ -23,6 +23,17 @@ namespace WebApiGateway.Controllers.Seller
                 string mainTypeConf = ConfigurationManager.AppSettings["MainType.Market"];
                 var mainTypeId = int.Parse(mainTypeConf);
                 var list = ProductBusiness.GetDistributorMarketProduct(mainTypeId, typeId, pageIndex, pageSize);
+                string domainPath = ConfigurationManager.AppSettings["Qiniu.Domain"];
+                if (list != null)
+                {
+                    foreach (var item in list)
+                    {
+                        if (item.imagePath != null && !item.imagePath.ToLower().StartsWith("http://"))
+                        {
+                            item.imagePath = domainPath + item.imagePath;                            
+                        }
+                    }
+                }
                 JsonResult.Add("prouctList", list);
                 JsonResult.Add("status", 0);
             }
@@ -41,6 +52,17 @@ namespace WebApiGateway.Controllers.Seller
             try
             {
                 var list = ProductBusiness.GetDistributorFoodShopProductList(currentAccount.AccountId, typeId, pageIndex, pageSize);
+                string domainPath = ConfigurationManager.AppSettings["Qiniu.Domain"];
+                if (list != null)
+                {
+                    foreach (var item in list)
+                    {
+                        if (item.imagePath != null && !item.imagePath.ToLower().StartsWith("http://"))
+                        {
+                            item.imagePath = domainPath + item.imagePath;
+                        }
+                    }
+                }
                 JsonResult.Add("prouctList", list);
                 JsonResult.Add("status", 0);
             }
@@ -62,6 +84,17 @@ namespace WebApiGateway.Controllers.Seller
                 string mainTypeConf = ConfigurationManager.AppSettings["MainType.Market"];
                 var mainTypeId = int.Parse(mainTypeConf);
                 var list = ProductBusiness.GetSellerMarketProduct(currentAccount.AccountId, mainTypeId, typeId, pageIndex, pageSize);
+                string domainPath = ConfigurationManager.AppSettings["Qiniu.Domain"];
+                if (list != null)
+                {
+                    foreach (var item in list)
+                    {
+                        if (item.imagePath != null && !item.imagePath.ToLower().StartsWith("http://"))
+                        {
+                            item.imagePath = domainPath + item.imagePath;
+                        }
+                    }
+                }
                 JsonResult.Add("prouctList", list);
                 JsonResult.Add("status", 0);
             }
@@ -82,6 +115,17 @@ namespace WebApiGateway.Controllers.Seller
                 string mainTypeConf = ConfigurationManager.AppSettings["MainType.Food"];
                 var mainTypeId = int.Parse(mainTypeConf);
                 var list = ProductBusiness.GetSellerFoodShopProductList(currentAccount.AccountId, mainTypeId, typeId, pageIndex, pageSize);
+                string domainPath = ConfigurationManager.AppSettings["Qiniu.Domain"];
+                if (list != null)
+                {
+                    foreach (var item in list)
+                    {
+                        if (item.imagePath != null && !item.imagePath.ToLower().StartsWith("http://"))
+                        {
+                            item.imagePath = domainPath + item.imagePath;
+                        }
+                    }
+                }
                 JsonResult.Add("prouctList", list);
                 JsonResult.Add("status", 0);
             }
