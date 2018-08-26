@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.Product
 {
-    public class EditProductSkuCommand : Command
+    public class EditProductSkuDBCommand : Command
     {
         public string AccountId { get; set; }
         public string ProductId { get; set; }
@@ -13,14 +13,14 @@ namespace SP.Service.Domain.Commands.Product
         public int Stock { get; set; }
         public int Type { get; set; }
 
-        public EditProductSkuCommand(Guid id, string accountId, string productId,int shopId,int stock,int type)
+        public EditProductSkuDBCommand(Guid id, string accountId, string productId, int shopId, int stock,int type)
         {
             base.Id = id;
             this.AccountId = accountId;
             this.ShopId = shopId;
             this.Stock = stock;
             this.ProductId = productId;
-            this.Type = Type;
+            this.Type = type;
         }
     }
 }

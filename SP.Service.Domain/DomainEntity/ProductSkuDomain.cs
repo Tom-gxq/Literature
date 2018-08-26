@@ -3,6 +3,7 @@ using Grpc.Service.Core.Domain;
 using Grpc.Service.Core.Domain.Entity;
 using Grpc.Service.Core.Domain.Repositories;
 using Microsoft.Extensions.Configuration;
+using SP.Producer;
 using SP.Service.Domain.Events;
 using SP.Service.Domain.Util;
 using SP.Service.Entity;
@@ -12,7 +13,8 @@ using System.Text;
 
 namespace SP.Service.Domain.DomainEntity
 {
-    public class ProductSkuDomain : AggregateRoot<Guid>, IHandle<DecreaseProductSkuEvent>, IHandle<RedoProductSkuEvent>, IOriginator
+    public class ProductSkuDomain : AggregateRoot<Guid>, IHandle<DecreaseProductSkuEvent>, 
+        IHandle<RedoProductSkuEvent>, IHandle<ProductSkuDBUpdateEvent>, IOriginator
     {
         public string ProductId { get; internal set; }
         public string SkuId { get; internal set; }
@@ -33,15 +35,36 @@ namespace SP.Service.Domain.DomainEntity
         {
             ApplyChange(new ProductSkuOrderNumEvent(shopId, productId, accountId, orderNum));
         }
-        public void EditProductSkuDomainStock(int shopId,string productId, int stock, string orderId,string accountId)
+        public void EditProductSkuDomainStock(int shopId, string productId, int stock, string orderId, string accountId)
         {
             string host = OrderCommon.GetHost();
-            ApplyChange(new DecreaseProductSkuEvent(shopId,productId, stock, orderId, host, accountId));
+            ApplyChange(new DecreaseProductSkuEvent(shopId, productId, stock, orderId, host, accountId));
         }
-        public void RedoProductSkuDomainStock(int shopId, string productId, int stock,string orderId,string accountId)
+        public void RedoProductSkuDomainStock(int shopId, string productId, int stock, string orderId, string accountId)
         {
             string host = OrderCommon.GetHost();
             ApplyChange(new RedoProductSkuEvent(shopId, productId, stock, orderId, host, accountId));
+        }
+        public void UpdateProductSkuDomainStock(int shopId, string productId, string accountId, int stock,int type)
+        {
+            var config = IocManager.Instance.Resolve<IConfigurationRoot>();
+            string kafkaIP = string.Empty;
+            if (config != null)
+            {
+                kafkaIP = config.GetSection("KafkaIP").Value?.ToString() ?? string.Empty;
+            }
+            var producer = new KafkaProductStockProducer();
+            producer.IPConfig = kafkaIP;
+            producer.AccountId = accountId;
+            producer.ProductId = productId;
+            producer.ShopId = shopId;
+            producer.Stock = stock;
+            producer.Type = type;
+            ApplyChange(new KafkaAddEvent(producer));
+        }
+        public void UpdateProductSkuDbDomainStock(Guid id,int shopId, string productId, string accountId, int stock,int type)
+        {
+            ApplyChange(new ProductSkuDBUpdateEvent(id, accountId, productId, shopId,stock, type));
         }
         public void Handle(DecreaseProductSkuEvent e)
         {
@@ -60,6 +83,13 @@ namespace SP.Service.Domain.DomainEntity
             this.ProductId = e.ProductId;
             this.OrderNum = e.OrderNum;
             this.ShopId = e.ShopId;
+        }
+        public void Handle(ProductSkuDBUpdateEvent e)
+        {
+            this.ProductId = e.ProductId;
+            this.ShopId = e.ShopId;
+            this.AccountId = e.AccountId;
+            this.Stock = e.Stock;
         }
         public void SetMemento(BaseEntity memento)
         {

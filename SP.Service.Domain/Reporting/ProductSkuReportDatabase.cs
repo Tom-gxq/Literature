@@ -52,6 +52,22 @@ namespace SP.Service.Domain.Reporting
             var result = _repository.UpdateProductSkuOrderNum(entity);
             return result > 0;
         }
+        public bool AddProductSku(ProductSkuEntity entity)
+        {
+            var result = _repository.AddProductSku(entity);
+            return result > 0;
+        }
+        public List<ProductSkuDomain> GetCurrentProductSku(int shopType)
+        {
+            List<ProductSkuDomain> list = new List<ProductSkuDomain>();
+            var skuList = _repository.GetCurrentProductSku(shopType);
+            foreach(var item in skuList)
+            {                
+                list.Add(ConvertSkuEntityToDomain(item));
+            }
+            return list;
+
+        }
         private ProductSkuDomain ConvertSkuEntityToDomain(ProductSkuEntity entity)
         {
             if(entity == null)

@@ -201,7 +201,8 @@ namespace WebApiGateway.Controllers.Account
             model.ProductCode = "QUICK_MSECURITY_PAY";
             model.OutTradeNo = content["out_trade_no"].Value<string>();
             model.TimeoutExpress = "1m";//支付超时时间
-            model.SellerId = "1725219681@qq.com";
+            //model.SellerId = "1725219681@qq.com";
+            //model.SellerId = AlipayManageConfig.Partner;
 
 
             request.SetBizModel(model);
@@ -209,10 +210,12 @@ namespace WebApiGateway.Controllers.Account
 
             //这里和普通的接口调用不同，使用的是sdkExecute
             AlipayTradeAppPayResponse response = client.SdkExecute(request);
-            //HttpUtility.HtmlEncode是为了输出到页面时防止被浏览器将关键参数html转义，实际打印到日志以及http传输不会有这个问题
+            //Http为了输出Utility.HtmlEncode是到页面时防止被浏览器将关键参数html转义，实际打印到日志以及http传输不会有这个问题
             //Response.Write(HttpUtility.HtmlEncode(response.Body));
             //页面输出的response.Body就是orderString 可以直接给客户端请求，无需再做处理。
-            return response.Body;
+            var ret = response.Body;
+            Common.WriteLog("alipayManageStr=" + HttpUtility.UrlDecode(ret));
+            return ret;
         }
 
 

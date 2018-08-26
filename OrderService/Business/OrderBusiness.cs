@@ -184,7 +184,7 @@ namespace Order.Service.Business
             var memberList = ServiceLocator.AssociatorReportDatabase.GetMemberByAccountId(entity.AccountId);
             var order = new SP.Service.Order();
             order.AccountId = entity.AccountId;
-            if (memberList != null && memberList.Count > 0)
+            if (memberList != null && memberList.Count > 0 && entity.OrderType == 0)
             {
                 order.Amount = entity.VIPAmount;
             }

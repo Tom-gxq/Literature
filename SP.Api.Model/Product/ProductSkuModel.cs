@@ -13,5 +13,6 @@ namespace SP.Api.Model.Product
         public int stock{ get; set; }
         public int shopId { get; set; }
         public string accountId { get; set; }
+        public int type { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Grpc.Service.Core.Domain.Repositories;
+using ServiceStack.OrmLite;
 using SP.Service.Entity;
 using System;
 using System.Collections.Generic;
@@ -31,5 +32,21 @@ namespace SP.Service.EntityFramework.Repositories
             return this.UpdateNonDefaults(entity, x => x.SkuId == entity.SkuId );
         }
 
+        public long AddProductSku(ProductSkuEntity entity)
+        {
+            return this.Insert(entity);
+        }
+
+        public List<ProductSkuEntity> GetCurrentProductSku(int shopType)
+        {
+            using (var db = OpenDbConnection())
+            {
+                var q = db.From<ProductSkuEntity>();
+                q = q.Join<ProductSkuEntity, ShopEntity>((e, a) => e.ShopId==a.Id && a.ShopType == shopType 
+                && e.EffectiveTime >= DateTime.Parse(DateTime.Now.ToShortDateString()));
+                
+                return db.Select(q);
+            }
+        }
     }
 }

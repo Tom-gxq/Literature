@@ -253,7 +253,7 @@ namespace Stock.Service.Business
                             cache.Set(key, item.Stock.ToString());
                         }
                         response.Status = 10001;
-                        ServiceLocator.CommandBus.Send(new EditProductSkuCommand(Guid.NewGuid(),item.AccountId, item.ProductId, item.ShopId,item.Stock));
+                        ServiceLocator.CommandBus.Send(new EditProductSkuCommand(Guid.NewGuid(),item.AccountId, item.ProductId, item.ShopId,item.Stock,item.Type));
                     }
                     catch (Exception ex)
                     {

@@ -1,6 +1,7 @@
 ﻿using AccountGRPCInterface;
 using ProductGRPCInterface;
 using SP.Api.Model;
+using SP.Api.Model.Product;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -59,22 +60,30 @@ namespace WebApiGateway.Controllers.Product
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
+                List<ProductModel> retList = new List<ProductModel>();
                 var list = ProductBusiness.GetShopProductList(districtId, typeId, pageIndex, pageSize);
-                string domainPath = ConfigurationManager.AppSettings["Qiniu.Domain"];
-                if(list!= null)
+                if (list != null)
                 {
-                    foreach(var item in list)
+                    string domainPath = ConfigurationManager.AppSettings["Qiniu.Domain"];
+                    var groupResult = list.GroupBy(x => x.productId);
+                    foreach (var item in groupResult)
                     {
-                        if(item.images != null)
+                        var product = item.FirstOrDefault();
+                        if (product != null)
                         {
-                            foreach(var img in item.images)
+                            product.skuNum = item.Sum(x => x.skuNum);
+                            if (product.images != null)
                             {
-                                img.imgPath = !string.IsNullOrEmpty(img.imgPath) ? (domainPath + img.imgPath) : string.Empty;
+                                foreach (var img in product.images)
+                                {
+                                    img.imgPath = !string.IsNullOrEmpty(img.imgPath) ? (domainPath + img.imgPath) : string.Empty;
+                                }
                             }
+                            retList.Add(product);
                         }
                     }
                 }
-                JsonResult.Add("shopProductList", list);
+                JsonResult.Add("shopProductList", retList);
                 JsonResult.Add("status", 0);
             }
             catch (Exception ex)

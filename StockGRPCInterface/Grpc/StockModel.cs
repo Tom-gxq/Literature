@@ -23,24 +23,25 @@ namespace SP.Service {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChBTdG9ja01vZGVsLnByb3RvEgpTUC5TZXJ2aWNlIjYKEVByb2R1Y3RTa3VS",
-            "ZXF1ZXN0Eg4KBnNob3BJZBgBIAEoBRIRCglwcm9kdWN0SWQYAiABKAkiYAoK",
+            "ZXF1ZXN0Eg4KBnNob3BJZBgBIAEoBRIRCglwcm9kdWN0SWQYAiABKAkibgoK",
             "UHJvZHVjdFNrdRIRCglwcm9kdWN0SWQYAiABKAkSDQoFc2t1SWQYAyABKAkS",
             "DQoFc3RvY2sYBCABKAUSDgoGc2hvcElkGAUgASgFEhEKCWFjY291bnRJZBgG",
-            "IAEoCSJJChJQcm9kdWN0U2t1UmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEiMK",
-            "A3NrdRgCIAMoCzIWLlNQLlNlcnZpY2UuUHJvZHVjdFNrdSJQChhBY2NvdW50",
-            "UHJvZHVjdFNrdVJlcXVlc3QSDgoGc2hvcElkGAEgASgFEhEKCXByb2R1Y3RJ",
-            "ZBgCIAEoCRIRCglhY2NvdW50SWQYAyABKAkiIwoRU2t1U3RhdHVzUmVzcG9u",
-            "c2USDgoGc3RhdHVzGAEgASgFImsKE09wZXJhdGlvblNrdVJlcXVlc3QSDgoG",
-            "c2hvcElkGAEgASgFEhEKCXByb2R1Y3RJZBgCIAEoCRIRCglhY2NvdW50SWQY",
-            "AyABKAkSDQoFc3RvY2sYBCABKAUSDwoHb3JkZXJJZBgFIAEoCSIyCg1JbnZT",
-            "a3VSZXF1ZXN0Eg4KBnNob3BJZBgBIAEoBRIRCglwcm9kdWN0SWQYAiABKAki",
-            "RwoOU2t1TGlzdFJlcXVlc3QSIwoDc2t1GAEgAygLMhYuU1AuU2VydmljZS5Q",
-            "cm9kdWN0U2t1EhAKCHRpbWVTcGFuGAIgASgDYgZwcm90bzM="));
+            "IAEoCRIMCgR0eXBlGAcgASgFIkkKElByb2R1Y3RTa3VSZXNwb25zZRIOCgZz",
+            "dGF0dXMYASABKAUSIwoDc2t1GAIgAygLMhYuU1AuU2VydmljZS5Qcm9kdWN0",
+            "U2t1IlAKGEFjY291bnRQcm9kdWN0U2t1UmVxdWVzdBIOCgZzaG9wSWQYASAB",
+            "KAUSEQoJcHJvZHVjdElkGAIgASgJEhEKCWFjY291bnRJZBgDIAEoCSIjChFT",
+            "a3VTdGF0dXNSZXNwb25zZRIOCgZzdGF0dXMYASABKAUiawoTT3BlcmF0aW9u",
+            "U2t1UmVxdWVzdBIOCgZzaG9wSWQYASABKAUSEQoJcHJvZHVjdElkGAIgASgJ",
+            "EhEKCWFjY291bnRJZBgDIAEoCRINCgVzdG9jaxgEIAEoBRIPCgdvcmRlcklk",
+            "GAUgASgJIjIKDUludlNrdVJlcXVlc3QSDgoGc2hvcElkGAEgASgFEhEKCXBy",
+            "b2R1Y3RJZBgCIAEoCSJHCg5Ta3VMaXN0UmVxdWVzdBIjCgNza3UYASADKAsy",
+            "Fi5TUC5TZXJ2aWNlLlByb2R1Y3RTa3USEAoIdGltZVNwYW4YAiABKANiBnBy",
+            "b3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ProductSkuRequest), global::SP.Service.ProductSkuRequest.Parser, new[]{ "ShopId", "ProductId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ProductSku), global::SP.Service.ProductSku.Parser, new[]{ "ProductId", "SkuId", "Stock", "ShopId", "AccountId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ProductSku), global::SP.Service.ProductSku.Parser, new[]{ "ProductId", "SkuId", "Stock", "ShopId", "AccountId", "Type" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ProductSkuResponse), global::SP.Service.ProductSkuResponse.Parser, new[]{ "Status", "Sku" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountProductSkuRequest), global::SP.Service.AccountProductSkuRequest.Parser, new[]{ "ShopId", "ProductId", "AccountId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SkuStatusResponse), global::SP.Service.SkuStatusResponse.Parser, new[]{ "Status" }, null, null, null),
@@ -239,6 +240,7 @@ namespace SP.Service {
       stock_ = other.stock_;
       shopId_ = other.shopId_;
       accountId_ = other.accountId_;
+      type_ = other.type_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -321,6 +323,21 @@ namespace SP.Service {
       }
     }
 
+    /// <summary>Field number for the "type" field.</summary>
+    public const int TypeFieldNumber = 7;
+    private int type_;
+    /// <summary>
+    ///*
+    /// 更新类型(0:覆盖 1:增加 2:减少)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Type {
+      get { return type_; }
+      set {
+        type_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as ProductSku);
@@ -339,6 +356,7 @@ namespace SP.Service {
       if (Stock != other.Stock) return false;
       if (ShopId != other.ShopId) return false;
       if (AccountId != other.AccountId) return false;
+      if (Type != other.Type) return false;
       return true;
     }
 
@@ -350,6 +368,7 @@ namespace SP.Service {
       if (Stock != 0) hash ^= Stock.GetHashCode();
       if (ShopId != 0) hash ^= ShopId.GetHashCode();
       if (AccountId.Length != 0) hash ^= AccountId.GetHashCode();
+      if (Type != 0) hash ^= Type.GetHashCode();
       return hash;
     }
 
@@ -380,6 +399,10 @@ namespace SP.Service {
         output.WriteRawTag(50);
         output.WriteString(AccountId);
       }
+      if (Type != 0) {
+        output.WriteRawTag(56);
+        output.WriteInt32(Type);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -399,6 +422,9 @@ namespace SP.Service {
       }
       if (AccountId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountId);
+      }
+      if (Type != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Type);
       }
       return size;
     }
@@ -422,6 +448,9 @@ namespace SP.Service {
       }
       if (other.AccountId.Length != 0) {
         AccountId = other.AccountId;
+      }
+      if (other.Type != 0) {
+        Type = other.Type;
       }
     }
 
@@ -451,6 +480,10 @@ namespace SP.Service {
           }
           case 50: {
             AccountId = input.ReadString();
+            break;
+          }
+          case 56: {
+            Type = input.ReadInt32();
             break;
           }
         }

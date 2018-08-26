@@ -148,7 +148,8 @@ namespace SP.Service.Domain.EventHandlers
                                     accountId = domaint.AccountId,
                                     productId = product.ProductId,
                                     shopId = shopOwner.ShopId,
-                                    stock = product.Quantity
+                                    stock = product.Quantity,
+                                    type = 1,//增加
                                 });                                
                             }
                             var response = StockBusiness.UpdateProductSku(handle.Host, list);

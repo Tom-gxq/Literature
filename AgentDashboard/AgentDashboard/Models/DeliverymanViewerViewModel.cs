@@ -11,5 +11,7 @@ namespace AgentDashboard.Models
         public DateTime? Birthday { get; set; }
         public string Phone { get; set; }
         public string Region { get; set; }
+        public string Dorm { get; set; }
+        public decimal Amount { get; set; }
     }
 }

@@ -88,5 +88,23 @@ namespace StockGRPCInterface
             helper.Dispose();
             return result;
         }
+
+        public static SkuStatusResponse DelProductSku(string host, List<ProductSkuModel> list)
+        {
+            var helper = new StockClientHelper(host);
+            var client = helper.GetClient();
+            var request = new SkuListRequest();
+            foreach (var model in list)
+            {
+                ProductSku sku = new ProductSku();
+                sku.AccountId = model.accountId;
+                sku.ProductId = model.productId;
+                sku.ShopId = model.shopId;
+                request.Sku.Add(sku);
+            }
+            var result = client.DelProductSku(request);
+            helper.Dispose();
+            return result;
+        }
     }
 }

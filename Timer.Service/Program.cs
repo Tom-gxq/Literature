@@ -1,7 +1,10 @@
-﻿using Grpc.Service.Core.Dependency;
+﻿using FluentScheduler;
+using Grpc.Service.Core.Dependency;
 using Grpc.Service.Core.Reflection;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using RedisCache.Service;
+using SP.Service.Domain.Commands.Product;
 using System;
 using System.IO;
 using System.Linq;
@@ -20,32 +23,87 @@ namespace Timer.Service
             AssemblyRegistHelper.Register(Configuration);
             RedisCacheRegisteConfig.Register(IocManager.Instance);
 
-            var host = Configuration.GetSection(CommonKeys.AppHost).Value;
-            var port = Configuration.GetSection(CommonKeys.AppPort).Value;
+            var host = Configuration.GetSection("KafkaIP").Value;
+            var service = new KafkaService(host);
+            System.Threading.Thread thread = new System.Threading.Thread(service.Start);
+            thread.Start();
 
-            var service = new CacheService(host, port);
-            service.Start();
+            //库存定时操作
+            var stockSvrHost = Configuration.GetSection("stockservice_host").Value;
+            var foodId = Configuration.GetSection("FoodId").Value;
+            JobManager.Initialize(new StockRegistry(stockSvrHost, int.Parse(foodId)));
+
+            //var host = Configuration.GetSection(CommonKeys.AppHost).Value;
+            //var port = Configuration.GetSection(CommonKeys.AppPort).Value;
+
+            //var service = new CacheService(host, port);
+            //service.Start();
+
+
         }
     }
-    public class CacheService
+    //public class CacheService
+    //{
+    //    readonly Grpc.Core.Server server;
+    //    public CacheService(string host, string port)
+    //    {
+    //        int tempPort = 0;
+    //        int.TryParse(port, out tempPort);
+    //        server = new Grpc.Core.Server
+    //        {
+    //            Services = { StockService.BindService(new StockServiceImpl(tempPort)) },
+    //            Ports = { new Grpc.Core.ServerPort(host, tempPort, Grpc.Core.ServerCredentials.Insecure) }
+    //        };
+    //    }
+    //    public void Start()
+    //    {
+    //        server.Start();
+    //        server.Ports.ToList().ForEach(a => Console.WriteLine($"stock server listening on {a.Host}port {a.Port}..."));
+    //        server.ShutdownTask.Wait();
+    //    }
+    //    public void Stop() { server.ShutdownAsync(); }
+    //}
+
+    class KafkaService
     {
-        readonly Grpc.Core.Server server;
-        public CacheService(string host, string port)
+        SP.Consumer.KafkaConsumer Consumer;
+        public KafkaService(string host)
         {
-            int tempPort = 0;
-            int.TryParse(port, out tempPort);
-            server = new Grpc.Core.Server
-            {
-                Services = { StockService.BindService(new StockServiceImpl(tempPort)) },
-                Ports = { new Grpc.Core.ServerPort(host, tempPort, Grpc.Core.ServerCredentials.Insecure) }
-            };
+            Consumer = new SP.Consumer.KafkaConsumer("StockConsumer", host, $"ProductStockUpdate");
         }
         public void Start()
         {
-            server.Start();
-            server.Ports.ToList().ForEach(a => Console.WriteLine($"stock server listening on {a.Host}port {a.Port}..."));
-            server.ShutdownTask.Wait();
+            Console.WriteLine($"Consumer server Start...");
+            Consumer.MessageEvent += (_, msg) =>
+            {
+                string text = msg.Value;
+                Console.WriteLine($"Consumer Message=" + text);
+
+                try
+                {
+                    var command = JsonConvert.DeserializeObject<UpdateProductSkuDBCommand>(text);
+                    if (command.EventType == "ProductStock")
+                    {
+                        var memberCommand = command as EditProductSkuDBCommand;
+                        ServiceLocator.CommandBus.Send(memberCommand);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Consumer ex=" + ex.Message + " StackTrace=" + ex.StackTrace);
+                }
+            };
+            Consumer.ErrorEvent += (_, error) =>
+            {
+                Console.WriteLine($"Error: {error}");
+            };
+            Consumer.ConsumeErrorEvent += (_, msg) =>
+            {
+                Console.WriteLine($"Consume error ({msg.TopicPartitionOffset}): {msg.Error}");
+            };
+            Consumer.ConsumerRun();
+
         }
-        public void Stop() { server.ShutdownAsync(); }
     }
 }

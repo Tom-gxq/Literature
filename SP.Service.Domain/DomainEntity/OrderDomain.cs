@@ -41,6 +41,7 @@ namespace SP.Service.Domain.DomainEntity
         public bool IsVip { get; set; }
         public bool IsWxPay { get; set; }
         public bool IsAliPay { get; set; }
+        public int OrderType { get; set; }
 
         public OrderDomain()
         {
@@ -210,6 +211,7 @@ namespace SP.Service.Domain.DomainEntity
                 this.IsVip = order.IsVip != null ? order.IsVip.Value : false;
                 this.IsWxPay = order.IsWxPay != null ? order.IsWxPay.Value : false;
                 this.IsAliPay = order.IsAliPay != null ? order.IsAliPay.Value : false;
+                this.OrderType = order.OrderType != null ? order.OrderType.Value : 0;
             }
         }
 

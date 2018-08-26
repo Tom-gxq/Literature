@@ -373,7 +373,8 @@ namespace SPManager.Controllers
                         accountId = productSku.AccountId,
                         productId = productSku.ProductId,
                         shopId = productSku.ShopId,
-                        stock = productSku.Stock
+                        stock = productSku.Stock,
+                        type = 0,//覆盖
                     });
                     ServerStockBusiness.UpdateProductSku(list);
                 }
@@ -443,7 +444,8 @@ namespace SPManager.Controllers
                     accountId = productSku.AccountId,
                     productId = productSku.ProductId,
                     shopId = productSku.ShopId,
-                    stock = productSku.Stock+1
+                    stock = productSku.Stock+1,
+                    type = 0,//覆盖
                 });
                 ServerStockBusiness.UpdateProductSku(list);
             }
@@ -471,7 +473,8 @@ namespace SPManager.Controllers
                     accountId = productSku.AccountId,
                     productId = productSku.ProductId,
                     shopId = productSku.ShopId,
-                    stock = productSku.Stock-1
+                    stock = productSku.Stock-1,
+                    type = 0,//覆盖
                 });
                 ServerStockBusiness.UpdateProductSku(list);
             }

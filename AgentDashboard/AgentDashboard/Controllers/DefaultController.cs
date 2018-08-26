@@ -41,15 +41,52 @@ namespace AgentDashboard.Controllers
             {
                 var act = sPEntities.SP_Account.SingleOrDefault(n => n.AccountId == accountId);
                 var actInfo = sPEntities.SP_AccountInfo.SingleOrDefault(n => n.AccountId == accountId);
-                var regionAct = sPEntities.SP_RegionAccount.SingleOrDefault(n => n.AccountId == accountId);
-                var regionData = sPEntities.SP_RegionData.SingleOrDefault(n => n.DataID == regionAct.RegionId);
                 var shopOwner = sPEntities.SP_ShopOwner.SingleOrDefault(n => n.OwnerId == accountId);
                 var shop = sPEntities.SP_Shop.SingleOrDefault(n => n.Id == shopOwner.ShopId);
                 var productType = sPEntities.SP_ProductType.SingleOrDefault(n => n.Id == shop.ShopType);
+                var regionAct = sPEntities.SP_RegionAccount.SingleOrDefault(n => n.AccountId == accountId);
+                if (regionAct != null && string.IsNullOrEmpty(regionAct.AccountId))
+                {
+                    var regionData = sPEntities.SP_RegionData.SingleOrDefault(n => n.DataID == regionAct.RegionId);
+                    viewModel.Region = String.Format("{0},{1}", regionData.DataName, productType.TypeName);
+                }
+                var list = sPEntities.SP_AccountAddress.Where(x => x.AccountId == accountId).OrderByDescending(x=>x.IsDefault).ToList();
+                if(list != null && list.Count() > 0)
+                {
+                    var address = list[0];
+                    string add = string.Empty;
+                    int dormid = int.Parse(address.RegionID);
+                    var dorm = sPEntities.SP_RegionData.SingleOrDefault(x=>x.DataID == dormid);
+                    if(dorm != null)
+                    {
+                        add = dorm.DataName;
+                        int buildingId = int.Parse(dorm.ParentDataID);
+                        var building = sPEntities.SP_RegionData.SingleOrDefault(x => x.DataID == buildingId);
+                        if(building != null)
+                        {
+                            add = building.DataName + " "+ add;
+                            int distictId = int.Parse(building.ParentDataID);
+                            var distict = sPEntities.SP_RegionData.SingleOrDefault(x => x.DataID == distictId);
+                            if(distict != null)
+                            {
+                                add = distict.DataName + " " + add;
+                            }
+                        }
+                    }
+                    viewModel.Dorm = add;
+                }
+                var finace = sPEntities.SP_AccountFinance.SingleOrDefault(x=>x.AccountId == accountId);
+                if(finace != null)
+                {
+                    
+                    var cashList = sPEntities.SP_CashApply.Where(x => x.AccountId == accountId && x.Status == 0).ToList();
+                    var sum = cashList.Sum(x=>x.Money) ;
+                    viewModel.Amount = (finace.HaveAmount??0) - (finace.UseAmount??0) - (sum!=null?sum.Value:0);
+                }
                 viewModel.FullName = actInfo.Fullname;
                 viewModel.Birthday = actInfo.Birthdate;
-                viewModel.Phone = act.MobilePhone;
-                viewModel.Region = String.Format("{0},{1}", regionData.DataName, productType.TypeName);
+                viewModel.Phone = act.MobilePhone.Replace("+86","");
+                
             }
 
             return View(viewModel);
@@ -1456,7 +1493,8 @@ namespace AgentDashboard.Controllers
                 accountId = accountId,
                 productId = productId,
                 shopId = shopId,
-                stock = stock
+                stock = stock,
+                type = 0,//覆盖
             });
             var ret = ServerStockBusiness.UpdateProductSku(list);
 

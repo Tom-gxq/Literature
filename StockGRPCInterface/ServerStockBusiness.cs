@@ -53,6 +53,7 @@ namespace StockGRPCInterface
                 sku.ShopId = model.shopId;
                 sku.SkuId = model.skuId ?? string.Empty;
                 sku.Stock = model.stock;
+                sku.Type = model.type;
                 request.Sku.Add(sku);
             }
             var result = client.UpdateProductSku(request);
@@ -76,6 +77,7 @@ namespace StockGRPCInterface
                 sku.ShopId = model.shopId;
                 sku.SkuId = model.skuId ?? string.Empty;
                 sku.Stock = model.stock;
+                sku.Type = 2;//减少
                 request.Sku.Add(sku);
             }
             var result = client.DelProductSku(request);
