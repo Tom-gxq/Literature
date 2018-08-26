@@ -163,31 +163,33 @@
                                     <div class="card-deck">
                                         @foreach (var product in deliverman.Products)
                                         {
-                                            <div class="card">
-                                                <img class="card-img-top" src="@product.ImagePath" width="100" height="100">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">@product.Name</h5>
-                                                    <p class="card-text">@product.Description</p>
-                                                </div>
-                                                @if (!Model.isMarket)
-                                                {
+                                            <div class="col-xl-3 col-sm-6 mb-3">
+                                                <div class="card">
+                                                    <img class="card-img-top" src="@product.ImagePath" height="100">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">@product.Name</h5>
+                                                        <p class="card-text">@product.Description</p>
+                                                    </div>
+                                                    @if (!Model.isMarket)
+                                                    {
                                                 <div class="card-footer" dataid="@product.Id" aid="@deliverman.AccountId">
                                                     <div class="row" >
                                                         <label>库存</label><input type="text" class="form-control form-text w-75 h-50 stock" value="@product.Stocks" />
-                                                    </div>
-                                                    <div class="row">
+                                                            </div>
+                                                            <div class="row">
                                                         <label>预存</label><input type="text" class="form-control form-text w-75 h-50 prestock" value="@product.PreStocks" />
-                                                    </div>
-                                                </div>
-                                                }
-                                                else
-                                                {
-                                                    <div class="card-footer">
-                                                        <div class="row">
-                                                            <label>库存</label><input type="text" class="form-control form-text w-75 h-50" disabled value="@product.Stocks" />
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                }
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="card-footer">
+                                                            <div class="row">
+                                                                <label>库存</label><input type="text" class="form-control form-text w-75 h-50" disabled value="@product.Stocks" />
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
                                             </div>
                                         }
                                         @if (!Model.isMarket)
@@ -207,18 +209,18 @@
                 </div>
                 if (!Model.isMarket)
                 {
-                <div class="row justify-content-center">
-                    <p>营业时间</p>
-                    <input type="text" style="width:50px; height:30px; text-align:center" value="@Model.StartTime.Hour.ToString("00")" />
-                    <p>:</p>
-                    <input type="text" style="width:50px; height:30px; text-align:center" value="@Model.StartTime.Minute.ToString("00")" />
-                    <p>--</p>
-                    <input type="text" style="width:50px; height:30px; text-align:center" value="@Model.EndTime.Hour.ToString("00")" />
-                    <p>:</p>
-                    <input type="text" style="width:50px; height:30px; text-align:center" value="@Model.EndTime.Minute.ToString("00")" />
-                </div>
-                 }
-             }
+                    <div class="row justify-content-center">
+                        <p>营业时间</p>
+                        <input type="text" style="width:50px; height:30px; text-align:center" value="@Model.StartTime.Hour.ToString("00")" />
+                        <p>:</p>
+                        <input type="text" style="width:50px; height:30px; text-align:center" value="@Model.StartTime.Minute.ToString("00")" />
+                        <p>--</p>
+                        <input type="text" style="width:50px; height:30px; text-align:center" value="@Model.EndTime.Hour.ToString("00")" />
+                        <p>:</p>
+                        <input type="text" style="width:50px; height:30px; text-align:center" value="@Model.EndTime.Minute.ToString("00")" />
+                    </div>
+                }
+            }
 
         </div>
         <!-- /.container-fluid-->

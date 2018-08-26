@@ -1,4 +1,5 @@
-﻿@{
+﻿@model AgentDashboard.Models.DeliverymanViewerViewModel
+@{
     Layout = null;
 }
 
@@ -165,7 +166,7 @@
                                             <label>区类</label>
                                         </div>
                                         <div class="col-11">
-                                            <input type="text" class="form-control" readonly/>
+                                            <input type="text" class="form-control" value="@Model.Region" readonly/>
                                         </div>
                                     </div>
                                 </div>
