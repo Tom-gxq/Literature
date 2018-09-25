@@ -21,6 +21,7 @@ namespace SP.Service.Domain.DomainEntity
         public int ShopId { get; set; }
         public double Amount { get; internal set; }
         public double VIPAmount { get; internal set; }
+        public int ShipOrderId { get; internal set; }
 
         public ShoppingCartsDomain()
         {

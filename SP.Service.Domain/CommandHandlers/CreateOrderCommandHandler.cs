@@ -91,24 +91,28 @@ namespace SP.Service.Domain.CommandHandlers
                                             shop.StartTime = string.Format("{0}:{1}", newHour, times[1]);
                                         }
                                     }
-                                }
-                                if (cartDomain.Product != null && !string.IsNullOrEmpty(cartDomain.Product.ProductId))
+                                }                                
+                            }
+                            if (cartDomain.Product != null && !string.IsNullOrEmpty(cartDomain.Product.ProductId))
+                            {
+                                string host = OrderCommon.GetHost();
+                                var skuDomain = _skuReportDatabase.GetProductSkuByProductId(cartDomain.ShopId, cartDomain.Product.ProductId, host);
+                                System.Console.WriteLine($"GetProductSkuByProductId  ShopId={cartDomain.ShopId} ProductId={cartDomain.Product.ProductId}" +
+                                    $" stock={skuDomain.Stock}  OrderId={command.Id.ToString()}");
+                                if (!string.IsNullOrEmpty(shoppingCart?.OrderId) && (skuDomain?.Stock ?? 0) < cartDomain.Quantity)
                                 {
-                                    string host = OrderCommon.GetHost();
-                                    var skuDomain = _skuReportDatabase.GetProductSkuByProductId(cartDomain.ShopId, cartDomain.Product.ProductId, host);
-                                    if (!string.IsNullOrEmpty(shoppingCart?.OrderId) && (skuDomain?.Stock ?? 0) < cartDomain.Quantity)
-                                    {
-                                        throw new ProductSkuException(string.Format($"ShopId={skuDomain.ShopId} " +
-                                        $"ProductId={skuDomain.ProductId} domaint.Stock={skuDomain.Stock} " +
-                                        $"DecStock={cartDomain.Quantity}"));
-                                    }
-                                    else
-                                    {
-                                        System.Console.WriteLine("EditProductSkuDomainStock Quantity=" + shoppingCart.Quantity);
-                                        var sku = new ProductSkuDomain();
-                                        sku.EditProductSkuDomainStock(cartDomain.ShopId, shoppingCart.ProductId, cartDomain.Quantity, command.Id.ToString(), command.AccountId);
-                                        _skuRepository.Save(sku);
-                                    }
+                                    var str = $"ShopId={skuDomain.ShopId} " +
+                                    $"ProductId={skuDomain.ProductId} domaint.Stock={skuDomain.Stock} " +
+                                    $"DecStock={cartDomain.Quantity}    OrderId={command.Id.ToString()}";
+                                    System.Console.WriteLine("EditProductSkuDomainStock  Exception" + str);
+                                    throw new ProductSkuException(str);
+                                }
+                                else
+                                {
+                                    System.Console.WriteLine("EditProductSkuDomainStock Quantity=" + shoppingCart.Quantity + "  OrderId=" + command.Id.ToString());
+                                    var sku = new ProductSkuDomain();
+                                    sku.EditProductSkuDomainStock(cartDomain.ShopId, shoppingCart.ProductId, cartDomain.Quantity, command.Id.ToString(), command.AccountId);
+                                    _skuRepository.Save(sku);
                                 }
                             }
                             cartList.Add(cartDomain);
@@ -116,6 +120,7 @@ namespace SP.Service.Domain.CommandHandlers
                     }
                     if (cartList.Count > 0)
                     {
+                        System.Console.WriteLine($"OrderDomain  Save cartList.Count={cartList.Count} OrderId={command.Id.ToString()}");
                         var memberList = _associatorReportDatabase.GetMemberByAccountId(command.AccountId);
                         var account = _accountReportDatabase.GetAccountById(command.AccountId);
                         var isvip = (memberList != null && memberList.Count > 0);
@@ -127,6 +132,7 @@ namespace SP.Service.Domain.CommandHandlers
                         data.Add("orderDate", command.OrderDate.ToString("yyyy-MM-dd HH:mm:ss"));
                         var queue = new SP.Service.Domain.DelayQueue.DelayQueue();
                         queue.Push(data);
+                        System.Console.WriteLine($"OrderDomain  queue Push OrderId={command.Id.ToString()}");
                     }
                     else
                     {

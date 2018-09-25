@@ -43,7 +43,7 @@ namespace Account.Service
         public void Start()
         {
             server.Start();
-            server.Ports.ToList().ForEach(a => Console.WriteLine($"crm server listening on {a.Host}port {a.Port}..."));
+            server.Ports.ToList().ForEach(a => Console.WriteLine($"account server listening on {a.Host}port {a.Port}..."));
             server.ShutdownTask.Wait();
         }
         public void Stop() { server.ShutdownAsync(); }

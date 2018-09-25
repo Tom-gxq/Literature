@@ -11,13 +11,15 @@ namespace SP.Service.Domain.Events
         public string CartId { get; set; }
         public int Subject { get; set; }
         public double Amount { get; set; }
-        public TradeCreateEvent(Guid aggregateId, string accountId, string cartId,int subject, double amount)
+        public int ShipOrderId { get;  set; }
+        public TradeCreateEvent(Guid aggregateId, string accountId, string cartId,int subject, double amount, int shipOrderId)
         {
             AggregateId = aggregateId;
             AccountId = accountId;
             CartId = cartId;
             Subject = subject;
             Amount = amount;
+            ShipOrderId = shipOrderId;
         }
     }
 }

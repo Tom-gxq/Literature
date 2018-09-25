@@ -33,8 +33,8 @@ namespace Order.Service.GrpcImpl
 
         public override Task<AddOrderResponse> AddMyOrder(AddOrderRequest request, ServerCallContext context)
         {
-            logger.LogInformation(this.prjLicEID, "AddMyOrder {Date} {IPAdress} {Status} Connected! AccountId:[{AccountId}]  OrderType:[{OrderType}]", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), 
-                request.AccountId ?? string.Empty, request.OrderType);
+            logger.LogInformation(this.prjLicEID, "AddMyOrder {Date} {IPAdress} {Status} Connected! AccountId:[{AccountId}]  OrderType:[{OrderType}] AddressId:[{AddressId}]", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), 
+                request.AccountId ?? string.Empty, request.OrderType, request.AddressId);
             var response = new AddOrderResponse();
             response.Status = 10002;
             try
@@ -228,14 +228,15 @@ namespace Order.Service.GrpcImpl
             return Task.FromResult(response);
         }
 
-        public override Task<OrderStatusResponse> UpdateShipOrderStatus(UpdateOrderRequest request, ServerCallContext context)
+        public override Task<OrderStatusResponse> UpdateShipOrderStatus(UpdateShipOrderRequest request, ServerCallContext context)
         {
-            logger.LogInformation(this.prjLicEID, "UpdateShipOrderStatus {Date} {IPAdress} {Status} Connected! OrderId:[{OrderId}] OrderStatus:[{OrderStatus}]", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.OrderId ?? string.Empty, request.OrderStatus);
+            logger.LogInformation(this.prjLicEID, "UpdateShipOrderStatus {Date} {IPAdress} {Status} Connected! OrderId:[{OrderId}] OrderStatus:[{OrderStatus}] AccountId:[{AccountId}]", 
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.OrderId ?? string.Empty, request.OrderStatus, request.AccountId);
             var response = new OrderStatusResponse();
             response.Status = 10002;
             try
             {
-                OrderBusiness.UpdateShipOrderStatus(request.OrderId, request.OrderStatus, request.PayWay);
+                OrderBusiness.UpdateShipOrderStatus(request.OrderId, request.OrderStatus, request.PayWay, request.AccountId);
                 response.Status = 10001;
             }
             catch (Exception ex)
@@ -243,6 +244,46 @@ namespace Order.Service.GrpcImpl
                 logger.LogError(this.prjLicEID, ex, "UpdateShipOrderStatus Exception");
             }
             logger.LogInformation(this.prjLicEID, "UpdateShipOrderStatus {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+
+        public override Task<SchoolLeadOrderListResponse> GetShipOrderList(SchoolLeadRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "GetShipOrderList {Date} {IPAdress} {Status} Connected! AccountId:[{AccountId}] OrderStatus:[{OrderStatus}]  OrderType:[{OrderType}]",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(),
+                request.AccountId ?? string.Empty, request.OrderStatus, request.OrderType);
+            SchoolLeadOrderListResponse response = null;
+            try
+            {
+                response = OrderBusiness.GetShipOrderList(request.AccountId, request.OrderStatus, request.OrderType);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "GetShipOrderList Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "GetShipOrderList {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+
+        public override Task<OrderStatusResponse> UpdateShippingOrder(UpdateShippingOrderRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "UpdateShippingOrder {Date} {IPAdress} {Status} Connected! OrderStatus:[{OrderStatus}]", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.OrderStatus);
+            foreach(var item in request.ShipOrderId)
+            {
+                System.Console.WriteLine($"ShipOrderId = {item} ");
+            }
+            var response = new OrderStatusResponse();
+            response.Status = 10002;
+            try
+            {
+                OrderBusiness.UpdateShippingOrder(request.ShipOrderId.ToList(), request.OrderStatus);
+                response.Status = 10001;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "UpdateShippingOrder Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "UpdateShippingOrder {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
     }

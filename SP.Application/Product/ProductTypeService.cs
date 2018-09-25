@@ -52,6 +52,18 @@ namespace SP.Application.Product
             }
             return retList;
         }
+        public List<ProductTypeDto> GetProductTypeList(int kind)
+        {
+            var retList = new List<ProductTypeDto>();
+            var repository = IocManager.Instance.Resolve<ProductTypeRespository>();
+            var list = repository.GetProductTypeList(kind);
+            foreach (var item in list)
+            {
+                var adminUser = ConvertFromRepositoryEntity(item);
+                retList.Add(adminUser);
+            }
+            return retList;
+        }
         public List<ProductTypeDto> GetTypeList(string accountId, int pageIndex, int pageSize)
         {
             var retList = new List<ProductTypeDto>();

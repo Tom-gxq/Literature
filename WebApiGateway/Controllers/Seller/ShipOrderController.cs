@@ -118,7 +118,62 @@ namespace WebApiGateway.Controllers.Seller
             {
                 if (orderStatus == 5)
                 {
-                    var retValue = OrderBusiness.UpdateShipOrderStatus(orderId, orderStatus);
+                    var retValue = OrderBusiness.UpdateShipOrderStatus(orderId, orderStatus, currentAccount.AccountId);
+                    if (retValue)
+                    {
+                        JsonResult.Add("status", 0);
+                    }
+                    else
+                    {
+                        JsonResult.Add("status", 2);
+                    }
+                }
+                else
+                {
+                    JsonResult.Add("status", 0);
+                }
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+
+        [System.Web.Mvc.HttpPost]
+        public ActionResult GetShipOrderList(int orderStatus, int orderType = 0)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                var list = OrderBusiness.GetShipOrderList(currentAccount.AccountId, orderStatus, orderType);
+                JsonResult.Add("orderList", list);
+                JsonResult.Add("status", 0);
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+        [System.Web.Mvc.HttpPost]
+        public ActionResult UpdateShippingOrder(string shippingOrderId, int orderStatus)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                if (orderStatus == 5)
+                {
+                    var list = shippingOrderId.Split(',').ToList();
+                    List<int> idList = new List<int>();
+                    list.ForEach(x=>idList.Add(int.Parse(x)));
+                    var retValue = OrderBusiness.UpdateShippingOrder(idList, orderStatus);
                     if (retValue)
                     {
                         JsonResult.Add("status", 0);

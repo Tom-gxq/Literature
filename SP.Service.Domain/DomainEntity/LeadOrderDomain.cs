@@ -38,7 +38,7 @@ namespace SP.Service.Domain.DomainEntity
         public void SetAccountInfoMemento(BaseEntity memento)
         {
             var entity = memento as AccountInfoEntity;
-            Account.UserName = entity.Fullname;
+            Account.UserName = entity?.Fullname??string.Empty;
         }
     }
 }

@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="AccountFinanceEntity.cs" />
     <Compile Include="AccountProductEntity.cs" />
+    <Compile Include="AssociatorEntity.cs" />
     <Compile Include="AuthenticationEntity.cs" />
     <Compile Include="AccountEntity.cs" />
     <Compile Include="AccountInfoEntity.cs" />
@@ -87,6 +88,8 @@
     <Compile Include="RegionTypeEntity.cs" />
     <Compile Include="RegionTypeFullEntity.cs" />
     <Compile Include="ResEventEntity.cs" />
+    <Compile Include="SellerStatisticsEntity.cs" />
+    <Compile Include="ShippingOrdersEntity.cs" />
     <Compile Include="ShopAttributeEntity.cs" />
     <Compile Include="ShopEntity.cs" />
     <Compile Include="ShopOwnerEntity.cs" />

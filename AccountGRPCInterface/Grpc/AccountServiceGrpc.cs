@@ -32,6 +32,7 @@ namespace SP.Service {
     static readonly grpc::Marshaller<global::SP.Service.RegionListResponse> __Marshaller_RegionListResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.RegionListResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.RegionIDRequest> __Marshaller_RegionIDRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.RegionIDRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.RegionDataResponse> __Marshaller_RegionDataResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.RegionDataResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.ChildRegionRequest> __Marshaller_ChildRegionRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.ChildRegionRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.ShoppingCartRequest> __Marshaller_ShoppingCartRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.ShoppingCartRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.ShoppingCartResultResponse> __Marshaller_ShoppingCartResultResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.ShoppingCartResultResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.GetShoppingCartRequest> __Marshaller_GetShoppingCartRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.GetShoppingCartRequest.Parser.ParseFrom);
@@ -50,6 +51,7 @@ namespace SP.Service {
     static readonly grpc::Marshaller<global::SP.Service.UpdateAssociatorStatusRequest> __Marshaller_UpdateAssociatorStatusRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.UpdateAssociatorStatusRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.AssociatorListResponse> __Marshaller_AssociatorListResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AssociatorListResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.AssociatorIdRequest> __Marshaller_AssociatorIdRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AssociatorIdRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.AssociatorCodeRequest> __Marshaller_AssociatorCodeRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AssociatorCodeRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.GetSysKindRequest> __Marshaller_GetSysKindRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.GetSysKindRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.SysKindListResponse> __Marshaller_SysKindListResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.SysKindListResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.AccountFullInfoResponse> __Marshaller_AccountFullInfoResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AccountFullInfoResponse.Parser.ParseFrom);
@@ -182,11 +184,11 @@ namespace SP.Service {
         __Marshaller_RegionIDRequest,
         __Marshaller_RegionDataResponse);
 
-    static readonly grpc::Method<global::SP.Service.RegionIDRequest, global::SP.Service.RegionListResponse> __Method_GetChildRegionData = new grpc::Method<global::SP.Service.RegionIDRequest, global::SP.Service.RegionListResponse>(
+    static readonly grpc::Method<global::SP.Service.ChildRegionRequest, global::SP.Service.RegionListResponse> __Method_GetChildRegionData = new grpc::Method<global::SP.Service.ChildRegionRequest, global::SP.Service.RegionListResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "GetChildRegionData",
-        __Marshaller_RegionIDRequest,
+        __Marshaller_ChildRegionRequest,
         __Marshaller_RegionListResponse);
 
     static readonly grpc::Method<global::SP.Service.ShoppingCartRequest, global::SP.Service.ShoppingCartResultResponse> __Method_AddShoppingCart = new grpc::Method<global::SP.Service.ShoppingCartRequest, global::SP.Service.ShoppingCartResultResponse>(
@@ -252,11 +254,11 @@ namespace SP.Service {
         __Marshaller_AccountIdRequest,
         __Marshaller_AddressResponse);
 
-    static readonly grpc::Method<global::SP.Service.RegionIDRequest, global::SP.Service.RegionListResponse> __Method_GetChildRegionDataList = new grpc::Method<global::SP.Service.RegionIDRequest, global::SP.Service.RegionListResponse>(
+    static readonly grpc::Method<global::SP.Service.ChildRegionRequest, global::SP.Service.RegionListResponse> __Method_GetChildRegionDataList = new grpc::Method<global::SP.Service.ChildRegionRequest, global::SP.Service.RegionListResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "GetChildRegionDataList",
-        __Marshaller_RegionIDRequest,
+        __Marshaller_ChildRegionRequest,
         __Marshaller_RegionListResponse);
 
     static readonly grpc::Method<global::SP.Service.AddAuthenticationRequest, global::SP.Service.AccountResultResponse> __Method_AddAccountAuthentication = new grpc::Method<global::SP.Service.AddAuthenticationRequest, global::SP.Service.AccountResultResponse>(
@@ -306,6 +308,13 @@ namespace SP.Service {
         __ServiceName,
         "GetAssociatorById",
         __Marshaller_AssociatorIdRequest,
+        __Marshaller_AssociatorResponse);
+
+    static readonly grpc::Method<global::SP.Service.AssociatorCodeRequest, global::SP.Service.AssociatorResponse> __Method_GetAssociatorByCode = new grpc::Method<global::SP.Service.AssociatorCodeRequest, global::SP.Service.AssociatorResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetAssociatorByCode",
+        __Marshaller_AssociatorCodeRequest,
         __Marshaller_AssociatorResponse);
 
     static readonly grpc::Method<global::SP.Service.GetSysKindRequest, global::SP.Service.SysKindListResponse> __Method_GetSysKindList = new grpc::Method<global::SP.Service.GetSysKindRequest, global::SP.Service.SysKindListResponse>(
@@ -619,7 +628,7 @@ namespace SP.Service {
       /// <param name="request">The request received from the client.</param>
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
-      public virtual global::System.Threading.Tasks.Task<global::SP.Service.RegionListResponse> GetChildRegionData(global::SP.Service.RegionIDRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.RegionListResponse> GetChildRegionData(global::SP.Service.ChildRegionRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -739,7 +748,7 @@ namespace SP.Service {
       /// <param name="request">The request received from the client.</param>
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
-      public virtual global::System.Threading.Tasks.Task<global::SP.Service.RegionListResponse> GetChildRegionDataList(global::SP.Service.RegionIDRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.RegionListResponse> GetChildRegionDataList(global::SP.Service.ChildRegionRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -824,6 +833,18 @@ namespace SP.Service {
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
       public virtual global::System.Threading.Tasks.Task<global::SP.Service.AssociatorResponse> GetAssociatorById(global::SP.Service.AssociatorIdRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 获取指定的会员
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.AssociatorResponse> GetAssociatorByCode(global::SP.Service.AssociatorCodeRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -1834,7 +1855,7 @@ namespace SP.Service {
       /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
       /// <param name="cancellationToken">An optional token for canceling the call.</param>
       /// <returns>The response received from the server.</returns>
-      public virtual global::SP.Service.RegionListResponse GetChildRegionData(global::SP.Service.RegionIDRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      public virtual global::SP.Service.RegionListResponse GetChildRegionData(global::SP.Service.ChildRegionRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
         return GetChildRegionData(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
@@ -1845,7 +1866,7 @@ namespace SP.Service {
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
       /// <returns>The response received from the server.</returns>
-      public virtual global::SP.Service.RegionListResponse GetChildRegionData(global::SP.Service.RegionIDRequest request, grpc::CallOptions options)
+      public virtual global::SP.Service.RegionListResponse GetChildRegionData(global::SP.Service.ChildRegionRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_GetChildRegionData, null, options, request);
       }
@@ -1858,7 +1879,7 @@ namespace SP.Service {
       /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
       /// <param name="cancellationToken">An optional token for canceling the call.</param>
       /// <returns>The call object.</returns>
-      public virtual grpc::AsyncUnaryCall<global::SP.Service.RegionListResponse> GetChildRegionDataAsync(global::SP.Service.RegionIDRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.RegionListResponse> GetChildRegionDataAsync(global::SP.Service.ChildRegionRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
         return GetChildRegionDataAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
@@ -1869,7 +1890,7 @@ namespace SP.Service {
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
       /// <returns>The call object.</returns>
-      public virtual grpc::AsyncUnaryCall<global::SP.Service.RegionListResponse> GetChildRegionDataAsync(global::SP.Service.RegionIDRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.RegionListResponse> GetChildRegionDataAsync(global::SP.Service.ChildRegionRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetChildRegionData, null, options, request);
       }
@@ -2314,7 +2335,7 @@ namespace SP.Service {
       /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
       /// <param name="cancellationToken">An optional token for canceling the call.</param>
       /// <returns>The response received from the server.</returns>
-      public virtual global::SP.Service.RegionListResponse GetChildRegionDataList(global::SP.Service.RegionIDRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      public virtual global::SP.Service.RegionListResponse GetChildRegionDataList(global::SP.Service.ChildRegionRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
         return GetChildRegionDataList(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
@@ -2325,7 +2346,7 @@ namespace SP.Service {
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
       /// <returns>The response received from the server.</returns>
-      public virtual global::SP.Service.RegionListResponse GetChildRegionDataList(global::SP.Service.RegionIDRequest request, grpc::CallOptions options)
+      public virtual global::SP.Service.RegionListResponse GetChildRegionDataList(global::SP.Service.ChildRegionRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_GetChildRegionDataList, null, options, request);
       }
@@ -2338,7 +2359,7 @@ namespace SP.Service {
       /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
       /// <param name="cancellationToken">An optional token for canceling the call.</param>
       /// <returns>The call object.</returns>
-      public virtual grpc::AsyncUnaryCall<global::SP.Service.RegionListResponse> GetChildRegionDataListAsync(global::SP.Service.RegionIDRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.RegionListResponse> GetChildRegionDataListAsync(global::SP.Service.ChildRegionRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
         return GetChildRegionDataListAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
@@ -2349,7 +2370,7 @@ namespace SP.Service {
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
       /// <returns>The call object.</returns>
-      public virtual grpc::AsyncUnaryCall<global::SP.Service.RegionListResponse> GetChildRegionDataListAsync(global::SP.Service.RegionIDRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.RegionListResponse> GetChildRegionDataListAsync(global::SP.Service.ChildRegionRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetChildRegionDataList, null, options, request);
       }
@@ -2688,6 +2709,54 @@ namespace SP.Service {
       public virtual grpc::AsyncUnaryCall<global::SP.Service.AssociatorResponse> GetAssociatorByIdAsync(global::SP.Service.AssociatorIdRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetAssociatorById, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 获取指定的会员
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AssociatorResponse GetAssociatorByCode(global::SP.Service.AssociatorCodeRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetAssociatorByCode(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取指定的会员
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AssociatorResponse GetAssociatorByCode(global::SP.Service.AssociatorCodeRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetAssociatorByCode, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 获取指定的会员
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AssociatorResponse> GetAssociatorByCodeAsync(global::SP.Service.AssociatorCodeRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetAssociatorByCodeAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取指定的会员
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AssociatorResponse> GetAssociatorByCodeAsync(global::SP.Service.AssociatorCodeRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetAssociatorByCode, null, options, request);
       }
       /// <summary>
       ///*
@@ -3360,6 +3429,7 @@ namespace SP.Service {
           .AddMethod(__Method_UpdateAssociatorStatus, serviceImpl.UpdateAssociatorStatus)
           .AddMethod(__Method_GetAssociatorByAccountId, serviceImpl.GetAssociatorByAccountId)
           .AddMethod(__Method_GetAssociatorById, serviceImpl.GetAssociatorById)
+          .AddMethod(__Method_GetAssociatorByCode, serviceImpl.GetAssociatorByCode)
           .AddMethod(__Method_GetSysKindList, serviceImpl.GetSysKindList)
           .AddMethod(__Method_GetAccountFullInfo, serviceImpl.GetAccountFullInfo)
           .AddMethod(__Method_UpdateAccountFullInfo, serviceImpl.UpdateAccountFullInfo)

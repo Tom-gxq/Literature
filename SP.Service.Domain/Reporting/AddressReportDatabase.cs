@@ -100,6 +100,17 @@ namespace SP.Service.Domain.Reporting
             }
             return domainList;
         }
+        public List<RegionDataDomain> GetChildRegionData(int dataId,DateTime updateTime)
+        {
+            var domainList = new List<RegionDataDomain>();
+            var list = _regionDataRepository.GetChildRegionData(dataId, updateTime);
+            foreach (var item in list)
+            {
+                var region = ConvertRegionDataEntityToDomain(item);
+                domainList.Add(region);
+            }
+            return domainList;
+        }
 
         public List<RegionDataDomain>  GetSelectedRegionDataList(string accountId)
         {
@@ -113,6 +124,17 @@ namespace SP.Service.Domain.Reporting
             return domainList;
         }
 
+        public List<RegionDataDomain> GetChildRegionDataList(int dataId, DateTime updateTime)
+        {
+            var domainList = new List<RegionDataDomain>();
+            var list = _regionDataRepository.GetChildRegionData(dataId, updateTime);
+            foreach (var item in list)
+            {
+                var region = ConvertRegionDataEntityToDomain(item);
+                domainList.Add(region);
+            }
+            return domainList;
+        }
         public List<RegionDataDomain> GetChildRegionDataList(int dataId)
         {
             var domainList = new List<RegionDataDomain>();

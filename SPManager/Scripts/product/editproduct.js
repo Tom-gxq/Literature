@@ -63,8 +63,12 @@ define(function (require, exports, module) {
                             $('#wizard').css('height', $('#' + msg.result.Id).find('.page').height());
 
                             $(".page").show();
+                            $("#inputType").change(function () {
+                                _this.bindTypeInfo($(this).val());
+                            });
                             //取消
                             $("#cacel").click(function () {
+                                _this.bindTypeInfo($(this).val());
                                 easydialog.close();
                             });
 
@@ -87,6 +91,7 @@ define(function (require, exports, module) {
                             $('#easyDialogBox').css({                                
                                 width: "600px"
                             });
+                           
                             qiniu.QiniuMainController.init();
                         });
                     }
@@ -104,16 +109,18 @@ define(function (require, exports, module) {
             var divElement = $('#' + elementID + '');
             var user = {
                 ProductId: divElement.find('.txtId').val(),
+                ProductName: divElement.find('.txtName').val(),
                 ProductCode: divElement.find('.txtCode').val(),
                 MarketPrice: divElement.find('.txtPrice').val(),
                 Unit: divElement.find('.txtUnit').val(),
                 ShortDescription: divElement.find('.txtTitle').val(),
                 Description: divElement.find('.txtArea').val(),
-                TypeId: divElement.find('#inputTypeForm').val(),
-                SecondTypeId: divElement.find('#inputSecondTypeForm').val(),
+                TypeId: divElement.find('#inputType').val(),
+                SecondTypeId: divElement.find('#inputSecondType').val(),
                 BrandId: divElement.find('#inputBrand').val(),
                 DisplaySequence: divElement.find('.sltContact').val(),
-                VIPPrice: divElement.find('.vipPrice').val()
+                VIPPrice: divElement.find('.vipPrice').val(),
+                PurchasePrice: divElement.find('.prchasePrice').val()
             };
             user = $.param(user, true);
             Global.post("/Product/EditProduct", user, function (data) {
@@ -178,7 +185,21 @@ define(function (require, exports, module) {
                 });
 
             });
-        }
+        },
+        //绑定学区信息
+        bindTypeInfo: function (parentId) {
+            $("#inputSecondType").empty();
+            $("#inputSecondType").append($("<option/>").text("").attr("value", "0"));
+            var data = {
+                parentId: parentId
+            }
+            data = $.param(data, true);
+            Global.get("/ProductType/GetProductTypeParentList", data, function (msg) {
+                $(msg.result).each(function (index, itemData) {
+                    $("#inputSecondType").append($("<option/>").text(itemData.TypeName).attr("value", itemData.TypeId));
+                });
+            })
+        },
     };
     
     //对外公布方法

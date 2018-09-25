@@ -12,5 +12,6 @@ namespace SP.Api.Model.Account
         public string dataName { get; set; }
         public int parentDataId { get; set; }
         public List<RegionDataModel> childList { get; set; }
+        public long updateTime { get; set; }
     }
 }

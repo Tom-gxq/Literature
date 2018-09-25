@@ -19,6 +19,11 @@ namespace SP.Service.EntityFramework.Repositories
             var result = this.Insert(account);
             return result > 0;
         }
+        public bool UpdateShippingOrderStatus(ShippingOrdersEntity item)
+        {
+            var result = this.UpdateNonDefaults(item ,x=>x.Id == item.Id);
+            return result > 0;
+        }
 
         public List<ShippingOrdersEntity> GetShippingOrdersByOrderId(string orderId)
         {
@@ -47,6 +52,11 @@ namespace SP.Service.EntityFramework.Repositories
                 q = q.Where(x => x.OrderId == orderId && (x.IsShipped != true || x.IsShipped == null) && x.ShippingId == accountId );
                 return db.Single(q);
             }
+        }
+
+        public ShippingOrdersEntity GetShippingOrdersById(int shipOrderId)
+        {
+            return this.Single(x=>x.Id == shipOrderId);
         }
     }
 }

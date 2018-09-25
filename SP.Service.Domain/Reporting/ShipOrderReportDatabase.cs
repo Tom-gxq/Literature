@@ -24,6 +24,10 @@ namespace SP.Service.Domain.Reporting
         {
             return _repository.GetShippingOrdersByOrderId(orderId);
         }
+        public ShippingOrdersEntity GetShippingOrdersById(int shipOrderId)
+        {
+            return _repository.GetShippingOrdersById(shipOrderId);
+        }
         public ShippingOrdersEntity GetShippingOrders(string orderId,string accountId, string productId)
         {
             return _repository.GetShippingOrders(orderId, accountId, productId);
@@ -32,6 +36,11 @@ namespace SP.Service.Domain.Reporting
         public ShippingOrdersEntity GetShippingOrders(string orderId, string accountId)
         {
             return _repository.GetShippingOrders(orderId, accountId);
+        }
+
+        public bool UpdateShippingOrderStatus(ShippingOrdersEntity item)
+        {
+            return _repository.UpdateShippingOrderStatus(item);
         }
     }
 }

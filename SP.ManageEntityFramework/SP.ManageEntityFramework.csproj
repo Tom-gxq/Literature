@@ -76,6 +76,7 @@
     <Compile Include="Repositories\AccountProductRespository.cs" />
     <Compile Include="Repositories\AccountRespository.cs" />
     <Compile Include="Repositories\AdminRespository.cs" />
+    <Compile Include="Repositories\AssociatorRespository.cs" />
     <Compile Include="Repositories\AttributeRespository.cs" />
     <Compile Include="Repositories\AttributeValueRespository.cs.cs" />
     <Compile Include="Repositories\BrandRespository.cs" />
@@ -90,6 +91,8 @@
     <Compile Include="Repositories\RegionTypeRespository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\ResEventRespository.cs" />
+    <Compile Include="Repositories\SellerStatisticsRespository.cs" />
+    <Compile Include="Repositories\ShipOrderRespository.cs" />
     <Compile Include="Repositories\ShopOwnerRespository.cs" />
     <Compile Include="Repositories\ShopProductRespository.cs" />
     <Compile Include="Repositories\ShopRespository.cs" />

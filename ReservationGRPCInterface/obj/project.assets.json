@@ -1065,6 +1065,7 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Users\\ASUS\\.dotnet\\NuGetFallbackFolder": {},
+        "C:\\Users\\ASUS\\AppData\\Local\\NuGet\\v3-cache": {},
         "https://api.nuget.org/v3/index.json": {},
         "https://github.com/ServiceStack/ServiceStack.OrmLite/tree/v3": {},
         "https://sourceforge.net": {}

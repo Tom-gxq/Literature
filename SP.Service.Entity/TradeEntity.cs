@@ -17,5 +17,6 @@ namespace SP.Service.Entity
         public int? Subject { get; set; }
         public double? Amount { get; set; }
         public DateTime? CreateTime { get; set; }
+        public int? ShipOrderId { get;  set; }
     }
 }

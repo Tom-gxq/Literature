@@ -13,6 +13,7 @@ namespace Timer.Service
         private static readonly object _lockThis = new object();
         private static ICommandBus _commandBus;
         private static ProductSkuReportDatabase _reportDatabase;
+        private static AccountProductReportDatabase _accountProductReportDatabase;
         static ServiceLocator()
         {
             if (!_isInitialized)
@@ -20,6 +21,8 @@ namespace Timer.Service
                 lock (_lockThis)
                 {
                     _commandBus = IocManager.Instance.Resolve(typeof(ICommandBus)) as ICommandBus;
+                    _reportDatabase = IocManager.Instance.Resolve(typeof(ProductSkuReportDatabase)) as ProductSkuReportDatabase;
+                    _accountProductReportDatabase = IocManager.Instance.Resolve(typeof(AccountProductReportDatabase)) as AccountProductReportDatabase;
                     _isInitialized = true;
                 }
             }
@@ -31,6 +34,10 @@ namespace Timer.Service
         public static ProductSkuReportDatabase ReportDatabase
         {
             get { return _reportDatabase; }
+        }
+        public static AccountProductReportDatabase AccountProductReportDatabase
+        {
+            get { return _accountProductReportDatabase; }
         }
     }
 }

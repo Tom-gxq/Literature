@@ -13,8 +13,9 @@ namespace SP.Service.Domain.Events
         public string PayOrderCode { get; set; }
         public int PayType { get; set; }
         public double Amount { get; set; }
+        public int Status { get; set; }
         public AssociatorCreatedEvent(Guid associatorId,string accountId, string kindId,  int quantity,
-            string payOrderCode, int payType, double amount)
+            string payOrderCode, int payType, double amount,int status)
         {
             this.AggregateId = associatorId;
             KindId = kindId;
@@ -23,6 +24,7 @@ namespace SP.Service.Domain.Events
             PayOrderCode = payOrderCode;
             PayType = payType;
             Amount = amount;
+            Status = status;
         }
     }
 }

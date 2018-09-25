@@ -51,80 +51,83 @@ namespace SP.Service {
             "GAIgASgJEhAKCHBhc3NXb3JkGAMgASgJEhAKCHVzZXJOYW1lGAQgASgJIh8K",
             "EURlbEFkZHJlc3NSZXF1ZXN0EgoKAmlkGAEgASgFIiEKDkFjY291bnRSZXF1",
             "ZXN0Eg8KB2FjY291bnQYASABKAkiJQoRUmVnaW9uRGF0YVJlcXVlc3QSEAoI",
-            "ZGF0YVR5cGUYASABKAUiRAoKUmVnaW9uRGF0YRIOCgZkYXRhSWQYASABKAUS",
-            "EAoIZGF0YU5hbWUYAiABKAkSFAoMcGFyZW50RGF0YUlkGAMgASgFIlAKElJl",
-            "Z2lvbkxpc3RSZXNwb25zZRIOCgZzdGF0dXMYASABKAUSKgoKcmVnaW9uTGlz",
-            "dBgCIAMoCzIWLlNQLlNlcnZpY2UuUmVnaW9uRGF0YSIhCg9SZWdpb25JRFJl",
-            "cXVlc3QSDgoGZGF0YUlkGAEgASgFIoABChJSZWdpb25EYXRhUmVzcG9uc2US",
-            "DgoGc3RhdHVzGAEgASgFEg4KBmRhdGFJZBgCIAEoBRIQCghkYXRhTmFtZRgD",
-            "IAEoCRIUCgxwYXJlbnREYXRhSWQYBCABKAUSDgoGY2l0eUlkGAUgASgFEhIK",
-            "CnByb3ZpbmNlSWQYBiABKAUiXQoTU2hvcHBpbmdDYXJ0UmVxdWVzdBIRCglw",
-            "cm9kdWN0SWQYASABKAkSEQoJYWNjb3VudElkGAIgASgJEhAKCHF1YW50aXR5",
-            "GAMgASgFEg4KBnNob3BJZBgEIAEoBSIsChpTaG9wcGluZ0NhcnRSZXN1bHRS",
-            "ZXNwb25zZRIOCgZzdGF0dXMYASABKAUiPwobU2hvcHBpbmdDYXJ0UXVhbnRp",
-            "dHlSZXF1ZXN0Eg4KBmNhcnRJZBgBIAEoCRIQCghxdWFudGl0eRgCIAEoBSI9",
-            "ChpTaG9wcGluZ0NhcnRPcmRlcklkUmVxdWVzdBIOCgZjYXJ0SWQYASADKAkS",
-            "DwoHb3JkZXJJZBgCIAEoCSJeChhTaG9wcGluZ0NhcnRMaXN0UmVzcG9uc2US",
-            "DgoGc3RhdHVzGAEgASgFEjIKEHNob3BwaW5nQ2FydExpc3QYAiADKAsyGC5T",
-            "UC5TZXJ2aWNlLlNob3BwaW5nQ2FydCI6ChlTaG9wcGluZ0NhcnRDb3VudFJl",
-            "c3BvbnNlEg4KBnN0YXR1cxgBIAEoBRINCgVjb3VudBgCIAEoAyJHCg9BZGRy",
-            "ZXNzUmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEiQKB2FkZHJlc3MYAiABKAsy",
-            "Ey5TUC5TZXJ2aWNlLkFkZHJlc3MimAEKFUFjY291bnRBdXRoZW50aWNhdGlv",
-            "bhIQCghhdXRoVHlwZRgBIAEoBRIRCglhY2NvdW50SWQYAiABKAkSDwoHYWNj",
-            "b3VudBgDIAEoCRINCgV0b2tlbhgEIAEoCRISCgp2ZXJpZnlDb2RlGAUgASgJ",
-            "EhIKCmNyZWF0ZVRpbWUYBiABKAMSEgoKdXBkYXRlVGltZRgHIAEoAyJSChhB",
-            "ZGRBdXRoZW50aWNhdGlvblJlcXVlc3QSNgoLYWNjb3VudEF1dGgYASABKAsy",
-            "IS5TUC5TZXJ2aWNlLkFjY291bnRBdXRoZW50aWNhdGlvbiJMChRHZXRWZXJp",
-            "ZnlDb2RlUmVxdWVzdBIPCgdhY2NvdW50GAEgASgJEhAKCGF1dGhUeXBlGAIg",
-            "ASgFEhEKCWFjY291bnRJZBgDIAEoCSI4ChJWZXJpZnlDb2RlUmVzcG9uc2US",
-            "DgoGc3RhdHVzGAEgASgFEhIKCnZlcmlmeUNvZGUYAiABKAkiYwobVXBkYXRl",
-            "QXV0aGVudGljYXRpb25SZXF1ZXN0Eg8KB2FjY291bnQYASABKAkSEQoJYWNj",
-            "b3VudElkGAIgASgJEhAKCGF1dGhUeXBlGAMgASgFEg4KBnN0YXR1cxgEIAEo",
-            "BSLuAQoKQXNzb2NpYXRvchIUCgxhc3NvY2lhdG9ySWQYASABKAkSEQoJYWNj",
-            "b3VudElkGAIgASgJEg4KBmtpbmRJZBgDIAEoCRIQCghxdWFudGl0eRgEIAEo",
-            "BRIOCgZhbW91bnQYBSABKAESFAoMcGF5T3JkZXJDb2RlGAYgASgJEg8KB3Bh",
-            "eVR5cGUYByABKAUSEQoJc3RhcnREYXRlGAggASgDEg8KB2VuZERhdGUYCSAB",
-            "KAMSDgoGc3RhdHVzGAogASgFEhMKC2Rlc2NyaXB0aW9uGAsgASgJEhUKDWRp",
-            "c2NvdW50VmFsdWUYDCABKAEiggEKFEFkZEFzc29jaWF0b3JSZXF1ZXN0EhEK",
-            "CWFjY291bnRJZBgCIAEoCRIOCgZraW5kSWQYAyABKAkSEAoIcXVhbnRpdHkY",
-            "BCABKAUSDgoGYW1vdW50GAUgASgBEhQKDHBheU9yZGVyQ29kZRgGIAEoCRIP",
-            "CgdwYXlUeXBlGAcgASgFIlgKFkFzc29jaWF0b3JMaXN0UmVzcG9uc2USDgoG",
-            "c3RhdHVzGAEgASgFEi4KDmFzc29jaWF0b3JMaXN0GAIgAygLMhYuU1AuU2Vy",
-            "dmljZS5Bc3NvY2lhdG9yIiEKEUdldFN5c0tpbmRSZXF1ZXN0EgwKBGtpbmQY",
-            "ASABKAUiggEKB1N5c0tpbmQSDgoGa2luZElkGAEgASgJEgwKBGtpbmQYAiAB",
-            "KAUSEAoIcXVhbnRpdHkYAyABKAUSDAoEdW5pdBgEIAEoBRINCgVwcmljZRgF",
-            "IAEoARITCgtkZXNjcmlwdGlvbhgGIAEoCRIVCg1kaXNjb3VudFZhbHVlGAcg",
-            "ASgBIkwKE1N5c0tpbmRMaXN0UmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEiUK",
-            "CGtpbmRMaXN0GAIgAygLMhMuU1AuU2VydmljZS5TeXNLaW5kIpoBChdBY2Nv",
-            "dW50RnVsbEluZm9SZXNwb25zZRIOCgZzdGF0dXMYASABKAUSDgoGYXZhdGFy",
-            "GAIgASgJEhAKCGZ1bGxOYW1lGAMgASgJEg4KBmdlbmRlchgEIAEoCBITCgtw",
-            "YXlQYXNzV29yZBgFIAEoCRIQCgh1c2VyVHlwZRgGIAEoBRIWCg5hc3NvY2lh",
-            "dG9yRGF0ZRgHIAEoAyJ/ChZBY2NvdW50RnVsbEluZm9SZXF1ZXN0EhEKCWFj",
-            "Y291bnRJZBgBIAEoCRIOCgZhdmF0YXIYAiABKAkSEAoIZnVsbE5hbWUYAyAB",
-            "KAkSDgoGZ2VuZGVyGAQgASgIEhAKCHVzZXJUeXBlGAUgASgFEg4KBmRvcm1J",
-            "ZBgGIAEoBSIyCg9EaXNjb3VudFJlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJ",
-            "EgwKBGtpbmQYAiABKAUiKwoTQXNzb2NpYXRvcklkUmVxdWVzdBIUCgxhc3Nv",
-            "Y2lhdG9ySWQYASABKAkiUAoSQXNzb2NpYXRvclJlc3BvbnNlEg4KBnN0YXR1",
-            "cxgBIAEoBRIqCgphc3NvY2lhdG9yGAIgASgLMhYuU1AuU2VydmljZS5Bc3Nv",
-            "Y2lhdG9yIkUKHVVwZGF0ZUFzc29jaWF0b3JTdGF0dXNSZXF1ZXN0EhQKDGFz",
-            "c29jaWF0b3JJZBgBIAEoCRIOCgZzdGF0dXMYAiABKAUiTQoVTXlTaG9wcGlu",
-            "Z0NhcnRSZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIPCgdvcmRlcklkGAIg",
-            "ASgJEhAKCHVzZXJUeXBlGAMgASgFIjkKFEFjY291bnRQYXlQd2RSZXF1ZXN0",
-            "EhEKCWFjY291bnRJZBgBIAEoCRIOCgZwYXlQd2QYAiABKAkiggEKEkJpbmdB",
-            "Y2NvdW50UmVxdWVzdBIRCglhY2NvdW50SWQYASABKAkSEQoJb3RoZXJUeXBl",
-            "GAIgASgFEhQKDG90aGVyQWNjb3VudBgDIAEoCRIOCgZhdmF0YXIYBCABKAkS",
-            "EAoIZnVsbE5hbWUYBSABKAkSDgoGZ2VuZGVyGAYgASgIIoUBChNPdGhlckFj",
-            "Y291bnRSZXF1ZXN0EhMKC21vYmlsZVBob25lGAEgASgJEhEKCW90aGVyVHlw",
-            "ZRgCIAEoBRIUCgxvdGhlckFjY291bnQYAyABKAkSDgoGYXZhdGFyGAQgASgJ",
-            "EhAKCGZ1bGxOYW1lGAUgASgJEg4KBmdlbmRlchgGIAEoCCJBChZHZXRPdGhl",
-            "ckFjY291bnRSZXF1ZXN0EhEKCW90aGVyVHlwZRgCIAEoBRIUCgxvdGhlckFj",
-            "Y291bnQYAyABKAkiPgoUQWNjb3VudE1vYmlsZVJlcXVlc3QSEQoJYWNjb3Vu",
-            "dElkGAEgASgJEhMKC21vYmlsZVBob25lGAIgASgJIlkKEEFjY291bnRJRFJl",
-            "cXVlc3QSEAoIdXNlclR5cGUYASABKAUSDgoGZG9ybUlkGAIgASgFEhEKCWFj",
-            "Y291bnRJZBgDIAEoCRIQCghmdWxsTmFtZRgEIAEoCSI4ChNBcHBseVBhcnRu",
-            "ZXJSZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIOCgZkb3JtSWQYAiABKAUi",
-            "PQoWR2V0U2hvcHBpbmdDYXJ0UmVxdWVzdBIRCglhY2NvdW50SWQYASABKAkS",
-            "EAoIdXNlclR5cGUYAiABKAViBnByb3RvMw=="));
+            "ZGF0YVR5cGUYASABKAUiWAoKUmVnaW9uRGF0YRIOCgZkYXRhSWQYASABKAUS",
+            "EAoIZGF0YU5hbWUYAiABKAkSFAoMcGFyZW50RGF0YUlkGAMgASgFEhIKCnVw",
+            "ZGF0ZVRpbWUYBCABKAMiUAoSUmVnaW9uTGlzdFJlc3BvbnNlEg4KBnN0YXR1",
+            "cxgBIAEoBRIqCgpyZWdpb25MaXN0GAIgAygLMhYuU1AuU2VydmljZS5SZWdp",
+            "b25EYXRhIiEKD1JlZ2lvbklEUmVxdWVzdBIOCgZkYXRhSWQYASABKAUigAEK",
+            "ElJlZ2lvbkRhdGFSZXNwb25zZRIOCgZzdGF0dXMYASABKAUSDgoGZGF0YUlk",
+            "GAIgASgFEhAKCGRhdGFOYW1lGAMgASgJEhQKDHBhcmVudERhdGFJZBgEIAEo",
+            "BRIOCgZjaXR5SWQYBSABKAUSEgoKcHJvdmluY2VJZBgGIAEoBSJdChNTaG9w",
+            "cGluZ0NhcnRSZXF1ZXN0EhEKCXByb2R1Y3RJZBgBIAEoCRIRCglhY2NvdW50",
+            "SWQYAiABKAkSEAoIcXVhbnRpdHkYAyABKAUSDgoGc2hvcElkGAQgASgFIiwK",
+            "GlNob3BwaW5nQ2FydFJlc3VsdFJlc3BvbnNlEg4KBnN0YXR1cxgBIAEoBSI/",
+            "ChtTaG9wcGluZ0NhcnRRdWFudGl0eVJlcXVlc3QSDgoGY2FydElkGAEgASgJ",
+            "EhAKCHF1YW50aXR5GAIgASgFIj0KGlNob3BwaW5nQ2FydE9yZGVySWRSZXF1",
+            "ZXN0Eg4KBmNhcnRJZBgBIAMoCRIPCgdvcmRlcklkGAIgASgJIl4KGFNob3Bw",
+            "aW5nQ2FydExpc3RSZXNwb25zZRIOCgZzdGF0dXMYASABKAUSMgoQc2hvcHBp",
+            "bmdDYXJ0TGlzdBgCIAMoCzIYLlNQLlNlcnZpY2UuU2hvcHBpbmdDYXJ0IjoK",
+            "GVNob3BwaW5nQ2FydENvdW50UmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEg0K",
+            "BWNvdW50GAIgASgDIkcKD0FkZHJlc3NSZXNwb25zZRIOCgZzdGF0dXMYASAB",
+            "KAUSJAoHYWRkcmVzcxgCIAEoCzITLlNQLlNlcnZpY2UuQWRkcmVzcyKYAQoV",
+            "QWNjb3VudEF1dGhlbnRpY2F0aW9uEhAKCGF1dGhUeXBlGAEgASgFEhEKCWFj",
+            "Y291bnRJZBgCIAEoCRIPCgdhY2NvdW50GAMgASgJEg0KBXRva2VuGAQgASgJ",
+            "EhIKCnZlcmlmeUNvZGUYBSABKAkSEgoKY3JlYXRlVGltZRgGIAEoAxISCgp1",
+            "cGRhdGVUaW1lGAcgASgDIlIKGEFkZEF1dGhlbnRpY2F0aW9uUmVxdWVzdBI2",
+            "CgthY2NvdW50QXV0aBgBIAEoCzIhLlNQLlNlcnZpY2UuQWNjb3VudEF1dGhl",
+            "bnRpY2F0aW9uIkwKFEdldFZlcmlmeUNvZGVSZXF1ZXN0Eg8KB2FjY291bnQY",
+            "ASABKAkSEAoIYXV0aFR5cGUYAiABKAUSEQoJYWNjb3VudElkGAMgASgJIjgK",
+            "ElZlcmlmeUNvZGVSZXNwb25zZRIOCgZzdGF0dXMYASABKAUSEgoKdmVyaWZ5",
+            "Q29kZRgCIAEoCSJjChtVcGRhdGVBdXRoZW50aWNhdGlvblJlcXVlc3QSDwoH",
+            "YWNjb3VudBgBIAEoCRIRCglhY2NvdW50SWQYAiABKAkSEAoIYXV0aFR5cGUY",
+            "AyABKAUSDgoGc3RhdHVzGAQgASgFIu4BCgpBc3NvY2lhdG9yEhQKDGFzc29j",
+            "aWF0b3JJZBgBIAEoCRIRCglhY2NvdW50SWQYAiABKAkSDgoGa2luZElkGAMg",
+            "ASgJEhAKCHF1YW50aXR5GAQgASgFEg4KBmFtb3VudBgFIAEoARIUCgxwYXlP",
+            "cmRlckNvZGUYBiABKAkSDwoHcGF5VHlwZRgHIAEoBRIRCglzdGFydERhdGUY",
+            "CCABKAMSDwoHZW5kRGF0ZRgJIAEoAxIOCgZzdGF0dXMYCiABKAUSEwoLZGVz",
+            "Y3JpcHRpb24YCyABKAkSFQoNZGlzY291bnRWYWx1ZRgMIAEoASKCAQoUQWRk",
+            "QXNzb2NpYXRvclJlcXVlc3QSEQoJYWNjb3VudElkGAIgASgJEg4KBmtpbmRJ",
+            "ZBgDIAEoCRIQCghxdWFudGl0eRgEIAEoBRIOCgZhbW91bnQYBSABKAESFAoM",
+            "cGF5T3JkZXJDb2RlGAYgASgJEg8KB3BheVR5cGUYByABKAUiWAoWQXNzb2Np",
+            "YXRvckxpc3RSZXNwb25zZRIOCgZzdGF0dXMYASABKAUSLgoOYXNzb2NpYXRv",
+            "ckxpc3QYAiADKAsyFi5TUC5TZXJ2aWNlLkFzc29jaWF0b3IiIQoRR2V0U3lz",
+            "S2luZFJlcXVlc3QSDAoEa2luZBgBIAEoBSKCAQoHU3lzS2luZBIOCgZraW5k",
+            "SWQYASABKAkSDAoEa2luZBgCIAEoBRIQCghxdWFudGl0eRgDIAEoBRIMCgR1",
+            "bml0GAQgASgFEg0KBXByaWNlGAUgASgBEhMKC2Rlc2NyaXB0aW9uGAYgASgJ",
+            "EhUKDWRpc2NvdW50VmFsdWUYByABKAEiTAoTU3lzS2luZExpc3RSZXNwb25z",
+            "ZRIOCgZzdGF0dXMYASABKAUSJQoIa2luZExpc3QYAiADKAsyEy5TUC5TZXJ2",
+            "aWNlLlN5c0tpbmQimgEKF0FjY291bnRGdWxsSW5mb1Jlc3BvbnNlEg4KBnN0",
+            "YXR1cxgBIAEoBRIOCgZhdmF0YXIYAiABKAkSEAoIZnVsbE5hbWUYAyABKAkS",
+            "DgoGZ2VuZGVyGAQgASgIEhMKC3BheVBhc3NXb3JkGAUgASgJEhAKCHVzZXJU",
+            "eXBlGAYgASgFEhYKDmFzc29jaWF0b3JEYXRlGAcgASgDIn8KFkFjY291bnRG",
+            "dWxsSW5mb1JlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEg4KBmF2YXRhchgC",
+            "IAEoCRIQCghmdWxsTmFtZRgDIAEoCRIOCgZnZW5kZXIYBCABKAgSEAoIdXNl",
+            "clR5cGUYBSABKAUSDgoGZG9ybUlkGAYgASgFIjIKD0Rpc2NvdW50UmVxdWVz",
+            "dBIRCglhY2NvdW50SWQYASABKAkSDAoEa2luZBgCIAEoBSIrChNBc3NvY2lh",
+            "dG9ySWRSZXF1ZXN0EhQKDGFzc29jaWF0b3JJZBgBIAEoCSJQChJBc3NvY2lh",
+            "dG9yUmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEioKCmFzc29jaWF0b3IYAiAB",
+            "KAsyFi5TUC5TZXJ2aWNlLkFzc29jaWF0b3IiRQodVXBkYXRlQXNzb2NpYXRv",
+            "clN0YXR1c1JlcXVlc3QSFAoMYXNzb2NpYXRvcklkGAEgASgJEg4KBnN0YXR1",
+            "cxgCIAEoBSJNChVNeVNob3BwaW5nQ2FydFJlcXVlc3QSEQoJYWNjb3VudElk",
+            "GAEgASgJEg8KB29yZGVySWQYAiABKAkSEAoIdXNlclR5cGUYAyABKAUiOQoU",
+            "QWNjb3VudFBheVB3ZFJlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEg4KBnBh",
+            "eVB3ZBgCIAEoCSKCAQoSQmluZ0FjY291bnRSZXF1ZXN0EhEKCWFjY291bnRJ",
+            "ZBgBIAEoCRIRCglvdGhlclR5cGUYAiABKAUSFAoMb3RoZXJBY2NvdW50GAMg",
+            "ASgJEg4KBmF2YXRhchgEIAEoCRIQCghmdWxsTmFtZRgFIAEoCRIOCgZnZW5k",
+            "ZXIYBiABKAgihQEKE090aGVyQWNjb3VudFJlcXVlc3QSEwoLbW9iaWxlUGhv",
+            "bmUYASABKAkSEQoJb3RoZXJUeXBlGAIgASgFEhQKDG90aGVyQWNjb3VudBgD",
+            "IAEoCRIOCgZhdmF0YXIYBCABKAkSEAoIZnVsbE5hbWUYBSABKAkSDgoGZ2Vu",
+            "ZGVyGAYgASgIIkEKFkdldE90aGVyQWNjb3VudFJlcXVlc3QSEQoJb3RoZXJU",
+            "eXBlGAIgASgFEhQKDG90aGVyQWNjb3VudBgDIAEoCSI+ChRBY2NvdW50TW9i",
+            "aWxlUmVxdWVzdBIRCglhY2NvdW50SWQYASABKAkSEwoLbW9iaWxlUGhvbmUY",
+            "AiABKAkiWQoQQWNjb3VudElEUmVxdWVzdBIQCgh1c2VyVHlwZRgBIAEoBRIO",
+            "CgZkb3JtSWQYAiABKAUSEQoJYWNjb3VudElkGAMgASgJEhAKCGZ1bGxOYW1l",
+            "GAQgASgJIjgKE0FwcGx5UGFydG5lclJlcXVlc3QSEQoJYWNjb3VudElkGAEg",
+            "ASgJEg4KBmRvcm1JZBgCIAEoBSI9ChZHZXRTaG9wcGluZ0NhcnRSZXF1ZXN0",
+            "EhEKCWFjY291bnRJZBgBIAEoCRIQCgh1c2VyVHlwZRgCIAEoBSIvChVBc3Nv",
+            "Y2lhdG9yQ29kZVJlcXVlc3QSFgoOYXNzb2NpYXRvckNvZGUYASABKAkiOAoS",
+            "Q2hpbGRSZWdpb25SZXF1ZXN0Eg4KBmRhdGFJZBgBIAEoBRISCgp1cGRhdGVU",
+            "aW1lGAIgASgDYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -145,7 +148,7 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.DelAddressRequest), global::SP.Service.DelAddressRequest.Parser, new[]{ "Id" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountRequest), global::SP.Service.AccountRequest.Parser, new[]{ "Account" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.RegionDataRequest), global::SP.Service.RegionDataRequest.Parser, new[]{ "DataType" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.RegionData), global::SP.Service.RegionData.Parser, new[]{ "DataId", "DataName", "ParentDataId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.RegionData), global::SP.Service.RegionData.Parser, new[]{ "DataId", "DataName", "ParentDataId", "UpdateTime" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.RegionListResponse), global::SP.Service.RegionListResponse.Parser, new[]{ "Status", "RegionList" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.RegionIDRequest), global::SP.Service.RegionIDRequest.Parser, new[]{ "DataId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.RegionDataResponse), global::SP.Service.RegionDataResponse.Parser, new[]{ "Status", "DataId", "DataName", "ParentDataId", "CityId", "ProvinceId" }, null, null, null),
@@ -181,7 +184,9 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountMobileRequest), global::SP.Service.AccountMobileRequest.Parser, new[]{ "AccountId", "MobilePhone" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountIDRequest), global::SP.Service.AccountIDRequest.Parser, new[]{ "UserType", "DormId", "AccountId", "FullName" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ApplyPartnerRequest), global::SP.Service.ApplyPartnerRequest.Parser, new[]{ "AccountId", "DormId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.GetShoppingCartRequest), global::SP.Service.GetShoppingCartRequest.Parser, new[]{ "AccountId", "UserType" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.GetShoppingCartRequest), global::SP.Service.GetShoppingCartRequest.Parser, new[]{ "AccountId", "UserType" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AssociatorCodeRequest), global::SP.Service.AssociatorCodeRequest.Parser, new[]{ "AssociatorCode" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ChildRegionRequest), global::SP.Service.ChildRegionRequest.Parser, new[]{ "DataId", "UpdateTime" }, null, null, null)
           }));
     }
     #endregion
@@ -3278,6 +3283,7 @@ namespace SP.Service {
       dataId_ = other.dataId_;
       dataName_ = other.dataName_;
       parentDataId_ = other.parentDataId_;
+      updateTime_ = other.updateTime_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3330,6 +3336,21 @@ namespace SP.Service {
       }
     }
 
+    /// <summary>Field number for the "updateTime" field.</summary>
+    public const int UpdateTimeFieldNumber = 4;
+    private long updateTime_;
+    /// <summary>
+    ///*
+    ///  更新时间
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long UpdateTime {
+      get { return updateTime_; }
+      set {
+        updateTime_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as RegionData);
@@ -3346,6 +3367,7 @@ namespace SP.Service {
       if (DataId != other.DataId) return false;
       if (DataName != other.DataName) return false;
       if (ParentDataId != other.ParentDataId) return false;
+      if (UpdateTime != other.UpdateTime) return false;
       return true;
     }
 
@@ -3355,6 +3377,7 @@ namespace SP.Service {
       if (DataId != 0) hash ^= DataId.GetHashCode();
       if (DataName.Length != 0) hash ^= DataName.GetHashCode();
       if (ParentDataId != 0) hash ^= ParentDataId.GetHashCode();
+      if (UpdateTime != 0L) hash ^= UpdateTime.GetHashCode();
       return hash;
     }
 
@@ -3377,6 +3400,10 @@ namespace SP.Service {
         output.WriteRawTag(24);
         output.WriteInt32(ParentDataId);
       }
+      if (UpdateTime != 0L) {
+        output.WriteRawTag(32);
+        output.WriteInt64(UpdateTime);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3390,6 +3417,9 @@ namespace SP.Service {
       }
       if (ParentDataId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(ParentDataId);
+      }
+      if (UpdateTime != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(UpdateTime);
       }
       return size;
     }
@@ -3407,6 +3437,9 @@ namespace SP.Service {
       }
       if (other.ParentDataId != 0) {
         ParentDataId = other.ParentDataId;
+      }
+      if (other.UpdateTime != 0L) {
+        UpdateTime = other.UpdateTime;
       }
     }
 
@@ -3428,6 +3461,10 @@ namespace SP.Service {
           }
           case 24: {
             ParentDataId = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            UpdateTime = input.ReadInt64();
             break;
           }
         }
@@ -10586,6 +10623,288 @@ namespace SP.Service {
           }
           case 16: {
             UserType = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 获取会员的请求参数
+  /// </summary>
+  public sealed partial class AssociatorCodeRequest : pb::IMessage<AssociatorCodeRequest> {
+    private static readonly pb::MessageParser<AssociatorCodeRequest> _parser = new pb::MessageParser<AssociatorCodeRequest>(() => new AssociatorCodeRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<AssociatorCodeRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[54]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AssociatorCodeRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AssociatorCodeRequest(AssociatorCodeRequest other) : this() {
+      associatorCode_ = other.associatorCode_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AssociatorCodeRequest Clone() {
+      return new AssociatorCodeRequest(this);
+    }
+
+    /// <summary>Field number for the "associatorCode" field.</summary>
+    public const int AssociatorCodeFieldNumber = 1;
+    private string associatorCode_ = "";
+    /// <summary>
+    ///*
+    ///  会员Code
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AssociatorCode {
+      get { return associatorCode_; }
+      set {
+        associatorCode_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as AssociatorCodeRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(AssociatorCodeRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (AssociatorCode != other.AssociatorCode) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (AssociatorCode.Length != 0) hash ^= AssociatorCode.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (AssociatorCode.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(AssociatorCode);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (AssociatorCode.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AssociatorCode);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(AssociatorCodeRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.AssociatorCode.Length != 0) {
+        AssociatorCode = other.AssociatorCode;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            AssociatorCode = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 区域ID的请求参数
+  /// </summary>
+  public sealed partial class ChildRegionRequest : pb::IMessage<ChildRegionRequest> {
+    private static readonly pb::MessageParser<ChildRegionRequest> _parser = new pb::MessageParser<ChildRegionRequest>(() => new ChildRegionRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ChildRegionRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[55]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ChildRegionRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ChildRegionRequest(ChildRegionRequest other) : this() {
+      dataId_ = other.dataId_;
+      updateTime_ = other.updateTime_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ChildRegionRequest Clone() {
+      return new ChildRegionRequest(this);
+    }
+
+    /// <summary>Field number for the "dataId" field.</summary>
+    public const int DataIdFieldNumber = 1;
+    private int dataId_;
+    /// <summary>
+    ///*
+    ///  区域ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int DataId {
+      get { return dataId_; }
+      set {
+        dataId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "updateTime" field.</summary>
+    public const int UpdateTimeFieldNumber = 2;
+    private long updateTime_;
+    /// <summary>
+    ///*
+    ///  更新时间
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long UpdateTime {
+      get { return updateTime_; }
+      set {
+        updateTime_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ChildRegionRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ChildRegionRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (DataId != other.DataId) return false;
+      if (UpdateTime != other.UpdateTime) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (DataId != 0) hash ^= DataId.GetHashCode();
+      if (UpdateTime != 0L) hash ^= UpdateTime.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (DataId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(DataId);
+      }
+      if (UpdateTime != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(UpdateTime);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (DataId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(DataId);
+      }
+      if (UpdateTime != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(UpdateTime);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ChildRegionRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.DataId != 0) {
+        DataId = other.DataId;
+      }
+      if (other.UpdateTime != 0L) {
+        UpdateTime = other.UpdateTime;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            DataId = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            UpdateTime = input.ReadInt64();
             break;
           }
         }

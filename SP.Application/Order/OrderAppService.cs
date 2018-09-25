@@ -123,14 +123,14 @@ namespace SP.Application.Order
                 var accountInfo = repository.GetAccountInfoById(order.AccountId);
                 orderDto.Owner.Fullname = accountInfo?.Fullname ?? string.Empty;                
                 var account = accountRep.GetAccountById(order.AccountId);
-                orderDto.Owner.Mobile = account.MobilePhone?.Replace("+86", "") ?? string.Empty;
+                orderDto.Owner.Mobile = account?.MobilePhone?.Replace("+86", "") ?? string.Empty;
             }
 
-            var orderRep = IocManager.Instance.Resolve<OrdersRespository>();
-            var list = orderRep.GetOrderProduct(orderDto.OrderId);
+            var orderRep = IocManager.Instance.Resolve<ShipOrderRespository>();
+            var list = orderRep.GetOrderShippingByOrderId(orderDto.OrderId);
             if (list != null && list.Count>0)
             {
-                var group = list.GroupBy(x=>x.ShiperId);
+                var group = list.GroupBy(x=>x.ShippingId);
                 foreach (var item in group)
                 {
                     if (item != null && !string.IsNullOrEmpty(item.Key)
@@ -140,8 +140,8 @@ namespace SP.Application.Order
                         shiper.AccountId = item.Key;
                         var shiperInfo = repository.GetAccountInfoById(item.Key);
                         shiper.Fullname = shiperInfo?.Fullname??string.Empty;                        
-                        var shiperAccount = accountRep.GetAccountById(order.AccountId);
-                        shiper.Mobile = shiperAccount.MobilePhone?.Replace("+86", "") ?? string.Empty;
+                        var shiperAccount = accountRep.GetAccountById(order.AccountId);                        
+                        shiper.Mobile = shiperAccount?.MobilePhone?.Replace("+86", "") ?? string.Empty;
                         orderDto.Shiper.Add(shiper);
                     }
                 }

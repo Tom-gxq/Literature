@@ -8,7 +8,8 @@ using System.Text;
 
 namespace SP.Service.Domain.EventHandlers
 {
-    public class ProductSkuOrderNumEventHandler : IEventHandler<ProductSkuOrderNumEvent>, IEventHandler<ProductSkuDBUpdateEvent>
+    public class ProductSkuOrderNumEventHandler : IEventHandler<ProductSkuOrderNumEvent>, IEventHandler<ProductSkuDBUpdateEvent>,
+        IEventHandler<ProductSkuDBCreateEvent>, IEventHandler<ResidueSkuUpdateEvent>
     {
         private readonly ProductSkuReportDatabase _reportDatabase;
         private static object lockObj = new object();
@@ -69,10 +70,37 @@ namespace SP.Service.Domain.EventHandlers
                          AlertStock = 0,
                          Price = 0,
                          SKU = string.Empty,
-                         OrderNum = 0
+                         OrderNum = 0,
+                        ResidueStock=0
                     });
                 }
             }
+        }
+        public void Handle(ProductSkuDBCreateEvent handle)
+        {
+            _reportDatabase.AddProductSku(new Entity.ProductSkuEntity()
+            {
+                ProductId = handle.ProductId,
+                AccountId = handle.AccountId,
+                ShopId = handle.ShopId,
+                Stock = handle.Stock,
+                SkuId = handle.AggregateId.ToString(),
+                EffectiveTime = DateTime.Now,
+                AlertStock = 0,
+                Price = 0,
+                SKU = string.Empty,
+                OrderNum = 0,
+                ResidueStock=0
+            });
+        }
+
+        public void Handle(ResidueSkuUpdateEvent handle)
+        {
+            _reportDatabase.RedoProductSkuStock(new Entity.ProductSkuEntity()
+            {
+                SkuId = handle.AggregateId.ToString(),
+                ResidueStock = handle.Stock
+            });
         }
     }
 }

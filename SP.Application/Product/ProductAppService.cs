@@ -342,6 +342,7 @@ namespace SP.Application.Product
                 BrandId = brandId,
                 LastOperater = lastOperater != null ? lastOperater.Id : 0,
                 VIPPrice = product.VIPPrice,
+                PurchasePrice = product.PurchasePrice
             },x=>x.ProductId == product.ProductId);
             return result > 0;
         }
@@ -585,6 +586,7 @@ namespace SP.Application.Product
                 TypeId = product.TypeId != null ? product.TypeId.Value : 0,
                 SecondTypeId = product.SecondTypeId != null ? product.SecondTypeId.Value : 0,
                 BrandId = product.BrandId != null ? product.BrandId.Value : 0,
+                PurchasePrice = product.PurchasePrice != null ? product.PurchasePrice.Value : 0,
             };
 
             return productsDto;

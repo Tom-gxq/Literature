@@ -308,6 +308,27 @@ namespace AccountGRPCInterface
             }
             return domain;
         }
+        public static AssociatorModel GetAssociatorByCode(string associatorCode)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request = new AssociatorCodeRequest()
+            {
+                AssociatorCode = associatorCode
+            };
+            var result = client.GetAssociatorByCode(request);
+            var domain = new AssociatorModel();
+            if (result.Status == 10001)
+            {
+                domain.amount = result.Associator.Amount;
+                domain.associatorId = result.Associator.AssociatorId;
+                domain.endDate = new DateTime(result.Associator.EndDate);
+                domain.startDate = new DateTime(result.Associator.StartDate);
+                domain.payOrderCode = result.Associator.PayOrderCode;
+                domain.quantity = result.Associator.Quantity;
+                domain.payType = result.Associator.PayType;
+            }
+            return domain;
+        }
 
         public static List<SysKindModel> GetAssociatorKindList()
         {
@@ -406,7 +427,6 @@ namespace AccountGRPCInterface
                 Avatar = string.IsNullOrEmpty(model.Avatar)?string.Empty: model.Avatar,
                 FullName = model.FullName,
                 Gender = model.Gender,
-                UserType= model.UserType,
                 DormId = model.DormId
             };
             var result = client.UpdateAccountFullInfo(request);

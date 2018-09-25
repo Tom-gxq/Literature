@@ -114,12 +114,13 @@ namespace AccountGRPCInterface
             }
             return domain;
         }
-        public static List<RegionDataModel> GetChildRegionData(int dataId)
+        public static List<RegionDataModel> GetChildRegionData(int dataId,long updateTime=0)
         {
             var client = AccountClientHelper.GetClient();
-            var request1 = new RegionIDRequest()
+            var request1 = new ChildRegionRequest()
             {
-                DataId = dataId
+                DataId = dataId,
+                UpdateTime = updateTime
             };
             var result = client.GetChildRegionData(request1);
             var list = new List<RegionDataModel>();
@@ -241,9 +242,10 @@ namespace AccountGRPCInterface
         public static List<RegionDataModel> GetChildRegionDataList(int parentDataId)
         {
             var client = AccountClientHelper.GetClient();
-            var request1 = new RegionIDRequest()
+            var request1 = new ChildRegionRequest()
             {
-                DataId = parentDataId
+                DataId = parentDataId,
+                UpdateTime = 0, 
             };
             var result = client.GetChildRegionDataList(request1);
             var list = new List<RegionDataModel>();
@@ -281,9 +283,10 @@ namespace AccountGRPCInterface
                 }
                 if(model.dataId > 0)
                 {
-                    var requst2 = new RegionIDRequest()
+                    var requst2 = new ChildRegionRequest()
                     {
-                        DataId = model.dataId
+                        DataId = model.dataId,
+                        UpdateTime = 0,
                     };
                     model.childList = new List<RegionDataModel>();
                     var childResult = client.GetChildRegionData(requst2);
@@ -303,12 +306,18 @@ namespace AccountGRPCInterface
             return model;
         }
 
-        public static List<RegionDataModel> GetSchoolDistrictList(int dataId)
+        public static List<RegionDataModel> GetSchoolDistrictList(int dataId, long updateTime)
         {
             var client = AccountClientHelper.GetClient();
-            var request1 = new RegionIDRequest()
+            long date = 0;
+            if (updateTime > 0)
             {
-                DataId = dataId
+                date = SetTimestamp(updateTime).Ticks;
+            }
+            var request1 = new ChildRegionRequest()
+            {
+                DataId = dataId,
+                UpdateTime = date
             };
             var result = client.GetChildRegionDataList(request1);
             var list = new List<RegionDataModel>();
@@ -320,20 +329,22 @@ namespace AccountGRPCInterface
                     domain.dataId = item.DataId;
                     domain.dataName = item.DataName;
                     domain.parentDataId = item.ParentDataId;
+                    domain.updateTime = GetTimestamp(new DateTime(item.UpdateTime));
                     if (domain.dataId > 0)
                     {
-                        GetChildRegion(domain, client);
+                        GetChildRegion(domain, client,date);
                     }
                     list.Add(domain);
                 }
             }
             return list;
         }
-        private static void GetChildRegion(RegionDataModel model, AccountServiceClient client)
+        private static void GetChildRegion(RegionDataModel model, AccountServiceClient client, long date)
         {
-            var requst2 = new RegionIDRequest()
+            var requst2 = new ChildRegionRequest()
             {
-                DataId = model.dataId
+                DataId = model.dataId,
+                UpdateTime = date 
             };
             model.childList = new List<RegionDataModel>();
             var childResult = client.GetChildRegionData(requst2);
@@ -345,13 +356,24 @@ namespace AccountGRPCInterface
                     child.dataId = item.DataId;
                     child.dataName = item.DataName;
                     child.parentDataId = item.ParentDataId;
+                    child.updateTime = GetTimestamp(new DateTime(item.UpdateTime));
                     if(child.parentDataId > 0)
                     {
-                        GetChildRegion(child, client);
+                        GetChildRegion(child, client,date);
                     }
                     model.childList.Add(child);
                 }
             }
+        }
+        private static long GetTimestamp(DateTime d)
+        {
+            return (d.ToUniversalTime().Ticks - 621355968000000000) / 10000000;     //精确到毫秒
+        }
+        private static DateTime SetTimestamp(long d)
+        {
+            DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));            
+            TimeSpan toNow = new TimeSpan(d* 10000000);
+            return dtStart.Add(toNow);
         }
     }
 }

@@ -25,5 +25,9 @@ namespace SP.Service.EntityFramework.Repositories
             && x.ProductId == productId && x.ShopId == shopId);
             return result;
         }
+        public List<AccountProductEntity> GetAllFoodAccountProduct()
+        {
+            return this.Select(x=>x.Status== 0 && x.PreStock > 0);
+        }
     }
 }

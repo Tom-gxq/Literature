@@ -136,6 +136,10 @@ namespace Stock.Service.Business
                 foreach (var item in list)
                 {
                     var decStock = 0;
+                    if(item.Stock <=0)
+                    {
+                        continue;
+                    }
                     if(item.Stock >= stock)
                     {
                         decStock = stock;
@@ -161,6 +165,21 @@ namespace Stock.Service.Business
                     {
                         break;
                     }
+                }
+                if(stock > 0 && list.Count>0)
+                {
+                    var decStock = 0 - stock;
+                    string key = string.Format(CacheKey, RedisKeyPrefix, list[0].OwnerId, productId, shopId);
+                    try
+                    {
+                        cache.DecrementValueBy(key, Math.Abs(decStock));
+                        response.Status = 10001;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("stock > 0 DecreaseProductSku ex=" + ex.Message);
+                    }
+                    ServiceLocator.CommandBus.Send(new CreatShipOrderCommand(orderId, list[0].OwnerId, accountId, DateTime.Now, decStock, productId, shopId));
                 }
             }
             return response;
@@ -241,16 +260,43 @@ namespace Stock.Service.Business
                     string key = string.Format(CacheKey, RedisKeyPrefix, item.AccountId, item.ProductId, item.ShopId);
                     try
                     {
-                        cache.Remove(key);
-                        Console.WriteLine($"UpdateProductSku[{i}] key={key} Stock=" + item.Stock.ToString());
+                        Console.WriteLine($"UpdateProductSku[{i}] key={key} Stock=" + item.Stock.ToString()+" Type="+ item.Type);
+                        object obj = cache.GetOrDefault(key);
+                        bool isExsit = !string.IsNullOrEmpty(obj?.ToString());
+                        TimeSpan time = TimeSpan.FromDays(365);
                         if (timeSpan > 0)
                         {
-                            TimeSpan time = new TimeSpan(timeSpan);
-                            cache.Set(key, item.Stock.ToString(),time);
+                            time = new TimeSpan(timeSpan);
                         }
-                        else
+                        switch (item.Type)
                         {
-                            cache.Set(key, item.Stock.ToString());
+                            case 0://覆盖
+                                cache.Remove(key);                                
+                                
+                                cache.Set(key, item.Stock.ToString(), time);
+                                break;
+                            case 1://增加
+                                if (isExsit)
+                                {
+                                    cache.IncrementValueBy(key, item.Stock);
+                                }
+                                else
+                                {
+                                    cache.Remove(key);
+                                    cache.Set(key, item.Stock.ToString(), time);
+                                }
+                                break;
+                            case 2://减少
+                                if (isExsit)
+                                {
+                                    cache.DecrementValueBy(key, item.Stock);
+                                }
+                                else
+                                {
+                                    cache.Remove(key);
+                                    cache.Set(key, item.Stock.ToString(), time);
+                                }
+                                break;
                         }
                         response.Status = 10001;
                         ServiceLocator.CommandBus.Send(new EditProductSkuCommand(Guid.NewGuid(),item.AccountId, item.ProductId, item.ShopId,item.Stock,item.Type));
@@ -258,6 +304,7 @@ namespace Stock.Service.Business
                     catch (Exception ex)
                     {
                         Console.WriteLine($"UpdateProductSku[{i}] ex=" + ex.Message);
+                        Console.WriteLine($"UpdateProductSku[{i}] ex=" + ex.StackTrace);
                     }
                     i++;
                 }
@@ -274,8 +321,9 @@ namespace Stock.Service.Business
             {
                 int i = 0;
                 foreach (var item in skuList)
-                {
+                {                    
                     string key = string.Format(CacheKey, RedisKeyPrefix, item.AccountId, item.ProductId, item.ShopId);
+                    Console.WriteLine($"DelProductSku[{i}] key={key} Stock=" + item.Stock.ToString());
                     try
                     {
                         cache.Remove(key);

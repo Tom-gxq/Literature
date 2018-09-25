@@ -8,7 +8,8 @@ using System.Text;
 
 namespace SP.Service.Domain.CommandHandlers
 {
-    public class EditProductSkuCommandHandler : ICommandHandler<EditProductSkuCommand>,ICommandHandler<EditProductSkuDBCommand>
+    public class EditProductSkuCommandHandler : ICommandHandler<EditProductSkuCommand>,
+        ICommandHandler<EditProductSkuDBCommand>, ICommandHandler<CreateProductSkuDBCommand>
     {
         private IDataRepository<ProductSkuDomain> _repository;
         public EditProductSkuCommandHandler(IDataRepository<ProductSkuDomain> repository)
@@ -27,6 +28,12 @@ namespace SP.Service.Domain.CommandHandlers
         {
             var aggregate = new ProductSkuDomain();
             aggregate.UpdateProductSkuDbDomainStock(command.Id,command.ShopId, command.ProductId, command.AccountId, command.Stock,command.Type);
+            _repository.Save(aggregate);
+        }
+
+        public void Execute(CreateProductSkuDBCommand command)
+        {
+            var aggregate = new ProductSkuDomain(command.Id, command.AccountId, command.ProductId, command.ShopId, command.Stock);
             _repository.Save(aggregate);
         }
     }

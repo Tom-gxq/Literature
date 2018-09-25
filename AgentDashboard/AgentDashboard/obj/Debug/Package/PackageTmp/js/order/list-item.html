@@ -1,0 +1,69 @@
+﻿{% for(var i =0, j=$data.length; i< j; i++) { %}        
+<tr  class="contenttr">
+    <td colspan="7">
+        <input type="checkbox"  value="{%=$data[i].OrderId %}"> 
+        订单编号：<span>{%=$data[i].OrderCode %}</span>&nbsp;
+        创建时间：<span>{%=$data[i].OrderDate.toDate('yyyy-MM-dd hh:mm:ss') %}</span>&nbsp;
+        <span>
+            {%if($data[i].OrderStatus ==1){%}
+                待付款
+            {%}else if($data[i].OrderStatus ==2){%}
+                已付款
+            {%}else if($data[i].OrderStatus ==3){%}
+                已发货
+            {%}else if($data[i].OrderStatus ==4){%}
+                已关闭
+            {%}else if($data[i].OrderStatus ==5){%}
+                已完成
+            {%}%}
+        </span>
+    </td>
+</tr>
+<tr class="contenttr">
+    <td >
+        {%if($data[i].ProductList !=null){%}
+            {% for(var ii =0, jj=$data[i].ProductList.length; ii< jj; ii++) { %}
+                {%if($data[i].ProductList[ii].ProductImage.length>0){%}
+                <img src="{%=$data[i].ProductList[ii].ProductImage[0].ImgPath %}" width="40px" height="40px">
+                {%}else{%}
+                <img src="" width="40px" height="40px"/>
+                {%}%}
+                <div>{%=$data[i].ProductList[ii].ProductName %}</div>
+                <div>¥{%=$data[i].ProductList[ii].MarketPrice %}</div>
+                <div>数量：{%=$data[i].ProductList[ii].Quantity %}</div>
+            {% } %}
+        {% } %}
+    </td>
+    <td class="center">
+        {% for(var ii =0, jj=$data[i].Shiper.length; ii< jj; ii++) { %}
+        配送人：<span>{%=$data[i].Shiper[ii].Fullname%}</span>
+        <span>&nbsp;&nbsp;&nbsp;</span>
+        电话：<span>{%=$data[i].Shiper[ii].Mobile%}</span><br />
+        {% } %}
+    </td>
+    <td>        
+        姓名：<span>{%=$data[i].Owner.Fullname%}</span>
+        <span>&nbsp;&nbsp;&nbsp;</span>
+        电话：<span>{%=$data[i].Owner.Mobile%}</span><br />
+        地址：<span>{%=$data[i].OrderAddress%}</span>        
+    </td>
+    <td>
+        {%if($data[i].IsVip==true){%}
+            会员价
+        {%}else{%}
+            平价
+        {%}%}
+        ：
+        {%=$data[i].Amount%}
+        <br />
+        {%if($data[i].IsWxPay ==true){%}
+            微信支付        
+        {%}%}
+        <br />
+        {%if($data[i].IsAliPay ==true){%}
+            支付宝支付
+        {%}%}
+    </td>
+    <td> {%=$data[i].Remark %}</td>
+</tr>
+{% } %}

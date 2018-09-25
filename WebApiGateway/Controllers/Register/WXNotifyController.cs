@@ -1,4 +1,6 @@
-﻿using OrderGRPCInterface.Business;
+﻿using AccountGRPCInterface;
+using OrderGRPCInterface.Business;
+using SP.Api.Model.Account;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -111,7 +113,18 @@ namespace WebApiGateway.Controllers.Register
                 Common.WriteLog("签名一致");
                 if ("SUCCESS".Equals(result_code))
                 {
-                    var retVal = UpdateOrderState(out_trade_no);
+                    bool retVal = false;
+                    
+                    if (out_trade_no.ToLower().StartsWith("gmhy"))
+                    {
+                        Common.WriteLog("HY State Update out_trade_no=" + out_trade_no);
+                        retVal = UpdateHYState(out_trade_no);
+                    }
+                    else
+                    {
+                        retVal = UpdateOrderState(out_trade_no);
+
+                    }
                     if (retVal)
                     {
                         result = "success";
@@ -126,7 +139,7 @@ namespace WebApiGateway.Controllers.Register
             {
                 Common.WriteLog("签名不一致");
             }
-            
+            Common.WriteLog("result:"+ result);
             Common.WriteLog("--- WXPay_Notify --- End");
             return result;
         }
@@ -210,7 +223,18 @@ namespace WebApiGateway.Controllers.Register
                 Common.WriteLog("签名一致");
                 if ("SUCCESS".Equals(result_code))
                 {
-                    var retVal = UpdateOrderState(out_trade_no);
+                    bool retVal = false;
+                    Common.WriteLog("订单号是：" + out_trade_no.ToLower()+"  result="+ out_trade_no.ToLower().StartsWith("gmhy"));
+                    if (out_trade_no.ToLower().StartsWith("gmhy"))
+                    {
+                        Common.WriteLog("HY State Update out_trade_no=" + out_trade_no);
+                        retVal = UpdateHYState(out_trade_no);
+                    }
+                    else
+                    {
+                        retVal = UpdateOrderState(out_trade_no);
+
+                    }
                     if (retVal)
                     {
                         result = "success";
@@ -242,7 +266,7 @@ namespace WebApiGateway.Controllers.Register
                 try
                 {
                     var order = OrderBusiness.GetOrderByOrderCode(orderCode);
-                    if (order != null && order.orderStatus == 1)
+                    if (order != null && (order.orderStatus == 1 || order.orderStatus == 4))
                     {
                         retValue = OrderBusiness.UpdateOrderStatusByOrderCode(orderCode, 2,1);//微信支付是1
                     }
@@ -310,6 +334,33 @@ namespace WebApiGateway.Controllers.Register
             string sign = MD5Util.GetMD5(sb.ToString(), _ContentEncoding).ToUpper();
             //返回密文
             return sign;
+        }
+
+        private bool UpdateHYState(string orderCode)
+        {
+            bool retValue = false;
+            Common.WriteLog("UpdateHYState orderCode=" + orderCode);
+            if (!string.IsNullOrEmpty(orderCode))
+            {
+                try
+                {
+                    var order = AccountBusiness.GetAssociatorByCode(orderCode);
+                    Common.WriteLog("HY State Update status=" + order?.status??string.Empty+ " associatorId="+ order?.associatorId??string.Empty);
+                    if (order != null && (order.status == 0))
+                    {
+                        retValue = AccountBusiness.UpdateAssociatorStatus(new AssociatorModel()
+                        {
+                            associatorId = order.associatorId,
+                            status = 2
+                        });
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Common.WriteLog(ex.ToString());
+                }
+            }
+            return retValue;
         }
     }
 }

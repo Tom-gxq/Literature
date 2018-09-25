@@ -16,5 +16,6 @@ namespace SP.Service.Entity
         public double? Price { get; set; }
         public string Description { get; set; }
         public double? DiscountValue { get; set; }
+        public bool? IsDisplay { get; set; }
     }
 }

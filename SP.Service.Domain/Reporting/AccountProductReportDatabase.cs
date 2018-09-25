@@ -23,5 +23,9 @@ namespace SP.Service.Domain.Reporting
         {
             return _repository.GetAccountProduct(accountId, productId, shopId);
         }
+        public List<AccountProductEntity> GetAllFoodAccountProduct()
+        {
+            return _repository.GetAllFoodAccountProduct();
+        }
     }
 }

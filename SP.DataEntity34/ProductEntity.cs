@@ -40,5 +40,6 @@ namespace SP.DataEntity
         public int? SecondTypeId { get; set; }
         public DateTime? UpdateTime { get; set; }
         public long? LastOperater { get; set; }
+        public double? PurchasePrice { get; set; }
     }
 }

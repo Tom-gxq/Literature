@@ -32,7 +32,7 @@ namespace SP.Service.Domain.DomainEntity
         public AssociatorDomain(Guid associatorId, string accountId, string kindId, int quantity,
             string payOrderCode, int payType, double amount)
         {
-            ApplyChange(new AssociatorCreatedEvent(associatorId,accountId, kindId, quantity, payOrderCode, payType, amount));
+            ApplyChange(new AssociatorCreatedEvent(associatorId,accountId, kindId, quantity, payOrderCode, payType, amount,0));
         }
         public void EditAssociatorDomain(Guid associatorId,int status)
         {
@@ -104,8 +104,8 @@ namespace SP.Service.Domain.DomainEntity
                 this.Id = new Guid(entity.AssociatorId);
                 this.KindId = entity.KindId;
                 this.Amount = entity.Amount.Value;
-                this.PayOrderCode = entity.PayOrderCode;
-                this.PayType = entity.PayType.Value;
+                this.PayOrderCode = !string.IsNullOrEmpty(entity.PayOrderCode)? entity.PayOrderCode:string.Empty;
+                this.PayType = entity.PayType != null ?entity.PayType.Value:1;
                 this.StartDate = entity.StartDate.Value;
                 this.EndDate = entity.EndDate.Value;
                 this.Quantity = entity.Quantity.Value;

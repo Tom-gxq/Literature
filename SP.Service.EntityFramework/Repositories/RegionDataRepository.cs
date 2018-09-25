@@ -52,10 +52,15 @@ namespace SP.Service.EntityFramework.Repositories
             return result;
         }
 
+        public List<RegionDataEntity> GetChildRegionData(int dataId,DateTime updateTime)
+        {
+            return this.Select(x => x.Status == 1 && x.ParentDataID == dataId && x.UpdateTime>= updateTime)
+                .OrderBy(x=>x.DisplaySequence).ToList();
+        }
         public List<RegionDataEntity> GetChildRegionData(int dataId)
         {
-            return this.Select(x => x.Status == 1 && x.ParentDataID == dataId)
-                .OrderBy(x=>x.DisplaySequence).ToList();
+            return this.Select(x => x.Status == 1 && x.ParentDataID == dataId )
+                .OrderBy(x => x.DisplaySequence).ToList();
         }
 
         public List<RegionDataEntity>  GetSelectedRegionDataList(string accountId)

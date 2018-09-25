@@ -17,7 +17,7 @@ namespace SP.Service.Domain.Commands.Account
 
         public CreateOtherAccountCommand(string mobilePhone, string otherAccount, OtherType otherType, string fullName, string avatar, bool gender)
         {
-            base.Id = new Guid();
+            base.Id = Guid.NewGuid();
             this.OtherAccount = otherAccount;
             this.OtherType = otherType;
             this.MobilePhone = mobilePhone;

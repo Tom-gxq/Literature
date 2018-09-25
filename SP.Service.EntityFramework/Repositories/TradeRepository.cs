@@ -29,6 +29,10 @@ namespace SP.Service.EntityFramework.Repositories
                 return db.Select<TradeFullEntity>(q);
             }
         }
+        public TradeEntity GetTradeByShipOrderId(int shipOrderId)
+        {
+            return this.Single(x=>x.ShipOrderId == shipOrderId);
+        }
         public long GetTradeListCount(string accountId)
         {
             return this.Count(a => a.AccountId == accountId);

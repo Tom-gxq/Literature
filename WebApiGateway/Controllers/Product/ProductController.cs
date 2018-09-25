@@ -64,6 +64,7 @@ namespace WebApiGateway.Controllers.Product
                 var list = ProductBusiness.GetShopProductList(districtId, typeId, pageIndex, pageSize);
                 if (list != null)
                 {
+                    list = list.OrderByDescending(x => x.skuNum).ToList();
                     string domainPath = ConfigurationManager.AppSettings["Qiniu.Domain"];
                     var groupResult = list.GroupBy(x => x.productId);
                     foreach (var item in groupResult)
@@ -99,24 +100,33 @@ namespace WebApiGateway.Controllers.Product
         {
             var result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            List<ProductModel> retList = new List<ProductModel>();
             try
             {
                 var list = ProductBusiness.GetFoodShopProductList(districtId, shopId, pageIndex, pageSize);
                 string domainPath = ConfigurationManager.AppSettings["Qiniu.Domain"];
                 if (list != null)
                 {
-                    foreach (var item in list)
+                    var groupResult = list.GroupBy(x => x.productId);
+                    foreach (var item in groupResult)
                     {
-                        if (item.images != null)
+                        var product = item.FirstOrDefault();
+                        if (product != null)
                         {
-                            foreach (var img in item.images)
+                            product.skuNum = item.Sum(x => x.skuNum);
+                            if (product.images != null)
                             {
-                                img.imgPath = !string.IsNullOrEmpty(img.imgPath) ? (domainPath + img.imgPath) : string.Empty;
+                                foreach (var img in product.images)
+                                {
+                                    img.imgPath = !string.IsNullOrEmpty(img.imgPath) ? (domainPath + img.imgPath) : string.Empty;
+                                }
                             }
+                            retList.Add(product);
                         }
                     }
+                    retList = retList.OrderByDescending(x=>x.skuNum).ToList();                    
                 }
-                JsonResult.Add("shopProductList", list);
+                JsonResult.Add("shopProductList", retList);
                 JsonResult.Add("status", 0);
             }
             catch (Exception ex)

@@ -1,4 +1,6 @@
-﻿using OrderGRPCInterface.Business;
+﻿using AccountGRPCInterface;
+using OrderGRPCInterface.Business;
+using SP.Api.Model.Account;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -31,21 +33,17 @@ namespace WebApiGateway.Controllers
 
                 error = error + "verifyResult|" + verifyResult;
                 double total_amount = 0;
-                double buyer_pay_amount = 0;
                 double receipt_amount = 0;
                 if (Request.Form.AllKeys.Contains("total_amount") && !string.IsNullOrEmpty(Request.Form["total_amount"]))
                 {
                     total_amount = double.Parse(Request.Form["total_amount"]);
                 }
-                if (Request.Form.AllKeys.Contains("buyer_pay_amount") && !string.IsNullOrEmpty(Request.Form["buyer_pay_amount"]))
-                {
-                    buyer_pay_amount = double.Parse(Request.Form["buyer_pay_amount"]);
-                }
+                
                 if (Request.Form.AllKeys.Contains("receipt_amount") && !string.IsNullOrEmpty(Request.Form["receipt_amount"]))
                 {
                     receipt_amount = double.Parse(Request.Form["receipt_amount"]);
                 }
-                if(total_amount != buyer_pay_amount || total_amount!= receipt_amount)
+                if(total_amount!= receipt_amount)
                 {
                     result = "客户付款失败";
                 }
@@ -60,9 +58,17 @@ namespace WebApiGateway.Controllers
                     string price = string.Empty;
 
                     error = error + DateTime.Now + "alipayNotify||||out_trade_no|" + out_trade_no + "trade_no|" + trade_no;
-
-
-                    var retVal = UpdateOrderState(out_trade_no);
+                    bool retVal = false;
+                    if (out_trade_no.ToLower().StartsWith("gmhy"))
+                    {
+                        Common.WriteLog("HY State Update out_trade_no=" + out_trade_no);
+                        retVal = UpdateHYState(out_trade_no);                        
+                    }
+                    else
+                    {
+                        retVal = UpdateOrderState(out_trade_no);
+                        
+                    }
                     if (retVal)
                     {
                         result = "success";
@@ -101,21 +107,17 @@ namespace WebApiGateway.Controllers
 
                 error = error + "verifyResult|" + verifyResult;
                 double total_amount = 0;
-                double buyer_pay_amount = 0;
                 double receipt_amount = 0;
                 if (Request.Form.AllKeys.Contains("total_amount") && !string.IsNullOrEmpty(Request.Form["total_amount"]))
                 {
                     total_amount = double.Parse(Request.Form["total_amount"]);
                 }
-                if (Request.Form.AllKeys.Contains("buyer_pay_amount") && !string.IsNullOrEmpty(Request.Form["buyer_pay_amount"]))
-                {
-                    buyer_pay_amount = double.Parse(Request.Form["buyer_pay_amount"]);
-                }
+                
                 if (Request.Form.AllKeys.Contains("receipt_amount") && !string.IsNullOrEmpty(Request.Form["receipt_amount"]))
                 {
                     receipt_amount = double.Parse(Request.Form["receipt_amount"]);
                 }
-                if (total_amount != buyer_pay_amount || total_amount != receipt_amount)
+                if ( total_amount != receipt_amount)
                 {
                     result = "客户付款失败";
                 }
@@ -191,7 +193,7 @@ namespace WebApiGateway.Controllers
                 try
                 {
                     var order = OrderBusiness.GetOrderByOrderCode(orderCode);
-                    if (order != null && order.orderStatus == 1)
+                    if (order != null && (order.orderStatus == 1 || order.orderStatus==4))
                     {
                         retValue = OrderBusiness.UpdateOrderStatusByOrderCode(orderCode, 2,2);
                     }                    
@@ -215,7 +217,31 @@ namespace WebApiGateway.Controllers
                     var order = OrderBusiness.GetOrderByOrderCode(orderCode);
                     if (order != null && order.orderStatus == 1)
                     {
-                        retValue = OrderBusiness.UpdateShipOrderStatus(order.orderId, 2, 2);
+                        retValue = OrderBusiness.UpdateShipOrderStatus(order.orderId, 2,string.Empty, 2);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Common.WriteLog(ex.ToString());
+                }
+            }
+            return retValue;
+        }
+        private bool UpdateHYState(string orderCode)
+        {
+            bool retValue = false;
+            if (!string.IsNullOrEmpty(orderCode))
+            {
+                try
+                {
+                    var order = AccountBusiness.GetAssociatorByCode(orderCode);
+                    if (order != null && (order.status == 0))
+                    {
+                        retValue = AccountBusiness.UpdateAssociatorStatus(new AssociatorModel()
+                        {
+                             associatorId = order.associatorId,
+                             status = 2
+                        });
                     }
                 }
                 catch (Exception ex)

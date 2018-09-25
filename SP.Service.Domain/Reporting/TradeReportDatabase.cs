@@ -41,10 +41,27 @@ namespace SP.Service.Domain.Reporting
             list.ForEach(x => amonut+=(x.Amount == null ? 0 : x.Amount.Value));
             return amonut;
         }
+        public TradeDomain GetTradeByShipOrderId(int shipOrderId)
+        {
+            var entity = _repository.GetTradeByShipOrderId(shipOrderId);
+            
+            return ConvertEntityToDomain(entity);
+        }
+
         private TradeDomain ConvertEntityToDomain(TradeFullEntity entity)
         {
             var order = new TradeDomain();
             order.SetMemento(entity);
+            return order;
+        }
+        private TradeDomain ConvertEntityToDomain(TradeEntity entity)
+        {
+            if(entity== null)
+            {
+                return null;
+            }
+            var order = new TradeDomain();
+            order.SetBaseMemento(entity);
             return order;
         }
     }

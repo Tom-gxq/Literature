@@ -4,6 +4,7 @@ using SP.Service;
 using SP.Service.Domain;
 using SP.Service.Domain.Commands;
 using SP.Service.Domain.Commands.Order;
+using SP.Service.Domain.Commands.StockShip;
 using SP.Service.Domain.DomainEntity;
 using SP.Service.Entity;
 using SP.Service.EntityFramework.Repositories;
@@ -134,9 +135,9 @@ namespace Order.Service.Business
         {
             ServiceLocator.CommandBus.Send(new EditOrderCommand(new Guid(orderId), (OrderStatus)orderStatus,(OrderPay)payWay));           
         }
-        public static void UpdateShipOrderStatus(string orderId, int orderStatus, int payWay)
+        public static void UpdateShipOrderStatus(string orderId, int orderStatus, int payWay,string accountId)
         {
-            ServiceLocator.CommandBus.Send(new EditPurchaseOrderCommand(new Guid(orderId), (OrderStatus)orderStatus, (OrderPay)payWay));
+            ServiceLocator.CommandBus.Send(new EditPurchaseOrderCommand(new Guid(orderId), (OrderStatus)orderStatus, (OrderPay)payWay, accountId));
         }
 
         public static TradeListResponse GetSchoolLeadTradeList(string accountId, int pageIndex, int pageSize)
@@ -172,8 +173,32 @@ namespace Order.Service.Business
                 result.AccountId = finance.AccountId;
                 result.HaveAmount = finance.HaveAmount;
                 result.UseAmount = finance.UseAmount;
-                result.ActiveAmount = ServiceLocator.TradeReportDatabase.GetLatelyTrade(accountId);
+                var accountInfo = ServiceLocator.AccountInfoReportDatabase.GetAccountInfoById(accountId);
+                if (accountInfo.UserType == 2)
+                {
+                    result.ActiveAmount = ServiceLocator.TradeReportDatabase.GetLatelyTrade(accountId);
+                }
                 result.ApplyAmount = ServiceLocator.CashApplyReportDatabase.GetAllApplyNum(accountId);
+                result.Status = 10001;
+            }
+            return result;
+        }
+
+        public static SchoolLeadOrderListResponse GetShipOrderList(string accountId, int status, int orderType)
+        {
+            var result = new SchoolLeadOrderListResponse();
+            result.Status = 10002;
+            var list = ServiceLocator.ReportDatabase.GetShipOrderList(accountId, status, orderType);
+            if (list != null)
+            {
+                foreach (var item in list)
+                {
+                    if (item != null)
+                    {
+                        var order = ConvertShipOrderDomainToResponse(item);
+                        result.OrderInfo.Add(order);
+                    }
+                }
                 result.Status = 10001;
             }
             return result;
@@ -256,13 +281,13 @@ namespace Order.Service.Business
                 order.Address.Gender = 1;
                 if (addressArray != null && addressArray.Length > 2)
                 {
-                    order.Address.Dorm = $"{addressArray[2]} {addressArray[3]}" ?? string.Empty;
+                    order.Address.DormName = $"{addressArray[2]} {addressArray[3]}" ?? string.Empty;
                     order.Address.DistrictName = addressArray[1] ?? string.Empty;
                     order.Address.SchoolName = addressArray[0] ?? string.Empty;
                 }
                 else
                 {
-                    order.Address.Dorm = string.Empty;
+                    order.Address.DormName = string.Empty;
                     order.Address.DistrictName = string.Empty;
                     order.Address.SchoolName = string.Empty;
                 }
@@ -299,6 +324,41 @@ namespace Order.Service.Business
             }
             return order;
         }
+
+        private static SchoolLeadOrder ConvertShipOrderDomainToResponse(LeadOrderDomain entity)
+        {
+            var order = new SchoolLeadOrder();
+            order.Amount = entity.Amount;
+            order.OrderDate = entity.OrderDate.Ticks;
+            order.OrderId = entity.OrderId;
+            order.OrderCode = !string.IsNullOrEmpty(entity.OrderCode)? entity.OrderCode:string.Empty;
+            order.PayDate = entity.PayDate > DateTime.MinValue ? entity.PayDate.Ticks : 0;
+            order.OrderStatus = (int)entity.OrderStatus;
+            if (entity.Account != null)
+            {
+                order.Account = new SP.Service.AccountInfo();
+                order.Account.MobilePhone = entity.Account.MobilePhone;
+                order.Account.UserName = !string.IsNullOrEmpty(entity.Account.UserName) ? entity.Account.UserName : string.Empty;
+            }
+            if (entity.OrderAddress != null)
+            {
+                order.Address = new SP.Service.Address();
+                order.Address.ContactAddress = entity.OrderAddress ?? string.Empty;                
+            }
+            
+            if (entity.ShoppingCarts != null)
+            {                
+                foreach (var item in entity.ShoppingCarts)
+                {
+                    var shoppingCart = new ShoppingCart();
+                    shoppingCart.ProductName = item.Product.ProductName;
+                    shoppingCart.Quantity = item.Quantity;
+                    shoppingCart.ShipOrderId = item.ShipOrderId;
+                    order.ShoppingCartList.Add(shoppingCart);
+                }
+            }
+            return order;
+        }
         public static void AddCashApply(string accountId, string alipay, double money)
         {
             ServiceLocator.CommandBus.Send(new CreateCashApplyCommand(accountId, alipay, money));
@@ -307,6 +367,11 @@ namespace Order.Service.Business
         public static void  UpdateOrderStatusByOrderCode(string orderCode, int orderStatus, int payWay)
         {
             ServiceLocator.CommandBus.Send(new EditOrderCodeCommand(orderCode, (OrderStatus)orderStatus, (OrderPay)payWay));
+        }
+
+        public static void UpdateShippingOrder(List<int> shipOrderId, int orderStatus)
+        {
+            ServiceLocator.CommandBus.Send(new EditShipOrderStatusCommand(shipOrderId, (OrderStatus)orderStatus));
         }
 
     }

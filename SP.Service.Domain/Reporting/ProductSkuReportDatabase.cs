@@ -36,6 +36,12 @@ namespace SP.Service.Domain.Reporting
             return ConvertSkuEntityToDomain(sku);
 
         }
+        public ProductSkuDomain GetPreDayProductSku(int shopId, string productId, string accountId)
+        {
+            var sku = _repository.GetPreDayProductSku(shopId, productId, accountId);
+            return ConvertSkuEntityToDomain(sku);
+
+        }
 
         public bool UpdateProductSkuStock(ProductSkuEntity entity)
         {

@@ -54,7 +54,8 @@ namespace SP.Service.Domain.Reporting
             var retCount = _repository.UpdateShoppingCart(new ShoppingCartsEntity()
             {
                  CartId = cartId,
-                 Quantity = quantity
+                 Quantity = quantity,
+                 UpdateTime = DateTime.Now
             });
             return retCount > 0;
         }
@@ -80,6 +81,13 @@ namespace SP.Service.Domain.Reporting
         {
             var entity = _repository.GetShoppingCart(accountId, shopId, productId);
             
+            return ConvertOrderEntityToDomain(entity);
+        }
+
+        public ShoppingCartsDomain GetShoppingCartByOrderIdandProductId(string orderId, string productId)
+        {
+            var entity = _repository.GetShoppingCartByOrderIdandProductId(orderId, productId);
+
             return ConvertOrderEntityToDomain(entity);
         }
 

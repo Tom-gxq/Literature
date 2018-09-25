@@ -16,14 +16,15 @@ namespace SP.Service.Domain.DomainEntity
         public double Amount { get; internal set; }
         public DateTime CreateTime { get; internal set; }
         public int Quantity { get; internal set; }
+        public int ShipOrderId { get; internal set; }
 
         public TradeDomain()
         {
             
         }
-        public TradeDomain(string accountId,string cartId,int subject,double amount)
+        public TradeDomain(string accountId,string cartId,int subject,double amount,int shipOrderId=0)
         {
-            ApplyChange(new TradeCreateEvent(Guid.NewGuid(), accountId, cartId,subject, amount));
+            ApplyChange(new TradeCreateEvent(Guid.NewGuid(), accountId, cartId,subject, amount, shipOrderId));
         }
         
 
@@ -52,6 +53,19 @@ namespace SP.Service.Domain.DomainEntity
                 this.Amount = entity.Amount != null ? entity.Amount.Value:0;
                 this.CreateTime = entity.CreateTime.Value;
                 this.Quantity = entity.Quantity;
+            }
+        }
+        public void SetBaseMemento(BaseEntity memento)
+        {
+            if (memento is TradeEntity)
+            {
+                var entity = memento as TradeEntity;
+                this.AccountId = entity.AccountId;
+                this.CartId = entity.CartId;
+                this.Subject = entity.Subject.Value;
+                this.Id = new Guid(entity.TradeId);
+                this.Amount = entity.Amount != null ? entity.Amount.Value : 0;
+                this.CreateTime = entity.CreateTime.Value;
             }
         }
         public void Handle(TradeCreateEvent e)

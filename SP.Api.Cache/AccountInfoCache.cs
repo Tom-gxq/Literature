@@ -47,6 +47,15 @@ namespace SP.Api.Cache
 
             return accountInfo;
         }
+        public static bool RemoveAccountInfo(string accountId)
+        {
+            bool ret = false;
+            if (!string.IsNullOrEmpty(accountId))
+            {
+                ret = RedisProvider.Default.RemoveEntryFromHash(redisKey, accountId);
+            }
+            return ret;
+        }
         private static object GetCacheObject(AccountModel accountInfo)
         {
             return new

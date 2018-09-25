@@ -139,7 +139,12 @@ define(function (require, exports, module) {
             var _self = this;
 
             item.find('button.delete_item').click(function (event) {
-                _self.editApplyStatus(this);
+                _self.editApplyStatus(this,1);
+                event.stopPropagation();
+                return false;
+            });
+            item.find('button.redo_item').click(function (event) {
+                _self.editApplyStatus(this,2);
                 event.stopPropagation();
                 return false;
             });
@@ -158,16 +163,16 @@ define(function (require, exports, module) {
          * 删除角色
          * @param  {[删除按钮]} ele
          */
-        editApplyStatus: function (ele) {
+        editApplyStatus: function (ele,status) {
             ele = $(ele);
-            if (!ele.hasClass('delete_item')) return;
+            if (!(ele.hasClass('delete_item') || ele.hasClass('redo_item'))) return;
             var input = ele.parent('td'),
                 id = input.attr('data-item_id'),
                 item = input.parent('tr');
 
             Global.post('EditApplyStatus', {
                 id: id,
-                status:1
+                status: status
             },
                 function (data) {
                     if (data && data.result) {

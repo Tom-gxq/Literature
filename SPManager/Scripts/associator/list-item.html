@@ -1,0 +1,36 @@
+﻿{% for(var i =0, j=$data.length; i
+< j; i++) { %}        
+<tr class="contenttr">
+    <td class="center">
+        <div>{%=$data[i].FullName %}</div>
+    </td>
+    <td class="center">
+        <div>{%=$data[i].KindName %}</div>
+    </td>
+    <td class="center">
+        <div>{%=$data[i].Quantity %}</div>
+    </td>
+    <td>
+        <p>{%=$data[i].StartDate.toDate('yyyy-MM-dd hh:mm:ss') %}</p>
+    </td>
+    <td class="item_name">
+        {%=$data[i].EndDate.toDate('yyyy-MM-dd hh:mm:ss') %}
+    </td>
+    <td class="center">
+        <div>
+            {%if($data[i].Status ==0){%}
+            未支付
+            {%}else if($data[i].Status ==1){%}
+            赠送
+            {%}else if($data[i].Status ==2){%}
+            已支付
+            {%}else{%}
+            ----
+            {%}%}
+        </div>
+    </td>
+    <td data-item_id="{%=$data[i].AssociatorId %}" class="center"> 
+        <button class="delete_item lhx_btn btn btn-danger" id="delete">删除</button>
+    </td>
+</tr>
+{% } %}

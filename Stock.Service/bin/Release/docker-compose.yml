@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+    stockSvr:
+        image: gaoxiqing/ejiajunstocksvr:1.0.2
+        restart: always   
+        ports:
+          - "8400:8400"
+        volumes:
+          - "/root/Server/StockSvr/appsettings_s1.json:/stocksvr/appsettings.json"
+        deploy:
+          mode: replicated
+          replicas: 1
+          placement:
+            constraints: [node.role == manager]
+        build:
+          context: ./StockSvr/PublishOutput
+
+
+    orderSvr:
+        image: gaoxiqing/ejiajunordersvr:1.6.10
+        restart: always
+        ports:
+          - "8900:8900"
+        volumes:
+          - "/root/Server/OrderSvr/appsettings_s1.json:/ordersvr/appsettings.json"
+        deploy:
+          replicas: 1
+          placement:
+            constraints: [node.role == manager]
+        build:
+          context: ./OrderSvr/PublishOutput2

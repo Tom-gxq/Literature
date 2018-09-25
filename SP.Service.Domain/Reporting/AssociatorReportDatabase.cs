@@ -58,6 +58,15 @@ namespace SP.Service.Domain.Reporting
 
             return domain;
         }
+        public AssociatorDomain GetAssociatorByCode(string associatorCode)
+        {
+            var entity = _repository.GetAssociatorByCode(associatorCode);
+
+            var domain = new AssociatorDomain();
+            domain.SetMemento(entity);
+
+            return domain;
+        }
         public List<DiscountDomain> GetDiscountByAccountId(string accountId, int kind)
         {
             var entityList = _repository.GetDiscountByAccountId(accountId, kind);

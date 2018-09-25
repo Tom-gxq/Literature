@@ -135,7 +135,7 @@ namespace Stock.Service.GrpcImpl
 
         public override Task<SkuStatusResponse> UpdateProductSku(SkuListRequest request, ServerCallContext context)
         {
-            logger.LogInformation(this.prjLicEID, "UpdateProductSku {Date} {IPAdress} {Status} Connected! ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, "UpdateProductSku {Date} {IPAdress} {Status} Connected!  TimeSpan={TimeSpan}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.TimeSpan);
             
             SkuStatusResponse response = null;
             try

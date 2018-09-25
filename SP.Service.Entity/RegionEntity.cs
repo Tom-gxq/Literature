@@ -29,5 +29,6 @@ namespace SP.Service.Entity
         public int SchoolID { get; set; }
         [Ignore]
         public string SchoolName { get; set; }
+        public DateTime? UpdateTime { get; set; }
     }
 }

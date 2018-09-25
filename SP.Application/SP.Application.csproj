@@ -62,6 +62,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chart\DTO\SellerStatisticsDto.cs" />
+    <Compile Include="Chart\ISellerStatisticsAppService.cs" />
+    <Compile Include="Chart\SellerStatisticsAppService.cs" />
     <Compile Include="Discount\DiscountAppService.cs" />
     <Compile Include="Discount\DTO\CarouselDto.cs" />
     <Compile Include="Discount\DTO\EventDto.cs" />
@@ -108,11 +111,14 @@
     <Compile Include="Suppler\SupplerAppService.cs" />
     <Compile Include="User\AccountAppService.cs" />
     <Compile Include="User\AdminAppService.cs" />
+    <Compile Include="User\AssociatorAppService.cs" />
     <Compile Include="User\DTO\AccountInfoDto.cs" />
     <Compile Include="User\DTO\AdminDto.cs" />
+    <Compile Include="User\DTO\AssociatorDto.cs" />
     <Compile Include="User\DTO\CashApplyDto.cs" />
     <Compile Include="User\IAccountAppService.cs" />
     <Compile Include="User\IAdminAppService.cs" />
+    <Compile Include="User\IAssociatorAppService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SP.Core\SP.Core.csproj">

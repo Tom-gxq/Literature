@@ -33,6 +33,7 @@ namespace SP.Service.EntityFramework.Repositories
                 q = q.Join<OrdersEntity, ShoppingCartsEntity>((e, a) => a.OrderId == e.OrderId
                 && e.OrderDate >= orderDate && (e.OrderStatus == 2 || e.OrderStatus == 5) && e.AccountId == accountId);
                 q = q.Join<ShoppingCartsEntity, ProductEntity>((e, a) => a.ProductId == e.ProductId);
+                q = q.OrderByDescending(x=>x.OrderDate);
                 return db.Select(q);
             }
         }
@@ -87,11 +88,17 @@ namespace SP.Service.EntityFramework.Repositories
                 {
                     q = q.Join<OrdersEntity, ShoppingCartsEntity>((e, a) => a.OrderId == e.OrderId 
                     && e.OrderStatus == orderStatus && e.OrderType == orderType );
+                    if (orderStatus == 2)
+                    {
+                        q = q.Join<ShoppingCartsEntity, ShipOrderEntity>((e, a) => a.OrderId == e.OrderId
+                        && e.ShopId == a.ShopId && e.ProductId == a.ProductId && e.AccountId == a.ShipTo
+                        && a.ShipId == accountId && a.IsShipped == false);
+                    }
                 }
                 else
                 {
                     q = q.Join<OrdersEntity, ShoppingCartsEntity>((e, a) => a.OrderId == e.OrderId && e.OrderStatus == orderStatus
-                    && e.OrderType == orderType && e.OrderDate >= DateTime.Parse(DateTime.Now.ToShortDateString()));
+                    && e.OrderType == orderType && e.OrderDate >= DateTime.Parse(DateTime.Now.AddDays(-1).ToShortDateString()));
                 }
                 q = q.Join<ShoppingCartsEntity, ShippingOrdersEntity>((e, a) => a.ShopId == e.ShopId && a.ShippingId == accountId && e.OrderId == a.OrderId );
                 if (orderStatus == 2)
@@ -103,6 +110,28 @@ namespace SP.Service.EntityFramework.Repositories
                     q = q.OrderByDescending(x => x.OrderCode);
                 }
                 return db.Select(q);
+            }
+        }
+
+        public List<ShippingOrderFullEntity> GetShipOrderList(string accountId, int orderStatus, int orderType)
+        {
+            using (var db = OpenDbConnection())
+            {
+                var q = db.From<ShippingOrdersEntity>();
+                q = q.Join<ShippingOrdersEntity, OrdersEntity>((e,a)=>e.OrderId==a.OrderId && e.ShippingId == accountId
+                    && e.ShippingDate >= DateTime.Parse(DateTime.Now.AddDays(-1).ToShortDateString()) && a.OrderStatus == orderStatus);
+                q = q.Join<ShippingOrdersEntity, ProductEntity>((e,b)=>e.ProductId == b.ProductId);
+                if (orderStatus == 2)
+                {
+                    q = q.Where(x => (x.IsShipped == false || x.IsShipped == null));
+                    q = q.OrderBy(x => x.ShippingDate);
+                }
+                else
+                {
+                    q = q.Where(x => x.IsShipped == true);
+                    q = q.OrderByDescending(x => x.ShippingDate);
+                }
+                return db.Select<ShippingOrderFullEntity>(q);
             }
         }
     }

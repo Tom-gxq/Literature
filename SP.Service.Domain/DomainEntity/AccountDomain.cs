@@ -62,7 +62,7 @@ namespace SP.Service.Domain.DomainEntity
         {
             var payType = 1;
             var payOrderCode = "ZSHY"+DateTime.Now.ToString("yyyyMMddHH24mmssffff");
-            ApplyChange(new AssociatorCreatedEvent(Guid.NewGuid(),accountId, kindId, quantity, payOrderCode, payType,0));
+            ApplyChange(new AssociatorCreatedEvent(Guid.NewGuid(),accountId, kindId, quantity, payOrderCode, payType,0,1));
         }
         public void EditAccount(Guid accountId, string mobilePhone, string email, string password)
         {

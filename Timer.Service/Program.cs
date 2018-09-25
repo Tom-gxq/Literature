@@ -31,7 +31,10 @@ namespace Timer.Service
             //库存定时操作
             var stockSvrHost = Configuration.GetSection("stockservice_host").Value;
             var foodId = Configuration.GetSection("FoodId").Value;
-            JobManager.Initialize(new StockRegistry(stockSvrHost, int.Parse(foodId)));
+            var clearDayStockTime = Configuration.GetSection("ClearDayStockTime").Value;
+            var autoSettingStockTime = Configuration.GetSection("AutoSettingStockTime").Value;
+            JobManager.Initialize(new StockRegistry(stockSvrHost, int.Parse(foodId), 
+                int.Parse(clearDayStockTime), int.Parse(autoSettingStockTime)));
 
             //var host = Configuration.GetSection(CommonKeys.AppHost).Value;
             //var port = Configuration.GetSection(CommonKeys.AppPort).Value;

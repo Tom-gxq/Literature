@@ -14,7 +14,7 @@ using System.Text;
 namespace SP.Service.Domain.DomainEntity
 {
     public class ProductSkuDomain : AggregateRoot<Guid>, IHandle<DecreaseProductSkuEvent>, 
-        IHandle<RedoProductSkuEvent>, IHandle<ProductSkuDBUpdateEvent>, IOriginator
+        IHandle<RedoProductSkuEvent>, IHandle<ProductSkuDBUpdateEvent>, IHandle<KafkaAddEvent>,IOriginator
     {
         public string ProductId { get; internal set; }
         public string SkuId { get; internal set; }
@@ -30,6 +30,10 @@ namespace SP.Service.Domain.DomainEntity
         public ProductSkuDomain()
         {
 
+        }
+        public ProductSkuDomain(Guid id, string accountId, string productId, int shopId, int stock)
+        {
+            ApplyChange(new ProductSkuDBCreateEvent(id, accountId, productId, shopId, stock));
         }
         public void EditProductSkuOrderNum(int shopId, string productId, string accountId, int orderNum)
         {
@@ -66,6 +70,10 @@ namespace SP.Service.Domain.DomainEntity
         {
             ApplyChange(new ProductSkuDBUpdateEvent(id, accountId, productId, shopId,stock, type));
         }
+        public void UpdateResidueSkuDomain(Guid id, int stock)
+        {
+            ApplyChange(new ResidueSkuUpdateEvent(id,  stock));
+        }
         public void Handle(DecreaseProductSkuEvent e)
         {
             this.ProductId = e.ProductId;
@@ -91,6 +99,18 @@ namespace SP.Service.Domain.DomainEntity
             this.AccountId = e.AccountId;
             this.Stock = e.Stock;
         }
+        public void Handle(ProductSkuDBCreateEvent e)
+        {
+            this.ProductId = e.ProductId;
+            this.ShopId = e.ShopId;
+            this.AccountId = e.AccountId;
+            this.Stock = e.Stock;
+            this.SkuId = e.AggregateId.ToString();
+        }
+        public void Handle(KafkaAddEvent e)
+        {
+
+        }
         public void SetMemento(BaseEntity memento)
         {
             if (memento is ProductSkuEntity)
@@ -104,7 +124,7 @@ namespace SP.Service.Domain.DomainEntity
                 this.AlertStock = product.AlertStock != null ? product.AlertStock.Value : 0;
                 this.Price = product.Price != null ? product.Price.Value : 0;
                 this.EffectiveTime = product.EffectiveTime != null ? product.EffectiveTime.Value : DateTime.MinValue;
-                this.AccountId = string.IsNullOrEmpty(product.AccountId) ? product.AccountId : string.Empty;
+                this.AccountId = !string.IsNullOrEmpty(product.AccountId) ? product.AccountId : string.Empty;
                 this.OrderNum = product.OrderNum != null? product.OrderNum.Value : 0;
             }
         }

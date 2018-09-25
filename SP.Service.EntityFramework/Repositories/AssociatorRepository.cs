@@ -26,11 +26,15 @@ namespace SP.Service.EntityFramework.Repositories
         }
         public List<AssociatorEntity> GetAssociatorByAccountId(string accountId)
         {
-            return this.Select(x=>x.AccountId == accountId && x.Status == 1 && x.EndDate >= DateTime.Now);
+            return this.Select(x=>x.AccountId == accountId && x.Status >0 && x.EndDate >= DateTime.Now);
         }
         public AssociatorEntity GetAssociatorById(string associatorId)
         {
             return this.Single(x=>x.AssociatorId == associatorId);
+        }
+        public AssociatorEntity GetAssociatorByCode(string associatorCode)
+        {
+            return this.Single(x => x.PayOrderCode == associatorCode);
         }
         public List<DiscountEntity> GetDiscountByAccountId(string accountId,int kind)
         {
@@ -46,7 +50,7 @@ namespace SP.Service.EntityFramework.Repositories
             using (var db = OpenDbConnection())
             {
                 var q = db.From<AssociatorEntity>();
-                q = q.Join<AssociatorEntity, SysKindEntity>((e, a) => e.AccountId == accountId && e.Status == 1 && e.EndDate >= DateTime.Now && a.KindId == e.KindId && a.Kind == 100);
+                q = q.Join<AssociatorEntity, SysKindEntity>((e, a) => e.AccountId == accountId && e.Status > 0 && e.EndDate >= DateTime.Now && a.KindId == e.KindId && a.Kind == 100);
                 return db.Select<AssociatorEntity>(q);
             }
         }

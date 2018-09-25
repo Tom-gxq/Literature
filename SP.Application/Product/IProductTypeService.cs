@@ -21,6 +21,8 @@ namespace SP.Application.Product
         int SearchProductTypeByNameCount(string typeName);
         List<ProductTypeDto> GetAllProductTypeList(int kind);
         List<ProductTypeDto> GetTypeList(string accountId, int pageIndex, int pageSize);
-        
+        List<ProductTypeDto> GetProductTypeList(int parentId);
+
+
     }
 }

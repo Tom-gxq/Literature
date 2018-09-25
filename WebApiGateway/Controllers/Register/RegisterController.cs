@@ -325,7 +325,7 @@ namespace WebApiGateway.Controllers.Register
             {
                 account = account.Substring(3);
             }
-            var model = SmsBusiness.SendMessage(account, "尊敬的用户，您的注册验证码为：" + code + "，请勿泄漏于他人！", "");
+            var model = SmsBusiness.SendMessage(account, "尊敬的用户，您的验证码为：" + code + "，请勿泄漏于他人！", "");
             if(model.Code == 1)
             {
                 return true;

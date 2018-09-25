@@ -1,5 +1,6 @@
 ﻿using Grpc.Service.Core.Domain.Handlers;
 using SP.Api.Model.Product;
+using SP.Data.Enum;
 using SP.Service.Domain.Events;
 using SP.Service.Domain.Reporting;
 using SP.Service.Entity;
@@ -10,22 +11,25 @@ using System.Text;
 
 namespace SP.Service.Domain.EventHandlers
 {
-    public class ShipOrderCreatedEventHandler: IEventHandler<ShipOrderCreatedEvent>,IEventHandler<ProductSkuEditEvent>,IEventHandler<ShipOrderEditEvent>
+    public class ShipOrderCreatedEventHandler: IEventHandler<ShipOrderCreatedEvent>,IEventHandler<ProductSkuEditEvent>,
+        IEventHandler<ShipOrderEditEvent>,IEventHandler<EditShipOrderStatusEvent>
     {
         private readonly ShipOrderReportDatabase _reportDatabase;
         private readonly OrderReportDatabase _orderReportDatabase;
         private readonly ShopReportDatabase _shopReportDatabase;
         private readonly AccountProductReportDatabase _accountProductReportDatabase;
+        private readonly SellerShipOrderReportDatabase _sellerShipOrderReportDatabase;
         private static object lockObj = new object();
         private static object lockObjSecond = new object();
         public ShipOrderCreatedEventHandler(ShipOrderReportDatabase reportDatabase, 
             OrderReportDatabase orderReportDatabase, ShopReportDatabase shopReportDatabase,
-            AccountProductReportDatabase accountProductReportDatabase)
+            AccountProductReportDatabase accountProductReportDatabase, SellerShipOrderReportDatabase sellerShipOrderReportDatabase)
         {
             _reportDatabase = reportDatabase;
             _orderReportDatabase = orderReportDatabase;
             _shopReportDatabase = shopReportDatabase;
             _accountProductReportDatabase = accountProductReportDatabase;
+            _sellerShipOrderReportDatabase = sellerShipOrderReportDatabase;
         }
         public void Handle(ShipOrderCreatedEvent handle)
         {
@@ -43,9 +47,45 @@ namespace SP.Service.Domain.EventHandlers
 
             _reportDatabase.Add(item);
         }
+        public void Handle(EditShipOrderStatusEvent handle)
+        {
+            var item = new ShippingOrdersEntity()
+            {
+                Id = handle.ShipOrderId,
+                ShippedDate = DateTime.Now,
+                IsShipped = handle.IsShiped,
+            };
+
+            _reportDatabase.UpdateShippingOrderStatus(item);
+
+            if (handle.IsShiped)
+            {
+                var shipOrder = _reportDatabase.GetShippingOrdersById(handle.ShipOrderId);
+                if (shipOrder != null)
+                {
+                    var list = _reportDatabase.GetShippingOrdersByOrderId(shipOrder.OrderId);
+                    System.Console.WriteLine($"EditShipOrderStatusEvent GetShippingOrdersByOrderId {list?.Count??0}");
+                    if (list == null || list.Count == 0)
+                    {
+                        var order = new OrdersEntity()
+                        {
+                            OrderId = shipOrder.OrderId,
+                            OrderStatus = (int)OrderStatus.Success,
+                            UpdateTime = DateTime.Now,
+                        };
+                        _orderReportDatabase.UpdateOrderStatus(order);
+                    }
+                }
+                else
+                {
+                    System.Console.WriteLine($"EditShipOrderStatusEvent GetShippingOrdersByOrderId is 0 ShipOrderId={handle.ShipOrderId}");
+                }
+            }
+        }
 
         public void Handle(ShipOrderEditEvent handle)
         {
+            System.Console.WriteLine($"ShipOrderEditEvent {handle.CommandId} {handle.OrderStatus} {handle.AccountId} {handle.PayWay}");
             lock (lockObj)
             {
                 var item = new OrdersEntity()
@@ -66,19 +106,20 @@ namespace SP.Service.Domain.EventHandlers
                         item.FinishDate = DateTime.Now;
                         break;
                 } 
-                _orderReportDatabase.UpdateOrderStatus(item);
-                //支付成功添加商品
-                if (handle.OrderStatus == Data.Enum.OrderStatus.Payed)
+               
+                var domaint = _orderReportDatabase.GetOrderByOrderId(handle.AggregateId.ToString());
+                if (domaint != null)
                 {
-                    var domaint = _orderReportDatabase.GetOrderByOrderId(handle.AggregateId.ToString());
-                    if (domaint != null)
+                    //支付成功添加商品
+                    if (handle.OrderStatus == Data.Enum.OrderStatus.Payed)
                     {
                         lock (lockObjSecond)
                         {
+                            _orderReportDatabase.UpdateOrderStatus(item);
                             if (domaint.Products != null && domaint.Products.Count > 0)
                             {
                                 var shopOwner = _shopReportDatabase.GetShopStatus(domaint.AccountId);
-                                
+
                                 foreach (var product in domaint.Products)
                                 {
                                     var entity = _accountProductReportDatabase.GetAccountProduct(domaint.AccountId, product.ProductId, shopOwner.ShopId);
@@ -115,9 +156,48 @@ namespace SP.Service.Domain.EventHandlers
                                     {
                                         System.Console.WriteLine($"GetShippingOrders Exsit");
                                     }
+                                    _sellerShipOrderReportDatabase.Add(new ShipOrderEntity()
+                                    {
+                                        OrderId = domaint.OrderId,
+                                        ProductId = product.ProductId,
+                                        ShipId = product.SuppliersId,
+                                        ShipTo = domaint.AccountId,
+                                        ShipDate = DateTime.Now,
+                                        IsShipped = false,
+                                        Stock = product.Quantity,
+                                        ShopId = 0,
+                                    });
                                 }
                             }
+                        }                        
+                    }
+                    else if (handle.OrderStatus == Data.Enum.OrderStatus.Success)
+                    {
+                        lock (lockObjSecond)
+                        {
+                            if (domaint.Products != null && domaint.Products.Count > 0)
+                            {                                
+                                foreach (var product in domaint.Products.FindAll(x => x.SuppliersId == handle.AccountId))
+                                {
+                                    var ship = new ShipOrderEntity()
+                                    {
+                                        OrderId = domaint.OrderId,
+                                        ProductId = product.ProductId,
+                                        ShipId = product.SuppliersId,
+                                        ShipTo = domaint.AccountId,
+                                        ShippedDate = DateTime.Now,
+                                        IsShipped = true
+                                    };
+                                    _sellerShipOrderReportDatabase.UpdateShipOrderStatus(ship);
+                                    
+                                }
+                            }
+                            var list = _sellerShipOrderReportDatabase.GetShippingOrdersByOrderId(handle.AggregateId.ToString());
                             
+                            if (list == null || list.Count == 0)
+                            {
+                                _orderReportDatabase.UpdateOrderStatus(item);
+                            }
                         }
                     }
                 }
@@ -132,7 +212,7 @@ namespace SP.Service.Domain.EventHandlers
             lock (lockObj)
             {
                 System.Console.WriteLine("ProductSkuEditEvent OrderId=" + handle.AggregateId.ToString() );
-                var domaint = _orderReportDatabase.GetOrderByOrderId(handle.AggregateId.ToString());
+                var domaint = _orderReportDatabase.GetOrderByOrderId(handle.AggregateId.ToString(), handle.AccountId);
                 if (domaint != null)
                 {
                     lock (lockObjSecond)
@@ -141,8 +221,8 @@ namespace SP.Service.Domain.EventHandlers
                         {
                             var shopOwner = _shopReportDatabase.GetShopStatus(domaint.AccountId);
                             var list = new List<ProductSkuModel>();
-                            foreach (var product in domaint.Products)
-                            {                                
+                            foreach (var product in domaint.Products.FindAll(x=>x.SuppliersId == handle.AccountId))
+                            {
                                 list.Add(new ProductSkuModel()
                                 {
                                     accountId = domaint.AccountId,

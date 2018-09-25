@@ -21,5 +21,6 @@ namespace SP.Service.Entity
         public int? ShopId { get; set; }
         public string AccountId { get; set; }
         public int? OrderNum { get; set; }
+        public int? ResidueStock { get; set; }
     }
 }

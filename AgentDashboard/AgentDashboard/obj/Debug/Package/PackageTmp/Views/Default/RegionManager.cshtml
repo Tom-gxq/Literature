@@ -1,0 +1,371 @@
+﻿@model  AgentDashboard.Models.RegionDataViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>区域管理页面</title>
+    <!-- Bootstrap core CSS-->
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="~/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Page level plugin CSS-->
+    <link href="~/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="~/css/sb-admin.css" rel="stylesheet">
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+        @Html.ActionLink("后台管理", "Index", "Default", new { @class = "navbar-brand" })
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="餐厅">
+                    <a class="nav-link" href="Index">
+                        <i class="fa fa-fw fa-dashboard"></i>
+                        <span class="nav-link-text">餐厅</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="校园超市">
+                    <a class="nav-link" href="SuperMarket">
+                        <i class="fa fa-fw fa-area-chart"></i>
+                        <span class="nav-link-text">校园超市</span>
+                    </a>
+                </li>
+                @*<li class="nav-item" data-toggle="tooltip" data-placement="right" title="更多">
+                    <a class="nav-link" href="Details">
+                        <i class="fa fa-fw fa-address-book"></i>
+                        <span class="nav-link-text">更多</span>
+                    </a>
+                </li>*@
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="人员管理">
+                    <a class="nav-link" href="HumanManager">
+                        <i class="fa fa-fw fa-android"></i>
+                        <span class="nav-link-text">人员管理</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="数据分析">
+                    <a class="nav-link" href="DataAnalyze">
+                        <i class="fa fa-fw fa-database"></i>
+                        <span class="nav-link-text">数据分析</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="商家管理">
+                    <a class="nav-link" href="ShopManager">
+                        <i class="fa fa-fw fa-trademark"></i>
+                        <span class="nav-link-text">商家管理</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="区域管理">
+                    <a class="nav-link" href="RegionManager">
+                        <i class="fa fa-fw fa-location-arrow"></i>
+                        <span class="nav-link-text">区域管理</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="订单管理">
+                    <a class="nav-link" href="OrderManager">
+                        <i class="fa fa-fw fa-dollar"></i>
+                        <span class="nav-link-text">订单管理</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav sidenav-toggler">
+                <li class="nav-item">
+                    <a class="nav-link text-center" id="sidenavToggler">
+                        <i class="fa fa-fw fa-angle-left"></i>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fa fa-fw fa-sign-out"></i>登 出
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">后台管理</a>
+                </li>
+                <li class="breadcrumb-item active">区域管理</li>
+            </ol>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fa fa-address-book"></i>
+                            区域管理表
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-4">
+                                    <span class="mb-2">学校</span>
+                                    <select id="select_university" class="form-control w-100">
+                                        <option value="-1">请选择</option>
+                                        @if (Model != null)
+                                        {
+                                            foreach (var item in Model.Universities)
+                                            {
+                                                <option value="@item.Key">@item.Value</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-4">
+                                    <span class="mb-2">院区</span>
+                                    <select id="select_college" class="form-control w-100">
+                                        <option value="-1">请选择</option>
+                                    </select>
+                                </div>
+                                <div class="col-3">
+                                    <span class="mb-2">幢</span>
+                                    <select id="select_building" class="form-control w-100">
+                                        <option value="-1">请选择</option>
+                                    </select>
+                                </div>
+                                <div class="col-1">
+                                    <span class="mb-2">&nbsp;</span>
+                                    <button id="btn_search" class="btn btn-primary w-100" type="button">
+                                        <i class="fa fa-search"></i>
+                                        检索
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="div_region" class="row">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid-->
+        <!-- /.content-wrapper-->
+        <footer class="sticky-footer">
+            <div class="container">
+                <div class="text-center">
+                    <small>Copyright © Your Website 2018</small>
+                </div>
+            </div>
+        </footer>
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fa fa-angle-up"></i>
+        </a>
+        <!-- Logout Modal-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">准备要登出?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="关闭">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">选择下面的 "登出" 如果您准备好结束当前会话.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">取 消</button>
+                        @Html.ActionLink("登 出", "Login", "Home", new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap core JavaScript-->
+        <script src="~/vendor/jquery/jquery.min.js"></script>
+        <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <script src="~/vendor/datatables/jquery.dataTables.js"></script>
+        <script src="~/vendor/datatables/dataTables.bootstrap4.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="~/js/sb-admin.js"></script>
+        <script>
+            function getRoom(room) {
+                var cardCol = $("<div></div>")
+                    .addClass("col-xl-1 col-sm-3 mb-3")
+                var cardHidden = $("<div></div>")
+                    .addClass("card o-hidden")
+                    .appendTo(cardCol);
+                var roomCardBody = $("<div></div>")
+                    .addClass("card-body")
+                    .appendTo(cardHidden);
+                var cardCloseIcon = $("<div></div>")
+                    .addClass("card-delete-icon")
+                    .appendTo(roomCardBody);
+                var cardHerf = $("<a></a>")
+                    .addClass("float-right")
+                    .attr("href", "javascript:void(0);")
+                    .appendTo(cardCloseIcon);
+                cardHerf.click(function () {
+                    $.post("DeleteRoom?id=" + room.ID);
+                    cardCol.remove();
+                });
+
+                var cardDelIcon = $("<i></i>")
+                    .addClass("fa fa-window-close fa-lg")
+                    .appendTo(cardHerf);
+                var cardText = $("<div></div>")
+                    .addClass("text-center")
+                    .text(room.Name)
+                    .appendTo(roomCardBody);
+                var inputText = $("<input></input>")
+                    .attr("type", "textbox")
+                    .addClass("text-center w-75")
+                    .val(room.Name);
+
+                cardText.dblclick(function ()
+                {
+                    cardText.empty();
+                    inputText.appendTo(cardText);
+                    inputText.focus();
+                    inputText.blur(function () {
+                        if (room.ID != -1) {
+                            $.post("UpdateRoomName?name=" + inputText.val(), "&dataId=" + room.ID);
+                        }
+                        else {
+                            $.post("CreateRoom?name=" + inputText.val(), "&dataId=" + room.ID + "&parentDataId=" + room.ParentDataID);
+                        }
+                        cardText.empty();
+                        cardText.text(inputText.val());
+                    });
+                });
+
+                if (room.IsDanger) {
+                    roomCardBody.addClass("bg-danger");
+                }
+
+                return cardCol;
+            };
+
+            $(document).ready(function () {
+                $("#select_university").change(function () {
+                    var tData = $.getValues("GetColleges?dataId=" + $(this).val());
+                    $("#select_college").empty();
+                    $("<option></option>")
+                        .val(-1)
+                        .text("请选择")
+                        .appendTo($("#select_college"));
+
+                    $.each(tData, function (i, item)
+                    {
+                        $("<option></option>")
+                            .val(item["ID"])
+                            .text(item["Name"])
+                            .appendTo($("#select_college"));
+                    });
+
+                    $("#select_building").empty();
+                    $("<option></option>")
+                        .val(-1)
+                        .text("请选择")
+                        .appendTo($("#select_building"));
+                });
+
+                $("#select_college").change(function ()
+                {
+                    var tData = $.getValues("GetBuilding?dataId=" + $(this).val());
+                    $("#select_building").empty();
+                    $("<option></option>")
+                        .val(-1)
+                        .text("请选择")
+                        .appendTo($("#select_building"));
+
+                    $.each(tData, function (i, item) {
+                        $("<option></option>")
+                            .val(item["ID"])
+                            .text(item["Name"])
+                            .appendTo($("#select_building"));
+                    });
+                });
+
+                $("#btn_search").click(function ()
+                {
+                    if ($("#select_university").val() == -1) {
+                        alert("请选择学校!");
+                        return;
+                    }
+
+                    var university = $("#select_university").val();
+                    var college = $("#select_college").val();
+                    var building = $("#select_building").val();
+                    var data = $.getValues("GetRegionData?universityId=" + university + "&collegeId=" + college + "&buildingId=" + building);
+                    $("#div_region").empty();
+                    var col_12 = $("<div></div>")
+                        .addClass("col-12")
+                        .appendTo($("#div_region"));
+
+                    $.each(data["Colleges"], function (i, college) {
+                        $.each(college["Buildings"], function (j, building) {
+                            var card = $("<div></div>")
+                                .addClass("card")
+                                .appendTo(col_12);
+                            var cardHeader = $("<div></div>")
+                                .addClass("card-header")
+                                .appendTo(card);
+                            var carIcon = $("<i></i>")
+                                .addClass("fa fa-building")
+                                .appendTo(cardHeader);
+                            $("<span></span>")
+                                .text(college["Name"])
+                                .appendTo(cardHeader);
+                            $("<span></span>")
+                                .text(building["Name"])
+                                .appendTo(cardHeader);
+                            var cardBody = $("<div></div>")
+                                .addClass("card-body")
+                                .appendTo(card);
+                            var cardRow = $("<div></div>")
+                                .addClass("row")
+                                .appendTo(cardBody);
+                            $.each(building["Rooms"], function (k, room) {
+                                getRoom(room).appendTo(cardRow);
+                            });
+
+                            var cardCol = $("<div></div>")
+                                .addClass("col-xl-1 col-sm-3 mb-3")
+                                .appendTo(cardRow);
+                            var cardHidden = $("<div></div>")
+                                .addClass("card o-hidden")
+                                .appendTo(cardCol);
+                            var roomCardBody = $("<div></div>")
+                                .addClass("card-body")
+                                .appendTo(cardHidden);
+                            var cardAddIcon = $("<div></div>")
+                                .addClass("text-center")
+                                .appendTo(roomCardBody);
+                            var cardHerf = $("<a></a>")
+                                .attr("href", "javascript:void(0);")
+                                .appendTo(cardAddIcon);
+                            cardHerf.click(function () {
+                                getRoom({ ID: -1, Name: "?", ParentDataID: building["ID"] }).insertBefore(cardCol);
+                            });
+                            var cardDelIcon = $("<i></i>")
+                                .addClass("fa fa-plus")
+                                .appendTo(cardHerf);
+                        });
+                    });
+                });
+            });
+        </script>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,295 @@
+﻿@model  AgentDashboard.Models.ShopDetailsViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>后台管理页面</title>
+    <!-- Bootstrap core CSS-->
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="~/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Page level plugin CSS-->
+    <link href="~/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="~/css/sb-admin.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="~/css/AgentDashboard.css" rel="stylesheet">
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+        @Html.ActionLink("后台管理", "Index", "Default", new { @class = "navbar-brand" })
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="餐厅">
+                    <a class="nav-link" href="Index">
+                        <i class="fa fa-fw fa-dashboard"></i>
+                        <span class="nav-link-text">餐厅详细</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="校园超市">
+                    <a class="nav-link" href="SuperMarket">
+                        <i class="fa fa-fw fa-area-chart"></i>
+                        <span class="nav-link-text">校园超市</span>
+                    </a>
+                </li>
+                @*<li class="nav-item" data-toggle="tooltip" data-placement="right" title="更多">
+                    <a class="nav-link" href="Details">
+                        <i class="fa fa-fw fa-address-book"></i>
+                        <span class="nav-link-text">更多</span>
+                    </a>
+                </li>*@
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="人员管理">
+                    <a class="nav-link" href="HumanManager">
+                        <i class="fa fa-fw fa-android"></i>
+                        <span class="nav-link-text">人员管理</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="数据分析">
+                    <a class="nav-link" href="DataAnalyze">
+                        <i class="fa fa-fw fa-database"></i>
+                        <span class="nav-link-text">数据分析</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="商家管理">
+                    <a class="nav-link" href="ShopManager">
+                        <i class="fa fa-fw fa-trademark"></i>
+                        <span class="nav-link-text">商家管理</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="区域管理">
+                    <a class="nav-link" href="RegionManager">
+                        <i class="fa fa-fw fa-location-arrow"></i>
+                        <span class="nav-link-text">区域管理</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="订单管理">
+                    <a class="nav-link" href="OrderManager">
+                        <i class="fa fa-fw fa-dollar"></i>
+                        <span class="nav-link-text">订单管理</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav sidenav-toggler">
+                <li class="nav-item">
+                    <a class="nav-link text-center" id="sidenavToggler">
+                        <i class="fa fa-fw fa-angle-left"></i>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fa fa-fw fa-sign-out"></i>登 出
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="Index">后台管理</a>
+                </li>
+                @if (Model.isMarket)
+                {
+                <li class="breadcrumb-item">
+                    <a href="javascript:history.back()">超市</a>
+                </li>
+                <li class="breadcrumb-item active">超市详细</li>
+                }
+                else
+                {
+                <li class="breadcrumb-item">
+                    <a href="javascript:history.back()">餐厅</a>
+                </li>
+                <li class="breadcrumb-item active">餐厅详细</li>
+                }
+            </ol>
+
+            @if (Model != null)
+            {
+                <!-- Icon Cards-->
+                <div class="row">
+                    <div class="col-1">
+                        <p class="offset-2">@Model.ShopName</p>
+                        <input type="hidden" id="shopId" value="@Model.ShopId"/>
+                        <input type="hidden" id="typeId" value="@Model.TypeId" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="text-center">配送员人数<Lable>@Model.DeliverManCount</Lable>人</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-10 justify-content-center">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            @foreach (var deliverman in Model.DeliverMen)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" id="@deliverman.AccountId" data-toggle="tab" href="#@deliverman.Name" role="tab" aria-controls="@deliverman.Name" aria-selected="true">@deliverman.Name<i class="fa fa-fw fa-close" dataid="@deliverman.AccountId"></i></a>
+                                </li>
+                            }
+
+                            <li class="nav-item">
+                                <a class="nav-link addowner" id="delivermanAdd-tab" data-toggle="tab" href="#" role="tab"><span class="font-weight-bold">+</span></a>
+                            </li>
+
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            
+                            @for(int i= 0; i<Model.DeliverMen.Count;i++ )
+                            {
+                                var deliverman = Model.DeliverMen[i];
+                                <div class="tab-pane fade show @i==0?active:''" id="@deliverman.Name" role="tabpanel" aria-labelledby="@deliverman.AccountId">
+                                    <div class="card-deck">
+                                        @foreach (var product in deliverman.Products)
+                                        {
+                                            <div class="col-xl-3 col-sm-6 mb-3">
+                                                <div class="card">
+                                                    <img class="card-img-top" src="@product.ImagePath" height="100">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">@product.Name</h5>
+                                                        <p class="card-text">@product.Description</p>
+                                                    </div>
+                                                    @if (!Model.isMarket)
+                                                    {
+                                                <div class="card-footer" dataid="@product.Id" aid="@deliverman.AccountId">
+                                                    <div class="row" >
+                                                        <label>库存</label><input type="text" class="form-control form-text w-75 h-50 stock" value="@product.Stocks" />
+                                                            </div>
+                                                            <div class="row">
+                                                        <label>预存</label><input type="text" class="form-control form-text w-75 h-50 prestock" value="@product.PreStocks" />
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="card-footer">
+                                                            <div class="row">
+                                                                <label>库存</label><input type="text" class="form-control form-text w-75 h-50" disabled value="@product.Stocks" />
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        }
+                                        @if (!Model.isMarket)
+                                        {
+                                        <div class="card cardadd">
+                                            <div class="card-body">
+                                                <p class="card-text account" dataid="@deliverman.AccountId"><a href="#"><h1>+</h1></a></p>
+                                            </div>
+                                        </div>
+                                         }
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+                if (!Model.isMarket)
+                {
+                    <div class="row justify-content-center">
+                        <p>营业时间</p>
+                        <input type="text" style="width:50px; height:30px; text-align:center" value="@Model.StartTime.Hour.ToString("00")" />
+                        <p>:</p>
+                        <input type="text" style="width:50px; height:30px; text-align:center" value="@Model.StartTime.Minute.ToString("00")" />
+                        <p>--</p>
+                        <input type="text" style="width:50px; height:30px; text-align:center" value="@Model.EndTime.Hour.ToString("00")" />
+                        <p>:</p>
+                        <input type="text" style="width:50px; height:30px; text-align:center" value="@Model.EndTime.Minute.ToString("00")" />
+                    </div>
+                }
+            }
+
+        </div>
+        <!-- /.container-fluid-->
+        <!-- /.content-wrapper-->
+        <footer class="sticky-footer">
+            <div class="container">
+                <div class="text-center">
+                    <small>Copyright © Your Website 2018</small>
+                </div>
+            </div>
+        </footer>
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fa fa-angle-up"></i>
+        </a>
+        <!-- Logout Modal-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">准备要登出?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="关闭">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">选择下面的 "登出" 如果您准备好结束当前会话.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">取 消</button>
+                        @Html.ActionLink("登 出", "Login", "Home", new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bootstrap core JavaScript-->
+        <script src="~/vendor/jquery/jquery.min.js"></script>
+        <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Page level plugin JavaScript-->
+        <script src="~/vendor/chart.js/Chart.min.js"></script>
+        <script src="~/vendor/datatables/jquery.dataTables.js"></script>
+        <script src="~/vendor/datatables/dataTables.bootstrap4.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="~/js/sb-admin.min.js"></script>
+        <!-- Custom scripts for this page-->
+        <script src="~/js/sb-admin-datatables.min.js"></script>
+        <script>
+            $(function () {
+                $('#myTab li:eq(0) a').tab('show');
+            });
+
+            $(document).ready(function () {
+                //$('#myTab a').click(function (e) {
+                //    e.preventDefault()
+                //    $(this).tab('show')
+                //})
+            });
+
+        </script>
+        <script type="text/javascript" src="/js/seajs/sea.js"></script>
+        <script type="text/javascript" src="/js/seajs/sea-config.js"></script>
+        <script type="text/javascript">
+            seajs.use(["/js/food/food"], function (OrderList) {
+                var $ = OrderList.jQuery;
+                OrderList.FoodProductController.init({ el: '', url: '' });
+            });
+        </script>
+    </div>
+</body>
+
+</html>

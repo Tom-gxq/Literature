@@ -90,7 +90,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockGRPCInterface", "Stock
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSRedis.NetCore", "CSRedis.NetCore\CSRedis.NetCore.csproj", "{01589377-7F4D-43CD-8F58-758C26524AA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timer.Service", "Timer.Service\Timer.Service.csproj", "{F91989F4-B1F2-46C6-B126-1AC6A42A7067}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Timer.Service", "Timer.Service\Timer.Service.csproj", "{F91989F4-B1F2-46C6-B126-1AC6A42A7067}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KafkaSellerConsumer.Service", "KafkaSellerConsumer.Service\KafkaSellerConsumer.Service.csproj", "{7A59EEA3-1A46-4EEE-A215-74E167D9D890}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -250,6 +252,10 @@ Global
 		{F91989F4-B1F2-46C6-B126-1AC6A42A7067}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F91989F4-B1F2-46C6-B126-1AC6A42A7067}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F91989F4-B1F2-46C6-B126-1AC6A42A7067}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A59EEA3-1A46-4EEE-A215-74E167D9D890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A59EEA3-1A46-4EEE-A215-74E167D9D890}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A59EEA3-1A46-4EEE-A215-74E167D9D890}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A59EEA3-1A46-4EEE-A215-74E167D9D890}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -287,6 +293,7 @@ Global
 		{11AB8B31-19E1-485C-90F0-E0977BBC7C26} = {48DA2324-1307-4897-8D86-91221A227271}
 		{01589377-7F4D-43CD-8F58-758C26524AA4} = {86BCEEB1-94AE-44F0-891B-1135910FA566}
 		{F91989F4-B1F2-46C6-B126-1AC6A42A7067} = {48DA2324-1307-4897-8D86-91221A227271}
+		{7A59EEA3-1A46-4EEE-A215-74E167D9D890} = {48DA2324-1307-4897-8D86-91221A227271}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {97F59FCE-65D7-438A-8C58-E94BDEC135B5}

@@ -203,17 +203,34 @@ namespace OrderGRPCInterface.Business
             }
             return status;
         }
-        public static bool UpdateShipOrderStatus(string orderId, int orderStatus, int payWay = 0)
+        public static bool UpdateShipOrderStatus(string orderId, int orderStatus,string accountId, int payWay = 0)
         {
             bool status = false;
             var client = OrderClientHelper.GetClient();
-            var request = new UpdateOrderRequest()
+            var request = new UpdateShipOrderRequest()
             {
                 OrderId = orderId,
                 OrderStatus = orderStatus,
-                PayWay = payWay
+                PayWay = payWay,
+                AccountId = accountId,
             };
             var result = client.UpdateShipOrderStatus(request);
+            if (result.Status == 10001)
+            {
+                status = true;
+            }
+            return status;
+        }
+        public static bool UpdateShippingOrder(List<int> shippingOrderId, int orderStatus)
+        {
+            bool status = false;
+            var client = OrderClientHelper.GetClient();
+            var request = new UpdateShippingOrderRequest()
+            {
+                OrderStatus = orderStatus,
+            };
+            shippingOrderId.ForEach(x=>request.ShipOrderId.Add(x));
+            var result = client.UpdateShippingOrder(request);
             if (result.Status == 10001)
             {
                 status = true;
@@ -272,7 +289,7 @@ namespace OrderGRPCInterface.Business
                         domain.address.contactAddress = item.Address.ContactAddress;
                         domain.address.id = item.Address.Id;
                         domain.address.gender = (item.Address.Gender == 1);
-                        domain.address.dorm = item.Address.Dorm;
+                        domain.address.dorm = item.Address.DormName;
                         domain.address.districtName = item.Address.DistrictName;
                         domain.address.schoolName = item.Address.SchoolName;
                         domain.address.contactMobile = item.Address.ContactMobile;
@@ -427,6 +444,61 @@ namespace OrderGRPCInterface.Business
                 return null;
             }
         }
+
+        public static List<LeadOrderModel> GetShipOrderList(string accountId, int orderStatus, int orderType)
+        {
+            var client = OrderClientHelper.GetClient();
+            var request1 = new SchoolLeadRequest()
+            {
+                AccountId = accountId,
+                OrderStatus = orderStatus,
+                OrderType = orderType
+            };
+            var result = client.GetShipOrderList(request1);
+            var list = new List<LeadOrderModel>();
+            if (result.Status == 10001)
+            {
+                foreach (var item in result.OrderInfo)
+                {
+                    var domain = new LeadOrderModel();
+                    domain.amount = item.Amount;
+                    domain.orderId = item.OrderId;
+                    domain.orderStatus = item.OrderStatus;
+                    domain.orderCode = item.OrderCode;
+                    domain.orderDate = new DateTime(item.OrderDate).ToString("yyyy-MM-dd");
+                    domain.payDate = GetTimestamp(new DateTime(item.PayDate));
+                    if (item.Account != null)
+                    {
+                        domain.account = new SP.Api.Model.Account.AccountModel();
+                        domain.account.MobilePhone = item.Account.MobilePhone;
+                        domain.account.UserName = item.Account.UserName;
+                    }
+                    if (item.Address != null)
+                    {
+                        domain.address = new SP.Api.Model.Account.AddressModel();
+                        domain.address.contactAddress = item.Address.ContactAddress;
+                    }
+                    
+                    if (item.ShoppingCartList != null && item.ShoppingCartList.Count > 0)
+                    {
+                        var productList = new List<ShoppingCartModel>();
+                        foreach (var pitem in item.ShoppingCartList)
+                        {
+                            var p = new ShoppingCartModel();
+                            p.Product = new ProductModel();
+                            p.Product.productName = pitem.ProductName;
+                            p.Quantity = pitem.Quantity;
+                            p.ShipOrderId = pitem.ShipOrderId;
+                            productList.Add(p);
+                        }
+                        domain.shoppingCartList = productList;
+                    }
+                    list.Add(domain);
+                }
+            }
+            return list;
+        }
+
         private static long GetTimestamp(DateTime d)
         {
             return (d.ToUniversalTime().Ticks - 621355968000000000) / 10000000;     //精确到毫秒

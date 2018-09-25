@@ -6,6 +6,7 @@ using ProductGRPCInterface;
 using SP.Api.Cache;
 using SP.Api.Model.Account;
 using SP.Api.Model.Product;
+using SP.Application.Chart;
 using SP.Application.Order;
 using SP.Application.Product;
 using SP.Application.Product.DTO;
@@ -41,15 +42,15 @@ namespace AgentDashboard.Controllers
             {
                 var act = sPEntities.SP_Account.SingleOrDefault(n => n.AccountId == accountId);
                 var actInfo = sPEntities.SP_AccountInfo.SingleOrDefault(n => n.AccountId == accountId);
-                var shopOwner = sPEntities.SP_ShopOwner.SingleOrDefault(n => n.OwnerId == accountId);
-                var shop = sPEntities.SP_Shop.SingleOrDefault(n => n.Id == shopOwner.ShopId);
-                var productType = sPEntities.SP_ProductType.SingleOrDefault(n => n.Id == shop.ShopType);
-                var regionAct = sPEntities.SP_RegionAccount.SingleOrDefault(n => n.AccountId == accountId);
-                if (regionAct != null && string.IsNullOrEmpty(regionAct.AccountId))
-                {
-                    var regionData = sPEntities.SP_RegionData.SingleOrDefault(n => n.DataID == regionAct.RegionId);
-                    viewModel.Region = String.Format("{0},{1}", regionData.DataName, productType.TypeName);
-                }
+                //var shopOwner = sPEntities.SP_ShopOwner.SingleOrDefault(n => n.OwnerId == accountId );
+                //var shop = sPEntities.SP_Shop.SingleOrDefault(n => n.Id == shopOwner.ShopId);
+                //var productType = sPEntities.SP_ProductType.SingleOrDefault(n => n.Id == shop.ShopType);
+                //var regionAct = sPEntities.SP_RegionAccount.SingleOrDefault(n => n.AccountId == accountId);
+                //if (regionAct != null && string.IsNullOrEmpty(regionAct.AccountId))
+                //{
+                //    var regionData = sPEntities.SP_RegionData.SingleOrDefault(n => n.DataID == regionAct.RegionId);
+                //    viewModel.Region = String.Format("{0},{1}", regionData.DataName, productType.TypeName);
+                //}
                 var list = sPEntities.SP_AccountAddress.Where(x => x.AccountId == accountId).OrderByDescending(x=>x.IsDefault).ToList();
                 if(list != null && list.Count() > 0)
                 {
@@ -84,7 +85,7 @@ namespace AgentDashboard.Controllers
                     viewModel.Amount = (finace.HaveAmount??0) - (finace.UseAmount??0) - (sum!=null?sum.Value:0);
                 }
                 viewModel.FullName = actInfo.Fullname;
-                viewModel.Birthday = actInfo.Birthdate;
+                viewModel.Birthday = actInfo.Birthdate != null ? actInfo.Birthdate.Value.ToShortDateString():string.Empty;
                 viewModel.Phone = act.MobilePhone.Replace("+86","");
                 
             }
@@ -280,17 +281,25 @@ namespace AgentDashboard.Controllers
                 }
                 else
                 {
-                    var ret = service.AddShopOwner(new ShopOwnerDto()
+                    string market = ConfigurationManager.AppSettings["MainType.Market"];
+                    int marketId = int.Parse(market);
+                    var entity = new ShopOwnerDto()
                     {
                         OwnerId = accountId,
                         ShopId = shopId,
-                    });
+                        ShopStatus = false
+
+                    };
+                    if (marketId != shopType)
+                    {
+                        entity.ShopStatus = true;
+                    }
+                    var ret = service.AddShopOwner(entity);
                     if(ret)
                     {
                         //更新用户角色
                         IAccountAppService accountService = IocManager.Instance.Resolve<IAccountAppService>();
-                        string market = ConfigurationManager.AppSettings["MainType.Market"];
-                        int marketId = int.Parse(market);
+                        
                         if (marketId == shopType)
                         {
                             accountService.UpdateAccountUserType(accountId, 3);
@@ -299,6 +308,7 @@ namespace AgentDashboard.Controllers
                         {
                             accountService.UpdateAccountUserType(accountId, 2);
                         }
+                        AccountInfoCache.RemoveAccountInfo(accountId);
                     }
                     JsonResult.Add("status", ret?0:-1);
                 }
@@ -315,6 +325,7 @@ namespace AgentDashboard.Controllers
         {
             Dictionary<string, object> JsonResult = new Dictionary<string, object>();
             IShopAppService service = IocManager.Instance.Resolve<IShopAppService>();
+            AccountInfoCache.RemoveAccountInfo(accountId);
             var ret = service.DelShopOwner(shopId, accountId);
             JsonResult.Add("status", ret ? 0 : -1);
             return new JsonResult()
@@ -624,7 +635,15 @@ namespace AgentDashboard.Controllers
         public ActionResult DelSeller(int id)
         {            
             ISupplerAppService service = IocManager.Instance.Resolve<ISupplerAppService>();
-            var list = service.DelSuppler(id);
+            var detail = service.GetSupplerDetail(id);
+            
+            var ret = service.DelSuppler(id);
+            if(ret && detail != null)
+            {
+                IAccountAppService accountSvr = IocManager.Instance.Resolve<IAccountAppService>();
+                accountSvr.UpdateAccountUserType(detail.AccountId,0);
+                AccountInfoCache.RemoveAccountInfo(detail.AccountId);
+            }
 
             return Json(String.Empty);
         }
@@ -715,6 +734,7 @@ namespace AgentDashboard.Controllers
                     {
                         IAccountAppService accountService = IocManager.Instance.Resolve<IAccountAppService>();
                         accountService.UpdateAccountUserType(model.AccountId, 1);
+                        AccountInfoCache.RemoveAccountInfo(model.AccountId);
                     }
                     JsonResult.Add("status", ret ? 0 : -1);
                 }
@@ -1467,8 +1487,8 @@ namespace AgentDashboard.Controllers
                 foreach (var strDay in dayList)
                 {
                     DateTime dateTime = DateTime.Parse(strDay);
-                    int? orderAmount = spEntity.SP_SysStatistics.SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_NewAssociator;
-                    orderAmountList.Add(orderAmount ?? 0);
+                    decimal? orderAmount = spEntity.SP_SysStatistics.SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_OrderAmount;
+                    orderAmountList.Add((int)(orderAmount ?? 0));
                 }
             }
 
@@ -1477,6 +1497,50 @@ namespace AgentDashboard.Controllers
             {
                 label = DateTime.Now.ToString("yyyy"),
                 data = orderAmountList.ToArray(),
+                borderColor = new string[] { "#800080" },
+                borderWidth = "1"
+            });
+
+            chart.datasets = dataSet;
+            return Json(chart, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetSellerLineChartData(int day,int sellerId,int type)
+        {
+            Chart chart = new Chart();
+            List<string> dayList = new List<string>();
+
+            for (int i = day - 1; i > 0; i--)
+            {
+                double dDay = -i;
+                dayList.Add(DateTime.Now.AddDays(dDay).ToString("yyyy/MM/dd"));
+            }
+
+            dayList.Add(DateTime.Now.ToString("yyyy/MM/dd"));
+
+            chart.labels = dayList.ToArray();
+
+            List<int> userCntList = new List<int>();
+            ISellerStatisticsAppService service = IocManager.Instance.Resolve<ISellerStatisticsAppService>();
+            
+            foreach (var strDay in dayList)
+            {
+                DateTime dateTime = DateTime.Parse(strDay);
+                var entity = service.GetSellerStatistics(sellerId, dateTime);
+                if (type == 1)
+                {
+                    userCntList.Add(entity?.NewOrder??0);
+                }
+                else
+                {
+                    userCntList.Add(entity != null ?((int)entity.OrderAmount):0);
+                }
+            }
+
+            List<Datasets> dataSet = new List<Datasets>();
+            dataSet.Add(new Datasets()
+            {
+                label = DateTime.Now.ToString("yyyy"),
+                data = userCntList.ToArray(),
                 borderColor = new string[] { "#800080" },
                 borderWidth = "1"
             });

@@ -21,26 +21,29 @@ namespace SP.Service.Domain.EventHandlers
         {
             lock (lockObj)
             {
-                System.Console.WriteLine("DecreaseProductSkuEvent ShopId=" + handle.ShopId + "  ProductId=" + handle.ProductId+ " DecStock="+ handle.DecStock);
+                System.Console.WriteLine("DecreaseProductSkuEvent ShopId=" + handle.ShopId + "  ProductId=" + handle.ProductId+ 
+                    " DecStock="+ handle.DecStock+ " OrderId="+ handle.OrderId);
                 lock (lockObjSecond)
                 {
-                    var response = StockBusiness.GetProductSku(handle.Host, handle.ProductId, handle.ShopId);
-                    if(response.Sku.Count > 0 && response.Sku[0].Stock >= handle.DecStock)
-                    {
+                    //var response = StockBusiness.GetProductSku(handle.Host, handle.ProductId, handle.ShopId);
+                    //if(response.Sku.Count > 0 && response.Sku[0].Stock >= handle.DecStock)
+                    //{
                         var result = StockBusiness.DecreaseProductSku(handle.Host,handle.OrderId, handle.AccountId, handle.ProductId, handle.ShopId, handle.DecStock);
                         if (result.Status != 10001)
                         {
                             throw new ProductSkuException(string.Format($"ShopId={handle.ShopId} " +
-                                $"ProductId={handle.ProductId} domaint.Stock={response.Sku[0].Stock} " +
+                                $"ProductId={handle.ProductId} AccountId={handle.AccountId} OrderId={handle.OrderId}" +
                                 $"DecStock={handle.DecStock}"));
                         }
-                    }
-                    else
-                    {
-                        throw new ProductSkuException(string.Format($"ShopId={handle.ShopId} " +
-                                                        $"ProductId={handle.ProductId} domaint.Stock={(response.Sku.Count > 0 ? (response.Sku[0]?.Stock?? 0):0)} " +
-                                                        $"DecStock={handle.DecStock}"));
-                    }
+                    //}
+                    //else
+                    //{
+                    //    var str = string.Format($" DecreaseProductSkuEvent stock less ShopId={handle.ShopId} " +
+                    //                            $"ProductId={handle.ProductId} domaint.Stock={(response.Sku.Count > 0 ? (response.Sku[0]?.Stock ?? 0) : 0)} " +
+                    //                             $"DecStock={handle.DecStock}  OrderId={ handle.OrderId}");
+                    //    System.Console.WriteLine();
+                    //    throw new ProductSkuException(str);
+                    //}
                 }
             }
         }

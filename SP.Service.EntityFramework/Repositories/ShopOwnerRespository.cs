@@ -29,7 +29,7 @@ namespace SP.Service.EntityFramework.Repositories
         {
             using (var db = OpenDbConnection())
             {
-                var q = db.From<ShopOwnerEntity>().Where(x => x.ShopId == shopId);
+                var q = db.From<ShopOwnerEntity>().Where(x => x.ShopId == shopId  && x.ShopStatus == true);
                 return db.Select(q);
             }
         }

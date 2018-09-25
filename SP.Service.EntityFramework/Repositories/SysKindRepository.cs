@@ -18,7 +18,7 @@ namespace SP.Service.EntityFramework.Repositories
         }
         public List<SysKindEntity> GetSysKind(int kind)
         {
-            return this.Select(x=>x.Kind == kind);
+            return this.Select(x=>x.Kind == kind && x.IsDisplay ==true);
         }
     }
 }

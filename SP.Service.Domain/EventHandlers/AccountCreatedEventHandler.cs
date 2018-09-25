@@ -52,7 +52,7 @@ namespace SP.Service.Domain.EventHandlers
                 AccountId = handle.AggregateId.ToString(),
                 MobilePhone = handle.MobilePhone,
                 Status = handle.Status,
-                AliBind = handle.OtherAccount,
+                WxBind = handle.OtherAccount,
                 CreateTime = DateTime.Now,
                 UpdateTime = DateTime.Now,
             };
@@ -66,7 +66,7 @@ namespace SP.Service.Domain.EventHandlers
                 AccountId = handle.AggregateId.ToString(),
                 MobilePhone = handle.MobilePhone,
                 Status = handle.Status,
-                AliBind = handle.OtherAccount,
+                QQBind = handle.OtherAccount,
                 CreateTime = DateTime.Now,
                 UpdateTime = DateTime.Now,
             };

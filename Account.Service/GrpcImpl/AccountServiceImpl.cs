@@ -347,15 +347,15 @@ namespace Account.Service.GrpcImpl
             logger.LogInformation(this.prjLicEID, "GetRegionData {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
-        public override Task<RegionListResponse> GetChildRegionData(RegionIDRequest request, ServerCallContext context)
+        public override Task<RegionListResponse> GetChildRegionData(ChildRegionRequest request, ServerCallContext context)
         {
-            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} GetChildRegionData Connected! RegionID:[{RegionID}] ",
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.DataId);
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} GetChildRegionData Connected! RegionID:[{RegionID}] UpdateTime:[{UpdateTime}]",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.DataId, request.UpdateTime);
             RegionListResponse response = new RegionListResponse();
             response.Status = 10002;
             try
             {
-                response = AddressBusiness.GetChildRegionData(request.DataId);
+                response = AddressBusiness.GetChildRegionData(request.DataId, request.UpdateTime);
             }
             catch (Exception ex)
             {
@@ -541,19 +541,19 @@ namespace Account.Service.GrpcImpl
             return Task.FromResult(response);
         }
 
-        public override Task<RegionListResponse> GetChildRegionDataList(RegionIDRequest request, ServerCallContext context)
+        public override Task<RegionListResponse> GetChildRegionDataList(ChildRegionRequest request, ServerCallContext context)
         {
-            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} GetSelectedRegionDataList Connected! DataId:[{DataId}] ",
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.DataId);
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} GetChildRegionDataList Connected! DataId:[{DataId}]  UpdateTime:[{UpdateTime}]",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.DataId, request.UpdateTime);
             RegionListResponse response = new RegionListResponse();
             response.Status = 10002;
             try
             {
-                response = AddressBusiness.GetChildRegionDataList(request.DataId);
+                response = AddressBusiness.GetChildRegionDataList(request.DataId, request.UpdateTime);
             }
             catch (Exception ex)
             {
-                logger.LogError(this.prjLicEID, ex, "GetSelectedRegionDataList Exception");
+                logger.LogError(this.prjLicEID, ex, "GetChildRegionDataList Exception");
             }
             logger.LogInformation(this.prjLicEID, "GetChildRegionDataList {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
@@ -616,8 +616,8 @@ namespace Account.Service.GrpcImpl
 
         public override Task<AssociatorResponse> AddAssociator(AddAssociatorRequest request, ServerCallContext context)
         {
-            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} AddAssociator Connected! AccountId:[{AccountId}] ",
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.AccountId);
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} AddAssociator Connected! AccountId:[{AccountId}]  KindId:[{KindId}]  Quantity:[{Quantity}]",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.AccountId, request.KindId, request.Quantity);
             var response = new AssociatorResponse();
             response.Status = 10002;
             try
@@ -752,6 +752,24 @@ namespace Account.Service.GrpcImpl
             return Task.FromResult(response);
         }
 
+        public override Task<AssociatorResponse> GetAssociatorByCode(AssociatorCodeRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} GetAssociatorByCode Connected!  AssociatorCode:[{AssociatorCode}]",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.AssociatorCode);
+            var response = new AssociatorResponse();
+            response.Status = 10002;
+            try
+            {
+                response = AccountBusiness.GetAssociatorByCode(request.AssociatorCode);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "GetAssociatorByCode Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "GetAssociatorByCode Result:[{Result}] ", response.ToString());
+            return Task.FromResult(response);
+        }
+
         public override Task<AccountResultResponse> SetAccountPayPwd(AccountPayPwdRequest request, ServerCallContext context)
         {
             logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} SetAccountPayPwd Connected! AccountId:[{AccountId}]",
@@ -834,8 +852,8 @@ namespace Account.Service.GrpcImpl
 
         public override Task<AccountResultResponse> CreateOtherAccount(OtherAccountRequest request, ServerCallContext context)
         {
-            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} CreateOtherAccount Connected! MobilePhone:[{MobilePhone}] OtherAccount:[{OtherAccount}]",
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.MobilePhone ?? string.Empty, request.OtherAccount ?? string.Empty);
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} CreateOtherAccount Connected! MobilePhone:[{MobilePhone}] OtherAccount:[{OtherAccount}] OtherType:[{OtherType}]",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.MobilePhone ?? string.Empty, request.OtherAccount ?? string.Empty, request.OtherType);
             AccountResultResponse response = null;
             try
             {

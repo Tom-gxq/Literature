@@ -7,10 +7,11 @@ namespace SP.Service.Domain.Events
 {
     public class ShipOrderEditEvent: OrderEditEvent
     {
-        public ShipOrderEditEvent(Guid aggregateId, OrderStatus orderStatus, OrderPay payWay)
+        public string AccountId { get; set; }
+        public ShipOrderEditEvent(Guid aggregateId, OrderStatus orderStatus, OrderPay payWay,string accountId)
             :base(aggregateId, orderStatus, payWay)
         {
-            
+            this.AccountId = accountId;
         }
     }
 }

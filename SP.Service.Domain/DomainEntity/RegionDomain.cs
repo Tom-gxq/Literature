@@ -21,6 +21,7 @@ namespace SP.Service.Domain.DomainEntity
         public int ParentDataID { get; set; }
         public int CityID { get; set; }
         public int ProvinceID { get; set; }
+        public DateTime UpdateTime { get; set; }
         public RegionDomain()
         {
 
@@ -45,6 +46,7 @@ namespace SP.Service.Domain.DomainEntity
                 this.DataID = entity.DataID;
                 this.DataName = entity.DataName;
                 this.ParentDataID = entity.BuiddingID;
+                this.UpdateTime = entity.UpdateTime != null ? entity.UpdateTime.Value:DateTime.MinValue;
             }
         }
     }

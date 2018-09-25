@@ -10,5 +10,6 @@ namespace SP.Application.Shop.DTO
     {
         public string OwnerId { get; set; }
         public int ShopId { get; set; }
+        public bool ShopStatus { get; set; }
     }
 }

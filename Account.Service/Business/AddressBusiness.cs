@@ -1,5 +1,6 @@
 ﻿using SP.Service;
 using SP.Service.Domain.Commands.Account;
+using SP.Service.Domain.DomainEntity;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -144,9 +145,17 @@ namespace Account.Service.Business
             }
             return result;
         }
-        public static RegionListResponse GetChildRegionData(int dataId)
+        public static RegionListResponse GetChildRegionData(int dataId, long updateTime)
         {
-            var list = ServiceLocator.AddressDatabase.GetChildRegionData(dataId);
+            List<RegionDataDomain> list = new List<RegionDataDomain>();
+            if (updateTime == 0)
+            {
+                list = ServiceLocator.AddressDatabase.GetChildRegionData(dataId);
+            }
+            else
+            {
+                list = ServiceLocator.AddressDatabase.GetChildRegionData(dataId, new DateTime(updateTime));
+            }
             var result = new RegionListResponse();
             result.Status = 10001;
             if (list != null)
@@ -157,6 +166,7 @@ namespace Account.Service.Business
                     region.DataId = item.DataID;
                     region.DataName = item.DataName;
                     region.ParentDataId = item.ParentDataID;
+                    region.UpdateTime = item.UpdateTime.Ticks;
                     result.RegionList.Add(region);
                 }
             }
@@ -186,8 +196,8 @@ namespace Account.Service.Business
         {
             var domain = ServiceLocator.AddressDatabase.GetDefaultSelectedAddress(accountId);
             var result = new AddressResponse();
-            result.Status = 10001;
-            if (domain != null )
+            result.Status = 10002;
+            if (domain != null && !string.IsNullOrEmpty(domain.AccountId) )
             {
                 var address = new Address();
                 address.AccountId = domain.AccountId;     
@@ -205,13 +215,23 @@ namespace Account.Service.Business
                 address.DormName = domain.DormName != null ? domain.DormName : string.Empty;
                 address.ContactAddress = domain.Address;
                 result.Address = address;
+                result.Status = 10001;
             }
             return result;
         }
 
-        public static RegionListResponse GetChildRegionDataList(int dataId)
+        public static RegionListResponse GetChildRegionDataList(int dataId,long updateTime)
         {
-            var list = ServiceLocator.AddressDatabase.GetChildRegionDataList(dataId);
+            List<RegionDataDomain> list = new List<RegionDataDomain>();
+            if (updateTime == 0)
+            {
+                list = ServiceLocator.AddressDatabase.GetChildRegionDataList(dataId);
+            }
+            else
+            {
+                System.Console.WriteLine("updateTime:"+ (new DateTime(updateTime)).ToString("yyyy-MM-dd HH24:mm:ss"));
+                list = ServiceLocator.AddressDatabase.GetChildRegionDataList(dataId,new DateTime(updateTime));
+            }
             var result = new RegionListResponse();
             result.Status = 10001;
             if (list != null)
@@ -222,6 +242,7 @@ namespace Account.Service.Business
                     region.DataId = item.DataID;
                     region.DataName = item.DataName;
                     region.ParentDataId = item.ParentDataID;
+                    region.UpdateTime = item.UpdateTime.Ticks;
                     result.RegionList.Add(region);
                 }
             }

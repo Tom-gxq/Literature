@@ -99,13 +99,13 @@ namespace SP.Service.Domain.DomainEntity
             ApplyChange(new OrderEditEvent(id, orderStatus, payWay));
             
         }
-        public void EditShipOrderDomainStatus(Guid id, OrderStatus orderStatus, OrderPay payWay)
+        public void EditShipOrderDomainStatus(Guid id, OrderStatus orderStatus, OrderPay payWay,string accountId)
         {
-            ApplyChange(new ShipOrderEditEvent(id, orderStatus, payWay));
+            ApplyChange(new ShipOrderEditEvent(id, orderStatus, payWay, accountId));
             if (orderStatus == OrderStatus.Success)
             {
                 string host = OrderCommon.GetHost();
-                ApplyChange(new ProductSkuEditEvent(id, host));
+                ApplyChange(new ProductSkuEditEvent(id, host, accountId));
             }
         }
         public void AddKafkaInfo(OrderStatus orderStatus,int buildingId)
@@ -122,6 +122,25 @@ namespace SP.Service.Domain.DomainEntity
                 producer.IPConfig = kafkaIP;
                 producer.Order = this.GetMemento() as OrdersEntity;
                 producer.BuildingId = buildingId;
+                ApplyChange(new KafkaAddEvent(producer));
+            }
+        }
+        public void AddShipOrderKafka(OrderStatus orderStatus, string shippingId, double sumAmount,string orderId,string shipto)
+        {
+            if (orderStatus == OrderStatus.Payed)
+            {
+                var config = IocManager.Instance.Resolve<IConfigurationRoot>();
+                string kafkaIP = string.Empty;
+                if (config != null)
+                {
+                    kafkaIP = config.GetSection("KafkaIP").Value?.ToString() ?? string.Empty;
+                }
+                var producer = new SellerProducer();
+                producer.IPConfig = kafkaIP;
+                producer.ShippingId = shippingId;
+                producer.OrderAmount = sumAmount;
+                producer.OrderId = orderId;
+                producer.Shipto = shipto;
                 ApplyChange(new KafkaAddEvent(producer));
             }
         }
@@ -212,6 +231,16 @@ namespace SP.Service.Domain.DomainEntity
                 this.IsWxPay = order.IsWxPay != null ? order.IsWxPay.Value : false;
                 this.IsAliPay = order.IsAliPay != null ? order.IsAliPay.Value : false;
                 this.OrderType = order.OrderType != null ? order.OrderType.Value : 0;
+            }
+            else if(memento is ShippingOrderFullEntity)
+            {
+                var order = memento as ShippingOrderFullEntity;
+                this.OrderId = order.OrderId;
+                this.AccountId = order.ShipTo;
+                this.OrderAddress = order.OrderAddress != null ? order.OrderAddress : string.Empty;
+                this.IsVip = order.IsVip != null ? order.IsVip.Value : false;
+                this.IsWxPay = order.IsWxPay != null ? order.IsWxPay.Value : false;
+                this.IsAliPay = order.IsAliPay != null ? order.IsAliPay.Value : false;
             }
         }
 

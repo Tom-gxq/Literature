@@ -31,6 +31,9 @@ namespace SP.ManageEntityFramework
         public IDbSet<CarouselEntity> Carousel { get; set; }
         public IDbSet<CashApplyEntity> CashApply { get; set; }
         public IDbSet<SuppliersEntity> Suppliers { get; set; }
+        public IDbSet<ShippingOrdersEntity> ShippingOrder { get; set; }
+        public IDbSet<SellerStatisticsEntity> SellerStatistics { get; set; }
+        public IDbSet<AssociatorEntity> Associator { get; set; }
 
         public ManageDbContext()
             : base("Default")

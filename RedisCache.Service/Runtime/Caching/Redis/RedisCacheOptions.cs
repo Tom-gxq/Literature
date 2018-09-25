@@ -50,7 +50,7 @@ namespace RedisCache.Service.Runtime.Caching.Redis
             var connStr = this.Configuration.GetSection(SentinelKey)?.Value??string.Empty;
             try
             {
-                connStr = string.Empty;
+                System.Console.WriteLine("sentinel connStr:" + connStr);
                 using (var sentinel = new RedisSentinelClient(connStr, 26379))
                 {
                     var masterRedisName = this.Configuration.GetSection(MasterRedisNameKey)?.Value;
@@ -63,9 +63,10 @@ namespace RedisCache.Service.Runtime.Caching.Redis
                     }
                 }
             }
-            catch
+            catch(Exception ex)
             {
-
+                System.Console.WriteLine("sentinel ex:" + ex.ToString());
+                System.Console.WriteLine("sentinel StackTrace:" + ex.StackTrace);
             }
             if (string.IsNullOrEmpty(connStr))
             {

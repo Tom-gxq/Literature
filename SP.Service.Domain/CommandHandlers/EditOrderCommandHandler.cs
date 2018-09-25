@@ -8,6 +8,7 @@ using SP.Service.Domain.DomainEntity;
 using SP.Service.Domain.Reporting;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SP.Service.Domain.CommandHandlers
@@ -23,11 +24,14 @@ namespace SP.Service.Domain.CommandHandlers
         private AccountFinanceReportDatabase _financeReportDatabase;
         private AddressReportDatabase _addressReportDatabase;
         private ShipOrderReportDatabase _shipReportDatabase;
+        private ProductReportDatabase _productReportDatabase;
+        private ShoppingCartReportDatabase _shoppingCartReportDatabase;
 
         public EditOrderCommandHandler(IDataRepository<OrderDomain> repository, IDataRepository<TradeDomain> tradeRepository,
             IDataRepository<AccountFinanceDomain> financeRepository, OrderReportDatabase orderReportDatabase, 
             IDataRepository<ProductSkuDomain> skuRepository, AccountFinanceReportDatabase financeReportDatabase,
-            AddressReportDatabase addressReportDatabase, ShipOrderReportDatabase shipReportDatabase)
+            AddressReportDatabase addressReportDatabase, ShipOrderReportDatabase shipReportDatabase, ProductReportDatabase productReportDatabase,
+            ShoppingCartReportDatabase shoppingCartReportDatabase)
         {
             this._repository = repository;
             this._tradeRepository = tradeRepository;
@@ -37,6 +41,8 @@ namespace SP.Service.Domain.CommandHandlers
             this._financeReportDatabase = financeReportDatabase;
             this._addressReportDatabase = addressReportDatabase;
             this._shipReportDatabase = shipReportDatabase;
+            this._productReportDatabase = productReportDatabase;
+            this._shoppingCartReportDatabase = shoppingCartReportDatabase;
         }
 
         public void Execute(EditOrderCommand command)
@@ -57,6 +63,15 @@ namespace SP.Service.Domain.CommandHandlers
                 var aggregate = new OrderDomain();
                 aggregate.EditOrderDomainStatus(new Guid(order.OrderId), command.OrderStatus, command.PayWay);
                 _repository.Save(aggregate);
+                if(order.OrderStatus == OrderStatus.Closed && order.ShoppingCarts != null)
+                {
+                    foreach (var cart in order.ShoppingCarts)
+                    {
+                        var sku = new ProductSkuDomain();
+                        sku.EditProductSkuDomainStock(cart.ShopId, cart.Product.ProductId, cart.Quantity, order.OrderId, order.AccountId);
+                        _skuRepository.Save(sku);
+                    }
+                }
 
                 CaclCommsion(order, command.OrderStatus);
             }
@@ -69,7 +84,7 @@ namespace SP.Service.Domain.CommandHandlers
         public void Execute(EditPurchaseOrderCommand command)
         {
             var aggregate = new OrderDomain();
-            aggregate.EditShipOrderDomainStatus(command.Id, command.OrderStatus, command.PayWay);
+            aggregate.EditShipOrderDomainStatus(command.Id, command.OrderStatus, command.PayWay, command.AccountId);
             _repository.Save(aggregate);
 
             var order = _orderReportDatabase.GetLeadOrderDomainByOrderId(command.Id.ToString());
@@ -77,23 +92,45 @@ namespace SP.Service.Domain.CommandHandlers
         }
 
         private void CaclSellerCommsion(LeadOrderDomain order, OrderStatus orderStatus)
-        {            
-            if (order != null && orderStatus == Data.Enum.OrderStatus.Success)
+        {
+            if (order != null)
             {
                 var shipOrder = _shipReportDatabase.GetShippingOrdersByOrderId(order.OrderId);
-                if (shipOrder != null && shipOrder.Count > 0)
+                if (orderStatus == Data.Enum.OrderStatus.Success)
                 {
-                    var finance = _financeReportDatabase.GetAccountFinanceDetail(shipOrder[0].ShippingId);
-                    if (finance != null && !string.IsNullOrEmpty(finance.AccountId))
+                    if (shipOrder != null && shipOrder.Count > 0)
                     {
-                        var financeDomain = new AccountFinanceDomain();
-                        financeDomain.EditHaveAmount(finance.AccountId, order.Amount);
-                        _financeRepository.Save(financeDomain);
+                        var finance = _financeReportDatabase.GetAccountFinanceDetail(shipOrder[0].ShippingId);
+                        if (finance != null && !string.IsNullOrEmpty(finance.AccountId))
+                        {
+                            var financeDomain = new AccountFinanceDomain();
+                            financeDomain.EditHaveAmount(finance.AccountId, order.Amount);
+                            _financeRepository.Save(financeDomain);
+                        }
+                        else
+                        {
+                            var financeDomain = new AccountFinanceDomain(shipOrder[0].ShippingId, order.Amount);
+                            _financeRepository.Save(financeDomain);
+                        }
                     }
-                    else
-                    {
-                        var financeDomain = new AccountFinanceDomain(shipOrder[0].ShippingId, order.Amount);
-                        _financeRepository.Save(financeDomain);
+                }
+                else if (orderStatus == Data.Enum.OrderStatus.Payed)
+                {
+                    var list = shipOrder.GroupBy(x=>x.ShippingId);
+                    foreach (var item in list)
+                    {                        
+                        double sumOrderAmount = 0;
+                        foreach (var ship in item)
+                        {
+                            var shopCart = _shoppingCartReportDatabase.GetShoppingCartByOrderIdandProductId(ship.OrderId, ship.ProductId);
+                            if (shopCart != null)
+                            {
+                                sumOrderAmount += shopCart.Quantity * shopCart.Product.PurchasePrice.Value;
+                                System.Console.WriteLine($"CaclSellerCommsion Stock={shopCart.Quantity}  PurchasePrice={shopCart.Product.PurchasePrice.Value}");
+                            }
+                        }
+                        //将订单成功付款的信息添加到kafka队列中
+                        AddShipOrderKafka(order.OrderId, orderStatus, item.Key, sumOrderAmount, item.FirstOrDefault()?.ShipTo??string.Empty);
                     }
                 }
             }
@@ -169,8 +206,14 @@ namespace SP.Service.Domain.CommandHandlers
         private void AddKafka(string orderId,OrderStatus orderStatus)
         {
             var aggregate = _orderReportDatabase.GetOrderByOrderId(orderId);
-            var address = _addressReportDatabase.GetRegionData(aggregate.AdressId);
-            aggregate.AddKafkaInfo(orderStatus, address.ParentDataID);
+            var address = _addressReportDatabase.GetAddressById(aggregate.AdressId, aggregate.AccountId);
+            aggregate.AddKafkaInfo(orderStatus, address.BuildingId);
+            _repository.Save(aggregate);
+        }
+        private void AddShipOrderKafka(string orderId, OrderStatus orderStatus,string shippingId,double sumAmount, string shipto)
+        {
+            var aggregate = _orderReportDatabase.GetOrderByOrderId(orderId);
+            aggregate.AddShipOrderKafka(orderStatus, shippingId, sumAmount,orderId, shipto);
             _repository.Save(aggregate);
         }
     }

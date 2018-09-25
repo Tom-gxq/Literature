@@ -286,13 +286,13 @@ namespace WebApiGateway.Controllers.Account
             result.Data = JsonResult;
             return result;
         }
-        public ActionResult GetSchoolDistrictList(int dataId)
+        public ActionResult GetSchoolDistrictList(int dataId,long updateTime=0)
         {
             var result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var model = AddressBusiness.GetSchoolDistrictList(dataId);
+                var model = AddressBusiness.GetSchoolDistrictList(dataId, updateTime);
                 JsonResult.Add("regionData", model);
                 JsonResult.Add("status", 0);
             }

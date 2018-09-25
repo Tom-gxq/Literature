@@ -78,6 +78,12 @@ namespace SP.Service.Domain.Reporting
             
             return ConvertOrderEntityToDomain(order); 
         }
+        public OrderDomain GetOrderByOrderId(string orderId,string accountId)
+        {
+            var order = _repository.GetOrderByOrderId(orderId);
+
+            return ConvertOrderEntityToDomain(order, accountId);
+        }
         public LeadOrderDomain GetLeadOrderDomainByOrderId(string orderId)
         {
             var order = _repository.GetOrderByOrderId(orderId);
@@ -130,6 +136,58 @@ namespace SP.Service.Domain.Reporting
             return result > 0;
         }
 
+        public List<LeadOrderDomain> GetShipOrderList(string accountId, int orderStatus, int orderType)
+        {
+            var domainList = new List<LeadOrderDomain>();
+            var list = _repository.GetShipOrderList(accountId, orderStatus, orderType);
+            var result = list.GroupBy(s => s.OrderId);
+            foreach (var item in result)
+            {
+                var domain = new LeadOrderDomain();
+                var shoppingCartList = new List<ShoppingCartsDomain>();
+                int index = 0;
+                foreach (var orderInfo in item)
+                {
+                    var order = ConvertOrderEntityToLeadOrderDomain(orderInfo);
+                    if (order != null)
+                    {
+                        if (index == 0)
+                        {
+                            domain.OrderId = order.OrderId;
+                            domain.OrderAddress = order.OrderAddress;
+                            var accountReportDatabase = IocManager.Instance.Resolve(typeof(AccountReportDatabase)) as AccountReportDatabase;
+                            var account = accountReportDatabase.GetAccountById(order.ShipTo);
+                            if (account != null)
+                            {
+                                domain.SetAccountMemento(account.GetMemento());
+                                var accountInfoReportDatabase = IocManager.Instance.Resolve(typeof(AccountInfoReportDatabase)) as AccountInfoReportDatabase;
+                                var accountInfo = accountInfoReportDatabase.GetAccountInfoById(order.ShipTo);
+                                domain.SetAccountInfoMemento(accountInfo.GetMemento());
+                            }
+                            else
+                            {
+                                System.Console.WriteLine($"GetShipOrderList order.ShipTo  is not Exsit [{order?.ShipTo??string.Empty}]");
+                            }                            
+                            domain.PayDate = order.PayDate;
+                            domain.OrderDate = order.OrderDate;
+                        }
+                        var cart = new ShoppingCartsDomain();
+                        cart.OrderId = order.OrderId;
+                        cart.Product = new ProductEntity();
+                        cart.Product.ProductName = order.ProductName;
+                        cart.Product.ProductId = order.ProductId;
+                        cart.Quantity = order.Stock;
+                        cart.ShipOrderId = order.ShipOrderId;
+                        shoppingCartList.Add(cart);
+                        index++;
+                    }
+                }
+                domain.SetMemenShoppingCartto(shoppingCartList);
+                domainList.Add(domain);
+            }
+            return domainList;
+        }
+
         private OrderDomain ConvertOrderEntityToDomain(OrdersEntity entity)
         {
             if(entity == null)
@@ -145,11 +203,45 @@ namespace SP.Service.Domain.Reporting
                 var productReportDatabase = IocManager.Instance.Resolve(typeof(ProductReportDatabase)) as ProductReportDatabase; ;
                 var product = productReportDatabase.GetProductDomainById(cart.ProductId);
                 
-                product.Quantity = cart.Quantity ?? 0;
-                System.Console.WriteLine($"OrderId={cart?.OrderId??string.Empty} Quantity={cart.Quantity ?? 0}");
+                product.Quantity = cart.Quantity ?? 0;                
                 productList.Add(product);
             }
             order.SetMemenProductto(productList);
+            return order;
+        }
+        private OrderDomain ConvertOrderEntityToDomain(OrdersEntity entity,string accountId)
+        {
+            if (entity == null)
+            {
+                return null;
+            }
+            var order = new OrderDomain();
+            order.SetMemento(entity);
+            var orderCartList = _cartRepository.GetShoppingCartsByOrderId(entity.OrderId);
+            var productList = new List<ProductDomain>();
+            foreach (var cart in orderCartList)
+            {
+                var productReportDatabase = IocManager.Instance.Resolve(typeof(ProductReportDatabase)) as ProductReportDatabase; ;
+                var product = productReportDatabase.GetSellerProduct(cart.ProductId, accountId);
+                if (product != null)
+                {
+                    product.Quantity = cart.Quantity ?? 0;                    
+                    productList.Add(product);
+                }
+            }
+            order.SetMemenProductto(productList);
+            return order;
+        }
+        private ShipOrderDomain ConvertOrderEntityToLeadOrderDomain(ShippingOrderFullEntity entity)
+        {
+            if (entity == null)
+            {
+                return null;
+            }
+            var order = new ShipOrderDomain();
+            order.SetMemento(entity);
+
+            
             return order;
         }
         private LeadOrderDomain ConvertOrderEntityToLeadOrderDomain(OrdersEntity entity)
@@ -214,14 +306,15 @@ namespace SP.Service.Domain.Reporting
                 var shoppingCart = new ShoppingCartsDomain();
                 shoppingCart.SetMemento(cart);
                 var productReportDatabase = IocManager.Instance.Resolve(typeof(ProductReportDatabase)) as ProductReportDatabase;
-                var product = productReportDatabase.GetProductDomainById(cart.ProductId);
-                shoppingCart.SetMemenProductto(product.GetMemento());
-                var shipReportDatabase = IocManager.Instance.Resolve(typeof(ShipOrderReportDatabase)) as ShipOrderReportDatabase;
-                //Console.WriteLine($"OrderId=[{order.OrderId}],accountId=[{accountId}],ProductId=[{cart.ProductId}]");
-                //var ship = shipReportDatabase.GetShippingOrders(order.OrderId, accountId, cart.ProductId);
-                //shoppingCart.Quantity = (ship?.Stock != null ? ship.Stock.Value : 0);
-                shoppingCart.CalculateAmount();
-                shoppingCartList.Add(shoppingCart);
+                var product = productReportDatabase.GetSellerProduct(cart.ProductId, accountId);
+                if (product != null)
+                {
+                    shoppingCart.SetMemenProductto(product.GetMemento());
+                    var shipReportDatabase = IocManager.Instance.Resolve(typeof(ShipOrderReportDatabase)) as ShipOrderReportDatabase;
+                    
+                    shoppingCart.CalculateAmount();
+                    shoppingCartList.Add(shoppingCart);
+                }
             }
             order.SetMemenShoppingCartto(shoppingCartList);
             if (!string.IsNullOrEmpty(entity.AccountId))

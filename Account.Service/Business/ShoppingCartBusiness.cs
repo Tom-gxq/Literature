@@ -47,7 +47,6 @@ namespace Account.Service.Business
                     }
                     else
                     {
-                        System.Console.WriteLine("userType="+ userType);
                         if (userType == 3)
                         {                            
                             shoppingCart.UnitPrice = item.Product?.PurchasePrice != null ? item.Product.PurchasePrice.Value : 0;

@@ -19,6 +19,12 @@ namespace SP.Service.EntityFramework.Repositories
             && x.EffectiveTime >= DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd")));
             return result;
         }
+        public ProductSkuEntity GetPreDayProductSku(int shopId, string productId, string accountId)
+        {
+            var result = this.Single(x => x.ShopId == shopId && x.ProductId == productId && x.AccountId == accountId
+            && x.EffectiveTime >= DateTime.Parse(DateTime.Now.AddDays(-1).ToShortDateString()));
+            return result;
+        }
         public int UpdateProductSkuStock(ProductSkuEntity entity)
         {
             return this.UpdateNonDefaults(entity,x=>x.SkuId == entity.SkuId && x.Stock > 0);
@@ -43,7 +49,7 @@ namespace SP.Service.EntityFramework.Repositories
             {
                 var q = db.From<ProductSkuEntity>();
                 q = q.Join<ProductSkuEntity, ShopEntity>((e, a) => e.ShopId==a.Id && a.ShopType == shopType 
-                && e.EffectiveTime >= DateTime.Parse(DateTime.Now.ToShortDateString()));
+                && e.EffectiveTime >= DateTime.Parse(DateTime.Now.AddDays(-1).ToShortDateString()));
                 
                 return db.Select(q);
             }

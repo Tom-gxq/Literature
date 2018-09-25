@@ -25,6 +25,7 @@ namespace SP.Service.Domain.EventHandlers
                 CartId  = handle.CartId,
                 Subject = handle.Subject,
                 CreateTime = DateTime.Now,
+                ShipOrderId = handle.ShipOrderId,
             };
 
             _reportDatabase.Add(item);

@@ -220,7 +220,7 @@ namespace SP.Application.User
                     Status = status,
                     UpdateTime = DateTime.Now,
                 }, x => x.Id == id);
-                if (result > 0)
+                if (result > 0 && status == 1)
                 {
                     var cash = repository.GetCashApplyById(id);
                     if (cash != null)
@@ -236,6 +236,10 @@ namespace SP.Application.User
                             }, x => x.Id == finace.Id);
                         }
                     }
+                    retValue = true;
+                }
+                else
+                {
                     retValue = true;
                 }
             }
@@ -311,7 +315,8 @@ namespace SP.Application.User
             var accountInfoDto = new AccountInfoDto
             {
                 AccountId = accountInfo.AccountId,
-                Fullname = !string.IsNullOrEmpty(accountInfo.Fullname) ? accountInfo.Fullname : "@##$%",                
+                Fullname = !string.IsNullOrEmpty(accountInfo.Fullname) ? accountInfo.Fullname : "@##$%",
+                UserType = accountInfo.UserType != null ? accountInfo.UserType.Value : 0
             };
 
             return accountInfoDto;

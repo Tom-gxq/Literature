@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Mvc;
 using SPManager.Models;
+using System.Configuration;
 
 namespace SPManager.Controllers
 {
@@ -57,6 +58,29 @@ namespace SPManager.Controllers
             jObject.Pages = (int)Math.Ceiling(Convert.ToDouble(total) / pageSize);
             jObject.Index = pageIndex;
             JsonResult.Add("data", jObject);
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult GetProductTypeParentList(int parentId)
+        {
+            IProductTypeService service = IocManager.Instance.Resolve<IProductTypeService>();
+            string marketTypeId = ConfigurationManager.AppSettings["MarketTypeId"];
+            int kind = 0;
+            if(parentId.ToString() == marketTypeId)
+            {
+                kind = 1;
+            }
+            else
+            {
+                kind = 2;
+            }
+            var result = service.GetProductTypeList(kind);
+            JsonResult.Add("result", result);
+            
             return new JsonResult()
             {
                 Data = JsonResult,

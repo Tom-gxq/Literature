@@ -89,6 +89,27 @@ namespace SP.Service.Domain.Reporting
 
             return product;
         }
+        public ProductDomain GetSellerProduct(string prductId,string accountId)
+        {            
+            var productEntity = _repository.GetSellerProduct(prductId,accountId);
+            
+            if (productEntity != null)
+            {
+                var product = new ProductDomain();
+                product.SetMemento(productEntity);
+                if (productEntity.BrandId != null)
+                {
+                    var brand = _brandRepository.GetBrandById(productEntity.BrandId.Value);
+                    product.SetMemenBrandto(brand);
+                }
+                return product;
+            }
+            else
+            {
+                return null;
+            }
+            
+        }
 
         public List<ProductDomain> GetProductList(int pageIndex, int pageSize)
         {
@@ -193,12 +214,19 @@ namespace SP.Service.Domain.Reporting
             {
                 var domain = GetProductDomainById(item);
                 var host = OrderCommon.GetHost();
-                var response = StockBusiness.GetProductSku(host, item.ProductId, shopId);
-                if(response.Status == 10001&& response.Sku.Count > 0)
+                try
                 {
-                    domain.SkuNum = response.Sku[0].Stock;
-                    domain.SkuId = response.Sku[0].SkuId;
-                    domain.ShopId = response.Sku[0].ShopId;
+                    var response = StockBusiness.GetProductSku(host, item.ProductId, shopId);
+                    if (response.Sku.Count > 0)
+                    {
+                        domain.SkuNum = response.Sku[0].Stock;
+                        domain.SkuId = response.Sku[0].SkuId;
+                        domain.ShopId = response.Sku[0].ShopId;
+                    }
+                }
+                catch(Exception ex)
+                {
+                    System.Console.WriteLine("GetFoodShopProductList GetProductSku ex="+ex.ToString());
                 }
                 domainList.Add(domain);
             }

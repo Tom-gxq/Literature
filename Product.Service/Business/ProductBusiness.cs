@@ -3,6 +3,7 @@ using SP.Service.Domain.Commands.Product;
 using SP.Service.Domain.DomainEntity;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Product.Service.Business
@@ -220,11 +221,12 @@ namespace Product.Service.Business
                             skuFlag = true;
                         }
                     }
-                    foreach (var item in list)
+                    var plist = list.GroupBy(x=>x.ProductId);
+                    foreach (var item in plist)
                     {
                         if (item != null)
                         {
-                            var product = ConvertProductDomainToResponse(item);
+                            var product = ConvertProductDomainToResponse(item.FirstOrDefault());
                             if(!skuFlag)
                             {
                                 //product.SkuNum = -1;
@@ -244,9 +246,10 @@ namespace Product.Service.Business
             result.Total = ServiceLocator.ReportDatabase.GetFoodShopProductListCount(districtId, shopId, pageIndex, pageSize);
             if (result.Total > 0)
             {
-                var list = ServiceLocator.ReportDatabase.GetFoodShopProductList(districtId, shopId, pageIndex, pageSize);
+                var list = ServiceLocator.ReportDatabase.GetFoodShopProductList(districtId, shopId, pageIndex, (int)result.Total);
                 if (list != null)
                 {
+                    list = list.OrderByDescending(x=>x.SkuNum).Skip((pageIndex-1)* pageSize).Take(pageSize).ToList();
                     bool skuFlag = false;
                     var shop = ServiceLocator.ShopReportDatabase.GetShopById(shopId);
                     if (!string.IsNullOrEmpty(shop.StartTime))
@@ -257,11 +260,12 @@ namespace Product.Service.Business
                             skuFlag = true;
                         }
                     }
-                    foreach (var item in list)
+                    var plist = list.GroupBy(x => x.ProductId);
+                    foreach (var item in plist)
                     {
                         if (item != null)
                         {
-                            var product = ConvertProductDomainToResponse(item);
+                            var product = ConvertProductDomainToResponse(item.FirstOrDefault());
                             if (!skuFlag)
                             {
                                 //product.SkuNum = -1;

@@ -55,6 +55,7 @@ define(function (require, exports, module) {
 
             //获取数据
             _self.bindEvent();
+            _self.getSellerChart(7, 1);
         },
         //元素
         elements: {
@@ -139,7 +140,14 @@ define(function (require, exports, module) {
                     return { keywords: request.term };
                 }
             });
-            
+
+            $("#orderAmount").click(function (obj) {
+                _self.getSellerChart(7, 2);
+            });
+
+            $("#orderNum").click(function (obj) {
+                _self.getSellerChart(7, 1);
+            });
         },
         
         /**
@@ -156,7 +164,64 @@ define(function (require, exports, module) {
         bindProductInfo: function (productId, name) {
             $("#productId").val(productId);
         },
-        
+        getSellerChart:function GetSellerChart(day, type) {
+            //----Line Chart---------            
+            $.ajax({
+                url: 'GetSellerLineChartData',
+                type: 'GET',
+                cache: false,
+                data: {
+                    day: day,
+                    sellerId: $("#sellerId").val(),
+                    type: type
+                },
+                success: function (msg) {
+                    var tData = msg;
+                    var c = document.getElementById("SellerChart");
+                    var ctx = c.getContext("2d");
+                    var ticks = {};
+                    if (type == 1) {
+                        ticks = {
+                            min: 0,
+                            max: 20,
+                            maxTicksLimit: 5
+                        };
+                    }
+                    else {
+                        ticks = {
+                            min: 0,
+                            max: 5000,
+                            maxTicksLimit: 5
+                        };
+                    }
+                    var myLineChart = new Chart(ctx, {
+                        type: 'line',
+                        data: tData,
+                        options: {
+                            scales: {
+                                xAxes: [{
+                                    time: {
+                                        unit: 'date'
+                                    },
+                                    gridLines: {
+                                        display: false
+                                    },
+                                }],
+                                yAxes: [{
+                                    ticks: ticks,
+                                    gridLines: {
+                                        color: "rgba(0, 0, 0, .125)",
+                                    }
+                                }],
+                            },
+                        }
+                    });
+                },
+                error: function (err) {
+
+                }
+            });
+        }
     }, base);
 
     exports.jQuery = $;

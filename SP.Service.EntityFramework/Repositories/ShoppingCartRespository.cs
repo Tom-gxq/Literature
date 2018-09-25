@@ -52,7 +52,8 @@ namespace SP.Service.EntityFramework.Repositories
 
         public List<ShoppingCartsEntity> GetMyShoppingCartList(string accountId)
         {
-            return this.Select(x=>x.AccountId == accountId&& x.IsEnabled == false && x.Quantity > 0 && x.OrderId == null);
+            return this.Select(x=>x.AccountId == accountId&& x.IsEnabled == false && x.Quantity > 0 
+            && x.OrderId == null && x.UpdateTime >= DateTime.Now.AddMinutes(-10));
         }
         public List<ShoppingCartsEntity> GetMyShoppingCartListByOrderId(string accountId,string orderId)
         {
@@ -74,6 +75,11 @@ namespace SP.Service.EntityFramework.Repositories
         {
             return this.Single(x => x.AccountId == accountId &&x.ShopId== shopId && x.ProductId == productId
             && x.IsEnabled == false && x.OrderId == null && x.CreateTime >=DateTime.Parse(DateTime.Now.ToShortDateString()));
+        }
+
+        public ShoppingCartsEntity GetShoppingCartByOrderIdandProductId(string orderId, string productId)
+        {
+            return this.Single(x => x.OrderId == orderId && x.ProductId == productId);
         }
     }
 }

@@ -113,6 +113,8 @@ seajs.config({
         'add-sku': 'productsku/addskudata.js',
         // 添加轮播图
         'add-carousel': 'carousel/addcarouseldata.js',
+        // 添加会员优惠折扣
+        'add-associatorItem': 'associator/addassociator.js',
         //zrender，图标插件echarts的底层组件
         'zrender': 'plug/zrender/zrender.js'
     },

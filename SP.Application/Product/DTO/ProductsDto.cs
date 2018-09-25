@@ -30,5 +30,6 @@ namespace SP.Application.Product.DTO
         public List<ProductImageDto> ProductImage { get; set; }
         public List<AttributeDto> ProductAttribute { get; set; }
         public int Quantity { get; set; }
+        public double PurchasePrice { get; set; }
     }
 }

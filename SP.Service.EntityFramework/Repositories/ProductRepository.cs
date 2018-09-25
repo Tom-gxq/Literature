@@ -20,7 +20,13 @@ namespace SP.Service.EntityFramework.Repositories
             var result = this.Single(x => x.ProductId == productId);
             return result;
         }
-        
+
+        public ProductEntity GetSellerProduct(string productId,string accountId)
+        {
+            var result = this.Single(x => x.ProductId == productId && x.SuppliersId == accountId);
+            return result;
+        }
+
         public List<ProductEntity> GetProductList(int pageIndex, int pageSize)
         {
             using (var db = OpenDbConnection())
@@ -92,6 +98,7 @@ namespace SP.Service.EntityFramework.Repositories
                 //&& a.EffectiveTime >= DateTime.Parse(DateTime.Now.ToShortDateString()));
                 //q = q.Join<ProductEntity, ProductRegionEntity>((e, a) => a.ProductId == e.ProductId && a.DataId == districtId);
                 //q = q.OrderByDescending<ProductSkuEntity>(a => a.Stock)
+                q = q.Join<AccountProductEntity, ShopEntity>((a, b) => a.ShopId == b.Id && b.RegionId == districtId && b.ShopStatus == true);
                 q = q.Limit((pageIndex - 1) * pageSize, (pageIndex - 1) * pageSize + pageSize);
                 return db.Select<ProductFullEntity>(q);
             }

@@ -243,6 +243,7 @@
     <Compile Include="Common\GlobalSession.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AssociatorController.cs" />
     <Compile Include="Controllers\AttributeController.cs" />
     <Compile Include="Controllers\AttributeValueController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -282,6 +283,11 @@
     <Content Include="Scripts\admin\editadmin.js" />
     <Content Include="Scripts\admin\list-item.html" />
     <Content Include="Scripts\admin\style.css" />
+    <Content Include="Scripts\associator\addassociator.html" />
+    <Content Include="Scripts\associator\addassociator.js" />
+    <Content Include="Scripts\associator\associator.js" />
+    <Content Include="Scripts\associator\list-item.html" />
+    <Content Include="Scripts\associator\style.css" />
     <Content Include="Scripts\attribute\addattribute.html" />
     <Content Include="Scripts\attribute\addattribute.js" />
     <Content Include="Scripts\attribute\editattributevalue.html" />
@@ -534,6 +540,8 @@
     <Content Include="Views\Admin\CashApplyIndex.cshtml" />
     <Content Include="Views\RegionData\RegionTypeIndex.cshtml" />
     <Content Include="Views\Product\MarketSkuIndex.cshtml" />
+    <Content Include="Views\Associator\Index.cshtml" />
+    <Content Include="Views\Associator\_AssociatorLeft.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

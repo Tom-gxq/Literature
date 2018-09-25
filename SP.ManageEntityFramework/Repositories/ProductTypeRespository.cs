@@ -30,6 +30,19 @@ namespace SP.ManageEntityFramework.Repositories
                 return db.Select(q);
             }
         }
+        public List<ProductTypeEntity> GetProductTypeList(int kind)
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<ProductTypeEntity>();
+                if (kind >= 0)
+                {
+                    q = q.Where(x => x.Kind == kind);
+                }
+                q = q.OrderBy(x => x.DisplaySequence);
+                return db.Select(q);
+            }
+        }
         public List<ProductTypeEntity> GetTypeList(string accountId, int pageIndex, int pageSize)
         {
             using (var db = Context.OpenDbConnection())

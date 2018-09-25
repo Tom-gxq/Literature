@@ -30,7 +30,7 @@ namespace SP.Service.Domain.EventHandlers
                 StartDate = DateTime.Now,
                 EndDate = GetEndDate(handle.KindId, handle.Quantity),
                 Quantity = handle.Quantity,
-                Status = 1
+                Status = handle.Status
             };
             _reportDatabase.Add(item);
         }

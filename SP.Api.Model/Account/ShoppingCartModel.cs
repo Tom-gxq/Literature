@@ -20,5 +20,6 @@ namespace SP.Api.Model.Account
         public int ShopId { get; set; }
         public double Amount { get; set; }
         public double VIPAmount { get; set; }
+        public int ShipOrderId { get; set; }
     }
 }

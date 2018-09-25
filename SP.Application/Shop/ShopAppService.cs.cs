@@ -247,7 +247,7 @@ namespace SP.Application.Shop
             {
                 OwnerId = dto.OwnerId,
                 ShopId = dto.ShopId,
-                ShopStatus = false,
+                ShopStatus = dto.ShopStatus,
             });
         }
         public bool DelShopOwner(int shopId,string accountId)

@@ -49,8 +49,8 @@ namespace Account.Service.Business
             if (account != null)
             {
                 result.MobilePhone = account.MobilePhone;
-                result.Email = account.Email;
-                result.Password = account.Password;
+                result.Email = !string.IsNullOrEmpty(account?.Email) ? account.Email : string.Empty; 
+                result.Password = !string.IsNullOrEmpty(account?.Password) ? account.Password : string.Empty;
                 result.AccountId = account.AccountId;
                 result.AliBind = !string.IsNullOrEmpty(account.AliBind) ? account.AliBind : string.Empty;
                 result.WxBind = !string.IsNullOrEmpty(account.WxBind) ? account.WxBind : string.Empty;
@@ -311,6 +311,24 @@ namespace Account.Service.Business
             }
             return result;
         }
+        public static AssociatorResponse GetAssociatorByCode(string associatorCode)
+        {
+            var domain = ServiceLocator.AssociatorReportDatabase.GetAssociatorByCode(associatorCode);
+            var result = new AssociatorResponse();
+            result.Status = 10001;
+            if (domain != null)
+            {
+                result.Associator = new Associator();
+                result.Associator.Amount = domain.Amount;
+                result.Associator.AssociatorId = domain.Id.ToString();
+                result.Associator.PayOrderCode = domain.PayOrderCode != null ? domain.PayOrderCode : string.Empty;
+                result.Associator.EndDate = domain.EndDate != null ? domain.EndDate.Ticks : 0;
+                result.Associator.StartDate = domain.EndDate != null ? domain.StartDate.Ticks : 0;
+                result.Associator.Quantity = domain.Quantity;
+                result.Associator.PayType = domain.PayType;
+            }
+            return result;
+        }
         public static AccountResultResponse SetAccountPayPwd(string accountId, string payPwd)
         {
             ServiceLocator.CommandBus.Send(new CreateAccountPayPwdCommand(new Guid(accountId), payPwd));
@@ -364,8 +382,8 @@ namespace Account.Service.Business
             if (account != null)
             {
                 result.MobilePhone = account.MobilePhone;
-                result.Email = account.Email;
-                result.Password = account.Password;
+                result.Email = !string.IsNullOrEmpty(account?.Email) ? account.Email : string.Empty;
+                result.Password = !string.IsNullOrEmpty(account?.Password) ? account.Password : string.Empty;
                 result.AccountId = account.AccountId;
             }
             return result;
