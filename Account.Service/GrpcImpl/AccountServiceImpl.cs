@@ -454,6 +454,7 @@ namespace Account.Service.GrpcImpl
             {
                 logger.LogError(this.prjLicEID, ex, "UpdateShoppingCartQuantity Exception");
             }
+            logger.LogInformation(this.prjLicEID, "UpdateShoppingCartQuantity {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
 
@@ -466,15 +467,13 @@ namespace Account.Service.GrpcImpl
             try
             {
                 var result = ShoppingCartBusiness.UpdateShoppingCartEnabled(request.AccountId);
-                if (result)
-                {
-                    response.Status = 10001;
-                }
+                response.Status = 10001;
             }
             catch (Exception ex)
             {
                 logger.LogError(this.prjLicEID, ex, "UpdateShoppingCartEnabled Exception");
             }
+            logger.LogInformation(this.prjLicEID, "UpdateShoppingCartEnabled {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
 
@@ -501,6 +500,7 @@ namespace Account.Service.GrpcImpl
             {
                 logger.LogError(this.prjLicEID, ex, "UpdateShoppingCartOrderId Exception");
             }
+            logger.LogInformation(this.prjLicEID, "UpdateShoppingCartOrderId {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
         public override Task<RegionListResponse> GetSelectedRegionDataList(AccountIdRequest request, ServerCallContext context)

@@ -90,6 +90,42 @@ namespace Grpc.Service.Core.Caching
 
             return (TValue)value;
         }
+        public static object[] ListRange<TKey>(this ICache cache, TKey key,long start = 0, long stop = -1)
+        {
+            return cache.ListRange(key.ToString(), start, stop);
+        }
+        public static TValue ListRightPopLeftPush<TKey, TValue>(this ICache cache, TKey source, TKey destination)
+        {
+            var value = cache.ListRightPopLeftPush(source.ToString(), destination.ToString());
+            if (value == null)
+            {
+                return default(TValue);
+            }
+
+            return (TValue)value;
+        }
+        public static TValue ListRightPop<TKey, TValue>(this ICache cache, TKey key)
+        {
+            var value = cache.ListRightPop(key.ToString());
+            if (value == null)
+            {
+                return default(TValue);
+            }
+
+            return (TValue)value;
+        }
+        public static long ListRightPush<TKey, TValue>(this ICache cache, TKey key, TValue value)
+        {
+            var ret = cache.ListRightPush(key.ToString(), value.ToString());
+            
+            return ret;
+        }
+        public static long ListRemove<TKey, TValue>(this ICache cache, TKey key, TValue value, long count = 0)
+        {
+            var ret = cache.ListRemove(key.ToString(), value.ToString(), count);
+
+            return ret;
+        }
         public static bool SortedSetAdd<TKey>(this ICache cache, TKey key, TKey member, double value)
         {
             var val = cache.SortedSetAdd(key.ToString(), member.ToString(), value);

@@ -18,6 +18,7 @@ namespace Stock.Service.Business
         private static string CacheKey = "{0}:{1}:{2}:{3}";//{prefix}:{account}:{productId}:{stopId}
         private static readonly string InvalidKeyPrefix = "inv:p:s:m:s";
         private static string InvCacheKey = "{0}:{1}:{2}";//{prefix}:{productId}:{stopId}
+        private static readonly string OwnerListKey = "o:l:{0}:{1}";//{prefix}:{stopId}:{productId}
         public static ProductSkuResponse GetProductSku(string productId, int shopId)
         {
             var response = new ProductSkuResponse();
@@ -115,42 +116,68 @@ namespace Stock.Service.Business
         {
             var response = new SkuStatusResponse();
             response.Status = 10002;
-            var domainList = ServiceLocator.ReportDatabase.GetAllShopOwnerList(shopId);
+            //var domainList = ServiceLocator.ReportDatabase.GetAllShopOwnerList(shopId);
             var cache = IocManager.Instance.Resolve<ICacheManager>().GetCache<string, string>("CacheItems");
             if (cache != null)
             {
-                foreach (ShopOwnerDomain domain in domainList)
+                string ownerKey = string.Format(OwnerListKey, shopId,  productId);
+                var list = cache.ListRange(ownerKey)?.Reverse()?.ToList();
+                int firstStock = 0;
+                for (int i = 0; i < list.Count(); i++)
                 {
-                    string stockKey = string.Format(CacheKey, RedisKeyPrefix, domain.OwnerId, productId, shopId);
-                    object obj = cache.GetOrDefault(stockKey);                    
-                    try
-                    {
-                        domain.Stock = Convert.ToInt32(obj);
-                    }
-                    catch (Exception ex)
-                    {
-                        domain.Stock = 0;
-                    }
-                }
-                var list = domainList.OrderByDescending(x=>x.Stock).ToList();
-                foreach (var item in list)
-                {
-                    var decStock = 0;
-                    if(item.Stock <=0)
+                    var ownerId = list[i]?.ToString()??string.Empty;
+                    
+                    string stockKey = string.Format(CacheKey, RedisKeyPrefix, ownerId, productId, shopId);
+                    object obj = cache.GetOrDefault(stockKey);
+                    int decStock = 0;
+                    int ownerStock  = 0;
+                    int.TryParse(obj?.ToString()??"0",out ownerStock);
+
+                    var returnKey = cache.ListRightPopLeftPush(ownerKey, ownerKey);
+                    Console.WriteLine($"stockKey:[{stockKey}]    returnKey:[{returnKey}]   ownerId:[{ownerId}]");
+                    var shopDomain = ServiceLocator.ReportDatabase.GetShopStatus(ownerId);
+                    if (ownerStock <= 0 || !shopDomain.ShopStatus)
                     {
                         continue;
                     }
-                    if(item.Stock >= stock)
+                    if (ownerStock >= stock)
                     {
                         decStock = stock;
                         stock = 0;
                     }
                     else
                     {
-                        decStock = item.Stock;
+                        decStock = ownerStock;
                         stock = stock - decStock;
                     }
-                    string key = string.Format(CacheKey, RedisKeyPrefix, item.OwnerId, productId, shopId);
+                    if (i == 0)
+                    {
+                        firstStock = decStock;
+                    }
+                    else
+                    {
+                        string key = string.Format(CacheKey, RedisKeyPrefix, ownerId, productId, shopId);
+                        try
+                        {
+                            cache.DecrementValueBy(key, decStock);
+                            response.Status = 10001;
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("DecreaseProductSku ex=" + ex.Message);
+                        }
+                        ServiceLocator.CommandBus.Send(new CreatShipOrderCommand(orderId, ownerId, accountId, DateTime.Now, decStock, productId, shopId));
+                    }
+                    if (stock == 0)
+                    {
+                        break;
+                    }
+                }
+                
+                if(firstStock > 0 && list.Count()>0)
+                {
+                    var decStock = firstStock + stock;
+                    string key = string.Format(CacheKey, RedisKeyPrefix, list[0], productId, shopId);
                     try
                     {
                         cache.DecrementValueBy(key, decStock);
@@ -158,28 +185,9 @@ namespace Stock.Service.Business
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("DecreaseProductSku ex=" + ex.Message);
+                        Console.WriteLine("firstStock > 0 DecreaseProductSku ex=" + ex.Message);
                     }
-                    ServiceLocator.CommandBus.Send(new CreatShipOrderCommand(orderId, item.OwnerId, accountId, DateTime.Now, decStock, productId,shopId));
-                    if (stock == 0)
-                    {
-                        break;
-                    }
-                }
-                if(stock > 0 && list.Count>0)
-                {
-                    var decStock = 0 - stock;
-                    string key = string.Format(CacheKey, RedisKeyPrefix, list[0].OwnerId, productId, shopId);
-                    try
-                    {
-                        cache.DecrementValueBy(key, Math.Abs(decStock));
-                        response.Status = 10001;
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("stock > 0 DecreaseProductSku ex=" + ex.Message);
-                    }
-                    ServiceLocator.CommandBus.Send(new CreatShipOrderCommand(orderId, list[0].OwnerId, accountId, DateTime.Now, decStock, productId, shopId));
+                    ServiceLocator.CommandBus.Send(new CreatShipOrderCommand(orderId, list[0].ToString(), accountId, DateTime.Now, decStock, productId, shopId));
                 }
             }
             return response;
@@ -298,6 +306,13 @@ namespace Stock.Service.Business
                                 }
                                 break;
                         }
+                        string ownerKey = string.Format(OwnerListKey, item.ShopId, item.ProductId);
+                        var list = cache.ListRange(ownerKey)?.ToList();
+                        if(list != null && !list.Contains(item.AccountId))
+                        {
+                            cache.ListRightPush(ownerKey, item.AccountId);
+                        }
+
                         response.Status = 10001;
                         ServiceLocator.CommandBus.Send(new EditProductSkuCommand(Guid.NewGuid(),item.AccountId, item.ProductId, item.ShopId,item.Stock,item.Type));
                     }
@@ -334,6 +349,47 @@ namespace Stock.Service.Business
                         Console.WriteLine($"DelProductSku[{i}] ex=" + ex.Message);
                     }
                     i++;
+                }
+            }
+            return response;
+        }
+
+        public static SkuStatusResponse AddShopOwnerList(string accountId,string productId, int shopId)
+        {
+            var response = new SkuStatusResponse();
+            response.Status = 10002;
+            var cache = IocManager.Instance.Resolve<ICacheManager>().GetCache<string, string>("CacheItems");
+            if (cache != null)
+            {
+                string ownerKey = string.Format(OwnerListKey, shopId, productId);
+                try
+                {
+                    cache.ListRightPush(ownerKey, accountId);
+                    response.Status = 10001;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("AddShopOwnerList ex=" + ex.Message);
+                }
+            }
+            return response;
+        }
+        public static SkuStatusResponse DelShopOwnerList(string accountId, string productId, int shopId)
+        {
+            var response = new SkuStatusResponse();
+            response.Status = 10002;
+            var cache = IocManager.Instance.Resolve<ICacheManager>().GetCache<string, string>("CacheItems");
+            if (cache != null)
+            {
+                string ownerKey = string.Format(OwnerListKey, shopId, productId);
+                try
+                {
+                    cache.ListRemove(ownerKey, accountId);
+                    response.Status = 10001;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("DelShopOwnerList ex=" + ex.Message);
                 }
             }
             return response;

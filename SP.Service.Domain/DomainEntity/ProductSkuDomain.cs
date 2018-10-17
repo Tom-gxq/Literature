@@ -14,7 +14,8 @@ using System.Text;
 namespace SP.Service.Domain.DomainEntity
 {
     public class ProductSkuDomain : AggregateRoot<Guid>, IHandle<DecreaseProductSkuEvent>, 
-        IHandle<RedoProductSkuEvent>, IHandle<ProductSkuDBUpdateEvent>, IHandle<KafkaAddEvent>,IOriginator
+        IHandle<RedoProductSkuEvent>, IHandle<ProductSkuDBUpdateEvent>, IHandle<KafkaAddEvent>,
+        IHandle<ResidueSkuUpdateEvent> ,IOriginator
     {
         public string ProductId { get; internal set; }
         public string SkuId { get; internal set; }
@@ -108,6 +109,10 @@ namespace SP.Service.Domain.DomainEntity
             this.SkuId = e.AggregateId.ToString();
         }
         public void Handle(KafkaAddEvent e)
+        {
+
+        }
+        public void Handle(ResidueSkuUpdateEvent e)
         {
 
         }

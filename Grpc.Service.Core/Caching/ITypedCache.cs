@@ -107,5 +107,10 @@ namespace Grpc.Service.Core.Caching
         /// Clears all items in this cache.
         /// </summary>
         Task ClearAsync();
+        object[] ListRange(TKey key, long start = 0, long stop = -1);
+        TValue ListRightPopLeftPush(TKey source, TKey destination);
+        TValue ListRightPop(TKey key);
+        long ListRightPush(TKey key, TValue value);
+        long ListRemove(TKey key, TValue value, long count = 0);
     }
 }

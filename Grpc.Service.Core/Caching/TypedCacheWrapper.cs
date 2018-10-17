@@ -137,6 +137,26 @@ namespace Grpc.Service.Core.Caching
             InternalCache.DecrementValueBy(key.ToString(), count);
         }
 
+        public object[] ListRange(TKey key, long start = 0, long stop = -1)
+        {
+            return InternalCache.ListRange<TKey>(key, start, stop);
+        }
 
+        public TValue ListRightPopLeftPush(TKey source, TKey destination)
+        {
+            return InternalCache.ListRightPopLeftPush<TKey, TValue>(source, destination);
+        }
+        public TValue ListRightPop(TKey key)
+        {
+            return InternalCache.ListRightPop<TKey, TValue>(key);
+        }
+        public long ListRightPush(TKey key, TValue value)
+        {
+            return InternalCache.ListRightPush<TKey, TValue>(key, value);
+        }
+        public long ListRemove(TKey key, TValue value,long count=0)
+        {
+            return InternalCache.ListRemove<TKey, TValue>(key, value, count);
+        }
     }
 }

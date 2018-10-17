@@ -53,7 +53,11 @@ namespace Grpc.Service.Core.Caching
         /// <returns>Cached item or null if not found</returns>
         object GetOrDefault(string key);
         object HashGet(string hashKey, string key);
-
+        object[] ListRange(string key, long start = 0, long stop = -1);
+        object ListRightPopLeftPush(string source, string destination);
+        object ListRightPop(string key);
+        long ListRightPush(string key, string value);
+        long ListRemove(string key, string value, long count = 0);
         /// <summary>
         /// Gets an item from the cache or null if not found.
         /// </summary>

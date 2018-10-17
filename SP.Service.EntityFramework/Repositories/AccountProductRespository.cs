@@ -29,5 +29,9 @@ namespace SP.Service.EntityFramework.Repositories
         {
             return this.Select(x=>x.Status== 0 && x.PreStock > 0);
         }
+        public List<AccountProductEntity> GetAllAccountProduct()
+        {
+            return this.Select(x => x.Status == 0);
+        }
     }
 }

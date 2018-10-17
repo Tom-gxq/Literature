@@ -96,6 +96,7 @@ namespace SP.Service.Domain.EventHandlers
 
         public void Handle(ResidueSkuUpdateEvent handle)
         {
+            System.Console.WriteLine($"ResidueSkuUpdateEvent Handler SKuId={handle.AggregateId.ToString()} Stock={handle.Stock}");
             _reportDatabase.RedoProductSkuStock(new Entity.ProductSkuEntity()
             {
                 SkuId = handle.AggregateId.ToString(),

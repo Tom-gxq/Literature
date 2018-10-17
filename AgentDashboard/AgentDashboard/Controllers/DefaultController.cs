@@ -254,7 +254,10 @@ namespace AgentDashboard.Controllers
                 Status = 0,
             });
             JsonResult.Add("status", ret);
-
+            if(ret)
+            {
+                ServerStockBusiness.AddShopOwnerList(accountId, shopId, productId);
+            }
             return new JsonResult()
             {
                 Data = JsonResult,

@@ -166,5 +166,38 @@ namespace Stock.Service.GrpcImpl
             logger.LogInformation(this.prjLicEID, "DelProductSku {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
+
+        public override Task<SkuStatusResponse> AddShopOwnerList(AccountProductSkuRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "AddShopOwnerList {Date} {IPAdress} {Status} Connected! ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, "{AccountId} {ProductId} {ShopId}", request.AccountId, request.ProductId, request.ShopId);
+            SkuStatusResponse response = null;
+            try
+            {
+                response = ProductSkuBusiness.AddShopOwnerList(request.AccountId,request.ProductId, request.ShopId);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "AddShopOwnerList Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "AddShopOwnerList {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+        public override Task<SkuStatusResponse> DelShopOwnerList(AccountProductSkuRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "DelShopOwnerList {Date} {IPAdress} {Status} Connected! ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, "{AccountId} {ProductId} {ShopId}", request.AccountId, request.ProductId, request.ShopId);
+            SkuStatusResponse response = null;
+            try
+            {
+                response = ProductSkuBusiness.DelShopOwnerList(request.AccountId, request.ProductId, request.ShopId);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "DelShopOwnerList Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "DelShopOwnerList {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
     }
 }

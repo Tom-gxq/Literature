@@ -248,8 +248,7 @@ namespace Product.Service.Business
             {
                 var list = ServiceLocator.ReportDatabase.GetFoodShopProductList(districtId, shopId, pageIndex, (int)result.Total);
                 if (list != null)
-                {
-                    list = list.OrderByDescending(x=>x.SkuNum).Skip((pageIndex-1)* pageSize).Take(pageSize).ToList();
+                {                    
                     bool skuFlag = false;
                     var shop = ServiceLocator.ShopReportDatabase.GetShopById(shopId);
                     if (!string.IsNullOrEmpty(shop.StartTime))
@@ -261,11 +260,17 @@ namespace Product.Service.Business
                         }
                     }
                     var plist = list.GroupBy(x => x.ProductId);
-                    foreach (var item in plist)
+                    var sortList = new List<ProductDomain>();
+                    foreach(var item in plist)
+                    {
+                        sortList.Add(item.FirstOrDefault());
+                    }
+                    sortList = sortList.OrderByDescending(x => x.SkuNum).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+                    foreach (var item in sortList)
                     {
                         if (item != null)
                         {
-                            var product = ConvertProductDomainToResponse(item.FirstOrDefault());
+                            var product = ConvertProductDomainToResponse(item);
                             if (!skuFlag)
                             {
                                 //product.SkuNum = -1;

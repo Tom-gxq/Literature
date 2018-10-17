@@ -114,5 +114,35 @@ namespace StockGRPCInterface
                 return -1;
             }
         }
+        public static void AddShopOwnerList(string accountId, int shopId, string productId)
+        {
+            var client = ServerClientHelper.GetClient();
+            var request1 = new AccountProductSkuRequest()
+            {
+                AccountId = accountId,
+                ProductId = productId,
+                ShopId = shopId
+            };
+            if (client != null)
+            {
+                var reuslt = client.AddShopOwnerList(request1);
+                
+            }
+        }
+        public static void DelShopOwnerList(string accountId, int shopId, string productId)
+        {
+            var client = ServerClientHelper.GetClient();
+            var request1 = new AccountProductSkuRequest()
+            {
+                AccountId = accountId,
+                ProductId = productId,
+                ShopId = shopId
+            };
+            if (client != null)
+            {
+                var reuslt = client.DelShopOwnerList(request1);
+
+            }
+        }
     }
 }

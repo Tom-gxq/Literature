@@ -33,8 +33,8 @@ namespace SP.Service.EntityFramework.Repositories
         {
             return this.UpdateNonDefaults(new ShoppingCartsEntity()
             {
-                IsEnabled = false
-            }, x => x.AccountId == accountId && x.IsEnabled == true);
+                IsEnabled = true
+            }, x => x.AccountId == accountId && x.IsEnabled == false);
         }
 
         public int UpdateShoppingCartOrderId(string orderId, List<string> list)

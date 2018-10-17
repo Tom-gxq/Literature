@@ -67,6 +67,39 @@ namespace RedisCache.Service.Runtime.Caching.Redis
             var objbyte = _database.HashGet(GetHashKey(hashKey), GetLocalizedKey(key));
             return objbyte.HasValue ? Deserialize(objbyte) : null;
         }
+        public override object[] ListRange(string key, long start = 0, long stop = -1)
+        {
+            var objbyte = _database.ListRange(key, start, stop);
+            List<object> retList = new List<object>();
+            if (objbyte != null)
+            {
+                foreach (var item in objbyte)
+                {
+                    retList.Add(Deserialize(item));
+                }
+            }
+            return retList.ToArray();
+        }
+        public override object ListRightPopLeftPush(string source, string destination)
+        {
+            var objbyte = _database.ListRightPopLeftPush(source, destination);
+            return objbyte.HasValue ? Deserialize(objbyte) : null;
+        }
+        public override object ListRightPop(string key)
+        {
+            var objbyte = _database.ListRightPop(key);
+            return objbyte.HasValue ? Deserialize(objbyte) : null;
+        }
+        public override long ListRightPush(string key, string value)
+        {
+            var objbyte = _database.ListRightPush(key, value);
+            return objbyte;
+        }
+        public override long ListRemove(string key, string value, long count = 0)
+        {
+            var objbyte = _database.ListRemove(key, value, count);
+            return objbyte;
+        }
         public override bool SortedSetAdd(string key, string member, double value)
         {
             var objbyte = _database.SortedSetAdd(GetHashKey(key), member, value);

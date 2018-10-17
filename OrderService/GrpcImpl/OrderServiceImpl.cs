@@ -270,7 +270,7 @@ namespace Order.Service.GrpcImpl
             logger.LogInformation(this.prjLicEID, "UpdateShippingOrder {Date} {IPAdress} {Status} Connected! OrderStatus:[{OrderStatus}]", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.OrderStatus);
             foreach(var item in request.ShipOrderId)
             {
-                System.Console.WriteLine($"ShipOrderId = {item} ");
+                System.Console.WriteLine($"UpdateShippingOrder ShipOrderId = {item} {DateTime.Now.ToLongDateString()}");
             }
             var response = new OrderStatusResponse();
             response.Status = 10002;

@@ -85,6 +85,11 @@ namespace Grpc.Service.Core.Caching
         public abstract long KeyDelete(string[] keys);
         public abstract object GetOrDefault(string key);
         public abstract object HashGet(string hashKey, string key);
+        public abstract object[] ListRange(string key, long start = 0, long stop = -1);
+        public abstract object ListRightPopLeftPush(string source, string destination);
+        public abstract object ListRightPop(string key);
+        public abstract long ListRightPush(string key, string value);
+        public abstract long ListRemove(string key, string value, long count = 0);
         public abstract bool SortedSetAdd(string key, string member, double value);
         public abstract List<object> SortedSetRangeByScore(string key, double start, double stop );
         public abstract IBatch CreateBatch(object asyncState = null);
