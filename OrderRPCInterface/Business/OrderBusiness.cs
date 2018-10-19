@@ -467,6 +467,7 @@ namespace OrderGRPCInterface.Business
                     domain.orderCode = item.OrderCode;
                     domain.orderDate = new DateTime(item.OrderDate).ToString("yyyy-MM-dd");
                     domain.payDate = GetTimestamp(new DateTime(item.PayDate));
+                    domain.isVip = item.IsVip;
                     if (item.Account != null)
                     {
                         domain.account = new SP.Api.Model.Account.AccountModel();

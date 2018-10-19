@@ -108,10 +108,10 @@ namespace SP.Service.Domain.DomainEntity
                 ApplyChange(new ProductSkuEditEvent(id, host, accountId));
             }
         }
-        public void AddKafkaInfo(OrderStatus orderStatus,int buildingId)
+        public void AddKafkaInfo(OrderStatus orderStatus,int schoolId)
         {
             if (orderStatus == OrderStatus.Payed)
-            {
+            {                
                 var config = IocManager.Instance.Resolve<IConfigurationRoot>();
                 string kafkaIP = string.Empty;
                 if (config != null)
@@ -121,7 +121,7 @@ namespace SP.Service.Domain.DomainEntity
                 KafkaProducer producer = new KafkaProducer();
                 producer.IPConfig = kafkaIP;
                 producer.Order = this.GetMemento() as OrdersEntity;
-                producer.BuildingId = buildingId;
+                producer.BuildingId = schoolId;
                 ApplyChange(new KafkaAddEvent(producer));
             }
         }

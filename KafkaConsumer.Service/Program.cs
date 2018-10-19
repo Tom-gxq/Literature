@@ -44,9 +44,9 @@ namespace KafkaConsumer.Service
     class KafkaService
     {
         SP.Consumer.KafkaConsumer Consumer;
-        public KafkaService(string host,string buildingId)
+        public KafkaService(string host,string schoolId)
         {
-            Consumer = new SP.Consumer.KafkaConsumer("OrderConsumer", host, $"Account_{buildingId}");        
+            Consumer = new SP.Consumer.KafkaConsumer("OrderConsumer", host, $"Account_{schoolId}");        
         }
         public void Start()
         {

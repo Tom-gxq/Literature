@@ -17,9 +17,10 @@ namespace SP.Api.Model.Order
         public string orderCode { get; set; }
         public string orderDate { get; set; }
         public long payDate { get; set; }
+        public bool isVip { get; set; }
         public AccountModel account { get; set; }
         public AddressModel address { get; set; }
         public ShopModel shop { get; set; }        
-        public List<ShoppingCartModel> shoppingCartList { get; set; }
+        public List<ShoppingCartModel> shoppingCartList { get; set; }        
     }
 }

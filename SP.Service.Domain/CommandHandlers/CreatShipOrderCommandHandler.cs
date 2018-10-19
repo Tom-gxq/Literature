@@ -155,8 +155,16 @@ namespace SP.Service.Domain.CommandHandlers
         private void AddKafka(string orderId, OrderStatus orderStatus)
         {
             var aggregate = _orderReportDatabase.GetOrderByOrderId(orderId);
-            var address = _addressReportDatabase.GetAddressById(aggregate.AdressId, aggregate.AccountId);
-            aggregate.AddKafkaInfo(orderStatus, address.BuildingId);
+            var address = _addressReportDatabase.GetDefaultSelectedAddress(aggregate.AccountId);
+            if (address.SchoolId != 1)
+            {
+                System.Console.WriteLine($"CreatShipOrder AddKafka OrderId={orderId}  AccountId={aggregate.AccountId}  SchoolId={address.SchoolId}");
+            }
+            else
+            {
+                System.Console.WriteLine($"EditOrder AddKafka OrderId={orderId}");
+            }
+            aggregate.AddKafkaInfo(orderStatus, address.SchoolId);
             _repository.Save(aggregate);
         }
     }

@@ -13,6 +13,7 @@ namespace SP.Producer
 {
     public class KafkaProducer : AbstractEntity
     {
+        private static string EventType => "Order";
         private static string TopicTitle => "Account";
         public string IPConfig { get; set; }
         public OrdersEntity Order   { get; set; }
@@ -44,6 +45,7 @@ namespace SP.Producer
         private string GetMessage()
         {
             Dictionary<string, object> JsonResult = new Dictionary<string, object>();
+            JsonResult.Add("EventType", EventType);
             JsonResult.Add("OrderId", this.Order.OrderId);
             JsonResult.Add("OrderCode", this.Order.OrderCode);
             JsonResult.Add("AccountId", this.Order.AccountId);

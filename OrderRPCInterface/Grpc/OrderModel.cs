@@ -48,33 +48,33 @@ namespace SP.Service {
             "ZU9yZGVyUmVxdWVzdBITCgtvcmRlclN0YXR1cxgBIAEoBRIPCgdvcmRlcklk",
             "GAIgASgJEg4KBnBheVdheRgDIAEoBSJOChFTY2hvb2xMZWFkUmVxdWVzdBIR",
             "CglhY2NvdW50SWQYASABKAkSEwoLb3JkZXJTdGF0dXMYAiABKAUSEQoJb3Jk",
-            "ZXJUeXBlGAMgASgFIqICCg9TY2hvb2xMZWFkT3JkZXISDwoHb3JkZXJJZBgB",
+            "ZXJUeXBlGAMgASgFIrECCg9TY2hvb2xMZWFkT3JkZXISDwoHb3JkZXJJZBgB",
             "IAEoCRIOCgZhbW91bnQYAiABKAESEQoJb3JkZXJDb2RlGAMgASgJEhEKCW9y",
             "ZGVyRGF0ZRgEIAEoAxIPCgdwYXlEYXRlGAUgASgDEigKB2FjY291bnQYBiAB",
             "KAsyFy5TUC5TZXJ2aWNlLkFjY291bnRJbmZvEiQKB2FkZHJlc3MYByABKAsy",
             "Ey5TUC5TZXJ2aWNlLkFkZHJlc3MSHgoEc2hvcBgIIAEoCzIQLlNQLlNlcnZp",
             "Y2UuU2hvcBIyChBzaG9wcGluZ0NhcnRMaXN0GAkgAygLMhguU1AuU2Vydmlj",
-            "ZS5TaG9wcGluZ0NhcnQSEwoLb3JkZXJTdGF0dXMYCiABKAUiXQobU2Nob29s",
-            "TGVhZE9yZGVyTGlzdFJlc3BvbnNlEg4KBnN0YXR1cxgBIAEoBRIuCglvcmRl",
-            "ckluZm8YAiADKAsyGy5TUC5TZXJ2aWNlLlNjaG9vbExlYWRPcmRlciJGCgxU",
-            "cmFkZVJlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEhEKCXBhZ2VJbmRleBgD",
-            "IAEoBRIQCghwYWdlU2l6ZRgEIAEoBSJxCgVUcmFkZRIRCglhY2NvdW50SWQY",
-            "ASABKAkSDgoGYW1vdW50GAIgASgBEg4KBmNhcnRJZBgDIAEoCRISCgpjcmVh",
-            "dGVUaW1lGAQgASgDEhAKCHF1YW50aXR5GAUgASgFEg8KB3N1YmplY3QYBiAB",
-            "KAUiWAoRVHJhZGVMaXN0UmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEiQKCXRy",
-            "YWRlTGlzdBgCIAMoCzIRLlNQLlNlcnZpY2UuVHJhZGUSDQoFdG90YWwYBSAB",
-            "KAMikAEKGVNjaG9vbExlYWRGaW5hbmNlUmVzcG9uc2USDgoGc3RhdHVzGAEg",
-            "ASgFEhEKCWFjY291bnRJZBgCIAEoCRISCgpoYXZlQW1vdW50GAMgASgBEhEK",
-            "CXVzZUFtb3VudBgEIAEoARIUCgxhY3RpdmVBbW91bnQYBSABKAESEwoLYXBw",
-            "bHlBbW91bnQYBiABKAEiRwoTQWRkQ2FzaEFwcGx5UmVxdWVzdBIRCglhY2Nv",
-            "dW50SWQYASABKAkSDgoGYWxpcGF5GAIgASgJEg0KBW1vbmV5GAMgASgBIlAK",
-            "FlVwZGF0ZU9yZGVyQ29kZVJlcXVlc3QSEwoLb3JkZXJTdGF0dXMYASABKAUS",
-            "EQoJb3JkZXJDb2RlGAIgASgJEg4KBnBheVdheRgDIAEoBSIlChBPcmRlckNv",
-            "ZGVSZXF1ZXN0EhEKCW9yZGVyQ29kZRgBIAEoCSJGChpVcGRhdGVTaGlwcGlu",
-            "Z09yZGVyUmVxdWVzdBITCgtvcmRlclN0YXR1cxgBIAEoBRITCgtzaGlwT3Jk",
-            "ZXJJZBgCIAMoBSJhChZVcGRhdGVTaGlwT3JkZXJSZXF1ZXN0EhMKC29yZGVy",
-            "U3RhdHVzGAEgASgFEg8KB29yZGVySWQYAiABKAkSDgoGcGF5V2F5GAMgASgF",
-            "EhEKCWFjY291bnRJZBgEIAEoCWIGcHJvdG8z"));
+            "ZS5TaG9wcGluZ0NhcnQSEwoLb3JkZXJTdGF0dXMYCiABKAUSDQoFaXNWaXAY",
+            "CyABKAgiXQobU2Nob29sTGVhZE9yZGVyTGlzdFJlc3BvbnNlEg4KBnN0YXR1",
+            "cxgBIAEoBRIuCglvcmRlckluZm8YAiADKAsyGy5TUC5TZXJ2aWNlLlNjaG9v",
+            "bExlYWRPcmRlciJGCgxUcmFkZVJlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJ",
+            "EhEKCXBhZ2VJbmRleBgDIAEoBRIQCghwYWdlU2l6ZRgEIAEoBSJxCgVUcmFk",
+            "ZRIRCglhY2NvdW50SWQYASABKAkSDgoGYW1vdW50GAIgASgBEg4KBmNhcnRJ",
+            "ZBgDIAEoCRISCgpjcmVhdGVUaW1lGAQgASgDEhAKCHF1YW50aXR5GAUgASgF",
+            "Eg8KB3N1YmplY3QYBiABKAUiWAoRVHJhZGVMaXN0UmVzcG9uc2USDgoGc3Rh",
+            "dHVzGAEgASgFEiQKCXRyYWRlTGlzdBgCIAMoCzIRLlNQLlNlcnZpY2UuVHJh",
+            "ZGUSDQoFdG90YWwYBSABKAMikAEKGVNjaG9vbExlYWRGaW5hbmNlUmVzcG9u",
+            "c2USDgoGc3RhdHVzGAEgASgFEhEKCWFjY291bnRJZBgCIAEoCRISCgpoYXZl",
+            "QW1vdW50GAMgASgBEhEKCXVzZUFtb3VudBgEIAEoARIUCgxhY3RpdmVBbW91",
+            "bnQYBSABKAESEwoLYXBwbHlBbW91bnQYBiABKAEiRwoTQWRkQ2FzaEFwcGx5",
+            "UmVxdWVzdBIRCglhY2NvdW50SWQYASABKAkSDgoGYWxpcGF5GAIgASgJEg0K",
+            "BW1vbmV5GAMgASgBIlAKFlVwZGF0ZU9yZGVyQ29kZVJlcXVlc3QSEwoLb3Jk",
+            "ZXJTdGF0dXMYASABKAUSEQoJb3JkZXJDb2RlGAIgASgJEg4KBnBheVdheRgD",
+            "IAEoBSIlChBPcmRlckNvZGVSZXF1ZXN0EhEKCW9yZGVyQ29kZRgBIAEoCSJG",
+            "ChpVcGRhdGVTaGlwcGluZ09yZGVyUmVxdWVzdBITCgtvcmRlclN0YXR1cxgB",
+            "IAEoBRITCgtzaGlwT3JkZXJJZBgCIAMoBSJhChZVcGRhdGVTaGlwT3JkZXJS",
+            "ZXF1ZXN0EhMKC29yZGVyU3RhdHVzGAEgASgFEg8KB29yZGVySWQYAiABKAkS",
+            "DgoGcGF5V2F5GAMgASgFEhEKCWFjY291bnRJZBgEIAEoCWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, global::SP.Service.ProductModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -90,7 +90,7 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AddOrderResponse), global::SP.Service.AddOrderResponse.Parser, new[]{ "Status", "OrderId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.UpdateOrderRequest), global::SP.Service.UpdateOrderRequest.Parser, new[]{ "OrderStatus", "OrderId", "PayWay" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SchoolLeadRequest), global::SP.Service.SchoolLeadRequest.Parser, new[]{ "AccountId", "OrderStatus", "OrderType" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SchoolLeadOrder), global::SP.Service.SchoolLeadOrder.Parser, new[]{ "OrderId", "Amount", "OrderCode", "OrderDate", "PayDate", "Account", "Address", "Shop", "ShoppingCartList", "OrderStatus" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SchoolLeadOrder), global::SP.Service.SchoolLeadOrder.Parser, new[]{ "OrderId", "Amount", "OrderCode", "OrderDate", "PayDate", "Account", "Address", "Shop", "ShoppingCartList", "OrderStatus", "IsVip" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SchoolLeadOrderListResponse), global::SP.Service.SchoolLeadOrderListResponse.Parser, new[]{ "Status", "OrderInfo" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TradeRequest), global::SP.Service.TradeRequest.Parser, new[]{ "AccountId", "PageIndex", "PageSize" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.Trade), global::SP.Service.Trade.Parser, new[]{ "AccountId", "Amount", "CartId", "CreateTime", "Quantity", "Subject" }, null, null, null),
@@ -2679,6 +2679,7 @@ namespace SP.Service {
       Shop = other.shop_ != null ? other.Shop.Clone() : null;
       shoppingCartList_ = other.shoppingCartList_.Clone();
       orderStatus_ = other.orderStatus_;
+      isVip_ = other.isVip_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2835,6 +2836,21 @@ namespace SP.Service {
       }
     }
 
+    /// <summary>Field number for the "isVip" field.</summary>
+    public const int IsVipFieldNumber = 11;
+    private bool isVip_;
+    /// <summary>
+    ///*
+    ///是否是会员价
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool IsVip {
+      get { return isVip_; }
+      set {
+        isVip_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as SchoolLeadOrder);
@@ -2858,6 +2874,7 @@ namespace SP.Service {
       if (!object.Equals(Shop, other.Shop)) return false;
       if(!shoppingCartList_.Equals(other.shoppingCartList_)) return false;
       if (OrderStatus != other.OrderStatus) return false;
+      if (IsVip != other.IsVip) return false;
       return true;
     }
 
@@ -2874,6 +2891,7 @@ namespace SP.Service {
       if (shop_ != null) hash ^= Shop.GetHashCode();
       hash ^= shoppingCartList_.GetHashCode();
       if (OrderStatus != 0) hash ^= OrderStatus.GetHashCode();
+      if (IsVip != false) hash ^= IsVip.GetHashCode();
       return hash;
     }
 
@@ -2921,6 +2939,10 @@ namespace SP.Service {
         output.WriteRawTag(80);
         output.WriteInt32(OrderStatus);
       }
+      if (IsVip != false) {
+        output.WriteRawTag(88);
+        output.WriteBool(IsVip);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2953,6 +2975,9 @@ namespace SP.Service {
       size += shoppingCartList_.CalculateSize(_repeated_shoppingCartList_codec);
       if (OrderStatus != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(OrderStatus);
+      }
+      if (IsVip != false) {
+        size += 1 + 1;
       }
       return size;
     }
@@ -2998,6 +3023,9 @@ namespace SP.Service {
       shoppingCartList_.Add(other.shoppingCartList_);
       if (other.OrderStatus != 0) {
         OrderStatus = other.OrderStatus;
+      }
+      if (other.IsVip != false) {
+        IsVip = other.IsVip;
       }
     }
 
@@ -3056,6 +3084,10 @@ namespace SP.Service {
           }
           case 80: {
             OrderStatus = input.ReadInt32();
+            break;
+          }
+          case 88: {
+            IsVip = input.ReadBool();
             break;
           }
         }

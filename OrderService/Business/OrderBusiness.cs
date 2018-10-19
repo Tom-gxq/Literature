@@ -334,6 +334,7 @@ namespace Order.Service.Business
             order.OrderCode = !string.IsNullOrEmpty(entity.OrderCode)? entity.OrderCode:string.Empty;
             order.PayDate = entity.PayDate > DateTime.MinValue ? entity.PayDate.Ticks : 0;
             order.OrderStatus = (int)entity.OrderStatus;
+            order.IsVip = entity.IsVip;
             if (entity.Account != null)
             {
                 order.Account = new SP.Service.AccountInfo();

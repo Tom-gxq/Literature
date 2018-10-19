@@ -155,6 +155,7 @@ namespace SP.Service.Domain.Reporting
                         {
                             domain.OrderId = order.OrderId;
                             domain.OrderAddress = order.OrderAddress;
+                            domain.IsVip = order.IsVip;
                             var accountReportDatabase = IocManager.Instance.Resolve(typeof(AccountReportDatabase)) as AccountReportDatabase;
                             var account = accountReportDatabase.GetAccountById(order.ShipTo);
                             if (account != null)
