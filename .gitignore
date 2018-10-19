@@ -2338,3 +2338,17 @@ Timer.Service/bin/Release/TimerSvr.zip
 Timer.Service/obj/Debug/netcoreapp2.0/Timer.Service.csprojResolveAssemblyReference.cache
 Timer.Service/obj/Debug/netcoreapp2.0/Timer.Service.dll
 Timer.Service/obj/Debug/netcoreapp2.0/Timer.Service.pdb
+KafkaConsumer.Service/bin/Debug/netcoreapp2.0/RPCCommonTool.dll
+KafkaConsumer.Service/bin/Debug/netcoreapp2.0/RPCCommonTool.pdb
+KafkaConsumer.Service/bin/Debug/netcoreapp2.0/SP.Api.Model.dll
+KafkaConsumer.Service/bin/Debug/netcoreapp2.0/SP.Api.Model.pdb
+KafkaConsumer.Service/bin/Debug/netcoreapp2.0/StockGRPCInterface.dll
+KafkaConsumer.Service/bin/Debug/netcoreapp2.0/StockGRPCInterface.pdb
+KafkaConsumer.Service/bin/Release/PublishOutput/RPCCommonTool.dll
+KafkaConsumer.Service/bin/Release/PublishOutput/RPCCommonTool.pdb
+KafkaConsumer.Service/bin/Release/PublishOutput/SP.Api.Model.dll
+KafkaConsumer.Service/bin/Release/PublishOutput/SP.Api.Model.pdb
+KafkaConsumer.Service/bin/Release/PublishOutput/StockGRPCInterface.dll
+KafkaConsumer.Service/bin/Release/PublishOutput/StockGRPCInterface.pdb
+OrderRPCInterface/bin/Debug/netstandard2.0/OrderGRPCInterface.dll
+OrderRPCInterface/bin/Debug/netstandard2.0/OrderGRPCInterface.pdb
