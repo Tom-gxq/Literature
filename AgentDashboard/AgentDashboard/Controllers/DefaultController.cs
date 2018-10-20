@@ -789,8 +789,24 @@ namespace AgentDashboard.Controllers
         {
             Dictionary<string, object> JsonResult = new Dictionary<string, object>();
             IOrderAppService service = IocManager.Instance.Resolve<IOrderAppService>();
-            var result = service.SearchOrderListByKeyWord(keyWord, pageIndex, pageSize);
-            JsonResult.Add("result", result);
+            var list = service.SearchOrderListByKeyWord(keyWord, pageIndex, pageSize);
+            IProductAppService productService = IocManager.Instance.Resolve<IProductAppService>();
+            foreach (var item in list)
+            {
+                item.ProductList = productService.GetProductListByOrderId(item.OrderId);
+                foreach (var pitem in item.ProductList)
+                {
+                    string domain = ConfigurationManager.AppSettings["Qiniu.Domain"];
+                    foreach (var pimg in pitem.ProductImage)
+                    {
+                        if (!string.IsNullOrEmpty(pimg.ImgPath) && !string.IsNullOrEmpty(domain))
+                        {
+                            pimg.ImgPath = domain + pimg.ImgPath;
+                        }
+                    }
+                }
+            }
+            JsonResult.Add("result", list);
             var total = service.SearchOrderListByKeyWordCount(keyWord);
             PageModel jObject = new PageModel();
             jObject.Total = (int)total;
