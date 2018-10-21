@@ -92,7 +92,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSRedis.NetCore", "CSRedis.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Timer.Service", "Timer.Service\Timer.Service.csproj", "{F91989F4-B1F2-46C6-B126-1AC6A42A7067}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KafkaSellerConsumer.Service", "KafkaSellerConsumer.Service\KafkaSellerConsumer.Service.csproj", "{7A59EEA3-1A46-4EEE-A215-74E167D9D890}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KafkaSellerConsumer.Service", "KafkaSellerConsumer.Service\KafkaSellerConsumer.Service.csproj", "{7A59EEA3-1A46-4EEE-A215-74E167D9D890}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepeatedTokenGRPCInterface", "RepeatedTokenGRPCInterface\RepeatedTokenGRPCInterface.csproj", "{4D312FDB-D127-443E-893C-ECCB01C0257D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepeatedToken.Service", "RepeatedToken.Service\RepeatedToken.Service.csproj", "{CC6E0EC3-B385-48D1-BEDD-37A3075AA4B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -256,6 +260,14 @@ Global
 		{7A59EEA3-1A46-4EEE-A215-74E167D9D890}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A59EEA3-1A46-4EEE-A215-74E167D9D890}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A59EEA3-1A46-4EEE-A215-74E167D9D890}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D312FDB-D127-443E-893C-ECCB01C0257D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D312FDB-D127-443E-893C-ECCB01C0257D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D312FDB-D127-443E-893C-ECCB01C0257D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D312FDB-D127-443E-893C-ECCB01C0257D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC6E0EC3-B385-48D1-BEDD-37A3075AA4B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC6E0EC3-B385-48D1-BEDD-37A3075AA4B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC6E0EC3-B385-48D1-BEDD-37A3075AA4B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC6E0EC3-B385-48D1-BEDD-37A3075AA4B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -294,6 +306,8 @@ Global
 		{01589377-7F4D-43CD-8F58-758C26524AA4} = {86BCEEB1-94AE-44F0-891B-1135910FA566}
 		{F91989F4-B1F2-46C6-B126-1AC6A42A7067} = {48DA2324-1307-4897-8D86-91221A227271}
 		{7A59EEA3-1A46-4EEE-A215-74E167D9D890} = {48DA2324-1307-4897-8D86-91221A227271}
+		{4D312FDB-D127-443E-893C-ECCB01C0257D} = {48DA2324-1307-4897-8D86-91221A227271}
+		{CC6E0EC3-B385-48D1-BEDD-37A3075AA4B5} = {48DA2324-1307-4897-8D86-91221A227271}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {97F59FCE-65D7-438A-8C58-E94BDEC135B5}

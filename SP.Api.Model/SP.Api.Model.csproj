@@ -82,6 +82,7 @@
     <Compile Include="Product\SellerProductModel.cs" />
     <Compile Include="Product\ShopModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepeatedToken\RepeatedTokenModel.cs" />
     <Compile Include="Seller\AccountIDModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
