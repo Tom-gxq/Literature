@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using RepeatedToken.Service.ReportCommand;
+using SP.Service;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,7 +14,7 @@ namespace RepeatedToken.Service.AutoMap
         public TokenProfile()
         {
             // 输入
-            CreateMap<SendMessageRequest, SendInput>();
+            CreateMap<TokenKeyRequest, ReadTokenCommand>();
 
             // 输出
             CreateMap<SendOutput, SendMessageResponse>();
