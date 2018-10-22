@@ -148,11 +148,11 @@ namespace SP.Service.Domain.CommandHandlers
                         }
                     }
                     //将订单成功付款的信息添加到kafka队列中
-                    AddKafka(order.OrderId, orderStatus);
+                    //AddKafka(order.OrderId, orderStatus);
                 }
             }
         }
-        private void AddKafka(string orderId, OrderStatus orderStatus)
+        private async void AddKafka(string orderId, OrderStatus orderStatus)
         {
             var aggregate = _orderReportDatabase.GetOrderByOrderId(orderId);
             var address = _addressReportDatabase.GetDefaultSelectedAddress(aggregate.AccountId);

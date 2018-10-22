@@ -20,9 +20,8 @@ namespace SP.Producer
                 {
                     if (sender == null)
                         sender = new Sender();
-
-                    return sender;
                 }
+                return sender;
             }
         }
     }

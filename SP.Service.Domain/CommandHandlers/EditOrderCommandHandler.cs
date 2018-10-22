@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SP.Service.Domain.CommandHandlers
 {
@@ -137,70 +138,23 @@ namespace SP.Service.Domain.CommandHandlers
         }
         private void CaclCommsion(LeadOrderDomain order, OrderStatus orderStatus)
         {
-            double commsion = 0;
-            if (order != null && order.Shop != null && !string.IsNullOrEmpty(order.Shop.OwnerId)
-                && order.ShoppingCarts != null)
+            if (order != null && orderStatus == Data.Enum.OrderStatus.Payed)
             {
-                
-                if (orderStatus == Data.Enum.OrderStatus.Success)
+                var list = _shipReportDatabase.GetShippingOrdersByOrderId(order.OrderId);
+                foreach (var ship in list)
                 {
-                    var config = IocManager.Instance.Resolve<IConfigurationRoot>();
-                    int marketId = -1;
-                    if (config != null)
+                    //更新产品已卖出的数量
+                    if (ship != null && ship.Id > 0)
                     {
-                        var reObj = config.GetSection("MarketId");
-                        int.TryParse(reObj?.Value,out marketId);
-                    }
-                    foreach (var cart in order.ShoppingCarts)
-                    {
-                        if (cart != null && !string.IsNullOrEmpty(cart.CartId))
-                        {
-                            double amount = 0;
-                            if (marketId == order.Shop.ShopType)
-                            {
-                                //超市提成方法
-                                amount = order.IsVip ? cart.VIPAmount: cart.Amount;
-                            }
-                            else
-                            {
-                                //餐饮提成方法
-                                amount = cart.Quantity * 1;
-                            } 
-                            var trade = new TradeDomain(order.Shop.OwnerId, cart.CartId, 1, amount);
-                            _tradeRepository.Save(trade);
-                            commsion += amount;
-                        }
-                    }
-                    var finance = _financeReportDatabase.GetAccountFinanceDetail(order.Shop.OwnerId);
-                    if (finance != null && !string.IsNullOrEmpty(finance.AccountId))
-                    {
-                        var financeDomain = new AccountFinanceDomain();
-                        financeDomain.EditHaveAmount(finance.AccountId, commsion);
-                        _financeRepository.Save(financeDomain);
-                    }
-                    else
-                    {
-                        var financeDomain = new AccountFinanceDomain(order.Shop.OwnerId, commsion);
-                        _financeRepository.Save(financeDomain);
+                        System.Console.WriteLine("Payed EditProductSkuDomainStock Quantity=" + ship.Stock);
+                        var sku = new ProductSkuDomain();
+                        //sku.EditProductSkuDomainStock(cart.Product.ProductId, cart.Quantity);
+                        sku.EditProductSkuOrderNum(ship.ShopId.Value, ship.ProductId, ship.ShippingId, ship.Stock.Value);
+                        _skuRepository.Save(sku);
                     }
                 }
-                else if (orderStatus == Data.Enum.OrderStatus.Payed)
-                {
-                    var list = _shipReportDatabase.GetShippingOrdersByOrderId(order.OrderId);
-                    foreach (var ship in list)
-                    {
-                        if (ship != null && ship.Id > 0)
-                        {
-                            System.Console.WriteLine("Payed EditProductSkuDomainStock Quantity=" + ship.Stock);
-                            var sku = new ProductSkuDomain();
-                            //sku.EditProductSkuDomainStock(cart.Product.ProductId, cart.Quantity);
-                            sku.EditProductSkuOrderNum(ship.ShopId.Value, ship.ProductId, ship.ShippingId, ship.Stock.Value);
-                            _skuRepository.Save(sku);
-                        }
-                    }
-                    //将订单成功付款的信息添加到kafka队列中
-                    AddKafka(order.OrderId,orderStatus);
-                }
+                //将订单成功付款的信息添加到kafka队列中
+                AddKafka(order.OrderId, orderStatus);
             }
         }
         private void AddKafka(string orderId,OrderStatus orderStatus)

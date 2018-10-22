@@ -2,6 +2,7 @@
 using SP.Producer;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Timers;
 
 namespace SP.Producer
@@ -22,6 +23,8 @@ namespace SP.Producer
         private List<AbstractEntity> runningQueries = new List<AbstractEntity>();
 
         private object singleLock = new object();
+        private object singleLock2 = new object();
+        private object singleLock3 = new object();
         private Threader threader;
         private Timer timer;
 
@@ -59,25 +62,30 @@ namespace SP.Producer
                 Start();
             }
         }
-        public void Start()
+        public  void Start()
         {
             lock (singleLock)
             {
-                if (this.SenderState == ThreaderState.Free && (this.waitingQueries.Count > 0 || this.runningQueries.Count > 0))
+                lock (singleLock2)
                 {
-                    this.senderState = ThreaderState.Running;
-                    this.runningQueries.Clear();
-                    this.runningQueries.AddRange(this.waitingQueries);
-                    this.waitingQueries.Clear();
-                    this.threader.Queries = this.runningQueries;
-                    if (this.threader.Queries.Count > 0)
+                    lock (singleLock3)
                     {
-                        System.Threading.Thread thread = new System.Threading.Thread(this.threader.Start);
-                        thread.Start();
-                    }
-                    else
-                    {
-                        this.senderState = ThreaderState.Free;
+                        if (this.SenderState == ThreaderState.Free && (this.waitingQueries.Count > 0 || this.runningQueries.Count > 0))
+                        {
+                            this.senderState = ThreaderState.Running;
+                            this.runningQueries.Clear();
+                            this.runningQueries.AddRange(this.waitingQueries);
+                            this.waitingQueries.Clear();
+                            this.threader.Queries = this.runningQueries;
+                            if (this.threader.Queries.Count > 0)
+                            {
+                                this.threader.Start();
+                            }
+                            else
+                            {
+                                this.senderState = ThreaderState.Free;
+                            }
+                        }
                     }
                 }
             }
