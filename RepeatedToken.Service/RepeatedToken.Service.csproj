@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ReportCommand\GenerateCommand.cs" />
+    <Compile Remove="ReportCommand\UpdateStatusCommand.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.1.1" />
     <PackageReference Include="Google.Protobuf" Version="3.4.1" />
     <PackageReference Include="Grpc.Core" Version="1.6.1" />

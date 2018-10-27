@@ -87,6 +87,10 @@ namespace Grpc.Service.Core.Reflection
                 {
                     IocManager.Instance.Register(type, DependencyLifeStyle.Singleton);
                 }
+                else if(type.GetTypeInfo().GetInterface(typeof(IDomainFactory).FullName) != null)
+                {
+                    IocManager.Instance.Register(type, DependencyLifeStyle.Singleton);
+                }
             }
             RegisterForIEventStorage(IocManager.Instance);
 

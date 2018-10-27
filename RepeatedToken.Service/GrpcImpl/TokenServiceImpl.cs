@@ -2,7 +2,9 @@
 using Grpc.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using RepeatedToken.Service.ReportCommand;
 using SP.Service;
+using SP.Service.Domain.Commands.Token;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -30,56 +32,76 @@ namespace RepeatedToken.Service.GrpcImpl
             }
         }
 
-        public override Task<RepeatedTokenResponse> GetRepeatedToken(TokenKeyRequest request, ServerCallContext context)
+        public override Task<RepeatedTokenResponse> GetRepeatedToken(RepeatedTokenKeyRequest request, ServerCallContext context)
         {
             logger.LogInformation(this.prjLicEID, "GetRepeatedToken {Date} {IPAdress} {Status} Connected! ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
             logger.LogInformation(this.prjLicEID, "GetRepeatedToken {Key} {AccountId}", request.Key,request.AccountId);
             RepeatedTokenResponse response = null;
             try
             {
-                var input = Mapper.Map<SendInput>(request);
-                var output = TokenBusiness.GetRepeatedToken(request.AccountId, request.Key);
-                response = Mapper.Map<SendMessageResponse>(output);
+                var input = Mapper.Map<ReadTokenCommand>(request);
+                var output = RepeatedToken.getInstance().GetRepeatedToken(input); ;
+                response = Mapper.Map<RepeatedTokenResponse>(output);
             }
             catch (Exception ex)
             {
+                response = new RepeatedTokenResponse();
+                response.Status = 10003;
                 logger.LogError(this.prjLicEID, ex, "GetRepeatedToken Exception");
             }
             logger.LogInformation(this.prjLicEID, "GetRepeatedToken {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
 
-        public override Task<RepeatedTokenResultResponse> AddRepeatedToken(RepeatedTokenRequest request, ServerCallContext context)
+        public override Task<RepeatedTokenResponse> GenerateRepeatedToken(AccountIdRequest request, ServerCallContext context)
         {
-            logger.LogInformation(this.prjLicEID, "AddRepeatedToken {Date} {IPAdress} {Status} Connected! ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
-            logger.LogInformation(this.prjLicEID, "AddRepeatedToken {AccessToken} {AccountId} {CreateTime}", request.AccessToken.AccessToken, request.AccessToken.AccountId, new DateTime(request.AccessToken.CreateTime).ToLongDateString());
-            RepeatedTokenResultResponse response = null;
+            logger.LogInformation(this.prjLicEID, "GenerateRepeatedToken {Date} {IPAdress} {Status} Connected! ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, "GetRepeatedToken {AccountId}", request.AccountId);
+
+            RepeatedTokenResponse response = null;
             try
             {
-                response = TokenBusiness.GetRepeatedToken(request.AccountId, request.Key);
+                var input = Mapper.Map<GenerateCommand>(request);
+                input.AccessToken = System.Guid.NewGuid().ToString().Replace("-", string.Empty).ToLower();
+                input.CreateTime = DateTime.Now;
+                input.Status = true;
+                var output = RepeatedToken.getInstance().GenerateRepeatedToken(input);
+                response = Mapper.Map<RepeatedTokenResponse>(output);
+                //response.RepeatedToken = Mapper.Map<SP.Service.RepeatedToken>(output.RepeatedToken);
             }
             catch (Exception ex)
             {
-                logger.LogError(this.prjLicEID, ex, "AddRepeatedToken Exception");
+                response = new RepeatedTokenResponse();
+                response.Status = 10003;
+                logger.LogError(this.prjLicEID, ex, "GenerateRepeatedToken Exception");
             }
-            logger.LogInformation(this.prjLicEID, "AddRepeatedToken {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            logger.LogInformation(this.prjLicEID, "GenerateRepeatedToken {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
 
-        public override Task<RepeatedTokenResultResponse> UpdateRepeatedTokenDisabled(TokenKeyRequest request, ServerCallContext context)
+        public override Task<RepeatedTokenResultResponse> UpdateRepeatedTokenDisabled(RepeatedTokenKeyRequest request, ServerCallContext context)
         {
-            logger.LogInformation(this.prjLicEID, "GetRepeatedToken {Date} {IPAdress} {Status} Connected! ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
-            logger.LogInformation(this.prjLicEID, "GetRepeatedToken {Key} {AccountId}", request.Key, request.AccountId);
-            RepeatedTokenResultResponse response = null;
+            logger.LogInformation(this.prjLicEID, "UpdateRepeatedTokenDisabled {Date} {IPAdress} {Status} Connected! ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, "UpdateRepeatedTokenDisabled {Key} {AccountId}", request.Key, request.AccountId);
+            RepeatedTokenResultResponse response = new RepeatedTokenResultResponse();
+            response.Status = 10002;
             try
             {
-                response = TokenBusiness.GetRepeatedToken(request.AccountId, request.Key);
+                var input = Mapper.Map<UpdateStatusCommand>(request);
+                input.Status = false;
+                input.UpdateTime = DateTime.Now;
+                var output = RepeatedToken.getInstance().UpdateRepeatedTokenDisabled(input);
+                if(output)
+                {
+                    response.Status = 10001;
+                }
             }
             catch (Exception ex)
             {
-                logger.LogError(this.prjLicEID, ex, "GetRepeatedToken Exception");
+                response.Status = 10003;
+                logger.LogError(this.prjLicEID, ex, "UpdateRepeatedTokenDisabled Exception");
             }
-            logger.LogInformation(this.prjLicEID, "GetRepeatedToken {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            logger.LogInformation(this.prjLicEID, "UpdateRepeatedTokenDisabled {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
     }

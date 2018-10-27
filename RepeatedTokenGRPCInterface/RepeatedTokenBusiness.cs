@@ -10,7 +10,7 @@ namespace RepeatedTokenGRPCInterface
         public static RepeatedTokenModel GetRepeatedTokenByKey(string tokenKey, string accountId)
         {
             var client = RepeatedTokenClientHelper.GetClient();
-            var request1 = new TokenKeyRequest()
+            var request1 = new RepeatedTokenKeyRequest()
             {
                 Key = tokenKey,
                 AccountId = accountId
@@ -25,20 +25,14 @@ namespace RepeatedTokenGRPCInterface
             }
             return domain;
         }
-        public static bool AddRepeatedToken(string token,string accountId)
+        public static bool GenerateRepeatedToken(string accountId)
         {
             var client = RepeatedTokenClientHelper.GetClient();
-            var request1 = new RepeatedTokenRequest()
+            var request1 = new AccountIdRequest()
             {
-                AccessToken = new RepeatedToken()
-                {
-                    AccessToken = token,
-                    AccountId = accountId,
-                    CreateTime = DateTime.Now.Ticks,
-                    Status = 0
-                }
+                AccountId = accountId,
             };
-            var result = client.AddRepeatedToken(request1);
+            var result = client.GenerateRepeatedToken(request1);
             
             if (result.Status == 10001)
             {
@@ -52,7 +46,7 @@ namespace RepeatedTokenGRPCInterface
         public static bool UpdateRepeatedTokenDisabled(string tokenKey, string accountId)
         {
             var client = RepeatedTokenClientHelper.GetClient();
-            var request1 = new TokenKeyRequest()
+            var request1 = new RepeatedTokenKeyRequest()
             {
                 Key= tokenKey,
                 AccountId = accountId

@@ -6,6 +6,7 @@ using static MD.SmsService.Sms;
 using static SP.Service.AccountService;
 using static SP.Service.OrderService;
 using static SP.Service.ProductService;
+using static SP.Service.RepeatedTokenService;
 using static SP.Service.StockService;
 
 namespace Rpc.TestClient
@@ -50,30 +51,36 @@ namespace Rpc.TestClient
 
             //testGetDiscountByAccountId(client);
 
-            var client1 = new StockServiceClient(channel);
-            testUpdateProductSku(client1);
-            testGetAccountProductSku(client1);
-            testGetProductSku(client1);
-            System.Console.WriteLine("---------------------------------------------");
+            //var client1 = new StockServiceClient(channel);
+            //testUpdateProductSku(client1);
+            //testGetAccountProductSku(client1);
+            //testGetProductSku(client1);
+            //System.Console.WriteLine("---------------------------------------------");
 
-            testDecreaseProductSku(client1);
-            testGetAccountProductSku(client1);
-            testGetProductSku(client1);
-            System.Console.WriteLine("---------------------------------------------");
+            //testDecreaseProductSku(client1);
+            //testGetAccountProductSku(client1);
+            //testGetProductSku(client1);
+            //System.Console.WriteLine("---------------------------------------------");
 
-            testRedoProductSku(client1);
-            testGetAccountProductSku(client1);
-            testGetProductSku(client1);
-            System.Console.WriteLine("---------------------------------------------");
+            //testRedoProductSku(client1);
+            //testGetAccountProductSku(client1);
+            //testGetProductSku(client1);
+            //System.Console.WriteLine("---------------------------------------------");
 
-            testAddInvProductSku(client1);
-            testGetAccountProductSku(client1);
-            testGetProductSku(client1);
-            System.Console.WriteLine("---------------------------------------------");
+            //testAddInvProductSku(client1);
+            //testGetAccountProductSku(client1);
+            //testGetProductSku(client1);
+            //System.Console.WriteLine("---------------------------------------------");
 
-            testDelInvProductSku(client1);
-            testGetAccountProductSku(client1);
-            testGetProductSku(client1);
+            //testDelInvProductSku(client1);
+            //testGetAccountProductSku(client1);
+            //testGetProductSku(client1);
+
+            var client = new RepeatedTokenServiceClient(channel);
+            testGenerateRepeatedToken(client);
+            testGetRepeatedToken(client);
+            testUpdateRepeatedTokenDisabled(client);
+            testGetRepeatedToken(client);
         }
 
         private static void testRegistAccount(AccountServiceClient client)
@@ -471,6 +478,40 @@ namespace Rpc.TestClient
             };
             var list = client.GetProductSku(request1);
             Console.WriteLine("DelInvProductSku:" + list.ToString());
+        }
+
+         static string token;
+        private static void testGenerateRepeatedToken(RepeatedTokenServiceClient client)
+        {
+            var request1 = new AccountIdRequest()
+            {
+                AccountId = "12637c85-ef9c-420d-ae5b-6023012d878f"
+            };
+            var list = client.GenerateRepeatedToken(request1);
+            token = list.RepeatedToken.AccessToken;
+            Console.WriteLine("GenerateRepeatedToken:" + list.ToString());
+        }
+
+        private static void testGetRepeatedToken(RepeatedTokenServiceClient client)
+        {
+            var request1 = new RepeatedTokenKeyRequest()
+            {
+                AccountId = "12637c85-ef9c-420d-ae5b-6023012d878f",
+                Key = token
+            };
+            var list = client.GetRepeatedToken(request1);
+            Console.WriteLine("GetRepeatedToken:" + list.ToString());
+        }
+
+        private static void testUpdateRepeatedTokenDisabled(RepeatedTokenServiceClient client)
+        {
+            var request1 = new RepeatedTokenKeyRequest()
+            {
+                AccountId = "12637c85-ef9c-420d-ae5b-6023012d878f",
+                Key = token
+            };
+            var list = client.UpdateRepeatedTokenDisabled(request1);
+            Console.WriteLine("UpdateRepeatedTokenDisabled:" + list.ToString());
         }
     }
 }
