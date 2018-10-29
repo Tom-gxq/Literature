@@ -15,7 +15,8 @@ namespace SP.Service.Entity
         public int? Num_NewAssociator { get; set; }
         public int? Num_BuyAssociator { get; set; }
         public int? Num_NewOrder { get; set; }
-        public double? Num_OrderAmount { get; set; }
+        public double? Num_FoodOrderAmount { get;  set; }
+        public double? Num_MarkOrderAmount { get;  set; }
         public bool? IsChecked { get; set; }
         public DateTime? CreateTime { get; set; }
         public DateTime? UpdateTime { get; set; }

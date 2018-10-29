@@ -24,13 +24,14 @@ namespace SP.Service.EntityFramework.Repositories
             var result = this.Insert(sysStatistic);
             return result > 0;
         }
-        public bool UpdateOrderStatistic(DateTime createTime, double amount)
+        public bool UpdateOrderStatistic(DateTime createTime, double foodAmount,double markAmount)
         {
             using (var db = OpenDbConnection())
             {
                 var result = db.ExecuteSql($"UPDATE SP_SysStatistics SET Num_NewOrder = Num_NewOrder + 1," +
-                    $" Num_OrderAmount = Num_OrderAmount + @amount  " +
-                    $" WHERE  CreateTime = @createTime", new { amount, createTime });
+                    $" Num_FoodOrderAmount = isnull(Num_FoodOrderAmount,0) + @foodAmount,  " +
+                    $" Num_MarkOrderAmount = isnull(Num_MarkOrderAmount,0) + @markAmount  " +
+                    $" WHERE  CreateTime = @createTime", new { foodAmount, markAmount, createTime });
                 return result > 0;
             }
         }

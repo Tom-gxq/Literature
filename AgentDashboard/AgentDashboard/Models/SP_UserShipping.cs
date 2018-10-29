@@ -15,7 +15,7 @@ namespace AgentDashboard.Models
     public partial class SP_UserShipping
     {
         public int ShippingId { get; set; }
-        public string ShippingRegion { get; set; }
+        public int AddressId { get; set; }
         public string AccountId { get; set; }
         public string Address { get; set; }
         public string TelPhone { get; set; }

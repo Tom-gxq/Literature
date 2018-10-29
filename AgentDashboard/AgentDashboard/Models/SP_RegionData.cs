@@ -21,5 +21,6 @@ namespace AgentDashboard.Models
         public byte Status { get; set; }
         public System.DateTime CreateTime { get; set; }
         public Nullable<System.DateTime> UpdateTime { get; set; }
+        public Nullable<int> DisplaySequence { get; set; }
     }
 }

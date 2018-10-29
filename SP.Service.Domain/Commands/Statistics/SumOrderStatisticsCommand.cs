@@ -16,8 +16,9 @@ namespace SP.Service.Domain.Commands.Statistics
         public string AccountId { get; set; }
         public double Amount { get; set; }
         public int AddressId { get; set; }
+        public bool IsVip { get; set; }
 
-        public SumOrderStatisticsCommand(string orderId, string orderCode, string accountId, double amount, int addressId, DateTime orderDate)
+        public SumOrderStatisticsCommand(string orderId, string orderCode, string accountId, double amount, int addressId, DateTime orderDate,bool isVip)
         {
             this.OrderId = orderId;
             this.OrderCode = orderCode;
@@ -25,6 +26,7 @@ namespace SP.Service.Domain.Commands.Statistics
             this.AccountId = accountId;
             this.Amount = amount;
             this.AddressId = addressId;
+            this.IsVip = isVip;
         }
     }
 }

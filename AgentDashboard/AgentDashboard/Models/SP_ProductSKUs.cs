@@ -24,5 +24,6 @@ namespace AgentDashboard.Models
         public Nullable<int> AlertStock { get; set; }
         public decimal Price { get; set; }
         public Nullable<int> OrderNum { get; set; }
+        public int ResidueStock { get; set; }
     }
 }

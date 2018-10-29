@@ -21,5 +21,6 @@ namespace AgentDashboard.Models
         public int Subject { get; set; }
         public Nullable<decimal> Amount { get; set; }
         public System.DateTime CreateTime { get; set; }
+        public Nullable<int> ShipOrderId { get; set; }
     }
 }

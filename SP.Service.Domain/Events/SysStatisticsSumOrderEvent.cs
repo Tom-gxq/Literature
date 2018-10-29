@@ -6,7 +6,7 @@ namespace SP.Service.Domain.Events
 {
     public class SysStatisticsSumOrderEvent : OrderStatisticsSumEvent
     {
-        public SysStatisticsSumOrderEvent(string orderId, string orderCode, string accountId, double amount, int addressId, DateTime orderDate):base(orderId, orderCode, accountId, amount, addressId, orderDate)
+        public SysStatisticsSumOrderEvent(string orderId, string orderCode, string accountId, double foodAmount, double markAmount, int addressId, DateTime orderDate):base(orderId, orderCode, accountId, foodAmount, markAmount, addressId, orderDate)
         {
            
         }

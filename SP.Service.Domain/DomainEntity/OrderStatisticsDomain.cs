@@ -27,20 +27,20 @@ namespace SP.Service.Domain.DomainEntity
 
         }
         public OrderStatisticsDomain(string orderId, string orderCode, DateTime orderDate, string accountId,
-            double amount, int addressId)
+            double foodAmount, double markAmount, int addressId)
         {
-            ApplyChange(new OrderStatisticsCreateEvent(orderId, orderCode, accountId, amount, addressId, orderDate));
+            ApplyChange(new OrderStatisticsCreateEvent(orderId, orderCode, accountId, foodAmount, markAmount, addressId, orderDate));
         }
         public void SumOrderStatistics(string orderId, string orderCode, DateTime orderDate, string accountId,
-            double amount, int addressId)
+            double foodAmount, double markAmount, int addressId)
         {
-            ApplyChange(new OrderStatisticsSumEvent(orderId, orderCode, accountId, amount, addressId, orderDate));
+            ApplyChange(new OrderStatisticsSumEvent(orderId, orderCode, accountId, foodAmount, markAmount, addressId, orderDate));
         }
         public void Handle(OrderStatisticsSumEvent e)
         {
             this.OrderId = e.OrderId;
             this.OrderCode = e.OrderCode;
-            this.Amount = e.Amount;
+            this.Amount = e.FoodAmount + e.MarkAmount;
             this.OrderDate = e.OrderDate;
             this.AccountId = e.AccountId;
             this.AddressId = e.AddressId;
@@ -49,7 +49,7 @@ namespace SP.Service.Domain.DomainEntity
         {
             this.OrderId = e.OrderId;
             this.OrderCode = e.OrderCode;
-            this.Amount = e.Amount;
+            this.Amount = e.FoodAmount+e.MarkAmount;
             this.OrderDate = e.OrderDate;
             this.AccountId = e.AccountId;
             this.AddressId = e.AddressId;
@@ -59,7 +59,7 @@ namespace SP.Service.Domain.DomainEntity
             if (memento is ShipStatisticsEntity)
             {
                 var order = memento as ShipStatisticsEntity;
-                this.Amount = order.Num_OrderAmount.Value;
+                this.Amount = order.Num_FoodOrderAmount.Value+ order.Num_MarkOrderAmount.Value;
                 this.OrderDate = order.CreateTime.Value;
                 this.AccountId = order.AccountId;
                 this.AddressId = order.DormId.Value;

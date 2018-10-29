@@ -169,6 +169,7 @@ namespace SP.Service.Domain.CommandHandlers
             {
                 System.Console.WriteLine($"EditOrder AddKafka OrderId={orderId}");
             }
+            aggregate.AdressId = address.DormId;
             aggregate.AddKafkaInfo(orderStatus, address.SchoolId);
             _repository.Save(aggregate);
         }

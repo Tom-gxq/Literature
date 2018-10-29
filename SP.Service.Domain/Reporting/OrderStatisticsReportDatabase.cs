@@ -26,9 +26,9 @@ namespace SP.Service.Domain.Reporting
         {
             _repository.AddOrderStatistic(item);
         }
-        public bool UpdateOrderStatistic(string accountId, int dormId, DateTime createTime, double amount)
+        public bool UpdateOrderStatistic(string accountId, int dormId, DateTime createTime, double foodAmount, double markAmount)
         {
-            var result = _repository.UpdateOrderStatistic(accountId, dormId, createTime, amount);
+            var result = _repository.UpdateOrderStatistic(accountId, dormId, createTime, foodAmount, markAmount);
             return result;
         }
 

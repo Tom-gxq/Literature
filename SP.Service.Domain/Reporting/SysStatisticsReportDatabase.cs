@@ -27,9 +27,9 @@ namespace SP.Service.Domain.Reporting
         {
             _repository.AddSysStatistic(item);
         }
-        public bool UpdateOrderStatistic(string accountId, DateTime createTime, double amount)
+        public bool UpdateOrderStatistic(string accountId, DateTime createTime, double foodAmount, double markAmount)
         {
-            var result = _repository.UpdateOrderStatistic(createTime, amount);
+            var result = _repository.UpdateOrderStatistic(createTime, foodAmount, markAmount);
             return result;
         }
         public bool UpdateNewUserStatistic(DateTime createTime)

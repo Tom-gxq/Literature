@@ -44,9 +44,9 @@ D:\项目构建\饿家军餐饮平台\Src\Literature\AccountGRPCInterface\bin\De
 D:\项目构建\饿家军餐饮平台\Src\Literature\AccountGRPCInterface\bin\Debug\netstandard2.0\SP.Api.Model.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\AccountGRPCInterface\bin\Debug\netstandard2.0\RPCCommonTool.pdb
 D:\项目构建\饿家军餐饮平台\Src\Literature\AccountGRPCInterface\bin\Debug\netstandard2.0\SP.Api.Model.pdb
-D:\项目构建\饿家军餐饮平台\Src\Literature\AccountGRPCInterface\obj\Debug\netstandard2.0\AccountGRPCInterface.csprojResolveAssemblyReference.cache
 D:\项目构建\饿家军餐饮平台\Src\Literature\AccountGRPCInterface\obj\Debug\netstandard2.0\AccountGRPCInterface.csproj.CoreCompileInputs.cache
 D:\项目构建\饿家军餐饮平台\Src\Literature\AccountGRPCInterface\obj\Debug\netstandard2.0\AccountGRPCInterface.AssemblyInfoInputs.cache
 D:\项目构建\饿家军餐饮平台\Src\Literature\AccountGRPCInterface\obj\Debug\netstandard2.0\AccountGRPCInterface.AssemblyInfo.cs
 D:\项目构建\饿家军餐饮平台\Src\Literature\AccountGRPCInterface\obj\Debug\netstandard2.0\AccountGRPCInterface.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\AccountGRPCInterface\obj\Debug\netstandard2.0\AccountGRPCInterface.pdb
+D:\项目构建\饿家军餐饮平台\Src\Literature\AccountGRPCInterface\obj\Debug\netstandard2.0\AccountGRPCInterface.csprojResolveAssemblyReference.cache

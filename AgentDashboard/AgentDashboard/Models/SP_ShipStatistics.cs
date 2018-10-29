@@ -18,9 +18,10 @@ namespace AgentDashboard.Models
         public string AccountId { get; set; }
         public Nullable<int> DormId { get; set; }
         public Nullable<int> Num_NewOrder { get; set; }
-        public Nullable<decimal> Num_OrderAmount { get; set; }
+        public Nullable<decimal> Num_FoodOrderAmount { get; set; }
+        public Nullable<decimal> Num_MarkOrderAmount { get; set; }
         public System.DateTime CreateTime { get; set; }
         public Nullable<System.DateTime> UpdateTime { get; set; }
-        public Nullable<bool> IsChecked { get; set; }
+        public bool IsChecked { get; set; }
     }
 }

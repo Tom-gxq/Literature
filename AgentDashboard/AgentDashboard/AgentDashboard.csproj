@@ -429,7 +429,19 @@
     <Compile Include="Models\SP_RegionType.cs">
       <DependentUpon>SP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SP_RepeatedToken.cs">
+      <DependentUpon>SP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SP_ResEvent.cs">
+      <DependentUpon>SP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_SellerStatistics.cs">
+      <DependentUpon>SP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_SellerStatisticsTrade.cs">
+      <DependentUpon>SP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_ShipOrder.cs">
       <DependentUpon>SP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SP_ShippingOrders.cs">

@@ -34,7 +34,6 @@ namespace AgentDashboard.Models
         public virtual DbSet<SP_AccountProduct> SP_AccountProduct { get; set; }
         public virtual DbSet<SP_Admin> SP_Admin { get; set; }
         public virtual DbSet<SP_ApplyPartner> SP_ApplyPartner { get; set; }
-        public virtual DbSet<SP_Associator> SP_Associator { get; set; }
         public virtual DbSet<SP_Attribute> SP_Attribute { get; set; }
         public virtual DbSet<SP_AttributeValue> SP_AttributeValue { get; set; }
         public virtual DbSet<SP_BrandCategories> SP_BrandCategories { get; set; }
@@ -52,19 +51,24 @@ namespace AgentDashboard.Models
         public virtual DbSet<SP_RegionData> SP_RegionData { get; set; }
         public virtual DbSet<SP_RegionType> SP_RegionType { get; set; }
         public virtual DbSet<SP_ResEvent> SP_ResEvent { get; set; }
-        public virtual DbSet<SP_ShippingOrders> SP_ShippingOrders { get; set; }
-        public virtual DbSet<SP_ShipStatistics> SP_ShipStatistics { get; set; }
         public virtual DbSet<SP_Shop> SP_Shop { get; set; }
         public virtual DbSet<SP_ShopAttribute> SP_ShopAttribute { get; set; }
         public virtual DbSet<SP_ShoppingCarts> SP_ShoppingCarts { get; set; }
         public virtual DbSet<SP_ShopProduct> SP_ShopProduct { get; set; }
         public virtual DbSet<SP_Suppliers> SP_Suppliers { get; set; }
         public virtual DbSet<SP_SysEvent> SP_SysEvent { get; set; }
-        public virtual DbSet<SP_SysStatistics> SP_SysStatistics { get; set; }
         public virtual DbSet<SP_Trade> SP_Trade { get; set; }
-        public virtual DbSet<SP_UserShipping> SP_UserShipping { get; set; }
         public virtual DbSet<SP_ShopOwner> SP_ShopOwner { get; set; }
         public virtual DbSet<SP_SysKind> SP_SysKind { get; set; }
         public virtual DbSet<SP_RegionAccount> SP_RegionAccount { get; set; }
+        public virtual DbSet<SP_SellerStatistics> SP_SellerStatistics { get; set; }
+        public virtual DbSet<SP_SellerStatisticsTrade> SP_SellerStatisticsTrade { get; set; }
+        public virtual DbSet<SP_ShipOrder> SP_ShipOrder { get; set; }
+        public virtual DbSet<SP_RepeatedToken> SP_RepeatedToken { get; set; }
+        public virtual DbSet<SP_ShipStatistics> SP_ShipStatistics { get; set; }
+        public virtual DbSet<SP_Associator> SP_Associator { get; set; }
+        public virtual DbSet<SP_UserShipping> SP_UserShipping { get; set; }
+        public virtual DbSet<SP_ShippingOrders> SP_ShippingOrders { get; set; }
+        public virtual DbSet<SP_SysStatistics> SP_SysStatistics { get; set; }
     }
 }
