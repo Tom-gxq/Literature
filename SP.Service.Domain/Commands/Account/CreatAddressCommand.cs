@@ -1,4 +1,5 @@
 ﻿using Grpc.Service.Core.Domain.Commands;
+using SP.Service.Domain.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,7 +16,7 @@ namespace SP.Service.Domain.Commands.Account
         public string AccountId { get; set; }
         public string Dorm { get; set; }
         public int IsDefault { get; set; }
-        public CreatAddressCommand(Guid id, string userName, int gender, string mobile, int regionId, string address, string accountId,string dorm, int isDefault)
+        public CreatAddressCommand(Guid id, string userName, int gender, string mobile, int regionId, string address, string accountId,string dorm, int isDefault) : base(KafkaConfig.NormalCommandBusTopicTitle)
         {
             base.Id = id;
             this.UserName = userName;
@@ -26,6 +27,7 @@ namespace SP.Service.Domain.Commands.Account
             this.AccountId = accountId;
             this.Dorm = dorm;
             this.IsDefault = isDefault;
+            this.CommandType = CommandType.CreatAddress;
         }
     }
 }

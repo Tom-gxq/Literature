@@ -13,7 +13,7 @@ namespace SP.Service.Domain.Commands.Account
         public int Gender { get; set; }
         public int UserType { get; set; }
         public int DormId { get; set; }
-        public EditAccountInfoCommand(string accountId,  string userName, bool gender, string avatar,int userType,int dormId)
+        public EditAccountInfoCommand(string accountId,  string userName, bool gender, string avatar,int userType,int dormId) : base(KafkaConfig.NormalCommandBusTopicTitle)
         {
             this.Avatar = avatar;
             this.FullName = userName;
@@ -21,6 +21,7 @@ namespace SP.Service.Domain.Commands.Account
             this.AccountId = accountId;
             this.UserType = userType;
             this.DormId = dormId;
+            this.CommandType = CommandType.EditAccountInfo;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Grpc.Service.Core.Domain.Commands;
+using SP.Service.Domain.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,7 +14,7 @@ namespace SP.Service.Domain.Commands.Account
         public int Status { get; set; }
         public string UserName { get; set; }
 
-        public CreatAccountCommand(Guid id, string mobilePhone, string email, string password, int status,string userName)
+        public CreatAccountCommand(Guid id, string mobilePhone, string email, string password, int status,string userName) : base(KafkaConfig.NormalCommandBusTopicTitle)
         {
             base.Id = id;
             this.MobilePhone = mobilePhone;
@@ -21,6 +22,7 @@ namespace SP.Service.Domain.Commands.Account
             this.Password = password;
             this.Status = status;
             this.UserName = userName;
+            this.CommandType = CommandType.CreatAccount;
         }
     }
 }

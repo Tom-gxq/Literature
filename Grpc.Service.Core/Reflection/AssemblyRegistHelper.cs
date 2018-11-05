@@ -17,6 +17,8 @@ using Grpc.Service.Core.Domain.Repositories.Extensions;
 using Grpc.Service.Core.Domain.Entity;
 using Grpc.Service.Core.Domain.Reporting;
 using Grpc.Service.Core.Domain.Sender;
+using Grpc.Service.Core.Domain.Commands;
+using Grpc.Service.Core.Domain.Events;
 
 namespace Grpc.Service.Core.Reflection
 {
@@ -69,6 +71,14 @@ namespace Grpc.Service.Core.Reflection
                 else if (type.GetTypeInfo().GetInterface(typeof(IEventBus).FullName) != null)
                 {
                     IocManager.Instance.Register(typeof(IEventBus), type, DependencyLifeStyle.Singleton);
+                }
+                else if (type.GetTypeInfo().GetInterface(typeof(ICommandExecuteHandler).FullName) != null)
+                {
+                    IocManager.Instance.Register(typeof(ICommandExecuteHandler), type, DependencyLifeStyle.Singleton);
+                }
+                else if (type.GetTypeInfo().GetInterface(typeof(IEventExecuteHandler).FullName) != null)
+                {
+                    IocManager.Instance.Register(typeof(IEventExecuteHandler), type, DependencyLifeStyle.Singleton);
                 }
                 else if (type.GetTypeInfo().GetInterface(typeof(ICommandHandler).FullName) != null 
                     || type.GetTypeInfo().GetInterface(typeof(IEventHandler).FullName) != null)

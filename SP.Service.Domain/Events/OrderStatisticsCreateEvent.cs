@@ -9,7 +9,7 @@ namespace SP.Service.Domain.Events
     {
         public OrderStatisticsCreateEvent(string orderId, string orderCode, string accountId, double amount, int addressId, DateTime orderDate) :base(orderId, orderCode, accountId, amount, addressId, orderDate)
         {
-
+            this.EventType = EventType.OrderStatisticsCreate;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Grpc.Service.Core.Domain.Commands;
+using SP.Service.Domain.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,7 +18,8 @@ namespace SP.Service.Domain.Commands.Product
         public double VIPPrice { get; set; }
 
         public CreateProductCommand(Guid id, long mainType, long secondType, string productName, 
-            string suppliersId,double marketPrice,double purchasePrice,string imagePath, double vipPrice)
+            string suppliersId,double marketPrice,double purchasePrice,string imagePath, double vipPrice) 
+            : base(KafkaConfig.NormalCommandBusTopicTitle)
         {
             base.Id = id;
             this.MainType = mainType;
@@ -28,6 +30,7 @@ namespace SP.Service.Domain.Commands.Product
             this.PurchasePrice = purchasePrice;
             this.ImagePath = imagePath;
             this.VIPPrice = vipPrice;
+            this.CommandType = CommandType.CreateProduct;
         }
     }
 }

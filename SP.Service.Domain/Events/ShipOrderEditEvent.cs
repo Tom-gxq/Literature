@@ -12,6 +12,7 @@ namespace SP.Service.Domain.Events
             :base(aggregateId, orderStatus, payWay)
         {
             this.AccountId = accountId;
+            this.EventType = Grpc.Service.Core.Domain.Events.EventType.ShipOrderEdit;
         }
     }
 }

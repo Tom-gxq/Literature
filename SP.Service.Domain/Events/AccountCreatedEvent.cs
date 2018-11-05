@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Grpc.Service.Core.Domain.Events;
 using SP.Data.Enum;
+using SP.Service.Domain.Util;
 
 namespace SP.Service.Domain.Events
 {
@@ -14,12 +15,14 @@ namespace SP.Service.Domain.Events
         public int Status { get; internal set; }        
 
         public AccountCreatedEvent(Guid aggregateId, string mobilePhone, string email,string password,int status)
+            : base(KafkaConfig.EventBusTopicTitle)
         {
             AggregateId = aggregateId;
             MobilePhone = mobilePhone;
             Email = email;
             Password = password;
             Status = status;
+            EventType = EventType.AccountCreated;
         }
     }
     public class AliBindCreatedEvent :AccountCreatedEvent
@@ -28,6 +31,7 @@ namespace SP.Service.Domain.Events
         public AliBindCreatedEvent(Guid aggregateId, string mobilePhone, string otherAccount) :base(aggregateId, mobilePhone,null,null,1)
         {
             this.OtherAccount = otherAccount;
+            this.EventType = EventType.AliBindCreated;
         }
     }
     public class WxBindCreatedEvent : AccountCreatedEvent
@@ -36,6 +40,7 @@ namespace SP.Service.Domain.Events
         public WxBindCreatedEvent(Guid aggregateId, string mobilePhone, string otherAccount) : base(aggregateId, mobilePhone, null, null, 1)
         {
             this.OtherAccount = otherAccount;
+            this.EventType = EventType.WxBindCreated;
         }
     }
     public class QQBindCreatedEvent : AccountCreatedEvent
@@ -44,6 +49,7 @@ namespace SP.Service.Domain.Events
         public QQBindCreatedEvent(Guid aggregateId, string mobilePhone, string otherAccount) : base(aggregateId, mobilePhone, null, null, 1)
         {
             this.OtherAccount = otherAccount;
+            this.EventType = EventType.QQBindCreated;
         }
     }
 }

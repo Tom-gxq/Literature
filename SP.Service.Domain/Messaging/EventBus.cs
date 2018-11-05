@@ -10,6 +10,7 @@ namespace SP.Service.Domain.Messaging
     public class EventBus : IEventBus
     {
         private IEventHandlerFactory _eventHandlerFactory;
+        private static KafkaSender handler = new KafkaSender();
 
         public EventBus(IEventHandlerFactory eventHandlerFactory)
         {
@@ -18,11 +19,12 @@ namespace SP.Service.Domain.Messaging
 
         public void Publish<T>(T @event) where T : Event
         {
-            var handlers = _eventHandlerFactory.GetHandlers<T>();
-            foreach (var eventHandler in handlers)
-            {
-                eventHandler.Handle(@event);
-            }
+            //var handlers = _eventHandlerFactory.GetHandlers<T>();
+            //foreach (var eventHandler in handlers)
+            //{
+            //    eventHandler.Handle(@event);
+            //}
+            handler.Execute(@event);
         }
     }
 }

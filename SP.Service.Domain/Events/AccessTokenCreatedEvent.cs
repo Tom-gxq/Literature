@@ -1,4 +1,5 @@
 ﻿using Grpc.Service.Core.Domain.Events;
+using SP.Service.Domain.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,6 +16,7 @@ namespace SP.Service.Domain.Events
         public DateTime CreateTime { get; set; }
         public AccessTokenCreatedEvent(string accountId, string accessToken, DateTime accessTokenExpires,
             string refreshToken, DateTime refreshTokenExpires, DateTime createTime)
+            : base(KafkaConfig.EventBusTopicTitle)
         {
             AccessToken = accessToken;
             AccountId = accountId;
@@ -22,6 +24,7 @@ namespace SP.Service.Domain.Events
             RefreshToken = refreshToken;
             RefreshTokenExpires = refreshTokenExpires;
             CreateTime = createTime;
+            EventType = EventType.AccessTokenCreated;
         }
     }
 }

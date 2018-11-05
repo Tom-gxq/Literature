@@ -1,4 +1,5 @@
 ﻿using Grpc.Service.Core.Domain.Commands;
+using SP.Service.Domain.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,12 +19,14 @@ namespace SP.Service.Domain.Commands.ShoppingCart
 */
         public int ShopId { get; set; }
         public CreatShoppingCartCommand(Guid id, string productId, string accountId, int quantity, int shopId)
+            : base(KafkaConfig.NormalCommandBusTopicTitle)
         {
             base.Id = id;
             this.ShopId = shopId;
             this.ProductId = productId;
             this.AccountId = accountId;
             this.Quantity = quantity;
+            this.CommandType = CommandType.CreatShoppingCart;
         }
     }
 }

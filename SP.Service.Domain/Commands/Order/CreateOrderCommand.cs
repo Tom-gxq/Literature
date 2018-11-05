@@ -1,5 +1,6 @@
 ﻿using Grpc.Service.Core.Domain.Commands;
 using SP.Data.Enum;
+using SP.Service.Domain.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,7 +19,7 @@ namespace SP.Service.Domain.Commands
         public List<string> CartIds { get; set; }
         public int AddressId { get; set; }
 
-        public CreateOrderCommand(Guid id, string remark, string accountId, List<string> cartIds,int addressId)
+        public CreateOrderCommand(Guid id, string remark, string accountId, List<string> cartIds,int addressId) : base(KafkaConfig.CommandBusTopicTitle)
         {
             base.Id = id;
             this.Remark = remark;
@@ -27,6 +28,7 @@ namespace SP.Service.Domain.Commands
             this.AccountId = accountId;
             this.CartIds = cartIds;
             this.AddressId = addressId;
-        }        
+            this.CommandType = CommandType.CreateOrder;
+        }
     }
 }

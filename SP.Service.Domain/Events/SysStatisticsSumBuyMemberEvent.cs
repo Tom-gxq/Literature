@@ -8,7 +8,7 @@ namespace SP.Service.Domain.Events
     {
         public SysStatisticsSumBuyMemberEvent(string accountId, double amount, DateTime createTime) :base(accountId, amount, createTime)
         {
-           
+            this.EventType = Grpc.Service.Core.Domain.Events.EventType.SysStatisticsSumBuyMember;
         }
     }
 }

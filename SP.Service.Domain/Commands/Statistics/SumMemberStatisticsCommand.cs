@@ -15,6 +15,7 @@ namespace SP.Service.Domain.Commands.Statistics
         {
             this.Amount = amount;
             this.Type = type;
+            this.CommandType = CommandType.SumMemberStatistics;
         }
     }
     

@@ -11,6 +11,7 @@ namespace SP.Service.Domain.Commands.Order
             :base(id, remark, accountId, cartIds, addressId)
         {
             this.OrderType = orderType;
+            CommandType = Grpc.Service.Core.Domain.Commands.CommandType.CreatePurchaseOrder;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Grpc.Service.Core.Domain.Commands;
+using SP.Service.Domain.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,6 +19,7 @@ namespace SP.Service.Domain.Commands.Statistics
         public int AddressId { get; set; }
 
         public SumOrderStatisticsCommand(string orderId, string orderCode, string accountId, double amount, int addressId, DateTime orderDate)
+            : base(KafkaConfig.NormalCommandBusTopicTitle)
         {
             this.OrderId = orderId;
             this.OrderCode = orderCode;
@@ -25,6 +27,7 @@ namespace SP.Service.Domain.Commands.Statistics
             this.AccountId = accountId;
             this.Amount = amount;
             this.AddressId = addressId;
+            this.CommandType = CommandType.SumOrderStatistics;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Grpc.Service.Core.Domain.Events;
+using SP.Service.Domain.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,6 +16,7 @@ namespace SP.Service.Domain.Events
 
 
         public ProductSkuDBUpdateEvent(Guid id, string accountId, string productId, int shopId, int stock,int type)
+            : base(KafkaConfig.EventBusTopicTitle)
         {
             base.AggregateId = id;
             this.AccountId = accountId;
@@ -22,6 +24,7 @@ namespace SP.Service.Domain.Events
             this.Stock = stock;
             this.ProductId = productId;
             this.Type = type;
+            this.EventType = EventType.ProductSkuDBUpdate;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Grpc.Service.Core.Domain.Events;
+using SP.Service.Domain.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,6 +17,7 @@ namespace SP.Service.Domain.Events
         public int Status { get; set; }
         public AssociatorCreatedEvent(Guid associatorId,string accountId, string kindId,  int quantity,
             string payOrderCode, int payType, double amount,int status)
+            : base(KafkaConfig.EventBusTopicTitle)
         {
             this.AggregateId = associatorId;
             KindId = kindId;
@@ -25,6 +27,7 @@ namespace SP.Service.Domain.Events
             PayType = payType;
             Amount = amount;
             Status = status;
+            EventType = EventType.AssociatorCreated;
         }
     }
 }

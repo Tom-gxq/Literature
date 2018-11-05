@@ -1,4 +1,5 @@
 ﻿using Grpc.Service.Core.Domain.Events;
+using SP.Service.Domain.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,11 +12,13 @@ namespace SP.Service.Domain.Events
         public double Amount { get; internal set; }
         public double VipAmount { get; internal set; }
         public OrderSubAmountEvent(Guid aggregateId,string productId, double amount, double vipAmount)
+            : base(KafkaConfig.EventBusTopicTitle)
         {
             AggregateId = aggregateId;
             ProductId = productId;
             Amount = amount;
             VipAmount = vipAmount;
+            EventType = EventType.OrderSubAmount;
         }
     }
 }

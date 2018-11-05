@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Grpc.Service.Core.Domain.Events;
 using SP.Data.Enum;
+using SP.Service.Domain.Util;
 
 namespace SP.Service.Domain.Events
 {
@@ -23,6 +24,7 @@ namespace SP.Service.Domain.Events
         public OrderCreatedEvent(Guid aggregateId, string remark, OrderStatus orderStatus, 
             DateTime orderDate, string accountId, double amount, double vipAmount, int addressId, 
             string address,string mobile, bool isvip,int orderType=0)
+            : base(KafkaConfig.EventBusTopicTitle)
         {
             AggregateId = aggregateId;
             Remark = remark;
@@ -36,6 +38,7 @@ namespace SP.Service.Domain.Events
             Mobile = mobile;
             IsVip = isvip;
             OrderType = orderType;
+            EventType = EventType.OrderCreated;
         }
     }
 }

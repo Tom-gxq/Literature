@@ -1,4 +1,5 @@
 ﻿using Grpc.Service.Core.Domain.Events;
+using SP.Service.Domain.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,6 +15,7 @@ namespace SP.Service.Domain.Events
         public string Token { get; set; }
 
         public AuthenticationCreatedEvent(Guid aggregateId, int authType, string accountId, string account, string verifyCode, string token)
+             : base(KafkaConfig.EventBusTopicTitle)
         {
             base.AggregateId = aggregateId;
             this.AuthType = authType;
@@ -21,6 +23,7 @@ namespace SP.Service.Domain.Events
             this.Account = account;
             this.VerifyCode = verifyCode;
             this.Token = token;
+            this.EventType = EventType.AuthenticationCreated;
         }
     }
 }

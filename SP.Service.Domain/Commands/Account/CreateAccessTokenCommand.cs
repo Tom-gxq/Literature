@@ -1,4 +1,5 @@
 ﻿using Grpc.Service.Core.Domain.Commands;
+using SP.Service.Domain.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,7 +14,7 @@ namespace SP.Service.Domain.Commands.Account
         public string RefreshToken { get; set; }
         public DateTime RefreshTokenExpires { get; set; }
         public DateTime CreateTime { get; set; }
-        public CreateAccessTokenCommand(Guid id,string accessToken, string accountId, DateTime accessTokenExpires, string refreshToken, DateTime refreshTokenExpires)
+        public CreateAccessTokenCommand(Guid id,string accessToken, string accountId, DateTime accessTokenExpires, string refreshToken, DateTime refreshTokenExpires) : base(KafkaConfig.NormalCommandBusTopicTitle)
         {
             base.Id = id;
             this.AccessToken = accessToken;
@@ -22,6 +23,7 @@ namespace SP.Service.Domain.Commands.Account
             this.RefreshToken = refreshToken;
             this.RefreshTokenExpires = refreshTokenExpires;
             this.CreateTime = DateTime.Now;
+            this.CommandType = CommandType.CreateAccessToken;
         }
     }
 }

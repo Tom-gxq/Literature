@@ -1,4 +1,5 @@
 ﻿using Grpc.Service.Core.Domain.Events;
+using SP.Service.Domain.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,11 +13,13 @@ namespace SP.Service.Domain.Events
         public string AccountId { get; set; }
         public int OrderNum { get; set; }
         public ProductSkuOrderNumEvent(int shopId, string productId, string accountId, int orderNum)
+            : base(KafkaConfig.EventBusTopicTitle)
         {
             this.ProductId = productId;
             this.OrderNum = orderNum;
             this.ShopId = shopId;
             this.AccountId = accountId;
+            this.EventType = EventType.ProductSkuOrderNum;
         }
     }
 }

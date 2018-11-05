@@ -1,4 +1,5 @@
 ﻿using Grpc.Service.Core.Domain.Commands;
+using SP.Service.Domain.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,7 +14,7 @@ namespace SP.Service.Domain.Commands.Account
         public string VerifyCode { get; set; }
         public string Token { get; set; }
 
-        public CreatAuthenticationCommand(Guid id, int authType, string accountId, string account, string verifyCode, string token)
+        public CreatAuthenticationCommand(Guid id, int authType, string accountId, string account, string verifyCode, string token) : base(KafkaConfig.NormalCommandBusTopicTitle)
         {
             base.Id = id;
             this.AuthType = authType;
@@ -21,6 +22,7 @@ namespace SP.Service.Domain.Commands.Account
             this.Account = account;
             this.VerifyCode = verifyCode;
             this.Token = token;
+            this.CommandType = CommandType.CreatAuthentication;
         }
     }
 }

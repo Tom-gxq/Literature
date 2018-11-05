@@ -1,4 +1,5 @@
 ﻿using Grpc.Service.Core.Domain.Events;
+using SP.Service.Domain.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,6 +18,7 @@ namespace SP.Service.Domain.Events
         public string IM_QQ { get; internal set; }
 
         public AccountInfoCreatedEvent(Guid aggregateId, string avatar="", string fullname="", string weiXin="", string imqq="", int userType = 0, bool gender = false, DateTime? birthdate = null)
+            : base(KafkaConfig.EventBusTopicTitle)
         {
             AggregateId = aggregateId;
             Avatar = Avatar;
@@ -26,6 +28,7 @@ namespace SP.Service.Domain.Events
             Gender = gender;
             Birthdate = birthdate != null ? birthdate.Value:DateTime.MinValue;
             IM_QQ = imqq;
+            EventType = EventType.AccountInfoCreated;
         }
     }
 }

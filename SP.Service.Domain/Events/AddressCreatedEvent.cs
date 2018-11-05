@@ -1,4 +1,5 @@
 ﻿using Grpc.Service.Core.Domain.Events;
+using SP.Service.Domain.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,6 +17,7 @@ namespace SP.Service.Domain.Events
         public string Dorm { get; set; }
         public int IsDefault { get; set; }
         public AddressCreatedEvent(Guid aggregateId, string userName, int gender, string mobile, int regionId, string address, string accountId,string dorm, int isDefault)
+            : base(KafkaConfig.EventBusTopicTitle)
         {
             AggregateId = aggregateId;
             UserName = userName;
@@ -26,6 +28,7 @@ namespace SP.Service.Domain.Events
             AccountId = accountId;
             Dorm = dorm;
             IsDefault = isDefault;
+            EventType = EventType.AddressCreated;
         }
     }
 }

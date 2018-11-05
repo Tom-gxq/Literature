@@ -1,5 +1,6 @@
 ﻿using Grpc.Service.Core.Domain.Events;
 using Grpc.Service.Core.Domain.Sender;
+using SP.Service.Domain.Util;
 using SP.Service.Entity;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,10 @@ namespace SP.Service.Domain.Events
     {
         public AbstractEntity Prducer { get; internal set; }
 
-        public KafkaAddEvent(AbstractEntity prducer)
+        public KafkaAddEvent(AbstractEntity prducer) : base(KafkaConfig.EventBusTopicTitle)
         {
             Prducer = prducer;
+            this.EventType = EventType.KafkaAdd;
         }
     }
 }

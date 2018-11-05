@@ -8,7 +8,7 @@ namespace SP.Service.Domain.Events
     {
         public SysStatisticsSumOrderEvent(string orderId, string orderCode, string accountId, double amount, int addressId, DateTime orderDate):base(orderId, orderCode, accountId, amount, addressId, orderDate)
         {
-           
+            this.EventType = Grpc.Service.Core.Domain.Events.EventType.SysStatisticsSumOrder;
         }
     }
 }

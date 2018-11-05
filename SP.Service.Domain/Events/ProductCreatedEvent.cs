@@ -19,6 +19,7 @@ namespace SP.Service.Domain.Events
             this.SecondType = secondType;
             this.SuppliersId = suppliersId;
             this.VipPrice = vipPrice;
+            this.EventType = EventType.ProductCreated;
         }
     }
 }

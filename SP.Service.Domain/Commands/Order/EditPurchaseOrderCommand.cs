@@ -12,6 +12,7 @@ namespace SP.Service.Domain.Commands.Order
             :base(id, orderStatus, payWay)
         {
             this.AccountId = accountId;
+            this.CommandType = Grpc.Service.Core.Domain.Commands.CommandType.EditPurchaseOrder;
         }
     }
 }

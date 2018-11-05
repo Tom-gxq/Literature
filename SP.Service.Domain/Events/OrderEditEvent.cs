@@ -1,5 +1,6 @@
 ﻿using Grpc.Service.Core.Domain.Events;
 using SP.Data.Enum;
+using SP.Service.Domain.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,10 +12,12 @@ namespace SP.Service.Domain.Events
         public OrderStatus OrderStatus { get; internal set; }
         public OrderPay PayWay { get; internal set; }
         public OrderEditEvent(Guid aggregateId,OrderStatus orderStatus, OrderPay payWay)
+            : base(KafkaConfig.EventBusTopicTitle)
         {
             AggregateId = aggregateId;
             OrderStatus = orderStatus;
             PayWay = payWay;
+            EventType = EventType.OrderEdit;
         }
     }
 }

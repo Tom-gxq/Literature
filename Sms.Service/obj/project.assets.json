@@ -2491,6 +2491,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "AutoMapper": "6.1.1",
           "Castle.Core": "4.2.0",
           "Castle.Windsor": "4.1.0",
           "LanguageExt.Core": "2.1.22",

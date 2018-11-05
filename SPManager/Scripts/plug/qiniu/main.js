@@ -39,7 +39,7 @@ define(function (require, exports, module) {
                 //         return '';
                 //     }
                 // },
-                domain: 'http://om505g9f1.bkt.clouddn.com/',
+                domain: 'http://tu.ejiajunxy.cn/',
                 get_new_uptoken: false,
                 //downtoken_url: '/downtoken',
                 // unique_names: true,

@@ -1,4 +1,5 @@
 ﻿using Grpc.Service.Core.Domain.Commands;
+using SP.Service.Domain.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,12 +14,14 @@ namespace SP.Service.Domain.Commands.Product
         public int Stock { get; set; }
 
         public CreateProductSkuDBCommand(Guid id, string accountId, string productId, int shopId, int stock)
+            : base(KafkaConfig.NormalCommandBusTopicTitle)
         {
             base.Id = id;
             this.AccountId = accountId;
             this.ShopId = shopId;
             this.Stock = stock;
             this.ProductId = productId;
+            this.CommandType = CommandType.CreateProductSkuDB;
         }
     }
 }

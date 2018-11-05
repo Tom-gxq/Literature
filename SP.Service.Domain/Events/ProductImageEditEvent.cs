@@ -8,6 +8,7 @@ namespace SP.Service.Domain.Events
     {
         public ProductImageEditEvent(Guid id, string imagePath):base(id, imagePath)
         {
+            this.EventType = Grpc.Service.Core.Domain.Events.EventType.ProductImageEdit;
         }
     }
 }
