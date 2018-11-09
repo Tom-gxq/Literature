@@ -853,7 +853,7 @@ namespace AgentDashboard.Controllers
             var typeList = new List<ProductTypeDto>();
             if (!string.IsNullOrEmpty(dto.AccountId))
             {
-                typeList = typeService.GetTypeList(dto.AccountId, 1, 30);
+                typeList = typeService.GetTypeList(dto.AccountId, 1, int.MaxValue);
                 typeList.ForEach(x=> vm.TypeList.Add(new Models.ProductTypeModel()
                 {
                      TypeId = x.TypeId,
