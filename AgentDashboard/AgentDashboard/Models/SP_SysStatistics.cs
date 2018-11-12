@@ -18,7 +18,8 @@ namespace AgentDashboard.Models
         public System.DateTime CreateTime { get; set; }
         public Nullable<int> Num_NewUser { get; set; }
         public Nullable<int> Num_NewOrder { get; set; }
-        public Nullable<decimal> Num_OrderAmount { get; set; }
+        public Nullable<decimal> Num_FoodOrderAmount { get; set; }
+        public Nullable<decimal> Num_MarkOrderAmount { get; set; }
         public Nullable<int> Num_NewAssociator { get; set; }
         public Nullable<int> Num_BuyAssociator { get; set; }
         public Nullable<System.DateTime> UpdateTime { get; set; }

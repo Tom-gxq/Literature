@@ -16,5 +16,6 @@ namespace AgentDashboard.Models
     {
         public int ShopId { get; set; }
         public string ProductId { get; set; }
+        public Nullable<int> TypeId { get; set; }
     }
 }

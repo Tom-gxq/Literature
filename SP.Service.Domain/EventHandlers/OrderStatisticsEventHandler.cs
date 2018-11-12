@@ -21,7 +21,8 @@ namespace SP.Service.Domain.EventHandlers
             var item = new ShipStatisticsEntity()
             {
                 AccountId = handle.AccountId,
-                Num_OrderAmount = handle.Amount,
+                Num_FoodOrderAmount = handle.FoodAmount,
+                Num_MarkOrderAmount = handle.MarkAmount,
                 CreateTime = handle.OrderDate,
                 DormId = handle.AddressId,
                 Num_NewOrder = 1,                
@@ -31,7 +32,8 @@ namespace SP.Service.Domain.EventHandlers
         }
         public void Handle(OrderStatisticsSumEvent handle)
         {
-            _reportDatabase.UpdateOrderStatistic(handle.AccountId, handle.AddressId, handle.OrderDate, handle.Amount);
+            _reportDatabase.UpdateOrderStatistic(handle.AccountId, handle.AddressId, 
+                handle.OrderDate, handle.FoodAmount,handle.MarkAmount);
         }
     }
 }

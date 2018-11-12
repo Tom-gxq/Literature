@@ -853,7 +853,7 @@ namespace AgentDashboard.Controllers
             var typeList = new List<ProductTypeDto>();
             if (!string.IsNullOrEmpty(dto.AccountId))
             {
-                typeList = typeService.GetTypeList(dto.AccountId, 1, 30);
+                typeList = typeService.GetTypeList(dto.AccountId, 1, int.MaxValue);
                 typeList.ForEach(x=> vm.TypeList.Add(new Models.ProductTypeModel()
                 {
                      TypeId = x.TypeId,
@@ -1501,23 +1501,38 @@ namespace AgentDashboard.Controllers
             chart.labels = dayList.ToArray();
 
             List<int> orderAmountList = new List<int>();
+            List<int> markAmountList = new List<int>();
             using (SPEntities spEntity = new SPEntities())
             {
                 foreach (var strDay in dayList)
                 {
                     DateTime dateTime = DateTime.Parse(strDay);
-                    decimal? orderAmount = spEntity.SP_SysStatistics.SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_OrderAmount;
+                    decimal? orderAmount = spEntity.SP_SysStatistics.SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_FoodOrderAmount;
                     orderAmountList.Add((int)(orderAmount ?? 0));
+
+                    decimal? markAmount = spEntity.SP_SysStatistics.SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_MarkOrderAmount;
+                    markAmountList.Add((int)(markAmount ?? 0));
                 }
-            }
+            }            
 
             List<Datasets> dataSet = new List<Datasets>();
             dataSet.Add(new Datasets()
             {
-                label = DateTime.Now.ToString("yyyy"),
+                label = "餐饮",
+                backgroundColor=new string[] { "#800080" },
                 data = orderAmountList.ToArray(),
                 borderColor = new string[] { "#800080" },
-                borderWidth = "1"
+                borderWidth = "1",
+                fill=false
+            });
+            dataSet.Add(new Datasets()
+            {
+                label = "超市",
+                backgroundColor = new string[] { "#00FF00" },
+                data = markAmountList.ToArray(),
+                borderColor = new string[] { "#00FF00" },
+                borderWidth = "1",
+                fill = false
             });
 
             chart.datasets = dataSet;

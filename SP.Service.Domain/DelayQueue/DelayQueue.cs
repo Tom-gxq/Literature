@@ -12,19 +12,27 @@ namespace SP.Service.Domain.DelayQueue
         private string data_key;
         private RedisConf self;
         private DelayQueue queue ;
+        private static object lockObj1 = new object();
+        private static object lockObj2 = new object();
         public DelayQueue()
         {
             this.self = new RedisConf();
         }
         public void Push(JObject data)
         {
-            // 唯一ID
-            task_id = Guid.NewGuid().ToString();
-            data_key = string.Format("{0}_{1}", self.DATA_PREFIX, task_id);
-            // save string  
-            self.Client.Set(data_key, data.ToString());
-            // add zset(queue_key=>data_key,ts)  
-            self.Client.SortedSetAdd(self.QUEUE_KEY, data_key, DateTime.Now.Ticks);
+            lock (lockObj1)
+            {
+                // 唯一ID
+                task_id = Guid.NewGuid().ToString();
+                data_key = string.Format("{0}_{1}", self.DATA_PREFIX, task_id);
+                lock (lockObj2)
+                {
+                    // save string  
+                    self.Client.Set(data_key, data.ToString());
+                    // add zset(queue_key=>data_key,ts)  
+                    self.Client.SortedSetAdd(self.QUEUE_KEY, data_key, DateTime.Now.Ticks);
+                }
+            }
         }
 
         public List<JObject> Pop(int previous= 20)

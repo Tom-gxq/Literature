@@ -12,6 +12,7 @@ using SP.Service.Entity;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SP.Service.Domain.DomainEntity
 {
@@ -108,7 +109,7 @@ namespace SP.Service.Domain.DomainEntity
                 ApplyChange(new ProductSkuEditEvent(id, host, accountId));
             }
         }
-        public void AddKafkaInfo(OrderStatus orderStatus,int schoolId)
+        public  void AddKafkaInfo(OrderStatus orderStatus,int schoolId)
         {
             if (orderStatus == OrderStatus.Payed)
             {                

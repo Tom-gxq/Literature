@@ -48,9 +48,14 @@ namespace SP.Producer
 
                 this.Queries = newQueries;
                 foreach (AbstractEntity entity in this.Queries)
-                {
+                {                    
                     try
                     {
+                        if (entity is KafkaProducer)
+                        {
+                            var order = (entity as KafkaProducer).Order;
+                            System.Console.WriteLine($"Threader OrderId:[{order.OrderId}]  OrderCode:[{order.OrderCode}]");
+                        }
                         entity.Run();
                     }
                     catch (Exception ex)

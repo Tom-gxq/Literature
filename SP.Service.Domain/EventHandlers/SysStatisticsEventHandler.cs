@@ -22,7 +22,8 @@ namespace SP.Service.Domain.EventHandlers
             var item = new SysStatisticsEntity()
             {
                 Num_BuyAssociator = handle.Num_BuyAssociator,
-                Num_OrderAmount = handle.Num_OrderAmount,
+                Num_FoodOrderAmount = handle.Num_FoodOrderAmount,
+                Num_MarkOrderAmount = handle.Num_MarkOrderAmount,
                 CreateTime = handle.CreateTime,
                 Num_NewAssociator = handle.Num_NewAssociator,
                 Num_NewOrder = handle.Num_NewOrder,
@@ -33,7 +34,7 @@ namespace SP.Service.Domain.EventHandlers
         }
         public void Handle(SysStatisticsSumOrderEvent handle)
         {
-            _reportDatabase.UpdateOrderStatistic(handle.AccountId,handle.OrderDate,handle.Amount);
+            _reportDatabase.UpdateOrderStatistic(handle.AccountId,handle.OrderDate,handle.FoodAmount, handle.MarkAmount);
         }
         public void Handle(SysStatisticsSumBuyMemberEvent handle)
         {

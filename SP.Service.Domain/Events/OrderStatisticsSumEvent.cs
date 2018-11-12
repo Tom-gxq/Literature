@@ -15,17 +15,19 @@ namespace SP.Service.Domain.Events
         public DateTime OrderDate { get; set; }
 
         public string AccountId { get; set; }
-        public double Amount { get; set; }
+        public double FoodAmount { get; set; }
+        public double MarkAmount { get; set; }
         public int AddressId { get; set; }
 
-        public OrderStatisticsSumEvent(string orderId, string orderCode, string accountId, double amount, int addressId, DateTime orderDate)
+        public OrderStatisticsSumEvent(string orderId, string orderCode, string accountId, double foodAmount, double markAmount, int addressId, DateTime orderDate)
             : base(KafkaConfig.EventBusTopicTitle)
         {
             this.OrderId = orderId;
             this.OrderCode = orderCode;
             this.OrderDate = orderDate;
             this.AccountId = accountId;
-            this.Amount = amount;
+            this.FoodAmount = foodAmount;
+            this.MarkAmount = markAmount;
             this.AddressId = addressId;
             this.EventType = EventType.OrderStatisticsSum;
         }

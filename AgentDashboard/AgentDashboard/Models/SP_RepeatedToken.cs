@@ -12,15 +12,13 @@ namespace AgentDashboard.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SP_ProductImage
+    public partial class SP_RepeatedToken
     {
         public int Id { get; set; }
-        public string ProductId { get; set; }
-        public string ImgPath { get; set; }
-        public int Postion { get; set; }
-        public Nullable<int> DisplaySequence { get; set; }
+        public string AccessToken { get; set; }
+        public string AccountID { get; set; }
+        public bool Status { get; set; }
         public System.DateTime CreateTime { get; set; }
         public Nullable<System.DateTime> UpdateTime { get; set; }
-        public bool IsDel { get; set; }
     }
 }

@@ -367,8 +367,8 @@ namespace Account.Service.GrpcImpl
 
         public override Task<ShoppingCartResultResponse> AddShoppingCart(ShoppingCartRequest request, ServerCallContext context)
         {
-            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} AddShoppingCart Connected! AccountId:[{AccountId}] ",
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.AccountId);
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} AddShoppingCart Connected! AccountId:[{AccountId}] ShopId:[{ShopId}] Quantity:[{Quantity}]",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.AccountId, request.ShopId, request.ProductId,request.Quantity);
             ShoppingCartResultResponse response = new ShoppingCartResultResponse();
             response.Status = 10002;
             try

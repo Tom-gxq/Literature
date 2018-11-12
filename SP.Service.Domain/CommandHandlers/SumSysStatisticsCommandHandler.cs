@@ -33,7 +33,7 @@ namespace SP.Service.Domain.CommandHandlers
             }
             else
             {
-                sysStatisticsDomain = new SysStatisticsDomain(command.CreateTime, 1, 0, 0, 0, 0);
+                sysStatisticsDomain = new SysStatisticsDomain(command.CreateTime, 1, 0, 0, 0, 0,0);
             }
             if (sysStatisticsDomain != null)
             {
@@ -53,7 +53,7 @@ namespace SP.Service.Domain.CommandHandlers
                 }
                 else
                 {
-                    memberDomain = new SysStatisticsDomain(command.CreateTime, 0, 1, 0, 0, 0);
+                    memberDomain = new SysStatisticsDomain(command.CreateTime, 0, 1, 0, 0, 0,0);
                 }
                 
             }
@@ -66,7 +66,7 @@ namespace SP.Service.Domain.CommandHandlers
                 }
                 else
                 {
-                    memberDomain = new SysStatisticsDomain(command.CreateTime, 0, 1, 0, 0, 0);
+                    memberDomain = new SysStatisticsDomain(command.CreateTime, 0, 1, 0, 0, 0,0);
                 }
             }
             if (memberDomain != null)

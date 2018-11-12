@@ -12,15 +12,17 @@ namespace AgentDashboard.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SP_ProductImage
+    public partial class SP_ShipOrder
     {
-        public int Id { get; set; }
+        public int ShipOrderId { get; set; }
+        public string OrderId { get; set; }
+        public Nullable<System.DateTime> ShipDate { get; set; }
+        public Nullable<System.DateTime> ShippedDate { get; set; }
+        public string ShipId { get; set; }
+        public string ShipTo { get; set; }
+        public Nullable<bool> IsShipped { get; set; }
+        public Nullable<int> Stock { get; set; }
         public string ProductId { get; set; }
-        public string ImgPath { get; set; }
-        public int Postion { get; set; }
-        public Nullable<int> DisplaySequence { get; set; }
-        public System.DateTime CreateTime { get; set; }
-        public Nullable<System.DateTime> UpdateTime { get; set; }
-        public bool IsDel { get; set; }
+        public Nullable<int> ShopId { get; set; }
     }
 }

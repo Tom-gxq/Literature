@@ -12,10 +12,11 @@ namespace SP.Service.Domain.Events
         public int Num_NewAssociator { get; set; }
         public int Num_BuyAssociator { get; set; }
         public int Num_NewOrder { get; set; }
-        public double Num_OrderAmount { get; set; }
-        public DateTime CreateTime { get; set; }
+        public double Num_FoodOrderAmount { get; internal set; }
+        public double Num_MarkOrderAmount { get; internal set; }
+        public DateTime CreateTime { get; internal set; }
         public SysStatisticsCreateEvent(DateTime createTime,int num_NewUser, int num_NewAssociator, int num_BuyAssociator,
-            int num_NewOrder, double num_OrderAmount)
+            int num_NewOrder, double foodAmount, double markAmount)
              : base(KafkaConfig.EventBusTopicTitle)
         {
             this.CreateTime = createTime;
@@ -23,7 +24,8 @@ namespace SP.Service.Domain.Events
             this.Num_NewAssociator = num_NewAssociator;
             this.Num_NewOrder = num_NewOrder;
             this.Num_NewUser = num_NewUser;
-            this.Num_OrderAmount = num_OrderAmount;
+            this.Num_FoodOrderAmount = foodAmount;
+            this.Num_MarkOrderAmount = markAmount;
             this.EventType = EventType.SysStatisticsCreate;
         }
     }

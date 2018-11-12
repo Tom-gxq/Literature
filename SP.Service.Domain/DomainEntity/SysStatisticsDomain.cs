@@ -17,7 +17,8 @@ namespace SP.Service.Domain.DomainEntity
         public int Num_NewAssociator { get; set; }
         public int Num_BuyAssociator { get; set; }
         public int Num_NewOrder { get; set; }
-        public double Num_OrderAmount { get; set; }
+        public double Num_FoodOrderAmount { get; set; }
+        public double Num_MarkOrderAmount { get; set; }
         public bool IsChecked { get; set; }
         public DateTime CreateTime { get; set; }
         public SysStatisticsDomain()
@@ -26,15 +27,15 @@ namespace SP.Service.Domain.DomainEntity
         }
 
         public SysStatisticsDomain(DateTime createTime, int num_NewUser, int num_NewAssociator, int num_BuyAssociator,
-            int num_NewOrder, double num_OrderAmount)
+            int num_NewOrder, double foodAmount, double markAmount)
         {
-            ApplyChange(new SysStatisticsCreateEvent(createTime, num_NewUser, num_NewAssociator, num_BuyAssociator, num_NewOrder, num_OrderAmount));
+            ApplyChange(new SysStatisticsCreateEvent(createTime, num_NewUser, num_NewAssociator, num_BuyAssociator, num_NewOrder, foodAmount, markAmount));
         }
 
         public void SumOrderStatistics(string orderId, string orderCode, DateTime orderDate, string accountId,
-            double amount, int addressId)
+            double foodAmount, double markAmount, int addressId)
         {
-            ApplyChange(new SysStatisticsSumOrderEvent(orderId, orderCode, accountId, amount, addressId, orderDate));
+            ApplyChange(new SysStatisticsSumOrderEvent(orderId, orderCode, accountId, foodAmount, markAmount, addressId, orderDate));
         }
 
         public void SumBuyMemberStatistics(string accountId, double amount, DateTime createTime)
@@ -84,7 +85,8 @@ namespace SP.Service.Domain.DomainEntity
                 this.Num_NewAssociator = order.Num_NewAssociator != null ? order.Num_NewAssociator.Value : 0;
                 this.Num_BuyAssociator = order.Num_BuyAssociator != null ? order.Num_BuyAssociator.Value : 0;
                 this.Num_NewOrder = order.Num_NewOrder != null ? order.Num_NewOrder.Value : 0;
-                this.Num_OrderAmount = order.Num_OrderAmount != null ? order.Num_OrderAmount.Value : 0;
+                this.Num_FoodOrderAmount = order.Num_FoodOrderAmount != null ? order.Num_FoodOrderAmount.Value : 0;
+                this.Num_MarkOrderAmount = order.Num_MarkOrderAmount != null ? order.Num_MarkOrderAmount.Value : 0;
                 this.IsChecked = order.IsChecked != null ? order.IsChecked.Value : false;
             }
         }

@@ -17,5 +17,6 @@ namespace AgentDashboard.Models
         public int Id { get; set; }
         public int ShopId { get; set; }
         public string OwnerId { get; set; }
+        public Nullable<bool> ShopStatus { get; set; }
     }
 }

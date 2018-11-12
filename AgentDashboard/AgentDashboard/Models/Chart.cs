@@ -14,5 +14,6 @@ namespace ChartJs.Models
         public string[] borderColor { get; set; }
         public string borderWidth { get; set; }
         public int[] data { get; set; }
+        public bool fill { get; set; }
     }
 }

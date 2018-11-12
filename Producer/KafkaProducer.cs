@@ -51,7 +51,8 @@ namespace SP.Producer
             JsonResult.Add("AccountId", this.Order.AccountId);
             JsonResult.Add("AddressId", this.Order.AddressId);
             JsonResult.Add("OrderDate", this.Order.OrderDate.Value.ToString("yyyy-MM-dd"));
-            JsonResult.Add("Amount", (this.Order.IsVip.Value ? this.Order.VIPAmount : this.Order.Amount));
+            JsonResult.Add("IsVip", this.Order.IsVip);
+            //JsonResult.Add("Amount", (this.Order.IsVip.Value ? this.Order.VIPAmount : this.Order.Amount));
 
             return JsonConvert.SerializeObject(JsonResult);
         }

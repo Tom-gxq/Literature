@@ -25,14 +25,15 @@ namespace SP.Service.EntityFramework.Repositories
             var result = this.Insert(shipStatistic);
             return result > 0;
         }
-        public bool UpdateOrderStatistic(string accountId,int dormId,DateTime createTime,double amount)
+        public bool UpdateOrderStatistic(string accountId,int dormId,DateTime createTime,double foodAmount,double markAmount)
         {
             using (var db = OpenDbConnection())
             {
                 var result = db.ExecuteSql($"UPDATE SP_ShipStatistics SET Num_NewOrder = Num_NewOrder + 1," +
-                    $" Num_OrderAmount = Num_OrderAmount + @amount  " +
+                    $" Num_FoodOrderAmount = isnull(Num_FoodOrderAmount,0) + @foodAmount, " +
+                    $" Num_MarkOrderAmount = isnull(Num_MarkOrderAmount,0) + @markAmount  " +
                     $" WHERE AccountId = @accountId AND " +
-                    $" DormId = @dormId AND CreateTime = @createTime", new { amount,accountId, dormId , createTime });
+                    $" DormId = @dormId AND CreateTime = @createTime", new { foodAmount, markAmount,accountId, dormId , createTime });
                 return result > 0;
             }
         }
