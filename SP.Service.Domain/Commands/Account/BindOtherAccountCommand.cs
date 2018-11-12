@@ -8,7 +8,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.Account
 {
-    public class BindOtherAccountCommand : Command
+    public class BindOtherAccountCommand : SPCommand
     {
         public string OtherAccount { get; set; }
         public OtherType OtherType { get; set; }        

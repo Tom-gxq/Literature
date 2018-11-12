@@ -406,6 +406,7 @@ D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\Microsoft
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\Newtonsoft.Json.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\OrderGRPCInterface.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\ProductGRPCInterface.dll
+D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\RepeatedTokenGRPCInterface.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\SmsGRPCInterface.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\SP.Api.Cache.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\SP.Api.Model.dll
@@ -421,6 +422,7 @@ D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\System.We
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\System.Web.WebPages.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\System.Web.WebPages.Razor.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\WebGrease.dll
+D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\wx.pay.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\RPCCommonTool.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\ServiceStack.Redis.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\ServiceStack.Interfaces.dll
@@ -429,7 +431,9 @@ D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\ServiceSt
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\AccountGRPCInterface.pdb
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\OrderGRPCInterface.pdb
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\ProductGRPCInterface.pdb
+D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\RepeatedTokenGRPCInterface.pdb
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\SmsGRPCInterface.pdb
+D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\wx.pay.pdb
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\SP.Api.Cache.pdb
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\SP.Api.Model.pdb
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\Google.Protobuf.xml
@@ -472,5 +476,3 @@ D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\obj\Debug\Web
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\obj\Debug\WebApiGateway.csproj.CoreCompileInputs.cache
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\obj\Debug\WebApiGateway.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\obj\Debug\WebApiGateway.pdb
-D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\wx.pay.dll
-D:\项目构建\饿家军餐饮平台\Src\Literature\WebApiGateway\bin\wx.pay.pdb

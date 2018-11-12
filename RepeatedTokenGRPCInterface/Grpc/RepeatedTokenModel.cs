@@ -22,19 +22,20 @@ namespace SP.Service {
     static RepeatedTokenModelReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChhSZXBlYXRlZFRva2VuTW9kZWwucHJvdG8SClNQLlNlcnZpY2UiMQoPVG9r",
-            "ZW5LZXlSZXF1ZXN0EgsKA2tleRgBIAEoCRIRCglhY2NvdW50SWQYAiABKAki",
-            "WwoNUmVwZWF0ZWRUb2tlbhITCgthY2Nlc3NUb2tlbhgBIAEoCRIRCglhY2Nv",
-            "dW50SWQYAiABKAkSEgoKY3JlYXRlVGltZRgGIAEoAxIOCgZzdGF0dXMYByAB",
-            "KAUiRgoUUmVwZWF0ZWRUb2tlblJlcXVlc3QSLgoLYWNjZXNzVG9rZW4YASAB",
-            "KAsyGS5TUC5TZXJ2aWNlLlJlcGVhdGVkVG9rZW4iWQoVUmVwZWF0ZWRUb2tl",
-            "blJlc3BvbnNlEg4KBnN0YXR1cxgBIAEoBRIwCg1yZXBlYXRlZFRva2VuGAIg",
-            "ASgLMhkuU1AuU2VydmljZS5SZXBlYXRlZFRva2VuIi0KG1JlcGVhdGVkVG9r",
-            "ZW5SZXN1bHRSZXNwb25zZRIOCgZzdGF0dXMYASABKAViBnByb3RvMw=="));
+            "ChhSZXBlYXRlZFRva2VuTW9kZWwucHJvdG8SClNQLlNlcnZpY2UiOQoXUmVw",
+            "ZWF0ZWRUb2tlbktleVJlcXVlc3QSCwoDa2V5GAEgASgJEhEKCWFjY291bnRJ",
+            "ZBgCIAEoCSJbCg1SZXBlYXRlZFRva2VuEhMKC2FjY2Vzc1Rva2VuGAEgASgJ",
+            "EhEKCWFjY291bnRJZBgCIAEoCRISCgpjcmVhdGVUaW1lGAYgASgDEg4KBnN0",
+            "YXR1cxgHIAEoBSJGChRSZXBlYXRlZFRva2VuUmVxdWVzdBIuCgthY2Nlc3NU",
+            "b2tlbhgBIAEoCzIZLlNQLlNlcnZpY2UuUmVwZWF0ZWRUb2tlbiJZChVSZXBl",
+            "YXRlZFRva2VuUmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEjAKDXJlcGVhdGVk",
+            "VG9rZW4YAiABKAsyGS5TUC5TZXJ2aWNlLlJlcGVhdGVkVG9rZW4iLQobUmVw",
+            "ZWF0ZWRUb2tlblJlc3VsdFJlc3BvbnNlEg4KBnN0YXR1cxgBIAEoBWIGcHJv",
+            "dG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TokenKeyRequest), global::SP.Service.TokenKeyRequest.Parser, new[]{ "Key", "AccountId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.RepeatedTokenKeyRequest), global::SP.Service.RepeatedTokenKeyRequest.Parser, new[]{ "Key", "AccountId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.RepeatedToken), global::SP.Service.RepeatedToken.Parser, new[]{ "AccessToken", "AccountId", "CreateTime", "Status" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.RepeatedTokenRequest), global::SP.Service.RepeatedTokenRequest.Parser, new[]{ "AccessToken" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.RepeatedTokenResponse), global::SP.Service.RepeatedTokenResponse.Parser, new[]{ "Status", "RepeatedToken" }, null, null, null),
@@ -49,10 +50,10 @@ namespace SP.Service {
   ///*
   /// 获取AccessToken的请求参数
   /// </summary>
-  public sealed partial class TokenKeyRequest : pb::IMessage<TokenKeyRequest> {
-    private static readonly pb::MessageParser<TokenKeyRequest> _parser = new pb::MessageParser<TokenKeyRequest>(() => new TokenKeyRequest());
+  public sealed partial class RepeatedTokenKeyRequest : pb::IMessage<RepeatedTokenKeyRequest> {
+    private static readonly pb::MessageParser<RepeatedTokenKeyRequest> _parser = new pb::MessageParser<RepeatedTokenKeyRequest>(() => new RepeatedTokenKeyRequest());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<TokenKeyRequest> Parser { get { return _parser; } }
+    public static pb::MessageParser<RepeatedTokenKeyRequest> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -65,21 +66,21 @@ namespace SP.Service {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public TokenKeyRequest() {
+    public RepeatedTokenKeyRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public TokenKeyRequest(TokenKeyRequest other) : this() {
+    public RepeatedTokenKeyRequest(RepeatedTokenKeyRequest other) : this() {
       key_ = other.key_;
       accountId_ = other.accountId_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public TokenKeyRequest Clone() {
-      return new TokenKeyRequest(this);
+    public RepeatedTokenKeyRequest Clone() {
+      return new RepeatedTokenKeyRequest(this);
     }
 
     /// <summary>Field number for the "key" field.</summary>
@@ -114,11 +115,11 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as TokenKeyRequest);
+      return Equals(other as RepeatedTokenKeyRequest);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(TokenKeyRequest other) {
+    public bool Equals(RepeatedTokenKeyRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -168,7 +169,7 @@ namespace SP.Service {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(TokenKeyRequest other) {
+    public void MergeFrom(RepeatedTokenKeyRequest other) {
       if (other == null) {
         return;
       }

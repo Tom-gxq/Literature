@@ -8,11 +8,11 @@ namespace SP.Service.Domain.Events
 {
     public class AddShoppingCartNumEvent : Event
     {
-        public string CartId { get; internal set; }
-        public string AccountId { get; internal set; }
-        public int Quantity { get; internal set; }
-        public DateTime CreateTime { get; internal set; }
-        public string ProductId { get; internal set; }
+        public string CartId { get;  set; }
+        public string AccountId { get;  set; }
+        public int Quantity { get;  set; }
+        public DateTime CreateTime { get;  set; }
+        public string ProductId { get;  set; }
         public int ShopId { get; set; }
         public AddShoppingCartNumEvent(string accountId, string cartId, int quantity, string productId, DateTime createTime, int shopId)
             : base(KafkaConfig.EventBusTopicTitle)

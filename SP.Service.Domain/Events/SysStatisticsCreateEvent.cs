@@ -8,12 +8,12 @@ namespace SP.Service.Domain.Events
 {
     public class SysStatisticsCreateEvent : Event
     {
-        public int Num_NewUser { get; internal set; }
-        public int Num_NewAssociator { get; internal set; }
-        public int Num_BuyAssociator { get; internal set; }
-        public int Num_NewOrder { get; internal set; }
-        public double Num_OrderAmount { get; internal set; }
-        public DateTime CreateTime { get; internal set; }
+        public int Num_NewUser { get; set; }
+        public int Num_NewAssociator { get; set; }
+        public int Num_BuyAssociator { get; set; }
+        public int Num_NewOrder { get; set; }
+        public double Num_OrderAmount { get; set; }
+        public DateTime CreateTime { get; set; }
         public SysStatisticsCreateEvent(DateTime createTime,int num_NewUser, int num_NewAssociator, int num_BuyAssociator,
             int num_NewOrder, double num_OrderAmount)
              : base(KafkaConfig.EventBusTopicTitle)

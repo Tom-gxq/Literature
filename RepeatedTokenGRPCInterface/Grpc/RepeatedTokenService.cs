@@ -22,17 +22,18 @@ namespace SP.Service {
     static RepeatedTokenServiceReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChpSZXBlYXRlZFRva2VuU2VydmljZS5wcm90bxIKU1AuU2VydmljZRoYUmVw",
-            "ZWF0ZWRUb2tlbk1vZGVsLnByb3RvMrQCChRSZXBlYXRlZFRva2VuU2Vydmlj",
-            "ZRJUChBHZXRSZXBlYXRlZFRva2VuEhsuU1AuU2VydmljZS5Ub2tlbktleVJl",
-            "cXVlc3QaIS5TUC5TZXJ2aWNlLlJlcGVhdGVkVG9rZW5SZXNwb25zZSIAEl8K",
-            "EEFkZFJlcGVhdGVkVG9rZW4SIC5TUC5TZXJ2aWNlLlJlcGVhdGVkVG9rZW5S",
-            "ZXF1ZXN0GicuU1AuU2VydmljZS5SZXBlYXRlZFRva2VuUmVzdWx0UmVzcG9u",
-            "c2UiABJlChtVcGRhdGVSZXBlYXRlZFRva2VuRGlzYWJsZWQSGy5TUC5TZXJ2",
-            "aWNlLlRva2VuS2V5UmVxdWVzdBonLlNQLlNlcnZpY2UuUmVwZWF0ZWRUb2tl",
-            "blJlc3VsdFJlc3BvbnNlIgBiBnByb3RvMw=="));
+            "ChpSZXBlYXRlZFRva2VuU2VydmljZS5wcm90bxIKU1AuU2VydmljZRoRQ29t",
+            "bW9uTW9kZWwucHJvdG8aGFJlcGVhdGVkVG9rZW5Nb2RlbC5wcm90bzK/AgoU",
+            "UmVwZWF0ZWRUb2tlblNlcnZpY2USXAoQR2V0UmVwZWF0ZWRUb2tlbhIjLlNQ",
+            "LlNlcnZpY2UuUmVwZWF0ZWRUb2tlbktleVJlcXVlc3QaIS5TUC5TZXJ2aWNl",
+            "LlJlcGVhdGVkVG9rZW5SZXNwb25zZSIAEloKFUdlbmVyYXRlUmVwZWF0ZWRU",
+            "b2tlbhIcLlNQLlNlcnZpY2UuQWNjb3VudElkUmVxdWVzdBohLlNQLlNlcnZp",
+            "Y2UuUmVwZWF0ZWRUb2tlblJlc3BvbnNlIgASbQobVXBkYXRlUmVwZWF0ZWRU",
+            "b2tlbkRpc2FibGVkEiMuU1AuU2VydmljZS5SZXBlYXRlZFRva2VuS2V5UmVx",
+            "dWVzdBonLlNQLlNlcnZpY2UuUmVwZWF0ZWRUb2tlblJlc3VsdFJlc3BvbnNl",
+            "IgBiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::SP.Service.RepeatedTokenModelReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, global::SP.Service.RepeatedTokenModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null));
     }
     #endregion

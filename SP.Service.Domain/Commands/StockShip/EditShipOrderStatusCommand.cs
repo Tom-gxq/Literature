@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.StockShip
 {
-    public class EditShipOrderStatusCommand : Command
+    public class EditShipOrderStatusCommand : SPCommand
     {
         public List<int> ShipOrderId { get; set; }
         public OrderStatus OrderStatus { get; set; }

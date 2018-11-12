@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.Product
 {
-    public class EditProductSkuCommand : Command
+    public class EditProductSkuCommand : SPCommand
     {
         public string AccountId { get; set; }
         public string ProductId { get; set; }

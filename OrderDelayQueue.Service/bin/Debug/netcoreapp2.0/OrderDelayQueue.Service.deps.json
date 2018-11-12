@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "7f5a79893a53ee9a4a247ac1733654c315bb52de"
+    "signature": "c249b03911b271deca89a231eb5619790e880d61"
   },
   "compilationOptions": {},
   "targets": {
@@ -21,6 +21,31 @@
         },
         "runtime": {
           "OrderDelayQueue.Service.dll": {}
+        }
+      },
+      "AutoMapper/6.1.1": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.4.0",
+          "System.Collections": "4.3.0",
+          "System.Collections.Concurrent": "4.3.0",
+          "System.Collections.Specialized": "4.3.0",
+          "System.ComponentModel.TypeConverter": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Dynamic.Runtime": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Linq": "4.3.0",
+          "System.Linq.Expressions": "4.3.0",
+          "System.Linq.Queryable": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Reflection.Extensions": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Text.RegularExpressions": "4.3.0",
+          "System.Threading": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/AutoMapper.dll": {}
         }
       },
       "Castle.Core/4.2.0": {
@@ -51,6 +76,63 @@
           "lib/netstandard1.6/Castle.Windsor.dll": {}
         }
       },
+      "Confluent.Kafka/1.0.0-experimental-3": {
+        "dependencies": {
+          "System.Console": "4.3.0",
+          "System.Linq": "4.3.0",
+          "System.Memory": "4.5.0-preview1-26216-02",
+          "System.Runtime.CompilerServices.Unsafe": "4.5.0-preview1-26216-02",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Threading": "4.3.0",
+          "librdkafka.redist": "0.11.4"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Confluent.Kafka.dll": {}
+        }
+      },
+      "Google.Protobuf/3.4.1": {
+        "runtime": {
+          "lib/netstandard1.0/Google.Protobuf.dll": {}
+        }
+      },
+      "Grpc.Core/1.6.1": {
+        "dependencies": {
+          "System.Interactive.Async": "3.1.1",
+          "System.Runtime.Loader": "4.3.0",
+          "System.Threading.Thread": "4.3.0",
+          "System.Threading.ThreadPool": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.5/Grpc.Core.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/linux/native/libgrpc_csharp_ext.x64.so": {
+            "rid": "linux",
+            "assetType": "native"
+          },
+          "runtimes/linux/native/libgrpc_csharp_ext.x86.so": {
+            "rid": "linux",
+            "assetType": "native"
+          },
+          "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib": {
+            "rid": "osx",
+            "assetType": "native"
+          },
+          "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib": {
+            "rid": "osx",
+            "assetType": "native"
+          },
+          "runtimes/win/native/grpc_csharp_ext.x64.dll": {
+            "rid": "win",
+            "assetType": "native"
+          },
+          "runtimes/win/native/grpc_csharp_ext.x86.dll": {
+            "rid": "win",
+            "assetType": "native"
+          }
+        }
+      },
       "LanguageExt.Core/2.1.22": {
         "dependencies": {
           "Microsoft.CSharp": "4.4.0",
@@ -65,6 +147,54 @@
         },
         "runtime": {
           "lib/netstandard2.0/LanguageExt.Core.dll": {}
+        }
+      },
+      "librdkafka.redist/0.11.4": {
+        "runtimeTargets": {
+          "runtimes/linux-x64/native/debian9-librdkafka.so": {
+            "rid": "linux-x64",
+            "assetType": "native"
+          },
+          "runtimes/linux-x64/native/librdkafka.so": {
+            "rid": "linux-x64",
+            "assetType": "native"
+          },
+          "runtimes/osx-x64/native/librdkafka.dylib": {
+            "rid": "osx-x64",
+            "assetType": "native"
+          },
+          "runtimes/win7-x64/native/librdkafka.dll": {
+            "rid": "win7-x64",
+            "assetType": "native"
+          },
+          "runtimes/win7-x64/native/librdkafkacpp.dll": {
+            "rid": "win7-x64",
+            "assetType": "native"
+          },
+          "runtimes/win7-x64/native/msvcr120.dll": {
+            "rid": "win7-x64",
+            "assetType": "native"
+          },
+          "runtimes/win7-x64/native/zlib.dll": {
+            "rid": "win7-x64",
+            "assetType": "native"
+          },
+          "runtimes/win7-x86/native/librdkafka.dll": {
+            "rid": "win7-x86",
+            "assetType": "native"
+          },
+          "runtimes/win7-x86/native/librdkafkacpp.dll": {
+            "rid": "win7-x86",
+            "assetType": "native"
+          },
+          "runtimes/win7-x86/native/msvcr120.dll": {
+            "rid": "win7-x86",
+            "assetType": "native"
+          },
+          "runtimes/win7-x86/native/zlib.dll": {
+            "rid": "win7-x86",
+            "assetType": "native"
+          }
         }
       },
       "Microsoft.CSharp/4.4.0": {},
@@ -200,7 +330,7 @@
       },
       "Microsoft.Extensions.Primitives/2.0.0": {
         "dependencies": {
-          "System.Runtime.CompilerServices.Unsafe": "4.4.0"
+          "System.Runtime.CompilerServices.Unsafe": "4.5.0-preview1-26216-02"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll": {}
@@ -592,6 +722,14 @@
           "System.Threading": "4.3.0"
         }
       },
+      "System.Console/4.3.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.IO": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Text.Encoding": "4.3.0"
+        }
+      },
       "System.Data.Common/4.3.0": {
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -720,6 +858,11 @@
           }
         }
       },
+      "System.Interactive.Async/3.1.1": {
+        "runtime": {
+          "lib/netstandard1.3/System.Interactive.Async.dll": {}
+        }
+      },
       "System.IO/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Targets": "1.1.0",
@@ -812,6 +955,15 @@
           "System.Reflection.Extensions": "4.3.0",
           "System.Resources.ResourceManager": "4.3.0",
           "System.Runtime": "4.3.0"
+        }
+      },
+      "System.Memory/4.5.0-preview1-26216-02": {
+        "dependencies": {
+          "System.Numerics.Vectors": "4.5.0-preview1-26216-02",
+          "System.Runtime.CompilerServices.Unsafe": "4.5.0-preview1-26216-02"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Memory.dll": {}
         }
       },
       "System.Net.NameResolution/4.3.0": {
@@ -938,6 +1090,11 @@
           "System.Threading.Tasks": "4.3.0"
         }
       },
+      "System.Numerics.Vectors/4.5.0-preview1-26216-02": {
+        "runtime": {
+          "lib/netstandard2.0/System.Numerics.Vectors.dll": {}
+        }
+      },
       "System.ObjectModel/4.3.0": {
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -1051,7 +1208,7 @@
           "Microsoft.NETCore.Targets": "1.1.0"
         }
       },
-      "System.Runtime.CompilerServices.Unsafe/4.4.0": {
+      "System.Runtime.CompilerServices.Unsafe/4.5.0-preview1-26216-02": {
         "runtime": {
           "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
         }
@@ -1470,8 +1627,14 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
+      "CSRedis.NetCore/1.0.0": {
+        "runtime": {
+          "CSRedis.NetCore.dll": {}
+        }
+      },
       "Grpc.Service.Core/1.0.0": {
         "dependencies": {
+          "AutoMapper": "6.1.1",
           "Castle.Core": "4.2.0",
           "Castle.Windsor": "4.1.0",
           "LanguageExt.Core": "2.1.22",
@@ -1487,6 +1650,7 @@
       },
       "RedisCache.Service/1.0.0": {
         "dependencies": {
+          "CSRedis.NetCore": "1.0.0",
           "Grpc.Service.Core": "1.0.0",
           "StackExchange.Redis": "1.2.6"
         },
@@ -1494,9 +1658,28 @@
           "RedisCache.Service.dll": {}
         }
       },
+      "RPCCommonTool/1.0.0": {
+        "runtime": {
+          "RPCCommonTool.dll": {}
+        }
+      },
+      "SP.Api.Model/1.0.0": {
+        "runtime": {
+          "SP.Api.Model.dll": {}
+        }
+      },
       "SP.Data.Enum/1.0.0": {
         "runtime": {
           "SP.Data.Enum.dll": {}
+        }
+      },
+      "SP.Producer/1.0.0": {
+        "dependencies": {
+          "Confluent.Kafka": "1.0.0-experimental-3",
+          "SP.Service.Entity": "1.0.0"
+        },
+        "runtime": {
+          "SP.Producer.dll": {}
         }
       },
       "SP.Service.Domain/1.0.0": {
@@ -1504,8 +1687,10 @@
           "Grpc.Service.Core": "1.0.0",
           "RedisCache.Service": "1.0.0",
           "SP.Data.Enum": "1.0.0",
+          "SP.Producer": "1.0.0",
           "SP.Service.Entity": "1.0.0",
-          "SP.Service.EntityFramework": "1.0.0"
+          "SP.Service.EntityFramework": "1.0.0",
+          "StockGRPCInterface": "1.0.0"
         },
         "runtime": {
           "SP.Service.Domain.dll": {}
@@ -1528,6 +1713,17 @@
         "runtime": {
           "SP.Service.EntityFramework.dll": {}
         }
+      },
+      "StockGRPCInterface/1.0.0": {
+        "dependencies": {
+          "Google.Protobuf": "3.4.1",
+          "Grpc.Core": "1.6.1",
+          "RPCCommonTool": "1.0.0",
+          "SP.Api.Model": "1.0.0"
+        },
+        "runtime": {
+          "StockGRPCInterface.dll": {}
+        }
       }
     }
   },
@@ -1536,6 +1732,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AutoMapper/6.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-A+6PAblvzmkXPS20nFBQJvlNSW5oEdyfN5+cxT/Du35fTNyuP5pNDXT64KT/jBgxt7CPduOM0Y7oLnNe0E5IXg==",
+      "path": "automapper/6.1.1",
+      "hashPath": "automapper.6.1.1.nupkg.sha512"
     },
     "Castle.Core/4.2.0": {
       "type": "package",
@@ -1551,12 +1754,40 @@
       "path": "castle.windsor/4.1.0",
       "hashPath": "castle.windsor.4.1.0.nupkg.sha512"
     },
+    "Confluent.Kafka/1.0.0-experimental-3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jO4nUOatSVUYW2RhY8yy0V/4tqN8ui9lxk19CpT7pf43SRRP+a2mOxQXBnszUMgk/3MwzQsyZOr1GhZReIVxdQ==",
+      "path": "confluent.kafka/1.0.0-experimental-3",
+      "hashPath": "confluent.kafka.1.0.0-experimental-3.nupkg.sha512"
+    },
+    "Google.Protobuf/3.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-whGnxrX8cgAwbhyP/NhnMtWMd4b+ewOeujl7WVtsrtkPiJrIK2BZLOjfgDPB8im9mPMRebWT/RE/1lJCvDsMuQ==",
+      "path": "google.protobuf/3.4.1",
+      "hashPath": "google.protobuf.3.4.1.nupkg.sha512"
+    },
+    "Grpc.Core/1.6.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GOFi+vrrUkBkzVJ4LIOSCcBKFaQ8zbXMPyQ+KCDe1d84o55JMUwpemqwk+fefNAkdjd/7j9PDAx4hz/6/qdraw==",
+      "path": "grpc.core/1.6.1",
+      "hashPath": "grpc.core.1.6.1.nupkg.sha512"
+    },
     "LanguageExt.Core/2.1.22": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-4lxRK30BbArpGX6wPqdSJ8k/LgxqFoqYbb6IdG23HM0cmzqRDCSYK8e8UWV4T1UrhW0VK0mbmIKZAq+jX2qr1w==",
       "path": "languageext.core/2.1.22",
       "hashPath": "languageext.core.2.1.22.nupkg.sha512"
+    },
+    "librdkafka.redist/0.11.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7/tR5bBcwlNAnYpbcXh0gfsn492l8it0vrBY7qXCvZZ5SvJ8u3mF9jQVrYBoJeoKuue9UBqT/YjcEwkfOrkzZw==",
+      "path": "librdkafka.redist/0.11.4",
+      "hashPath": "librdkafka.redist.0.11.4.nupkg.sha512"
     },
     "Microsoft.CSharp/4.4.0": {
       "type": "package",
@@ -1971,6 +2202,13 @@
       "path": "system.componentmodel.typeconverter/4.3.0",
       "hashPath": "system.componentmodel.typeconverter.4.3.0.nupkg.sha512"
     },
+    "System.Console/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DHDrIxiqk1h03m6khKWV2X8p/uvN79rgSqpilL6uzpmSfxfU5ng8VcPtW4qsDsQDHiTv6IPV9TmD5M/vElPNLg==",
+      "path": "system.console/4.3.0",
+      "hashPath": "system.console.4.3.0.nupkg.sha512"
+    },
     "System.Data.Common/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -2048,6 +2286,13 @@
       "path": "system.globalization.extensions/4.3.0",
       "hashPath": "system.globalization.extensions.4.3.0.nupkg.sha512"
     },
+    "System.Interactive.Async/3.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hZccYiIE5RS1/J9Tb/BNtosAGVggdlsJm4Ojdu+gDV0p4AIi+LUfUogMKkRacljQEJd2AG6vYzvcjhQFkqoZmw==",
+      "path": "system.interactive.async/3.1.1",
+      "hashPath": "system.interactive.async.3.1.1.nupkg.sha512"
+    },
     "System.IO/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -2097,6 +2342,13 @@
       "path": "system.linq.queryable/4.3.0",
       "hashPath": "system.linq.queryable.4.3.0.nupkg.sha512"
     },
+    "System.Memory/4.5.0-preview1-26216-02": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/qkNiTfseQ35guuSKxqw6cjEYnh+ijwI941QS5669VtTSSXOoyHWUO6JARIvSQ+A2yYFVdKEvTkKrMfaqdyOaw==",
+      "path": "system.memory/4.5.0-preview1-26216-02",
+      "hashPath": "system.memory.4.5.0-preview1-26216-02.nupkg.sha512"
+    },
     "System.Net.NameResolution/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -2131,6 +2383,13 @@
       "sha512": "sha512-m6icV6TqQOAdgt5N/9I5KNpjom/5NFtkmGseEH+AK/hny8XrytLH3+b5M8zL/Ycg3fhIocFpUMyl/wpFnVRvdw==",
       "path": "system.net.sockets/4.3.0",
       "hashPath": "system.net.sockets.4.3.0.nupkg.sha512"
+    },
+    "System.Numerics.Vectors/4.5.0-preview1-26216-02": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FGIOma5l5mVHfnG8Ry5k3WqjWeDGFp1381xGpqwyUBWLs6kzm9Jbss1dUIRoOG4SU55nC0/28toJcq1sYfxPRw==",
+      "path": "system.numerics.vectors/4.5.0-preview1-26216-02",
+      "hashPath": "system.numerics.vectors.4.5.0-preview1-26216-02.nupkg.sha512"
     },
     "System.ObjectModel/4.3.0": {
       "type": "package",
@@ -2237,12 +2496,12 @@
       "path": "system.runtime/4.3.0",
       "hashPath": "system.runtime.4.3.0.nupkg.sha512"
     },
-    "System.Runtime.CompilerServices.Unsafe/4.4.0": {
+    "System.Runtime.CompilerServices.Unsafe/4.5.0-preview1-26216-02": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-9dLLuBxr5GNmOfl2jSMcsHuteEg32BEfUotmmUkmZjpR3RpVHE8YQwt0ow3p6prwA1ME8WqDVZqrr8z6H8G+Kw==",
-      "path": "system.runtime.compilerservices.unsafe/4.4.0",
-      "hashPath": "system.runtime.compilerservices.unsafe.4.4.0.nupkg.sha512"
+      "sha512": "sha512-YH6QzLUg6VzyejRsW9no/xlulcpKjfOC27jWmijyhw8A42ldukXHQDSaE0CP+khK0m2iqAaXoQ0BU49FUDw7Lw==",
+      "path": "system.runtime.compilerservices.unsafe/4.5.0-preview1-26216-02",
+      "hashPath": "system.runtime.compilerservices.unsafe.4.5.0-preview1-26216-02.nupkg.sha512"
     },
     "System.Runtime.Extensions/4.3.0": {
       "type": "package",
@@ -2482,6 +2741,11 @@
       "path": "system.xml.xmldocument/4.3.0",
       "hashPath": "system.xml.xmldocument.4.3.0.nupkg.sha512"
     },
+    "CSRedis.NetCore/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Grpc.Service.Core/1.0.0": {
       "type": "project",
       "serviceable": false,
@@ -2492,7 +2756,22 @@
       "serviceable": false,
       "sha512": ""
     },
+    "RPCCommonTool/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SP.Api.Model/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "SP.Data.Enum/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SP.Producer/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -2508,6 +2787,11 @@
       "sha512": ""
     },
     "SP.Service.EntityFramework/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "StockGRPCInterface/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

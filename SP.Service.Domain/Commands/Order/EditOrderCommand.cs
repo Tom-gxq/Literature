@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.Order
 {
-    public class EditOrderCommand : Command
+    public class EditOrderCommand : SPCommand
     {
         public OrderStatus OrderStatus { get; set; }
         public OrderPay PayWay { get; internal set; }

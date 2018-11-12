@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.Account
 {
-    public class EditAccountCommand : Command
+    public class EditAccountCommand : SPCommand
     {
         public string MobilePhone { get; set; }
         public string Email { get; set; }

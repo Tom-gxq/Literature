@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.Statistics
 {
-    public class SumOrderStatisticsCommand : Command
+    public class SumOrderStatisticsCommand : SPCommand
     {
         public string OrderId { get; set; }
 

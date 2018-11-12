@@ -8,10 +8,10 @@ namespace SP.Service.Domain.Events
 {
     public class ShipOrderCreatedEvent: Event
     {
-        public string OrderId { get; internal set; }
-        public string ShippingId { get; internal set; }
-        public string ShipTo { get; internal set; }
-        public DateTime ShippingDate { get; internal set; }
+        public string OrderId { get; set; }
+        public string ShippingId { get; set; }
+        public string ShipTo { get; set; }
+        public DateTime ShippingDate { get; set; }
         public int Stock { get; set; }
         public string ProductId { get; set; }
         public int ShopId { get; set; }

@@ -9,8 +9,8 @@ namespace SP.Service.Domain.Events
 {
     public class OrderEditEvent : Event
     {
-        public OrderStatus OrderStatus { get; internal set; }
-        public OrderPay PayWay { get; internal set; }
+        public OrderStatus OrderStatus { get; set; }
+        public OrderPay PayWay { get; set; }
         public OrderEditEvent(Guid aggregateId,OrderStatus orderStatus, OrderPay payWay)
             : base(KafkaConfig.EventBusTopicTitle)
         {

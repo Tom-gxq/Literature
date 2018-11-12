@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
@@ -15,7 +16,7 @@ namespace Grpc.Service.Core.Domain.Events
         public EventType EventType { get; set; }
         public virtual string GetMessage()
         {
-            return string.Empty;
+            return JsonConvert.SerializeObject(this);
         }
         public Event()
         {

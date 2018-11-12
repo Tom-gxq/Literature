@@ -74,11 +74,11 @@ namespace Grpc.Service.Core.Reflection
                 }
                 else if (type.GetTypeInfo().GetInterface(typeof(ICommandExecuteHandler).FullName) != null)
                 {
-                    IocManager.Instance.Register(typeof(ICommandExecuteHandler), type, DependencyLifeStyle.Singleton);
+                    IocManager.Instance.Register(typeof(ICommandExecuteHandler),type, DependencyLifeStyle.Singleton);
                 }
                 else if (type.GetTypeInfo().GetInterface(typeof(IEventExecuteHandler).FullName) != null)
                 {
-                    IocManager.Instance.Register(typeof(IEventExecuteHandler), type, DependencyLifeStyle.Singleton);
+                    IocManager.Instance.Register(typeof(IEventExecuteHandler),type, DependencyLifeStyle.Singleton);
                 }
                 else if (type.GetTypeInfo().GetInterface(typeof(ICommandHandler).FullName) != null 
                     || type.GetTypeInfo().GetInterface(typeof(IEventHandler).FullName) != null)

@@ -10,7 +10,7 @@ namespace RepeatedTokenGRPCInterface
         public static RepeatedTokenModel GetRepeatedTokenByKey(string tokenKey, string accountId)
         {
             var client = RepeatedTokenClientHelper.GetClient();
-            var request1 = new RepeatedTokenKeyRequest()
+            var request1 = new SP.Service.RepeatedTokenKeyRequest()
             {
                 Key = tokenKey,
                 AccountId = accountId

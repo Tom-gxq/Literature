@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.Product
 {
-    public class CreateProductCommand : Command
+    public class CreateProductCommand : SPCommand
     {
         public long MainType { get; set; }
         public long SecondType { get; set; }

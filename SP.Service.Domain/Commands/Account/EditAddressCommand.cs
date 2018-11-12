@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.Account
 {
-    public class EditAddressCommand : Command
+    public class EditAddressCommand : SPCommand
     {
         public int AddressId { get; set; }
         public string UserName { get; set; }

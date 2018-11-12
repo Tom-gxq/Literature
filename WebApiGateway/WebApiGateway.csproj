@@ -226,6 +226,7 @@
     <Compile Include="Controllers\Seller\SellerShopController.cs" />
     <Compile Include="Controllers\Seller\ShipOrderController.cs" />
     <Compile Include="Controllers\System\VersionController.cs" />
+    <Compile Include="Controllers\Token\RepeatedTokenController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -326,6 +327,10 @@
     <ProjectReference Include="..\ProductGRPCInterface\ProductGRPCInterface.csproj">
       <Project>{9c6e35fb-207d-42e8-bf68-0afbbec8a34b}</Project>
       <Name>ProductGRPCInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RepeatedTokenGRPCInterface\RepeatedTokenGRPCInterface.csproj">
+      <Project>{4d312fdb-d127-443e-893c-eccb01c0257d}</Project>
+      <Name>RepeatedTokenGRPCInterface</Name>
     </ProjectReference>
     <ProjectReference Include="..\ReservationGRPCInterface\SmsGRPCInterface.csproj">
       <Project>{e2b7d0fb-c3fb-47ad-9d9a-185dcd068563}</Project>

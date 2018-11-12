@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.Statistics
 {
-    public class SumUserStatisticsCommand : Command
+    public class SumUserStatisticsCommand : SPCommand
     {
         public string AccountId { get;  set; }
         public DateTime CreateTime { get;  set; }

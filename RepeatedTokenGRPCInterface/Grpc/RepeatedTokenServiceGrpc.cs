@@ -12,30 +12,30 @@ namespace SP.Service {
   {
     static readonly string __ServiceName = "SP.Service.RepeatedTokenService";
 
-    static readonly grpc::Marshaller<global::SP.Service.TokenKeyRequest> __Marshaller_TokenKeyRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.TokenKeyRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.RepeatedTokenKeyRequest> __Marshaller_RepeatedTokenKeyRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.RepeatedTokenKeyRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.RepeatedTokenResponse> __Marshaller_RepeatedTokenResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.RepeatedTokenResponse.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::SP.Service.RepeatedTokenRequest> __Marshaller_RepeatedTokenRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.RepeatedTokenRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.AccountIdRequest> __Marshaller_AccountIdRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AccountIdRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.RepeatedTokenResultResponse> __Marshaller_RepeatedTokenResultResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.RepeatedTokenResultResponse.Parser.ParseFrom);
 
-    static readonly grpc::Method<global::SP.Service.TokenKeyRequest, global::SP.Service.RepeatedTokenResponse> __Method_GetRepeatedToken = new grpc::Method<global::SP.Service.TokenKeyRequest, global::SP.Service.RepeatedTokenResponse>(
+    static readonly grpc::Method<global::SP.Service.RepeatedTokenKeyRequest, global::SP.Service.RepeatedTokenResponse> __Method_GetRepeatedToken = new grpc::Method<global::SP.Service.RepeatedTokenKeyRequest, global::SP.Service.RepeatedTokenResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "GetRepeatedToken",
-        __Marshaller_TokenKeyRequest,
+        __Marshaller_RepeatedTokenKeyRequest,
         __Marshaller_RepeatedTokenResponse);
 
-    static readonly grpc::Method<global::SP.Service.RepeatedTokenRequest, global::SP.Service.RepeatedTokenResultResponse> __Method_AddRepeatedToken = new grpc::Method<global::SP.Service.RepeatedTokenRequest, global::SP.Service.RepeatedTokenResultResponse>(
+    static readonly grpc::Method<global::SP.Service.AccountIdRequest, global::SP.Service.RepeatedTokenResponse> __Method_GenerateRepeatedToken = new grpc::Method<global::SP.Service.AccountIdRequest, global::SP.Service.RepeatedTokenResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
-        "AddRepeatedToken",
-        __Marshaller_RepeatedTokenRequest,
-        __Marshaller_RepeatedTokenResultResponse);
+        "GenerateRepeatedToken",
+        __Marshaller_AccountIdRequest,
+        __Marshaller_RepeatedTokenResponse);
 
-    static readonly grpc::Method<global::SP.Service.TokenKeyRequest, global::SP.Service.RepeatedTokenResultResponse> __Method_UpdateRepeatedTokenDisabled = new grpc::Method<global::SP.Service.TokenKeyRequest, global::SP.Service.RepeatedTokenResultResponse>(
+    static readonly grpc::Method<global::SP.Service.RepeatedTokenKeyRequest, global::SP.Service.RepeatedTokenResultResponse> __Method_UpdateRepeatedTokenDisabled = new grpc::Method<global::SP.Service.RepeatedTokenKeyRequest, global::SP.Service.RepeatedTokenResultResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "UpdateRepeatedTokenDisabled",
-        __Marshaller_TokenKeyRequest,
+        __Marshaller_RepeatedTokenKeyRequest,
         __Marshaller_RepeatedTokenResultResponse);
 
     /// <summary>Service descriptor</summary>
@@ -54,7 +54,7 @@ namespace SP.Service {
       /// <param name="request">The request received from the client.</param>
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
-      public virtual global::System.Threading.Tasks.Task<global::SP.Service.RepeatedTokenResponse> GetRepeatedToken(global::SP.Service.TokenKeyRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.RepeatedTokenResponse> GetRepeatedToken(global::SP.Service.RepeatedTokenKeyRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -66,7 +66,7 @@ namespace SP.Service {
       /// <param name="request">The request received from the client.</param>
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
-      public virtual global::System.Threading.Tasks.Task<global::SP.Service.RepeatedTokenResultResponse> AddRepeatedToken(global::SP.Service.RepeatedTokenRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.RepeatedTokenResponse> GenerateRepeatedToken(global::SP.Service.AccountIdRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -78,7 +78,7 @@ namespace SP.Service {
       /// <param name="request">The request received from the client.</param>
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
-      public virtual global::System.Threading.Tasks.Task<global::SP.Service.RepeatedTokenResultResponse> UpdateRepeatedTokenDisabled(global::SP.Service.TokenKeyRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.RepeatedTokenResultResponse> UpdateRepeatedTokenDisabled(global::SP.Service.RepeatedTokenKeyRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -117,7 +117,7 @@ namespace SP.Service {
       /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
       /// <param name="cancellationToken">An optional token for canceling the call.</param>
       /// <returns>The response received from the server.</returns>
-      public virtual global::SP.Service.RepeatedTokenResponse GetRepeatedToken(global::SP.Service.TokenKeyRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      public virtual global::SP.Service.RepeatedTokenResponse GetRepeatedToken(global::SP.Service.RepeatedTokenKeyRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
         return GetRepeatedToken(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
@@ -128,7 +128,7 @@ namespace SP.Service {
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
       /// <returns>The response received from the server.</returns>
-      public virtual global::SP.Service.RepeatedTokenResponse GetRepeatedToken(global::SP.Service.TokenKeyRequest request, grpc::CallOptions options)
+      public virtual global::SP.Service.RepeatedTokenResponse GetRepeatedToken(global::SP.Service.RepeatedTokenKeyRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_GetRepeatedToken, null, options, request);
       }
@@ -141,7 +141,7 @@ namespace SP.Service {
       /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
       /// <param name="cancellationToken">An optional token for canceling the call.</param>
       /// <returns>The call object.</returns>
-      public virtual grpc::AsyncUnaryCall<global::SP.Service.RepeatedTokenResponse> GetRepeatedTokenAsync(global::SP.Service.TokenKeyRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.RepeatedTokenResponse> GetRepeatedTokenAsync(global::SP.Service.RepeatedTokenKeyRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
         return GetRepeatedTokenAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
@@ -152,7 +152,7 @@ namespace SP.Service {
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
       /// <returns>The call object.</returns>
-      public virtual grpc::AsyncUnaryCall<global::SP.Service.RepeatedTokenResponse> GetRepeatedTokenAsync(global::SP.Service.TokenKeyRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.RepeatedTokenResponse> GetRepeatedTokenAsync(global::SP.Service.RepeatedTokenKeyRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetRepeatedToken, null, options, request);
       }
@@ -165,9 +165,9 @@ namespace SP.Service {
       /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
       /// <param name="cancellationToken">An optional token for canceling the call.</param>
       /// <returns>The response received from the server.</returns>
-      public virtual global::SP.Service.RepeatedTokenResultResponse AddRepeatedToken(global::SP.Service.RepeatedTokenRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      public virtual global::SP.Service.RepeatedTokenResponse GenerateRepeatedToken(global::SP.Service.AccountIdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
-        return AddRepeatedToken(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return GenerateRepeatedToken(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       /// <summary>
       ///*
@@ -176,9 +176,9 @@ namespace SP.Service {
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
       /// <returns>The response received from the server.</returns>
-      public virtual global::SP.Service.RepeatedTokenResultResponse AddRepeatedToken(global::SP.Service.RepeatedTokenRequest request, grpc::CallOptions options)
+      public virtual global::SP.Service.RepeatedTokenResponse GenerateRepeatedToken(global::SP.Service.AccountIdRequest request, grpc::CallOptions options)
       {
-        return CallInvoker.BlockingUnaryCall(__Method_AddRepeatedToken, null, options, request);
+        return CallInvoker.BlockingUnaryCall(__Method_GenerateRepeatedToken, null, options, request);
       }
       /// <summary>
       ///*
@@ -189,9 +189,9 @@ namespace SP.Service {
       /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
       /// <param name="cancellationToken">An optional token for canceling the call.</param>
       /// <returns>The call object.</returns>
-      public virtual grpc::AsyncUnaryCall<global::SP.Service.RepeatedTokenResultResponse> AddRepeatedTokenAsync(global::SP.Service.RepeatedTokenRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.RepeatedTokenResponse> GenerateRepeatedTokenAsync(global::SP.Service.AccountIdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
-        return AddRepeatedTokenAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return GenerateRepeatedTokenAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       /// <summary>
       ///*
@@ -200,9 +200,9 @@ namespace SP.Service {
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
       /// <returns>The call object.</returns>
-      public virtual grpc::AsyncUnaryCall<global::SP.Service.RepeatedTokenResultResponse> AddRepeatedTokenAsync(global::SP.Service.RepeatedTokenRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.RepeatedTokenResponse> GenerateRepeatedTokenAsync(global::SP.Service.AccountIdRequest request, grpc::CallOptions options)
       {
-        return CallInvoker.AsyncUnaryCall(__Method_AddRepeatedToken, null, options, request);
+        return CallInvoker.AsyncUnaryCall(__Method_GenerateRepeatedToken, null, options, request);
       }
       /// <summary>
       ///*
@@ -213,7 +213,7 @@ namespace SP.Service {
       /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
       /// <param name="cancellationToken">An optional token for canceling the call.</param>
       /// <returns>The response received from the server.</returns>
-      public virtual global::SP.Service.RepeatedTokenResultResponse UpdateRepeatedTokenDisabled(global::SP.Service.TokenKeyRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      public virtual global::SP.Service.RepeatedTokenResultResponse UpdateRepeatedTokenDisabled(global::SP.Service.RepeatedTokenKeyRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
         return UpdateRepeatedTokenDisabled(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
@@ -224,7 +224,7 @@ namespace SP.Service {
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
       /// <returns>The response received from the server.</returns>
-      public virtual global::SP.Service.RepeatedTokenResultResponse UpdateRepeatedTokenDisabled(global::SP.Service.TokenKeyRequest request, grpc::CallOptions options)
+      public virtual global::SP.Service.RepeatedTokenResultResponse UpdateRepeatedTokenDisabled(global::SP.Service.RepeatedTokenKeyRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_UpdateRepeatedTokenDisabled, null, options, request);
       }
@@ -237,7 +237,7 @@ namespace SP.Service {
       /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
       /// <param name="cancellationToken">An optional token for canceling the call.</param>
       /// <returns>The call object.</returns>
-      public virtual grpc::AsyncUnaryCall<global::SP.Service.RepeatedTokenResultResponse> UpdateRepeatedTokenDisabledAsync(global::SP.Service.TokenKeyRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.RepeatedTokenResultResponse> UpdateRepeatedTokenDisabledAsync(global::SP.Service.RepeatedTokenKeyRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
         return UpdateRepeatedTokenDisabledAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
@@ -248,7 +248,7 @@ namespace SP.Service {
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
       /// <returns>The call object.</returns>
-      public virtual grpc::AsyncUnaryCall<global::SP.Service.RepeatedTokenResultResponse> UpdateRepeatedTokenDisabledAsync(global::SP.Service.TokenKeyRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.RepeatedTokenResultResponse> UpdateRepeatedTokenDisabledAsync(global::SP.Service.RepeatedTokenKeyRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_UpdateRepeatedTokenDisabled, null, options, request);
       }
@@ -265,7 +265,7 @@ namespace SP.Service {
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
           .AddMethod(__Method_GetRepeatedToken, serviceImpl.GetRepeatedToken)
-          .AddMethod(__Method_AddRepeatedToken, serviceImpl.AddRepeatedToken)
+          .AddMethod(__Method_GenerateRepeatedToken, serviceImpl.GenerateRepeatedToken)
           .AddMethod(__Method_UpdateRepeatedTokenDisabled, serviceImpl.UpdateRepeatedTokenDisabled).Build();
     }
 

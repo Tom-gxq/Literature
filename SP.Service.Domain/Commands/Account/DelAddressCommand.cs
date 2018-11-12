@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.Account
 {
-    public class DelAddressCommand : Command
+    public class DelAddressCommand : SPCommand
     {
         public int AddressId { get; set; }
         public DelAddressCommand(Guid id, int addressId) : base(KafkaConfig.NormalCommandBusTopicTitle)

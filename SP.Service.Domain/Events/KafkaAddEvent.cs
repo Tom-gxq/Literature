@@ -10,7 +10,7 @@ namespace SP.Service.Domain.Events
 {
     public class KafkaAddEvent: Event
     {
-        public AbstractEntity Prducer { get; internal set; }
+        public AbstractEntity Prducer { get; set; }
 
         public KafkaAddEvent(AbstractEntity prducer) : base(KafkaConfig.EventBusTopicTitle)
         {

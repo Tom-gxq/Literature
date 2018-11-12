@@ -21,6 +21,10 @@ namespace SP.Service.Domain.Messaging
                 this.KafkaIP = config.GetSection("KafkaIP").Value?.ToString() ?? string.Empty;
             }
         }
+        public KafkaSender(string kafkaIP)
+        {
+            this.KafkaIP = kafkaIP;
+        }
         public void Execute(Command command)
         {
             var config = new Dictionary<string, object>
@@ -31,7 +35,7 @@ namespace SP.Service.Domain.Messaging
             {
 
                 var dr = producer.ProduceAsync(command.TopicTitle, new Message<Null, string>() { Value = command.GetMessage() }).Result;
-                Console.WriteLine($"Delivered '{dr.Value}' to: {dr.TopicPartitionOffset}");
+                Console.WriteLine($"Command Delivered KafkaIP:[{this.KafkaIP}]   '{dr.Value}' to: {dr.TopicPartitionOffset}");
             }
         }
 
@@ -45,7 +49,7 @@ namespace SP.Service.Domain.Messaging
             {
 
                 var dr = producer.ProduceAsync(@event.TopicTitle, new Message<Null, string>() { Value = @event.GetMessage() }).Result;
-                Console.WriteLine($"Delivered '{dr.Value}' to: {dr.TopicPartitionOffset}");
+                Console.WriteLine($"Event Delivered KafkaIP:[{this.KafkaIP}]   '{dr.Value}' to: {dr.TopicPartitionOffset}");
             }
         }
     }

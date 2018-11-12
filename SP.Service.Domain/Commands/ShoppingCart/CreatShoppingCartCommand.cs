@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.ShoppingCart
 {
-    public class CreatShoppingCartCommand : Command
+    public class CreatShoppingCartCommand : SPCommand
     {
         public string ProductId { get; set; }
         public string AccountId { get; set; }

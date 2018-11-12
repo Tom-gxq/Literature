@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.StockShip
 {
-    public class EditResidueSkuCommand : Command
+    public class EditResidueSkuCommand : SPCommand
     {
         public string AccountId { get; set; }
         public string ProductId { get; set; }

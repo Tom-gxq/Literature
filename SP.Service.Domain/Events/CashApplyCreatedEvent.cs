@@ -8,9 +8,9 @@ namespace SP.Service.Domain.Events
 {
     public class CashApplyCreatedEvent : Event
     {
-        public string AccountId { get; internal set; }
-        public string Alipay { get; internal set; }
-        public double Money { get; internal set; }
+        public string AccountId { get;  set; }
+        public string Alipay { get; set; }
+        public double Money { get; set; }
         public CashApplyCreatedEvent(string accountId, string alipay, double money)
             : base(KafkaConfig.EventBusTopicTitle)
         {

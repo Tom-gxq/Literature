@@ -10,7 +10,7 @@ namespace SP.Service.Domain.Events
     {
         public string ShipTo { get; set; }
         public string OrderId { get; set; }
-        public string SSID { get; internal set; }
+        public string SSID { get; set; }
         public SellerStatisticsTradeEvent(string ssid, string shipto, string orderId)
              : base(KafkaConfig.EventBusTopicTitle)
         {

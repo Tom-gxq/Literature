@@ -8,9 +8,9 @@ namespace SP.Service.Domain.Events
 {
     public class SysStatisticsSumNewMemberEvent:Event
     {
-        public string AccountId { get; internal set; }
-        public double Amount { get; internal set; }
-        public DateTime CreateTime { get; internal set; }
+        public string AccountId { get; set; }
+        public double Amount { get; set; }
+        public DateTime CreateTime { get; set; }
         public SysStatisticsSumNewMemberEvent(string accountId,double amount, DateTime createTime)
             : base(KafkaConfig.EventBusTopicTitle)
         {

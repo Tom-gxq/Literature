@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.Account
 {
-    public class CreateOtherAccountCommand : Command
+    public class CreateOtherAccountCommand : SPCommand
     {
         public string MobilePhone { get; set; }
         public string OtherAccount { get; set; }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.Account
 {
-    public class EditAssociatorCommand : Command
+    public class EditAssociatorCommand : SPCommand
     {
         public int Status { get; set; }
         public EditAssociatorCommand(Guid id, int status) : base(KafkaConfig.NormalCommandBusTopicTitle)

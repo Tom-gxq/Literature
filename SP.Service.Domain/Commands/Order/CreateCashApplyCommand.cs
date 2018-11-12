@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.Order
 {
-    public class CreateCashApplyCommand : Command
+    public class CreateCashApplyCommand : SPCommand
     {
         public string AccountId { get; set; }
         public string Alipay { get; set; }

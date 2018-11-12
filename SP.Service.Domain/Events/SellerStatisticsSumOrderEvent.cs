@@ -8,8 +8,8 @@ namespace SP.Service.Domain.Events
 {
     public class SellerStatisticsSumOrderEvent:Event
     {
-        public double OrderAmount { get; internal set; }
-        public string SSID { get; internal set; }
+        public double OrderAmount { get; set; }
+        public string SSID { get; set; }
         public SellerStatisticsSumOrderEvent(string ssid, double orderAmount)
             : base(KafkaConfig.EventBusTopicTitle)
         {

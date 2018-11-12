@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.Order
 {
-    public class OrderRedoStockCommand : Command
+    public class OrderRedoStockCommand : SPCommand
     {
 
         public DateTime OrderDate { get; set; }

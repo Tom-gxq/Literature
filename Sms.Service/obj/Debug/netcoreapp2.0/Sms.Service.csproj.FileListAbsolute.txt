@@ -44,6 +44,7 @@ D:\项目构建\饿家军餐饮平台\Src\Literature\Sms.Service\bin\Debug\netco
 D:\项目构建\饿家军餐饮平台\Src\Literature\Sms.Service\bin\Debug\netcoreapp2.0\Sms.Service.pdb
 D:\项目构建\饿家军餐饮平台\Src\Literature\Sms.Service\bin\Debug\netcoreapp2.0\aliyun-net-sdk-core.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\Sms.Service\bin\Debug\netcoreapp2.0\aliyun-net-sdk-dysmsapi.dll
+D:\项目构建\饿家军餐饮平台\Src\Literature\Sms.Service\bin\Debug\netcoreapp2.0\CSRedis.NetCore.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\Sms.Service\bin\Debug\netcoreapp2.0\Grpc.Service.Core.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\Sms.Service\bin\Debug\netcoreapp2.0\RedisCache.Service.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\Sms.Service\bin\Debug\netcoreapp2.0\RPCCommonTool.dll
@@ -54,6 +55,7 @@ D:\项目构建\饿家军餐饮平台\Src\Literature\Sms.Service\bin\Debug\netco
 D:\项目构建\饿家军餐饮平台\Src\Literature\Sms.Service\bin\Debug\netcoreapp2.0\Grpc.Service.Core.pdb
 D:\项目构建\饿家军餐饮平台\Src\Literature\Sms.Service\bin\Debug\netcoreapp2.0\RedisCache.Service.pdb
 D:\项目构建\饿家军餐饮平台\Src\Literature\Sms.Service\bin\Debug\netcoreapp2.0\SmsGRPCInterface.pdb
+D:\项目构建\饿家军餐饮平台\Src\Literature\Sms.Service\bin\Debug\netcoreapp2.0\CSRedis.NetCore.pdb
 D:\项目构建\饿家军餐饮平台\Src\Literature\Sms.Service\bin\Debug\netcoreapp2.0\RPCCommonTool.pdb
 D:\项目构建\饿家军餐饮平台\Src\Literature\Sms.Service\bin\Debug\netcoreapp2.0\SP.Api.Model.pdb
 D:\项目构建\饿家军餐饮平台\Src\Literature\Sms.Service\obj\Debug\netcoreapp2.0\Sms.Service.csprojResolveAssemblyReference.cache

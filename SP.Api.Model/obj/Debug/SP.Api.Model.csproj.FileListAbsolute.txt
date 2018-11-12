@@ -9,4 +9,3 @@ D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Api.Model\bin\Debug\SP.A
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Api.Model\obj\Debug\SP.Api.Model.csproj.CoreCompileInputs.cache
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Api.Model\obj\Debug\SP.Api.Model.dll
 D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Api.Model\obj\Debug\SP.Api.Model.pdb
-D:\项目构建\饿家军餐饮平台\Src\Literature\SP.Api.Model\obj\Debug\SP.Api.Model.csprojResolveAssemblyReference.cache

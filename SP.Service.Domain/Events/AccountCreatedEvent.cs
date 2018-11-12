@@ -9,10 +9,10 @@ namespace SP.Service.Domain.Events
 {
     public class AccountCreatedEvent : Event
     {
-        public string MobilePhone { get; internal set; }
-        public string Email { get; internal set; }
-        public string Password { get; internal set; }
-        public int Status { get; internal set; }        
+        public string MobilePhone { get;  set; }
+        public string Email { get;  set; }
+        public string Password { get;  set; }
+        public int Status { get;  set; }        
 
         public AccountCreatedEvent(Guid aggregateId, string mobilePhone, string email,string password,int status)
             : base(KafkaConfig.EventBusTopicTitle)

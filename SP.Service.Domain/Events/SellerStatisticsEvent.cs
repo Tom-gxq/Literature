@@ -9,9 +9,9 @@ namespace SP.Service.Domain.Events
     public class SellerStatisticsEvent : Event
     {
         public string ShippingId { get; set; }
-        public int NewOrder { get; internal set; }
-        public double OrderAmount { get; internal set; }
-        public DateTime CreateTime { get; internal set; }
+        public int NewOrder { get; set; }
+        public double OrderAmount { get; set; }
+        public DateTime CreateTime { get; set; }
         public SellerStatisticsEvent(Guid id,DateTime createTime, string shippingId,int newOrder, double orderAmount)
             : base(KafkaConfig.EventBusTopicTitle)
         {

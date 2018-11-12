@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.Account
 {
-    public class CreateApplyPartnerCommand : Command
+    public class CreateApplyPartnerCommand : SPCommand
     {
         public int DormId { get; set; }
         public CreateApplyPartnerCommand(Guid id,int dormId) : base(KafkaConfig.NormalCommandBusTopicTitle)

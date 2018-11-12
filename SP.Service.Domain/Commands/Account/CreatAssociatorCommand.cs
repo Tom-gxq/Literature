@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.Account
 {
-    public class CreatAssociatorCommand : Command
+    public class CreatAssociatorCommand : SPCommand
     {
         public string KindId { get; set; }
         public string AccountId { get; set; }

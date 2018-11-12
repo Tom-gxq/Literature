@@ -8,8 +8,8 @@ namespace SP.Service.Domain.Events
 {
     public class SysStatisticsSumUserEvent : Event
     {
-        public string AccountId { get; internal set; }
-        public DateTime CreateTime { get; internal set; }
+        public string AccountId { get; set; }
+        public DateTime CreateTime { get; set; }
         public SysStatisticsSumUserEvent(string accountId,DateTime createTime) : base(KafkaConfig.EventBusTopicTitle)
         {
             this.AccountId = accountId;

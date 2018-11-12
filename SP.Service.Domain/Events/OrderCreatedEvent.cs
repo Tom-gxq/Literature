@@ -9,16 +9,16 @@ namespace SP.Service.Domain.Events
 {
     public class OrderCreatedEvent : Event
     {
-        public string Remark { get; internal set; }
-        public OrderStatus OrderStatus { get; internal set; }
-        public DateTime OrderDate { get; internal set; }
-        public string AccountId { get; internal set; }
-        public double Amount { get; internal set; }
-        public double VIPAmount { get; internal set; }
-        public int AddressId { get; internal set; }
-        public string Address { get; internal set; }
-        public string Mobile { get; internal set; }
-        public bool IsVip { get; internal set; }
+        public string Remark { get; set; }
+        public OrderStatus OrderStatus { get; set; }
+        public DateTime OrderDate { get; set; }
+        public string AccountId { get; set; }
+        public double Amount { get; set; }
+        public double VIPAmount { get; set; }
+        public int AddressId { get; set; }
+        public string Address { get; set; }
+        public string Mobile { get; set; }
+        public bool IsVip { get; set; }
         public int OrderType { get; set; }
 
         public OrderCreatedEvent(Guid aggregateId, string remark, OrderStatus orderStatus, 

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.Product
 {
-    public class DelProductCommand : Command
+    public class DelProductCommand : SPCommand
     {
         public DelProductCommand(Guid id) : base(KafkaConfig.NormalCommandBusTopicTitle)
         {

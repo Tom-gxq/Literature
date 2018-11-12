@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.Account
 {
-    public class EditAccountPwdCommand : Command
+    public class EditAccountPwdCommand : SPCommand
     {
         public string Pwd { get; set; }
 

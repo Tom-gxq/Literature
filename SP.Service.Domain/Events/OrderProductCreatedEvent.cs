@@ -9,8 +9,8 @@ namespace SP.Service.Domain.Events
 {
     public class OrderProductCreatedEvent : Event
     {
-        public OrdersEntity Order { get; internal set; }
-        public int VersionId { get; internal set; }
+        public OrdersEntity Order { get; set; }
+        public int VersionId { get; set; }
         public OrderProductCreatedEvent(Guid aggregateId, OrdersEntity order, int versionId)
             : base(KafkaConfig.EventBusTopicTitle)
         {

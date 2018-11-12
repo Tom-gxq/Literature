@@ -8,10 +8,10 @@ namespace SP.Service.Domain.Events
 {
     public  class TokenCreatedEvent:Event
     {
-        public string AccessToken { get; internal set; }
-        public string AccountId { get; internal set; }
-        public bool Status { get; internal set; }
-        public DateTime CreateTime { get; internal set; }
+        public string AccessToken { get;  set; }
+        public string AccountId { get;  set; }
+        public bool Status { get;  set; }
+        public DateTime CreateTime { get;  set; }
         public TokenCreatedEvent(string token,string accountId,bool status,DateTime createTime)
             : base(KafkaConfig.EventBusTopicTitle)
         {

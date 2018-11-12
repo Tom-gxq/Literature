@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.Order
 {
-    public class EditOrderCodeCommand : Command
+    public class EditOrderCodeCommand : SPCommand
     {
         public OrderStatus OrderStatus { get; internal set; }
         public string OrderCode { get; internal set; }

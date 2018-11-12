@@ -8,14 +8,14 @@ namespace SP.Service.Domain.Events
 {
     public class AccountInfoCreatedEvent : Event
     {
-        public string Fullname { get; internal set; }
-        public string Avatar { get; internal set; }
-        public string Email { get; internal set; }
-        public string WeiXin { get; internal set; }
-        public int UserType { get; internal set; }
-        public bool Gender { get; internal set; }
-        public DateTime Birthdate { get; internal set; }
-        public string IM_QQ { get; internal set; }
+        public string Fullname { get;  set; }
+        public string Avatar { get;  set; }
+        public string Email { get;  set; }
+        public string WeiXin { get;  set; }
+        public int UserType { get;  set; }
+        public bool Gender { get;  set; }
+        public DateTime Birthdate { get;  set; }
+        public string IM_QQ { get;  set; }
 
         public AccountInfoCreatedEvent(Guid aggregateId, string avatar="", string fullname="", string weiXin="", string imqq="", int userType = 0, bool gender = false, DateTime? birthdate = null)
             : base(KafkaConfig.EventBusTopicTitle)

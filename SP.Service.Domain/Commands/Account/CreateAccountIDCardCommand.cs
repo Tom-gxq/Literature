@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.Account
 {
-    public class CreateAccountIDCardCommand : Command
+    public class CreateAccountIDCardCommand : SPCommand
     {
         public int DormId { get; set; }
         public string FullName { get; set; }

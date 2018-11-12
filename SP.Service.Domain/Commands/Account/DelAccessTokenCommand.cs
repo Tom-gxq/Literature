@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.Account
 {
-    public class DelAccessTokenCommand : Command
+    public class DelAccessTokenCommand : SPCommand
     {
         public string AccessToken { get; set; }
         public string AccountId { get; set; }

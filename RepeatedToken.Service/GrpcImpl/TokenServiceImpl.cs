@@ -56,7 +56,7 @@ namespace RepeatedToken.Service.GrpcImpl
         public override Task<RepeatedTokenResponse> GenerateRepeatedToken(AccountIdRequest request, ServerCallContext context)
         {
             logger.LogInformation(this.prjLicEID, "GenerateRepeatedToken {Date} {IPAdress} {Status} Connected! ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
-            logger.LogInformation(this.prjLicEID, "GetRepeatedToken {AccountId}", request.AccountId);
+            logger.LogInformation(this.prjLicEID, "GenerateRepeatedToken {AccountId}", request.AccountId);
 
             RepeatedTokenResponse response = null;
             try

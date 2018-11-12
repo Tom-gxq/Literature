@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.Product
 {
-    public class EditSaleStatusCommand : Command
+    public class EditSaleStatusCommand : SPCommand
     {
         public int Status { get; set; }
         public EditSaleStatusCommand(Guid id, int status) : base(KafkaConfig.NormalCommandBusTopicTitle)

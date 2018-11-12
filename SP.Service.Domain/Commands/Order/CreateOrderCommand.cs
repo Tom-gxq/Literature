@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands
 {
-    public class CreateOrderCommand: Command
+    public class CreateOrderCommand: SPCommand
     {
         public string Remark { get; set; }
 

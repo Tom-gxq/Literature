@@ -8,9 +8,9 @@ namespace SP.Service.Domain.Events
 {
     public class OrderSubAmountEvent : Event
     {
-        public string ProductId { get; internal set; }
-        public double Amount { get; internal set; }
-        public double VipAmount { get; internal set; }
+        public string ProductId { get; set; }
+        public double Amount { get; set; }
+        public double VipAmount { get; set; }
         public OrderSubAmountEvent(Guid aggregateId,string productId, double amount, double vipAmount)
             : base(KafkaConfig.EventBusTopicTitle)
         {

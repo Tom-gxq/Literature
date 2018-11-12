@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.Account
 {
-    public class EditAuthenticationCommand : Command
+    public class EditAuthenticationCommand : SPCommand
     {
         public int AuthType { get; set; }
         public string AccountId { get; set; }
