@@ -12,9 +12,16 @@ namespace AgentDashboard.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SP_ShopProduct
+    public partial class SP_ConsumeTrade
     {
-        public int ShopId { get; set; }
-        public string ProductId { get; set; }
+        public int Id { get; set; }
+        public string TradeId { get; set; }
+        public string AccountId { get; set; }
+        public Nullable<decimal> Amount { get; set; }
+        public string OrderId { get; set; }
+        public Nullable<System.DateTime> CreateTime { get; set; }
+        public string CheckCode { get; set; }
+        public Nullable<decimal> BalanceAmount { get; set; }
+        public string TradeNo { get; set; }
     }
 }

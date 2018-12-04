@@ -26,6 +26,6 @@ namespace AgentDashboard.Models
         public int Status { get; set; }
         public System.DateTime CreateTime { get; set; }
         public Nullable<System.DateTime> UpdateTime { get; set; }
-        public Nullable<int> Type { get; set; }
+        public Nullable<int> TypeId { get; set; }
     }
 }

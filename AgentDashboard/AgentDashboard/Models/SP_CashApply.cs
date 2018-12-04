@@ -21,5 +21,7 @@ namespace AgentDashboard.Models
         public Nullable<System.DateTime> CreateTime { get; set; }
         public Nullable<System.DateTime> UpdateTime { get; set; }
         public int Status { get; set; }
+        public Nullable<decimal> BalanceAmount { get; set; }
+        public string TradeNo { get; set; }
     }
 }

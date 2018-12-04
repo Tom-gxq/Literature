@@ -259,8 +259,8 @@
     <Content Include="js\seller\style.css" />
     <Content Include="Models\SP.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SP.Context.cs</LastGenOutput>
       <DependentUpon>SP.edmx</DependentUpon>
+      <LastGenOutput>SP.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\SP.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -298,6 +298,11 @@
     <Content Include="Views\Default\Details.cshtml" />
     <Content Include="Views\Default\HumanManager.cshtml" />
     <Content Include="Views\Default\DataAnalyze.cshtml" />
+    <Content Include="Views\Default\ShopDetails.cshtml" />
+    <Content Include="Views\Default\DeliverymanViewer.cshtml" />
+    <Content Include="js\plug\plupload\Moxie.xap" />
+    <Content Include="Views\Default\AddSeller.cshtml" />
+    <Content Include="Views\Default\SellerDetails.cshtml" />
     <EntityDeploy Include="Models\SP.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SP.Designer.cs</LastGenOutput>
@@ -305,11 +310,6 @@
     <Content Include="Models\SP.edmx.diagram">
       <DependentUpon>SP.edmx</DependentUpon>
     </Content>
-    <Content Include="Views\Default\ShopDetails.cshtml" />
-    <Content Include="Views\Default\DeliverymanViewer.cshtml" />
-    <Content Include="js\plug\plupload\Moxie.xap" />
-    <Content Include="Views\Default\AddSeller.cshtml" />
-    <Content Include="Views\Default\SellerDetails.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Views\Default\Index.cshtml" />
     <Content Include="Web.config" />
@@ -393,7 +393,13 @@
     <Compile Include="Models\SP_CashApply.cs">
       <DependentUpon>SP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SP_ConsumeTrade.cs">
+      <DependentUpon>SP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SP_EventRelation.cs">
+      <DependentUpon>SP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_IncomeTrade.cs">
       <DependentUpon>SP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SP_Orders.cs">
@@ -466,6 +472,12 @@
       <DependentUpon>SP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SP_Suppliers.cs">
+      <DependentUpon>SP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_SuppliersProduct.cs">
+      <DependentUpon>SP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_SuppliersRegion.cs">
       <DependentUpon>SP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SP_SysEvent.cs">
