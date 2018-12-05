@@ -109,6 +109,23 @@ namespace AgentDashboard.Controllers
             return (pageIndex - 1) * pageSize;
         }
 
+        /// <summary>
+        /// 取得当前用户ID
+        /// </summary>
+        /// <remarks>
+        /// 系统登录后在Session的Account里保存一个AccoutModel
+        /// 帐户Id就从这个AccoutModel中取得
+        /// </remarks>
+        /// <returns>当前用户ID</returns>
+        private String GetCurrentAccountId()
+        {
+            return (MDSession.Session["Account"] as AccountModel)?.AccountId;
+        }
+
+        /// <summary>
+        /// 餐厅页面
+        /// </summary>
+        /// <returns></returns>
         // GET: Default
         public ActionResult Index()
         {
@@ -119,19 +136,22 @@ namespace AgentDashboard.Controllers
                 ViewBag.CurrentPage = 1;
                 string food = ConfigurationManager.AppSettings["MainType.Food"];
                 int foodId = int.Parse(food);
+                String accountId = GetCurrentAccountId();
 
-                var shopList = sp.SP_Shop.Where(n=>n.ShopType == foodId)?.OrderByDescending(n => n.RegionId).OrderByDescending(n=>n.Id)
-                    //.Skip(GetStartRowNo(1, 20)).Take(20).ToList();
-                    .ToList();
-                shopsVM = shopList.Select(x => new ShopViewModel
-                {
-                    Id = x.Id,
-                    ShopName = x.ShopName,
-                    ShopType = x.ShopType,
-                    ShopStatus = x.ShopStatus,
-                    RegionId = x.RegionId,
-                }).ToList();
-                foreach(var item in shopsVM)
+                shopsVM = (from regionAccount in sp.SP_RegionAccount.Where(n => n.AccountId == accountId)
+                           join shop in sp.SP_Shop on regionAccount.RegionId equals shop.RegionId
+                           select new ShopViewModel
+                           {
+                               Id = shop.Id,
+                               ShopName = shop.ShopName,
+                               ShopType = shop.ShopType,
+                               ShopStatus = shop.ShopStatus,
+                               RegionId = shop.RegionId,
+                           }).Where(n=>n.ShopType == foodId)
+                           .OrderByDescending(n =>n.RegionId)
+                           .OrderByDescending(n => n.Id).ToList();
+
+                foreach (var item in shopsVM)
                 {
                     if (item.RegionId != null)
                     {
@@ -397,6 +417,10 @@ namespace AgentDashboard.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 超市页面
+        /// </summary>
+        /// <returns></returns>
         public ActionResult SuperMarket()
         {
             List<ShopViewModel> shopsVM = null;
@@ -406,18 +430,23 @@ namespace AgentDashboard.Controllers
                 ViewBag.CurrentPage = 1;
                 string market = ConfigurationManager.AppSettings["MainType.Market"];
                 int marketId = int.Parse(market);
+                string accountId = GetCurrentAccountId();
+
+                shopsVM = (from regionAccount in sp.SP_RegionAccount.Where(n=>n.AccountId == accountId)
+                           join shop in sp.SP_Shop on regionAccount.RegionId equals shop.RegionId
+                           select new ShopViewModel
+                           {
+                               Id = shop.Id,
+                               ShopName = shop.ShopName,
+                               ShopType = shop.ShopType,
+                               ShopStatus = shop.ShopStatus,
+                               RegionId = shop.RegionId,
+                           }
+                           ).Where(n => n.ShopType == marketId)
+                           .OrderByDescending(n => n.RegionId)
+                           .OrderByDescending(n => n.Id)
+                           .ToList();
                 
-                var shopList = sp.SP_Shop.Where(n => n.ShopType == marketId)?.OrderByDescending(n => n.RegionId).OrderByDescending(n => n.Id)
-                    //.Skip(GetStartRowNo(1, 20)).Take(20).ToList();
-                    .ToList();
-                shopsVM = shopList.Select(x => new ShopViewModel
-                {
-                    Id = x.Id,
-                    ShopName = x.ShopName,
-                    ShopType = x.ShopType,
-                    ShopStatus = x.ShopStatus,
-                    RegionId = x.RegionId,
-                }).ToList();
                 foreach (var item in shopsVM)
                 {
                     if (item.RegionId != null)
