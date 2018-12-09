@@ -1,9 +1,12 @@
-﻿using Grpc.Service.Core.Domain.Commands;
+﻿using Grpc.Service.Core.Dependency;
+using Grpc.Service.Core.Domain.Commands;
 using Grpc.Service.Core.Domain.HandlerFactory;
 using Grpc.Service.Core.Domain.Handlers;
 using Newtonsoft.Json;
+using SP.MongoDB.Repositories;
 using SP.Service.Domain.Commands;
 using SP.Service.Domain.Commands.Account;
+using SP.Service.Domain.Commands.BalancePay;
 using SP.Service.Domain.Commands.Order;
 using SP.Service.Domain.Commands.Product;
 using SP.Service.Domain.Commands.ShoppingCart;
@@ -11,6 +14,7 @@ using SP.Service.Domain.Commands.Statistics;
 using SP.Service.Domain.Commands.StockShip;
 using SP.Service.Domain.Commands.Token;
 using SP.Service.Domain.Exceptions;
+using SP.Service.Domain.Reporting;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,9 +24,11 @@ namespace SP.Service.Domain.CommandHandlers.Execute
     public class CommandExecuteHandler : ICommandExecuteHandler
     {
         private readonly ICommandHandlerFactory _commandHandlerFactory;
-        public CommandExecuteHandler(ICommandHandlerFactory commandHandlerFactory)
+        private readonly CommandReportDatabase _reportDatabase;
+        public CommandExecuteHandler(ICommandHandlerFactory commandHandlerFactory, CommandReportDatabase reportDatabase)
         {
             _commandHandlerFactory = commandHandlerFactory;
+            _reportDatabase = reportDatabase;
         }
         public void ExecuteCommand(string text)
         {
@@ -164,23 +170,45 @@ namespace SP.Service.Domain.CommandHandlers.Execute
                 case CommandType.UpdateStatus:
                     ExecuteCommand<UpdateStatusCommand>(text);
                     break;
+                case CommandType.BalancePay:
+                    ExecuteCommand<BalancePayCommand>(text);
+                    break;
                 default:
                     throw new UnregisteredDomainCommandException($" unknown command: [{text}]");
             }
             
         }
-        private void ExecuteCommand<T>(string text) where T :Command
+        private void ExecuteCommand<T>(string text) where T : SPCommand
         {
             var command = JsonConvert.DeserializeObject<T>(text);
-            var commandHandler = _commandHandlerFactory.GetHandler<T>();
-            if (commandHandler != null && command != null)
+            var tokenCmd = this._reportDatabase.GetByToken(command.Token);
+            if (tokenCmd == null)
             {
-                commandHandler.Execute(command);
+                SaveCommand<T>(command);
+                var commandHandler = _commandHandlerFactory.GetHandler<T>();
+                if (commandHandler != null && command != null)
+                {
+                    commandHandler.Execute(command);
+                    UpdateEventStatus<T>(command.Id, 1);
+                }
+                else
+                {
+                    throw new UnregisteredDomainCommandException($"no handler registered or unknown command: [{text}]");
+                }
             }
             else
             {
-                throw new UnregisteredDomainCommandException($"no handler registered or unknown command: [{text}]");
+                System.Console.WriteLine("tokenCmd:" + tokenCmd.GetMessage());
             }
+        }
+        private async void SaveCommand<T>(T command) where T: SPCommand
+        {
+            command.CommandId = command.Id.ToString();
+            await this._reportDatabase.InsertAsync(command);
+        }
+        private async void UpdateEventStatus<T>(Guid commandId, int status) where T : SPCommand
+        {
+            await this._reportDatabase.UpdateCommandExcuteStatusAsync(commandId, status);
         }
     }
 }

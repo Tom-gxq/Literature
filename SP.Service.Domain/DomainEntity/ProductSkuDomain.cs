@@ -36,21 +36,21 @@ namespace SP.Service.Domain.DomainEntity
         {
             ApplyChange(new ProductSkuDBCreateEvent(id, accountId, productId, shopId, stock));
         }
-        public void EditProductSkuOrderNum(int shopId, string productId, string accountId, int orderNum)
+        public void EditProductSkuOrderNum(Guid id,int shopId, string productId, string accountId, int orderNum)
         {
-            ApplyChange(new ProductSkuOrderNumEvent(shopId, productId, accountId, orderNum));
+            ApplyChange(new ProductSkuOrderNumEvent(id,shopId, productId, accountId, orderNum));
         }
-        public void EditProductSkuDomainStock(int shopId, string productId, int stock, string orderId, string accountId)
-        {
-            string host = OrderCommon.GetHost();
-            ApplyChange(new DecreaseProductSkuEvent(shopId, productId, stock, orderId, host, accountId));
-        }
-        public void RedoProductSkuDomainStock(int shopId, string productId, int stock, string orderId, string accountId)
+        public void EditProductSkuDomainStock(Guid id,int shopId, string productId, int stock, string orderId, string accountId)
         {
             string host = OrderCommon.GetHost();
-            ApplyChange(new RedoProductSkuEvent(shopId, productId, stock, orderId, host, accountId));
+            ApplyChange(new DecreaseProductSkuEvent(id,shopId, productId, stock, orderId, host, accountId));
         }
-        public void UpdateProductSkuDomainStock(int shopId, string productId, string accountId, int stock,int type)
+        public void RedoProductSkuDomainStock(Guid id,int shopId, string productId, int stock, string orderId, string accountId)
+        {
+            string host = OrderCommon.GetHost();
+            ApplyChange(new RedoProductSkuEvent(id,shopId, productId, stock, orderId, host, accountId));
+        }
+        public void UpdateProductSkuDomainStock(Guid id,int shopId, string productId, string accountId, int stock,int type)
         {
             var config = IocManager.Instance.Resolve<IConfigurationRoot>();
             string kafkaIP = string.Empty;
@@ -65,7 +65,7 @@ namespace SP.Service.Domain.DomainEntity
             producer.ShopId = shopId;
             producer.Stock = stock;
             producer.Type = type;
-            ApplyChange(new KafkaAddEvent(producer));
+            ApplyChange(new KafkaAddEvent(id,producer));
         }
         public void UpdateProductSkuDbDomainStock(Guid id,int shopId, string productId, string accountId, int stock,int type)
         {

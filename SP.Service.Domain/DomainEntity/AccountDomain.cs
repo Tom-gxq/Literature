@@ -106,7 +106,7 @@ namespace SP.Service.Domain.DomainEntity
             var producer = new KafkaUserRegProducer();
             producer.IPConfig = kafkaIP;
             producer.AccountId = accountId;
-            ApplyChange(new KafkaAddEvent(producer));
+            ApplyChange(new KafkaAddEvent(new Guid(accountId),producer));
         }
         public void AddMemberKafkaInfo(string accountId,double amount, AuthorizeType Type)
         {
@@ -121,7 +121,7 @@ namespace SP.Service.Domain.DomainEntity
             producer.AccountId = accountId;
             producer.Amount = amount;
             producer.Type = Type;
-            ApplyChange(new KafkaAddEvent(producer));
+            ApplyChange(new KafkaAddEvent(new Guid(accountId),producer));
         }
         public void Handle(KafkaAddEvent e)
         {

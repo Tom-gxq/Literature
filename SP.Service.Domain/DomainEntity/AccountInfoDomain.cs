@@ -10,7 +10,6 @@ namespace SP.Service.Domain.DomainEntity
 {
     public class AccountInfoDomain : AggregateRoot<Guid>, IHandle<AccountInfoEditEvent>
     {
-        public int Id { get; set; }
         public string AccountId { get; set; }
         public string Avatar { get; set; }
         public string Fullname { get; set; }
@@ -26,7 +25,7 @@ namespace SP.Service.Domain.DomainEntity
         }
         public void EditAccountInfoDomain(string accountId, string userName, int gender, string avatar,int userType)
         {
-            ApplyChange(new AccountInfoEditEvent(accountId, userName, gender, avatar,userType));
+            ApplyChange(new AccountInfoEditEvent(this.Id,accountId, userName, gender, avatar,userType));
             //ApplyChange(new AddressCreatedEvent(Guid.NewGuid(), userName, gender, string.Empty, dormId, string.Empty, accountId, string.Empty, 0));
         }
         public void SetAccountPayPwd(string accountId, string payPwd)
@@ -42,7 +41,6 @@ namespace SP.Service.Domain.DomainEntity
         {
             return new AccountInfoEntity()
             {
-                Id = this.Id,
                 AccountId = this.AccountId,
                 Avatar = this.Avatar,
                 Fullname = this.Fullname,
@@ -59,7 +57,6 @@ namespace SP.Service.Domain.DomainEntity
             if (memento is AccountInfoEntity)
             {
                 var entity = memento as AccountInfoEntity;
-                this.Id = entity.Id.Value;
                 this.AccountId = entity.AccountId;
                 this.Avatar = entity.Avatar;
                 this.Fullname = entity.Fullname;

@@ -209,6 +209,7 @@
     <Compile Include="Controllers\Account\AccountController.cs" />
     <Compile Include="Controllers\Account\AddressController.cs" />
     <Compile Include="Controllers\Account\AssociatorController.cs" />
+    <Compile Include="Controllers\Account\EjiajunPayController.cs" />
     <Compile Include="Controllers\Account\ShoppingCartController.cs" />
     <Compile Include="Controllers\Account\wxPayController.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />

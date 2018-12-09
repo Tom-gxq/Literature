@@ -1,4 +1,5 @@
-﻿using Grpc.Service.Core.Dependency;
+﻿using Grpc.Service.Core.AutoMapper;
+using Grpc.Service.Core.Dependency;
 using Grpc.Service.Core.Domain.Handlers;
 using Grpc.Service.Core.Domain.Storage;
 using Microsoft.Extensions.Configuration;
@@ -33,9 +34,10 @@ namespace SP.Service.Domain.CommandHandlers
         {
             var account = _accountReportDatabase.GetAccount(command.MobilePhone);
             //注册功能
-            if (account == null)            
+            if (account == null)          
             {
-                var aggregate = new AccountDomain(command.Id, command.MobilePhone, command.Email, command.Password, command.Status, command.UserName);
+                var aggregate = command.ToDomain<AccountDomain>();
+                //var aggregate = new AccountDomain(command.Id, command.MobilePhone, command.Email, command.Password, command.Status, command.UserName);
                 //统计
                 aggregate.AddUserRegKafkaInfo(command.Id.ToString());
 

@@ -31,7 +31,7 @@ namespace SP.Service.Domain.CommandHandlers
             if (entity != null && !string.IsNullOrEmpty(entity.SSID))
             {
                 aggregate = new SellerStatisticsDomain();
-                aggregate.SumOrderStatistics(entity.SSID, command.Shipto, command.OrderId, command.OrderAmount);
+                aggregate.SumOrderStatistics(command.Id,entity.SSID, command.Shipto, command.OrderId, command.OrderAmount);
             }
             else
             {

@@ -13,5 +13,6 @@ namespace SP.Api.Model.Order
         public double useAmount { get; set; }
         public double activeAmount { get; set; }
         public double applyAmount { get; set; }
+        public double consumeAmount { get; set; }
     }
 }

@@ -152,9 +152,7 @@ namespace Order.Service.Business
                     var trade = new SP.Service.Trade();
                     trade.AccountId = item.AccountId;
                     trade.Amount = item.Amount;
-                    trade.CartId = item.CartId;
                     trade.CreateTime = item.CreateTime.Ticks;
-                    trade.Quantity = item.Quantity;
                     trade.Subject = item.Subject;
                     result.TradeList.Add(trade);
                 }
@@ -173,6 +171,7 @@ namespace Order.Service.Business
                 result.AccountId = finance.AccountId;
                 result.HaveAmount = finance.HaveAmount;
                 result.UseAmount = finance.UseAmount;
+                result.ConsumeAmount = finance.ConsumeAmount;
                 var accountInfo = ServiceLocator.AccountInfoReportDatabase.GetAccountInfoById(accountId);
                 if (accountInfo.UserType == 2)
                 {

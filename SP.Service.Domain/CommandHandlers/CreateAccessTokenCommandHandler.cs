@@ -1,4 +1,5 @@
-﻿using Grpc.Service.Core.Domain.Handlers;
+﻿using Grpc.Service.Core.AutoMapper;
+using Grpc.Service.Core.Domain.Handlers;
 using Grpc.Service.Core.Domain.Storage;
 using SP.Service.Domain.Commands.Account;
 using SP.Service.Domain.DomainEntity;
@@ -22,8 +23,9 @@ namespace SP.Service.Domain.CommandHandlers
 
         public void Execute(CreateAccessTokenCommand command)
         {
-            var aggregate = new AccessTokenDomain( command.AccountId, command.AccessToken, command.AccessTokenExpires, command.RefreshToken, command.RefreshTokenExpires,command.CreateTime);
-
+            var aggregate = command.ToDomain<AccessTokenDomain>();
+            //var aggregate = new AccessTokenDomain( command.AccountId, command.AccessToken, command.AccessTokenExpires, command.RefreshToken, command.RefreshTokenExpires,command.CreateTime);
+            
             _repository.Save(aggregate);
         }
     }

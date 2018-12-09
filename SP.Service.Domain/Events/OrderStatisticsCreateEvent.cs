@@ -7,7 +7,7 @@ namespace SP.Service.Domain.Events
 {
     public class OrderStatisticsCreateEvent : OrderStatisticsSumEvent
     {
-        public OrderStatisticsCreateEvent(string orderId, string orderCode, string accountId, double foodAmount,double markAmount, int addressId, DateTime orderDate) :base(orderId, orderCode, accountId, foodAmount, markAmount, addressId, orderDate)
+        public OrderStatisticsCreateEvent(Guid id, string orderId, string orderCode, string accountId, double foodAmount,double markAmount, int addressId, DateTime orderDate) :base(id,orderId, orderCode, accountId, foodAmount, markAmount, addressId, orderDate)
         {
             this.EventType = EventType.OrderStatisticsCreate;
         }

@@ -112,5 +112,9 @@ namespace Grpc.Service.Core.Caching
         TValue ListRightPop(TKey key);
         long ListRightPush(TKey key, TValue value);
         long ListRemove(TKey key, TValue value, long count = 0);
+        long ListLength(TKey key);
+        long ListLeftPush(TKey key, TValue value);
+        long ListLeftPush(TKey key, TValue[] value);
+        TValue ListLeftPop(TKey key);
     }
 }

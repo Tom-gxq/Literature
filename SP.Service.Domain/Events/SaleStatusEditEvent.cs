@@ -12,6 +12,7 @@ namespace SP.Service.Domain.Events
         public SaleStatusEditEvent(Guid id, int status) : base(KafkaConfig.EventBusTopicTitle)
         {
             base.AggregateId = id;
+            this.CommandId = id.ToString();
             this.Status = status;
             this.EventType = EventType.SaleStatusEdit;
         }

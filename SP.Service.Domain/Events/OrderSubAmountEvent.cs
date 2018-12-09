@@ -15,6 +15,7 @@ namespace SP.Service.Domain.Events
             : base(KafkaConfig.EventBusTopicTitle)
         {
             AggregateId = aggregateId;
+            this.CommandId = aggregateId.ToString();
             ProductId = productId;
             Amount = amount;
             VipAmount = vipAmount;

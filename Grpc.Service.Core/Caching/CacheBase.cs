@@ -90,6 +90,10 @@ namespace Grpc.Service.Core.Caching
         public abstract object ListRightPop(string key);
         public abstract long ListRightPush(string key, string value);
         public abstract long ListRemove(string key, string value, long count = 0);
+        public abstract long ListLength(string key);
+        public abstract long ListLeftPush(string key, string value);
+        public abstract long ListLeftPush(string key, string[] value);
+        public abstract object ListLeftPop(string key);
         public abstract bool SortedSetAdd(string key, string member, double value);
         public abstract List<object> SortedSetRangeByScore(string key, double start, double stop );
         public abstract IBatch CreateBatch(object asyncState = null);

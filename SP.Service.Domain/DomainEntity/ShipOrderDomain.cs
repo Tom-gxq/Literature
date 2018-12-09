@@ -35,15 +35,15 @@ namespace SP.Service.Domain.DomainEntity
         {
 
         }
-        public ShipOrderDomain(string orderId, string shippingId, string shipTo, DateTime shippingDate, int stock, string productId,int shopId)
+        public ShipOrderDomain(Guid id,string orderId, string shippingId, string shipTo, DateTime shippingDate, int stock, string productId,int shopId)
         {
-            ApplyChange(new ShipOrderCreatedEvent(orderId, shippingId, shipTo, shippingDate, stock, productId, shopId));
+            ApplyChange(new ShipOrderCreatedEvent(id,orderId, shippingId, shipTo, shippingDate, stock, productId, shopId));
         }
-        public void EditShipOrderDomainStatus(List<int> shipOrderId,bool isShiped)
+        public void EditShipOrderDomainStatus(Guid id,List<int> shipOrderId,bool isShiped)
         {
             foreach (var item in shipOrderId)
             {
-                ApplyChange(new EditShipOrderStatusEvent(item, isShiped));
+                ApplyChange(new EditShipOrderStatusEvent(id,item, isShiped));
             }
         }
 

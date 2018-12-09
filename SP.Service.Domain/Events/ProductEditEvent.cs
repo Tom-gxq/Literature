@@ -15,6 +15,7 @@ namespace SP.Service.Domain.Events
             : base(KafkaConfig.EventBusTopicTitle)
         {
             base.AggregateId = id;
+            this.CommandId = id.ToString();
             this.ProductName = productName;
             this.MarketPrice = marketPrice;
             this.PurchasePrice = purchasePrice;

@@ -11,6 +11,7 @@ namespace SP.Service.Domain.Events
         public ProductDelEvent(Guid id) : base(KafkaConfig.EventBusTopicTitle)
         {
             this.AggregateId = id;
+            this.CommandId = id.ToString();
             this.EventType = EventType.ProductDel;
         }
     }

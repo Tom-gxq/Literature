@@ -10,8 +10,9 @@ namespace SP.Service.Domain.Events
     {
         public string CartId { get; set; }
         public string OrderId { get; set; }
-        public UpdateShoppingCartOrderIDEvent(string cartId, string orderId) : base(KafkaConfig.EventBusTopicTitle)
+        public UpdateShoppingCartOrderIDEvent(Guid id,string cartId, string orderId) : base(KafkaConfig.EventBusTopicTitle)
         {
+            this.CommandId = id.ToString();
             this.CartId = cartId;
             this.OrderId = orderId;
             this.EventType = EventType.UpdateShoppingCartOrderID;

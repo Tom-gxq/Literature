@@ -57,6 +57,8 @@ namespace Grpc.Service.Core.Domain.Commands
         EditShipOrderStatus,
         //Token
         Generate,
-        UpdateStatus
+        UpdateStatus,
+        //Pay
+        BalancePay,
     }
 }

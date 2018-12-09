@@ -13,6 +13,7 @@ namespace SP.Service.Domain.Events
         public AccountPayPwdCreateEvent(string accountId, string payPwd) : base(KafkaConfig.EventBusTopicTitle)
         {
             base.AggregateId = new Guid(accountId);
+            this.CommandId = accountId;
             this.PayPwd = payPwd;
             this.EventType = EventType.AccountPayPwdCreate;
         }

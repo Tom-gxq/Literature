@@ -40,6 +40,7 @@ namespace SP.Service.Domain.DomainEntity
         }
         public string AccountId { get; set; }
         public int IsDefault { get; set; }
+        public int RegionID { get; set; }
 
         public AccountAddressDomain()
         {
@@ -48,6 +49,10 @@ namespace SP.Service.Domain.DomainEntity
         public AccountAddressDomain(Guid id, string userName, int gender, string mobile, int regionId, string address, string accountId,string dorm, int isDefault)
         {
             ApplyChange(new AddressCreatedEvent(id, userName, gender, mobile, regionId, address, accountId, dorm, isDefault));
+        }
+        public void Create()
+        {
+            ApplyChange(new AddressCreatedEvent(this.Id, this.UserName, this.Gender, this.Mobile, this.RegionID, this.address, this.AccountId, this.DormName, this.IsDefault));
         }
 
         public void EditAddressDomain(Guid id,int addressId, string userName, int gender, string mobile, int regionId, string address, string accountId, string dorm, int isDefault)

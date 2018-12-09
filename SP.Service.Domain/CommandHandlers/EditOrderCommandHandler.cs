@@ -53,7 +53,7 @@ namespace SP.Service.Domain.CommandHandlers
             _repository.Save(aggregate);
             
             var order = _orderReportDatabase.GetLeadOrderDomainByOrderId(command.Id.ToString());
-            CaclCommsion(order, command.OrderStatus);
+            CaclCommsion(command.Id,order, command.OrderStatus);
         }
 
         public void Execute(EditOrderCodeCommand command)
@@ -69,12 +69,12 @@ namespace SP.Service.Domain.CommandHandlers
                     foreach (var cart in order.ShoppingCarts)
                     {
                         var sku = new ProductSkuDomain();
-                        sku.EditProductSkuDomainStock(cart.ShopId, cart.Product.ProductId, cart.Quantity, order.OrderId, order.AccountId);
+                        sku.EditProductSkuDomainStock(command.Id, cart.ShopId, cart.Product.ProductId, cart.Quantity, order.OrderId, order.AccountId);
                         _skuRepository.Save(sku);
                     }
                 }
 
-                CaclCommsion(order, command.OrderStatus);
+                CaclCommsion(command.Id,order, command.OrderStatus);
             }
             else
             {
@@ -89,10 +89,10 @@ namespace SP.Service.Domain.CommandHandlers
             _repository.Save(aggregate);
 
             var order = _orderReportDatabase.GetLeadOrderDomainByOrderId(command.Id.ToString());
-            CaclSellerCommsion(order, command.OrderStatus);
+            CaclSellerCommsion(command.Id,order, command.OrderStatus);
         }
 
-        private void CaclSellerCommsion(LeadOrderDomain order, OrderStatus orderStatus)
+        private void CaclSellerCommsion(Guid id,LeadOrderDomain order, OrderStatus orderStatus)
         {
             if (order != null)
             {
@@ -105,7 +105,7 @@ namespace SP.Service.Domain.CommandHandlers
                         if (finance != null && !string.IsNullOrEmpty(finance.AccountId))
                         {
                             var financeDomain = new AccountFinanceDomain();
-                            financeDomain.EditHaveAmount(finance.AccountId, order.Amount);
+                            financeDomain.EditHaveAmount(id,finance.AccountId, order.Amount);
                             _financeRepository.Save(financeDomain);
                         }
                         else
@@ -131,12 +131,12 @@ namespace SP.Service.Domain.CommandHandlers
                             }
                         }
                         //将订单成功付款的信息添加到kafka队列中
-                        AddShipOrderKafka(order.OrderId, orderStatus, item.Key, sumOrderAmount, item.FirstOrDefault()?.ShipTo??string.Empty);
+                        AddShipOrderKafka(id,order.OrderId, orderStatus, item.Key, sumOrderAmount, item.FirstOrDefault()?.ShipTo??string.Empty);
                     }
                 }
             }
         }
-        private void CaclCommsion(LeadOrderDomain order, OrderStatus orderStatus)
+        private void CaclCommsion(Guid id,LeadOrderDomain order, OrderStatus orderStatus)
         {
             if (order != null && orderStatus == Data.Enum.OrderStatus.Payed)
             {
@@ -149,15 +149,15 @@ namespace SP.Service.Domain.CommandHandlers
                         System.Console.WriteLine("Payed EditProductSkuDomainStock Quantity=" + ship.Stock);
                         var sku = new ProductSkuDomain();
                         //sku.EditProductSkuDomainStock(cart.Product.ProductId, cart.Quantity);
-                        sku.EditProductSkuOrderNum(ship.ShopId.Value, ship.ProductId, ship.ShippingId, ship.Stock.Value);
+                        sku.EditProductSkuOrderNum(id,ship.ShopId.Value, ship.ProductId, ship.ShippingId, ship.Stock.Value);
                         _skuRepository.Save(sku);
                     }
                 }
                 //将订单成功付款的信息添加到kafka队列中
-                AddKafka(order.OrderId, orderStatus);
+                AddKafka(id,order.OrderId, orderStatus);
             }
         }
-        private void AddKafka(string orderId,OrderStatus orderStatus)
+        private void AddKafka(Guid id,string orderId,OrderStatus orderStatus)
         {
             var aggregate = _orderReportDatabase.GetOrderByOrderId(orderId);
             var address = _addressReportDatabase.GetDefaultSelectedAddress(aggregate.AccountId);
@@ -170,13 +170,13 @@ namespace SP.Service.Domain.CommandHandlers
                 System.Console.WriteLine($"EditOrder AddKafka OrderId={orderId}");
             }
             aggregate.AdressId = address.DormId;
-            aggregate.AddKafkaInfo(orderStatus, address.SchoolId);
+            aggregate.AddKafkaInfo(id,orderStatus, address.SchoolId);
             _repository.Save(aggregate);
         }
-        private void AddShipOrderKafka(string orderId, OrderStatus orderStatus,string shippingId,double sumAmount, string shipto)
+        private void AddShipOrderKafka(Guid id,string orderId, OrderStatus orderStatus,string shippingId,double sumAmount, string shipto)
         {
             var aggregate = _orderReportDatabase.GetOrderByOrderId(orderId);
-            aggregate.AddShipOrderKafka(orderStatus, shippingId, sumAmount,orderId, shipto);
+            aggregate.AddShipOrderKafka(id,orderStatus, shippingId, sumAmount,orderId, shipto);
             _repository.Save(aggregate);
         }
     }

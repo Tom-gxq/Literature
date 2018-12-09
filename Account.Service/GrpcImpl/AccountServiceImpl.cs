@@ -921,5 +921,62 @@ namespace Account.Service.GrpcImpl
             logger.LogInformation(this.prjLicEID, "ApplyPartner {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
+
+        public override Task<AccountResultResponse> BalancePay(BalancePayRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} BalancePay Connected!",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, " {AccountId} {OrderCode} {PassWord} {Token} {Amount}", request.AccountId, request.OrderCode, request.PassWord, request.Token, request.Amount);
+            AccountResultResponse response = new AccountResultResponse();
+            response.Status = 10002;
+            try
+            {
+                response = AccountBusiness.BalancePay(request.AccountId, request.Token, request.PassWord, request.Amount, request.OrderCode, request.Sign);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "BalancePay Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "BalancePay {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+
+        public override Task<TradeListResponse> GetTradeList(TradeListRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} GetTradeList Connected!",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, " {AccountId} {PageIndex} {PageSize}", request.AccountId,request.PageIndex, request.PageSize);
+            var response = new TradeListResponse();
+            response.Status = 10002;
+            try
+            {
+                response = AccountBusiness.GetTradeList(request.AccountId, request.PageIndex, request.PageSize);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "GetTradeList Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "GetTradeList {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+
+        public override Task<TradeTotalResponse> GetTradeListCount(AccountIDRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} GetTradeListCount Connected!",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, " {AccountId} ", request.AccountId);
+            var response = new TradeTotalResponse();
+            response.Status = 10002;
+            try
+            {
+                response = AccountBusiness.GetTradeListCount(request.AccountId);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "GetTradeListCount Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "GetTradeListCount {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
     }
 }

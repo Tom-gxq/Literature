@@ -63,18 +63,19 @@ namespace SP.Service {
             "ZBgDIAEoCRISCgpjcmVhdGVUaW1lGAQgASgDEhAKCHF1YW50aXR5GAUgASgF",
             "Eg8KB3N1YmplY3QYBiABKAUiWAoRVHJhZGVMaXN0UmVzcG9uc2USDgoGc3Rh",
             "dHVzGAEgASgFEiQKCXRyYWRlTGlzdBgCIAMoCzIRLlNQLlNlcnZpY2UuVHJh",
-            "ZGUSDQoFdG90YWwYBSABKAMikAEKGVNjaG9vbExlYWRGaW5hbmNlUmVzcG9u",
+            "ZGUSDQoFdG90YWwYBSABKAMipwEKGVNjaG9vbExlYWRGaW5hbmNlUmVzcG9u",
             "c2USDgoGc3RhdHVzGAEgASgFEhEKCWFjY291bnRJZBgCIAEoCRISCgpoYXZl",
             "QW1vdW50GAMgASgBEhEKCXVzZUFtb3VudBgEIAEoARIUCgxhY3RpdmVBbW91",
-            "bnQYBSABKAESEwoLYXBwbHlBbW91bnQYBiABKAEiRwoTQWRkQ2FzaEFwcGx5",
-            "UmVxdWVzdBIRCglhY2NvdW50SWQYASABKAkSDgoGYWxpcGF5GAIgASgJEg0K",
-            "BW1vbmV5GAMgASgBIlAKFlVwZGF0ZU9yZGVyQ29kZVJlcXVlc3QSEwoLb3Jk",
-            "ZXJTdGF0dXMYASABKAUSEQoJb3JkZXJDb2RlGAIgASgJEg4KBnBheVdheRgD",
-            "IAEoBSIlChBPcmRlckNvZGVSZXF1ZXN0EhEKCW9yZGVyQ29kZRgBIAEoCSJG",
-            "ChpVcGRhdGVTaGlwcGluZ09yZGVyUmVxdWVzdBITCgtvcmRlclN0YXR1cxgB",
-            "IAEoBRITCgtzaGlwT3JkZXJJZBgCIAMoBSJhChZVcGRhdGVTaGlwT3JkZXJS",
-            "ZXF1ZXN0EhMKC29yZGVyU3RhdHVzGAEgASgFEg8KB29yZGVySWQYAiABKAkS",
-            "DgoGcGF5V2F5GAMgASgFEhEKCWFjY291bnRJZBgEIAEoCWIGcHJvdG8z"));
+            "bnQYBSABKAESEwoLYXBwbHlBbW91bnQYBiABKAESFQoNY29uc3VtZUFtb3Vu",
+            "dBgHIAEoASJHChNBZGRDYXNoQXBwbHlSZXF1ZXN0EhEKCWFjY291bnRJZBgB",
+            "IAEoCRIOCgZhbGlwYXkYAiABKAkSDQoFbW9uZXkYAyABKAEiUAoWVXBkYXRl",
+            "T3JkZXJDb2RlUmVxdWVzdBITCgtvcmRlclN0YXR1cxgBIAEoBRIRCglvcmRl",
+            "ckNvZGUYAiABKAkSDgoGcGF5V2F5GAMgASgFIiUKEE9yZGVyQ29kZVJlcXVl",
+            "c3QSEQoJb3JkZXJDb2RlGAEgASgJIkYKGlVwZGF0ZVNoaXBwaW5nT3JkZXJS",
+            "ZXF1ZXN0EhMKC29yZGVyU3RhdHVzGAEgASgFEhMKC3NoaXBPcmRlcklkGAIg",
+            "AygFImEKFlVwZGF0ZVNoaXBPcmRlclJlcXVlc3QSEwoLb3JkZXJTdGF0dXMY",
+            "ASABKAUSDwoHb3JkZXJJZBgCIAEoCRIOCgZwYXlXYXkYAyABKAUSEQoJYWNj",
+            "b3VudElkGAQgASgJYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, global::SP.Service.ProductModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -95,7 +96,7 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TradeRequest), global::SP.Service.TradeRequest.Parser, new[]{ "AccountId", "PageIndex", "PageSize" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.Trade), global::SP.Service.Trade.Parser, new[]{ "AccountId", "Amount", "CartId", "CreateTime", "Quantity", "Subject" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TradeListResponse), global::SP.Service.TradeListResponse.Parser, new[]{ "Status", "TradeList", "Total" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SchoolLeadFinanceResponse), global::SP.Service.SchoolLeadFinanceResponse.Parser, new[]{ "Status", "AccountId", "HaveAmount", "UseAmount", "ActiveAmount", "ApplyAmount" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SchoolLeadFinanceResponse), global::SP.Service.SchoolLeadFinanceResponse.Parser, new[]{ "Status", "AccountId", "HaveAmount", "UseAmount", "ActiveAmount", "ApplyAmount", "ConsumeAmount" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AddCashApplyRequest), global::SP.Service.AddCashApplyRequest.Parser, new[]{ "AccountId", "Alipay", "Money" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.UpdateOrderCodeRequest), global::SP.Service.UpdateOrderCodeRequest.Parser, new[]{ "OrderStatus", "OrderCode", "PayWay" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OrderCodeRequest), global::SP.Service.OrderCodeRequest.Parser, new[]{ "OrderCode" }, null, null, null),
@@ -3930,6 +3931,7 @@ namespace SP.Service {
       useAmount_ = other.useAmount_;
       activeAmount_ = other.activeAmount_;
       applyAmount_ = other.applyAmount_;
+      consumeAmount_ = other.consumeAmount_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4011,6 +4013,17 @@ namespace SP.Service {
       }
     }
 
+    /// <summary>Field number for the "consumeAmount" field.</summary>
+    public const int ConsumeAmountFieldNumber = 7;
+    private double consumeAmount_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public double ConsumeAmount {
+      get { return consumeAmount_; }
+      set {
+        consumeAmount_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as SchoolLeadFinanceResponse);
@@ -4030,6 +4043,7 @@ namespace SP.Service {
       if (UseAmount != other.UseAmount) return false;
       if (ActiveAmount != other.ActiveAmount) return false;
       if (ApplyAmount != other.ApplyAmount) return false;
+      if (ConsumeAmount != other.ConsumeAmount) return false;
       return true;
     }
 
@@ -4042,6 +4056,7 @@ namespace SP.Service {
       if (UseAmount != 0D) hash ^= UseAmount.GetHashCode();
       if (ActiveAmount != 0D) hash ^= ActiveAmount.GetHashCode();
       if (ApplyAmount != 0D) hash ^= ApplyAmount.GetHashCode();
+      if (ConsumeAmount != 0D) hash ^= ConsumeAmount.GetHashCode();
       return hash;
     }
 
@@ -4076,6 +4091,10 @@ namespace SP.Service {
         output.WriteRawTag(49);
         output.WriteDouble(ApplyAmount);
       }
+      if (ConsumeAmount != 0D) {
+        output.WriteRawTag(57);
+        output.WriteDouble(ConsumeAmount);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4097,6 +4116,9 @@ namespace SP.Service {
         size += 1 + 8;
       }
       if (ApplyAmount != 0D) {
+        size += 1 + 8;
+      }
+      if (ConsumeAmount != 0D) {
         size += 1 + 8;
       }
       return size;
@@ -4124,6 +4146,9 @@ namespace SP.Service {
       }
       if (other.ApplyAmount != 0D) {
         ApplyAmount = other.ApplyAmount;
+      }
+      if (other.ConsumeAmount != 0D) {
+        ConsumeAmount = other.ConsumeAmount;
       }
     }
 
@@ -4157,6 +4182,10 @@ namespace SP.Service {
           }
           case 49: {
             ApplyAmount = input.ReadDouble();
+            break;
+          }
+          case 57: {
+            ConsumeAmount = input.ReadDouble();
             break;
           }
         }

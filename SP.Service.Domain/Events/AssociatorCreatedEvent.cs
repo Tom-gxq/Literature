@@ -19,7 +19,8 @@ namespace SP.Service.Domain.Events
             string payOrderCode, int payType, double amount,int status)
             : base(KafkaConfig.EventBusTopicTitle)
         {
-            this.AggregateId = associatorId;
+            AggregateId = associatorId;
+            CommandId = associatorId.ToString();
             KindId = kindId;
             AccountId = accountId;
             Quantity = quantity;

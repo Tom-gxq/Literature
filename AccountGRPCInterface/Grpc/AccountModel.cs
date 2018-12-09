@@ -127,7 +127,16 @@ namespace SP.Service {
             "EhEKCWFjY291bnRJZBgBIAEoCRIQCgh1c2VyVHlwZRgCIAEoBSIvChVBc3Nv",
             "Y2lhdG9yQ29kZVJlcXVlc3QSFgoOYXNzb2NpYXRvckNvZGUYASABKAkiOAoS",
             "Q2hpbGRSZWdpb25SZXF1ZXN0Eg4KBmRhdGFJZBgBIAEoBRISCgp1cGRhdGVU",
-            "aW1lGAIgASgDYgZwcm90bzM="));
+            "aW1lGAIgASgDIngKEUJhbGFuY2VQYXlSZXF1ZXN0Eg0KBXRva2VuGAEgASgJ",
+            "EhAKCHBhc3NXb3JkGAIgASgJEg4KBmFtb3VudBgDIAEoARIRCglvcmRlckNv",
+            "ZGUYBCABKAkSEQoJYWNjb3VudElkGAUgASgJEgwKBHNpZ24YBiABKAkiYQoF",
+            "VHJhZGUSDAoEdHlwZRgBIAEoBRISCgpjcmVhdGVUaW1lGAIgASgDEg8KB3Ry",
+            "YWRlTm8YAyABKAkSFQoNYmFsYW5jZUFtb3VudBgEIAEoARIOCgZhbW91bnQY",
+            "BSABKAEiSQoRVHJhZGVMaXN0UmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEiQK",
+            "CXRyYWRlTGlzdBgCIAMoCzIRLlNQLlNlcnZpY2UuVHJhZGUiSgoQVHJhZGVM",
+            "aXN0UmVxdWVzdBIRCglhY2NvdW50SWQYASABKAkSEQoJcGFnZUluZGV4GAIg",
+            "ASgFEhAKCHBhZ2VTaXplGAMgASgFIjMKElRyYWRlVG90YWxSZXNwb25zZRIO",
+            "CgZzdGF0dXMYASABKAUSDQoFdG90YWwYAiABKANiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -186,7 +195,12 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ApplyPartnerRequest), global::SP.Service.ApplyPartnerRequest.Parser, new[]{ "AccountId", "DormId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.GetShoppingCartRequest), global::SP.Service.GetShoppingCartRequest.Parser, new[]{ "AccountId", "UserType" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AssociatorCodeRequest), global::SP.Service.AssociatorCodeRequest.Parser, new[]{ "AssociatorCode" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ChildRegionRequest), global::SP.Service.ChildRegionRequest.Parser, new[]{ "DataId", "UpdateTime" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ChildRegionRequest), global::SP.Service.ChildRegionRequest.Parser, new[]{ "DataId", "UpdateTime" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.BalancePayRequest), global::SP.Service.BalancePayRequest.Parser, new[]{ "Token", "PassWord", "Amount", "OrderCode", "AccountId", "Sign" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.Trade), global::SP.Service.Trade.Parser, new[]{ "Type", "CreateTime", "TradeNo", "BalanceAmount", "Amount" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TradeListResponse), global::SP.Service.TradeListResponse.Parser, new[]{ "Status", "TradeList" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TradeListRequest), global::SP.Service.TradeListRequest.Parser, new[]{ "AccountId", "PageIndex", "PageSize" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TradeTotalResponse), global::SP.Service.TradeTotalResponse.Parser, new[]{ "Status", "Total" }, null, null, null)
           }));
     }
     #endregion
@@ -10905,6 +10919,1039 @@ namespace SP.Service {
           }
           case 16: {
             UpdateTime = input.ReadInt64();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 区域ID的请求参数
+  /// </summary>
+  public sealed partial class BalancePayRequest : pb::IMessage<BalancePayRequest> {
+    private static readonly pb::MessageParser<BalancePayRequest> _parser = new pb::MessageParser<BalancePayRequest>(() => new BalancePayRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<BalancePayRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[56]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BalancePayRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BalancePayRequest(BalancePayRequest other) : this() {
+      token_ = other.token_;
+      passWord_ = other.passWord_;
+      amount_ = other.amount_;
+      orderCode_ = other.orderCode_;
+      accountId_ = other.accountId_;
+      sign_ = other.sign_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BalancePayRequest Clone() {
+      return new BalancePayRequest(this);
+    }
+
+    /// <summary>Field number for the "token" field.</summary>
+    public const int TokenFieldNumber = 1;
+    private string token_ = "";
+    /// <summary>
+    ///*
+    ///  token
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Token {
+      get { return token_; }
+      set {
+        token_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "passWord" field.</summary>
+    public const int PassWordFieldNumber = 2;
+    private string passWord_ = "";
+    /// <summary>
+    ///*
+    ///  余额支付密码
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string PassWord {
+      get { return passWord_; }
+      set {
+        passWord_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "amount" field.</summary>
+    public const int AmountFieldNumber = 3;
+    private double amount_;
+    /// <summary>
+    ///*
+    ///  支付的金额
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public double Amount {
+      get { return amount_; }
+      set {
+        amount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "orderCode" field.</summary>
+    public const int OrderCodeFieldNumber = 4;
+    private string orderCode_ = "";
+    /// <summary>
+    ///*
+    ///  订单编号
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string OrderCode {
+      get { return orderCode_; }
+      set {
+        orderCode_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "accountId" field.</summary>
+    public const int AccountIdFieldNumber = 5;
+    private string accountId_ = "";
+    /// <summary>
+    ///*
+    ///  AccountId
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AccountId {
+      get { return accountId_; }
+      set {
+        accountId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "sign" field.</summary>
+    public const int SignFieldNumber = 6;
+    private string sign_ = "";
+    /// <summary>
+    ///*
+    ///  签名
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Sign {
+      get { return sign_; }
+      set {
+        sign_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as BalancePayRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(BalancePayRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Token != other.Token) return false;
+      if (PassWord != other.PassWord) return false;
+      if (Amount != other.Amount) return false;
+      if (OrderCode != other.OrderCode) return false;
+      if (AccountId != other.AccountId) return false;
+      if (Sign != other.Sign) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Token.Length != 0) hash ^= Token.GetHashCode();
+      if (PassWord.Length != 0) hash ^= PassWord.GetHashCode();
+      if (Amount != 0D) hash ^= Amount.GetHashCode();
+      if (OrderCode.Length != 0) hash ^= OrderCode.GetHashCode();
+      if (AccountId.Length != 0) hash ^= AccountId.GetHashCode();
+      if (Sign.Length != 0) hash ^= Sign.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Token.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Token);
+      }
+      if (PassWord.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(PassWord);
+      }
+      if (Amount != 0D) {
+        output.WriteRawTag(25);
+        output.WriteDouble(Amount);
+      }
+      if (OrderCode.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(OrderCode);
+      }
+      if (AccountId.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(AccountId);
+      }
+      if (Sign.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteString(Sign);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Token.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Token);
+      }
+      if (PassWord.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(PassWord);
+      }
+      if (Amount != 0D) {
+        size += 1 + 8;
+      }
+      if (OrderCode.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(OrderCode);
+      }
+      if (AccountId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountId);
+      }
+      if (Sign.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Sign);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(BalancePayRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Token.Length != 0) {
+        Token = other.Token;
+      }
+      if (other.PassWord.Length != 0) {
+        PassWord = other.PassWord;
+      }
+      if (other.Amount != 0D) {
+        Amount = other.Amount;
+      }
+      if (other.OrderCode.Length != 0) {
+        OrderCode = other.OrderCode;
+      }
+      if (other.AccountId.Length != 0) {
+        AccountId = other.AccountId;
+      }
+      if (other.Sign.Length != 0) {
+        Sign = other.Sign;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            Token = input.ReadString();
+            break;
+          }
+          case 18: {
+            PassWord = input.ReadString();
+            break;
+          }
+          case 25: {
+            Amount = input.ReadDouble();
+            break;
+          }
+          case 34: {
+            OrderCode = input.ReadString();
+            break;
+          }
+          case 42: {
+            AccountId = input.ReadString();
+            break;
+          }
+          case 50: {
+            Sign = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 用户的账单信息
+  /// </summary>
+  public sealed partial class Trade : pb::IMessage<Trade> {
+    private static readonly pb::MessageParser<Trade> _parser = new pb::MessageParser<Trade>(() => new Trade());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Trade> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[57]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Trade() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Trade(Trade other) : this() {
+      type_ = other.type_;
+      createTime_ = other.createTime_;
+      tradeNo_ = other.tradeNo_;
+      balanceAmount_ = other.balanceAmount_;
+      amount_ = other.amount_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Trade Clone() {
+      return new Trade(this);
+    }
+
+    /// <summary>Field number for the "type" field.</summary>
+    public const int TypeFieldNumber = 1;
+    private int type_;
+    /// <summary>
+    ///*
+    /// 交易类型
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Type {
+      get { return type_; }
+      set {
+        type_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "createTime" field.</summary>
+    public const int CreateTimeFieldNumber = 2;
+    private long createTime_;
+    /// <summary>
+    ///*
+    /// 交易时间
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long CreateTime {
+      get { return createTime_; }
+      set {
+        createTime_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "tradeNo" field.</summary>
+    public const int TradeNoFieldNumber = 3;
+    private string tradeNo_ = "";
+    /// <summary>
+    ///*
+    /// 交易单号
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string TradeNo {
+      get { return tradeNo_; }
+      set {
+        tradeNo_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "balanceAmount" field.</summary>
+    public const int BalanceAmountFieldNumber = 4;
+    private double balanceAmount_;
+    /// <summary>
+    ///*
+    ///  零钱余额
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public double BalanceAmount {
+      get { return balanceAmount_; }
+      set {
+        balanceAmount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "amount" field.</summary>
+    public const int AmountFieldNumber = 5;
+    private double amount_;
+    /// <summary>
+    ///*
+    ///  消费的余额
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public double Amount {
+      get { return amount_; }
+      set {
+        amount_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Trade);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Trade other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Type != other.Type) return false;
+      if (CreateTime != other.CreateTime) return false;
+      if (TradeNo != other.TradeNo) return false;
+      if (BalanceAmount != other.BalanceAmount) return false;
+      if (Amount != other.Amount) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Type != 0) hash ^= Type.GetHashCode();
+      if (CreateTime != 0L) hash ^= CreateTime.GetHashCode();
+      if (TradeNo.Length != 0) hash ^= TradeNo.GetHashCode();
+      if (BalanceAmount != 0D) hash ^= BalanceAmount.GetHashCode();
+      if (Amount != 0D) hash ^= Amount.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Type != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Type);
+      }
+      if (CreateTime != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(CreateTime);
+      }
+      if (TradeNo.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(TradeNo);
+      }
+      if (BalanceAmount != 0D) {
+        output.WriteRawTag(33);
+        output.WriteDouble(BalanceAmount);
+      }
+      if (Amount != 0D) {
+        output.WriteRawTag(41);
+        output.WriteDouble(Amount);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Type != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Type);
+      }
+      if (CreateTime != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(CreateTime);
+      }
+      if (TradeNo.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(TradeNo);
+      }
+      if (BalanceAmount != 0D) {
+        size += 1 + 8;
+      }
+      if (Amount != 0D) {
+        size += 1 + 8;
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Trade other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Type != 0) {
+        Type = other.Type;
+      }
+      if (other.CreateTime != 0L) {
+        CreateTime = other.CreateTime;
+      }
+      if (other.TradeNo.Length != 0) {
+        TradeNo = other.TradeNo;
+      }
+      if (other.BalanceAmount != 0D) {
+        BalanceAmount = other.BalanceAmount;
+      }
+      if (other.Amount != 0D) {
+        Amount = other.Amount;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            Type = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            CreateTime = input.ReadInt64();
+            break;
+          }
+          case 26: {
+            TradeNo = input.ReadString();
+            break;
+          }
+          case 33: {
+            BalanceAmount = input.ReadDouble();
+            break;
+          }
+          case 41: {
+            Amount = input.ReadDouble();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 用户的账单返回信息
+  /// </summary>
+  public sealed partial class TradeListResponse : pb::IMessage<TradeListResponse> {
+    private static readonly pb::MessageParser<TradeListResponse> _parser = new pb::MessageParser<TradeListResponse>(() => new TradeListResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<TradeListResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[58]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public TradeListResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public TradeListResponse(TradeListResponse other) : this() {
+      status_ = other.status_;
+      tradeList_ = other.tradeList_.Clone();
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public TradeListResponse Clone() {
+      return new TradeListResponse(this);
+    }
+
+    /// <summary>Field number for the "status" field.</summary>
+    public const int StatusFieldNumber = 1;
+    private int status_;
+    /// <summary>
+    ///*
+    /// 添加状态10001为正常10002为异常
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Status {
+      get { return status_; }
+      set {
+        status_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "tradeList" field.</summary>
+    public const int TradeListFieldNumber = 2;
+    private static readonly pb::FieldCodec<global::SP.Service.Trade> _repeated_tradeList_codec
+        = pb::FieldCodec.ForMessage(18, global::SP.Service.Trade.Parser);
+    private readonly pbc::RepeatedField<global::SP.Service.Trade> tradeList_ = new pbc::RepeatedField<global::SP.Service.Trade>();
+    /// <summary>
+    ///*
+    ///  账单列表
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::SP.Service.Trade> TradeList {
+      get { return tradeList_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as TradeListResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(TradeListResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Status != other.Status) return false;
+      if(!tradeList_.Equals(other.tradeList_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Status != 0) hash ^= Status.GetHashCode();
+      hash ^= tradeList_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Status != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Status);
+      }
+      tradeList_.WriteTo(output, _repeated_tradeList_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Status != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Status);
+      }
+      size += tradeList_.CalculateSize(_repeated_tradeList_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(TradeListResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Status != 0) {
+        Status = other.Status;
+      }
+      tradeList_.Add(other.tradeList_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            Status = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            tradeList_.AddEntriesFrom(input, _repeated_tradeList_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 区域ID的请求参数
+  /// </summary>
+  public sealed partial class TradeListRequest : pb::IMessage<TradeListRequest> {
+    private static readonly pb::MessageParser<TradeListRequest> _parser = new pb::MessageParser<TradeListRequest>(() => new TradeListRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<TradeListRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[59]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public TradeListRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public TradeListRequest(TradeListRequest other) : this() {
+      accountId_ = other.accountId_;
+      pageIndex_ = other.pageIndex_;
+      pageSize_ = other.pageSize_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public TradeListRequest Clone() {
+      return new TradeListRequest(this);
+    }
+
+    /// <summary>Field number for the "accountId" field.</summary>
+    public const int AccountIdFieldNumber = 1;
+    private string accountId_ = "";
+    /// <summary>
+    ///*
+    /// 账户ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AccountId {
+      get { return accountId_; }
+      set {
+        accountId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "pageIndex" field.</summary>
+    public const int PageIndexFieldNumber = 2;
+    private int pageIndex_;
+    /// <summary>
+    ///*
+    ///  起始页
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int PageIndex {
+      get { return pageIndex_; }
+      set {
+        pageIndex_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "pageSize" field.</summary>
+    public const int PageSizeFieldNumber = 3;
+    private int pageSize_;
+    /// <summary>
+    ///*
+    ///  每页的数量
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int PageSize {
+      get { return pageSize_; }
+      set {
+        pageSize_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as TradeListRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(TradeListRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (AccountId != other.AccountId) return false;
+      if (PageIndex != other.PageIndex) return false;
+      if (PageSize != other.PageSize) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (AccountId.Length != 0) hash ^= AccountId.GetHashCode();
+      if (PageIndex != 0) hash ^= PageIndex.GetHashCode();
+      if (PageSize != 0) hash ^= PageSize.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (AccountId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(AccountId);
+      }
+      if (PageIndex != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(PageIndex);
+      }
+      if (PageSize != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(PageSize);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (AccountId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountId);
+      }
+      if (PageIndex != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PageIndex);
+      }
+      if (PageSize != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PageSize);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(TradeListRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.AccountId.Length != 0) {
+        AccountId = other.AccountId;
+      }
+      if (other.PageIndex != 0) {
+        PageIndex = other.PageIndex;
+      }
+      if (other.PageSize != 0) {
+        PageSize = other.PageSize;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            AccountId = input.ReadString();
+            break;
+          }
+          case 16: {
+            PageIndex = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            PageSize = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 用户的账单返回信息总数
+  /// </summary>
+  public sealed partial class TradeTotalResponse : pb::IMessage<TradeTotalResponse> {
+    private static readonly pb::MessageParser<TradeTotalResponse> _parser = new pb::MessageParser<TradeTotalResponse>(() => new TradeTotalResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<TradeTotalResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[60]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public TradeTotalResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public TradeTotalResponse(TradeTotalResponse other) : this() {
+      status_ = other.status_;
+      total_ = other.total_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public TradeTotalResponse Clone() {
+      return new TradeTotalResponse(this);
+    }
+
+    /// <summary>Field number for the "status" field.</summary>
+    public const int StatusFieldNumber = 1;
+    private int status_;
+    /// <summary>
+    ///*
+    /// 添加状态10001为正常10002为异常
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Status {
+      get { return status_; }
+      set {
+        status_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "total" field.</summary>
+    public const int TotalFieldNumber = 2;
+    private long total_;
+    /// <summary>
+    ///*
+    /// 总数
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long Total {
+      get { return total_; }
+      set {
+        total_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as TradeTotalResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(TradeTotalResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Status != other.Status) return false;
+      if (Total != other.Total) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Status != 0) hash ^= Status.GetHashCode();
+      if (Total != 0L) hash ^= Total.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Status != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Status);
+      }
+      if (Total != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(Total);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Status != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Status);
+      }
+      if (Total != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Total);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(TradeTotalResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Status != 0) {
+        Status = other.Status;
+      }
+      if (other.Total != 0L) {
+        Total = other.Total;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            Status = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            Total = input.ReadInt64();
             break;
           }
         }

@@ -10,9 +10,10 @@ namespace SP.Service.Domain.Events
     {
         public double OrderAmount { get; set; }
         public string SSID { get; set; }
-        public SellerStatisticsSumOrderEvent(string ssid, double orderAmount)
+        public SellerStatisticsSumOrderEvent(Guid id,string ssid, double orderAmount)
             : base(KafkaConfig.EventBusTopicTitle)
         {
+            this.CommandId = id.ToString();
             this.SSID = ssid;
             this.OrderAmount = orderAmount;
             this.EventType = EventType.SellerStatisticsSumOrder;

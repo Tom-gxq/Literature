@@ -17,9 +17,9 @@ namespace SP.Service.Domain.Events
                 switch (domain.Action)
                 {
                     case DaomainAction.Create:
-                        return new TokenCreatedEvent(model.AccessToken, model.AccountId, model.Status, model.CreateTime);
+                        return new TokenCreatedEvent(model.Id,model.AccessToken, model.AccountId, model.Status, model.CreateTime);
                     case DaomainAction.Update:
-                        return new TokenDisabledEvent(model.AccessToken, model.AccountId, model.Status, model.UpdateTime);
+                        return new TokenDisabledEvent(model.Id,model.AccessToken, model.AccountId, model.Status, model.UpdateTime);
                 }
             }
             return null;

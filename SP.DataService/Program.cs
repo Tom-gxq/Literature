@@ -18,6 +18,7 @@ namespace SP.DataService
             Mapper.Initialize(cfg =>
             {
                 cfg.AddProfile(new TokenProfile());
+                cfg.AddProfile(new AccountProfile());
             });
             var builder = new ConfigurationBuilder()
                .SetBasePath(Directory.GetCurrentDirectory())

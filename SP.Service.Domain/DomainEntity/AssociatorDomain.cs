@@ -38,7 +38,7 @@ namespace SP.Service.Domain.DomainEntity
         {
             ApplyChange(new AssociatorEditEvent(associatorId, status));
         }
-        public void AddMemberKafkaInfo(string accountId, double amount, AuthorizeType Type)
+        public void AddMemberKafkaInfo(Guid id,string accountId, double amount, AuthorizeType Type)
         {
             var config = IocManager.Instance.Resolve<IConfigurationRoot>();
             string kafkaIP = string.Empty;
@@ -51,7 +51,7 @@ namespace SP.Service.Domain.DomainEntity
             producer.AccountId = accountId;
             producer.Amount = amount;
             producer.Type = Type;
-            ApplyChange(new KafkaAddEvent(producer));
+            ApplyChange(new KafkaAddEvent(id,producer));
         }
         public BaseEntity GetMemento()
         {

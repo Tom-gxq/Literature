@@ -15,10 +15,11 @@ namespace SP.Service.Domain.Events
         public int Stock { get; set; }
         public string ProductId { get; set; }
         public int ShopId { get; set; }
-        public ShipOrderCreatedEvent(string orderId, string shippingId, string shipTo, DateTime shippingDate,
+        public ShipOrderCreatedEvent(Guid id,string orderId, string shippingId, string shipTo, DateTime shippingDate,
             int stock, string productId, int shopId)
             : base(KafkaConfig.EventBusTopicTitle)
         {
+            this.CommandId = id.ToString();
             this.OrderId = orderId;
             this.ShippingId = shippingId;
             this.ShipTo = shipTo;

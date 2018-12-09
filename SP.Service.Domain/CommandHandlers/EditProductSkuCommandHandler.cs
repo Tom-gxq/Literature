@@ -20,7 +20,7 @@ namespace SP.Service.Domain.CommandHandlers
         public void Execute(EditProductSkuCommand command)
         {
             var aggregate = new ProductSkuDomain();
-            aggregate.UpdateProductSkuDomainStock(command.ShopId, command.ProductId, command.AccountId, command.Stock, command.Type);
+            aggregate.UpdateProductSkuDomainStock(command.Id,command.ShopId, command.ProductId, command.AccountId, command.Stock, command.Type);
             _repository.Save(aggregate);
         }
 

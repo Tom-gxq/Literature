@@ -1,5 +1,7 @@
-﻿using SP.Service;
+﻿using AutoMapper;
+using SP.Service;
 using SP.Service.Domain.Commands.Account;
+using SP.Service.Domain.Commands.BalancePay;
 using SP.Service.Domain.DomainEntity;
 using SP.Service.Entity;
 using System;
@@ -400,6 +402,38 @@ namespace Account.Service.Business
             ServiceLocator.CommandBus.Send(new CreateApplyPartnerCommand(new Guid(accountId),dormId));
             var result = new AccountResultResponse();
             result.Status = 10001;
+            return result;
+        }
+
+        public static AccountResultResponse BalancePay(string accountId, string token, string password, double amount, string orderCode,string sign)
+        {
+            ServiceLocator.CommandBus.Send(new BalancePayCommand(token, password, orderCode, amount, accountId, sign));
+            var result = new AccountResultResponse();
+            result.Status = 10001;
+            return result;
+        }
+        public static TradeListResponse GetTradeList(string accountId, int pageIndex, int pageSize)
+        {
+            var list = ServiceLocator.TradeReportDatabase.GetTradeHistoryList(accountId, pageIndex, pageSize);
+            var result = new TradeListResponse();
+            result.Status = 10001;
+            if (list != null)
+            {
+                foreach (var item in list)
+                {
+                    var trade = Mapper.Map<Trade>(item);
+                    result.TradeList.Add(trade);
+                }
+            }
+            return result;
+        }
+
+        public static TradeTotalResponse GetTradeListCount(string accountId)
+        {
+            var count = ServiceLocator.TradeReportDatabase.GetTradeHistoryCount(accountId);
+            var result = new TradeTotalResponse();
+            result.Status = 10001;
+            result.Total = count;
             return result;
         }
     }

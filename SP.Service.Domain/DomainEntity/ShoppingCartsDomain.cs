@@ -29,16 +29,16 @@ namespace SP.Service.Domain.DomainEntity
 
         public ShoppingCartsDomain(Guid id, string accountId,  int quantity, string productId, int shopId,string shiperId)
         {
-            ApplyChange(new CreatShoppingCartEvent(accountId, id.ToString(), quantity, productId, DateTime.Now, shopId, shiperId));
+            ApplyChange(new CreatShoppingCartEvent(id,accountId, id.ToString(), quantity, productId, DateTime.Now, shopId, shiperId));
         }
-        public void DeleteShoppingCart(string cartId, string orderId, string productId, double amount, double vipAmount)
+        public void DeleteShoppingCart(Guid id, string cartId, string orderId, string productId, double amount, double vipAmount)
         {
-            ApplyChange(new DelShoppingCartEvent(cartId));
+            ApplyChange(new DelShoppingCartEvent(id,cartId));
             ApplyChange(new OrderSubAmountEvent(new Guid(orderId), productId, amount, vipAmount));
         }
         public void AddShoppingCartNum(Guid id, string accountId, int quantity, string productId, int shopId)
         {
-            ApplyChange(new AddShoppingCartNumEvent(accountId, id.ToString(), quantity, productId, DateTime.Now, shopId));
+            ApplyChange(new AddShoppingCartNumEvent(id,accountId, id.ToString(), quantity, productId, DateTime.Now, shopId));
         }
         public void Handle(DelShoppingCartEvent e)
         {

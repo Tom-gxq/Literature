@@ -37,7 +37,7 @@ namespace SP.Service.Domain.CommandHandlers
             var payOrderCode = "GMHY" + DateTime.Now.ToString("yyyyMMddHH24mmssffff");
             var aggregate = new AssociatorDomain(command.Id, command.AccountId, command.KindId, command.Quantity, payOrderCode, command.PayType, amount);
             //会员购买统计
-            aggregate.AddMemberKafkaInfo(command.AccountId, amount, AuthorizeType.Buy);
+            aggregate.AddMemberKafkaInfo(command.Id,command.AccountId, amount, AuthorizeType.Buy);
             _repository.Save(aggregate);
         }
     }

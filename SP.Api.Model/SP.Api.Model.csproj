@@ -61,6 +61,7 @@
     <Compile Include="Account\SmsModel.cs" />
     <Compile Include="Account\SysKindModel.cs" />
     <Compile Include="Account\TokenModel.cs" />
+    <Compile Include="Account\TradeModel.cs" />
     <Compile Include="Account\WxPayModel.cs" />
     <Compile Include="Account\WxPrePayModel.cs" />
     <Compile Include="Enum\AuthType.cs" />

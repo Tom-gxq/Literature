@@ -373,6 +373,7 @@ namespace OrderGRPCInterface.Business
                 model.useAmount = result.UseAmount;
                 model.activeAmount = result.ActiveAmount;
                 model.applyAmount = result.ApplyAmount;
+                model.consumeAmount = result.ConsumeAmount;
             }
             return model;
         }

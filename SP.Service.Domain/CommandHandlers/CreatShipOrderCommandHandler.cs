@@ -6,6 +6,7 @@ using SP.Data.Enum;
 using SP.Service.Domain.Commands.StockShip;
 using SP.Service.Domain.DomainEntity;
 using SP.Service.Domain.Reporting;
+using SP.Service.Domain.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -52,7 +53,7 @@ namespace SP.Service.Domain.CommandHandlers
 
         public void Execute(CreatShipOrderCommand command)
         {
-            var aggregate = new ShipOrderDomain(command.OrderId, command.ShippingId,command.ShipTo, command.ShippingDate, command.Stock, command.ProductId, command.ShopId);
+            var aggregate = new ShipOrderDomain(command.Id,command.OrderId, command.ShippingId,command.ShipTo, command.ShippingDate, command.Stock, command.ProductId, command.ShopId);
             
             _repository.Save(aggregate);
         }
@@ -60,12 +61,12 @@ namespace SP.Service.Domain.CommandHandlers
         public void Execute(EditShipOrderStatusCommand command)
         {
             var aggregate = new ShipOrderDomain();
-            aggregate.EditShipOrderDomainStatus(command.ShipOrderId, (command.OrderStatus== OrderStatus.Success));
+            aggregate.EditShipOrderDomainStatus(command.Id,command.ShipOrderId, (command.OrderStatus== OrderStatus.Success));
             _repository.Save(aggregate);
-            CaclCommsion(command.ShipOrderId, command.OrderStatus);
+            CaclCommsion(command.Id,command.ShipOrderId, command.OrderStatus);
         }
 
-        private void CaclCommsion(List<int> shipOrder, OrderStatus orderStatus)
+        private void CaclCommsion(Guid id,List<int> shipOrder, OrderStatus orderStatus)
         {
             double commsion = 0;
             if (shipOrder != null && shipOrder.Count > 0)
@@ -99,20 +100,23 @@ namespace SP.Service.Domain.CommandHandlers
                                     {
                                         shopDomain = this._shopReportDatabase.GetShopById(shipOrderEntity.ShopId.Value);
                                     }
-
+                                    IncomeTradeEnum tradeType = IncomeTradeEnum.Food;
                                     if (marketId == (shopDomain?.ShopType ?? marketId))
                                     {
                                         //超市提成方法
                                         amount = order.IsVip ? shopCart.Product.VIPPrice.Value : shopCart.Product.MarketPrice.Value;
                                         //购买商品的数量
                                         amount = amount * (shipOrderEntity.Stock != null ? shipOrderEntity.Stock.Value : 1);
+                                        tradeType = IncomeTradeEnum.Market;
                                     }
                                     else
                                     {
                                         //餐饮提成方法
                                         amount = shipOrderEntity.Stock.Value * 1;
                                     }
-                                    var trade = new TradeDomain(shipOrderEntity.ShippingId, shopCart.CartId, 1, amount, ship);
+                                    var trade = new TradeDomain(id,shipOrderEntity.ShippingId, tradeType, 
+                                        amount, shipOrderEntity.ProductId, ship);
+                                    trade.CreateIncomeTrade();
                                     _tradeRepository.Save(trade);
                                     commsion += amount;
                                 }
@@ -124,7 +128,7 @@ namespace SP.Service.Domain.CommandHandlers
                     if (finance != null && !string.IsNullOrEmpty(finance.AccountId))
                     {
                         var financeDomain = new AccountFinanceDomain();
-                        financeDomain.EditHaveAmount(finance.AccountId, commsion);
+                        financeDomain.EditHaveAmount(id,finance.AccountId, commsion);
                         _financeRepository.Save(financeDomain);
                     }
                     else
@@ -143,7 +147,7 @@ namespace SP.Service.Domain.CommandHandlers
                             System.Console.WriteLine("Payed EditProductSkuDomainStock Quantity=" + shipOrderEntity.Stock);
                             var sku = new ProductSkuDomain();
                             //sku.EditProductSkuDomainStock(cart.Product.ProductId, cart.Quantity);
-                            sku.EditProductSkuOrderNum(shipOrderEntity.ShopId.Value, shipOrderEntity.ProductId, shipOrderEntity.ShippingId, shipOrderEntity.Stock.Value);
+                            sku.EditProductSkuOrderNum(id,shipOrderEntity.ShopId.Value, shipOrderEntity.ProductId, shipOrderEntity.ShippingId, shipOrderEntity.Stock.Value);
                             _skuRepository.Save(sku);
                         }
                     }
@@ -152,7 +156,7 @@ namespace SP.Service.Domain.CommandHandlers
                 }
             }
         }
-        private async void AddKafka(string orderId, OrderStatus orderStatus)
+        private async void AddKafka(Guid id,string orderId, OrderStatus orderStatus)
         {
             var aggregate = _orderReportDatabase.GetOrderByOrderId(orderId);
             var address = _addressReportDatabase.GetDefaultSelectedAddress(aggregate.AccountId);
@@ -164,7 +168,7 @@ namespace SP.Service.Domain.CommandHandlers
             {
                 System.Console.WriteLine($"EditOrder AddKafka OrderId={orderId}");
             }
-            aggregate.AddKafkaInfo(orderStatus, address.SchoolId);
+            aggregate.AddKafkaInfo(id,orderStatus, address.SchoolId);
             _repository.Save(aggregate);
         }
     }

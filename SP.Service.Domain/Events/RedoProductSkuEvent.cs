@@ -14,9 +14,10 @@ namespace SP.Service.Domain.Events
         public string OrderId { get; set; }
         public string Host { get; set; }
         public string AccountId { get; set; }
-        public RedoProductSkuEvent(int shopId, string productId, int redoStock, string orderId, string host, string accountId)
+        public RedoProductSkuEvent(Guid id,int shopId, string productId, int redoStock, string orderId, string host, string accountId)
             : base(KafkaConfig.EventBusTopicTitle)
         {
+            this.CommandId = id.ToString();
             this.ProductId = productId;
             this.RedoStock = redoStock;
             this.ShopId = shopId; this.OrderId = orderId;

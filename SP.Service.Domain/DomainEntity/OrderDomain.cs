@@ -78,7 +78,7 @@ namespace SP.Service.Domain.DomainEntity
                 {
                     this.VIPAmount += item.Quantity * item.Product.VIPPrice.Value;
                 }
-                ApplyChange(new UpdateShoppingCartOrderIDEvent(item.CartId, orderId.ToString()));
+                ApplyChange(new UpdateShoppingCartOrderIDEvent(orderId,item.CartId, orderId.ToString()));
             }
         }
         private void SumPurchaseOrderAmount(List<ShoppingCartsDomain> shoppingCarts, Guid orderId)
@@ -91,7 +91,7 @@ namespace SP.Service.Domain.DomainEntity
                 {
                     this.PurchaseAmount += item.Quantity * item.Product.PurchasePrice.Value;
                 }
-                ApplyChange(new UpdateShoppingCartOrderIDEvent(item.CartId, orderId.ToString()));
+                ApplyChange(new UpdateShoppingCartOrderIDEvent(orderId,item.CartId, orderId.ToString()));
             }
         }
 
@@ -109,7 +109,7 @@ namespace SP.Service.Domain.DomainEntity
                 ApplyChange(new ProductSkuEditEvent(id, host, accountId));
             }
         }
-        public  void AddKafkaInfo(OrderStatus orderStatus,int schoolId)
+        public  void AddKafkaInfo(Guid id,OrderStatus orderStatus,int schoolId)
         {
             if (orderStatus == OrderStatus.Payed)
             {                
@@ -123,10 +123,10 @@ namespace SP.Service.Domain.DomainEntity
                 producer.IPConfig = kafkaIP;
                 producer.Order = this.GetMemento() as OrdersEntity;
                 producer.BuildingId = schoolId;
-                ApplyChange(new KafkaAddEvent(producer));
+                ApplyChange(new KafkaAddEvent(id,producer));
             }
         }
-        public void AddShipOrderKafka(OrderStatus orderStatus, string shippingId, double sumAmount,string orderId,string shipto)
+        public void AddShipOrderKafka(Guid id,OrderStatus orderStatus, string shippingId, double sumAmount,string orderId,string shipto)
         {
             if (orderStatus == OrderStatus.Payed)
             {
@@ -142,7 +142,7 @@ namespace SP.Service.Domain.DomainEntity
                 producer.OrderAmount = sumAmount;
                 producer.OrderId = orderId;
                 producer.Shipto = shipto;
-                ApplyChange(new KafkaAddEvent(producer));
+                ApplyChange(new KafkaAddEvent(id,producer));
             }
         }
 

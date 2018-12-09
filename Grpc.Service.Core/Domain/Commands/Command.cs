@@ -23,8 +23,10 @@ namespace Grpc.Service.Core.Domain.Commands
         public string TopicTitle { get; set; }
         public CommandType CommandType{ get; set; }
         public virtual string GetMessage()
-        {
+        {            
             return JsonConvert.SerializeObject(this);
         }
+        public int ExcuteStatus { get; set; }
+        public string Token { get; set; }        
     }
 }

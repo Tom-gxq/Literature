@@ -20,7 +20,7 @@ namespace SP.Service.Domain.DomainEntity
         }
         public CashApplyDomain(string accountId, string alipay, double money)
         { 
-            ApplyChange(new CashApplyCreatedEvent(accountId, alipay, money));
+            ApplyChange(new CashApplyCreatedEvent(this.Id,accountId, alipay, money));
         }
         public BaseEntity GetMemento()
         {

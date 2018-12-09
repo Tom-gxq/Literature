@@ -17,7 +17,7 @@ namespace WebApiGateway.Controllers.Token
             try
             {
                 var ret = RepeatedTokenBusiness.GenerateRepeatedToken(currentAccount.AccountId);
-                JsonResult.Add("ret", ret);
+                JsonResult.Add("model", ret);
                 JsonResult.Add("status", 0);
             }
             catch (Exception ex)

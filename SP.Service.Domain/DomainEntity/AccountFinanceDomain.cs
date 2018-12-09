@@ -14,25 +14,26 @@ namespace SP.Service.Domain.DomainEntity
         public string AccountId { get; internal set; }
         public double HaveAmount { get; internal set; }
         public double UseAmount { get; internal set; }
+        public double ConsumeAmount { get; internal set; }
         public AccountFinanceDomain()
         {
 
         }
         public AccountFinanceDomain(string accountId)
         {
-            ApplyChange(new AccountFinanceCreateEvent(accountId,0));
+            ApplyChange(new AccountFinanceCreateEvent(this.Id,accountId,0));
         }
         public AccountFinanceDomain(string accountId,double haveAmount)
         {
-            ApplyChange(new AccountFinanceCreateEvent(accountId, haveAmount));
+            ApplyChange(new AccountFinanceCreateEvent(this.Id,accountId, haveAmount));
         }
-        public void EditHaveAmount(string accountId,double amount)
+        public void EditHaveAmount(Guid id,string accountId,double amount)
         {
-            ApplyChange(new HaveAmountEditEvent(accountId,amount));
+            ApplyChange(new HaveAmountEditEvent(id,accountId,amount));
         }
-        public void EditUseAmount(string accountId, double amount)
+        public void EditUseAmount(Guid id,string accountId, double amount)
         {
-            ApplyChange(new UseAmountEditEvent(accountId,amount));
+            ApplyChange(new UseAmountEditEvent(id,accountId,amount));
         }
         public void Handle(AccountFinanceCreateEvent e)
         {
@@ -69,6 +70,7 @@ namespace SP.Service.Domain.DomainEntity
                 this.AccountId = entity.AccountId;
                 this.HaveAmount = entity.HaveAmount != null ? entity.HaveAmount.Value:0;
                 this.UseAmount = entity.UseAmount!=null? entity.UseAmount.Value:0;
+                this.ConsumeAmount = entity.ConsumeAmount != null ? entity.ConsumeAmount.Value : 0;
             }
         }
     }

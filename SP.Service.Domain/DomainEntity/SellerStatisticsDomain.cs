@@ -26,13 +26,13 @@ namespace SP.Service.Domain.DomainEntity
         {
 
             ApplyChange(new SellerStatisticsEvent(id, createTime, shippingId, 1, orderAmount));
-            ApplyChange(new SellerStatisticsTradeEvent(id.ToString(), shipto, orderId));
+            ApplyChange(new SellerStatisticsTradeEvent(id,id.ToString(), shipto, orderId));
         }
 
-        public void SumOrderStatistics(string ssid, string shipto, string orderId, double orderAmount)
+        public void SumOrderStatistics(Guid id,string ssid, string shipto, string orderId, double orderAmount)
         {
-            ApplyChange(new SellerStatisticsSumOrderEvent(ssid, orderAmount));
-            ApplyChange(new SellerStatisticsTradeEvent(ssid, shipto, orderId));
+            ApplyChange(new SellerStatisticsSumOrderEvent(id,ssid, orderAmount));
+            ApplyChange(new SellerStatisticsTradeEvent(id,ssid, shipto, orderId));
         }
 
         public void Handle(SellerStatisticsEvent e)

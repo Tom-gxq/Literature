@@ -100,6 +100,27 @@ namespace RedisCache.Service.Runtime.Caching.Redis
             var objbyte = _database.ListRemove(key, value, count);
             return objbyte;
         }
+        public override long ListLength(string key)
+        {
+            var objbyte = _database.ListLength(key);
+            return objbyte;
+        }
+        public override long ListLeftPush(string key, string value)
+        {
+            var objbyte = _database.ListLeftPush(key, value);
+            return objbyte;
+        }
+        public override long ListLeftPush(string key, string[] values)
+        {
+            //var objbyte = _database.ListLeftPush(key, values);
+            //return objbyte;
+            return 0;
+        }
+        public override object ListLeftPop(string key)
+        {
+            var objbyte = _database.ListLeftPop(key);
+            return objbyte;
+        }
         public override bool SortedSetAdd(string key, string member, double value)
         {
             var objbyte = _database.SortedSetAdd(GetHashKey(key), member, value);

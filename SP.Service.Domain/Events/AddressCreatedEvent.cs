@@ -20,6 +20,7 @@ namespace SP.Service.Domain.Events
             : base(KafkaConfig.EventBusTopicTitle)
         {
             AggregateId = aggregateId;
+            CommandId = aggregateId.ToString();
             UserName = userName;
             Gender = gender;
             Mobile = mobile;

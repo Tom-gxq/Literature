@@ -14,9 +14,10 @@ namespace SP.Service.Domain.Events
         public DateTime CreateTime { get;  set; }
         public string ProductId { get;  set; }
         public int ShopId { get; set; }
-        public AddShoppingCartNumEvent(string accountId, string cartId, int quantity, string productId, DateTime createTime, int shopId)
+        public AddShoppingCartNumEvent(Guid id,string accountId, string cartId, int quantity, string productId, DateTime createTime, int shopId)
             : base(KafkaConfig.EventBusTopicTitle)
         {
+            CommandId = id.ToString();
             CartId = cartId;
             AccountId = accountId;
             Quantity = quantity;

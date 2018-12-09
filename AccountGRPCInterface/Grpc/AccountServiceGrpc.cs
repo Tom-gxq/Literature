@@ -64,6 +64,10 @@ namespace SP.Service {
     static readonly grpc::Marshaller<global::SP.Service.GetOtherAccountRequest> __Marshaller_GetOtherAccountRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.GetOtherAccountRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.AccountIDRequest> __Marshaller_AccountIDRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AccountIDRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.ApplyPartnerRequest> __Marshaller_ApplyPartnerRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.ApplyPartnerRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.BalancePayRequest> __Marshaller_BalancePayRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.BalancePayRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.TradeListRequest> __Marshaller_TradeListRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.TradeListRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.TradeListResponse> __Marshaller_TradeListResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.TradeListResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.TradeTotalResponse> __Marshaller_TradeTotalResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.TradeTotalResponse.Parser.ParseFrom);
 
     static readonly grpc::Method<global::SP.Service.RegistRequest, global::SP.Service.AccountResultResponse> __Method_RegistAccount = new grpc::Method<global::SP.Service.RegistRequest, global::SP.Service.AccountResultResponse>(
         grpc::MethodType.Unary,
@@ -407,6 +411,27 @@ namespace SP.Service {
         "ApplyPartner",
         __Marshaller_ApplyPartnerRequest,
         __Marshaller_AccountResultResponse);
+
+    static readonly grpc::Method<global::SP.Service.BalancePayRequest, global::SP.Service.AccountResultResponse> __Method_BalancePay = new grpc::Method<global::SP.Service.BalancePayRequest, global::SP.Service.AccountResultResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "BalancePay",
+        __Marshaller_BalancePayRequest,
+        __Marshaller_AccountResultResponse);
+
+    static readonly grpc::Method<global::SP.Service.TradeListRequest, global::SP.Service.TradeListResponse> __Method_GetTradeList = new grpc::Method<global::SP.Service.TradeListRequest, global::SP.Service.TradeListResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetTradeList",
+        __Marshaller_TradeListRequest,
+        __Marshaller_TradeListResponse);
+
+    static readonly grpc::Method<global::SP.Service.AccountIDRequest, global::SP.Service.TradeTotalResponse> __Method_GetTradeListCount = new grpc::Method<global::SP.Service.AccountIDRequest, global::SP.Service.TradeTotalResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetTradeListCount",
+        __Marshaller_AccountIDRequest,
+        __Marshaller_TradeTotalResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -1001,6 +1026,42 @@ namespace SP.Service {
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
       public virtual global::System.Threading.Tasks.Task<global::SP.Service.AccountResultResponse> ApplyPartner(global::SP.Service.ApplyPartnerRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 余额付款
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.AccountResultResponse> BalancePay(global::SP.Service.BalancePayRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 获取账单历史信息
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.TradeListResponse> GetTradeList(global::SP.Service.TradeListRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 获取账单历史信息的总数
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.TradeTotalResponse> GetTradeListCount(global::SP.Service.AccountIDRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -3382,6 +3443,150 @@ namespace SP.Service {
       {
         return CallInvoker.AsyncUnaryCall(__Method_ApplyPartner, null, options, request);
       }
+      /// <summary>
+      ///*
+      /// 余额付款
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResultResponse BalancePay(global::SP.Service.BalancePayRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return BalancePay(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 余额付款
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResultResponse BalancePay(global::SP.Service.BalancePayRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_BalancePay, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 余额付款
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> BalancePayAsync(global::SP.Service.BalancePayRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return BalancePayAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 余额付款
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> BalancePayAsync(global::SP.Service.BalancePayRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_BalancePay, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 获取账单历史信息
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.TradeListResponse GetTradeList(global::SP.Service.TradeListRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetTradeList(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取账单历史信息
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.TradeListResponse GetTradeList(global::SP.Service.TradeListRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetTradeList, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 获取账单历史信息
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.TradeListResponse> GetTradeListAsync(global::SP.Service.TradeListRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetTradeListAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取账单历史信息
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.TradeListResponse> GetTradeListAsync(global::SP.Service.TradeListRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetTradeList, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 获取账单历史信息的总数
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.TradeTotalResponse GetTradeListCount(global::SP.Service.AccountIDRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetTradeListCount(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取账单历史信息的总数
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.TradeTotalResponse GetTradeListCount(global::SP.Service.AccountIDRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetTradeListCount, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 获取账单历史信息的总数
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.TradeTotalResponse> GetTradeListCountAsync(global::SP.Service.AccountIDRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetTradeListCountAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取账单历史信息的总数
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.TradeTotalResponse> GetTradeListCountAsync(global::SP.Service.AccountIDRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetTradeListCount, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override AccountServiceClient NewInstance(ClientBaseConfiguration configuration)
       {
@@ -3442,7 +3647,10 @@ namespace SP.Service {
           .AddMethod(__Method_CreateOtherAccount, serviceImpl.CreateOtherAccount)
           .AddMethod(__Method_GetOtherAccount, serviceImpl.GetOtherAccount)
           .AddMethod(__Method_UpdateAccountIDInfo, serviceImpl.UpdateAccountIDInfo)
-          .AddMethod(__Method_ApplyPartner, serviceImpl.ApplyPartner).Build();
+          .AddMethod(__Method_ApplyPartner, serviceImpl.ApplyPartner)
+          .AddMethod(__Method_BalancePay, serviceImpl.BalancePay)
+          .AddMethod(__Method_GetTradeList, serviceImpl.GetTradeList)
+          .AddMethod(__Method_GetTradeListCount, serviceImpl.GetTradeListCount).Build();
     }
 
   }
