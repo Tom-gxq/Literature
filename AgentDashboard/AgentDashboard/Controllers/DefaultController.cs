@@ -529,12 +529,11 @@ namespace AgentDashboard.Controllers
                                          RegionName = regionData.DataName,
                                          ProductType = shopProductType.Id,
                                          TypeName = shopProductType.TypeName,
-                                         //Birthday = accountInfo.Birthdate == null ? string.Empty : String.Format("yyyy/MM/dd", accountInfo.Birthdate)
-                                     });
+                                     }).ToList();
 
                     if (typeId == -1)
                     {
-                        vmList = queryList.ToList();
+                        vmList = queryList;
                     }
                     else
                     {
@@ -559,12 +558,11 @@ namespace AgentDashboard.Controllers
                              RegionName = regionData.DataName,
                              ProductType = shopProductType.Id,
                              TypeName = shopProductType.TypeName,
-                             //Birthday = accountInfo.Birthdate == null ? string.Empty : String.Format("yyyy/MM/dd", accountInfo.Birthdate)
-                         });
+                         }).ToList();
 
                     if(typeId == -1)
                     {
-                        vmList = queryList.ToList();
+                        vmList = queryList;
                     }
                     else
                     {
@@ -588,12 +586,11 @@ namespace AgentDashboard.Controllers
                                          RegionName = regionData.DataName,
                                          ProductType = shopProductType.Id,
                                          TypeName = shopProductType.TypeName,
-                                         //Birthday = accountInfo.Birthdate == null ? string.Empty : String.Format("yyyy/MM/dd", accountInfo.Birthdate)
-                                     });
+                                     }).ToList();
 
                     if(typeId == -1)
                     {
-                        vmList = queryList.ToList();
+                        vmList = queryList;
                     }
                     else
                     {
