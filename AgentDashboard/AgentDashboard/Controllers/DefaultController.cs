@@ -233,19 +233,20 @@ namespace AgentDashboard.Controllers
                             foreach (var deliverProduct in deliverProducts.ToList())
                             {
                                 ProductsViewModel procduct = new ProductsViewModel();
-                                procduct.Id = deliverProduct.ProductId;
+                                procduct.Id = deliverProduct.Id;
+                                procduct.ProductId = deliverProduct.ProductId;
                                 DateTime now = DateTime.Parse(DateTime.Now.ToShortDateString());
                                 
-                                var productStock =  ServerStockBusiness.GetAccountProductStock(account.AccountId, procduct.Id, shopId);
+                                var productStock =  ServerStockBusiness.GetAccountProductStock(account.AccountId, procduct.ProductId, shopId);
                                 procduct.Stocks = productStock;
                                 procduct.PreStocks = deliverProduct.PreStock;
 
-                                var procdutInfo = sp.SP_Products.SingleOrDefault(n => n.ProductId == procduct.Id);
+                                var procdutInfo = sp.SP_Products.SingleOrDefault(n => n.ProductId == procduct.ProductId);
                                 procduct.Name = procdutInfo?.ProductName ?? string.Empty;
                                 procduct.Description = procdutInfo?.Description;
 
                                 string domain = ConfigurationManager.AppSettings["Qiniu.Domain"];
-                                var procdutImageInfo = sp.SP_ProductImage.SingleOrDefault(n => n.ProductId == procduct.Id);
+                                var procdutImageInfo = sp.SP_ProductImage.SingleOrDefault(n => n.ProductId == procduct.ProductId);
                                 procduct.ImagePath = !string.IsNullOrEmpty(procdutImageInfo?.ImgPath) ? domain + procdutImageInfo.ImgPath : string.Empty;
                                 deliverMan.Products.Add(procduct);
                             }
@@ -257,6 +258,39 @@ namespace AgentDashboard.Controllers
             }
 
             return View(vm);
+        }
+
+        /// <summary>
+        /// 超市与餐饮的产品删除
+        /// </summary>
+        /// <param name="id">ID</param>
+        public void DeleteProduct(int id)
+        {
+            using (SPEntities spEntity = new SPEntities())
+            {
+                DbContextTransaction transcation = null;
+
+                try
+                {
+                    var product = spEntity.SP_AccountProduct.SingleOrDefault(n =>n.Id == id);
+                    if (product != null)
+                    {
+                        transcation = spEntity.Database.BeginTransaction();
+                        spEntity.SP_AccountProduct.Remove(product);
+                        spEntity.SaveChanges();
+                        transcation.Commit();
+                    }
+                }
+                catch (Exception)
+                {
+                    transcation.Rollback();
+                    throw;
+                }
+                finally
+                {
+                    if (transcation != null) transcation.Dispose();
+                }
+            }
         }
 
         [HttpPost]
