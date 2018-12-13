@@ -639,7 +639,18 @@ namespace AgentDashboard.Controllers
 
         public ActionResult DataAnalyze()
         {
-            return View();
+            string accountId = GetCurrentAccountId();
+            using (SPEntities sPEntities = new SPEntities())
+            {
+                var regionId = sPEntities.SP_RegionAccount.Where(n => n.AccountId == accountId)?.First();
+                DataAnalyzeViewModel viewModel = new DataAnalyzeViewModel();
+                if (regionId != null)
+                {
+                    viewModel.RegionId = regionId.RegionId;
+                }
+
+                return View(viewModel);
+            }
         }
 
         public ActionResult ShopManager(string productId = "", int sellerId = 0, int type = -1)
@@ -1390,11 +1401,12 @@ namespace AgentDashboard.Controllers
         }
 
         /// <summary>
-        /// 
+        /// 数据分析页面之用户注册数
         /// </summary>
-        /// <param name="day"></param>
+        /// <param name="regionId">学校Id</param>
+        /// <param name="day">天数</param>
         /// <returns></returns>
-        public JsonResult GetUserNameLineChartData(int day)
+        public JsonResult GetUserNameLineChartData(int regionId, int day)
         {
             Chart chart = new Chart();
             List<string> dayList = new List<string>();
@@ -1415,7 +1427,7 @@ namespace AgentDashboard.Controllers
                 foreach (var strDay in dayList)
                 {
                     DateTime dateTime = DateTime.Parse(strDay);
-                    int? newUserCnt = spEntity.SP_SysStatistics.SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_NewUser;
+                    int? newUserCnt = spEntity.SP_SysStatistics.Where(n=>n.RegionId == regionId).SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_NewUser;
                     userCntList.Add(newUserCnt ?? 0);
                 }
             }
@@ -1438,7 +1450,7 @@ namespace AgentDashboard.Controllers
         /// </summary>
         /// <param name="day"></param>
         /// <returns></returns>
-        public JsonResult GetNewOrderChartData(int day)
+        public JsonResult GetNewOrderChartData(int regionId, int day)
         {
             Chart chart = new Chart();
             List<string> dayList = new List<string>();
@@ -1459,7 +1471,7 @@ namespace AgentDashboard.Controllers
                 foreach (var strDay in dayList)
                 {
                     DateTime dateTime = DateTime.Parse(strDay);
-                    int? newOrder = spEntity.SP_SysStatistics.SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_NewOrder;
+                    int? newOrder = spEntity.SP_SysStatistics.Where(n => n.RegionId == regionId).SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_NewOrder;
                     newOderCnt.Add(newOrder ?? 0);
                 }
             }
@@ -1482,7 +1494,7 @@ namespace AgentDashboard.Controllers
         /// </summary>
         /// <param name="day"></param>
         /// <returns></returns>
-        public JsonResult GetNewAssociatorChartData(int day)
+        public JsonResult GetNewAssociatorChartData(int regionId, int day)
         {
             Chart chart = new Chart();
             List<string> dayList = new List<string>();
@@ -1503,7 +1515,7 @@ namespace AgentDashboard.Controllers
                 foreach (var strDay in dayList)
                 {
                     DateTime dateTime = DateTime.Parse(strDay);
-                    int? newAssociator = spEntity.SP_SysStatistics.SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_NewAssociator;
+                    int? newAssociator = spEntity.SP_SysStatistics.Where(n => n.RegionId == regionId).SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_NewAssociator;
                     newAssociatorCnt.Add(newAssociator ?? 0);
                 }
             }
@@ -1526,7 +1538,7 @@ namespace AgentDashboard.Controllers
         /// </summary>
         /// <param name="day"></param>
         /// <returns></returns>
-        public JsonResult GetOrderAmountChartData(int day)
+        public JsonResult GetOrderAmountChartData(int regionId, int day)
         {
             Chart chart = new Chart();
             List<string> dayList = new List<string>();
@@ -1548,7 +1560,7 @@ namespace AgentDashboard.Controllers
                 foreach (var strDay in dayList)
                 {
                     DateTime dateTime = DateTime.Parse(strDay);
-                    decimal? orderAmount = spEntity.SP_SysStatistics.SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_FoodOrderAmount;
+                    decimal? orderAmount = spEntity.SP_SysStatistics.Where(n => n.RegionId == regionId).SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_FoodOrderAmount;
                     orderAmountList.Add((int)(orderAmount ?? 0));
 
                     decimal? markAmount = spEntity.SP_SysStatistics.SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_MarkOrderAmount;

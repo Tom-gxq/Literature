@@ -327,6 +327,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\Chart.cs" />
+    <Compile Include="Models\DataAnalyzeViewModel.cs" />
     <Compile Include="Models\DeliverymanViewerViewModel.cs" />
     <Compile Include="Models\HumanManagerViewModel.cs" />
     <Compile Include="Models\OAuth2_Access_Token.cs">
