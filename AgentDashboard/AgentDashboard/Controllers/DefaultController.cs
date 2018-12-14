@@ -649,6 +649,20 @@ namespace AgentDashboard.Controllers
                     viewModel.RegionId = regionId.RegionId;
                 }
 
+                var regionList = (from regionAccount in sPEntities.SP_RegionAccount.Where(n => n.AccountId == accountId)
+                                  join regionData in sPEntities.SP_RegionData on regionAccount.RegionId equals regionData.DataID
+                                  select new
+                                  {
+                                      DataId = regionData.DataID,
+                                      DataName = regionData.DataName
+                                  });
+
+                viewModel.Universities = new Dictionary<int, string>();
+                foreach (var region in regionList)
+                {
+                    viewModel.Universities.Add(region.DataId, region.DataName);
+                }
+
                 return View(viewModel);
             }
         }
@@ -1018,20 +1032,26 @@ namespace AgentDashboard.Controllers
 
         public ActionResult RegionManager()
         {
-            RegionDataViewModel viewModel = new RegionDataViewModel();
-
-            using (SPEntities sp = new SPEntities())
+            string accountId = GetCurrentAccountId();
+            using (SPEntities sPEntities = new SPEntities())
             {
-                var regionList = sp.SP_RegionData.Where(n => n.DataType == 1).ToList();
-                viewModel.Universities = new Dictionary<int, string>();
+                RegionDataViewModel viewModel = new RegionDataViewModel();
+                var regionList = (from regionAccount in sPEntities.SP_RegionAccount.Where(n => n.AccountId == accountId)
+                                  join regionData in sPEntities.SP_RegionData on regionAccount.RegionId equals regionData.DataID
+                                  select new
+                                  {
+                                      DataId = regionData.DataID,
+                                      DataName = regionData.DataName
+                                  });
 
+                viewModel.Universities = new Dictionary<int, string>();
                 foreach (var region in regionList)
                 {
-                    viewModel.Universities.Add(region.DataID, region.DataName);
+                    viewModel.Universities.Add(region.DataId, region.DataName);
                 }
-            }
 
-            return View(viewModel);
+                return View(viewModel);
+            }
         }
 
         public void DeleteRoom(int id)

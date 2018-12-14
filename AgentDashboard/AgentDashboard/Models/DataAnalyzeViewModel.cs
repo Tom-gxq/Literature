@@ -8,5 +8,7 @@ namespace AgentDashboard.Models
     public class DataAnalyzeViewModel
     {
         public int RegionId { get; set; }
+
+        public Dictionary<int, String> Universities { get; set; }
     }
 }
