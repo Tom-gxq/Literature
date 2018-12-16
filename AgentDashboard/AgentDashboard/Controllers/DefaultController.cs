@@ -667,7 +667,7 @@ namespace AgentDashboard.Controllers
             }
         }
 
-        public ActionResult ShopManager(string productId = "", int sellerId = 0, int type = -1)
+        public ActionResult ShopManager(int universityId = -1, string productId = "", int sellerId = 0, int type = -1)
         {
             List<SellerViewModel> shopsVM = null;
             ISupplerAppService service = IocManager.Instance.Resolve<ISupplerAppService>();
@@ -680,6 +680,8 @@ namespace AgentDashboard.Controllers
             {
                 list = service.SearchSuppler(productId, sellerId, type, 1, 20);
             }
+
+            string accountId = GetCurrentAccountId();
             
             shopsVM = list.Select(x => new SellerViewModel
             {
@@ -689,8 +691,74 @@ namespace AgentDashboard.Controllers
                 LogoPath = x.LogoPath,
             }).ToList();
 
-            return View(shopsVM);
+            using (SPEntities sPEntities = new SPEntities())
+            {
+                ShopManagerViewModel viewModel = new ShopManagerViewModel();
+                RegionDataViewModel regionDataVm = new RegionDataViewModel();
+                var regionList = (from regionAccount in sPEntities.SP_RegionAccount.Where(n => n.AccountId == accountId)
+                                  join regionData in sPEntities.SP_RegionData on regionAccount.RegionId equals regionData.DataID
+                                  select new
+                                  {
+                                      DataId = regionData.DataID,
+                                      DataName = regionData.DataName
+                                  });
+
+                regionDataVm.Universities = new Dictionary<int, string>();
+                foreach (var region in regionList)
+                {
+                    regionDataVm.Universities.Add(region.DataId, region.DataName);
+                }
+
+                viewModel.Universities = regionDataVm.Universities;
+
+                dynamic sellersList = null;
+                if (universityId == -1)
+                {
+                    viewModel.SelectIndex = 0;
+
+                    sellersList = (from regionAccount in sPEntities.SP_RegionAccount.Where(n => n.AccountId == accountId)
+                                       join suppliers in sPEntities.SP_SuppliersRegion on regionAccount.RegionId equals suppliers.RegionID
+                                       select new
+                                       {
+                                           Id = suppliers.Id
+                                       }).ToList();
+                }
+                else
+                {
+                    int i = 0;
+                    foreach (var item in viewModel.Universities)
+                    {
+                        if (item.Key == universityId)
+                        {
+                            viewModel.SelectIndex = i;
+                        }
+                        i++;
+                    }
+
+                    sellersList = (from regionAccount in sPEntities.SP_RegionAccount.Where(n => n.AccountId == accountId)
+                                       join suppliers in sPEntities.SP_SuppliersRegion on regionAccount.RegionId equals suppliers.RegionID
+                                       select new
+                                       {
+                                           Id = suppliers.Id,
+                                           RegionId = suppliers.RegionID
+                                       }).Where(n=>n.RegionId == universityId).ToList();
+                }
+
+                viewModel.Sellers = new List<SellerViewModel>();
+
+                foreach (var item in sellersList)
+                {
+                    var seller = shopsVM.Where(n => n.SellerId == item.Id)?.First();
+                    if (seller != null)
+                    {
+                        viewModel.Sellers.Add(seller);
+                    }
+                }
+
+                return View(viewModel);
+            }
         }
+
         [HttpPost]
         public ActionResult DelSeller(int id)
         {            
