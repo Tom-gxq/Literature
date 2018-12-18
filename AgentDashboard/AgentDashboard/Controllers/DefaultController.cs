@@ -1383,8 +1383,27 @@ namespace AgentDashboard.Controllers
 
         public ActionResult OrderManager()
         {
-            return View();
+            string accountId = GetCurrentAccountId();
+            using (SPEntities sPEntities = new SPEntities())
+            {
+                OrderManagerViewModel viewModel = new OrderManagerViewModel();
+                var regionList = (from regionAccount in sPEntities.SP_RegionAccount.Where(n => n.AccountId == accountId)
+                                  join regionData in sPEntities.SP_RegionData on regionAccount.RegionId equals regionData.DataID
+                                  select new
+                                  {
+                                      DataId = regionData.DataID,
+                                      DataName = regionData.DataName
+                                  });
+
+                viewModel.Universities = new Dictionary<int, string>();
+                foreach (var region in regionList)
+                {
+                    viewModel.Universities.Add(region.DataId, region.DataName);
+                }
+                return View(viewModel);
+            }
         }
+
         public JsonResult GetOrderList(int status, int pageIndex, int pageSize)
         {
             Dictionary<string, object> JsonResult = new Dictionary<string, object>();
