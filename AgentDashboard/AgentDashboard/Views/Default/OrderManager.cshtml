@@ -220,7 +220,7 @@
         <script type="text/javascript">
             seajs.use(["/js/order/order"], function (OrderList) {
                 var $ = OrderList.jQuery;
-                OrderList.OrderController.init({ el: $("#dataTable"), url: '' });
+                OrderList.OrderController.init({ el: $("#dataTable"), url: '', university: $("#select_university") });
             });
         </script>
     </div>

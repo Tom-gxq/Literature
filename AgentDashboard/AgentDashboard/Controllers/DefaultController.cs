@@ -1404,40 +1404,53 @@ namespace AgentDashboard.Controllers
             }
         }
 
-        public JsonResult GetOrderList(int status, int pageIndex, int pageSize)
+        public JsonResult GetOrderList(int universityId, int status, int pageIndex, int pageSize)
         {
-            Dictionary<string, object> JsonResult = new Dictionary<string, object>();
-            IOrderAppService service = IocManager.Instance.Resolve<IOrderAppService>();
-            var list = service.GetOrderList(status, pageIndex, pageSize);
-            var total = service.GetOrderListCount(status);
-            PageModel jObject = new PageModel();
-            jObject.Total = (int)total;
-            jObject.Pages = (int)Math.Ceiling(Convert.ToDouble(total) / pageSize);
-            jObject.Index = pageIndex;
-            JsonResult.Add("data", jObject);
-
-            IProductAppService productService = IocManager.Instance.Resolve<IProductAppService>();
-            foreach (var item in list)
+            using (SPEntities sPEntities = new SPEntities())
             {
-                item.ProductList = productService.GetProductListByOrderId(item.OrderId);
-                foreach (var pitem in item.ProductList)
+                List<SP_Orders> ordersList;
+                if (status == -1)
                 {
-                    string domain = ConfigurationManager.AppSettings["Qiniu.Domain"];
-                    foreach (var pimg in pitem.ProductImage)
+                    ordersList = sPEntities.SP_Orders.Where(n => n.RegionId == universityId).ToList();
+                }
+                else
+                {
+                    ordersList = sPEntities.SP_Orders.Where(n => n.RegionId == universityId && n.OrderStatus == status).ToList();
+                }
+
+                Dictionary<string, object> JsonResult = new Dictionary<string, object>();
+                IOrderAppService service = IocManager.Instance.Resolve<IOrderAppService>();
+                var list = service.GetOrderList(status, pageIndex, pageSize).Where(n => ordersList.Count(x => x.OrderId == n.OrderId) > 0).ToList();
+                var total = ordersList.Count;// service.GetOrderListCount(status);
+                PageModel jObject = new PageModel();
+                jObject.Total = (int)total;
+                jObject.Pages = (int)Math.Ceiling(Convert.ToDouble(total) / pageSize);
+                jObject.Index = pageIndex;
+                JsonResult.Add("data", jObject);
+
+                IProductAppService productService = IocManager.Instance.Resolve<IProductAppService>();
+                foreach (var item in list)
+                {
+                    item.ProductList = productService.GetProductListByOrderId(item.OrderId);
+                    foreach (var pitem in item.ProductList)
                     {
-                        if (!string.IsNullOrEmpty(pimg.ImgPath) && !string.IsNullOrEmpty(domain))
+                        string domain = ConfigurationManager.AppSettings["Qiniu.Domain"];
+                        foreach (var pimg in pitem.ProductImage)
                         {
-                            pimg.ImgPath = domain + pimg.ImgPath;
+                            if (!string.IsNullOrEmpty(pimg.ImgPath) && !string.IsNullOrEmpty(domain))
+                            {
+                                pimg.ImgPath = domain + pimg.ImgPath;
+                            }
                         }
                     }
                 }
+                JsonResult.Add("result", list);
+                return new JsonResult()
+                {
+                    Data = JsonResult,
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
             }
-            JsonResult.Add("result", list);
-            return new JsonResult()
-            {
-                Data = JsonResult,
-                JsonRequestBehavior = JsonRequestBehavior.AllowGet
-            };
         }
 
         public ActionResult CreateAccount(AccountViewModel vm)
