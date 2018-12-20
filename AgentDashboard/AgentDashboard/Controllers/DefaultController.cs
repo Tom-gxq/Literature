@@ -1417,13 +1417,13 @@ namespace AgentDashboard.Controllers
                         OrderCode = x.OrderCode,
                         OrderDate = x.OrderDate,
                         OrderStatus = x.OrderStatus,
-                        OrderAddress = x.OrderAddress,
+                        OrderAddress = x.OrderAddress ?? string.Empty,
                         AccountId = x.AccountId,
                         IsVip = x.IsVip,
                         Amount = x.Amount,
                         IsWxPay = x.IsWxPay,
                         IsAliPay = x.IsAliPay,
-                        Remark = x.Remark
+                        Remark = x.Remark ?? string.Empty
                     }).ToList();
                 }
                 else
@@ -1434,13 +1434,13 @@ namespace AgentDashboard.Controllers
                         OrderCode = x.OrderCode,
                         OrderDate = x.OrderDate,
                         OrderStatus = x.OrderStatus,
-                        OrderAddress = x.OrderAddress,
+                        OrderAddress = x.OrderAddress ?? string.Empty,
                         AccountId = x.AccountId,
                         IsVip = x.IsVip,
                         Amount = x.Amount,
                         IsWxPay = x.IsWxPay,
                         IsAliPay = x.IsAliPay,
-                        Remark = x.Remark
+                        Remark = x.Remark ?? string.Empty
                     }).ToList();
                 }
 
@@ -1460,8 +1460,8 @@ namespace AgentDashboard.Controllers
                     {
                         var shiper = new AccountInfoDto();
                         shiper.AccountId = shipOrder.Key;
-                        shiper.Fullname = sPEntities.SP_AccountInfo.Where(n => n.AccountId == shipOrder.Key).Single()?.Fullname;
-                        shiper.Mobile = sPEntities.SP_Account.Where(n => n.AccountId == shipOrder.Key).Single()?.MobilePhone?.Replace("+86", "") ?? string.Empty;
+                        shiper.Fullname = sPEntities.SP_AccountInfo.SingleOrDefault(n => n.AccountId == shipOrder.Key)?.Fullname;
+                        shiper.Mobile = sPEntities.SP_Account.SingleOrDefault(n => n.AccountId == shipOrder.Key)?.MobilePhone?.Replace("+86", "") ?? string.Empty;
                         item.Shiper.Add(shiper);
                     }
                 }
