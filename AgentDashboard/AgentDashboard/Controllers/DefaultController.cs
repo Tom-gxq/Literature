@@ -1408,20 +1408,66 @@ namespace AgentDashboard.Controllers
         {
             using (SPEntities sPEntities = new SPEntities())
             {
-                List<SP_Orders> ordersList;
+                List<OrderManagerModel> ordersList;
                 if (status == -1)
                 {
-                    ordersList = sPEntities.SP_Orders.Where(n => n.RegionId == universityId).ToList();
+                    ordersList = sPEntities.SP_Orders.Where(n => n.RegionId == universityId).Select(x => new OrderManagerModel
+                    {
+                        OrderId = x.OrderId,
+                        OrderCode = x.OrderCode,
+                        OrderDate = x.OrderDate,
+                        OrderStatus = x.OrderStatus,
+                        OrderAddress = x.OrderAddress,
+                        AccountId = x.AccountId,
+                        IsVip = x.IsVip,
+                        Amount = x.Amount,
+                        IsWxPay = x.IsWxPay,
+                        IsAliPay = x.IsAliPay,
+                        Remark = x.Remark
+                    }).ToList();
                 }
                 else
                 {
-                    ordersList = sPEntities.SP_Orders.Where(n => n.RegionId == universityId && n.OrderStatus == status).ToList();
+                    ordersList = sPEntities.SP_Orders.Where(n => n.RegionId == universityId && n.OrderStatus == status).Select(x => new OrderManagerModel
+                    {
+                        OrderId = x.OrderId,
+                        OrderCode = x.OrderCode,
+                        OrderDate = x.OrderDate,
+                        OrderStatus = x.OrderStatus,
+                        OrderAddress = x.OrderAddress,
+                        AccountId = x.AccountId,
+                        IsVip = x.IsVip,
+                        Amount = x.Amount,
+                        IsWxPay = x.IsWxPay,
+                        IsAliPay = x.IsAliPay,
+                        Remark = x.Remark
+                    }).ToList();
+                }
+
+                var list = ordersList.Skip(pageIndex * pageSize).Take(pageSize).ToList();
+
+                foreach (var item in list)
+                {
+                    item.Owner = new AccountInfoDto();
+                    item.Owner.Fullname = sPEntities.SP_AccountInfo.SingleOrDefault(n=>n.AccountId == item.AccountId)?.Fullname;
+                    item.Owner.Mobile = sPEntities.SP_Account.SingleOrDefault(n => n.AccountId == item.AccountId)?.MobilePhone;
+
+                    var shipOrderList = sPEntities.SP_ShippingOrders.Where(n => n.OrderId == item.OrderId)?.GroupBy(n => n.ShippingId);
+
+                    item.Shiper = new List<AccountInfoDto>();
+
+                    foreach (var shipOrder in shipOrderList)
+                    {
+                        var shiper = new AccountInfoDto();
+                        shiper.AccountId = shipOrder.Key;
+                        shiper.Fullname = sPEntities.SP_AccountInfo.Where(n => n.AccountId == shipOrder.Key).Single()?.Fullname;
+                        shiper.Mobile = sPEntities.SP_Account.Where(n => n.AccountId == shipOrder.Key).Single()?.MobilePhone?.Replace("+86", "") ?? string.Empty;
+                        item.Shiper.Add(shiper);
+                    }
                 }
 
                 Dictionary<string, object> JsonResult = new Dictionary<string, object>();
-                IOrderAppService service = IocManager.Instance.Resolve<IOrderAppService>();
-                var list = service.GetOrderList(status, pageIndex, pageSize).Where(n => ordersList.Count(x => x.OrderId == n.OrderId) > 0).ToList();
-                var total = ordersList.Count;// service.GetOrderListCount(status);
+                var total = ordersList.Count;
                 PageModel jObject = new PageModel();
                 jObject.Total = (int)total;
                 jObject.Pages = (int)Math.Ceiling(Convert.ToDouble(total) / pageSize);
