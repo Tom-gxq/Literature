@@ -55,7 +55,7 @@ namespace SP.ManageEntityFramework.Repositories
                 {
                     if (type >= 0)
                     {
-                        q = q.Where(x => x.Id == supplerId && x.Type == type);
+                        q = q.Where(x => x.Id == supplerId);
                     }
                     else
                     {
@@ -64,7 +64,7 @@ namespace SP.ManageEntityFramework.Repositories
                 }
                 else if(type >= 0)
                 {
-                    q = q.Where(x => x.Type == type && x.Status == 0);
+                    q = q.Where(x => x.Status == 0);
                 }
                 else
                 {
@@ -89,7 +89,7 @@ namespace SP.ManageEntityFramework.Repositories
                 {
                     if (type >= 0)
                     {
-                        q = q.Where(x => x.Id == supplerId && x.Type == type);
+                        q = q.Where(x => x.Id == supplerId);
                     }
                     else
                     {
@@ -98,7 +98,7 @@ namespace SP.ManageEntityFramework.Repositories
                 }
                 else if (type >= 0)
                 {
-                    q = q.Where(x => x.Type == type && x.Status == 0);
+                    q = q.Where(x => x.Status == 0);
                 }
                 else
                 {

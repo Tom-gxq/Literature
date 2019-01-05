@@ -116,7 +116,10 @@ seajs.config({
         // 添加会员优惠折扣
         'add-associatorItem': 'associator/addassociator.js',
         //zrender，图标插件echarts的底层组件
-        'zrender': 'plug/zrender/zrender.js'
+        'zrender': 'plug/zrender/zrender.js',
+        //region
+        'add-seller-region': 'seller/addregion.js',
+        'edit-seller-region': 'seller/editregion.js'
     },
     map: [
         ['.js', '.js?v=' + version],

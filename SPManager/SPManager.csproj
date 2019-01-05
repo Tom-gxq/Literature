@@ -255,6 +255,7 @@
     <Compile Include="Controllers\ProductTypeController.cs" />
     <Compile Include="Controllers\QiniuController.cs" />
     <Compile Include="Controllers\RegionDataController.cs" />
+    <Compile Include="Controllers\SellerController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Filters\UserActionAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -474,6 +475,13 @@
     <Content Include="Scripts\resevent\reseventdata.js" />
     <Content Include="Scripts\resevent\list-item.html" />
     <Content Include="Scripts\resevent\style.css" />
+    <Content Include="Scripts\seller\addregion.html" />
+    <Content Include="Scripts\seller\addregion.js" />
+    <Content Include="Scripts\seller\seller.js" />
+    <Content Include="Scripts\seller\editregion.html" />
+    <Content Include="Scripts\seller\editregion.js" />
+    <Content Include="Scripts\seller\region-item.html" />
+    <Content Include="Scripts\seller\region.js" />
     <Content Include="Scripts\shop\addshop.html" />
     <Content Include="Scripts\shop\addshop.js" />
     <Content Include="Scripts\shop\editshop.html" />
@@ -542,6 +550,11 @@
     <Content Include="Views\Product\MarketSkuIndex.cshtml" />
     <Content Include="Views\Associator\Index.cshtml" />
     <Content Include="Views\Associator\_AssociatorLeft.cshtml" />
+    <Content Include="Views\Seller\Index.cshtml" />
+    <Content Include="Views\Seller\_SellerLeft.cshtml" />
+    <Content Include="Views\Seller\Region.cshtml" />
+    <Content Include="Views\Seller\Product.cshtml" />
+    <Content Include="Views\Seller\Leader.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
