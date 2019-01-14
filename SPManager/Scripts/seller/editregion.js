@@ -47,32 +47,31 @@ define(function (require, exports, module) {
                     id: _this.setting.Id
                 },
                 success: function (msg) {
-                    if (msg.result ) {
-                        doT.exec('seller/editregion.html', function (templateFun) {
-                            var innerText;
-                            innerText = templateFun(msg.result);
-                            easydialog.open({
-                                container: {
-                                    id: "editregion",
-                                    header: '编辑所见区域',
-                                    content: innerText
-                                }
-                            });
-                            $('#wizard').css('height', $('#' + msg.result.Id).find('.page').height());
-
-                            $(".page").show();
-                            //取消
-                            $("#cacel").click(function () {
-                                easydialog.close();
-                            });
-
-                            //提交
-                            $("#sub").click(function () {
-                                _this.Submit(elementID);
-                            });
-
+                    doT.exec('seller/editregion.html', function (templateFun) {
+                        var innerText;
+                        innerText = templateFun(msg);
+                        easydialog.open({
+                            container: {
+                                id: "editregion",
+                                header: '编辑所见区域',
+                                content: innerText
+                            }
                         });
-                    }
+                        //$('#wizard').css('height', $('#' + msg.result.Id).find('.page').height());
+
+                        $(".page").show();
+                        //取消
+                        $("#cacel").click(function () {
+                            easydialog.close();
+                        });
+
+                        //提交
+                        $("#sub").click(function () {
+                            _this.Submit(elementID);
+                            easydialog.close();
+                        });
+
+                    });
                 },
                 error: function (err) {
 
@@ -85,14 +84,13 @@ define(function (require, exports, module) {
         Submit: function (elementID) {
             var _this = this;
             var divElement = $('#' + elementID + '');
-            var user = {
-                Id: divElement.find('.txtId').val(),
-                UserName: divElement.find('.txtName').val(),
-                Password: divElement.find('.sltContact').val()
-
+            var region = {
+                Id: _this.setting.Id,
+                SellerId: $('#seller').val(),
+                RegionId: $('#region').val()
             };
-            user = $.param(user, true);
-            Global.post("/Seller/EditRegion", user, function (data) {
+            region = $.param(region, true);
+            Global.post("/Seller/EditRegion", region, function (data) {
                 _this.setting.callBack(data);
             });
         },
@@ -101,7 +99,8 @@ define(function (require, exports, module) {
     
     //对外公布方法
     exports.init = function (options) {
-        return new EditAdmin(options);
-    }
-    return exports
+        return new EditRegion(options);
+    };
+
+    return exports;
 });

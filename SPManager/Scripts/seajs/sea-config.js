@@ -119,7 +119,7 @@ seajs.config({
         'zrender': 'plug/zrender/zrender.js',
         //region
         'add-seller-region': 'seller/addregion.js',
-        'edit-seller-region': 'seller/editregion.js'
+        'edit-seller-region': 'seller/editregion.js',
     },
     map: [
         ['.js', '.js?v=' + version],

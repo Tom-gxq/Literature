@@ -98,6 +98,9 @@
     <Compile Include="Product\ProductAppService.cs" />
     <Compile Include="Product\ProductTypeService.cs" />
     <Compile Include="Product\RegionAppService.cs" />
+    <Compile Include="Seller\DTO\SuppliersRegionDto.cs" />
+    <Compile Include="Seller\ISuppliersRegionService.cs" />
+    <Compile Include="Seller\SuppliersRegionService.cs" />
     <Compile Include="Shop\DTO\ShopDto.cs" />
     <Compile Include="Shop\DTO\ShopOwnerDto.cs" />
     <Compile Include="Shop\DTO\ShopProductDto.cs" />

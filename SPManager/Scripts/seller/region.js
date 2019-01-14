@@ -122,8 +122,8 @@ define(function (require, exports, module) {
                     dialogID: 'wizard',
                     header: '编辑负责区域',
                     Id: this.id,
-                    callBack: function (orderID) {
-                        if (orderID && orderID != '') {
+                    callBack: function (Id) {
+                        if (Id && Id != '') {
                             //重新加载页面
                             window.location.href = '/Seller/Region';
                         } else {
@@ -185,11 +185,11 @@ define(function (require, exports, module) {
                 cache: false,
                 data: {
                     pageIndex: index,
-                    pageSize: 20
+                    pageSize: 10
                 },
                 success: function (msg) {
-                    if (msg.result && msg.result.length > 0) {
-                        _self.dataBinding(msg.result);
+                    if (msg.items && msg.items.length > 0) {
+                        _self.dataBinding(msg.items);
                         _self.pager.paginate({
                             total_count: msg.data.Total,
                             count: msg.data.Pages,
