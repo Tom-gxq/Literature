@@ -18,7 +18,6 @@ namespace SP.Application.Seller
             var repository = IocManager.Instance.Resolve<SuppliersRegionRespository>();
             return repository.Add(new SuppliersRegionEntity()
             {
-                Id = null,
                 SuppliersId = dto.SuppliersId,
                 RegionID = dto.RegionID,
                 CreateTime = DateTime.Now
@@ -65,11 +64,11 @@ namespace SP.Application.Seller
 
             var supplierRegionDto = new SuppliersRegionDto
             {
-                Id = (int)entity.Id,
-                SuppliersId = (int)entity.SuppliersId,
-                SuppliersName = supplerInfo.SuppliersName,
-                RegionID = (int)entity.RegionID,
-                RegionName = regionInfo.DataName
+                Id = (int)entity?.Id,
+                SuppliersId = (int)entity?.SuppliersId,
+                SuppliersName = supplerInfo?.SuppliersName,
+                RegionID = (int)entity?.RegionID,
+                RegionName = regionInfo?.DataName
             };
 
             return supplierRegionDto;

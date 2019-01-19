@@ -143,16 +143,30 @@ namespace SPManager.Controllers
             };
         }
 
-        public void AddRegion(int sellerId, int regionId)
+        public JsonResult AddRegion(int sellerId, int regionId)
         {
             ISuppliersRegionService suppliersSrv = IocManager.Instance.Resolve<ISuppliersRegionService>();
-            suppliersSrv.AddSeller(new SuppliersRegionDto() { SuppliersId = sellerId, RegionID = regionId });
+            var result = suppliersSrv.AddSeller(new SuppliersRegionDto() { SuppliersId = sellerId, RegionID = regionId });
+            JsonResult.Add("result", result);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
         }
 
-        public void EditRegion(int id, int sellerId, int regionId)
+        public JsonResult EditRegion(int id, int sellerId, int regionId)
         {
             ISuppliersRegionService suppliersSrv = IocManager.Instance.Resolve<ISuppliersRegionService>();
-            suppliersSrv.UpdateSeller(new SuppliersRegionDto() { Id = id, SuppliersId = sellerId, RegionID = regionId });
+            var result = suppliersSrv.UpdateSeller(new SuppliersRegionDto() { Id = id, SuppliersId = sellerId, RegionID = regionId });
+            JsonResult.Add("result", result);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
         }
     }
 }
