@@ -24,9 +24,10 @@ namespace SP.Application.Seller
             });
         }
 
-        public bool DelSeller(int suppliersId, int regionId)
+        public bool DelSeller(int id)
         {
-            throw new NotImplementedException();
+            var repository = IocManager.Instance.Resolve<SuppliersRegionRespository>();
+            return repository.DelRegion(id);
         }
 
         List<SuppliersRegionDto> ISuppliersRegionService.GetSuppliersRegionList(int pageIndex, int pageSize)

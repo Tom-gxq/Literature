@@ -46,5 +46,11 @@ namespace SP.ManageEntityFramework.Repositories
             var result = this.UpdateNonDefaults(entity, x => x.Id == entity.Id);
             return result > 0;
         }
+
+        public bool DelRegion(int id)
+        {
+            var result = this.DeleteById(id);
+            return result > 0;
+        }
     }
 }
