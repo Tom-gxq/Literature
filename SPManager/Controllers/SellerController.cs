@@ -35,36 +35,22 @@ namespace SPManager.Controllers
             return View();
         }
 
-        public JsonResult SearchRegionListByKeyWord(string keyWord, int pageIndex, int pageSize)
+        public JsonResult SearchRegionByName(string supplierName, int pageIndex, int pageSize)
         {
-            //IOrderAppService service = IocManager.Instance.Resolve<IOrderAppService>();
-            //var list = service.SearchOrderListByKeyWord(keyWord, pageIndex, pageSize);
-            //IProductAppService productService = IocManager.Instance.Resolve<IProductAppService>();
-            //foreach (var item in list)
-            //{
-            //    item.ProductList = productService.GetProductListByOrderId(item.OrderId);
-            //    foreach (var pitem in item.ProductList)
-            //    {
-            //        string domain = ConfigurationManager.AppSettings["Qiniu.Domain"];
-            //        foreach (var pimg in pitem.ProductImage)
-            //        {
-            //            if (!string.IsNullOrEmpty(pimg.ImgPath) && !string.IsNullOrEmpty(domain))
-            //            {
-            //                pimg.ImgPath = domain + pimg.ImgPath;
-            //            }
-            //        }
-            //    }
-            //}
-
-            //JsonResult.Add("result", list);
-
-            //return new JsonResult()
-            //{
-            //    Data = JsonResult,
-            //    JsonRequestBehavior = JsonRequestBehavior.AllowGet
-            //};
-
-            return null;
+            ISuppliersRegionService service = IocManager.Instance.Resolve<ISuppliersRegionService>();
+            var result = service.SearchRegionByName(supplierName);
+            JsonResult.Add("result", result);
+            PageModel jObject = new PageModel();
+            var total = service.SearchRegionByNameCount(supplierName);
+            jObject.Total = total;
+            jObject.Pages = (int)Math.Ceiling(Convert.ToDouble(total) / pageSize);
+            jObject.Index = pageIndex;
+            JsonResult.Add("data", jObject);
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
         }
 
         /// <summary>

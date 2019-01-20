@@ -209,11 +209,11 @@ define(function (require, exports, module) {
         getRegionList: function (index) {
             var _self = this;
             $.ajax({
-                url: 'SearchRegionById',
+                url: 'SearchRegionByName',
                 type: 'GET',
                 cache: false,
                 data: {
-                    userName: $("#inputSearch").val(),
+                    supplierName: $("#inputSearch").val(),
                     pageIndex: index,
                     pageSize: 20
                 },

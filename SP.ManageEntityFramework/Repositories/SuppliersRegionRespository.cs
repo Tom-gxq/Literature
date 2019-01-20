@@ -52,5 +52,31 @@ namespace SP.ManageEntityFramework.Repositories
             var result = this.DeleteById(id);
             return result > 0;
         }
+
+        public List<SuppliersRegionEntity> SearchRegionByName(string supplierName)
+        {
+            List<SuppliersRegionEntity> list = new List<SuppliersRegionEntity>();
+
+            using (var db = Context.OpenDbConnection())
+            {
+                var supplierQuery = db.From<SuppliersEntity>().Where(x => x.SuppliersName.Contains(supplierName));
+                foreach (var supplier in db.Select(supplierQuery))
+                {
+                    var q = db.From<SuppliersRegionEntity>().Where(x => x.SuppliersId == supplier.Id).OrderByDescending(x => x.UpdateTime);
+                    list.AddRange(db.Select(q));
+                }
+            }
+
+            return list;
+        }
+
+        public int SearchRegionByNameCount(string supplierName)
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<SuppliersEntity>().Where(x=>x.SuppliersName.Contains(supplierName));
+                return db.Select(q).Count();
+            }
+        }
     }
 }

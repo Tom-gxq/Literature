@@ -123,5 +123,25 @@ namespace SP.Application.Seller
                 UpdateTime = DateTime.Now
             });
         }
+
+        public List<SuppliersRegionDto> SearchRegionByName(string supplierName)
+        {
+            var retList = new List<SuppliersRegionDto>();
+            var repository = IocManager.Instance.Resolve<SuppliersRegionRespository>();
+            var list = repository.SearchRegionByName(supplierName);
+            foreach (var supplier in list)
+            {
+                var supplierDto = ConvertFromRepositoryEntity(supplier);
+                retList.Add(supplierDto);
+            }
+            return retList;
+        }
+
+        public int SearchRegionByNameCount(string supplierName)
+        {
+            var repository = IocManager.Instance.Resolve<SuppliersRegionRespository>();
+            var total = repository.SearchRegionByNameCount(supplierName);
+            return total;
+        }
     }
 }
