@@ -120,6 +120,9 @@ seajs.config({
         //region
         'add-seller-region': 'seller/addregion.js',
         'edit-seller-region': 'seller/editregion.js',
+        //leader
+        'add-seller-leader': 'seller/addleader.js',
+        'edit-seller-leader': 'seller/editleader.js'
     },
     map: [
         ['.js', '.js?v=' + version],

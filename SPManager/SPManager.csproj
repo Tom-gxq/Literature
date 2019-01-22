@@ -475,8 +475,14 @@
     <Content Include="Scripts\resevent\reseventdata.js" />
     <Content Include="Scripts\resevent\list-item.html" />
     <Content Include="Scripts\resevent\style.css" />
+    <Content Include="Scripts\seller\addleader.js" />
+    <Content Include="Scripts\seller\addleader.html" />
     <Content Include="Scripts\seller\addregion.html" />
     <Content Include="Scripts\seller\addregion.js" />
+    <Content Include="Scripts\seller\editleader.js" />
+    <Content Include="Scripts\seller\editleader.html" />
+    <Content Include="Scripts\seller\leader.js" />
+    <Content Include="Scripts\seller\leader-item.html" />
     <Content Include="Scripts\seller\seller.js" />
     <Content Include="Scripts\seller\editregion.html" />
     <Content Include="Scripts\seller\editregion.js" />

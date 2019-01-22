@@ -46,7 +46,6 @@ namespace SP.Application.Seller
 
         public long GetSuppliersRegionCount()
         {
-            var retList = new List<SuppliersRegionDto>();
             var repository = IocManager.Instance.Resolve<SuppliersRegionRespository>();
             var count = repository.Count();
             return count;
@@ -95,21 +94,6 @@ namespace SP.Application.Seller
             };
 
             return supplierRegionDto;
-        }
-
-        List<SuppliersRegionDto> ISuppliersRegionService.SearchSeller(int supplerId)
-        {
-            throw new NotImplementedException();
-        }
-
-        List<SuppliersRegionDto> ISuppliersRegionService.SearchSellerData(string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        int ISuppliersRegionService.SearchSupplerCount(int supplerId)
-        {
-            throw new NotImplementedException();
         }
 
         bool ISuppliersRegionService.UpdateSeller(SuppliersRegionDto dto)

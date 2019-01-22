@@ -167,5 +167,23 @@ namespace SPManager.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
+        public JsonResult GetLeaderList(int pageIndex, int pageSize)
+        {
+            var service = IocManager.Instance.Resolve<IRegionAccountService>();
+            var list = service.GetLeaderList(pageIndex, pageSize);
+            var total = service.GetLeaderCount();
+            JsonResult.Add("items", list);
+            PageModel jObject = new PageModel();
+            jObject.Total = (int)total;
+            jObject.Pages = (int)Math.Ceiling(Convert.ToDouble(total) / pageSize);
+            jObject.Index = pageIndex;
+            JsonResult.Add("data", jObject);
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
     }
 }

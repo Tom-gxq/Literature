@@ -15,10 +15,7 @@ namespace SP.Application.Seller
         bool UpdateSeller(SuppliersRegionDto dto);
         List<SuppliersRegionDto> GetSuppliersRegionList(int pageIndex, int pageSize);
         long GetSuppliersRegionCount();
-        List<SuppliersRegionDto> SearchSeller(int supplerId);
-        int SearchSupplerCount(int supplerId);
         SuppliersRegionDto GetSupplerDetail(int id);
-        List<SuppliersRegionDto> SearchSellerData(string name);
         List<SuppliersRegionDto> SearchRegionByName(string supplierName);
         int SearchRegionByNameCount(string supplierName);
     }

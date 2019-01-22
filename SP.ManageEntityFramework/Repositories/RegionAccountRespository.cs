@@ -21,6 +21,12 @@ namespace SP.ManageEntityFramework.Repositories
             return result > 0;
         }
 
+        public bool UpdateLeader(RegionAccountEntity data)
+        {
+            var result = this.UpdateNonDefaults(data, x => x.Id == data.Id && x.RegionId == data.RegionId);
+            return result > 0;
+        }
+
         public List<RegionAccountEntity> GetRegionAccount( int pageIndex, int pageSize)
         {
             using (var db = Context.OpenDbConnection())
