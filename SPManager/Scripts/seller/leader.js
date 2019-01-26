@@ -160,7 +160,8 @@ define(function (require, exports, module) {
                     item = input.parent('tr');
 
                 Global.post('DelLeader', {
-                    id: id
+                    regionId: id.split('&')[0],
+                    accountId: id.split('&')[1]
                 },
                     function (data) {
                         if (data && data.result) {
@@ -213,12 +214,12 @@ define(function (require, exports, module) {
                 type: 'GET',
                 cache: false,
                 data: {
-                    supplierName: $("#inputSearch").val(),
+                    leaderName: $("#inputSearch").val(),
                     pageIndex: index,
                     pageSize: 20
                 },
                 success: function (msg) {
-                    _self.regionArea.find(".contenttr").remove();
+                    _self.leaderArea.find(".contenttr").remove();
                     if (msg.result && msg.result.length > 0) {
                         _self.dataBinding(msg.result);
                         _self.pager.paginate({

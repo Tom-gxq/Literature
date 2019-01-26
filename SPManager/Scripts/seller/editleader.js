@@ -16,8 +16,7 @@ define(function (require, exports, module) {
     require('admin/style.css');
     //默认参数
     var Defaults = {
-        dialogID: "editregion",//弹出框ID
-        orderID: ''
+        dialogID: "editleader"//弹出框ID
     };
 
     var EditRegion = function (options) {
@@ -40,19 +39,20 @@ define(function (require, exports, module) {
             var _this = this;
             var elementID = _this.setting.dialogID;
             $.ajax({
-                url: 'GetRegionDetail',
+                url: 'GetLeaderDetail',
                 type: 'GET',
                 cache: false,
                 data: {
-                    id: _this.setting.Id
+                    regionId: _this.setting.Id.split('&')[0],
+                    accountId: _this.setting.Id.split('&')[1]
                 },
                 success: function (msg) {
-                    doT.exec('seller/editregion.html', function (templateFun) {
+                    doT.exec('seller/editleader.html', function (templateFun) {
                         var innerText;
                         innerText = templateFun(msg);
                         easydialog.open({
                             container: {
-                                id: "editregion",
+                                id: "editleader",
                                 header: '编辑所见区域',
                                 content: innerText
                             }
@@ -84,13 +84,14 @@ define(function (require, exports, module) {
         Submit: function (elementID) {
             var _this = this;
             var divElement = $('#' + elementID + '');
-            var region = {
-                Id: _this.setting.Id,
-                SellerId: $('#seller').val(),
-                RegionId: $('#region').val()
+            var leader = {
+                oldRegionId: _this.setting.Id.split('&')[0],
+                oldAccountId: _this.setting.Id.split('&')[1],
+                regionId: $('#region').val(),
+                accountId: $('#leader').val()
             };
-            region = $.param(region, true);
-            Global.post("/Seller/EditRegion", region, function (data) {
+            leader = $.param(leader, true);
+            Global.post("/Seller/EditLeader", leader, function (data) {
                 _this.setting.callBack(data);
             });
         },

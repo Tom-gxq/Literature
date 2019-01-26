@@ -5,20 +5,20 @@
                 <div class="contactInfo">
                     <ul>
                         <li style="width:100%">
-                            <span class="grayfont span">商家名:</span>
-                            <select tabindex="2" id="seller" class="select small newselect" style="height: 35px;">
+                            <span class="grayfont span">学校:</span>
+                            <select tabindex="2" id="region" class="select small newselect" style="height: 35px;">
                                 <option value="0" selected="">&nbsp;</option>
-                                {% for(var i =0, j=$data.sellers.length; i  < j; i++) { %}
-                                <option value="{%=$data.sellers[i].Id%}" {%=$data.SuppliersId==$data.sellers[i].Id?'selected':'' %}>{%=$data.sellers[i].SuppliersName%}</option>
+                                {% for(var i =0, j=$data.regions.length; i  < j; i++) { %}
+                                <option value="{%=$data.regions[i].DataId%}" {%=$data.RegionId==$data.regions[i].DataId?'selected':'' %}>{%=$data.regions[i].DataName%}</option>
                                 {% } %}
                             </select>
                         </li>
                         <li style="width:100%">
-                            <span class="grayfont span">负责区域:</span>
-                            <select tabindex="2" id="region" class="select small newselect" style="height: 35px;">
+                            <span class="grayfont span">负责人:</span>
+                            <select tabindex="2" id="leader" class="select small newselect" style="height: 35px;">
                                 <option value="0" selected="">&nbsp;</option>
-                                {% for(var i =0, j=$data.regions.length; i < j; i++) { %}
-                                <option value="{%=$data.regions[i].DataId%}" {%=$data.RegionId==$data.regions[i].DataId?'selected':'' %}>{%=$data.regions[i].DataName%}</option>
+                                {% for(var i =0, j=$data.leaders.length; i < j; i++) { %}
+                                <option value="{%=$data.leaders[i].AccountId%}" {%=$data.AccountId==$data.leaders[i].AccountId?'selected':'' %}>{%=$data.leaders[i].Fullname%}</option>
                                 {% } %}
                             </select>
                         </li>

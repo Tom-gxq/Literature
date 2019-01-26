@@ -21,9 +21,9 @@ namespace SP.ManageEntityFramework.Repositories
             return result > 0;
         }
 
-        public bool UpdateLeader(RegionAccountEntity data)
+        public bool DeleteLeader(RegionAccountEntity data)
         {
-            var result = this.UpdateNonDefaults(data, x => x.Id == data.Id && x.RegionId == data.RegionId);
+            var result = this.Delete(data);
             return result > 0;
         }
 
@@ -35,6 +35,23 @@ namespace SP.ManageEntityFramework.Repositories
                 q = q.Limit((pageIndex - 1) * pageSize, pageSize);
                 return db.Select(q);
             }
+        }
+
+        public List<RegionAccountEntity> SearchLeaderByName(string leaderName)
+        {
+            List<RegionAccountEntity> list = new List<RegionAccountEntity>();
+
+            using (var db = Context.OpenDbConnection())
+            {
+                var leaderQuery = db.From<AccountInfoEntity>().Where(x => x.Fullname.Contains(leaderName));
+                foreach (var leader in db.Select(leaderQuery))
+                {
+                    var q = db.From<RegionAccountEntity>().Where(x => x.Id == leader.AccountId);
+                    list.AddRange(db.Select(q));
+                }
+            }
+
+            return list;
         }
     }
 }

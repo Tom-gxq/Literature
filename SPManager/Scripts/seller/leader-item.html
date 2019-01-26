@@ -7,8 +7,8 @@
     <td>
         <p>{%=$data[i].RegionName %}</p>
     </td>
-    <td data-item_id="{%=$data[i].Id %}" class="center">
-        <button class="edit_item lhx_btn btn btn-primary" id="{%=$data[i].Id%}">编辑</button>
+    <td data-item_id="{%=$data[i].RegionId %}&{%=$data[i].AccountId%}" class="center">
+        <button class="edit_item lhx_btn btn btn-primary" id="{%=$data[i].RegionId %}&{%=$data[i].AccountId%}">编辑</button>
         <button class="delete_item lhx_btn btn btn-danger" id="delete">删除</button>
     </td>
 </tr>

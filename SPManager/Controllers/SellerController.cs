@@ -3,6 +3,7 @@ using SP.Application.Product;
 using SP.Application.Seller;
 using SP.Application.Seller.DTO;
 using SP.Application.Suppler;
+using SP.Application.User;
 using SPManager.Models;
 using System;
 using System.Collections.Generic;
@@ -176,6 +177,94 @@ namespace SPManager.Controllers
             JsonResult.Add("items", list);
             PageModel jObject = new PageModel();
             jObject.Total = (int)total;
+            jObject.Pages = (int)Math.Ceiling(Convert.ToDouble(total) / pageSize);
+            jObject.Index = pageIndex;
+            JsonResult.Add("data", jObject);
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult GetLeaderDetail(int regionId, string accountId)
+        {
+            IRegionAppService regionSrv = IocManager.Instance.Resolve<IRegionAppService>();
+            var regions = regionSrv.GetRegionData(1);
+            JsonResult.Add("regions", regions);
+            IAccountAppService accountSrv = IocManager.Instance.Resolve<IAccountAppService>();
+            var leaders = accountSrv.GetAccountList();
+            JsonResult.Add("leaders", leaders);
+            JsonResult.Add("AccountId", accountId);
+            JsonResult.Add("RegionId", regionId);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult GetRegionAccount()
+        {
+            IRegionAppService regionSrv = IocManager.Instance.Resolve<IRegionAppService>();
+            var regions = regionSrv.GetRegionData(1);
+            JsonResult.Add("regions", regions);
+            IAccountAppService accountSrv = IocManager.Instance.Resolve<IAccountAppService>();
+            var leaders = accountSrv.GetAccountList();
+            JsonResult.Add("leaders", leaders);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult EditLeader(int oldRegionId, string oldAccountId, int regionId, string accountId)
+        {
+            IRegionAccountService accountSrv = IocManager.Instance.Resolve<IRegionAccountService>();
+            var result = accountSrv.UpdateLeader(new RegionAccountDto() { RegionId = oldRegionId, AccountId = oldAccountId },
+                new RegionAccountDto() { RegionId = regionId, AccountId = accountId });
+            JsonResult.Add("result", result);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult DelLeader(int regionId, string accountId)
+        {
+            IRegionAccountService accountSrv = IocManager.Instance.Resolve<IRegionAccountService>();
+            accountSrv.DelLeader(regionId, accountId);
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult AddLeader(int regionId, string accountId)
+        {
+            IRegionAccountService accountSrv = IocManager.Instance.Resolve<IRegionAccountService>();
+            accountSrv.AddLeader(new RegionAccountDto() { RegionId = regionId, AccountId = accountId, Status = 0 });
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult SearchLeaderByName(string leaderName, int pageIndex, int pageSize)
+        {
+            IRegionAccountService service = IocManager.Instance.Resolve<IRegionAccountService>();
+            var result = service.SearchLeaderByName(leaderName);
+            JsonResult.Add("result", result);
+            PageModel jObject = new PageModel();
+            var total = result.Count;
+            jObject.Total = total;
             jObject.Pages = (int)Math.Ceiling(Convert.ToDouble(total) / pageSize);
             jObject.Index = pageIndex;
             JsonResult.Add("data", jObject);

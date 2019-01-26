@@ -23,14 +23,14 @@ namespace SP.Application.Seller
             });
         }
 
-        public bool DelLeader(string accountId, int regionId)
+        public bool DelLeader(int regionId, string accountId)
         {
             var repository = IocManager.Instance.Resolve<RegionAccountRespository>();
-            return repository.UpdateLeader(new RegionAccountEntity()
+            return repository.DeleteLeader(new RegionAccountEntity()
             {
                 Id = accountId,
                 RegionId = regionId,
-                Status = 1
+                Status = 0
             });
         }
 
@@ -85,17 +85,22 @@ namespace SP.Application.Seller
 
         public List<RegionAccountDto> SearchLeaderByName(string leaderName)
         {
-            throw new NotImplementedException();
+            var retList = new List<RegionAccountDto>();
+            var repository = IocManager.Instance.Resolve<RegionAccountRespository>();
+            var list = repository.SearchLeaderByName(leaderName);
+            foreach (var leader in list)
+            {
+                var supplierDto = ConvertFromRepositoryEntity(leader);
+                retList.Add(supplierDto);
+            }
+            return retList;
         }
 
-        public int SearchLeaderByNameCount(string leaderName)
+        public bool UpdateLeader(RegionAccountDto oldDto, RegionAccountDto dto)
         {
-            throw new NotImplementedException();
-        }
-
-        public bool UpdateLeader(RegionAccountDto dto)
-        {
-            throw new NotImplementedException();
+            var repository = IocManager.Instance.Resolve<RegionAccountRespository>();
+            return repository.UpdateNonDefaults(new RegionAccountEntity() { RegionId = dto.RegionId, Id = dto.AccountId },
+                x => x.RegionId == oldDto.RegionId && x.Id == oldDto.AccountId) > 0;
         }
     }
 }

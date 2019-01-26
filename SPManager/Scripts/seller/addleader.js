@@ -17,10 +17,10 @@ define(function (require, exports, module) {
     
     //默认参数
     var Defaults = {
-        dialogID: 'addRegion' //弹出框ID
+        dialogID: 'addLeader' //弹出框ID
     };
 
-    var AddRegion = function (options) {
+    var AddLeader = function (options) {
         var _this = this;
         _this.setting = $.extend({}, Defaults, options);
         _this.init(function () {
@@ -29,7 +29,7 @@ define(function (require, exports, module) {
         return this;
     };
 
-    AddRegion.prototype = {
+    AddLeader.prototype = {
         init: function (callback) {
             var _this = this;
             callback();
@@ -42,18 +42,17 @@ define(function (require, exports, module) {
             var _this = this;
             var elementID = _this.setting.dialogID;
             $.ajax({
-                url: 'GetSellerRegion',
+                url: 'GetRegionAccount',
                 type: 'GET',
                 cache: false,
-                width: 300,
                 success: function (msg) {
-                    doT.exec('seller/addregion.html', function (templateFun) {
+                    doT.exec('seller/addleader.html', function (templateFun) {
                         var innerText;
                         innerText = templateFun(msg);
                         easydialog.open({
                             container: {
-                                id: "addregion",
-                                header: '添加负责区域',
+                                id: "addleader",
+                                header: '添加校区负责人',
                                 content: innerText
                             }
                         });
@@ -82,12 +81,12 @@ define(function (require, exports, module) {
         Submit: function (elementID) {
             var _this = this;
             var divElement = $('#' + elementID + '');
-            var region = {
-                SellerId: $('#seller').val(),
-                RegionId: $('#region').val()
+            var leader = {
+                regionId: $('#region').val(),
+                accountId: $('#leader').val()
             };
-            region = $.param(region, true);
-            Global.post("/Seller/AddRegion", region, function (data) {
+            leader = $.param(leader, true);
+            Global.post("/Seller/AddLeader", leader, function (data) {
                 _this.setting.callBack(data);
             });
         }
@@ -95,7 +94,7 @@ define(function (require, exports, module) {
     
     //对外公布方法
     exports.init = function (options) {
-        return new AddRegion(options);
+        return new AddLeader(options);
     };
 
     return exports;

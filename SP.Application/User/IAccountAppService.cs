@@ -13,5 +13,6 @@ namespace SP.Application.User
         List<AccountInfoDto> SearchAccount(string keywords);
         AccountInfoDto GetAccountInfo(string accountId);
         bool UpdateAccountUserType(string accountId, int userType);
+        List<AccountInfoDto> GetAccountList();
     }
 }
