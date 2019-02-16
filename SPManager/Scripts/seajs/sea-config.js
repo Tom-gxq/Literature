@@ -49,6 +49,8 @@ seajs.config({
         'qiniushop': 'plug/qiniu/shop.js',
         // 七牛上传
         'qiniutype': 'plug/qiniu/producttype.js',
+        // 七牛上传
+        'qiniusellerlogo': 'plug/qiniu/sellerlogo.js',
         // 表情插件
         'facebase': 'plug/face/facebase.js',
         // 表情插件
@@ -122,7 +124,10 @@ seajs.config({
         'edit-seller-region': 'seller/editregion.js',
         //leader
         'add-seller-leader': 'seller/addleader.js',
-        'edit-seller-leader': 'seller/editleader.js'
+        'edit-seller-leader': 'seller/editleader.js',
+        //seller
+        'add-seller': 'seller/addseller.js',
+        'edit-seller': 'seller/editseller.js',
     },
     map: [
         ['.js', '.js?v=' + version],

@@ -3,6 +3,7 @@ using SP.Application.Product;
 using SP.Application.Seller;
 using SP.Application.Seller.DTO;
 using SP.Application.Suppler;
+using SP.Application.Suppler.DTO;
 using SP.Application.User;
 using SPManager.Models;
 using System;
@@ -76,9 +77,18 @@ namespace SPManager.Controllers
 
         public JsonResult GetSellerList(int pageIndex, int pageSize)
         {
-            var service = IocManager.Instance.Resolve<ISuppliersRegionService>();
-            var list = service.GetSuppliersRegionList(pageIndex, pageSize);
-            var total = service.GetSuppliersRegionCount();
+            var service = IocManager.Instance.Resolve<ISupplerAppService>();
+            List<dynamic> list = new List<dynamic>();
+            var sellerList = service.GetSupplerList(pageIndex, pageSize);
+            foreach (var item in sellerList)
+            {
+                var acccountSrv = IocManager.Instance.Resolve<IAccountAppService>();
+                var accountInfo = acccountSrv.GetAccountInfo(item?.AccountId);
+                list.Add(new { Id= item.Id, SuppliersName = item?.SuppliersName??string.Empty,
+                    AccountName = accountInfo?.Fullname??string.Empty, State=item?.Status == 0 ? "营业":"停业"});
+            }
+
+            var total = service.GetSellerCount();
             JsonResult.Add("items", list);
             PageModel jObject = new PageModel();
             jObject.Total = (int)total;
@@ -268,6 +278,45 @@ namespace SPManager.Controllers
             jObject.Pages = (int)Math.Ceiling(Convert.ToDouble(total) / pageSize);
             jObject.Index = pageIndex;
             JsonResult.Add("data", jObject);
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult AddSeller(SupplerDto model)
+        {
+            model.CreateTime = DateTime.Now;
+            ISupplerAppService service = IocManager.Instance.Resolve<ISupplerAppService>();
+            bool result = service.AddSuppler(model);
+            JsonResult.Add("result", result);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult DelSeller(int id)
+        {
+            ISupplerAppService service = IocManager.Instance.Resolve<ISupplerAppService>();
+            bool result = service.DelSupplerById(id);
+            JsonResult.Add("result", result);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult GetSellerDetail(int id)
+        {
+            ISupplerAppService service = IocManager.Instance.Resolve<ISupplerAppService>();
+            var seller = service.GetSupplerDetail(id);
+
             return new JsonResult()
             {
                 Data = JsonResult,

@@ -16,10 +16,10 @@ define(function (require, exports, module) {
     require('admin/style.css');
     //默认参数
     var Defaults = {
-        dialogID: "editleader"//弹出框ID
+        dialogID: "editseller"//弹出框ID
     };
 
-    var EditLeader = function (options) {
+    var EditSeller = function (options) {
         var _this = this;
         _this.setting = $.extend({}, Defaults, options);
         _this.init(function () {
@@ -27,7 +27,7 @@ define(function (require, exports, module) {
         });
         return this;
     }
-    EditLeader.prototype = {
+    EditSeller.prototype = {
         init: function (callback) {
             var _this = this;
             callback();
@@ -39,20 +39,19 @@ define(function (require, exports, module) {
             var _this = this;
             var elementID = _this.setting.dialogID;
             $.ajax({
-                url: 'GetLeaderDetail',
+                url: 'GetSellerDetail',
                 type: 'GET',
                 cache: false,
                 data: {
-                    regionId: _this.setting.Id.split('&')[0],
-                    accountId: _this.setting.Id.split('&')[1]
+                    id: _this.setting.Id,
                 },
                 success: function (msg) {
-                    doT.exec('seller/editleader.html', function (templateFun) {
+                    doT.exec('seller/editseller.html', function (templateFun) {
                         var innerText;
                         innerText = templateFun(msg);
                         easydialog.open({
                             container: {
-                                id: "editleader",
+                                id: "editseller",
                                 header: '编辑所见区域',
                                 content: innerText
                             }
@@ -84,14 +83,14 @@ define(function (require, exports, module) {
         Submit: function (elementID) {
             var _this = this;
             var divElement = $('#' + elementID + '');
-            var leader = {
+            var seller = {
                 oldRegionId: _this.setting.Id.split('&')[0],
                 oldAccountId: _this.setting.Id.split('&')[1],
                 regionId: $('#region').val(),
                 accountId: $('#leader').val()
             };
-            leader = $.param(leader, true);
-            Global.post("/Seller/EditLeader", leader, function (data) {
+            seller = $.param(leader, true);
+            Global.post("/Seller/EditSeller", seller, function (data) {
                 _this.setting.callBack(data);
             });
         },
@@ -100,7 +99,7 @@ define(function (require, exports, module) {
     
     //对外公布方法
     exports.init = function (options) {
-        return new EditLeader(options);
+        return new EditSeller(options);
     };
 
     return exports;

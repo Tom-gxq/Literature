@@ -435,6 +435,7 @@
     <Content Include="Scripts\plug\plupload\plupload.full.min.js" />
     <Content Include="Scripts\plug\plupload\plupload.min.js" />
     <Content Include="Scripts\plug\qiniu\producttype.js" />
+    <Content Include="Scripts\plug\qiniu\sellerlogo.js" />
     <Content Include="Scripts\plug\qiniu\shop.js" />
     <Content Include="Scripts\plug\qiniu\css\highlight.css" />
     <Content Include="Scripts\plug\qiniu\highlight.js" />
@@ -475,6 +476,10 @@
     <Content Include="Scripts\resevent\reseventdata.js" />
     <Content Include="Scripts\resevent\list-item.html" />
     <Content Include="Scripts\resevent\style.css" />
+    <Content Include="Scripts\seller\editseller.js" />
+    <Content Include="Scripts\seller\editseller.html" />
+    <Content Include="Scripts\seller\addseller.html" />
+    <Content Include="Scripts\seller\addseller.js" />
     <Content Include="Scripts\seller\addleader.js" />
     <Content Include="Scripts\seller\addleader.html" />
     <Content Include="Scripts\seller\addregion.html" />
@@ -483,11 +488,13 @@
     <Content Include="Scripts\seller\editleader.html" />
     <Content Include="Scripts\seller\leader.js" />
     <Content Include="Scripts\seller\leader-item.html" />
+    <Content Include="Scripts\seller\seller-item.html" />
     <Content Include="Scripts\seller\seller.js" />
     <Content Include="Scripts\seller\editregion.html" />
     <Content Include="Scripts\seller\editregion.js" />
     <Content Include="Scripts\seller\region-item.html" />
     <Content Include="Scripts\seller\region.js" />
+    <Content Include="Scripts\seller\style.css" />
     <Content Include="Scripts\shop\addshop.html" />
     <Content Include="Scripts\shop\addshop.js" />
     <Content Include="Scripts\shop\editshop.html" />

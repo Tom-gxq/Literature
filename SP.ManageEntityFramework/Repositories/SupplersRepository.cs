@@ -47,9 +47,9 @@ namespace SP.ManageEntityFramework.Repositories
             using (var db = Context.OpenDbConnection())
             {
                 var q = db.From<SuppliersEntity>();
-                if(!string.IsNullOrEmpty(productId))
+                if (!string.IsNullOrEmpty(productId))
                 {
-                    q = q.Join<SuppliersEntity, ProductEntity>((a,b)=>a.AccountId == b.SuppliersId && b.ProductId == productId);
+                    q = q.Join<SuppliersEntity, ProductEntity>((a, b) => a.AccountId == b.SuppliersId && b.ProductId == productId);
                 }
                 if (supplerId > 0)
                 {
@@ -62,7 +62,7 @@ namespace SP.ManageEntityFramework.Repositories
                         q = q.Where(x => x.Id == supplerId);
                     }
                 }
-                else if(type >= 0)
+                else if (type >= 0)
                 {
                     q = q.Where(x => x.Status == 0);
                 }
@@ -120,7 +120,27 @@ namespace SP.ManageEntityFramework.Repositories
 
         public SuppliersEntity GetSellerDataByAccountId(string accountId)
         {
-            return this.Single(x=>x.AccountId == accountId && x.Status == 0);
+            return this.Single(x => x.AccountId == accountId && x.Status == 0);
+        }
+
+        public List<SuppliersEntity> GetSellerList(int pageIndex, int pageSize)
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<SuppliersEntity>();
+                q = q.Limit((pageIndex - 1) * pageSize, pageSize);
+                return db.Select<SuppliersEntity>(q);
+            }
+        }
+
+        public int GetSellerCount()
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<SuppliersEntity>();
+                q = q.Where(n => n.Status == 0);
+                return db.Select(q).Count;
+            }
         }
     }
 }

@@ -47,6 +47,13 @@ namespace SP.Application.Suppler
                  UpdateTime = DateTime.Now
             });
         }
+
+        public bool DelSupplerById(int id)
+        {
+            var repository = IocManager.Instance.Resolve<SupplersRepository>();
+            return repository.DeleteById(id) > 0;
+        }
+
         public bool UpdateSeller(SupplerDto dto)
         {
             var repository = IocManager.Instance.Resolve<SupplersRepository>();
@@ -77,6 +84,28 @@ namespace SP.Application.Suppler
 
             return retList;
         }
+
+        public List<SupplerDto> GetSupplerList(int pageIndex, int pageSize)
+        {
+            var retList = new List<SupplerDto>();
+            var repository = IocManager.Instance.Resolve<SupplersRepository>();
+            var list = repository.GetSellerList(pageIndex, pageSize);
+            foreach (var item in list)
+            {
+                var entity = ConvertFromRepositoryEntity(item);
+
+                retList.Add(entity);
+            }
+
+            return retList;
+        }
+
+        public int GetSellerCount()
+        {
+            var repository = IocManager.Instance.Resolve<SupplersRepository>();
+            return repository.GetSellerCount();
+        }
+
         public List<SupplerDto> SearchSuppler(string productId, int supplerId, int type, int pageIndex, int pageSize)
         {
             var retList = new List<SupplerDto>();
@@ -143,8 +172,9 @@ namespace SP.Application.Suppler
                 PermitPath = entity.PermitPath,
                 SuppliersName = entity.SuppliersName,
                 TelPhone = entity.TelPhone,
-                CreateTime = entity.CreateTime!= null ? entity.CreateTime.Value:DateTime.MinValue,
+                CreateTime = entity.CreateTime != null ? entity.CreateTime.Value : DateTime.MinValue,
                 UpdateTime = entity.UpdateTime != null ? entity.UpdateTime.Value : DateTime.MinValue,
+                Status = (int)entity.Status
             };
 
             return shopDto;
