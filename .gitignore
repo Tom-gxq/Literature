@@ -3745,3 +3745,6 @@ WebApiGateway/bin/RepeatedTokenGRPCInterface.dll
 WebApiGateway/bin/RepeatedTokenGRPCInterface.pdb
 WebApiGateway/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 WebApiGateway/obj/Debug/WebApiGateway.csproj.CoreCompileInputs.cache
+*.zip
+*/bin/*
+*/obj/*
