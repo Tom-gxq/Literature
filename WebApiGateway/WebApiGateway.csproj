@@ -232,6 +232,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Oauth2\OauthModel.cs" />
+    <Compile Include="Models\Regist\AccountModel.cs" />
     <Compile Include="Models\Regist\ResultModel.cs" />
     <Compile Include="Models\Token\ITokenRepository.cs" />
     <Compile Include="Models\Token\TokenCache.cs" />

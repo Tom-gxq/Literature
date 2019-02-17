@@ -376,6 +376,35 @@ namespace AccountGRPCInterface
                     domain.Unit = item.Unit;
                     domain.Description = item.Description;
                     domain.DiscountValue = item.DiscountValue;
+                    domain.Amount = item.Amount;
+                    list.Add(domain);
+                }
+            }
+            return list;
+        }
+        public static List<CouponsModel> GetAccountCouponsList(string accountId)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request1 = new AccountIdRequest()
+            {
+                AccountId = accountId
+            };
+            var result = client.GetAccountCouponsList(request1);
+            var list = new List<CouponsModel>();
+            if (result.Status == 10001)
+            {
+                foreach (var item in result.CouponsList)
+                {
+                    var domain = new CouponsModel();
+                    domain.Description = item.Description;
+                    domain.CouponId = item.CouponId;
+                    domain.Amount = item.Amount;
+                    domain.EndDate = item.EndDate;
+                    domain.Description = item.Description;
+                    domain.ModeAmount = item.ModeAmount;
+                    domain.ModeDescription = item.ModeDescription;
+                    domain.StartDate = item.StartDate;
+                    domain.Status = item.Status;
                     list.Add(domain);
                 }
             }
@@ -704,6 +733,44 @@ namespace AccountGRPCInterface
                 total = reuslt.Total;
             }
             return total;
+        }
+
+        public static bool UpdateAccountWxUnionId(string accountId, string wxUnionId)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request1 = new WxUnionIdRequest()
+            {
+                AccountId = accountId,
+                WxUnionId = wxUnionId
+            };
+            var reuslt = client.UpdateAccountWxUnionId(request1);
+            if (reuslt.Status == 10001)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool CreateWxOpenId(string accountId, string wxOpenId,int wxType)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request1 = new WxOpenIdRequest()
+            {
+                AccountId = accountId,
+                WxOpenId = wxOpenId,
+                WxType = wxType
+            };
+            var reuslt = client.CreateWxOpenId(request1);
+            if (reuslt.Status == 10001)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private static long GetTimestamp(DateTime d)

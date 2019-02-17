@@ -11,9 +11,11 @@ namespace SP.Service.Domain.Reporting
     public class SysKindReportDatabase : IReportDatabase
     {
         private readonly SysKindRepository _repository;
-        public SysKindReportDatabase(SysKindRepository repository)
+        private readonly CouponsRepository _couponRepository;
+        public SysKindReportDatabase(SysKindRepository repository, CouponsRepository couponRepository)
         {
             _repository = repository;
+            _couponRepository = couponRepository;
         }
         public SysKindDomain GetSysKindById(string kindId)
         {
@@ -30,6 +32,19 @@ namespace SP.Service.Domain.Reporting
             foreach (var item in entityList)
             {
                 var domain = new SysKindDomain();
+                domain.SetMemento(item);
+                list.Add(domain);
+            }
+            return list;
+        }
+
+        public List<CouponsDomain> GetAccountCouponsList(string accountId)
+        {
+            var entityList = _couponRepository.GetAccountCouponsList(accountId);
+            var list = new List<CouponsDomain>();
+            foreach (var item in entityList)
+            {
+                var domain = new CouponsDomain();
                 domain.SetMemento(item);
                 list.Add(domain);
             }

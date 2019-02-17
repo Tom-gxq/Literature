@@ -143,13 +143,13 @@ namespace WebApiGateway.Controllers.Seller
         }
 
         [System.Web.Mvc.HttpPost]
-        public ActionResult GetShipOrderList(int orderStatus, int orderType = 0)
+        public ActionResult GetShipOrderList(int orderStatus, int orderType = 0, int pageIndex=1, int pageSize=10)
         {
             var result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var list = OrderBusiness.GetShipOrderList(currentAccount.AccountId, orderStatus, orderType);
+                var list = OrderBusiness.GetShipOrderList(currentAccount.AccountId, orderStatus, orderType, pageIndex, pageSize);
                 JsonResult.Add("orderList", list);
                 JsonResult.Add("status", 0);
             }

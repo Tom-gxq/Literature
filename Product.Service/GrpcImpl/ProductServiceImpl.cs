@@ -460,5 +460,61 @@ namespace Product.Service.GrpcImpl
             logger.LogInformation(this.prjLicEID, "GetShopStatus {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
+
+        public override Task<ResultResponse> AddSuppliersProduct(AddSuppliersProductRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} AddSuppliersProduct Connected!",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, " {AccountId} {ProductId} {PurchasePrice} {Stock} ",
+                request.AccountId, request.ProductId, request.PurchasePrice, request.Stock);
+            var response = new ResultResponse();
+            response.Status = 10002;
+            try
+            {
+                response = ProductBusiness.AddSuppliersProduct(request.AccountId, request.ProductId, request.PurchasePrice, request.Stock);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "AddSuppliersProduct Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "AddSuppliersProduct {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+
+        public override Task<ResultResponse> AddSuppliersRegion(AddSuppliersRegionRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} AddSuppliersRegion Connected!",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, " {SupplierId} {RegionId} ",request.SupplierId, request.RegionId);
+            var response = new ResultResponse();
+            response.Status = 10002;
+            try
+            {
+                response = ProductBusiness.AddSuppliersRegion(request.SupplierId, request.RegionId);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "AddSuppliersRegion Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "AddSuppliersRegion {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+
+        public override Task<SellerProductListResponse> GetSuppliersProduct(SupplierIdRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "GetSuppliersProduct {Date} {IPAdress} {Status} Connected! ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, "{SupplierId}", request.SupplierId);
+            SellerProductListResponse response = null;
+            try
+            {
+                response = ProductBusiness.GetSuppliersProduct(request.SupplierId);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "GetSuppliersProduct Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "GetSuppliersProduct {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
     }
 }

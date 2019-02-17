@@ -51,9 +51,7 @@ namespace SP.Service {
             "GAIgASgJEhAKCHBhc3NXb3JkGAMgASgJEhAKCHVzZXJOYW1lGAQgASgJIh8K",
             "EURlbEFkZHJlc3NSZXF1ZXN0EgoKAmlkGAEgASgFIiEKDkFjY291bnRSZXF1",
             "ZXN0Eg8KB2FjY291bnQYASABKAkiJQoRUmVnaW9uRGF0YVJlcXVlc3QSEAoI",
-            "ZGF0YVR5cGUYASABKAUiWAoKUmVnaW9uRGF0YRIOCgZkYXRhSWQYASABKAUS",
-            "EAoIZGF0YU5hbWUYAiABKAkSFAoMcGFyZW50RGF0YUlkGAMgASgFEhIKCnVw",
-            "ZGF0ZVRpbWUYBCABKAMiUAoSUmVnaW9uTGlzdFJlc3BvbnNlEg4KBnN0YXR1",
+            "ZGF0YVR5cGUYASABKAUiUAoSUmVnaW9uTGlzdFJlc3BvbnNlEg4KBnN0YXR1",
             "cxgBIAEoBRIqCgpyZWdpb25MaXN0GAIgAygLMhYuU1AuU2VydmljZS5SZWdp",
             "b25EYXRhIiEKD1JlZ2lvbklEUmVxdWVzdBIOCgZkYXRhSWQYASABKAUigAEK",
             "ElJlZ2lvbkRhdGFSZXNwb25zZRIOCgZzdGF0dXMYASABKAUSDgoGZGF0YUlk",
@@ -91,52 +89,61 @@ namespace SP.Service {
             "cGF5T3JkZXJDb2RlGAYgASgJEg8KB3BheVR5cGUYByABKAUiWAoWQXNzb2Np",
             "YXRvckxpc3RSZXNwb25zZRIOCgZzdGF0dXMYASABKAUSLgoOYXNzb2NpYXRv",
             "ckxpc3QYAiADKAsyFi5TUC5TZXJ2aWNlLkFzc29jaWF0b3IiIQoRR2V0U3lz",
-            "S2luZFJlcXVlc3QSDAoEa2luZBgBIAEoBSKCAQoHU3lzS2luZBIOCgZraW5k",
+            "S2luZFJlcXVlc3QSDAoEa2luZBgBIAEoBSKSAQoHU3lzS2luZBIOCgZraW5k",
             "SWQYASABKAkSDAoEa2luZBgCIAEoBRIQCghxdWFudGl0eRgDIAEoBRIMCgR1",
             "bml0GAQgASgFEg0KBXByaWNlGAUgASgBEhMKC2Rlc2NyaXB0aW9uGAYgASgJ",
-            "EhUKDWRpc2NvdW50VmFsdWUYByABKAEiTAoTU3lzS2luZExpc3RSZXNwb25z",
-            "ZRIOCgZzdGF0dXMYASABKAUSJQoIa2luZExpc3QYAiADKAsyEy5TUC5TZXJ2",
-            "aWNlLlN5c0tpbmQimgEKF0FjY291bnRGdWxsSW5mb1Jlc3BvbnNlEg4KBnN0",
-            "YXR1cxgBIAEoBRIOCgZhdmF0YXIYAiABKAkSEAoIZnVsbE5hbWUYAyABKAkS",
-            "DgoGZ2VuZGVyGAQgASgIEhMKC3BheVBhc3NXb3JkGAUgASgJEhAKCHVzZXJU",
-            "eXBlGAYgASgFEhYKDmFzc29jaWF0b3JEYXRlGAcgASgDIn8KFkFjY291bnRG",
-            "dWxsSW5mb1JlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEg4KBmF2YXRhchgC",
-            "IAEoCRIQCghmdWxsTmFtZRgDIAEoCRIOCgZnZW5kZXIYBCABKAgSEAoIdXNl",
-            "clR5cGUYBSABKAUSDgoGZG9ybUlkGAYgASgFIjIKD0Rpc2NvdW50UmVxdWVz",
-            "dBIRCglhY2NvdW50SWQYASABKAkSDAoEa2luZBgCIAEoBSIrChNBc3NvY2lh",
-            "dG9ySWRSZXF1ZXN0EhQKDGFzc29jaWF0b3JJZBgBIAEoCSJQChJBc3NvY2lh",
-            "dG9yUmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEioKCmFzc29jaWF0b3IYAiAB",
-            "KAsyFi5TUC5TZXJ2aWNlLkFzc29jaWF0b3IiRQodVXBkYXRlQXNzb2NpYXRv",
-            "clN0YXR1c1JlcXVlc3QSFAoMYXNzb2NpYXRvcklkGAEgASgJEg4KBnN0YXR1",
-            "cxgCIAEoBSJNChVNeVNob3BwaW5nQ2FydFJlcXVlc3QSEQoJYWNjb3VudElk",
-            "GAEgASgJEg8KB29yZGVySWQYAiABKAkSEAoIdXNlclR5cGUYAyABKAUiOQoU",
-            "QWNjb3VudFBheVB3ZFJlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEg4KBnBh",
-            "eVB3ZBgCIAEoCSKCAQoSQmluZ0FjY291bnRSZXF1ZXN0EhEKCWFjY291bnRJ",
-            "ZBgBIAEoCRIRCglvdGhlclR5cGUYAiABKAUSFAoMb3RoZXJBY2NvdW50GAMg",
-            "ASgJEg4KBmF2YXRhchgEIAEoCRIQCghmdWxsTmFtZRgFIAEoCRIOCgZnZW5k",
-            "ZXIYBiABKAgihQEKE090aGVyQWNjb3VudFJlcXVlc3QSEwoLbW9iaWxlUGhv",
-            "bmUYASABKAkSEQoJb3RoZXJUeXBlGAIgASgFEhQKDG90aGVyQWNjb3VudBgD",
-            "IAEoCRIOCgZhdmF0YXIYBCABKAkSEAoIZnVsbE5hbWUYBSABKAkSDgoGZ2Vu",
-            "ZGVyGAYgASgIIkEKFkdldE90aGVyQWNjb3VudFJlcXVlc3QSEQoJb3RoZXJU",
-            "eXBlGAIgASgFEhQKDG90aGVyQWNjb3VudBgDIAEoCSI+ChRBY2NvdW50TW9i",
-            "aWxlUmVxdWVzdBIRCglhY2NvdW50SWQYASABKAkSEwoLbW9iaWxlUGhvbmUY",
-            "AiABKAkiWQoQQWNjb3VudElEUmVxdWVzdBIQCgh1c2VyVHlwZRgBIAEoBRIO",
-            "CgZkb3JtSWQYAiABKAUSEQoJYWNjb3VudElkGAMgASgJEhAKCGZ1bGxOYW1l",
-            "GAQgASgJIjgKE0FwcGx5UGFydG5lclJlcXVlc3QSEQoJYWNjb3VudElkGAEg",
-            "ASgJEg4KBmRvcm1JZBgCIAEoBSI9ChZHZXRTaG9wcGluZ0NhcnRSZXF1ZXN0",
-            "EhEKCWFjY291bnRJZBgBIAEoCRIQCgh1c2VyVHlwZRgCIAEoBSIvChVBc3Nv",
-            "Y2lhdG9yQ29kZVJlcXVlc3QSFgoOYXNzb2NpYXRvckNvZGUYASABKAkiOAoS",
-            "Q2hpbGRSZWdpb25SZXF1ZXN0Eg4KBmRhdGFJZBgBIAEoBRISCgp1cGRhdGVU",
-            "aW1lGAIgASgDIngKEUJhbGFuY2VQYXlSZXF1ZXN0Eg0KBXRva2VuGAEgASgJ",
-            "EhAKCHBhc3NXb3JkGAIgASgJEg4KBmFtb3VudBgDIAEoARIRCglvcmRlckNv",
-            "ZGUYBCABKAkSEQoJYWNjb3VudElkGAUgASgJEgwKBHNpZ24YBiABKAkiYQoF",
-            "VHJhZGUSDAoEdHlwZRgBIAEoBRISCgpjcmVhdGVUaW1lGAIgASgDEg8KB3Ry",
-            "YWRlTm8YAyABKAkSFQoNYmFsYW5jZUFtb3VudBgEIAEoARIOCgZhbW91bnQY",
-            "BSABKAEiSQoRVHJhZGVMaXN0UmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEiQK",
-            "CXRyYWRlTGlzdBgCIAMoCzIRLlNQLlNlcnZpY2UuVHJhZGUiSgoQVHJhZGVM",
-            "aXN0UmVxdWVzdBIRCglhY2NvdW50SWQYASABKAkSEQoJcGFnZUluZGV4GAIg",
-            "ASgFEhAKCHBhZ2VTaXplGAMgASgFIjMKElRyYWRlVG90YWxSZXNwb25zZRIO",
-            "CgZzdGF0dXMYASABKAUSDQoFdG90YWwYAiABKANiBnByb3RvMw=="));
+            "EhUKDWRpc2NvdW50VmFsdWUYByABKAESDgoGYW1vdW50GAggASgBIkwKE1N5",
+            "c0tpbmRMaXN0UmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEiUKCGtpbmRMaXN0",
+            "GAIgAygLMhMuU1AuU2VydmljZS5TeXNLaW5kIqEBCgdDb3Vwb25zEhAKCGNv",
+            "dXBvbklkGAEgASgJEhEKCXN0YXJ0RGF0ZRgCIAEoAxIPCgdlbmREYXRlGAMg",
+            "ASgDEg4KBnN0YXR1cxgEIAEoBRIOCgZhbW91bnQYBSABKAESEwoLZGVzY3Jp",
+            "cHRpb24YBiABKAkSEgoKbW9kZUFtb3VudBgHIAEoARIXCg9tb2RlRGVzY3Jp",
+            "cHRpb24YCCABKAkiTwoTQ291cG9uc0xpc3RSZXNwb25zZRIOCgZzdGF0dXMY",
+            "ASABKAUSKAoLY291cG9uc0xpc3QYAiADKAsyEy5TUC5TZXJ2aWNlLkNvdXBv",
+            "bnMimgEKF0FjY291bnRGdWxsSW5mb1Jlc3BvbnNlEg4KBnN0YXR1cxgBIAEo",
+            "BRIOCgZhdmF0YXIYAiABKAkSEAoIZnVsbE5hbWUYAyABKAkSDgoGZ2VuZGVy",
+            "GAQgASgIEhMKC3BheVBhc3NXb3JkGAUgASgJEhAKCHVzZXJUeXBlGAYgASgF",
+            "EhYKDmFzc29jaWF0b3JEYXRlGAcgASgDIn8KFkFjY291bnRGdWxsSW5mb1Jl",
+            "cXVlc3QSEQoJYWNjb3VudElkGAEgASgJEg4KBmF2YXRhchgCIAEoCRIQCghm",
+            "dWxsTmFtZRgDIAEoCRIOCgZnZW5kZXIYBCABKAgSEAoIdXNlclR5cGUYBSAB",
+            "KAUSDgoGZG9ybUlkGAYgASgFIjIKD0Rpc2NvdW50UmVxdWVzdBIRCglhY2Nv",
+            "dW50SWQYASABKAkSDAoEa2luZBgCIAEoBSIrChNBc3NvY2lhdG9ySWRSZXF1",
+            "ZXN0EhQKDGFzc29jaWF0b3JJZBgBIAEoCSJQChJBc3NvY2lhdG9yUmVzcG9u",
+            "c2USDgoGc3RhdHVzGAEgASgFEioKCmFzc29jaWF0b3IYAiABKAsyFi5TUC5T",
+            "ZXJ2aWNlLkFzc29jaWF0b3IiRQodVXBkYXRlQXNzb2NpYXRvclN0YXR1c1Jl",
+            "cXVlc3QSFAoMYXNzb2NpYXRvcklkGAEgASgJEg4KBnN0YXR1cxgCIAEoBSJN",
+            "ChVNeVNob3BwaW5nQ2FydFJlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEg8K",
+            "B29yZGVySWQYAiABKAkSEAoIdXNlclR5cGUYAyABKAUiOQoUQWNjb3VudFBh",
+            "eVB3ZFJlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEg4KBnBheVB3ZBgCIAEo",
+            "CSKCAQoSQmluZ0FjY291bnRSZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIR",
+            "CglvdGhlclR5cGUYAiABKAUSFAoMb3RoZXJBY2NvdW50GAMgASgJEg4KBmF2",
+            "YXRhchgEIAEoCRIQCghmdWxsTmFtZRgFIAEoCRIOCgZnZW5kZXIYBiABKAgi",
+            "hQEKE090aGVyQWNjb3VudFJlcXVlc3QSEwoLbW9iaWxlUGhvbmUYASABKAkS",
+            "EQoJb3RoZXJUeXBlGAIgASgFEhQKDG90aGVyQWNjb3VudBgDIAEoCRIOCgZh",
+            "dmF0YXIYBCABKAkSEAoIZnVsbE5hbWUYBSABKAkSDgoGZ2VuZGVyGAYgASgI",
+            "IkEKFkdldE90aGVyQWNjb3VudFJlcXVlc3QSEQoJb3RoZXJUeXBlGAIgASgF",
+            "EhQKDG90aGVyQWNjb3VudBgDIAEoCSI+ChRBY2NvdW50TW9iaWxlUmVxdWVz",
+            "dBIRCglhY2NvdW50SWQYASABKAkSEwoLbW9iaWxlUGhvbmUYAiABKAkiWQoQ",
+            "QWNjb3VudElEUmVxdWVzdBIQCgh1c2VyVHlwZRgBIAEoBRIOCgZkb3JtSWQY",
+            "AiABKAUSEQoJYWNjb3VudElkGAMgASgJEhAKCGZ1bGxOYW1lGAQgASgJIjgK",
+            "E0FwcGx5UGFydG5lclJlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEg4KBmRv",
+            "cm1JZBgCIAEoBSI9ChZHZXRTaG9wcGluZ0NhcnRSZXF1ZXN0EhEKCWFjY291",
+            "bnRJZBgBIAEoCRIQCgh1c2VyVHlwZRgCIAEoBSIvChVBc3NvY2lhdG9yQ29k",
+            "ZVJlcXVlc3QSFgoOYXNzb2NpYXRvckNvZGUYASABKAkiOAoSQ2hpbGRSZWdp",
+            "b25SZXF1ZXN0Eg4KBmRhdGFJZBgBIAEoBRISCgp1cGRhdGVUaW1lGAIgASgD",
+            "IngKEUJhbGFuY2VQYXlSZXF1ZXN0Eg0KBXRva2VuGAEgASgJEhAKCHBhc3NX",
+            "b3JkGAIgASgJEg4KBmFtb3VudBgDIAEoARIRCglvcmRlckNvZGUYBCABKAkS",
+            "EQoJYWNjb3VudElkGAUgASgJEgwKBHNpZ24YBiABKAkiYQoFVHJhZGUSDAoE",
+            "dHlwZRgBIAEoBRISCgpjcmVhdGVUaW1lGAIgASgDEg8KB3RyYWRlTm8YAyAB",
+            "KAkSFQoNYmFsYW5jZUFtb3VudBgEIAEoARIOCgZhbW91bnQYBSABKAEiSQoR",
+            "VHJhZGVMaXN0UmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEiQKCXRyYWRlTGlz",
+            "dBgCIAMoCzIRLlNQLlNlcnZpY2UuVHJhZGUiSgoQVHJhZGVMaXN0UmVxdWVz",
+            "dBIRCglhY2NvdW50SWQYASABKAkSEQoJcGFnZUluZGV4GAIgASgFEhAKCHBh",
+            "Z2VTaXplGAMgASgFIjMKElRyYWRlVG90YWxSZXNwb25zZRIOCgZzdGF0dXMY",
+            "ASABKAUSDQoFdG90YWwYAiABKAMiOAoQV3hVbmlvbklkUmVxdWVzdBIRCglh",
+            "Y2NvdW50SWQYASABKAkSEQoJd3hVbmlvbklkGAIgASgJIkYKD1d4T3Blbklk",
+            "UmVxdWVzdBIRCglhY2NvdW50SWQYASABKAkSEAoId3hPcGVuSWQYAiABKAkS",
+            "DgoGd3hUeXBlGAMgASgFYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -157,7 +164,6 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.DelAddressRequest), global::SP.Service.DelAddressRequest.Parser, new[]{ "Id" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountRequest), global::SP.Service.AccountRequest.Parser, new[]{ "Account" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.RegionDataRequest), global::SP.Service.RegionDataRequest.Parser, new[]{ "DataType" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.RegionData), global::SP.Service.RegionData.Parser, new[]{ "DataId", "DataName", "ParentDataId", "UpdateTime" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.RegionListResponse), global::SP.Service.RegionListResponse.Parser, new[]{ "Status", "RegionList" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.RegionIDRequest), global::SP.Service.RegionIDRequest.Parser, new[]{ "DataId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.RegionDataResponse), global::SP.Service.RegionDataResponse.Parser, new[]{ "Status", "DataId", "DataName", "ParentDataId", "CityId", "ProvinceId" }, null, null, null),
@@ -177,8 +183,10 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AddAssociatorRequest), global::SP.Service.AddAssociatorRequest.Parser, new[]{ "AccountId", "KindId", "Quantity", "Amount", "PayOrderCode", "PayType" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AssociatorListResponse), global::SP.Service.AssociatorListResponse.Parser, new[]{ "Status", "AssociatorList" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.GetSysKindRequest), global::SP.Service.GetSysKindRequest.Parser, new[]{ "Kind" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SysKind), global::SP.Service.SysKind.Parser, new[]{ "KindId", "Kind", "Quantity", "Unit", "Price", "Description", "DiscountValue" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SysKind), global::SP.Service.SysKind.Parser, new[]{ "KindId", "Kind", "Quantity", "Unit", "Price", "Description", "DiscountValue", "Amount" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SysKindListResponse), global::SP.Service.SysKindListResponse.Parser, new[]{ "Status", "KindList" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.Coupons), global::SP.Service.Coupons.Parser, new[]{ "CouponId", "StartDate", "EndDate", "Status", "Amount", "Description", "ModeAmount", "ModeDescription" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.CouponsListResponse), global::SP.Service.CouponsListResponse.Parser, new[]{ "Status", "CouponsList" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountFullInfoResponse), global::SP.Service.AccountFullInfoResponse.Parser, new[]{ "Status", "Avatar", "FullName", "Gender", "PayPassWord", "UserType", "AssociatorDate" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountFullInfoRequest), global::SP.Service.AccountFullInfoRequest.Parser, new[]{ "AccountId", "Avatar", "FullName", "Gender", "UserType", "DormId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.DiscountRequest), global::SP.Service.DiscountRequest.Parser, new[]{ "AccountId", "Kind" }, null, null, null),
@@ -200,7 +208,9 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.Trade), global::SP.Service.Trade.Parser, new[]{ "Type", "CreateTime", "TradeNo", "BalanceAmount", "Amount" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TradeListResponse), global::SP.Service.TradeListResponse.Parser, new[]{ "Status", "TradeList" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TradeListRequest), global::SP.Service.TradeListRequest.Parser, new[]{ "AccountId", "PageIndex", "PageSize" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TradeTotalResponse), global::SP.Service.TradeTotalResponse.Parser, new[]{ "Status", "Total" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TradeTotalResponse), global::SP.Service.TradeTotalResponse.Parser, new[]{ "Status", "Total" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.WxUnionIdRequest), global::SP.Service.WxUnionIdRequest.Parser, new[]{ "AccountId", "WxUnionId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.WxOpenIdRequest), global::SP.Service.WxOpenIdRequest.Parser, new[]{ "AccountId", "WxOpenId", "WxType" }, null, null, null)
           }));
     }
     #endregion
@@ -3270,223 +3280,6 @@ namespace SP.Service {
 
   }
 
-  public sealed partial class RegionData : pb::IMessage<RegionData> {
-    private static readonly pb::MessageParser<RegionData> _parser = new pb::MessageParser<RegionData>(() => new RegionData());
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<RegionData> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[17]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RegionData() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RegionData(RegionData other) : this() {
-      dataId_ = other.dataId_;
-      dataName_ = other.dataName_;
-      parentDataId_ = other.parentDataId_;
-      updateTime_ = other.updateTime_;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RegionData Clone() {
-      return new RegionData(this);
-    }
-
-    /// <summary>Field number for the "dataId" field.</summary>
-    public const int DataIdFieldNumber = 1;
-    private int dataId_;
-    /// <summary>
-    ///*
-    ///  区域ID
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int DataId {
-      get { return dataId_; }
-      set {
-        dataId_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "dataName" field.</summary>
-    public const int DataNameFieldNumber = 2;
-    private string dataName_ = "";
-    /// <summary>
-    ///*
-    ///  区域名称
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string DataName {
-      get { return dataName_; }
-      set {
-        dataName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "parentDataId" field.</summary>
-    public const int ParentDataIdFieldNumber = 3;
-    private int parentDataId_;
-    /// <summary>
-    ///*
-    ///  区域父ID
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ParentDataId {
-      get { return parentDataId_; }
-      set {
-        parentDataId_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "updateTime" field.</summary>
-    public const int UpdateTimeFieldNumber = 4;
-    private long updateTime_;
-    /// <summary>
-    ///*
-    ///  更新时间
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long UpdateTime {
-      get { return updateTime_; }
-      set {
-        updateTime_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as RegionData);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(RegionData other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (DataId != other.DataId) return false;
-      if (DataName != other.DataName) return false;
-      if (ParentDataId != other.ParentDataId) return false;
-      if (UpdateTime != other.UpdateTime) return false;
-      return true;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (DataId != 0) hash ^= DataId.GetHashCode();
-      if (DataName.Length != 0) hash ^= DataName.GetHashCode();
-      if (ParentDataId != 0) hash ^= ParentDataId.GetHashCode();
-      if (UpdateTime != 0L) hash ^= UpdateTime.GetHashCode();
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (DataId != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(DataId);
-      }
-      if (DataName.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(DataName);
-      }
-      if (ParentDataId != 0) {
-        output.WriteRawTag(24);
-        output.WriteInt32(ParentDataId);
-      }
-      if (UpdateTime != 0L) {
-        output.WriteRawTag(32);
-        output.WriteInt64(UpdateTime);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (DataId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(DataId);
-      }
-      if (DataName.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(DataName);
-      }
-      if (ParentDataId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ParentDataId);
-      }
-      if (UpdateTime != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(UpdateTime);
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(RegionData other) {
-      if (other == null) {
-        return;
-      }
-      if (other.DataId != 0) {
-        DataId = other.DataId;
-      }
-      if (other.DataName.Length != 0) {
-        DataName = other.DataName;
-      }
-      if (other.ParentDataId != 0) {
-        ParentDataId = other.ParentDataId;
-      }
-      if (other.UpdateTime != 0L) {
-        UpdateTime = other.UpdateTime;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            input.SkipLastField();
-            break;
-          case 8: {
-            DataId = input.ReadInt32();
-            break;
-          }
-          case 18: {
-            DataName = input.ReadString();
-            break;
-          }
-          case 24: {
-            ParentDataId = input.ReadInt32();
-            break;
-          }
-          case 32: {
-            UpdateTime = input.ReadInt64();
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
   /// <summary>
   ///*
   /// 区域的返回信息
@@ -3498,7 +3291,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[18]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[17]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3647,7 +3440,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[19]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[18]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3772,7 +3565,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[20]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[19]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4057,7 +3850,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[21]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[20]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4278,7 +4071,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[22]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[21]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4403,7 +4196,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[23]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[22]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4560,7 +4353,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[24]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[23]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4709,7 +4502,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[25]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[24]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4858,7 +4651,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[26]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[25]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5015,7 +4808,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[27]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[26]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5178,7 +4971,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[28]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[27]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5495,7 +5288,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[29]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[28]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5626,7 +5419,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[30]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[29]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5815,7 +5608,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[31]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[30]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5972,7 +5765,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[32]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[31]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6193,7 +5986,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[33]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[32]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6670,7 +6463,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[34]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[33]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6955,7 +6748,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[35]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[34]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7104,7 +6897,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[36]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[35]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7229,7 +7022,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[37]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[36]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7253,6 +7046,7 @@ namespace SP.Service {
       price_ = other.price_;
       description_ = other.description_;
       discountValue_ = other.discountValue_;
+      amount_ = other.amount_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7365,6 +7159,21 @@ namespace SP.Service {
       }
     }
 
+    /// <summary>Field number for the "amount" field.</summary>
+    public const int AmountFieldNumber = 8;
+    private double amount_;
+    /// <summary>
+    ///*
+    ///  优惠券的价值
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public double Amount {
+      get { return amount_; }
+      set {
+        amount_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as SysKind);
@@ -7385,6 +7194,7 @@ namespace SP.Service {
       if (Price != other.Price) return false;
       if (Description != other.Description) return false;
       if (DiscountValue != other.DiscountValue) return false;
+      if (Amount != other.Amount) return false;
       return true;
     }
 
@@ -7398,6 +7208,7 @@ namespace SP.Service {
       if (Price != 0D) hash ^= Price.GetHashCode();
       if (Description.Length != 0) hash ^= Description.GetHashCode();
       if (DiscountValue != 0D) hash ^= DiscountValue.GetHashCode();
+      if (Amount != 0D) hash ^= Amount.GetHashCode();
       return hash;
     }
 
@@ -7436,6 +7247,10 @@ namespace SP.Service {
         output.WriteRawTag(57);
         output.WriteDouble(DiscountValue);
       }
+      if (Amount != 0D) {
+        output.WriteRawTag(65);
+        output.WriteDouble(Amount);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7460,6 +7275,9 @@ namespace SP.Service {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Description);
       }
       if (DiscountValue != 0D) {
+        size += 1 + 8;
+      }
+      if (Amount != 0D) {
         size += 1 + 8;
       }
       return size;
@@ -7490,6 +7308,9 @@ namespace SP.Service {
       }
       if (other.DiscountValue != 0D) {
         DiscountValue = other.DiscountValue;
+      }
+      if (other.Amount != 0D) {
+        Amount = other.Amount;
       }
     }
 
@@ -7529,6 +7350,10 @@ namespace SP.Service {
             DiscountValue = input.ReadDouble();
             break;
           }
+          case 65: {
+            Amount = input.ReadDouble();
+            break;
+          }
         }
       }
     }
@@ -7546,7 +7371,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[38]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[37]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7686,6 +7511,504 @@ namespace SP.Service {
 
   /// <summary>
   ///*
+  /// 账户优惠券情况
+  /// </summary>
+  public sealed partial class Coupons : pb::IMessage<Coupons> {
+    private static readonly pb::MessageParser<Coupons> _parser = new pb::MessageParser<Coupons>(() => new Coupons());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Coupons> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[38]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Coupons() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Coupons(Coupons other) : this() {
+      couponId_ = other.couponId_;
+      startDate_ = other.startDate_;
+      endDate_ = other.endDate_;
+      status_ = other.status_;
+      amount_ = other.amount_;
+      description_ = other.description_;
+      modeAmount_ = other.modeAmount_;
+      modeDescription_ = other.modeDescription_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Coupons Clone() {
+      return new Coupons(this);
+    }
+
+    /// <summary>Field number for the "couponId" field.</summary>
+    public const int CouponIdFieldNumber = 1;
+    private string couponId_ = "";
+    /// <summary>
+    ///*
+    ///  账户优惠券ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string CouponId {
+      get { return couponId_; }
+      set {
+        couponId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "startDate" field.</summary>
+    public const int StartDateFieldNumber = 2;
+    private long startDate_;
+    /// <summary>
+    ///*
+    ///  开始时间
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long StartDate {
+      get { return startDate_; }
+      set {
+        startDate_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "endDate" field.</summary>
+    public const int EndDateFieldNumber = 3;
+    private long endDate_;
+    /// <summary>
+    ///*
+    ///  截止时间
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long EndDate {
+      get { return endDate_; }
+      set {
+        endDate_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "status" field.</summary>
+    public const int StatusFieldNumber = 4;
+    private int status_;
+    /// <summary>
+    ///*
+    ///  使用状态(0：已使用  1：未使用)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Status {
+      get { return status_; }
+      set {
+        status_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "amount" field.</summary>
+    public const int AmountFieldNumber = 5;
+    private double amount_;
+    /// <summary>
+    ///*
+    ///  优惠券价值
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public double Amount {
+      get { return amount_; }
+      set {
+        amount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "description" field.</summary>
+    public const int DescriptionFieldNumber = 6;
+    private string description_ = "";
+    /// <summary>
+    ///*
+    ///  优惠券描述
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Description {
+      get { return description_; }
+      set {
+        description_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "modeAmount" field.</summary>
+    public const int ModeAmountFieldNumber = 7;
+    private double modeAmount_;
+    /// <summary>
+    ///*
+    ///  优惠额度值
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public double ModeAmount {
+      get { return modeAmount_; }
+      set {
+        modeAmount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "modeDescription" field.</summary>
+    public const int ModeDescriptionFieldNumber = 8;
+    private string modeDescription_ = "";
+    /// <summary>
+    ///*
+    ///  优惠券使用方式描述
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string ModeDescription {
+      get { return modeDescription_; }
+      set {
+        modeDescription_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Coupons);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Coupons other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (CouponId != other.CouponId) return false;
+      if (StartDate != other.StartDate) return false;
+      if (EndDate != other.EndDate) return false;
+      if (Status != other.Status) return false;
+      if (Amount != other.Amount) return false;
+      if (Description != other.Description) return false;
+      if (ModeAmount != other.ModeAmount) return false;
+      if (ModeDescription != other.ModeDescription) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (CouponId.Length != 0) hash ^= CouponId.GetHashCode();
+      if (StartDate != 0L) hash ^= StartDate.GetHashCode();
+      if (EndDate != 0L) hash ^= EndDate.GetHashCode();
+      if (Status != 0) hash ^= Status.GetHashCode();
+      if (Amount != 0D) hash ^= Amount.GetHashCode();
+      if (Description.Length != 0) hash ^= Description.GetHashCode();
+      if (ModeAmount != 0D) hash ^= ModeAmount.GetHashCode();
+      if (ModeDescription.Length != 0) hash ^= ModeDescription.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (CouponId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(CouponId);
+      }
+      if (StartDate != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(StartDate);
+      }
+      if (EndDate != 0L) {
+        output.WriteRawTag(24);
+        output.WriteInt64(EndDate);
+      }
+      if (Status != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(Status);
+      }
+      if (Amount != 0D) {
+        output.WriteRawTag(41);
+        output.WriteDouble(Amount);
+      }
+      if (Description.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteString(Description);
+      }
+      if (ModeAmount != 0D) {
+        output.WriteRawTag(57);
+        output.WriteDouble(ModeAmount);
+      }
+      if (ModeDescription.Length != 0) {
+        output.WriteRawTag(66);
+        output.WriteString(ModeDescription);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (CouponId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(CouponId);
+      }
+      if (StartDate != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(StartDate);
+      }
+      if (EndDate != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(EndDate);
+      }
+      if (Status != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Status);
+      }
+      if (Amount != 0D) {
+        size += 1 + 8;
+      }
+      if (Description.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Description);
+      }
+      if (ModeAmount != 0D) {
+        size += 1 + 8;
+      }
+      if (ModeDescription.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ModeDescription);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Coupons other) {
+      if (other == null) {
+        return;
+      }
+      if (other.CouponId.Length != 0) {
+        CouponId = other.CouponId;
+      }
+      if (other.StartDate != 0L) {
+        StartDate = other.StartDate;
+      }
+      if (other.EndDate != 0L) {
+        EndDate = other.EndDate;
+      }
+      if (other.Status != 0) {
+        Status = other.Status;
+      }
+      if (other.Amount != 0D) {
+        Amount = other.Amount;
+      }
+      if (other.Description.Length != 0) {
+        Description = other.Description;
+      }
+      if (other.ModeAmount != 0D) {
+        ModeAmount = other.ModeAmount;
+      }
+      if (other.ModeDescription.Length != 0) {
+        ModeDescription = other.ModeDescription;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            CouponId = input.ReadString();
+            break;
+          }
+          case 16: {
+            StartDate = input.ReadInt64();
+            break;
+          }
+          case 24: {
+            EndDate = input.ReadInt64();
+            break;
+          }
+          case 32: {
+            Status = input.ReadInt32();
+            break;
+          }
+          case 41: {
+            Amount = input.ReadDouble();
+            break;
+          }
+          case 50: {
+            Description = input.ReadString();
+            break;
+          }
+          case 57: {
+            ModeAmount = input.ReadDouble();
+            break;
+          }
+          case 66: {
+            ModeDescription = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 获取账户的优惠券
+  /// </summary>
+  public sealed partial class CouponsListResponse : pb::IMessage<CouponsListResponse> {
+    private static readonly pb::MessageParser<CouponsListResponse> _parser = new pb::MessageParser<CouponsListResponse>(() => new CouponsListResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<CouponsListResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[39]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CouponsListResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CouponsListResponse(CouponsListResponse other) : this() {
+      status_ = other.status_;
+      couponsList_ = other.couponsList_.Clone();
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CouponsListResponse Clone() {
+      return new CouponsListResponse(this);
+    }
+
+    /// <summary>Field number for the "status" field.</summary>
+    public const int StatusFieldNumber = 1;
+    private int status_;
+    /// <summary>
+    ///*
+    ///  状态
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Status {
+      get { return status_; }
+      set {
+        status_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "couponsList" field.</summary>
+    public const int CouponsListFieldNumber = 2;
+    private static readonly pb::FieldCodec<global::SP.Service.Coupons> _repeated_couponsList_codec
+        = pb::FieldCodec.ForMessage(18, global::SP.Service.Coupons.Parser);
+    private readonly pbc::RepeatedField<global::SP.Service.Coupons> couponsList_ = new pbc::RepeatedField<global::SP.Service.Coupons>();
+    /// <summary>
+    ///*
+    ///  优惠列表
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::SP.Service.Coupons> CouponsList {
+      get { return couponsList_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as CouponsListResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(CouponsListResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Status != other.Status) return false;
+      if(!couponsList_.Equals(other.couponsList_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Status != 0) hash ^= Status.GetHashCode();
+      hash ^= couponsList_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Status != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Status);
+      }
+      couponsList_.WriteTo(output, _repeated_couponsList_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Status != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Status);
+      }
+      size += couponsList_.CalculateSize(_repeated_couponsList_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(CouponsListResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Status != 0) {
+        Status = other.Status;
+      }
+      couponsList_.Add(other.couponsList_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            Status = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            couponsList_.AddEntriesFrom(input, _repeated_couponsList_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
   /// 个人信息的响应信息
   /// </summary>
   public sealed partial class AccountFullInfoResponse : pb::IMessage<AccountFullInfoResponse> {
@@ -7695,7 +8018,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[39]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[40]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8012,7 +8335,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[40]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[41]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8297,7 +8620,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[41]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[42]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8454,7 +8777,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[42]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[43]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8579,7 +8902,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[43]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[44]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8738,7 +9061,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[44]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[45]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8891,7 +9214,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[45]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[46]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9080,7 +9403,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[46]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[47]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9237,7 +9560,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[47]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[48]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9522,7 +9845,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[48]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[49]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9807,7 +10130,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[49]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[50]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9964,7 +10287,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[50]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[51]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10121,7 +10444,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[51]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[52]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10342,7 +10665,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[52]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[53]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10499,7 +10822,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[53]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[54]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10656,7 +10979,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[54]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[55]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10781,7 +11104,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[55]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[56]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10938,7 +11261,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[56]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[57]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11223,7 +11546,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[57]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[58]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11476,7 +11799,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[58]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[59]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11625,7 +11948,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[59]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[60]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11814,7 +12137,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[60]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[61]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11952,6 +12275,352 @@ namespace SP.Service {
           }
           case 16: {
             Total = input.ReadInt64();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 区域ID的请求参数
+  /// </summary>
+  public sealed partial class WxUnionIdRequest : pb::IMessage<WxUnionIdRequest> {
+    private static readonly pb::MessageParser<WxUnionIdRequest> _parser = new pb::MessageParser<WxUnionIdRequest>(() => new WxUnionIdRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<WxUnionIdRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[62]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public WxUnionIdRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public WxUnionIdRequest(WxUnionIdRequest other) : this() {
+      accountId_ = other.accountId_;
+      wxUnionId_ = other.wxUnionId_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public WxUnionIdRequest Clone() {
+      return new WxUnionIdRequest(this);
+    }
+
+    /// <summary>Field number for the "accountId" field.</summary>
+    public const int AccountIdFieldNumber = 1;
+    private string accountId_ = "";
+    /// <summary>
+    ///*
+    /// 账户ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AccountId {
+      get { return accountId_; }
+      set {
+        accountId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "wxUnionId" field.</summary>
+    public const int WxUnionIdFieldNumber = 2;
+    private string wxUnionId_ = "";
+    /// <summary>
+    ///*
+    ///  更新时间
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string WxUnionId {
+      get { return wxUnionId_; }
+      set {
+        wxUnionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as WxUnionIdRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(WxUnionIdRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (AccountId != other.AccountId) return false;
+      if (WxUnionId != other.WxUnionId) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (AccountId.Length != 0) hash ^= AccountId.GetHashCode();
+      if (WxUnionId.Length != 0) hash ^= WxUnionId.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (AccountId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(AccountId);
+      }
+      if (WxUnionId.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(WxUnionId);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (AccountId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountId);
+      }
+      if (WxUnionId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(WxUnionId);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(WxUnionIdRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.AccountId.Length != 0) {
+        AccountId = other.AccountId;
+      }
+      if (other.WxUnionId.Length != 0) {
+        WxUnionId = other.WxUnionId;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            AccountId = input.ReadString();
+            break;
+          }
+          case 18: {
+            WxUnionId = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 区域ID的请求参数
+  /// </summary>
+  public sealed partial class WxOpenIdRequest : pb::IMessage<WxOpenIdRequest> {
+    private static readonly pb::MessageParser<WxOpenIdRequest> _parser = new pb::MessageParser<WxOpenIdRequest>(() => new WxOpenIdRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<WxOpenIdRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[63]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public WxOpenIdRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public WxOpenIdRequest(WxOpenIdRequest other) : this() {
+      accountId_ = other.accountId_;
+      wxOpenId_ = other.wxOpenId_;
+      wxType_ = other.wxType_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public WxOpenIdRequest Clone() {
+      return new WxOpenIdRequest(this);
+    }
+
+    /// <summary>Field number for the "accountId" field.</summary>
+    public const int AccountIdFieldNumber = 1;
+    private string accountId_ = "";
+    /// <summary>
+    ///*
+    /// 账户ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AccountId {
+      get { return accountId_; }
+      set {
+        accountId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "wxOpenId" field.</summary>
+    public const int WxOpenIdFieldNumber = 2;
+    private string wxOpenId_ = "";
+    /// <summary>
+    ///*
+    /// 微信OpenId
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string WxOpenId {
+      get { return wxOpenId_; }
+      set {
+        wxOpenId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "wxType" field.</summary>
+    public const int WxTypeFieldNumber = 3;
+    private int wxType_;
+    /// <summary>
+    ///*
+    ///  微信类别(1：小程序 2：微信登录)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int WxType {
+      get { return wxType_; }
+      set {
+        wxType_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as WxOpenIdRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(WxOpenIdRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (AccountId != other.AccountId) return false;
+      if (WxOpenId != other.WxOpenId) return false;
+      if (WxType != other.WxType) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (AccountId.Length != 0) hash ^= AccountId.GetHashCode();
+      if (WxOpenId.Length != 0) hash ^= WxOpenId.GetHashCode();
+      if (WxType != 0) hash ^= WxType.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (AccountId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(AccountId);
+      }
+      if (WxOpenId.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(WxOpenId);
+      }
+      if (WxType != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(WxType);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (AccountId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountId);
+      }
+      if (WxOpenId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(WxOpenId);
+      }
+      if (WxType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(WxType);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(WxOpenIdRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.AccountId.Length != 0) {
+        AccountId = other.AccountId;
+      }
+      if (other.WxOpenId.Length != 0) {
+        WxOpenId = other.WxOpenId;
+      }
+      if (other.WxType != 0) {
+        WxType = other.WxType;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            AccountId = input.ReadString();
+            break;
+          }
+          case 18: {
+            WxOpenId = input.ReadString();
+            break;
+          }
+          case 24: {
+            WxType = input.ReadInt32();
             break;
           }
         }

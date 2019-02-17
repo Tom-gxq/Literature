@@ -183,11 +183,11 @@ namespace Order.Service.Business
             return result;
         }
 
-        public static SchoolLeadOrderListResponse GetShipOrderList(string accountId, int status, int orderType)
+        public static SchoolLeadOrderListResponse GetShipOrderList(string accountId, int status, int orderType, int pageIndex, int pageSize)
         {
             var result = new SchoolLeadOrderListResponse();
             result.Status = 10002;
-            var list = ServiceLocator.ReportDatabase.GetShipOrderList(accountId, status, orderType);
+            var list = ServiceLocator.ReportDatabase.GetShipOrderList(accountId, status, orderType, pageIndex, pageSize);
             if (list != null)
             {
                 foreach (var item in list)
@@ -372,6 +372,26 @@ namespace Order.Service.Business
         public static void UpdateShippingOrder(List<int> shipOrderId, int orderStatus)
         {
             ServiceLocator.CommandBus.Send(new EditShipOrderStatusCommand(shipOrderId, (OrderStatus)orderStatus));
+        }
+
+        public static PurchaseOrderListResponse GetPurchaseOrderList(string accountId, int pageIndex, int pageSize)
+        {
+            var result = new PurchaseOrderListResponse();
+            result.Status = 10002;
+            var list = ServiceLocator.ReportDatabase.GetPurchaseOrderList(accountId, pageIndex, pageSize);
+            if (list != null)
+            {
+                foreach (var item in list)
+                {
+                    if (item != null)
+                    {
+                        var order = ConvertShipOrderDomainToResponse(item);
+                        result.OrderInfo.Add(order);
+                    }
+                }
+                result.Status = 10001;
+            }
+            return result;
         }
 
     }

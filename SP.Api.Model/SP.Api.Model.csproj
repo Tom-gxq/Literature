@@ -50,6 +50,7 @@
     <Compile Include="Account\BindedModel.cs" />
     <Compile Include="Account\BingAccountModel.cs" />
     <Compile Include="Account\CarouselModel.cs" />
+    <Compile Include="Account\CouponsModel.cs" />
     <Compile Include="Account\DiscountModel.cs" />
     <Compile Include="Account\ForgetAccount.cs" />
     <Compile Include="Account\OtherAccountModel.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Enum\AuthType.cs" />
     <Compile Include="Enum\RegionType.cs" />
     <Compile Include="OAuth2\OAuth2AccessToken.cs" />
+    <Compile Include="Order\CouponsModel.cs" />
     <Compile Include="Order\FinanceModel.cs" />
     <Compile Include="Order\LeadOrderModel.cs" />
     <Compile Include="Order\OrderInfoModel.cs" />

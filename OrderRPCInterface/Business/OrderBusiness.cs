@@ -178,6 +178,21 @@ namespace OrderGRPCInterface.Business
                     }
                     domain.productList = productList;
                 }
+                if (result.OrderInfo.Coupons != null)
+                {
+                    domain.Coupons = new SP.Api.Model.Order.CouponsModel();
+                    domain.Coupons.CouponId = result.OrderInfo.Coupons.CouponId;
+                    domain.Coupons.AccountId = result.OrderInfo.Coupons.AccountId;
+                    domain.Coupons.Amount = result.OrderInfo.Coupons.Amount;
+                    domain.Coupons.AssociatorId = result.OrderInfo.Coupons.AssociatorId;
+                    domain.Coupons.Description = result.OrderInfo.Coupons.Description;
+                    domain.Coupons.EndDate = new DateTime(result.OrderInfo.Coupons.EndDate);
+                    domain.Coupons.KindId = result.OrderInfo.Coupons.KindId;
+                    domain.Coupons.ModeDescription = result.OrderInfo.Coupons.ModeDescription;
+                    domain.Coupons.ModelAmount = result.OrderInfo.Coupons.ModelAmount;
+                    domain.Coupons.StartDate = new DateTime(result.OrderInfo.Coupons.StartDate);
+                    domain.Coupons.Status = result.OrderInfo.Coupons.Status;
+                }
                 return domain;
             }
             else
@@ -446,14 +461,16 @@ namespace OrderGRPCInterface.Business
             }
         }
 
-        public static List<LeadOrderModel> GetShipOrderList(string accountId, int orderStatus, int orderType)
+        public static List<LeadOrderModel> GetShipOrderList(string accountId, int orderStatus, int orderType, int pageIndex, int pageSize)
         {
             var client = OrderClientHelper.GetClient();
-            var request1 = new SchoolLeadRequest()
+            var request1 = new ShipOrderRequest()
             {
                 AccountId = accountId,
                 OrderStatus = orderStatus,
-                OrderType = orderType
+                OrderType = orderType,
+                PageIndex = pageIndex,
+                PageSize = pageSize
             };
             var result = client.GetShipOrderList(request1);
             var list = new List<LeadOrderModel>();

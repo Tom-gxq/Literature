@@ -96,8 +96,14 @@ namespace SP.Service {
             "ChhQcm9kdWN0U2FsZVN0YXR1c1JlcXVlc3QSEQoJcHJvZHVjdElkGAUgASgJ",
             "Eg4KBnN0YXR1cxgBIAEoBSI4ChJTaG9wU3RhdHVzUmVzcG9uc2USDgoGc3Rh",
             "dHVzGAEgASgFEhIKCnNob3BTdGF0dXMYAiABKAgiOgoVT3BlblNob3BTdGF0",
-            "dXNSZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIOCgZzdGF0dXMYAiABKAhi",
-            "BnByb3RvMw=="));
+            "dXNSZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIOCgZzdGF0dXMYAiABKAgi",
+            "aAoaQWRkU3VwcGxpZXJzUHJvZHVjdFJlcXVlc3QSEQoJYWNjb3VudElkGAEg",
+            "ASgJEhEKCXByb2R1Y3RJZBgCIAEoCRINCgVzdG9jaxgDIAEoBRIVCg1wdXJj",
+            "aGFzZVByaWNlGAQgASgBIkEKGUFkZFN1cHBsaWVyc1JlZ2lvblJlcXVlc3QS",
+            "EgoKc3VwcGxpZXJJZBgBIAEoBRIQCghyZWdpb25JZBgCIAEoBSJZChtTdXBw",
+            "bGllcnNSZWdpb25MaXN0UmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEioKCnJl",
+            "Z2lvbkxpc3QYAiADKAsyFi5TUC5TZXJ2aWNlLlJlZ2lvbkRhdGFiBnByb3Rv",
+            "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -135,7 +141,10 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SellerShopProductRequest), global::SP.Service.SellerShopProductRequest.Parser, new[]{ "PageIndex", "PageSize", "TypeId", "SecondTypeId", "AccountId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ProductSaleStatusRequest), global::SP.Service.ProductSaleStatusRequest.Parser, new[]{ "ProductId", "Status" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ShopStatusResponse), global::SP.Service.ShopStatusResponse.Parser, new[]{ "Status", "ShopStatus" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OpenShopStatusRequest), global::SP.Service.OpenShopStatusRequest.Parser, new[]{ "AccountId", "Status" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.OpenShopStatusRequest), global::SP.Service.OpenShopStatusRequest.Parser, new[]{ "AccountId", "Status" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AddSuppliersProductRequest), global::SP.Service.AddSuppliersProductRequest.Parser, new[]{ "AccountId", "ProductId", "Stock", "PurchasePrice" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AddSuppliersRegionRequest), global::SP.Service.AddSuppliersRegionRequest.Parser, new[]{ "SupplierId", "RegionId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SuppliersRegionListResponse), global::SP.Service.SuppliersRegionListResponse.Parser, new[]{ "Status", "RegionList" }, null, null, null)
           }));
     }
     #endregion
@@ -7209,6 +7218,533 @@ namespace SP.Service {
           }
           case 16: {
             Status = input.ReadBool();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 添加供货商产品的请求参数
+  /// </summary>
+  public sealed partial class AddSuppliersProductRequest : pb::IMessage<AddSuppliersProductRequest> {
+    private static readonly pb::MessageParser<AddSuppliersProductRequest> _parser = new pb::MessageParser<AddSuppliersProductRequest>(() => new AddSuppliersProductRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<AddSuppliersProductRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[35]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AddSuppliersProductRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AddSuppliersProductRequest(AddSuppliersProductRequest other) : this() {
+      accountId_ = other.accountId_;
+      productId_ = other.productId_;
+      stock_ = other.stock_;
+      purchasePrice_ = other.purchasePrice_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AddSuppliersProductRequest Clone() {
+      return new AddSuppliersProductRequest(this);
+    }
+
+    /// <summary>Field number for the "accountId" field.</summary>
+    public const int AccountIdFieldNumber = 1;
+    private string accountId_ = "";
+    /// <summary>
+    ///*
+    /// 供货商人员ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AccountId {
+      get { return accountId_; }
+      set {
+        accountId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "productId" field.</summary>
+    public const int ProductIdFieldNumber = 2;
+    private string productId_ = "";
+    /// <summary>
+    ///*
+    /// 商品ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string ProductId {
+      get { return productId_; }
+      set {
+        productId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "stock" field.</summary>
+    public const int StockFieldNumber = 3;
+    private int stock_;
+    /// <summary>
+    ///*
+    /// 库存
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Stock {
+      get { return stock_; }
+      set {
+        stock_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "purchasePrice" field.</summary>
+    public const int PurchasePriceFieldNumber = 4;
+    private double purchasePrice_;
+    /// <summary>
+    ///*
+    /// 供货价
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public double PurchasePrice {
+      get { return purchasePrice_; }
+      set {
+        purchasePrice_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as AddSuppliersProductRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(AddSuppliersProductRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (AccountId != other.AccountId) return false;
+      if (ProductId != other.ProductId) return false;
+      if (Stock != other.Stock) return false;
+      if (PurchasePrice != other.PurchasePrice) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (AccountId.Length != 0) hash ^= AccountId.GetHashCode();
+      if (ProductId.Length != 0) hash ^= ProductId.GetHashCode();
+      if (Stock != 0) hash ^= Stock.GetHashCode();
+      if (PurchasePrice != 0D) hash ^= PurchasePrice.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (AccountId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(AccountId);
+      }
+      if (ProductId.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(ProductId);
+      }
+      if (Stock != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Stock);
+      }
+      if (PurchasePrice != 0D) {
+        output.WriteRawTag(33);
+        output.WriteDouble(PurchasePrice);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (AccountId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountId);
+      }
+      if (ProductId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ProductId);
+      }
+      if (Stock != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Stock);
+      }
+      if (PurchasePrice != 0D) {
+        size += 1 + 8;
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(AddSuppliersProductRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.AccountId.Length != 0) {
+        AccountId = other.AccountId;
+      }
+      if (other.ProductId.Length != 0) {
+        ProductId = other.ProductId;
+      }
+      if (other.Stock != 0) {
+        Stock = other.Stock;
+      }
+      if (other.PurchasePrice != 0D) {
+        PurchasePrice = other.PurchasePrice;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            AccountId = input.ReadString();
+            break;
+          }
+          case 18: {
+            ProductId = input.ReadString();
+            break;
+          }
+          case 24: {
+            Stock = input.ReadInt32();
+            break;
+          }
+          case 33: {
+            PurchasePrice = input.ReadDouble();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 添加供货商范围的请求参数
+  /// </summary>
+  public sealed partial class AddSuppliersRegionRequest : pb::IMessage<AddSuppliersRegionRequest> {
+    private static readonly pb::MessageParser<AddSuppliersRegionRequest> _parser = new pb::MessageParser<AddSuppliersRegionRequest>(() => new AddSuppliersRegionRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<AddSuppliersRegionRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[36]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AddSuppliersRegionRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AddSuppliersRegionRequest(AddSuppliersRegionRequest other) : this() {
+      supplierId_ = other.supplierId_;
+      regionId_ = other.regionId_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AddSuppliersRegionRequest Clone() {
+      return new AddSuppliersRegionRequest(this);
+    }
+
+    /// <summary>Field number for the "supplierId" field.</summary>
+    public const int SupplierIdFieldNumber = 1;
+    private int supplierId_;
+    /// <summary>
+    ///*
+    /// 供货商ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int SupplierId {
+      get { return supplierId_; }
+      set {
+        supplierId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "regionId" field.</summary>
+    public const int RegionIdFieldNumber = 2;
+    private int regionId_;
+    /// <summary>
+    ///*
+    /// 范围区域ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int RegionId {
+      get { return regionId_; }
+      set {
+        regionId_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as AddSuppliersRegionRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(AddSuppliersRegionRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (SupplierId != other.SupplierId) return false;
+      if (RegionId != other.RegionId) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (SupplierId != 0) hash ^= SupplierId.GetHashCode();
+      if (RegionId != 0) hash ^= RegionId.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (SupplierId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(SupplierId);
+      }
+      if (RegionId != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(RegionId);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (SupplierId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(SupplierId);
+      }
+      if (RegionId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(RegionId);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(AddSuppliersRegionRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.SupplierId != 0) {
+        SupplierId = other.SupplierId;
+      }
+      if (other.RegionId != 0) {
+        RegionId = other.RegionId;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            SupplierId = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            RegionId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 获取供货商范围列表的返回信息
+  /// </summary>
+  public sealed partial class SuppliersRegionListResponse : pb::IMessage<SuppliersRegionListResponse> {
+    private static readonly pb::MessageParser<SuppliersRegionListResponse> _parser = new pb::MessageParser<SuppliersRegionListResponse>(() => new SuppliersRegionListResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SuppliersRegionListResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.ProductModelReflection.Descriptor.MessageTypes[37]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SuppliersRegionListResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SuppliersRegionListResponse(SuppliersRegionListResponse other) : this() {
+      status_ = other.status_;
+      regionList_ = other.regionList_.Clone();
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SuppliersRegionListResponse Clone() {
+      return new SuppliersRegionListResponse(this);
+    }
+
+    /// <summary>Field number for the "status" field.</summary>
+    public const int StatusFieldNumber = 1;
+    private int status_;
+    /// <summary>
+    ///*
+    /// 添加状态10001为正常10002为异常
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Status {
+      get { return status_; }
+      set {
+        status_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "regionList" field.</summary>
+    public const int RegionListFieldNumber = 2;
+    private static readonly pb::FieldCodec<global::SP.Service.RegionData> _repeated_regionList_codec
+        = pb::FieldCodec.ForMessage(18, global::SP.Service.RegionData.Parser);
+    private readonly pbc::RepeatedField<global::SP.Service.RegionData> regionList_ = new pbc::RepeatedField<global::SP.Service.RegionData>();
+    /// <summary>
+    ///*
+    /// 供货商范围列表
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::SP.Service.RegionData> RegionList {
+      get { return regionList_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SuppliersRegionListResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SuppliersRegionListResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Status != other.Status) return false;
+      if(!regionList_.Equals(other.regionList_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Status != 0) hash ^= Status.GetHashCode();
+      hash ^= regionList_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Status != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Status);
+      }
+      regionList_.WriteTo(output, _repeated_regionList_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Status != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Status);
+      }
+      size += regionList_.CalculateSize(_repeated_regionList_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SuppliersRegionListResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Status != 0) {
+        Status = other.Status;
+      }
+      regionList_.Add(other.regionList_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            Status = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            regionList_.AddEntriesFrom(input, _repeated_regionList_codec);
             break;
           }
         }

@@ -15,8 +15,9 @@ namespace SP.Service.Domain.Events
         public int PayType { get; set; }
         public double Amount { get; set; }
         public int Status { get; set; }
+        public DateTime StartDate { get; set; }
         public AssociatorCreatedEvent(Guid associatorId,string accountId, string kindId,  int quantity,
-            string payOrderCode, int payType, double amount,int status)
+            string payOrderCode, int payType, double amount,int status,DateTime startDate)
             : base(KafkaConfig.EventBusTopicTitle)
         {
             AggregateId = associatorId;
@@ -28,6 +29,7 @@ namespace SP.Service.Domain.Events
             PayType = payType;
             Amount = amount;
             Status = status;
+            StartDate = startDate;
             EventType = EventType.AssociatorCreated;
         }
     }

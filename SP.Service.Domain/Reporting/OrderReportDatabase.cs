@@ -14,10 +14,15 @@ namespace SP.Service.Domain.Reporting
     {
         private readonly OrderRepository _repository;
         private readonly ShoppingCartRespository _cartRepository;
-        public OrderReportDatabase(OrderRepository repository, ShoppingCartRespository cartRepository)
+        private readonly SaleModeRepository _saleModeRepository;
+        private readonly CouponsRepository _couponsRepository;
+        public OrderReportDatabase(OrderRepository repository,ShoppingCartRespository cartRepository, 
+            SaleModeRepository saleModeRepository, CouponsRepository couponsRepository)
         {
             _repository = repository;
             _cartRepository = cartRepository;
+            _saleModeRepository = saleModeRepository;
+            _couponsRepository = couponsRepository;
         }
 
         public void Add(OrdersEntity item)
@@ -136,11 +141,11 @@ namespace SP.Service.Domain.Reporting
             return result > 0;
         }
 
-        public List<LeadOrderDomain> GetShipOrderList(string accountId, int orderStatus, int orderType)
+        public List<LeadOrderDomain> GetShipOrderList(string accountId, int orderStatus, int orderType, int pageIndex, int pageSize)
         {
             var domainList = new List<LeadOrderDomain>();
             var list = _repository.GetShipOrderList(accountId, orderStatus, orderType);
-            var result = list.GroupBy(s => s.OrderId);
+            var result = list.GroupBy(s => s.OrderId).Skip((pageIndex - 1) * pageSize).Take(pageSize);
             foreach (var item in result)
             {
                 var domain = new LeadOrderDomain();
@@ -189,6 +194,59 @@ namespace SP.Service.Domain.Reporting
             return domainList;
         }
 
+        public List<LeadOrderDomain> GetPurchaseOrderList(string accountId, int pageIndex, int pageSize)
+        {
+            var domainList = new List<LeadOrderDomain>();
+            var list = _repository.GetShipOrderList(accountId, orderStatus, orderType);
+            var result = list.GroupBy(s => s.OrderId).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            foreach (var item in result)
+            {
+                var domain = new LeadOrderDomain();
+                var shoppingCartList = new List<ShoppingCartsDomain>();
+                int index = 0;
+                foreach (var orderInfo in item)
+                {
+                    var order = ConvertOrderEntityToLeadOrderDomain(orderInfo);
+                    if (order != null)
+                    {
+                        if (index == 0)
+                        {
+                            domain.OrderId = order.OrderId;
+                            domain.OrderAddress = order.OrderAddress;
+                            domain.IsVip = order.IsVip;
+                            var accountReportDatabase = IocManager.Instance.Resolve(typeof(AccountReportDatabase)) as AccountReportDatabase;
+                            var account = accountReportDatabase.GetAccountById(order.ShipTo);
+                            if (account != null)
+                            {
+                                domain.SetAccountMemento(account.GetMemento());
+                                var accountInfoReportDatabase = IocManager.Instance.Resolve(typeof(AccountInfoReportDatabase)) as AccountInfoReportDatabase;
+                                var accountInfo = accountInfoReportDatabase.GetAccountInfoById(order.ShipTo);
+                                domain.SetAccountInfoMemento(accountInfo.GetMemento());
+                            }
+                            else
+                            {
+                                System.Console.WriteLine($"GetShipOrderList order.ShipTo  is not Exsit [{order?.ShipTo ?? string.Empty}]");
+                            }
+                            domain.PayDate = order.PayDate;
+                            domain.OrderDate = order.OrderDate;
+                        }
+                        var cart = new ShoppingCartsDomain();
+                        cart.OrderId = order.OrderId;
+                        cart.Product = new ProductEntity();
+                        cart.Product.ProductName = order.ProductName;
+                        cart.Product.ProductId = order.ProductId;
+                        cart.Quantity = order.Stock;
+                        cart.ShipOrderId = order.ShipOrderId;
+                        shoppingCartList.Add(cart);
+                        index++;
+                    }
+                }
+                domain.SetMemenShoppingCartto(shoppingCartList);
+                domainList.Add(domain);
+            }
+            return domainList;
+        }
+
         private OrderDomain ConvertOrderEntityToDomain(OrdersEntity entity)
         {
             if(entity == null)
@@ -199,13 +257,35 @@ namespace SP.Service.Domain.Reporting
             order.SetMemento(entity);
             var orderCartList = _cartRepository.GetShoppingCartsByOrderId(entity.OrderId);
             var productList = new List<ProductDomain>();
+            
+            double productAmount = 0;
             foreach (var cart in orderCartList)
             {                
                 var productReportDatabase = IocManager.Instance.Resolve(typeof(ProductReportDatabase)) as ProductReportDatabase; ;
                 var product = productReportDatabase.GetProductDomainById(cart.ProductId);
-                
+                //如果是餐饮
+                if(product.TypeId == 1)
+                {
+                    //需要计算优惠券的总值
+                    productAmount += (order.IsVip ? product.VipPrice : product.MarketPrice);
+                }
                 product.Quantity = cart.Quantity ?? 0;                
                 productList.Add(product);
+            }
+            var list = _saleModeRepository.GetSaleModeList(0);
+            foreach (var item in list)
+            {
+                if (productAmount >= item.ModelAmount)
+                {
+                    var couponsList = _couponsRepository.GetAccountCouponsList(order.AccountId);
+                    couponsList = couponsList.FindAll(x=>x.Status == 1 && x.EndDate>=DateTime.Now 
+                    && x.AccountId == order.AccountId).OrderBy(x=>x.EndDate).ToList();
+                    if (couponsList != null && couponsList.Count > 0)
+                    {
+                        order.Coupons = couponsList[0];
+                    }
+                    break;
+                }
             }
             order.SetMemenProductto(productList);
             return order;

@@ -13,6 +13,7 @@ namespace Grpc.Service.Core.Domain.Commands
         }
         public Command(string topicTitle)
         {
+            this.Id = Guid.NewGuid();
             this.TopicTitle = topicTitle;
         }
 

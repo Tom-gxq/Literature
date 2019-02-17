@@ -12,7 +12,7 @@ namespace SP.Service.Entity
         [AutoIncrement]
         public int? Id { get; set; }
         public string ProductId { get; set; }
-        public int? DataId { get; set; }
+        public int? RegionID { get; set; }
         public DateTime? CreateTime { get; set; }
         public DateTime? UpdateTime { get; set; }
     }

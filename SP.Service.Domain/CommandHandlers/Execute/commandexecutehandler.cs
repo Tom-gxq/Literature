@@ -173,6 +173,18 @@ namespace SP.Service.Domain.CommandHandlers.Execute
                 case CommandType.BalancePay:
                     ExecuteCommand<BalancePayCommand>(text);
                     break;
+                case CommandType.CreateSuppliersProduct:
+                    ExecuteCommand<CreateSuppliersProductCommand>(text);
+                    break;
+                case CommandType.EditWxUnionId:
+                    ExecuteCommand<EditWxUnionIdCommand>(text);
+                    break;
+                case CommandType.CreateWxOpenId:
+                    ExecuteCommand<CreateWxOpenIdCommand>(text);
+                    break;
+                case CommandType.CreateSuppliersRegion:
+                    ExecuteCommand<CreateSuppliersRegionCommand>(text);
+                    break;
                 default:
                     throw new UnregisteredDomainCommandException($" unknown command: [{text}]");
             }

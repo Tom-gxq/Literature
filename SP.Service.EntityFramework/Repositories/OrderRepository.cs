@@ -132,6 +132,17 @@ namespace SP.Service.EntityFramework.Repositories
                     q = q.OrderByDescending(x => x.ShippingDate);
                 }
                 return db.Select<ShippingOrderFullEntity>(q);
+            }            
+        }
+        public List<ShippingOrderFullEntity> GetPurchaseOrderList(string accountId, int pageIndex, int pageSize)
+        {
+            using (var db = OpenDbConnection())
+            {
+                var q = db.From<ShippingOrdersEntity>();
+                q = q.Join<ShippingOrdersEntity, OrdersEntity>((e, a) => e.OrderId == a.OrderId && e.ShippingId == accountId);
+                q = q.Join<ShippingOrdersEntity, ProductEntity>((e, b) => e.ProductId == b.ProductId);
+                q = q.OrderByDescending(x => x.ShippingDate);
+                return db.Select<ShippingOrderFullEntity>(q);
             }
         }
     }

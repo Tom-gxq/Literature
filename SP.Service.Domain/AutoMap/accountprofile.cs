@@ -103,6 +103,16 @@ namespace SP.Service.Domain.AutoMap
                 .ForSourceMember(command => command.CommandType, domain => domain.Ignore())
                 .ForSourceMember(command => command.ExcuteStatus, domain => domain.Ignore())
                 .ForSourceMember(command => command.TopicTitle, domain => domain.Ignore());
+            // 输入
+            CreateMap<EditWxUnionIdCommand, AccountDomain>()
+                .ForSourceMember(command => command.CommandType, domain => domain.Ignore())
+                .ForSourceMember(command => command.ExcuteStatus, domain => domain.Ignore())
+                .ForSourceMember(command => command.TopicTitle, domain => domain.Ignore());
+            // 输入
+            CreateMap<CreateWxOpenIdCommand, AccountDomain>()
+                .ForSourceMember(command => command.CommandType, domain => domain.Ignore())
+                .ForSourceMember(command => command.ExcuteStatus, domain => domain.Ignore())
+                .ForSourceMember(command => command.TopicTitle, domain => domain.Ignore());
         }
     }
 }

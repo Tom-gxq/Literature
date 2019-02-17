@@ -17,6 +17,7 @@ namespace SP.Api.Model.Order
         public long orderDate { get; set; }
 
         public List<ProductModel> productList { get; set; }
+        public CouponsModel Coupons { get; set; }
 
     }
 }

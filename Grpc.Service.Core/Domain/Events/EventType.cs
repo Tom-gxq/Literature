@@ -73,5 +73,9 @@ namespace Grpc.Service.Core.Domain.Events
         BalancePay,
         ConsumeTradeCreate,
         IncomeTradeCreate,
+        SuppliersProductCreated,
+        SuppliersRegionCreated,
+        WxUnionIdEdit,
+        WxOpenIdCreate,
     }
 }

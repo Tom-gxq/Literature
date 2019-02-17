@@ -526,5 +526,59 @@ namespace WebApiGateway.Controllers.Account
             result.Data = JsonResult;
             return result;
         }
+
+        [System.Web.Http.HttpPost]
+        public ActionResult UpdateAccountWxUnionId(string wxUnionId)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+
+            try
+            {                
+                var retValue = AccountBusiness.UpdateAccountWxUnionId(currentAccount.AccountId, wxUnionId);
+                if (retValue)
+                {
+                    JsonResult.Add("status", 0);
+                }
+                else
+                {
+                    JsonResult.Add("status", 2);
+                }
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+
+        [System.Web.Http.HttpPost]
+        public ActionResult AddWxOpenId(string wxOpenId, int wxType)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+
+            try
+            {
+                var retValue = AccountBusiness.CreateWxOpenId(currentAccount.AccountId, wxOpenId, wxType);
+                if (retValue)
+                {
+                    JsonResult.Add("status", 0);
+                }
+                else
+                {
+                    JsonResult.Add("status", 2);
+                }
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
     }
 }

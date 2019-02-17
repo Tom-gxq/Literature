@@ -27,6 +27,8 @@ namespace Grpc.Service.Core.Domain.Commands
         EditAddress,
         EditAssociator,
         EditAuthentication,
+        CreateWxOpenId,
+        EditWxUnionId,
         //Order
         CreateCashApply,
         CreateOrder,
@@ -44,6 +46,8 @@ namespace Grpc.Service.Core.Domain.Commands
         EditProductSku,
         EditProductSkuDB,
         EditSaleStatus,
+        CreateSuppliersProduct,
+        CreateSuppliersRegion,
         //ShoppingCart
         CreatShoppingCart,
         //Statistics
@@ -60,5 +64,7 @@ namespace Grpc.Service.Core.Domain.Commands
         UpdateStatus,
         //Pay
         BalancePay,
+        //
+        
     }
 }

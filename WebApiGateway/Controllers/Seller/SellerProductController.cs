@@ -231,5 +231,23 @@ namespace WebApiGateway.Controllers.Seller
             result.Data = JsonResult;
             return result;
         }
+
+        public ActionResult AddSuppliersProduct(string productId, string accountId, int stock, double purchasePrice)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                var ret = ProductBusiness.AddSuppliersProduct( productId,  accountId,  stock,  purchasePrice);
+                JsonResult.Add("status", 0);
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
     }
 }

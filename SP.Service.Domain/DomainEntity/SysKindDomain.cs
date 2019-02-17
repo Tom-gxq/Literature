@@ -14,6 +14,7 @@ namespace SP.Service.Domain.DomainEntity
         public double Price { get; set; }
         public string Description { get; set; }
         public double DiscountValue { get; set; }
+        public double Amount { get; set; }
         public SysKindDomain()
         {
 
@@ -30,6 +31,7 @@ namespace SP.Service.Domain.DomainEntity
                 this.Unit = entity.Unit.Value;
                 this.DiscountValue = entity.DiscountValue.Value;
                 this.Description = entity.Description;
+                this.Amount = entity.Amount != null ? entity.Amount.Value:0;
             }
         }
     }

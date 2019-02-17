@@ -205,7 +205,31 @@ namespace Account.Service.Business
                     sysKind.Unit = item.Unit;
                     sysKind.Description = item.Description;
                     sysKind.DiscountValue = item.DiscountValue;
+                    sysKind.Amount = item.Amount;
                     result.KindList.Add(sysKind);
+                }
+            }
+            return result;
+        }
+        public static CouponsListResponse GetAccountCouponsList(string accountId)
+        {
+            var list = ServiceLocator.KindReportDatabase.GetAccountCouponsList(accountId);
+            var result = new CouponsListResponse();
+            result.Status = 10001;
+            if (list != null)
+            {
+                foreach (var item in list)
+                {
+                    var coupons = new Coupons();
+                    coupons.Description = item.Description;
+                    coupons.CouponId = item.CouponId;
+                    coupons.Amount = item.Amount;
+                    coupons.ModeAmount = item.ModelAmount;
+                    coupons.EndDate = item.EndDate.Ticks;
+                    coupons.StartDate = item.StartDate.Ticks;
+                    coupons.Status = item.Status;
+                    coupons.ModeDescription = item.ModeDescription;
+                    result.CouponsList.Add(coupons);
                 }
             }
             return result;
@@ -434,6 +458,21 @@ namespace Account.Service.Business
             var result = new TradeTotalResponse();
             result.Status = 10001;
             result.Total = count;
+            return result;
+        }
+
+        public static AccountResultResponse UpdateAccountWxUnionId(string accountId, string wxUnionId)
+        {
+            ServiceLocator.CommandBus.Send(new EditWxUnionIdCommand(accountId, wxUnionId));
+            var result = new AccountResultResponse();
+            result.Status = 10001;
+            return result;
+        }
+        public static AccountResultResponse CreateWxOpenId(string accountId, string wxOpenId,int wxType)
+        {
+            ServiceLocator.CommandBus.Send(new CreateWxOpenIdCommand(accountId, wxOpenId, wxType));
+            var result = new AccountResultResponse();
+            result.Status = 10001;
             return result;
         }
     }

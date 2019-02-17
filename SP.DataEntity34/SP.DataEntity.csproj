@@ -84,6 +84,7 @@
     <Compile Include="ProductTypeBrandEntity.cs" />
     <Compile Include="ProductTypeEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegionAccountEntity.cs" />
     <Compile Include="RegionEntity.cs" />
     <Compile Include="RegionTypeEntity.cs" />
     <Compile Include="RegionTypeFullEntity.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="ShoppingCartsEntity.cs" />
     <Compile Include="ShopProductEntity.cs" />
     <Compile Include="SuppliersEntity.cs" />
+    <Compile Include="SuppliersRegionEntity.cs" />
     <Compile Include="SysEventEntity.cs" />
     <Compile Include="SysKindEntity.cs" />
   </ItemGroup>

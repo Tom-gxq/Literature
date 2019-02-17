@@ -43,6 +43,7 @@ namespace SP.Service.Domain.DomainEntity
         public bool IsWxPay { get; set; }
         public bool IsAliPay { get; set; }
         public int OrderType { get; set; }
+        public CouponsFullEntity Coupons { get; set; }
 
         public OrderDomain()
         {

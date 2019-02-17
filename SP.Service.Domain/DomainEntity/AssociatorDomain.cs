@@ -30,9 +30,9 @@ namespace SP.Service.Domain.DomainEntity
 
         }
         public AssociatorDomain(Guid associatorId, string accountId, string kindId, int quantity,
-            string payOrderCode, int payType, double amount)
+            string payOrderCode, int payType, double amount, DateTime startDate)
         {
-            ApplyChange(new AssociatorCreatedEvent(associatorId,accountId, kindId, quantity, payOrderCode, payType, amount,0));
+            ApplyChange(new AssociatorCreatedEvent(associatorId,accountId, kindId, quantity, payOrderCode, payType, amount,0, startDate));
         }
         public void EditAssociatorDomain(Guid associatorId,int status)
         {

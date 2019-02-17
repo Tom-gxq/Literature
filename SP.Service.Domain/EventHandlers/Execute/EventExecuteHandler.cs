@@ -207,6 +207,18 @@ namespace SP.Service.Domain.EventHandlers.Execute
                 case EventType.IncomeTradeCreate:
                     ExecuteEvent<IncomeTradeCreateEvent>(text);
                     break;
+                case EventType.WxOpenIdCreate:
+                    ExecuteEvent<WxOpenIdCreateEvent>(text);
+                    break;
+                case EventType.WxUnionIdEdit:
+                    ExecuteEvent<WxUnionIdEditEvent>(text);
+                    break;
+                case EventType.SuppliersProductCreated:
+                    ExecuteEvent<SuppliersProductCreatedEvent>(text);
+                    break;
+                case EventType.SuppliersRegionCreated:
+                    ExecuteEvent<SuppliersRegionCreatedEvent>(text);
+                    break;
                 default:
                     throw new UnregisteredDomainCommandException($" unknown event: [{text}]");
 
@@ -231,7 +243,7 @@ namespace SP.Service.Domain.EventHandlers.Execute
             }
         }
 
-        private async void SaveEvent<T>(T @event) where T : Event
+        private void SaveEvent<T>(T @event) where T : Event
         {
             @event.EventId = @event.AggregateId.ToString();
             this._reportDatabase.Insert(@event);
