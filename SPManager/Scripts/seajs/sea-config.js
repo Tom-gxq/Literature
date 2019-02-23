@@ -51,6 +51,8 @@ seajs.config({
         'qiniutype': 'plug/qiniu/producttype.js',
         // 七牛上传
         'qiniusellerlogo': 'plug/qiniu/sellerlogo.js',
+        // 七牛上传
+        'qiniusellerlicense': 'plug/qiniu/sellerlicense.js',
         // 表情插件
         'facebase': 'plug/face/facebase.js',
         // 表情插件

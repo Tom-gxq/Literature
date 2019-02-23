@@ -60,14 +60,17 @@ namespace SP.Application.Suppler
             return repository.UpdateSuppler(new SuppliersEntity()
             {
                 Id = dto.Id,
-                AlipayNo = string.IsNullOrEmpty(dto.AlipayNo)?null: dto.AlipayNo,
+                AccountId = string.IsNullOrEmpty(dto.AccountId) ? null : dto.AccountId,
+                AlipayNo = string.IsNullOrEmpty(dto.AlipayNo) ? null : dto.AlipayNo,
                 AuthorizationPath = string.IsNullOrEmpty(dto.AuthorizationPath) ? null : dto.AuthorizationPath,
                 LicensePath = string.IsNullOrEmpty(dto.LicensePath) ? null : dto.LicensePath,
                 LogoPath = string.IsNullOrEmpty(dto.LogoPath) ? null : dto.LogoPath,
                 PermitPath = string.IsNullOrEmpty(dto.PermitPath) ? null : dto.PermitPath,
-                SuppliersName= string.IsNullOrEmpty(dto.SuppliersName) ? null : dto.SuppliersName,
+                SuppliersName = string.IsNullOrEmpty(dto.SuppliersName) ? null : dto.SuppliersName,
                 TelPhone = string.IsNullOrEmpty(dto.TelPhone) ? null : dto.TelPhone,
-                UpdateTime = DateTime.Now
+                Status = dto.Status,
+                UpdateTime = DateTime.Now,
+                TypeId = dto.TypeId,
             });
         }
         public List<SupplerDto> GetSupplerList()

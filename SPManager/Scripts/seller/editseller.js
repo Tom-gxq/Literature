@@ -13,6 +13,7 @@ define(function (require, exports, module) {
         doT = require('dot'),
         Global = require('global').Global,
         easydialog = require("easydialog");
+    qiniu = require('qiniusellerlogo');
     require('admin/style.css');
     //默认参数
     var Defaults = {
@@ -56,7 +57,7 @@ define(function (require, exports, module) {
                                 content: innerText
                             }
                         });
-                        //$('#wizard').css('height', $('#' + msg.result.Id).find('.page').height());
+                        $('#wizard').css('height', $('#' + msg.result.Id).find('.page').height());
 
                         $(".page").show();
                         //取消
@@ -68,6 +69,13 @@ define(function (require, exports, module) {
                         $("#sub").click(function () {
                             _this.Submit(elementID);
                             easydialog.close();
+                        });
+
+                        qiniu.QiniuMainController.init();
+
+                        $('#easyDialogBox').css({
+                            width: "500px",
+                            height: "600px"
                         });
 
                     });
@@ -83,14 +91,16 @@ define(function (require, exports, module) {
         Submit: function (elementID) {
             var _this = this;
             var divElement = $('#' + elementID + '');
-            var seller = {
-                oldRegionId: _this.setting.Id.split('&')[0],
-                oldAccountId: _this.setting.Id.split('&')[1],
-                regionId: $('#region').val(),
-                accountId: $('#leader').val()
+            var param = {
+                Id: divElement.find('#Id').val(),
+                SuppliersName: divElement.find('.txtName').val(),
+                TelPhone: divElement.find('.telphone').val(),
+                AlipayNo: divElement.find('.alipay').val(),
+                LogoPath: divElement.find('#imgPath').val(),
+                AccountId: divElement.find('#leader').val(),
             };
-            seller = $.param(leader, true);
-            Global.post("/Seller/EditSeller", seller, function (data) {
+            param = $.param(param, true);
+            Global.post("/Seller/EditSeller", param, function (data) {
                 _this.setting.callBack(data);
             });
         },

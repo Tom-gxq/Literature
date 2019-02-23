@@ -103,16 +103,16 @@ define(function (require, exports, module) {
         Submit: function (elementID) {
             var _this = this;
             var divElement = $('#' + elementID + '');
-            var type = {
+            var param = {
                 SuppliersName: divElement.find('.txtName').val(),
                 TelPhone: divElement.find('.telphone').val(),
                 AlipayNo: divElement.find('.alipay').val(),
                 LogoPath: divElement.find('#imgPath').val(),
                 AccountId: divElement.find('#leader').val(),
             };
-            type = $.param(type, true);
+            param = $.param(type, true);
             alert(type);
-            Global.post("/Seller/AddSeller", type, function (data) {
+            Global.post("/Seller/AddSeller", param, function (data) {
                 _this.setting.callBack(data);
             });
         },

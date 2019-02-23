@@ -1,83 +1,51 @@
-﻿<div id="main">
-    <div id="wizard">
-        <div class="items" id="{%=$data%}">
-            <div class="page">
+﻿<div id="main" style="height:380px">
+    <div id="wizard" style="height:380px">
+        <div class="items" id="{%=$data%}" style="height:380px">
+            <div class="page" style="height:380px">
                 <div class="contactInfo">
                     <ul>
                         <li style="width:100%">
                             <span class="grayfont span">商家名:</span>
-                            <input tabindex="1" class="input-text width200 Check txtName" type="text" value="" placeholder="请输入商家名" />
+                            <input id="Id" type="hidden" value="{%=$data.seller.Id%}" />
+                            <input id="name" tabindex="1" class="input-text width200 Check txtName" type="text" value="{%=$data.seller.SuppliersName%}" />
                         </li>
                         <li style="width:100%">
                             <span class="grayfont span">负责人:</span>
                             <select tabindex="2" id="leader" class="select small newselect" style="height: 35px;">
                                 <option value="0" selected="">&nbsp;</option>
                                 {% for(var i =0, j=$data.leaders.length; i < j; i++) { %}
-                                <option value="{%=$data.leaders[i].AccountId%}">{%=$data.leaders[i].Fullname%}</option>
+                                <option value="{%=$data.leaders[i].AccountId%}" {%=$data.leaders[i].AccountId==$data.seller.AccountId?'selected':''%}>{%=$data.leaders[i].Fullname%}</option>
                                 {% } %}
                             </select>
                         </li>
                         <li style="width:100%">
                             <span class="grayfont span">商家电话:</span>
-                            <input id="startTime" tabindex="1" class="input-text width200 Check telphone" type="text" value="" placeholder="商家电话" />
+                            <input id="telphone" tabindex="1" class="input-text width200 Check telphone" type="text" value="{%=$data.seller.TelPhone%}" placeholder="商家电话" />
                         </li>
                         <li style="width:100%">
                             <span class="grayfont span">提现账号:</span>
-                            <input id="startTime" tabindex="1" class="input-text width200 Check alipay" type="text" value="" placeholder="提现账号" />
+                            <input id="alipayno" tabindex="1" class="input-text width200 Check alipay" type="text" value="{%=$data.seller.AlipayNo%}" placeholder="提现账号" />
                         </li>
                         <li style="width:100%">
                             <span class="grayfont span">经营种类:</span>
                             <select tabindex="2" id="type" class="select small newselect" style="height: 35px;">
-                                <option value="0" {%=$data.Status = =0?'selected':'' %}>餐饮</option>
-                                <option value="1" {%=$data.Status = =1?'selected':'' %}>超市</option>
+                                <option value="0" {%=$data.seller.TypeId==0?'selected':'' %}>餐饮</option>
+                                <option value="1" {%=$data.seller.TypeId==1?'selected':'' %}>超市</option>
                             </select>
                         </li>
                         <li style="width:100%">
                             <span class="grayfont span">营业状态:</span>
                             <select tabindex="2" id="state" class="select small newselect" style="height: 35px;">
-                                <option value="0" {%=$data.Status = =0?'selected':'' %}>营业</option>
-                                <option value="1" {%=$data.Status = =1?'selected':'' %}>停业</option>
+                                <option value="0" {%=$data.seller.Status==0?'selected':'' %}>营业</option>
+                                <option value="1" {%=$data.seller.Status==1?'selected':'' %}>停业</option>
                             </select>
                         </li>
                         <li style="width:100%">
                             <div id="container">
                                 <div id="preview">
                                     <a class="btn-lg btnfont" id="pickfiles" href="#">
-                                        <i class="fa fa-fw fa-plus"></i>
+                                        <i class="fa fa-fw fa-plus">+</i>
                                         <span>商家Logo选择文件</span>
-                                    </a>
-                                </div>
-                                <input tabindex="1" id="imgPath" class="input-text width400 Check sequence" type="hidden" value="" />
-                            </div>
-                        </li>
-                        <li style="width:100%">
-                            <div id="container">
-                                <div id="preview">
-                                    <a class="btn-lg btnfont" id="pickfiles" href="#">
-                                        <i class="fa fa-fw fa-plus"></i>
-                                        <span>商家营业执照选择文件</span>
-                                    </a>
-                                </div>
-                                <input tabindex="1" id="imgPath" class="input-text width400 Check sequence" type="hidden" value="" />
-                            </div>
-                        </li>
-                        <li style="width:100%">
-                            <div id="container">
-                                <div id="preview">
-                                    <a class="btn-lg btnfont" id="pickfiles" href="#">
-                                        <i class="fa fa-fw fa-plus"></i>
-                                        <span>商家经营许可选择文件</span>
-                                    </a>
-                                </div>
-                                <input tabindex="1" id="imgPath" class="input-text width400 Check sequence" type="hidden" value="" />
-                            </div>
-                        </li>
-                        <li style="width:100%">
-                            <div id="container">
-                                <div id="preview">
-                                    <a class="btn-lg btnfont" id="pickfiles" href="#">
-                                        <i class="fa fa-fw fa-plus"></i>
-                                        <span>商家经营许可选择文件</span>
                                     </a>
                                 </div>
                                 <input tabindex="1" id="imgPath" class="input-text width400 Check sequence" type="hidden" value="" />

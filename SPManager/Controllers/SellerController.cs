@@ -316,6 +316,33 @@ namespace SPManager.Controllers
         {
             ISupplerAppService service = IocManager.Instance.Resolve<ISupplerAppService>();
             var seller = service.GetSupplerDetail(id);
+            JsonResult.Add("seller", seller);
+            IAccountAppService accountSrv = IocManager.Instance.Resolve<IAccountAppService>();
+            var leaders = accountSrv.GetAccountList();
+            JsonResult.Add("leaders", leaders);
+            JsonResult.Add("result", seller);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult EditSeller(SupplerDto model)
+        {
+            model.UpdateTime = DateTime.Now;
+            ISupplerAppService service = IocManager.Instance.Resolve<ISupplerAppService>();
+            var sellerInfo = service.GetSupplerDetail(model.Id);
+            model.CreateTime = sellerInfo.CreateTime;
+            model.LogoPath = model.LogoPath ?? sellerInfo.LogoPath;
+            model.PermitPath = model.PermitPath ?? sellerInfo.PermitPath;
+            model.LicensePath = model.LicensePath ?? sellerInfo.LicensePath;
+            model.AuthorizationPath = model.AuthorizationPath ?? sellerInfo.AuthorizationPath;
+
+
+            bool result = service.UpdateSeller(model);
+            JsonResult.Add("result", result);
 
             return new JsonResult()
             {

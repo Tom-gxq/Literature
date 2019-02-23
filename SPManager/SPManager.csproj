@@ -435,6 +435,7 @@
     <Content Include="Scripts\plug\plupload\plupload.full.min.js" />
     <Content Include="Scripts\plug\plupload\plupload.min.js" />
     <Content Include="Scripts\plug\qiniu\producttype.js" />
+    <Content Include="Scripts\plug\qiniu\sellerlicense.js" />
     <Content Include="Scripts\plug\qiniu\sellerlogo.js" />
     <Content Include="Scripts\plug\qiniu\shop.js" />
     <Content Include="Scripts\plug\qiniu\css\highlight.css" />
