@@ -14,6 +14,9 @@ define(function (require, exports, module) {
     var easydialog = require("easydialog");
     var addseller = require('add-seller');
     var editseller = require('edit-seller');
+    var editsellerlicense = require("edit-seller-license");
+    var editsellerpermit = require("edit-seller-permit");
+    var editsellerauthorization = require('edit-seller-authorization');
     var Global = common.Global;
     //基础扩展
     var base = {
@@ -112,6 +115,62 @@ define(function (require, exports, module) {
          */
         bindItemEvent: function (item) {
             var _self = this;
+            item.find('button.license_path').click(function (event) {
+                editsellerlicense.init({
+                    stepOne: true,
+                    dialogID: 'wizard',
+                    header: '编辑商家',
+                    Id: this.id,
+                    callBack: function (sellerId) {
+                        if (sellerId && sellerId != '') {
+                            //重新加载页面
+                            window.location.href = '/Seller/Index';
+                        } else {
+                            alert('编辑失败');
+                        }
+                    }
+                });
+                event.stopPropagation();
+                return false;
+            });
+
+            item.find('button.permit_path').click(function (event) {
+                editsellerpermit.init({
+                    stepOne: true,
+                    dialogID: 'wizard',
+                    header: '编辑商家',
+                    Id: this.id,
+                    callBack: function (sellerId) {
+                        if (sellerId && sellerId != '') {
+                            //重新加载页面
+                            window.location.href = '/Seller/Index';
+                        } else {
+                            alert('编辑失败');
+                        }
+                    }
+                });
+                event.stopPropagation();
+                return false;
+            });
+
+            item.find('button.authorization_path').click(function (event) {
+                editsellerauthorization.init({
+                    stepOne: true,
+                    dialogID: 'wizard',
+                    header: '编辑商家',
+                    Id: this.id,
+                    callBack: function (sellerId) {
+                        if (sellerId && sellerId != '') {
+                            //重新加载页面
+                            window.location.href = '/Seller/Index';
+                        } else {
+                            alert('编辑失败');
+                        }
+                    }
+                });
+                event.stopPropagation();
+                return false;
+            });
 
             item.find('button.delete_item').click(function (event) {
                 _self.deleteSeller(this);

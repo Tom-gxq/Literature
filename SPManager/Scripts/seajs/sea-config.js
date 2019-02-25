@@ -130,6 +130,9 @@ seajs.config({
         //seller
         'add-seller': 'seller/addseller.js',
         'edit-seller': 'seller/editseller.js',
+        'edit-seller-license': 'seller/editsellerlicense.js',
+        'edit-seller-permit': 'seller/editsellerpermit.js',
+        'edit-seller-authorization': 'seller/editsellerauthorization.js'
     },
     map: [
         ['.js', '.js?v=' + version],

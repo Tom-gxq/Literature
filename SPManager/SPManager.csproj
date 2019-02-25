@@ -477,6 +477,12 @@
     <Content Include="Scripts\resevent\reseventdata.js" />
     <Content Include="Scripts\resevent\list-item.html" />
     <Content Include="Scripts\resevent\style.css" />
+    <Content Include="Scripts\seller\editsellerauthorization.html" />
+    <Content Include="Scripts\seller\editsellerauthorization.js" />
+    <Content Include="Scripts\seller\editsellerpermit.js" />
+    <Content Include="Scripts\seller\editsellerpermit.html" />
+    <Content Include="Scripts\seller\editsellerlicense.html" />
+    <Content Include="Scripts\seller\editsellerlicense.js" />
     <Content Include="Scripts\seller\editseller.js" />
     <Content Include="Scripts\seller\editseller.html" />
     <Content Include="Scripts\seller\addseller.html" />

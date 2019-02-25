@@ -350,5 +350,56 @@ namespace SPManager.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
+        public JsonResult EditSellerLicense(SupplerDto model)
+        {
+            model.UpdateTime = DateTime.Now;
+            ISupplerAppService service = IocManager.Instance.Resolve<ISupplerAppService>();
+            var sellerInfo = service.GetSupplerDetail(model.Id);
+            sellerInfo.LicensePath = model.LicensePath ?? sellerInfo.LicensePath;
+
+            bool result = service.UpdateSeller(sellerInfo);
+            JsonResult.Add("result", result);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult EditSellerPermit(SupplerDto model)
+        {
+            model.UpdateTime = DateTime.Now;
+            ISupplerAppService service = IocManager.Instance.Resolve<ISupplerAppService>();
+            var sellerInfo = service.GetSupplerDetail(model.Id);
+            sellerInfo.PermitPath = model.PermitPath ?? sellerInfo.PermitPath;
+
+            bool result = service.UpdateSeller(sellerInfo);
+            JsonResult.Add("result", result);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult EditSellerAuthorization(SupplerDto model)
+        {
+            model.UpdateTime = DateTime.Now;
+            ISupplerAppService service = IocManager.Instance.Resolve<ISupplerAppService>();
+            var sellerInfo = service.GetSupplerDetail(model.Id);
+            sellerInfo.AuthorizationPath = model.AuthorizationPath ?? sellerInfo.AuthorizationPath;
+
+            bool result = service.UpdateSeller(sellerInfo);
+            JsonResult.Add("result", result);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
     }
 }
