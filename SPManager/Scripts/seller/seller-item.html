@@ -2,7 +2,9 @@
 < j; i++) { %}
 <tr class="contenttr">
     <td class="center">
-        <div>{%=$data[i].SuppliersName %}</div>
+        <a href="Product?Id={%=$data[i].Id %}">
+            <div>{%=$data[i].SuppliersName %}</div>
+        </a>
     </td>
     <td>
         <p>{%=$data[i].AccountName %}</p>

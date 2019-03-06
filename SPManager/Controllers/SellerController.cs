@@ -27,9 +27,9 @@ namespace SPManager.Controllers
             return View();
         }
 
-        public ActionResult Product()
+        public ActionResult Product(int Id)
         {
-            return View();
+            return View(Id);
         }
 
         public ActionResult Leader()
@@ -394,6 +394,49 @@ namespace SPManager.Controllers
 
             bool result = service.UpdateSeller(sellerInfo);
             JsonResult.Add("result", result);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult GetProductList(int pageIndex, int pageSize, int sellerId)
+        {
+            List<dynamic> list = new List<dynamic>();
+            var service = IocManager.Instance.Resolve<ISuppliersProductService>();
+            var produceService = IocManager.Instance.Resolve<IProductAppService>();
+            var bandService = IocManager.Instance.Resolve<IBrandAppService>();
+            var typeService = IocManager.Instance.Resolve<IProductTypeService>();
+
+            var sellerList = service.GetSuppliersProductList(pageIndex, pageSize, sellerId);
+            if (sellerList != null)
+            {
+                foreach (var seller in sellerList)
+                {
+                    var product = produceService.GetProductDetail(seller.ProductId);
+                    var band = bandService.GetBrandDetail(product.BrandId);
+                    var type = typeService.GetProductTypeDetail(product.TypeId);
+                    list.Add(new
+                    {
+                        Id = product.ProductId,
+                        ProductName = product.ProductName,
+                        TypeName = type.TypeName,
+                        BrandName = band.BrandName,
+                        MarketPrice = product.MarketPrice,
+                        VIPPrice = product.VIPPrice
+                    });
+                }
+            }
+
+            var total = service.GetSuppliersProductCount(sellerId);
+            JsonResult.Add("items", list);
+            PageModel jObject = new PageModel();
+            jObject.Total = (int)total;
+            jObject.Pages = (int)Math.Ceiling(Convert.ToDouble(total) / pageSize);
+            jObject.Index = pageIndex;
+            JsonResult.Add("data", jObject);
 
             return new JsonResult()
             {

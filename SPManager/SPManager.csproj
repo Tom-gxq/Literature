@@ -495,6 +495,8 @@
     <Content Include="Scripts\seller\editleader.html" />
     <Content Include="Scripts\seller\leader.js" />
     <Content Include="Scripts\seller\leader-item.html" />
+    <Content Include="Scripts\seller\product.js" />
+    <Content Include="Scripts\seller\product-item.html" />
     <Content Include="Scripts\seller\seller-item.html" />
     <Content Include="Scripts\seller\seller.js" />
     <Content Include="Scripts\seller\editregion.html" />
