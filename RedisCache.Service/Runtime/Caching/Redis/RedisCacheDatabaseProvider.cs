@@ -27,6 +27,10 @@ namespace RedisCache.Service.Runtime.Caching.Redis
             return _connectionMultiplexer.Value.GetDatabase(_options.DatabaseId);
         }
 
+        public  ISubscriber GetSubscriber()
+        {
+            return _connectionMultiplexer.Value.GetSubscriber();
+        }
         private ConnectionMultiplexer CreateConnectionMultiplexer()
         {
             var option = ConfigurationOptions.Parse(_options.ConnectionString);

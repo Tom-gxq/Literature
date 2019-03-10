@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26711.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28606.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SP.WebApi", "Specialty\SP.WebApi.csproj", "{E8BB97E9-6AB7-4A9D-B550-C3F4CD285B3F}"
 EndProject
@@ -96,15 +96,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KafkaSellerConsumer.Service
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepeatedTokenGRPCInterface", "RepeatedTokenGRPCInterface\RepeatedTokenGRPCInterface.csproj", "{4D312FDB-D127-443E-893C-ECCB01C0257D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepeatedToken.Service", "RepeatedToken.Service\RepeatedToken.Service.csproj", "{CC6E0EC3-B385-48D1-BEDD-37A3075AA4B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepeatedToken.Service", "RepeatedToken.Service\RepeatedToken.Service.csproj", "{CC6E0EC3-B385-48D1-BEDD-37A3075AA4B5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MicroService", "MicroService", "{04BE47A1-345D-4272-A5D9-9B315E52A0CD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SP.DataService", "SP.DataService\SP.DataService.csproj", "{04D81498-13C5-42D0-9812-297C56C41843}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SP.DomainService", "SP.DomainService\SP.DomainService.csproj", "{9629B75B-3326-4621-9651-D9FEB761ED0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SP.DomainService", "SP.DomainService\SP.DomainService.csproj", "{9629B75B-3326-4621-9651-D9FEB761ED0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SP.MongoDB", "SP.MongoDB\SP.MongoDB.csproj", "{80959919-E404-4281-BE85-0C88787A7109}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SP.MongoDB", "SP.MongoDB\SP.MongoDB.csproj", "{80959919-E404-4281-BE85-0C88787A7109}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SNS", "SNS", "{03988438-268A-4B45-8A6A-81C816CD3A4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SP.SNS.Server", "SP.SNS.Server\SP.SNS.Server.csproj", "{D7A846F8-E1AD-4D19-A1FF-50A8F8A9CF90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -288,6 +292,10 @@ Global
 		{80959919-E404-4281-BE85-0C88787A7109}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80959919-E404-4281-BE85-0C88787A7109}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80959919-E404-4281-BE85-0C88787A7109}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7A846F8-E1AD-4D19-A1FF-50A8F8A9CF90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7A846F8-E1AD-4D19-A1FF-50A8F8A9CF90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7A846F8-E1AD-4D19-A1FF-50A8F8A9CF90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7A846F8-E1AD-4D19-A1FF-50A8F8A9CF90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -331,6 +339,7 @@ Global
 		{04D81498-13C5-42D0-9812-297C56C41843} = {04BE47A1-345D-4272-A5D9-9B315E52A0CD}
 		{9629B75B-3326-4621-9651-D9FEB761ED0F} = {04BE47A1-345D-4272-A5D9-9B315E52A0CD}
 		{80959919-E404-4281-BE85-0C88787A7109} = {86BCEEB1-94AE-44F0-891B-1135910FA566}
+		{D7A846F8-E1AD-4D19-A1FF-50A8F8A9CF90} = {03988438-268A-4B45-8A6A-81C816CD3A4D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {97F59FCE-65D7-438A-8C58-E94BDEC135B5}

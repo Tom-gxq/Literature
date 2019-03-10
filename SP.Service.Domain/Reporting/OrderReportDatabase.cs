@@ -197,13 +197,13 @@ namespace SP.Service.Domain.Reporting
         public List<LeadOrderDomain> GetPurchaseOrderList(string accountId, int pageIndex, int pageSize)
         {
             var domainList = new List<LeadOrderDomain>();
-            var list = _repository.GetShipOrderList(accountId, orderStatus, orderType);
+            var list = _repository.GetPurchaseOrderList(accountId, pageIndex, pageSize);
             var result = list.GroupBy(s => s.OrderId).Skip((pageIndex - 1) * pageSize).Take(pageSize);
             foreach (var item in result)
             {
                 var domain = new LeadOrderDomain();
-                var shoppingCartList = new List<ShoppingCartsDomain>();
                 int index = 0;
+                var shopReport = IocManager.Instance.Resolve(typeof(ShopReportDatabase)) as ShopReportDatabase;
                 foreach (var orderInfo in item)
                 {
                     var order = ConvertOrderEntityToLeadOrderDomain(orderInfo);
@@ -230,21 +230,18 @@ namespace SP.Service.Domain.Reporting
                             domain.PayDate = order.PayDate;
                             domain.OrderDate = order.OrderDate;
                         }
-                        var cart = new ShoppingCartsDomain();
-                        cart.OrderId = order.OrderId;
-                        cart.Product = new ProductEntity();
-                        cart.Product.ProductName = order.ProductName;
-                        cart.Product.ProductId = order.ProductId;
-                        cart.Quantity = order.Stock;
-                        cart.ShipOrderId = order.ShipOrderId;
-                        shoppingCartList.Add(cart);
+                        domain.Shop = shopReport.GetShopById(orderInfo.ShopId.Value);
                         index++;
                     }
                 }
-                domain.SetMemenShoppingCartto(shoppingCartList);
                 domainList.Add(domain);
             }
             return domainList;
+        }
+
+        public PurchaseOrderDomain GetPurchaseOrderByOrderId(string orderId)
+        {
+
         }
 
         private OrderDomain ConvertOrderEntityToDomain(OrdersEntity entity)

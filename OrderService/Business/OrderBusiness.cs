@@ -359,6 +359,15 @@ namespace Order.Service.Business
             }
             return order;
         }
+        private static PurchaseOrder ConvertPurchaseOrderDomainToResponse(LeadOrderDomain entity)
+        {
+            var order = new PurchaseOrder();
+            order.Amount = entity.Amount;
+            order.OrderDate = entity.OrderDate.Ticks;
+            order.OrderId = entity.OrderId;
+            order.OrderType = entity.Shop.ShopType;
+            return order;
+        }
         public static void AddCashApply(string accountId, string alipay, double money)
         {
             ServiceLocator.CommandBus.Send(new CreateCashApplyCommand(accountId, alipay, money));
@@ -385,11 +394,51 @@ namespace Order.Service.Business
                 {
                     if (item != null)
                     {
-                        var order = ConvertShipOrderDomainToResponse(item);
+                        var order = ConvertPurchaseOrderDomainToResponse(item);
                         result.OrderInfo.Add(order);
                     }
                 }
                 result.Status = 10001;
+            }
+            return result;
+        }
+        public static PurchaseOrderResponse GetPurchaseOrderByOrderId(string orderId)
+        {
+            var result = new PurchaseOrderResponse();
+            var order = ServiceLocator.ReportDatabase.GetPurchaseOrderByOrderId(orderId);
+            if (order != null)
+            {
+                var accountInfo = new AccountInfo()
+                {
+                     AccountId = order.AccountInfo.AccountId,
+                     UserName = order.AccountInfo.Fullname
+                };
+                result.Account = accountInfo;//订货人
+                var address = new Address()
+                {
+                     BuildingName = order.Address.BuildingName,
+                     ContactAddress = order.Address.Address,
+                     SchoolName = order.Address.SchoolName,
+                     DistrictName = order.Address.DistrictName,
+                     DormName = order.Address.DormName
+                };
+                result.Address = address;//订货人地址
+                result.Amount = order.Amount;
+                result.OrderCode = order.OrderCode;
+                result.OrderDate = order.OrderDate.Ticks;
+                result.OrderId = order.OrderId;
+                result.OrderStatus = order.OrderStatus;
+                result.PayDate = order.PayDate.Ticks;
+                result.PayType = order.PayType;
+                foreach (var item in order.ShoppingCarts)
+                {
+                    var shopcart = new ShoppingCart();
+                    shopcart.ProductName = item.Product.ProductName;
+                    shopcart.Quantity = item.Quantity;
+                    shopcart.Amount = item.Amount;
+                    shopcart.UnitPrice = item.Product.PurchasePrice.Value;
+                    result.ShoppingCartList.Add(shopcart);
+                }
             }
             return result;
         }

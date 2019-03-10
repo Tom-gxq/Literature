@@ -164,7 +164,7 @@ namespace Order.Service.GrpcImpl
             PurchaseOrderResponse response = null;
             try
             {
-                response = OrderBusiness.GetPurchaseOrderList(request.AccountId, request.PageIndex, request.PageSize);
+                response = OrderBusiness.GetPurchaseOrderByOrderId(request.OrderId);
             }
             catch (Exception ex)
             {

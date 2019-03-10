@@ -56,7 +56,6 @@ namespace Grpc.Service.Core.Caching
         TValue HashGet(string hashKey, TKey key);
         bool SortedSetAdd(TKey key, TKey member, double value);
         List<object> SortedSetRangeByScore(string key, double start = double.NegativeInfinity, double stop = double.PositiveInfinity);
-        IBatch CreateBatch(object asyncState = null);
         bool SortedSetRemove(string key, string member);
         /// <summary>
         /// Gets an item from the cache or null if not found.
@@ -116,5 +115,8 @@ namespace Grpc.Service.Core.Caching
         long ListLeftPush(TKey key, TValue value);
         long ListLeftPush(TKey key, TValue[] value);
         TValue ListLeftPop(TKey key);
+        long Publish(string channel, string message);
+        void Subscribe(string channel, Action<string, string> handler);
+        void Unsubscribe(string channel, Action<string, string> handler);
     }
 }

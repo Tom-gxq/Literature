@@ -18,5 +18,6 @@ namespace SP.Service.Entity
         public long? SecondTypeId { get; set; }
         public DateTime? OrderDate { get; set; }
         public DateTime? PayDate { get; set; }
+        public int? ShopId { get; set; }
     }
 }

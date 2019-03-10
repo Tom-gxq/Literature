@@ -81,6 +81,9 @@ namespace Grpc.Service.Core.Caching
 
             return item;
         }
+        public abstract long Publish(string channel, string message);
+        public abstract void Subscribe(string channel, Action<string, string> handler);
+        public abstract void Unsubscribe(string channel, Action<string, string> handler);
         public abstract object[] StringGet(string[] keys);
         public abstract long KeyDelete(string[] keys);
         public abstract object GetOrDefault(string key);
@@ -96,7 +99,6 @@ namespace Grpc.Service.Core.Caching
         public abstract object ListLeftPop(string key);
         public abstract bool SortedSetAdd(string key, string member, double value);
         public abstract List<object> SortedSetRangeByScore(string key, double start, double stop );
-        public abstract IBatch CreateBatch(object asyncState = null);
         public abstract bool SortedSetRemove(string key, string member);
         public virtual Task<object> GetOrDefaultAsync(string key)
         {
@@ -134,6 +136,6 @@ namespace Grpc.Service.Core.Caching
         public virtual void Dispose()
         {
 
-        }
+        }        
     }
 }

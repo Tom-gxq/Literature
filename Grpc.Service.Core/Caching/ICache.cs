@@ -84,7 +84,6 @@ namespace Grpc.Service.Core.Caching
         void HashSet(string hashKey, string key, object value);
         bool SortedSetAdd(string key, string member, double value);
         List<object> SortedSetRangeByScore(string key, double start , double stop );
-        IBatch CreateBatch(object asyncState = null);
         bool SortedSetRemove(string key, string member);
         /// <summary>
         /// Saves/Overrides an item in the cache by a key.
@@ -123,5 +122,8 @@ namespace Grpc.Service.Core.Caching
         /// Clears all items in this cache.
         /// </summary>
         Task ClearAsync();
+        long Publish(string channel, string message);
+        void Subscribe(string channel, Action<string, string> handler);
+        void Unsubscribe(string channel, Action<string, string> handler);
     }
 }

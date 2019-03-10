@@ -109,10 +109,7 @@ namespace Grpc.Service.Core.Caching
         {
             return InternalCache.SortedSetRangeByScore(key, start, stop);
         }
-        public IBatch CreateBatch(object asyncState = null)
-        {
-            return InternalCache.CreateBatch(asyncState);
-        }
+       
         public bool SortedSetRemove(string key, string member)
         {
             return InternalCache.SortedSetRemove(key, member);
@@ -173,6 +170,19 @@ namespace Grpc.Service.Core.Caching
         public TValue ListLeftPop(TKey key)
         {
             return InternalCache.ListLeftPop<TKey, TValue>(key);
+        }
+
+        public long Publish(string channel, string message)
+        {
+            return InternalCache.Publish(channel, message);
+        }
+        public void Subscribe(string channel, Action<string, string> handler)
+        {
+            InternalCache.Subscribe(channel, handler);
+        }
+        public void Unsubscribe(string channel, Action<string, string> handler)
+        {
+            InternalCache.Unsubscribe(channel, handler);
         }
     }
 }
