@@ -374,6 +374,25 @@ namespace SP.Application.Product
             return retList;
         }
 
+        public ProductImageDto GetMasterImage(string productId)
+        {
+            var repository = IocManager.Instance.Resolve<ProductsRespository>();
+            return ConvertImageFromRepositoryEntity(repository.GetMasterImageById(productId));
+        }
+
+        public List<ProductsDto> GetProductList(int saleStauts = 1)
+        {
+            var retList = new List<ProductsDto>();
+            var repository = IocManager.Instance.Resolve<ProductsRespository>();
+
+            foreach (var item in repository.GetProductList(saleStauts))
+            {
+                retList.Add(ConvertFromRepositoryEntity(item));
+            }
+
+            return retList;
+        }
+
         public List<ProductsDto> GetProductListByOrderId(string orderId)
         {
             var retList = new List<ProductsDto>();

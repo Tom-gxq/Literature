@@ -12,8 +12,8 @@ define(function (require, exports, module) {
         doT = require('dot');
     var datapager = require('datapager');
     var easydialog = require("easydialog");
-    var addproduct = require('add-product');
-    var editproduct = require('edit-product');
+    var addproduct = require('add-seller-product');
+    var editproduct = require('edit-seller-product');
     var Global = common.Global;
     //基础扩展
     var base = {
@@ -50,7 +50,6 @@ define(function (require, exports, module) {
          */
         init: function (para) {
             var _self = this;
-            
 
             $.extend(this, para);
             _self.bindElements();
@@ -87,10 +86,11 @@ define(function (require, exports, module) {
                     stepOne: true,
                     dialogID: 'wizard',
                     header: '添加产品',
+                    sellerId: $("#sellerId").val(),
                     callBack: function (result) {
                         if (result) {
                             //重新加载页面
-                            window.location.href = '/Seller/Product';
+                            window.location.href = '/Seller/Product?Id=' + result['sellerId'];
                         } else {
                             alert('添加产品失败');
                         }

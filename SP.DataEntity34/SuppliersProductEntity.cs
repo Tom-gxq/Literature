@@ -29,5 +29,7 @@ namespace SP.DataEntity
         public float PurchasePrice { get; set; }
         public int Status { get; set; }
         public int AlertStock { get; set; }
+        public DateTime CreateTime { get; set; }
+        public DateTime UpdateTime { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace SP.ManageEntityFramework.Repositories
             using (var db = Context.OpenDbConnection())
             {
                 var q = db.From<SuppliersProductEntity>();
-                q = q.Where(n => n.Id == id)?.Limit((pageIndex - 1) * pageSize, pageSize);
+                q = q.Where(n => n.SuppliersId == id)?.Limit((pageIndex - 1) * pageSize, pageSize);
                 return db.Select<SuppliersProductEntity>(q);
             }
         }
@@ -31,9 +31,15 @@ namespace SP.ManageEntityFramework.Repositories
             using (var db = Context.OpenDbConnection())
             {
                 var q = db.From<SuppliersProductEntity>();
-                q = q.Where(n => n.Id == id);
+                q = q.Where(n => n.SuppliersId == id);
                 return db.Select(q).Count;
             }
+        }
+
+        public bool Add(SuppliersProductEntity data)
+        {
+            var result = this.Insert(data);
+            return result > 0;
         }
     }
 }

@@ -14,7 +14,16 @@ namespace SP.Application.Seller
     {
         public bool AddProduct(SuppliersProductDto data)
         {
-            return true;
+            var repository = IocManager.Instance.Resolve<SuppliersProductRepository>();
+            return repository.Add(new SuppliersProductEntity()
+            {
+                SuppliersId = data.SuppliersId,
+                ProductId = data.ProductId,
+                AlertStock = data.AlertStock,
+                PurchasePrice = data.PurchasePrice,
+                CreateTime = DateTime.Now,
+                UpdateTime = DateTime.Now
+            });
         }
 
         public bool DelProduct(int id)

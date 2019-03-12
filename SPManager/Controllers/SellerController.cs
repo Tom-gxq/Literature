@@ -406,7 +406,7 @@ namespace SPManager.Controllers
         {
             List<dynamic> list = new List<dynamic>();
             var service = IocManager.Instance.Resolve<ISuppliersProductService>();
-            var produceService = IocManager.Instance.Resolve<IProductAppService>();
+            var productService = IocManager.Instance.Resolve<IProductAppService>();
             var bandService = IocManager.Instance.Resolve<IBrandAppService>();
             var typeService = IocManager.Instance.Resolve<IProductTypeService>();
 
@@ -415,17 +415,17 @@ namespace SPManager.Controllers
             {
                 foreach (var seller in sellerList)
                 {
-                    var product = produceService.GetProductDetail(seller.ProductId);
+                    var product = productService.GetProductDetail(seller.ProductId);
                     var band = bandService.GetBrandDetail(product.BrandId);
                     var type = typeService.GetProductTypeDetail(product.TypeId);
                     list.Add(new
                     {
-                        Id = product.ProductId,
-                        ProductName = product.ProductName,
-                        TypeName = type.TypeName,
-                        BrandName = band.BrandName,
-                        MarketPrice = product.MarketPrice,
-                        VIPPrice = product.VIPPrice
+                        Id = product?.ProductId,
+                        ProductName = product?.ProductName,
+                        TypeName = type?.TypeName,
+                        BrandName = band?.BrandName,
+                        MarketPrice = product?.MarketPrice,
+                        VIPPrice = product?.VIPPrice
                     });
                 }
             }
@@ -437,6 +437,43 @@ namespace SPManager.Controllers
             jObject.Pages = (int)Math.Ceiling(Convert.ToDouble(total) / pageSize);
             jObject.Index = pageIndex;
             JsonResult.Add("data", jObject);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sellerId"></param>
+        /// <returns></returns>
+        public JsonResult GetSellerProductList()
+        {
+            List<dynamic> list = new List<dynamic>();
+            var productService = IocManager.Instance.Resolve<IProductAppService>();
+
+            foreach (var item in productService.GetProductList())
+            {
+                list.Add(new { ProductId = item.ProductId, ProductName=item.ProductName, ImgPath = item.ProductImage, Description =item.Description});
+            }
+
+            JsonResult.Add("products", list);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult AddProduct(string productId, int sellerId, float purchasePrice, int alertStock)
+        {
+            ISuppliersProductService sellerProductSrv = IocManager.Instance.Resolve<ISuppliersProductService>();
+            bool isSucess = sellerProductSrv.AddProduct(new SuppliersProductDto { ProductId = productId, SuppliersId = sellerId, PurchasePrice = purchasePrice, AlertStock= alertStock });
+            JsonResult.Add("sellerId", sellerId);
 
             return new JsonResult()
             {
