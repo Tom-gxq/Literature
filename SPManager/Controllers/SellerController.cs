@@ -420,7 +420,8 @@ namespace SPManager.Controllers
                     var type = typeService.GetProductTypeDetail(product.TypeId);
                     list.Add(new
                     {
-                        Id = product?.ProductId,
+                        Id = seller?.Id,
+                        ProductId = product?.ProductId,
                         ProductName = product?.ProductName,
                         TypeName = type?.TypeName,
                         BrandName = band?.BrandName,
@@ -474,6 +475,57 @@ namespace SPManager.Controllers
             ISuppliersProductService sellerProductSrv = IocManager.Instance.Resolve<ISuppliersProductService>();
             bool isSucess = sellerProductSrv.AddProduct(new SuppliersProductDto { ProductId = productId, SuppliersId = sellerId, PurchasePrice = purchasePrice, AlertStock= alertStock });
             JsonResult.Add("sellerId", sellerId);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult GetProductDetail(int id)
+        {
+            List<dynamic> list = new List<dynamic>();
+            var productService = IocManager.Instance.Resolve<IProductAppService>();
+
+            foreach (var item in productService.GetProductList())
+            {
+                list.Add(new { ProductId = item.ProductId, ProductName = item.ProductName, ImgPath = item.ProductImage, Description = item.Description });
+            }
+
+            JsonResult.Add("products", list);
+
+            ISuppliersProductService sellerProductSrv = IocManager.Instance.Resolve<ISuppliersProductService>();
+            var product = sellerProductSrv.GetSellerProductById(id);
+            JsonResult.Add("Product", product);
+
+            var productInfo = productService.GetProductDetail(product.ProductId);
+            JsonResult.Add("MarketPrice", productInfo.MarketPrice);
+            JsonResult.Add("VIPPrice", productInfo.VIPPrice);
+            
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult EditProduct(int id, float purchasePrice, int alertStock, decimal marketPrice, decimal vipPrice)
+        {
+            List<dynamic> list = new List<dynamic>();
+            var productService = IocManager.Instance.Resolve<IProductAppService>();
+            var sellerProductSrv = IocManager.Instance.Resolve<ISuppliersProductService>();
+            var sellerProduct = sellerProductSrv.GetSellerProductById(id);
+            var product = productService.GetProductDetail(sellerProduct.ProductId);
+            product.MarketPrice = marketPrice;
+            product.VIPPrice = vipPrice;
+            productService.EditProduct(product);
+            sellerProduct.AlertStock = alertStock;
+            sellerProduct.PurchasePrice = purchasePrice;
+            sellerProductSrv.UpdateProduct(sellerProduct);
+
+            JsonResult.Add("sellerId", sellerProduct.SuppliersId);
 
             return new JsonResult()
             {

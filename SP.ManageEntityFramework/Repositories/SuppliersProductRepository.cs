@@ -41,5 +41,17 @@ namespace SP.ManageEntityFramework.Repositories
             var result = this.Insert(data);
             return result > 0;
         }
+
+        public SuppliersProductEntity GetSellerProductById(int id)
+        {
+            var result = this.Single(x => x.Id == id);
+            return result;
+        }
+
+        public bool EditProduct(SuppliersProductEntity entity)
+        {
+            var result = this.UpdateNonDefaults(entity, x => x.Id == entity.Id);
+            return result > 0;
+        }
     }
 }

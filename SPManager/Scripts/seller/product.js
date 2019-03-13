@@ -124,10 +124,10 @@ define(function (require, exports, module) {
                     dialogID: 'wizard',
                     header: '编辑产品',
                     Id: this.id,
-                    callBack: function (productId) {
-                        if (productId && productId != '') {
+                    callBack: function (result) {
+                        if (result && result != '') {
                             //重新加载页面
-                            window.location.href = '/Seller/Product';
+                            window.location.href = '/Seller/Product?Id=' + result['sellerId'];
                         } else {
                             alert('编辑失败');
                         }

@@ -1,55 +1,34 @@
-﻿<div id="main" style="height:380px">
-    <div id="wizard" style="height:380px">
-        <div class="items" id="{%=$data%}" style="height:380px">
-            <div class="page" style="height:380px">
+﻿<div id="main">
+    <div id="wizard">
+        <div class="items" id="{%=$data%}">
+            <div class="page">
                 <div class="contactInfo">
                     <ul>
                         <li style="width:100%">
-                            <span class="grayfont span">商家名:</span>
-                            <input id="Id" type="hidden" value="{%=$data.seller.Id%}" />
-                            <input id="name" tabindex="1" class="input-text width200 Check txtName" type="text" value="{%=$data.seller.SuppliersName%}" />
-                        </li>
-                        <li style="width:100%">
-                            <span class="grayfont span">负责人:</span>
-                            <select tabindex="2" id="leader" class="select small newselect" style="height: 35px;">
-                                <option value="0" selected="">&nbsp;</option>
-                                {% for(var i =0, j=$data.leaders.length; i < j; i++) { %}
-                                <option value="{%=$data.leaders[i].AccountId%}" {%=$data.leaders[i].AccountId==$data.seller.AccountId?'selected':''%}>{%=$data.leaders[i].Fullname%}</option>
+                            <span class="grayfont span">产品名:</span>
+                            <input type="hidden" id="sellerProductId" value="{%=$data.Product.Id%}"/>
+                            <select id="procductlist" name="procducts" style="width:250px;" class="select small newselect">
+                                {% for(var i =0, j=$data.products.length; i  < j; i++) { %}
+                                <option value="{%=$data.products[i].ProductId%}" {%=$data.products[i].ProductId==$data.Product.ProductId?'selected':'' %}
+                                        data-image="{%=$data.products[i].ImgPath%}" data-title="" data-description="{%=$data.products[i].Description%}">{%=$data.products[i].ProductName%}</option>
                                 {% } %}
                             </select>
                         </li>
                         <li style="width:100%">
-                            <span class="grayfont span">商家电话:</span>
-                            <input id="telphone" tabindex="1" class="input-text width200 Check telphone" type="text" value="{%=$data.seller.TelPhone%}" placeholder="商家电话" />
+                            <span class="grayfont span">供货价:</span>
+                            <input tabindex="2" class="input-text Check purchaseprice" style="width:250px;" type="text" value="{%=$data.Product.PurchasePrice%}" />
                         </li>
                         <li style="width:100%">
-                            <span class="grayfont span">提现账号:</span>
-                            <input id="alipayno" tabindex="1" class="input-text width200 Check alipay" type="text" value="{%=$data.seller.AlipayNo%}" placeholder="提现账号" />
+                            <span class="grayfont span">警戒库存:</span>
+                            <input tabindex="3" class="input-text Check alertstock" style="width:250px;" type="text" value="{%=$data.Product.AlertStock%}" />
                         </li>
                         <li style="width:100%">
-                            <span class="grayfont span">经营种类:</span>
-                            <select tabindex="2" id="type" class="select small newselect" style="height: 35px;">
-                                <option value="0" {%=$data.seller.TypeId==0?'selected':'' %}>餐饮</option>
-                                <option value="1" {%=$data.seller.TypeId==1?'selected':'' %}>超市</option>
-                            </select>
+                            <span class="grayfont span">市场价格:</span>
+                            <input tabindex="3" class="input-text Check marketprice" style="width:250px;" type="text" value="{%=$data.MarketPrice%}" />
                         </li>
                         <li style="width:100%">
-                            <span class="grayfont span">营业状态:</span>
-                            <select tabindex="2" id="state" class="select small newselect" style="height: 35px;">
-                                <option value="0" {%=$data.seller.Status==0?'selected':'' %}>营业</option>
-                                <option value="1" {%=$data.seller.Status==1?'selected':'' %}>停业</option>
-                            </select>
-                        </li>
-                        <li style="width:100%">
-                            <div id="container">
-                                <div id="preview">
-                                    <a class="btn-lg btnfont" id="pickfiles" href="#">
-                                        <i class="fa fa-fw fa-plus">+</i>
-                                        <span>商家Logo选择文件</span>
-                                    </a>
-                                </div>
-                                <input tabindex="1" id="imgPath" class="input-text width400 Check sequence" type="hidden" value="" />
-                            </div>
+                            <span class="grayfont span">会员价格:</span>
+                            <input tabindex="3" class="input-text Check vipprice" style="width:250px;" type="text" value="{%=$data.VIPPrice%}" />
                         </li>
                     </ul>
                 </div>
@@ -59,7 +38,6 @@
                     <input type="button" class="prev" id="cacel" value="取消" />
                 </div>
             </div>
-
         </div>
     </div>
 </div>

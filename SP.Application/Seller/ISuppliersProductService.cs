@@ -15,5 +15,6 @@ namespace SP.Application.Seller
         bool UpdateProduct(SuppliersProductDto dto);
         List<SuppliersProductDto> GetSuppliersProductList(int pageIndex, int pageSize, int sellerId);
         int GetSuppliersProductCount(int sellerId);
+        SuppliersProductDto GetSellerProductById(int id);
     }
 }

@@ -66,15 +66,30 @@ namespace SP.Application.Seller
             return supplierProductDto;
         }
 
-        public bool UpdateProduct(SuppliersProductDto dto)
-        {
-            throw new NotImplementedException();
-        }
-
         public int GetSuppliersProductCount(int sellerId)
         {
             var supplerRepos = IocManager.Instance.Resolve<SuppliersProductRepository>();
             return supplerRepos.GetSuppliersProductCount(sellerId);
+        }
+
+        public SuppliersProductDto GetSellerProductById(int id)
+        {
+            var supplerRepos = IocManager.Instance.Resolve<SuppliersProductRepository>();
+            return ConvertFromRepositoryEntity(supplerRepos.GetSellerProductById(id));
+        }
+
+        public bool UpdateProduct(SuppliersProductDto dto)
+        {
+            var supplerRepos = IocManager.Instance.Resolve<SuppliersProductRepository>();
+            return supplerRepos.EditProduct(new SuppliersProductEntity()
+            {
+                Id = dto.Id,
+                SuppliersId = dto.SuppliersId,
+                ProductId = dto?.ProductId,
+                PurchasePrice = dto.PurchasePrice,
+                Status = dto.Status,
+                AlertStock = dto.AlertStock
+            });
         }
     }
 }

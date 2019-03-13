@@ -13,14 +13,13 @@ define(function (require, exports, module) {
         doT = require('dot'),
         Global = require('global').Global,
         easydialog = require("easydialog");
-    qiniu = require('qiniusellerlogo');
     require('admin/style.css');
     //默认参数
     var Defaults = {
-        dialogID: "editseller"//弹出框ID
+        dialogID: "editproduct"//弹出框ID
     };
 
-    var EditSeller = function (options) {
+    var EditProduct = function (options) {
         var _this = this;
         _this.setting = $.extend({}, Defaults, options);
         _this.init(function () {
@@ -28,7 +27,7 @@ define(function (require, exports, module) {
         });
         return this;
     }
-    EditSeller.prototype = {
+    EditProduct.prototype = {
         init: function (callback) {
             var _this = this;
             callback();
@@ -40,24 +39,24 @@ define(function (require, exports, module) {
             var _this = this;
             var elementID = _this.setting.dialogID;
             $.ajax({
-                url: 'GetSellerDetail',
+                url: 'GetProductDetail',
                 type: 'GET',
                 cache: false,
                 data: {
-                    id: _this.setting.Id,
+                    id: _this.setting.Id
                 },
                 success: function (msg) {
-                    doT.exec('seller/editseller.html', function (templateFun) {
+                    doT.exec('seller/editproduct.html', function (templateFun) {
                         var innerText;
                         innerText = templateFun(msg);
                         easydialog.open({
                             container: {
-                                id: "editseller",
-                                header: '编辑所见区域',
+                                id: "editproduct",
+                                header: '编辑商家产品',
                                 content: innerText
                             }
                         });
-                        $('#wizard').css('height', $('#' + msg.result.Id).find('.page').height());
+                        //$('#wizard').css('height', $('#' + msg.result.Id).find('.page').height());
 
                         $(".page").show();
                         //取消
@@ -71,12 +70,10 @@ define(function (require, exports, module) {
                             easydialog.close();
                         });
 
-                        qiniu.QiniuMainController.init();
-
-                        $('#easyDialogBox').css({
-                            width: "500px",
-                            height: "600px"
-                        });
+                        //$('#easyDialogBox').css({
+                        //    width: "500px",
+                        //    height: "600px"
+                        //});
 
                     });
                 },
@@ -92,15 +89,15 @@ define(function (require, exports, module) {
             var _this = this;
             var divElement = $('#' + elementID + '');
             var param = {
-                Id: divElement.find('#Id').val(),
-                SuppliersName: divElement.find('.txtName').val(),
-                TelPhone: divElement.find('.telphone').val(),
-                AlipayNo: divElement.find('.alipay').val(),
-                LogoPath: divElement.find('#imgPath').val(),
-                AccountId: divElement.find('#leader').val(),
+                Id: divElement.find('#sellerProductId').val(),
+                ProductId: divElement.find('#procductlist').val(),
+                PurchasePrice: divElement.find('.purchaseprice').val(),
+                AlertStock: divElement.find('.alertstock').val(),
+                MarketPrice: divElement.find('.marketprice').val(),
+                VIPPrice: divElement.find('.vipprice').val()
             };
             param = $.param(param, true);
-            Global.post("/Seller/EditSeller", param, function (data) {
+            Global.post("/Seller/EditProduct", param, function (data) {
                 _this.setting.callBack(data);
             });
         },
@@ -109,7 +106,7 @@ define(function (require, exports, module) {
     
     //对外公布方法
     exports.init = function (options) {
-        return new EditSeller(options);
+        return new EditProduct(options);
     };
 
     return exports;
