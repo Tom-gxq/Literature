@@ -92,5 +92,25 @@ namespace SP.Application.Seller
                 AlertStock = dto.AlertStock
             });
         }
+
+        public List<SuppliersProductDto> SearchProductByName(string name, int sellerId, int pageIndex, int pageSize)
+        {
+            var retList = new List<SuppliersProductDto>();
+            var repository = IocManager.Instance.Resolve<SuppliersProductRepository>();
+            var list = repository.SearchProductByName(name, sellerId, pageIndex, pageSize);
+            foreach (var item in list)
+            {
+                var entity = ConvertFromRepositoryEntity(item);
+                retList.Add(entity);
+            }
+
+            return retList;
+        }
+
+        public int GetProductByNameCount(string name, int sellerId)
+        {
+            var supplerRepos = IocManager.Instance.Resolve<SuppliersProductRepository>();
+            return supplerRepos.GetSuppliersProductCount(sellerId);
+        }
     }
 }

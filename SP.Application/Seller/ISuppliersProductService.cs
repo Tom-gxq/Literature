@@ -16,5 +16,7 @@ namespace SP.Application.Seller
         List<SuppliersProductDto> GetSuppliersProductList(int pageIndex, int pageSize, int sellerId);
         int GetSuppliersProductCount(int sellerId);
         SuppliersProductDto GetSellerProductById(int id);
+        List<SuppliersProductDto> SearchProductByName(string name, int sellerId, int pageIndex, int pageSize);
+        int GetProductByNameCount(string name, int sellerId);
     }
 }

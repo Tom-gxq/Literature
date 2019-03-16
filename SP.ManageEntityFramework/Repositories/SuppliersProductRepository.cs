@@ -59,5 +59,26 @@ namespace SP.ManageEntityFramework.Repositories
             var result = this.DeleteById(id);
             return result > 0;
         }
+
+        public List<SuppliersProductEntity> SearchProductByName(string name, int sellerId, int pageIndex, int pageSize)
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<SuppliersProductEntity>();
+                q = q.Join<SuppliersProductEntity, ProductEntity>((a, b) => a.SuppliersId == sellerId && a.ProductId == b.ProductId && b.ProductName.Contains(name));
+                q = q.Limit((pageIndex - 1) * pageSize, pageSize);
+                return db.Select<SuppliersProductEntity>(q);
+            }
+        }
+
+        public int GetProductByNameCount(string name, int sellerId)
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<SuppliersProductEntity>();
+                q = q.Join<SuppliersProductEntity, ProductEntity>((a, b) => a.SuppliersId == sellerId && a.ProductId == b.ProductId && b.ProductName.Contains(name));
+                return db.Select<SuppliersProductEntity>(q).Count;
+            }
+        }
     }
 }

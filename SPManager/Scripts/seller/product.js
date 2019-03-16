@@ -217,21 +217,22 @@ define(function (require, exports, module) {
                 type: 'GET',
                 cache: false,
                 data: {
-                    sellerName: $("#inputSearch").val(),
+                    sellerId: $("#sellerId").val(),
+                    name: $("#inputSearch").val(),
                     pageIndex: index,
                     pageSize: 20
                 },
                 success: function (msg) {
-                    _self.SellerArea.find(".contenttr").remove();
+                    _self.ProductArea.find(".contenttr").remove();
                     if (msg.items && msg.items.length > 0) {
-                        _self.dataBinding(msg.itmes);
+                        _self.dataBinding(msg.items);
                         _self.pager.paginate({
                             total_count: msg.data.Total,
                             count: msg.data.Pages,
                             start: msg.data.Index,
                             display: 10,
                             onChange: function (page) {
-                                _self.getSellerList(page);
+                                _self.getProductList(page);
                             }
                         });
                     }
