@@ -166,6 +166,13 @@ namespace Grpc.Service.Core.Caching
 
             return val;
         }
+        public static IBatch CreateBatch(this ICache cache, object asyncState = null)
+        {
+            var val = cache.CreateBatch(asyncState);
+
+            return val;
+        }
+
         public static bool SortedSetRemove<TKey>(this ICache cache, TKey key, TKey member)
         {
             var val = cache.SortedSetRemove(key.ToString(), member.ToString());

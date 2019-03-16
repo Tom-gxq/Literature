@@ -12,10 +12,13 @@ namespace SP.Service.Domain.Reporting
     {
         private readonly ShoppingCartRespository _repository;
         private readonly ProductRepository _productRepository;
-        public ShoppingCartReportDatabase(ShoppingCartRespository repository, ProductRepository productRepository)
+        private readonly ProductTypeRepository _productTypeRepository;
+        public ShoppingCartReportDatabase(ShoppingCartRespository repository, ProductRepository productRepository,
+            ProductTypeRepository productTypeRepository)
         {
             _repository = repository;
             _productRepository = productRepository;
+            _productTypeRepository = productTypeRepository;
         }
 
         public void Add(ShoppingCartsEntity item)
@@ -104,6 +107,11 @@ namespace SP.Service.Domain.Reporting
                 shopCart.Product = _productRepository.GetProductById(shopCart.Product.ProductId);
             }
             shopCart.CalculateAmount();
+            var productType = _productTypeRepository.GetProductTypeByShopId(entity.ShopId.Value);
+            if(productType != null)
+            {
+                shopCart.ShopType = productType.TypeName;
+            }
             return shopCart;
         }
         

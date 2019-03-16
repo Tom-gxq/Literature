@@ -517,7 +517,90 @@ namespace OrderGRPCInterface.Business
             }
             return list;
         }
-
+        public static List<PurchaseOrderBaseModel> GetPurchaseOrderList(string accountId, int pageIndex,int pageSize)
+        {
+            List<PurchaseOrderBaseModel> list = new List<PurchaseOrderBaseModel>();
+            var client = OrderClientHelper.GetClient();
+            var request1 = new PurchaseOrderListRequest()
+            {
+                AccountId = accountId,
+                PageIndex = pageIndex,
+                PageSize = pageSize
+            };
+            var result = client.GetPurchaseOrderList(request1);
+            foreach(var item in result.OrderInfo)
+            {
+                var model = new PurchaseOrderModel();
+                model.orderId = item.OrderId;
+                if (item.OrderDate > 0)
+                {
+                    var date = GetTimestamp(new DateTime(item.OrderDate));
+                    model.orderDate = date.ToString();
+                }
+                model.amount = item.Amount;
+                model.orderType = item.OrderType;
+                list.Add(model);
+            }
+            return list;
+        }
+        public static PurchaseOrderModel GetPurchaseOrderByOrderId(string orderId)
+        {
+            var model = new PurchaseOrderModel();
+            var client = OrderClientHelper.GetClient();
+            var request1 = new OrderIdRequest()
+            {
+                OrderId = orderId
+            };
+            var result = client.GetPurchaseOrderByOrderId(request1);
+            model.orderId = result.OrderId;
+            model.amount = result.Amount;
+            model.orderCode = result.OrderCode;
+            if (result.OrderDate > 0)
+            {
+                var date = GetTimestamp(new DateTime(result.OrderDate));
+                model.orderDate = date.ToString();
+            }
+            if (result.PayDate > 0)
+            {
+                var date = GetTimestamp(new DateTime(result.PayDate));
+                model.orderDate = date.ToString();
+            }
+            model.orderStatus = result.OrderStatus;
+            model.payType = result.PayType;
+            model.account = new SP.Api.Model.Account.AccountInfo()
+            {
+                 AccountId = result.Account.AccountId,
+                 FullName = result.Account.UserName
+            };
+            if (result.Address != null)
+            {
+                model.address = new AddressModel()
+                {
+                    buildingName = result.Address.BuildingName,
+                    districtName = result.Address.DistrictName,
+                    dorm = result.Address.DormName,
+                    schoolName = result.Address.SchoolName,
+                    contactAddress = result.Address.ContactAddress
+                };
+            }
+            model.shoppingCartList = new List<ShoppingCartModel>();
+            if(result.ShoppingCartList != null)
+            {
+                foreach(var item in result.ShoppingCartList)
+                {
+                    var cart = new ShoppingCartModel();
+                    cart.CartId = item.CartId;
+                    cart.Product = new ProductModel();
+                    cart.Product.productName = item.ProductName;
+                    cart.Product.productId = item.ProductId;
+                    cart.Product.marketPrice = item.UnitPrice;
+                    cart.ShopType = item.ShopType;
+                    model.shoppingCartList.Add(cart);
+                }
+            }
+            
+            return model;
+        }
         private static long GetTimestamp(DateTime d)
         {
             return (d.ToUniversalTime().Ticks - 621355968000000000) / 10000000;     //精确到毫秒

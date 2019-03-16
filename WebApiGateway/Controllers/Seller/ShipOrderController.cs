@@ -196,5 +196,42 @@ namespace WebApiGateway.Controllers.Seller
             result.Data = JsonResult;
             return result;
         }
+
+        public ActionResult GetPurchaseOrderList(int pageIndex, int pageSize)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                var list = OrderBusiness.GetPurchaseOrderList(currentAccount.AccountId, pageIndex, pageSize);
+                JsonResult.Add("orders", list);
+                JsonResult.Add("status", 0);
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+        public ActionResult GetPurchaseOrderByOrderId(string orderId)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                var model = OrderBusiness.GetPurchaseOrderByOrderId(orderId);
+                JsonResult.Add("order", model );
+                JsonResult.Add("status", 0);
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
     }
 }

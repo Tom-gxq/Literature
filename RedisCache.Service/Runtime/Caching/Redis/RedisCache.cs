@@ -128,7 +128,13 @@ namespace RedisCache.Service.Runtime.Caching.Redis
             var objbyte = _database.SortedSetAdd(GetHashKey(key), member, value);
             return objbyte;
         }
-        
+
+        public override IBatch CreateBatch(object asyncState = null)
+        {
+            var objbyte = _database.CreateBatch(asyncState);
+            return objbyte;
+        }
+
         public override bool SortedSetRemove(string key, string member)
         {
             var objbyte = _database.SortedSetRemove(GetHashKey(key), member);

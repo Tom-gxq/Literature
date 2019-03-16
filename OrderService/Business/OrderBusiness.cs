@@ -414,21 +414,24 @@ namespace Order.Service.Business
                      UserName = order.AccountInfo.Fullname
                 };
                 result.Account = accountInfo;//订货人
-                var address = new Address()
+                if (order?.Address != null)
                 {
-                     BuildingName = order.Address.BuildingName,
-                     ContactAddress = order.Address.Address,
-                     SchoolName = order.Address.SchoolName,
-                     DistrictName = order.Address.DistrictName,
-                     DormName = order.Address.DormName
-                };
-                result.Address = address;//订货人地址
+                    var address = new Address()
+                    {
+                        BuildingName = order.Address.BuildingName,
+                        ContactAddress = order.Address.Address,
+                        SchoolName = order.Address.SchoolName,
+                        DistrictName = order.Address.DistrictName,
+                        DormName = order.Address.DormName
+                    };
+                    result.Address = address;//订货人地址
+                }
                 result.Amount = order.Amount;
-                result.OrderCode = order.OrderCode;
+                result.OrderCode = order.OrderCode??string.Empty;
                 result.OrderDate = order.OrderDate.Ticks;
                 result.OrderId = order.OrderId;
                 result.OrderStatus = order.OrderStatus;
-                result.PayDate = order.PayDate.Ticks;
+                result.PayDate = order.PayDate>DateTime.MinValue? order.PayDate.Ticks:0;
                 result.PayType = order.PayType;
                 foreach (var item in order.ShoppingCarts)
                 {
@@ -436,7 +439,8 @@ namespace Order.Service.Business
                     shopcart.ProductName = item.Product.ProductName;
                     shopcart.Quantity = item.Quantity;
                     shopcart.Amount = item.Amount;
-                    shopcart.UnitPrice = item.Product.PurchasePrice.Value;
+                    shopcart.UnitPrice = item.Product.PurchasePrice != null ? item.Product.PurchasePrice.Value:0;
+                    shopcart.ShopType = item.ShopType;
                     result.ShoppingCartList.Add(shopcart);
                 }
             }

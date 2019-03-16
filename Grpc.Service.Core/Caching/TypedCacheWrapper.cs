@@ -109,7 +109,11 @@ namespace Grpc.Service.Core.Caching
         {
             return InternalCache.SortedSetRangeByScore(key, start, stop);
         }
-       
+
+        public IBatch CreateBatch(object asyncState = null)
+        {
+            return InternalCache.CreateBatch(asyncState);
+        }
         public bool SortedSetRemove(string key, string member)
         {
             return InternalCache.SortedSetRemove(key, member);

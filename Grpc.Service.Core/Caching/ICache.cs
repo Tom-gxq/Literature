@@ -84,6 +84,7 @@ namespace Grpc.Service.Core.Caching
         void HashSet(string hashKey, string key, object value);
         bool SortedSetAdd(string key, string member, double value);
         List<object> SortedSetRangeByScore(string key, double start , double stop );
+        IBatch CreateBatch(object asyncState = null);
         bool SortedSetRemove(string key, string member);
         /// <summary>
         /// Saves/Overrides an item in the cache by a key.

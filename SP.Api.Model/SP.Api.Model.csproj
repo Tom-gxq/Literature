@@ -73,6 +73,8 @@
     <Compile Include="Order\LeadOrderModel.cs" />
     <Compile Include="Order\OrderInfoModel.cs" />
     <Compile Include="Order\OrderModel.cs" />
+    <Compile Include="Order\PurchaseOrderBaseModel.cs" />
+    <Compile Include="Order\PurchaseOrderModel.cs" />
     <Compile Include="Order\TradeModel.cs" />
     <Compile Include="Product\AttributeModel.cs" />
     <Compile Include="Product\AttributeValueModel.cs" />

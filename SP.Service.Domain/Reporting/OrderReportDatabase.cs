@@ -241,7 +241,17 @@ namespace SP.Service.Domain.Reporting
 
         public PurchaseOrderDomain GetPurchaseOrderByOrderId(string orderId)
         {
-
+            var domain = new PurchaseOrderDomain();
+            var order = _repository.GetOrderByOrderId(orderId);
+            domain.SetMemento(order);
+            var accountInfoReportDatabase = IocManager.Instance.Resolve(typeof(AccountInfoReportDatabase)) as AccountInfoReportDatabase;
+            var accountInfo = accountInfoReportDatabase.GetAccountInfoById(order.AccountId);
+            domain.SetAccountInfoMemento(accountInfo.GetMemento());
+            var addressReportDatabase = IocManager.Instance.Resolve(typeof(AddressReportDatabase)) as AddressReportDatabase;
+            domain.Address = addressReportDatabase.GetAddressById(order.AddressId.Value, order.AccountId);
+            var shoppingCartReportDatabase = IocManager.Instance.Resolve(typeof(ShoppingCartReportDatabase)) as ShoppingCartReportDatabase;
+            domain.ShoppingCarts = shoppingCartReportDatabase.GetMyShoppingCartListByOrderId(order.AccountId, order.OrderId);
+            return domain;
         }
 
         private OrderDomain ConvertOrderEntityToDomain(OrdersEntity entity)
