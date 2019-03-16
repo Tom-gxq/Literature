@@ -511,16 +511,17 @@ namespace SPManager.Controllers
             };
         }
 
-        public JsonResult EditProduct(int id, float purchasePrice, int alertStock, decimal marketPrice, decimal vipPrice)
+        public JsonResult EditProduct(int id, string productId, float purchasePrice, int alertStock, decimal marketPrice, decimal vipPrice)
         {
             List<dynamic> list = new List<dynamic>();
             var productService = IocManager.Instance.Resolve<IProductAppService>();
             var sellerProductSrv = IocManager.Instance.Resolve<ISuppliersProductService>();
             var sellerProduct = sellerProductSrv.GetSellerProductById(id);
-            var product = productService.GetProductDetail(sellerProduct.ProductId);
+            var product = productService.GetProductDetail(productId);
             product.MarketPrice = marketPrice;
             product.VIPPrice = vipPrice;
             productService.EditProduct(product);
+            sellerProduct.ProductId = product.ProductId;
             sellerProduct.AlertStock = alertStock;
             sellerProduct.PurchasePrice = purchasePrice;
             sellerProductSrv.UpdateProduct(sellerProduct);
@@ -533,5 +534,18 @@ namespace SPManager.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-    }
+
+        public JsonResult DelProduct(int id)
+        {
+            var sellerProductSrv = IocManager.Instance.Resolve<ISuppliersProductService>();
+            var result = sellerProductSrv.DelProduct(id);
+            JsonResult.Add("result", result);
+
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        }
 }

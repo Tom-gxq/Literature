@@ -28,7 +28,8 @@ namespace SP.Application.Seller
 
         public bool DelProduct(int id)
         {
-            return true;
+            var repository = IocManager.Instance.Resolve<SuppliersProductRepository>();
+            return repository.DelProduct(id);
         }
 
         public List<SuppliersProductDto> GetSuppliersProductList(int pageIndex, int pageSize, int sellerId)
