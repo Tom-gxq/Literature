@@ -182,5 +182,27 @@ namespace SP.Application.Suppler
 
             return shopDto;
         }
+
+        public List<SupplerDto> SearchSellerByName(string name, int pageIndex, int pageSize)
+        {
+            var retList = new List<SupplerDto>();
+            var repository = IocManager.Instance.Resolve<SupplersRepository>();
+            var list = repository.SearchSellerByName(name, pageIndex, pageSize);
+            foreach (var item in list)
+            {
+                var entity = ConvertFromRepositoryEntity(item);
+
+                retList.Add(entity);
+            }
+
+            return retList;
+        }
+
+        public int SearchSellerByNameCount(string name)
+        {
+            var repository = IocManager.Instance.Resolve<SupplersRepository>();
+            var count = repository.SearchSellerByNameCount(name);
+            return count;
+        }
     }
 }

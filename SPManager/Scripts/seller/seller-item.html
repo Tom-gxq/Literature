@@ -2,9 +2,7 @@
 < j; i++) { %}
 <tr class="contenttr">
     <td class="center">
-        <a href="Product?Id={%=$data[i].Id %}">
-            <div>{%=$data[i].SuppliersName %}</div>
-        </a>
+        <div>{%=$data[i].SuppliersName %}</div>
     </td>
     <td>
         <p>{%=$data[i].AccountName %}</p>
@@ -13,6 +11,7 @@
         <p>{%=$data[i].State %}</p>
     </td>
     <td data-item_id="{%=$data[i].Id %}" class="center">
+        <button class="productList btn btn-primary" id="{%=$data[i].Id%}">产品列表</button>
         <button class="license_path btn btn-primary" id="{%=$data[i].Id%}">营业执照</button>
         <button class="permit_path btn btn-primary" id="{%=$data[i].Id%}">经营许可</button>
         <button class="authorization_path btn btn-primary" id="{%=$data[i].Id%}">授权许可</button>

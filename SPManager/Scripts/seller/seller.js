@@ -115,6 +115,10 @@ define(function (require, exports, module) {
          */
         bindItemEvent: function (item) {
             var _self = this;
+            item.find('button.productList').click(function (event) {
+                window.location.href = '/Seller/Product?Id=' + this.id;
+            });
+
             item.find('button.license_path').click(function (event) {
                 editsellerlicense.init({
                     stepOne: true,
@@ -270,18 +274,18 @@ define(function (require, exports, module) {
         getSellerList: function (index) {
             var _self = this;
             $.ajax({
-                url: 'SearchSellerByUserName',
+                url: 'SearchSellerByName',
                 type: 'GET',
                 cache: false,
                 data: {
-                    sellerName: $("#inputSearch").val(),
+                    name: $("#inputSearch").val(),
                     pageIndex: index,
                     pageSize: 20
                 },
                 success: function (msg) {
                     _self.SellerArea.find(".contenttr").remove();
                     if (msg.items && msg.items.length > 0) {
-                        _self.dataBinding(msg.itmes);
+                        _self.dataBinding(msg.items);
                         _self.pager.paginate({
                             total_count: msg.data.Total,
                             count: msg.data.Pages,

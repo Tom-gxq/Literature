@@ -22,5 +22,7 @@ namespace SP.Application.Suppler
         SupplerDto GetSupplerDetail(int id);
         List<SupplerDto> SearchSellerData(string name);
         SupplerDto GetSellerDataByAccountId(string accountId);
+        List<SupplerDto> SearchSellerByName(string name, int pageIndex, int pageSize);
+        int SearchSellerByNameCount(string name);
     }
 }

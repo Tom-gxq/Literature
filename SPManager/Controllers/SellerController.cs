@@ -84,8 +84,13 @@ namespace SPManager.Controllers
             {
                 var acccountSrv = IocManager.Instance.Resolve<IAccountAppService>();
                 var accountInfo = acccountSrv.GetAccountInfo(item?.AccountId);
-                list.Add(new { Id= item.Id, SuppliersName = item?.SuppliersName??string.Empty,
-                    AccountName = accountInfo?.Fullname??string.Empty, State=item?.Status == 0 ? "营业":"停业"});
+                list.Add(new
+                {
+                    Id = item.Id,
+                    SuppliersName = item?.SuppliersName ?? string.Empty,
+                    AccountName = accountInfo?.Fullname ?? string.Empty,
+                    State = item?.Status == 0 ? "营业" : "停业"
+                });
             }
 
             var total = service.GetSellerCount();
@@ -458,7 +463,7 @@ namespace SPManager.Controllers
 
             foreach (var item in productService.GetProductList())
             {
-                list.Add(new { ProductId = item.ProductId, ProductName=item.ProductName, ImgPath = item.ProductImage, Description =item.Description});
+                list.Add(new { ProductId = item.ProductId, ProductName = item.ProductName, ImgPath = item.ProductImage, Description = item.Description });
             }
 
             JsonResult.Add("products", list);
@@ -473,7 +478,7 @@ namespace SPManager.Controllers
         public JsonResult AddProduct(string productId, int sellerId, float purchasePrice, int alertStock)
         {
             ISuppliersProductService sellerProductSrv = IocManager.Instance.Resolve<ISuppliersProductService>();
-            bool isSucess = sellerProductSrv.AddProduct(new SuppliersProductDto { ProductId = productId, SuppliersId = sellerId, PurchasePrice = purchasePrice, AlertStock= alertStock });
+            bool isSucess = sellerProductSrv.AddProduct(new SuppliersProductDto { ProductId = productId, SuppliersId = sellerId, PurchasePrice = purchasePrice, AlertStock = alertStock });
             JsonResult.Add("sellerId", sellerId);
 
             return new JsonResult()
@@ -502,7 +507,6 @@ namespace SPManager.Controllers
             var productInfo = productService.GetProductDetail(product.ProductId);
             JsonResult.Add("MarketPrice", productInfo.MarketPrice);
             JsonResult.Add("VIPPrice", productInfo.VIPPrice);
-            
 
             return new JsonResult()
             {
@@ -547,5 +551,37 @@ namespace SPManager.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
+        public JsonResult SearchSellerByName(string name, int pageIndex, int pageSize)
+        {
+            var service = IocManager.Instance.Resolve<ISupplerAppService>();
+            List<dynamic> list = new List<dynamic>();
+            var result = service.SearchSellerByName(name, pageIndex, pageSize);
+            foreach (var item in result)
+            {
+                var acccountSrv = IocManager.Instance.Resolve<IAccountAppService>();
+                var accountInfo = acccountSrv.GetAccountInfo(item?.AccountId);
+                list.Add(new
+                {
+                    Id = item.Id,
+                    SuppliersName = item?.SuppliersName ?? string.Empty,
+                    AccountName = accountInfo?.Fullname ?? string.Empty,
+                    State = item?.Status == 0 ? "营业" : "停业"
+                });
+            }
+
+            var total = service.SearchSellerByNameCount(name);
+            JsonResult.Add("items", list);
+            PageModel jObject = new PageModel();
+            jObject.Total = (int)total;
+            jObject.Pages = (int)Math.Ceiling(Convert.ToDouble(total) / pageSize);
+            jObject.Index = pageIndex;
+            JsonResult.Add("data", jObject);
+            return new JsonResult()
+            {
+                Data = JsonResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
         }
+    }
 }

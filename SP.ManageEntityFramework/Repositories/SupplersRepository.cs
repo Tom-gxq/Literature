@@ -142,5 +142,25 @@ namespace SP.ManageEntityFramework.Repositories
                 return db.Select(q).Count;
             }
         }
+
+        public List<SuppliersEntity> SearchSellerByName(string name, int pageIndex, int pageSize)
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<SuppliersEntity>().Where(x => x.SuppliersName.Contains(name));
+                q = q.OrderByDescending(x => x.CreateTime);
+                q = q.Limit((pageIndex - 1) * pageSize, pageSize);
+                return db.Select(q);
+            }
+        }
+
+        public int SearchSellerByNameCount(string name)
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<SuppliersEntity>().Where(x => x.SuppliersName.Contains(name));
+                return db.Select(q).Count;
+            }
+        }
     }
 }
