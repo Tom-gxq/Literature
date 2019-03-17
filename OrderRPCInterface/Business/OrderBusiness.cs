@@ -178,21 +178,6 @@ namespace OrderGRPCInterface.Business
                     }
                     domain.productList = productList;
                 }
-                if (result.OrderInfo.Coupons != null)
-                {
-                    domain.Coupons = new SP.Api.Model.Order.CouponsModel();
-                    domain.Coupons.CouponId = result.OrderInfo.Coupons.CouponId;
-                    domain.Coupons.AccountId = result.OrderInfo.Coupons.AccountId;
-                    domain.Coupons.Amount = result.OrderInfo.Coupons.Amount;
-                    domain.Coupons.AssociatorId = result.OrderInfo.Coupons.AssociatorId;
-                    domain.Coupons.Description = result.OrderInfo.Coupons.Description;
-                    domain.Coupons.EndDate = new DateTime(result.OrderInfo.Coupons.EndDate);
-                    domain.Coupons.KindId = result.OrderInfo.Coupons.KindId;
-                    domain.Coupons.ModeDescription = result.OrderInfo.Coupons.ModeDescription;
-                    domain.Coupons.ModelAmount = result.OrderInfo.Coupons.ModelAmount;
-                    domain.Coupons.StartDate = new DateTime(result.OrderInfo.Coupons.StartDate);
-                    domain.Coupons.Status = result.OrderInfo.Coupons.Status;
-                }
                 return domain;
             }
             else
@@ -388,7 +373,6 @@ namespace OrderGRPCInterface.Business
                 model.useAmount = result.UseAmount;
                 model.activeAmount = result.ActiveAmount;
                 model.applyAmount = result.ApplyAmount;
-                model.consumeAmount = result.ConsumeAmount;
             }
             return model;
         }
@@ -461,16 +445,14 @@ namespace OrderGRPCInterface.Business
             }
         }
 
-        public static List<LeadOrderModel> GetShipOrderList(string accountId, int orderStatus, int orderType, int pageIndex, int pageSize)
+        public static List<LeadOrderModel> GetShipOrderList(string accountId, int orderStatus, int orderType)
         {
             var client = OrderClientHelper.GetClient();
-            var request1 = new ShipOrderRequest()
+            var request1 = new SchoolLeadRequest()
             {
                 AccountId = accountId,
                 OrderStatus = orderStatus,
-                OrderType = orderType,
-                PageIndex = pageIndex,
-                PageSize = pageSize
+                OrderType = orderType
             };
             var result = client.GetShipOrderList(request1);
             var list = new List<LeadOrderModel>();
@@ -517,90 +499,7 @@ namespace OrderGRPCInterface.Business
             }
             return list;
         }
-        public static List<PurchaseOrderBaseModel> GetPurchaseOrderList(string accountId, int pageIndex,int pageSize)
-        {
-            List<PurchaseOrderBaseModel> list = new List<PurchaseOrderBaseModel>();
-            var client = OrderClientHelper.GetClient();
-            var request1 = new PurchaseOrderListRequest()
-            {
-                AccountId = accountId,
-                PageIndex = pageIndex,
-                PageSize = pageSize
-            };
-            var result = client.GetPurchaseOrderList(request1);
-            foreach(var item in result.OrderInfo)
-            {
-                var model = new PurchaseOrderModel();
-                model.orderId = item.OrderId;
-                if (item.OrderDate > 0)
-                {
-                    var date = GetTimestamp(new DateTime(item.OrderDate));
-                    model.orderDate = date.ToString();
-                }
-                model.amount = item.Amount;
-                model.orderType = item.OrderType;
-                list.Add(model);
-            }
-            return list;
-        }
-        public static PurchaseOrderModel GetPurchaseOrderByOrderId(string orderId)
-        {
-            var model = new PurchaseOrderModel();
-            var client = OrderClientHelper.GetClient();
-            var request1 = new OrderIdRequest()
-            {
-                OrderId = orderId
-            };
-            var result = client.GetPurchaseOrderByOrderId(request1);
-            model.orderId = result.OrderId;
-            model.amount = result.Amount;
-            model.orderCode = result.OrderCode;
-            if (result.OrderDate > 0)
-            {
-                var date = GetTimestamp(new DateTime(result.OrderDate));
-                model.orderDate = date.ToString();
-            }
-            if (result.PayDate > 0)
-            {
-                var date = GetTimestamp(new DateTime(result.PayDate));
-                model.orderDate = date.ToString();
-            }
-            model.orderStatus = result.OrderStatus;
-            model.payType = result.PayType;
-            model.account = new SP.Api.Model.Account.AccountInfo()
-            {
-                 AccountId = result.Account.AccountId,
-                 FullName = result.Account.UserName
-            };
-            if (result.Address != null)
-            {
-                model.address = new AddressModel()
-                {
-                    buildingName = result.Address.BuildingName,
-                    districtName = result.Address.DistrictName,
-                    dorm = result.Address.DormName,
-                    schoolName = result.Address.SchoolName,
-                    contactAddress = result.Address.ContactAddress
-                };
-            }
-            model.shoppingCartList = new List<ShoppingCartModel>();
-            if(result.ShoppingCartList != null)
-            {
-                foreach(var item in result.ShoppingCartList)
-                {
-                    var cart = new ShoppingCartModel();
-                    cart.CartId = item.CartId;
-                    cart.Product = new ProductModel();
-                    cart.Product.productName = item.ProductName;
-                    cart.Product.productId = item.ProductId;
-                    cart.Product.marketPrice = item.UnitPrice;
-                    cart.ShopType = item.ShopType;
-                    model.shoppingCartList.Add(cart);
-                }
-            }
-            
-            return model;
-        }
+
         private static long GetTimestamp(DateTime d)
         {
             return (d.ToUniversalTime().Ticks - 621355968000000000) / 10000000;     //精确到毫秒

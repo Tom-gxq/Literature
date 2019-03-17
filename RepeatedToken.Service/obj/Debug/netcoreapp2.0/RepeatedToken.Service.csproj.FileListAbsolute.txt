@@ -1,0 +1,8 @@
+D:\项目构建\饿家军餐饮平台\Src\Literature\RepeatedToken.Service\bin\Debug\netcoreapp2.0\RepeatedToken.Service.deps.json
+D:\项目构建\饿家军餐饮平台\Src\Literature\RepeatedToken.Service\bin\Debug\netcoreapp2.0\RepeatedToken.Service.runtimeconfig.json
+D:\项目构建\饿家军餐饮平台\Src\Literature\RepeatedToken.Service\bin\Debug\netcoreapp2.0\RepeatedToken.Service.runtimeconfig.dev.json
+D:\项目构建\饿家军餐饮平台\Src\Literature\RepeatedToken.Service\obj\Debug\netcoreapp2.0\RepeatedToken.Service.csprojResolveAssemblyReference.cache
+D:\项目构建\饿家军餐饮平台\Src\Literature\RepeatedToken.Service\obj\Debug\netcoreapp2.0\RepeatedToken.Service.csproj.CoreCompileInputs.cache
+D:\项目构建\饿家军餐饮平台\Src\Literature\RepeatedToken.Service\obj\Debug\netcoreapp2.0\RepeatedToken.Service.AssemblyInfo.cs
+D:\项目构建\饿家军餐饮平台\Src\Literature\RepeatedToken.Service\obj\Debug\netcoreapp2.0\RepeatedToken.Service.AssemblyInfoInputs.cache
+D:\项目构建\饿家军餐饮平台\Src\Literature\RepeatedToken.Service\obj\Debug\netcoreapp2.0\RepeatedToken.Service.csprojAssemblyReference.cache

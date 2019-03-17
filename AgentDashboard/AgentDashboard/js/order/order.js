@@ -52,8 +52,10 @@ define(function (require, exports, module) {
             $.extend(this, para);
             _self.bindElements();
 
+            var universityId = para["university"].val();
+
             //获取数据
-            _self.getDataSource(1,-1);
+            _self.getDataSource(1, -1, universityId);
             _self.bindEvent();
         },
         //元素
@@ -81,12 +83,14 @@ define(function (require, exports, module) {
             
 
             $("#btnSearch").click(function () {
-                _self.getTypeList(1, {});
+               var universityId = $("#select_university").val();
+                _self.getTypeList(universityId, {});
             });
             $("#inputSearch").keypress(function (event) {
-                if (event.keyCode == 13)
-                    _self.getTypeList(1, {});
-
+                if (event.keyCode == 13) {
+                    var universityId = $("#select_university").val();
+                    _self.getTypeList(universityId, {});
+                }
             });
             $(".btn_table_selectAll").click(function () {
                 $('.contenttr').find("input").prop("checked", true);
@@ -188,7 +192,7 @@ define(function (require, exports, module) {
         /**
          * Ajax 请求获取角色列表,并调用模版进行UI显示
          */
-        getDataSource: function (index,status) {
+        getDataSource: function (index, status, universityId) {
             var _self = this;
             _self.orderArea.find(".contenttr").remove();
             $.ajax({
@@ -196,6 +200,7 @@ define(function (require, exports, module) {
                 type: 'GET',
                 cache: false,
                 data: {
+                    universityId: universityId,
                     status: status,
                     pageIndex: index,
                     pageSize: 20
@@ -209,7 +214,8 @@ define(function (require, exports, module) {
                             start: msg.data.Index,
                             display: 10,
                             onChange: function (page) {
-                                _self.getDataSource(page, status);
+                               var universityId = $("#select_university").val();
+                                _self.getDataSource(page, status, universityId);
                             }
                         });
                     }
@@ -252,7 +258,8 @@ define(function (require, exports, module) {
         },
         bindStatus: function (status) {  
             var _self = this;
-            _self.getDataSource(1, status);
+            var unversictyId = $("#select_university").val();
+            _self.getDataSource(1, status, unversictyId);
         }
     }, base);
 

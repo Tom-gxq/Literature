@@ -6,7 +6,7 @@ using Grpc.Service.Core.Domain.Entity;
 
 namespace Grpc.Service.Core.Domain.Repositories
 {
-    public interface IRepository<T>: IRepositoryBase<T, int> where T : BaseEntity
+    public interface IRepository<T> where T : BaseEntity
     {
         
 

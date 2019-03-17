@@ -54,13 +54,9 @@ namespace Grpc.Service.Core.Caching
         object GetOrDefault(string key);
         object HashGet(string hashKey, string key);
         object[] ListRange(string key, long start = 0, long stop = -1);
-        long ListLength(string key);
-        long ListLeftPush(string key, string value);
-        long ListLeftPush(string key, string[] value);
-        object ListLeftPop(string key);
         object ListRightPopLeftPush(string source, string destination);
         object ListRightPop(string key);
-        long ListRightPush(string key, string value);        
+        long ListRightPush(string key, string value);
         long ListRemove(string key, string value, long count = 0);
         /// <summary>
         /// Gets an item from the cache or null if not found.
@@ -123,8 +119,5 @@ namespace Grpc.Service.Core.Caching
         /// Clears all items in this cache.
         /// </summary>
         Task ClearAsync();
-        long Publish(string channel, string message);
-        void Subscribe(string channel, Action<string, string> handler);
-        void Unsubscribe(string channel, Action<string, string> handler);
     }
 }

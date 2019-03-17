@@ -29,7 +29,8 @@ namespace AgentDashboard.Models
 
     public class ProductsViewModel
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
+        public string ProductId { get; set; }
         public string Name { get; set; }
         public int PreStocks { get; set; }
         public int Stocks { get; set; }

@@ -18,5 +18,6 @@ namespace AgentDashboard.Models
         public string AccountId { get; set; }
         public Nullable<decimal> HaveAmount { get; set; }
         public Nullable<decimal> UseAmount { get; set; }
+        public Nullable<decimal> ConsumeAmount { get; set; }
     }
 }

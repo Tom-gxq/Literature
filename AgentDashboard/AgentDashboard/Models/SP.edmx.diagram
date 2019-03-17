@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="420ed586518e4ddb8e6b36ea9bb5ef9c" Name="Diagram1">
+      <Diagram DiagramId="f114f8221a9a468888d8312afc4f1781" Name="Diagram1">
         <EntityTypeShape EntityType="SPModel.AccountAuthentication" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SPModel.OAuth2_Access_Token" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SPModel.SP_Account" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
@@ -14,42 +14,46 @@
         <EntityTypeShape EntityType="SPModel.SP_AccountProduct" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SPModel.SP_Admin" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SPModel.SP_ApplyPartner" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_Associator" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SPModel.SP_Attribute" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SPModel.SP_AttributeValue" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SPModel.SP_BrandCategories" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SPModel.SP_Carousel" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SPModel.SP_CashApply" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SPModel.SP_EventRelation" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SPModel.SP_Orders" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SPModel.SP_ProductAttribute" Width="1.5" PointX="10.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SPModel.SP_ProductImage" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SPModel.SP_ProductRegion" Width="1.5" PointX="6.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_ConsumeTrade" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_EventRelation" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_IncomeTrade" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_Orders" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_ProductAttribute" Width="1.5" PointX="6.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_ProductImage" Width="1.5" PointX="8.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_ProductRegion" Width="1.5" PointX="10.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SPModel.SP_Products" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SPModel.SP_ProductSKUs" Width="1.5" PointX="12.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SPModel.SP_ProductType" Width="1.5" PointX="12.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SPModel.SP_ProductTypeBrand" Width="1.5" PointX="2.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SPModel.SP_RegionData" Width="1.5" PointX="8.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SPModel.SP_RegionType" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SPModel.SP_ResEvent" Width="1.5" PointX="14.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SPModel.SP_Shop" Width="1.5" PointX="14.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SPModel.SP_ShopAttribute" Width="1.5" PointX="10.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SPModel.SP_ShoppingCarts" Width="1.5" PointX="12.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SPModel.SP_ShopProduct" Width="1.5" PointX="14.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SPModel.SP_Suppliers" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SPModel.SP_SysEvent" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SPModel.SP_Trade" Width="1.5" PointX="16.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SPModel.SP_ShopOwner" Width="1.5" PointX="6.75" PointY="17.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SPModel.SP_SysKind" Width="1.5" PointX="8.75" PointY="17.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SPModel.SP_RegionAccount" Width="1.5" PointX="15.375" PointY="17.75" />
-        <EntityTypeShape EntityType="SPModel.SP_SellerStatistics" Width="1.5" PointX="17.375" PointY="17.75" />
-        <EntityTypeShape EntityType="SPModel.SP_SellerStatisticsTrade" Width="1.5" PointX="3.375" PointY="18.75" />
-        <EntityTypeShape EntityType="SPModel.SP_ShipOrder" Width="1.5" PointX="11.375" PointY="18.75" />
-        <EntityTypeShape EntityType="SPModel.SP_RepeatedToken" Width="1.5" PointX="19.375" PointY="0.75" />
-        <EntityTypeShape EntityType="SPModel.SP_ShipStatistics" Width="1.5" PointX="0.75" PointY="19.75" />
-        <EntityTypeShape EntityType="SPModel.SP_Associator" Width="1.5" PointX="19.375" PointY="3.75" />
-        <EntityTypeShape EntityType="SPModel.SP_UserShipping" Width="1.5" PointX="17.375" PointY="13.75" />
-        <EntityTypeShape EntityType="SPModel.SP_ShippingOrders" Width="1.5" PointX="19.375" PointY="7.75" />
-        <EntityTypeShape EntityType="SPModel.SP_SysStatistics" Width="1.5" PointX="19.375" PointY="11.75" />
+        <EntityTypeShape EntityType="SPModel.SP_RegionAccount" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_RegionData" Width="1.5" PointX="14.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_RegionType" Width="1.5" PointX="4.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_ResEvent" Width="1.5" PointX="14.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_SellerStatistics" Width="1.5" PointX="14.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_SellerStatisticsTrade" Width="1.5" PointX="10.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_ShipOrder" Width="1.5" PointX="12.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_ShippingOrders" Width="1.5" PointX="14.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_ShipStatistics" Width="1.5" PointX="6.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_Shop" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_ShopAttribute" Width="1.5" PointX="16.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_ShoppingCarts" Width="1.5" PointX="16.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_ShopProduct" Width="1.5" PointX="16.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_Suppliers" Width="1.5" PointX="16.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_SuppliersProduct" Width="1.5" PointX="2.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_SuppliersRegion" Width="1.5" PointX="8.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_SysEvent" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_SysStatistics" Width="1.5" PointX="18.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_Trade" Width="1.5" PointX="18.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_UserShipping" Width="1.5" PointX="10.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_RepeatedToken" Width="1.5" PointX="18.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_ShopOwner" Width="1.5" PointX="12.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPModel.SP_SysKind" Width="1.5" PointX="18.75" PointY="14.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

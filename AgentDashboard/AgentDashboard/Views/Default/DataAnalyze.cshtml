@@ -1,4 +1,5 @@
-﻿@{
+﻿@model AgentDashboard.Models.DataAnalyzeViewModel
+@{
     Layout = null;
 }
 
@@ -114,12 +115,37 @@
                             数据分析
                         </div>
                         <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-4">
+                                    <span class="mb-2">学校</span>
+                                    <select id="select_university" class="form-control w-100">
+                                        @if (Model.Universities != null)
+                                        {
+                                            foreach (var item in Model.Universities)
+                                            {
+                                                <option value="@item.Key">@item.Value</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-4">
+                                </div>
+                                <div class="col-3">
+                                </div>
+                                <div class="col-1">
+                                    <span class="mb-2">&nbsp;</span>
+                                    <button id="btn_search" class="btn btn-primary w-100" type="button">
+                                        <i class="fa fa-search"></i>
+                                        检索
+                                    </button>
+                                </div>
+                            </div>
                             <div class="card mb-3">
                                 <div class="card-header">
                                     <i class="fa fa-area-chart"></i> 用户注册数
-                                    <button class="btn btn-primary text-white" onclick="GetNewUserAreaChart(7)">7天</button>
-                                    <button class="btn btn-primary text-white" onclick="GetNewUserAreaChart(15)">15天</button>
-                                    <button class="btn btn-primary text-white" onclick="GetNewUserAreaChart(30)">30天</button>
+                                    <button class="btn btn-primary text-white" onclick="GetNewUserAreaChart(@Model.RegionId, 7)">7天</button>
+                                    <button class="btn btn-primary text-white" onclick="GetNewUserAreaChart(@Model.RegionId, 15)">15天</button>
+                                    <button class="btn btn-primary text-white" onclick="GetNewUserAreaChart(@Model.RegionId, 30)">30天</button>
                                 </div>
                                 <div class="card-body">
                                     <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
@@ -131,9 +157,9 @@
                             <div class="card mb-3">
                                 <div class="card-header">
                                     <i class="fa fa-area-chart"></i> 订单数
-                                    <button class="btn btn-primary text-white" onclick="GetNewOrderAreaChart(7)">7天</button>
-                                    <button class="btn btn-primary text-white" onclick="GetNewOrderAreaChart(15)">15天</button>
-                                    <button class="btn btn-primary text-white" onclick="GetNewOrderAreaChart(30)">30天</button>
+                                    <button class="btn btn-primary text-white" onclick="GetNewOrderAreaChart(@Model.RegionId, 7)">7天</button>
+                                    <button class="btn btn-primary text-white" onclick="GetNewOrderAreaChart(@Model.RegionId, 15)">15天</button>
+                                    <button class="btn btn-primary text-white" onclick="GetNewOrderAreaChart(@Model.RegionId, 30)">30天</button>
                                 </div>
                                 <div class="card-body">
                                     <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
@@ -145,9 +171,9 @@
                             <div class="card mb-3">
                                 <div class="card-header">
                                     <i class="fa fa-area-chart"></i> 会员数
-                                    <button class="btn btn-primary text-white" onclick="GetNewAssociatorAreaChart(7)">7天</button>
-                                    <button class="btn btn-primary text-white" onclick="GetNewAssociatorAreaChart(15)">15天</button>
-                                    <button class="btn btn-primary text-white" onclick="GetNewAssociatorAreaChart(30)">30天</button>
+                                    <button class="btn btn-primary text-white" onclick="GetNewAssociatorAreaChart(@Model.RegionId, 7)">7天</button>
+                                    <button class="btn btn-primary text-white" onclick="GetNewAssociatorAreaChart(@Model.RegionId, 15)">15天</button>
+                                    <button class="btn btn-primary text-white" onclick="GetNewAssociatorAreaChart(@Model.RegionId, 30)">30天</button>
                                 </div>
                                 <div class="card-body">
                                     <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
@@ -159,9 +185,9 @@
                             <div class="card mb-3">
                                 <div class="card-header">
                                     <i class="fa fa-area-chart"></i> 交易金额数
-                                    <button class="btn btn-primary text-white" onclick="GetOrderAmountAreaChart(7)">7天</button>
-                                    <button class="btn btn-primary text-white" onclick="GetOrderAmountAreaChart(15)">15天</button>
-                                    <button class="btn btn-primary text-white" onclick="GetOrderAmountAreaChart(30)">30天</button>
+                                    <button class="btn btn-primary text-white" onclick="GetOrderAmountAreaChart(@Model.RegionId, 7)">7天</button>
+                                    <button class="btn btn-primary text-white" onclick="GetOrderAmountAreaChart(@Model.RegionId, 15)">15天</button>
+                                    <button class="btn btn-primary text-white" onclick="GetOrderAmountAreaChart(@Model.RegionId, 30)">30天</button>
                                 </div>
                                 <div class="card-body">
                                     <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
@@ -219,11 +245,11 @@
         <!-- Custom scripts for this page-->
         <script src="~/js/sb-admin-charts.min.js"></script>
         <script>
-            function GetNewUserAreaChart(day) {
+            function GetNewUserAreaChart(regionId, day) {
                 //----Line Chart---------
                 var c = document.getElementById("NewUserCntChart");
                 var ctx = c.getContext("2d");
-                var tData = $.getValues("GetUserNameLineChartData?day=" + day);
+                var tData = $.getValues("GetUserNameLineChartData?regionId=" + regionId + "&day=" + day);
                 var myLineChart = new Chart(ctx, {
                     type: 'line',
                     data: tData,
@@ -240,7 +266,7 @@
                             yAxes: [{
                                 ticks: {
                                     min: 0,
-                                    max:500,
+                                    max: 500,
                                     maxTicksLimit: 5
                                 },
                                 gridLines: {
@@ -252,11 +278,11 @@
                 });
             };
 
-            function GetNewOrderAreaChart(day) {
+            function GetNewOrderAreaChart(regionId, day) {
                 //----Line Chart---------
                 var c = document.getElementById("NewOderCntChart");
                 var ctx = c.getContext("2d");
-                var tData = $.getValues("GetNewOrderChartData?day=" + day);
+                var tData = $.getValues("GetNewOrderChartData?regionId=" + regionId + "&day=" + day);
                 var myLineChart = new Chart(ctx, {
                     type: 'line',
                     data: tData,
@@ -285,11 +311,11 @@
                 });
             };
 
-            function GetNewAssociatorAreaChart(day) {
+            function GetNewAssociatorAreaChart(regionId, day) {
                 //----Line Chart---------
                 var c = document.getElementById("NewAssociatorCntChart");
                 var ctx = c.getContext("2d");
-                var tData = $.getValues("GetNewAssociatorChartData?day=" + day);
+                var tData = $.getValues("GetNewAssociatorChartData?regionId=" + regionId + "&day=" + day);
                 var myLineChart = new Chart(ctx, {
                     type: 'line',
                     data: tData,
@@ -318,11 +344,11 @@
                 });
             };
 
-            function GetOrderAmountAreaChart(day) {
+            function GetOrderAmountAreaChart(regionId, day) {
                 //----Line Chart---------
                 var c = document.getElementById("OrderAmountChart");
                 var ctx = c.getContext("2d");
-                var tData = $.getValues("GetOrderAmountChartData?day=" + day);
+                var tData = $.getValues("GetOrderAmountChartData?regionId=" + regionId + "&day=" + day);
                 var myLineChart = new Chart(ctx, {
                     type: 'line',
                     data: tData,
@@ -351,11 +377,21 @@
                 });
             };
 
-            GetNewUserAreaChart(7);
-            GetNewOrderAreaChart(7);
-            GetNewAssociatorAreaChart(7);
-            GetOrderAmountAreaChart(7);
-            
+            $(document).ready(function () {
+                GetNewUserAreaChart(@Model.RegionId, 7);
+                GetNewOrderAreaChart(@Model.RegionId, 7);
+                GetNewAssociatorAreaChart(@Model.RegionId, 7);
+                GetOrderAmountAreaChart(@Model.RegionId, 7);
+
+                $("#btn_search").click(function () {
+                    var university = $("#select_university").val();
+                    GetNewUserAreaChart(university, 7);
+                    GetNewOrderAreaChart(university, 7);
+                    GetNewAssociatorAreaChart(university, 7);
+                    GetOrderAmountAreaChart(university, 7);
+                });
+            });
+
         </script>
     </div>
 </body>

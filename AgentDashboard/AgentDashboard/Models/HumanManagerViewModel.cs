@@ -16,5 +16,6 @@ namespace AgentDashboard.Models
         public string RegionName { get; set; }
         public string TypeName { get; set; }
         public String Birthday { get; set; }
+        public int ProductType { get; set; }
     }
 }

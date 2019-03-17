@@ -21,5 +21,6 @@ namespace AgentDashboard.Models
         public decimal Price { get; set; }
         public string Description { get; set; }
         public decimal DiscountValue { get; set; }
+        public bool IsDisplay { get; set; }
     }
 }
