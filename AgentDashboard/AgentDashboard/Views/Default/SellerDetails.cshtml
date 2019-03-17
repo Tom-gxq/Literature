@@ -193,6 +193,12 @@
 
                                                 <div class="card-body">
                                                     <h5 class="card-title">@product.ProductName</h5>
+                                                    <div class="row">
+                                                        <label>市场价</label><input type="text" class="form-control form-text w-50 h-50 prestock" value="@product.MarketPrice" id="MarketPrice_@product.ProductId" onchange="EditMarketPrice('@product.ProductId')"/>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label>会员价</label><input type="text" class="form-control form-text w-50 h-50 prestock" value="@product.VIPPrice" id="VIPPrice_@product.ProductId" onchange="EditVIPPrice('@product.ProductId')" />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -274,6 +280,14 @@
             //    $(this).tab('show')
             //})
         });
+        function EditMarketPrice(productId) {
+            var price = $("#MarketPrice_" + productId).val();
+            $.post("/Default/UpdateProductMarketPrice?Id=" + productId + "&price=" + price);
+        };
+        function EditVIPPrice(productId) {
+            var price = $("#VIPPrice_" + productId).val();
+            $.post("/Default/UpdateProductVIPPrice?Id=" + productId + "&price=" + price);
+        };
     </script>
 
     <script type="text/javascript" src="/js/seajs/sea.js"></script>

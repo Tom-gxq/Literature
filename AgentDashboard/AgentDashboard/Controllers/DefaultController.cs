@@ -748,7 +748,7 @@ namespace AgentDashboard.Controllers
 
                 foreach (var item in sellersList)
                 {
-                    var seller = shopsVM.Where(n => n.SellerId == item.Id)?.First();
+                    var seller = shopsVM.SingleOrDefault(n => n.SellerId == item.Id);
                     if (seller != null)
                     {
                         viewModel.Sellers.Add(seller);
@@ -1842,6 +1842,22 @@ namespace AgentDashboard.Controllers
                 Data = JsonResult,
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
+        }
+
+        public void UpdateProductMarketPrice(string id, int price)
+        {
+            IProductAppService service = IocManager.Instance.Resolve<IProductAppService>();
+            var productInfo = service.GetProductDetail(id);
+            productInfo.MarketPrice = price;
+            service.EditProduct(productInfo);
+        }
+
+        public void UpdateProductVIPPrice(string id, int price)
+        {
+            IProductAppService service = IocManager.Instance.Resolve<IProductAppService>();
+            var productInfo = service.GetProductDetail(id);
+            productInfo.VIPPrice = price;
+            service.EditProduct(productInfo);
         }
     }
 }
