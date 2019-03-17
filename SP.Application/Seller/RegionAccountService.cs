@@ -83,17 +83,23 @@ namespace SP.Application.Seller
             return regionAccountDto;
         }
 
-        public List<RegionAccountDto> SearchLeaderByName(string leaderName)
+        public List<RegionAccountDto> SearchLeaderByName(string leaderName, int pageIndex, int pageSize)
         {
             var retList = new List<RegionAccountDto>();
             var repository = IocManager.Instance.Resolve<RegionAccountRespository>();
-            var list = repository.SearchLeaderByName(leaderName);
+            var list = repository.SearchLeaderByName(leaderName, pageIndex, pageSize);
             foreach (var leader in list)
             {
                 var supplierDto = ConvertFromRepositoryEntity(leader);
                 retList.Add(supplierDto);
             }
             return retList;
+        }
+
+        public int SearchLeaderByNameCount(string leaderName)
+        {
+            var repository = IocManager.Instance.Resolve<RegionAccountRespository>();
+            return repository.SearchLeaderByNameCount(leaderName);
         }
 
         public bool UpdateLeader(RegionAccountDto oldDto, RegionAccountDto dto)

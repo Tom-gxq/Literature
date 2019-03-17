@@ -40,7 +40,7 @@ namespace SPManager.Controllers
         public JsonResult SearchRegionByName(string supplierName, int pageIndex, int pageSize)
         {
             ISuppliersRegionService service = IocManager.Instance.Resolve<ISuppliersRegionService>();
-            var result = service.SearchRegionByName(supplierName);
+            var result = service.SearchRegionByName(supplierName, pageIndex, pageSize);
             JsonResult.Add("result", result);
             PageModel jObject = new PageModel();
             var total = service.SearchRegionByNameCount(supplierName);
@@ -79,7 +79,8 @@ namespace SPManager.Controllers
         {
             var service = IocManager.Instance.Resolve<ISupplerAppService>();
             List<dynamic> list = new List<dynamic>();
-            var sellerList = service.GetSupplerList(pageIndex, pageSize);
+            var sellerList = service.GetSupplerList(pageIndex, pageSize)
+                .OrderByDescending(x => x.CreateTime);
             foreach (var item in sellerList)
             {
                 var acccountSrv = IocManager.Instance.Resolve<IAccountAppService>();
@@ -253,7 +254,8 @@ namespace SPManager.Controllers
         public JsonResult DelLeader(int regionId, string accountId)
         {
             IRegionAccountService accountSrv = IocManager.Instance.Resolve<IRegionAccountService>();
-            accountSrv.DelLeader(regionId, accountId);
+            var result = accountSrv.DelLeader(regionId, accountId);
+            JsonResult.Add("result", result);
             return new JsonResult()
             {
                 Data = JsonResult,
@@ -275,10 +277,10 @@ namespace SPManager.Controllers
         public JsonResult SearchLeaderByName(string leaderName, int pageIndex, int pageSize)
         {
             IRegionAccountService service = IocManager.Instance.Resolve<IRegionAccountService>();
-            var result = service.SearchLeaderByName(leaderName);
+            var result = service.SearchLeaderByName(leaderName, pageIndex, pageSize);
             JsonResult.Add("result", result);
             PageModel jObject = new PageModel();
-            var total = result.Count;
+            var total = service.SearchLeaderByNameCount(leaderName);
             jObject.Total = total;
             jObject.Pages = (int)Math.Ceiling(Convert.ToDouble(total) / pageSize);
             jObject.Index = pageIndex;

@@ -16,6 +16,7 @@ namespace SP.Application.Seller
         List<RegionAccountDto> GetLeaderList(int pageIndex, int pageSize);
         long GetLeaderCount();
         RegionAccountDto GetLeaderDetail(int id);
-        List<RegionAccountDto> SearchLeaderByName(string leaderName);
+        List<RegionAccountDto> SearchLeaderByName(string leaderName, int pageIndex, int pageSize);
+        int SearchLeaderByNameCount(string leaderName);
     }
 }

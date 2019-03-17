@@ -27,7 +27,8 @@ namespace SP.ManageEntityFramework.Repositories
             using (var db = Context.OpenDbConnection())
             {
                 var q = db.From<SuppliersRegionEntity>();
-                q = q.Limit((pageIndex - 1) * pageSize, pageSize);
+                q = q.Limit((pageIndex - 1) * pageSize, pageSize)
+                    .OrderByDescending(x => x.CreateTime);
                 return db.Select<SuppliersRegionEntity>(q);
             }
         }
@@ -53,29 +54,26 @@ namespace SP.ManageEntityFramework.Repositories
             return result > 0;
         }
 
-        public List<SuppliersRegionEntity> SearchRegionByName(string supplierName)
+        public List<SuppliersRegionEntity> SearchRegionByName(string supplierName, int pageIndex, int pageSize)
         {
-            List<SuppliersRegionEntity> list = new List<SuppliersRegionEntity>();
-
             using (var db = Context.OpenDbConnection())
             {
-                var supplierQuery = db.From<SuppliersEntity>().Where(x => x.SuppliersName.Contains(supplierName));
-                foreach (var supplier in db.Select(supplierQuery))
-                {
-                    var q = db.From<SuppliersRegionEntity>().Where(x => x.SuppliersId == supplier.Id).OrderByDescending(x => x.UpdateTime);
-                    list.AddRange(db.Select(q));
-                }
+                var q = db.From<SuppliersRegionEntity>();
+                q = q.Join<SuppliersRegionEntity, SuppliersEntity>((x,y)=> y.SuppliersName.Contains(supplierName) && x.SuppliersId == y.Id);
+                q = q.OrderByDescending(x => x.CreateTime);
+                q = q.Limit((pageIndex - 1) * pageSize, pageSize)
+                    .OrderByDescending(x => x.CreateTime);
+                return db.Select<SuppliersRegionEntity>(q);
             }
-
-            return list;
         }
 
         public int SearchRegionByNameCount(string supplierName)
         {
             using (var db = Context.OpenDbConnection())
             {
-                var q = db.From<SuppliersEntity>().Where(x=>x.SuppliersName.Contains(supplierName));
-                return db.Select(q).Count();
+                var q = db.From<SuppliersRegionEntity>();
+                q = q.Join<SuppliersRegionEntity, SuppliersEntity>((x, y) => y.SuppliersName.Contains(supplierName) && x.SuppliersId == y.Id);
+                return db.Select<SuppliersRegionEntity>(q).Count;
             }
         }
     }

@@ -122,8 +122,8 @@ define(function (require, exports, module) {
                     dialogID: 'wizard',
                     header: '编辑负责区域',
                     Id: this.id,
-                    callBack: function (Id) {
-                        if (Id && Id != '') {
+                    callBack: function (result) {
+                        if (result && result != '') {
                             //重新加载页面
                             window.location.href = '/Seller/Region';
                         } else {

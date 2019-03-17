@@ -21,7 +21,8 @@ namespace SP.ManageEntityFramework.Repositories
             using (var db = Context.OpenDbConnection())
             {
                 var q = db.From<SuppliersProductEntity>();
-                q = q.Where(n => n.SuppliersId == id)?.Limit((pageIndex - 1) * pageSize, pageSize);
+                q = q.Where(n => n.SuppliersId == id)?.Limit((pageIndex - 1) * pageSize, pageSize)
+                    .OrderByDescending(x => x.CreateTime);
                 return db.Select<SuppliersProductEntity>(q);
             }
         }
@@ -66,7 +67,8 @@ namespace SP.ManageEntityFramework.Repositories
             {
                 var q = db.From<SuppliersProductEntity>();
                 q = q.Join<SuppliersProductEntity, ProductEntity>((a, b) => a.SuppliersId == sellerId && a.ProductId == b.ProductId && b.ProductName.Contains(name));
-                q = q.Limit((pageIndex - 1) * pageSize, pageSize);
+                q = q.Limit((pageIndex - 1) * pageSize, pageSize)
+                    .OrderByDescending(x => x.CreateTime);
                 return db.Select<SuppliersProductEntity>(q);
             }
         }

@@ -108,11 +108,11 @@ namespace SP.Application.Seller
             });
         }
 
-        public List<SuppliersRegionDto> SearchRegionByName(string supplierName)
+        public List<SuppliersRegionDto> SearchRegionByName(string supplierName, int pageIndex, int pageSize)
         {
             var retList = new List<SuppliersRegionDto>();
             var repository = IocManager.Instance.Resolve<SuppliersRegionRespository>();
-            var list = repository.SearchRegionByName(supplierName);
+            var list = repository.SearchRegionByName(supplierName, pageIndex, pageSize);
             foreach (var supplier in list)
             {
                 var supplierDto = ConvertFromRepositoryEntity(supplier);

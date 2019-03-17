@@ -37,21 +37,25 @@ namespace SP.ManageEntityFramework.Repositories
             }
         }
 
-        public List<RegionAccountEntity> SearchLeaderByName(string leaderName)
+        public List<RegionAccountEntity> SearchLeaderByName(string leaderName, int pageIndex, int pageSize)
         {
-            List<RegionAccountEntity> list = new List<RegionAccountEntity>();
-
             using (var db = Context.OpenDbConnection())
             {
-                var leaderQuery = db.From<AccountInfoEntity>().Where(x => x.Fullname.Contains(leaderName));
-                foreach (var leader in db.Select(leaderQuery))
-                {
-                    var q = db.From<RegionAccountEntity>().Where(x => x.Id == leader.AccountId);
-                    list.AddRange(db.Select(q));
-                }
+                var q = db.From<RegionAccountEntity>();
+                q = q.Join<RegionAccountEntity, AccountInfoEntity>((x, y) => x.Id == y.AccountId && y.Fullname.Contains(leaderName));
+                q = q.Limit((pageIndex - 1) * pageSize, pageSize);
+                return db.Select<RegionAccountEntity>();
             }
+        }
 
-            return list;
+        public int SearchLeaderByNameCount(string leaderName)
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<RegionAccountEntity>();
+                q = q.Join<RegionAccountEntity, AccountInfoEntity>((x, y) => x.Id == y.AccountId && y.Fullname.Contains(leaderName));
+                return db.Select<RegionAccountEntity>().Count;
+            }
         }
     }
 }

@@ -110,8 +110,7 @@ define(function (require, exports, module) {
                 LogoPath: divElement.find('#imgPath').val(),
                 AccountId: divElement.find('#leader').val(),
             };
-            param = $.param(type, true);
-            alert(type);
+            param = $.param(param, true);
             Global.post("/Seller/AddSeller", param, function (data) {
                 _this.setting.callBack(data);
             });

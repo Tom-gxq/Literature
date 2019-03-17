@@ -16,7 +16,7 @@ namespace SP.Application.Seller
         List<SuppliersRegionDto> GetSuppliersRegionList(int pageIndex, int pageSize);
         long GetSuppliersRegionCount();
         SuppliersRegionDto GetSupplerDetail(int id);
-        List<SuppliersRegionDto> SearchRegionByName(string supplierName);
+        List<SuppliersRegionDto> SearchRegionByName(string supplierName, int pageIndex, int pageSize);
         int SearchRegionByNameCount(string supplierName);
     }
 }
