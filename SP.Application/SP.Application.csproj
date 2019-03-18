@@ -98,8 +98,14 @@
     <Compile Include="Product\ProductAppService.cs" />
     <Compile Include="Product\ProductTypeService.cs" />
     <Compile Include="Product\RegionAppService.cs" />
+    <Compile Include="Seller\DTO\RegionAccountDto.cs" />
+    <Compile Include="Seller\DTO\SuppliersProductDto.cs" />
     <Compile Include="Seller\DTO\SuppliersRegionDto.cs" />
+    <Compile Include="Seller\IRegionAccountService.cs" />
+    <Compile Include="Seller\ISuppliersProductService.cs" />
     <Compile Include="Seller\ISuppliersRegionService.cs" />
+    <Compile Include="Seller\RegionAccountService.cs" />
+    <Compile Include="Seller\SuppliersProductService.cs" />
     <Compile Include="Seller\SuppliersRegionService.cs" />
     <Compile Include="Shop\DTO\ShopDto.cs" />
     <Compile Include="Shop\DTO\ShopOwnerDto.cs" />

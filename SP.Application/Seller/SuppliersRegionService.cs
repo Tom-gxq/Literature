@@ -46,7 +46,6 @@ namespace SP.Application.Seller
 
         public long GetSuppliersRegionCount()
         {
-            var retList = new List<SuppliersRegionDto>();
             var repository = IocManager.Instance.Resolve<SuppliersRegionRespository>();
             var count = repository.Count();
             return count;
@@ -87,29 +86,14 @@ namespace SP.Application.Seller
 
             var supplierRegionDto = new SuppliersRegionDto
             {
-                Id = (int)entity.Id,
-                SuppliersId = (int)entity.SuppliersId,
-                SuppliersName = supplerInfo.SuppliersName,
-                RegionID = (int)entity.RegionID,
-                RegionName = regionInfo.DataName
+                Id = (int)entity?.Id,
+                SuppliersId = (int)entity?.SuppliersId,
+                SuppliersName = supplerInfo?.SuppliersName,
+                RegionID = (int)entity?.RegionID,
+                RegionName = regionInfo?.DataName
             };
 
             return supplierRegionDto;
-        }
-
-        List<SuppliersRegionDto> ISuppliersRegionService.SearchSeller(int supplerId)
-        {
-            throw new NotImplementedException();
-        }
-
-        List<SuppliersRegionDto> ISuppliersRegionService.SearchSellerData(string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        int ISuppliersRegionService.SearchSupplerCount(int supplerId)
-        {
-            throw new NotImplementedException();
         }
 
         bool ISuppliersRegionService.UpdateSeller(SuppliersRegionDto dto)
@@ -122,6 +106,26 @@ namespace SP.Application.Seller
                 RegionID = dto.RegionID,
                 UpdateTime = DateTime.Now
             });
+        }
+
+        public List<SuppliersRegionDto> SearchRegionByName(string supplierName, int pageIndex, int pageSize)
+        {
+            var retList = new List<SuppliersRegionDto>();
+            var repository = IocManager.Instance.Resolve<SuppliersRegionRespository>();
+            var list = repository.SearchRegionByName(supplierName, pageIndex, pageSize);
+            foreach (var supplier in list)
+            {
+                var supplierDto = ConvertFromRepositoryEntity(supplier);
+                retList.Add(supplierDto);
+            }
+            return retList;
+        }
+
+        public int SearchRegionByNameCount(string supplierName)
+        {
+            var repository = IocManager.Instance.Resolve<SuppliersRegionRespository>();
+            var total = repository.SearchRegionByNameCount(supplierName);
+            return total;
         }
     }
 }

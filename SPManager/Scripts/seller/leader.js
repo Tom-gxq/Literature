@@ -12,11 +12,8 @@ define(function (require, exports, module) {
         doT = require('dot');
     var datapager = require('datapager');
     var easydialog = require("easydialog");
-    var addseller = require('add-seller');
-    var editseller = require('edit-seller');
-    var editsellerlicense = require("edit-seller-license");
-    var editsellerpermit = require("edit-seller-permit");
-    var editsellerauthorization = require('edit-seller-authorization');
+    var addLeader = require('add-seller-leader');
+    var editLeader = require('edit-seller-leader');
     var Global = common.Global;
     //基础扩展
     var base = {
@@ -34,7 +31,7 @@ define(function (require, exports, module) {
                 var eventName = match[1],
                     selector = match[2];
                 if (selector === '') {
-                    // TODO:
+
                 } else {
                     this.el.delegate(selector, eventName, function () {
                         method($(this));
@@ -47,10 +44,8 @@ define(function (require, exports, module) {
     /**
      * 角色设置模块
      */
-    var SellerController = $.extend({
-        /**
-         * 模块入口
-         */
+    var LeaderController = $.extend({
+        //**         * 模块入口         */
         init: function (para) {
             var _self = this;
 
@@ -63,7 +58,7 @@ define(function (require, exports, module) {
         },
         //元素
         elements: {
-            '#J_ItemList': 'SellerArea',
+            '#J_ItemList': 'leaderArea',
             // 分页元素
             '#pager': 'pager'
         },
@@ -74,123 +69,63 @@ define(function (require, exports, module) {
         dataBinding: function (data) {
             var _self = this;
             items = '';
-            doT.exec('seller/seller-item.html', function (templateFun) {
+            doT.exec('seller/leader-item.html', function (templateFun) {
                 items = templateFun(data);
                 items = $(items);
                 _self.bindItemEvent(items);
-                _self.SellerArea.append(items);
+                _self.leaderArea.append(items);
             });
         },
         bindEvent: function () {
             var _self = this;
             $('#btnAddButton').bind('click', function () {
                 //弹出添加的操作框
-                addseller.init({
+                addLeader.init({
                     stepOne: true,
                     dialogID: 'wizard',
-                    header: '添加商家',
+                    header: '各校区负责人配置',
                     callBack: function (result) {
                         if (result) {
                             //重新加载页面
-                            window.location.href = '/Seller/Index';
+                            window.location.href = '/Seller/Leader';
                         } else {
-                            alert('添加商家失败');
+                            alert('添加各校区负责人失败');
                         }
                     }
                 });
             });
 
             $("#btnSearch").click(function () {
-                _self.getSellerList(1, {});
+                _self.getLeaderList(1, {});
             });
             $("#inputSearch").keypress(function (event) {
                 if (event.keyCode == 13)
-                    _self.getSellerList(1, {});
+                    _self.getLeaderList(1, {});
 
             });
-        }, 
+        },
         /**
          * 生成模版时绑定删除，失去焦点事件
          * @param  {[数据项文本]} item
          */
         bindItemEvent: function (item) {
             var _self = this;
-            item.find('button.productList').click(function (event) {
-                window.location.href = '/Seller/Product?Id=' + this.id;
-            });
-
-            item.find('button.license_path').click(function (event) {
-                editsellerlicense.init({
-                    stepOne: true,
-                    dialogID: 'wizard',
-                    header: '编辑商家',
-                    Id: this.id,
-                    callBack: function (sellerId) {
-                        if (sellerId && sellerId != '') {
-                            //重新加载页面
-                            window.location.href = '/Seller/Index';
-                        } else {
-                            alert('编辑失败');
-                        }
-                    }
-                });
-                event.stopPropagation();
-                return false;
-            });
-
-            item.find('button.permit_path').click(function (event) {
-                editsellerpermit.init({
-                    stepOne: true,
-                    dialogID: 'wizard',
-                    header: '编辑商家',
-                    Id: this.id,
-                    callBack: function (sellerId) {
-                        if (sellerId && sellerId != '') {
-                            //重新加载页面
-                            window.location.href = '/Seller/Index';
-                        } else {
-                            alert('编辑失败');
-                        }
-                    }
-                });
-                event.stopPropagation();
-                return false;
-            });
-
-            item.find('button.authorization_path').click(function (event) {
-                editsellerauthorization.init({
-                    stepOne: true,
-                    dialogID: 'wizard',
-                    header: '编辑商家',
-                    Id: this.id,
-                    callBack: function (sellerId) {
-                        if (sellerId && sellerId != '') {
-                            //重新加载页面
-                            window.location.href = '/Seller/Index';
-                        } else {
-                            alert('编辑失败');
-                        }
-                    }
-                });
-                event.stopPropagation();
-                return false;
-            });
 
             item.find('button.delete_item').click(function (event) {
-                _self.deleteSeller(this);
+                _self.deleteLeader(this);
                 event.stopPropagation();
                 return false;
             });
             item.find('button.edit_item').click(function (event) {
-                editseller.init({
+                editLeader.init({
                     stepOne: true,
                     dialogID: 'wizard',
-                    header: '编辑商家',
+                    header: '编辑各校区负责人',
                     Id: this.id,
-                    callBack: function (sellerId) {
-                        if (sellerId && sellerId != '') {
+                    callBack: function (Id) {
+                        if (Id && Id != '') {
                             //重新加载页面
-                            window.location.href = '/Seller/Index';
+                            window.location.href = '/Seller/Leader';
                         } else {
                             alert('编辑失败');
                         }
@@ -211,21 +146,22 @@ define(function (require, exports, module) {
             return true;
         },
         /**
-         * 删除角色
+         * 删除区域
          * @param  {[删除按钮]} ele
          */
-        deleteSeller: function (ele) {
+        deleteLeader: function (ele) {
             ele = $(ele);
             if (!ele.hasClass('delete_item')) return;
-            var res = confirm('确定要删除这个商家吗?');
+            var res = confirm('确定要删除吗?');
             if (res) {
 
                 var input = ele.parent('td'),
                     id = input.attr('data-item_id'),
                     item = input.parent('tr');
 
-                Global.post('DelSeller', {
-                    id: id
+                Global.post('DelLeader', {
+                    regionId: id.split('&')[0],
+                    accountId: id.split('&')[1]
                 },
                     function (data) {
                         if (data && data.result) {
@@ -245,12 +181,12 @@ define(function (require, exports, module) {
         getDataSource: function (index) {
             var _self = this;
             $.ajax({
-                url: 'GetSellerList',
+                url: 'GetLeaderList',
                 type: 'GET',
                 cache: false,
                 data: {
                     pageIndex: index,
-                    pageSize: 20
+                    pageSize: 10
                 },
                 success: function (msg) {
                     if (msg.items && msg.items.length > 0) {
@@ -271,28 +207,28 @@ define(function (require, exports, module) {
                 }
             });
         },
-        getSellerList: function (index) {
+        getLeaderList: function (index) {
             var _self = this;
             $.ajax({
-                url: 'SearchSellerByName',
+                url: 'SearchLeaderByName',
                 type: 'GET',
                 cache: false,
                 data: {
-                    name: $("#inputSearch").val(),
+                    leaderName: $("#inputSearch").val(),
                     pageIndex: index,
                     pageSize: 20
                 },
                 success: function (msg) {
-                    _self.SellerArea.find(".contenttr").remove();
-                    if (msg.items && msg.items.length > 0) {
-                        _self.dataBinding(msg.items);
+                    _self.leaderArea.find(".contenttr").remove();
+                    if (msg.result && msg.result.length > 0) {
+                        _self.dataBinding(msg.result);
                         _self.pager.paginate({
                             total_count: msg.data.Total,
                             count: msg.data.Pages,
                             start: msg.data.Index,
                             display: 10,
                             onChange: function (page) {
-                                _self.getSellerList(page);
+                                _self.getLeaderList(page);
                             }
                         });
                     }
@@ -305,5 +241,5 @@ define(function (require, exports, module) {
     }, base);
 
     exports.jQuery = $;
-    exports.SellerController = SellerController;
+    exports.LeaderController = LeaderController;
 });

@@ -19,22 +19,15 @@
                 <table id="J_ItemList" class="wxtables table-order">
                     <colgroup>
                         <col width="20%">
-                        <!-- 图片 -->
                         <col width="20%">
-                        <!-- 名称 -->
-                        <col width="20%">
-                        <!-- 标准现价 -->
                         <col width="10%">
-                        <col width="10%">
-                        <col width="10%">
+                        <col width="40%">
                     </colgroup>
                     <thead>
-                        <tr >                            
-                            <td style="background:#f8f8f8">商品信息</td>
-                            <td class="center" style="background:#f8f8f8">配送信息</td>
-                            <td class="center" style="background:#f8f8f8">下单人信息</td>
-                            <td style="background:#f8f8f8">支付信息</td>
-                            <td style="background:#f8f8f8">下单备注</td>
+                        <tr>
+                            <td style="background:#f8f8f8">商家名称</td>
+                            <td class="center" style="background:#f8f8f8">所有人帐户</td>
+                            <td class="center" style="background:#f8f8f8">经营状态</td>
                             <td class="center" style="background:#f8f8f8">操作</td>
                         </tr>
                     </thead>
@@ -43,15 +36,25 @@
                 <div class="tables-btmctrl clearfix">
 
                 </div>
-            </div>           
+            </div>
             <div id="pager" style="margin:40px 0"></div>
         </div>
         <!-- end content-right -->
     </div>
 </div>
+<input type="hidden" id="uptoken" value="">
+
+<script type="text/javascript" src="~/Scripts/plug/plupload/plupload.full.min.js"></script>
+<script type="text/javascript" src="~/Scripts/plug/plupload/i18n/zh_CN.js"></script>
+<script type="text/javascript" src="~/Scripts/plug/qiniu/ui.js"></script>
+<script type="text/javascript" src="~/Scripts/plug/qiniu/qiniu.js"></script>
+<script type="text/javascript" src="~/Scripts/plug/qiniu/highlight.js"></script>
+<script type="text/javascript" src="~/Scripts/plug/qiniu/sellerlogo.js"></script>
+<script type="text/javascript" src="~/Scripts/plug/qiniu/sellerlicense.js"></script>
 <script type="text/javascript">
     seajs.use(["/Scripts/seller/seller"], function (Sysrole) {
         var $ = Sysrole.jQuery;
         Sysrole.SellerController.init({ el: $("#J_ItemList"), url: '' });
     });
 </script>
+

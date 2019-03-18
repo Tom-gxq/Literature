@@ -12,11 +12,8 @@ define(function (require, exports, module) {
         doT = require('dot');
     var datapager = require('datapager');
     var easydialog = require("easydialog");
-    var addseller = require('add-seller');
-    var editseller = require('edit-seller');
-    var editsellerlicense = require("edit-seller-license");
-    var editsellerpermit = require("edit-seller-permit");
-    var editsellerauthorization = require('edit-seller-authorization');
+    var addproduct = require('add-seller-product');
+    var editproduct = require('edit-seller-product');
     var Global = common.Global;
     //基础扩展
     var base = {
@@ -47,7 +44,7 @@ define(function (require, exports, module) {
     /**
      * 角色设置模块
      */
-    var SellerController = $.extend({
+    var ProductController = $.extend({
         /**
          * 模块入口
          */
@@ -63,7 +60,7 @@ define(function (require, exports, module) {
         },
         //元素
         elements: {
-            '#J_ItemList': 'SellerArea',
+            '#J_ItemList': 'ProductArea',
             // 分页元素
             '#pager': 'pager'
         },
@@ -74,39 +71,39 @@ define(function (require, exports, module) {
         dataBinding: function (data) {
             var _self = this;
             items = '';
-            doT.exec('seller/seller-item.html', function (templateFun) {
+            doT.exec('seller/product-item.html', function (templateFun) {
                 items = templateFun(data);
                 items = $(items);
                 _self.bindItemEvent(items);
-                _self.SellerArea.append(items);
+                _self.ProductArea.append(items);
             });
         },
         bindEvent: function () {
             var _self = this;
             $('#btnAddButton').bind('click', function () {
                 //弹出添加的操作框
-                addseller.init({
+                addproduct.init({
                     stepOne: true,
                     dialogID: 'wizard',
-                    header: '添加商家',
+                    header: '添加产品',
+                    sellerId: $("#sellerId").val(),
                     callBack: function (result) {
                         if (result) {
                             //重新加载页面
-                            window.location.href = '/Seller/Index';
+                            window.location.href = '/Seller/Product?Id=' + result['sellerId'];
                         } else {
-                            alert('添加商家失败');
+                            alert('添加产品失败');
                         }
                     }
                 });
             });
 
             $("#btnSearch").click(function () {
-                _self.getSellerList(1, {});
+                _self.getProductList(1, {});
             });
             $("#inputSearch").keypress(function (event) {
                 if (event.keyCode == 13)
-                    _self.getSellerList(1, {});
-
+                    _self.getProductList(1, {});
             });
         }, 
         /**
@@ -115,82 +112,22 @@ define(function (require, exports, module) {
          */
         bindItemEvent: function (item) {
             var _self = this;
-            item.find('button.productList').click(function (event) {
-                window.location.href = '/Seller/Product?Id=' + this.id;
-            });
-
-            item.find('button.license_path').click(function (event) {
-                editsellerlicense.init({
-                    stepOne: true,
-                    dialogID: 'wizard',
-                    header: '编辑商家',
-                    Id: this.id,
-                    callBack: function (sellerId) {
-                        if (sellerId && sellerId != '') {
-                            //重新加载页面
-                            window.location.href = '/Seller/Index';
-                        } else {
-                            alert('编辑失败');
-                        }
-                    }
-                });
-                event.stopPropagation();
-                return false;
-            });
-
-            item.find('button.permit_path').click(function (event) {
-                editsellerpermit.init({
-                    stepOne: true,
-                    dialogID: 'wizard',
-                    header: '编辑商家',
-                    Id: this.id,
-                    callBack: function (sellerId) {
-                        if (sellerId && sellerId != '') {
-                            //重新加载页面
-                            window.location.href = '/Seller/Index';
-                        } else {
-                            alert('编辑失败');
-                        }
-                    }
-                });
-                event.stopPropagation();
-                return false;
-            });
-
-            item.find('button.authorization_path').click(function (event) {
-                editsellerauthorization.init({
-                    stepOne: true,
-                    dialogID: 'wizard',
-                    header: '编辑商家',
-                    Id: this.id,
-                    callBack: function (sellerId) {
-                        if (sellerId && sellerId != '') {
-                            //重新加载页面
-                            window.location.href = '/Seller/Index';
-                        } else {
-                            alert('编辑失败');
-                        }
-                    }
-                });
-                event.stopPropagation();
-                return false;
-            });
 
             item.find('button.delete_item').click(function (event) {
-                _self.deleteSeller(this);
+                _self.deleteProduct(this);
                 event.stopPropagation();
                 return false;
             });
             item.find('button.edit_item').click(function (event) {
-                editseller.init({
+                editproduct.init({
                     stepOne: true,
                     dialogID: 'wizard',
-                    header: '编辑商家',
+                    header: '编辑产品',
                     Id: this.id,
-                    callBack: function (sellerId) {
-                        if (sellerId && sellerId != '') {
+                    callBack: function (result) {
+                        if (result && result != '') {
                             //重新加载页面
-                            window.location.href = '/Seller/Index';
+                            window.location.href = '/Seller/Product?Id=' + result['sellerId'];
                         } else {
                             alert('编辑失败');
                         }
@@ -214,17 +151,17 @@ define(function (require, exports, module) {
          * 删除角色
          * @param  {[删除按钮]} ele
          */
-        deleteSeller: function (ele) {
+        deleteProduct: function (ele) {
             ele = $(ele);
             if (!ele.hasClass('delete_item')) return;
-            var res = confirm('确定要删除这个商家吗?');
+            var res = confirm('确定要删除这个产品吗?');
             if (res) {
 
                 var input = ele.parent('td'),
                     id = input.attr('data-item_id'),
                     item = input.parent('tr');
 
-                Global.post('DelSeller', {
+                Global.post('DelProduct', {
                     id: id
                 },
                     function (data) {
@@ -244,13 +181,15 @@ define(function (require, exports, module) {
          */
         getDataSource: function (index) {
             var _self = this;
+            var id = $("#sellerId").val();
             $.ajax({
-                url: 'GetSellerList',
+                url: 'GetProductList',
                 type: 'GET',
                 cache: false,
                 data: {
                     pageIndex: index,
-                    pageSize: 20
+                    pageSize: 20,
+                    sellerId: id
                 },
                 success: function (msg) {
                     if (msg.items && msg.items.length > 0) {
@@ -271,19 +210,20 @@ define(function (require, exports, module) {
                 }
             });
         },
-        getSellerList: function (index) {
+        getProductList: function (index) {
             var _self = this;
             $.ajax({
-                url: 'SearchSellerByName',
+                url: 'SearchProductByName',
                 type: 'GET',
                 cache: false,
                 data: {
+                    sellerId: $("#sellerId").val(),
                     name: $("#inputSearch").val(),
                     pageIndex: index,
                     pageSize: 20
                 },
                 success: function (msg) {
-                    _self.SellerArea.find(".contenttr").remove();
+                    _self.ProductArea.find(".contenttr").remove();
                     if (msg.items && msg.items.length > 0) {
                         _self.dataBinding(msg.items);
                         _self.pager.paginate({
@@ -292,7 +232,7 @@ define(function (require, exports, module) {
                             start: msg.data.Index,
                             display: 10,
                             onChange: function (page) {
-                                _self.getSellerList(page);
+                                _self.getProductList(page);
                             }
                         });
                     }
@@ -305,5 +245,5 @@ define(function (require, exports, module) {
     }, base);
 
     exports.jQuery = $;
-    exports.SellerController = SellerController;
+    exports.ProductController = ProductController;
 });

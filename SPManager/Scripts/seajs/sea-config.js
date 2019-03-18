@@ -49,6 +49,10 @@ seajs.config({
         'qiniushop': 'plug/qiniu/shop.js',
         // 七牛上传
         'qiniutype': 'plug/qiniu/producttype.js',
+        // 七牛上传
+        'qiniusellerlogo': 'plug/qiniu/sellerlogo.js',
+        // 七牛上传
+        'qiniusellerlicense': 'plug/qiniu/sellerlicense.js',
         // 表情插件
         'facebase': 'plug/face/facebase.js',
         // 表情插件
@@ -120,6 +124,19 @@ seajs.config({
         //region
         'add-seller-region': 'seller/addregion.js',
         'edit-seller-region': 'seller/editregion.js',
+        //leader
+        'add-seller-leader': 'seller/addleader.js',
+        'edit-seller-leader': 'seller/editleader.js',
+        //seller
+        'add-seller': 'seller/addseller.js',
+        'edit-seller': 'seller/editseller.js',
+        'edit-seller-license': 'seller/editsellerlicense.js',
+        'edit-seller-permit': 'seller/editsellerpermit.js',
+        'edit-seller-authorization': 'seller/editsellerauthorization.js',
+        //
+        'add-seller-product': 'seller/addproduct.js',
+        'edit-seller-product': 'seller/editproduct.js',
+        
     },
     map: [
         ['.js', '.js?v=' + version],

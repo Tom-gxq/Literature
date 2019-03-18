@@ -12,6 +12,7 @@ namespace SP.Application.Product
     {
         bool AddProduct(ProductsDto product);
         List<ProductsDto> GetProductList(int saleStatus,int pageIndex, int pageSize);
+        List<ProductsDto> GetProductList(int saleStatus = 1);
         List<ProductsDto> GetShopProductList(int shopId, int saleStatus, int pageIndex, int pageSize);
         bool AddProductBrand(string productId,int brandId);
         bool AddProductType(string productId, int typeId);

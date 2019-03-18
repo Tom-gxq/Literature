@@ -154,6 +154,24 @@ namespace SP.ManageEntityFramework.Repositories
             }
         }
 
+        public List<ProductEntity> GetProductList(int saleStatus)
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<ProductEntity>().Where(x => x.SaleStatus >= saleStatus).OrderByDescending(x => x.UpdateTime);
+                return db.Select<ProductEntity>(q);
+            }
+        }
+
+        public ProductImageEntity GetMasterImageById(string productId)
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<ProductImageEntity>().Where(x => x.ProductId == productId && x.Postion == 0);
+                return db.Single<ProductImageEntity>(q);
+            }
+        }
+
         public List<ProductFullEntity> GetProductListByOrderId(string orderId)
         {
             using (var db = Context.OpenDbConnection())

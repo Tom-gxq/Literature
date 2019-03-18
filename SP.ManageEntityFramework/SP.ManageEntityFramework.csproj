@@ -98,6 +98,7 @@
     <Compile Include="Repositories\ShopProductRespository.cs" />
     <Compile Include="Repositories\ShopRespository.cs" />
     <Compile Include="Repositories\SupplersRepository.cs" />
+    <Compile Include="Repositories\SuppliersProductRepository.cs" />
     <Compile Include="Repositories\SuppliersRegionRespository.cs" />
     <Compile Include="Repositories\SysKindRespository.cs" />
   </ItemGroup>
