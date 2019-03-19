@@ -152,9 +152,7 @@ namespace Order.Service.Business
                     var trade = new SP.Service.Trade();
                     trade.AccountId = item.AccountId;
                     trade.Amount = item.Amount;
-                    trade.CartId = item.CartId;
                     trade.CreateTime = item.CreateTime.Ticks;
-                    trade.Quantity = item.Quantity;
                     trade.Subject = item.Subject;
                     result.TradeList.Add(trade);
                 }
@@ -173,6 +171,7 @@ namespace Order.Service.Business
                 result.AccountId = finance.AccountId;
                 result.HaveAmount = finance.HaveAmount;
                 result.UseAmount = finance.UseAmount;
+                result.ConsumeAmount = finance.ConsumeAmount;
                 var accountInfo = ServiceLocator.AccountInfoReportDatabase.GetAccountInfoById(accountId);
                 if (accountInfo.UserType == 2)
                 {
@@ -184,11 +183,11 @@ namespace Order.Service.Business
             return result;
         }
 
-        public static SchoolLeadOrderListResponse GetShipOrderList(string accountId, int status, int orderType)
+        public static SchoolLeadOrderListResponse GetShipOrderList(string accountId, int status, int orderType, int pageIndex, int pageSize)
         {
             var result = new SchoolLeadOrderListResponse();
             result.Status = 10002;
-            var list = ServiceLocator.ReportDatabase.GetShipOrderList(accountId, status, orderType);
+            var list = ServiceLocator.ReportDatabase.GetShipOrderList(accountId, status, orderType, pageIndex, pageSize);
             if (list != null)
             {
                 foreach (var item in list)
@@ -360,6 +359,15 @@ namespace Order.Service.Business
             }
             return order;
         }
+        private static PurchaseOrder ConvertPurchaseOrderDomainToResponse(LeadOrderDomain entity)
+        {
+            var order = new PurchaseOrder();
+            order.Amount = entity.Amount;
+            order.OrderDate = entity.OrderDate.Ticks;
+            order.OrderId = entity.OrderId;
+            order.OrderType = entity.Shop.ShopType;
+            return order;
+        }
         public static void AddCashApply(string accountId, string alipay, double money)
         {
             ServiceLocator.CommandBus.Send(new CreateCashApplyCommand(accountId, alipay, money));
@@ -373,6 +381,70 @@ namespace Order.Service.Business
         public static void UpdateShippingOrder(List<int> shipOrderId, int orderStatus)
         {
             ServiceLocator.CommandBus.Send(new EditShipOrderStatusCommand(shipOrderId, (OrderStatus)orderStatus));
+        }
+
+        public static PurchaseOrderListResponse GetPurchaseOrderList(string accountId, int pageIndex, int pageSize)
+        {
+            var result = new PurchaseOrderListResponse();
+            result.Status = 10002;
+            var list = ServiceLocator.ReportDatabase.GetPurchaseOrderList(accountId, pageIndex, pageSize);
+            if (list != null)
+            {
+                foreach (var item in list)
+                {
+                    if (item != null)
+                    {
+                        var order = ConvertPurchaseOrderDomainToResponse(item);
+                        result.OrderInfo.Add(order);
+                    }
+                }
+                result.Status = 10001;
+            }
+            return result;
+        }
+        public static PurchaseOrderResponse GetPurchaseOrderByOrderId(string orderId)
+        {
+            var result = new PurchaseOrderResponse();
+            var order = ServiceLocator.ReportDatabase.GetPurchaseOrderByOrderId(orderId);
+            if (order != null)
+            {
+                var accountInfo = new AccountInfo()
+                {
+                     AccountId = order.AccountInfo.AccountId,
+                     UserName = order.AccountInfo.Fullname
+                };
+                result.Account = accountInfo;//订货人
+                if (order?.Address != null)
+                {
+                    var address = new Address()
+                    {
+                        BuildingName = order.Address.BuildingName,
+                        ContactAddress = order.Address.Address,
+                        SchoolName = order.Address.SchoolName,
+                        DistrictName = order.Address.DistrictName,
+                        DormName = order.Address.DormName
+                    };
+                    result.Address = address;//订货人地址
+                }
+                result.Amount = order.Amount;
+                result.OrderCode = order.OrderCode??string.Empty;
+                result.OrderDate = order.OrderDate.Ticks;
+                result.OrderId = order.OrderId;
+                result.OrderStatus = order.OrderStatus;
+                result.PayDate = order.PayDate>DateTime.MinValue? order.PayDate.Ticks:0;
+                result.PayType = order.PayType;
+                foreach (var item in order.ShoppingCarts)
+                {
+                    var shopcart = new ShoppingCart();
+                    shopcart.ProductName = item.Product.ProductName;
+                    shopcart.Quantity = item.Quantity;
+                    shopcart.Amount = item.Amount;
+                    shopcart.UnitPrice = item.Product.PurchasePrice != null ? item.Product.PurchasePrice.Value:0;
+                    shopcart.ShopType = item.ShopType;
+                    result.ShoppingCartList.Add(shopcart);
+                }
+            }
+            return result;
         }
 
     }

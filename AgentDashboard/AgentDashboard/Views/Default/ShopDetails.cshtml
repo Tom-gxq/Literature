@@ -163,36 +163,31 @@
                                     <div class="card-deck">
                                         @foreach (var product in deliverman.Products)
                                         {
-                                            <div class="col-xl-3 col-sm-6 mb-3" id="@product.Id">
+                                            <div class="col-xl-3 col-sm-6 mb-3">
                                                 <div class="card">
                                                     <img class="card-img-top" src="@product.ImagePath" height="100">
                                                     <div class="card-body">
-                                                        <div class="card-delete-icon">
-                                                            <a class="float-right" onclick="DeleteProduct('@product.Id')">
-                                                                <i class="fa fa-window-close fa-lg"></i>
-                                                            </a>
-                                                        </div>
                                                         <h5 class="card-title">@product.Name</h5>
                                                         <p class="card-text">@product.Description</p>
                                                     </div>
                                                     @if (!Model.isMarket)
                                                     {
-                                                    <div class="card-footer" dataid="@product.Id" aid="@deliverman.AccountId">
-                                                        <div class="row">
-                                                            <label>库存</label><input type="text" class="form-control form-text w-75 h-50 stock" value="@product.Stocks" />
+                                                <div class="card-footer" dataid="@product.Id" aid="@deliverman.AccountId">
+                                                    <div class="row" >
+                                                        <label>库存</label><input type="text" class="form-control form-text w-75 h-50 stock" value="@product.Stocks" />
+                                                            </div>
+                                                            <div class="row">
+                                                        <label>预存</label><input type="text" class="form-control form-text w-75 h-50 prestock" value="@product.PreStocks" />
+                                                            </div>
                                                         </div>
-                                                        <div class="row">
-                                                            <label>预存</label><input type="text" class="form-control form-text w-75 h-50 prestock" value="@product.PreStocks" />
-                                                        </div>
-                                                    </div>
                                                     }
                                                     else
                                                     {
-                                                    <div class="card-footer">
-                                                        <div class="row">
-                                                            <label>库存</label><input type="text" class="form-control form-text w-75 h-50" disabled value="@product.Stocks" />
+                                                        <div class="card-footer">
+                                                            <div class="row">
+                                                                <label>库存</label><input type="text" class="form-control form-text w-75 h-50" disabled value="@product.Stocks" />
+                                                            </div>
                                                         </div>
-                                                    </div>
                                                     }
                                                 </div>
                                             </div>
@@ -284,11 +279,6 @@
                 //    $(this).tab('show')
                 //})
             });
-
-            function DeleteProduct(id) {
-                $("#" + id).remove();
-                $.post("DeleteProduct?id=" + id);
-            };
 
         </script>
         <script type="text/javascript" src="/js/seajs/sea.js"></script>

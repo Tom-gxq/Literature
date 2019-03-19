@@ -108,40 +108,16 @@
             
             <!-- Example DataTables Card-->
             <div class="tables-searchbox newcearchbox">
-                <div class="row mb-3">
-                    <div class="col-4">
-                        <span class="mb-2">学校</span>
-                        <select id="select_university" class="form-control w-100">
-                            @if (Model != null)
-                            {
-                                foreach (var item in Model.Universities)
-                                {
-                                    <option value="@item.Key">@item.Value</option>
-                                }
-                            }
-                        </select>
-                    </div>
-                    <div class="col-4">
-                        <span class="mb-2">搜索内容</span>
-                        <input type="text" class="form-control w-100" name="title" value="" id="inputSearch">
-                    </div>
-                    <div class="col-3">
-                        <span class="mb-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        <div class="input-group">
-                            <button class="btn btn-primary search_btn" id="btnSearch">查询</button>
-                            <select id="inputStatus" class="select small newselect" style="height: 35px;">
-                                <option value="-1">全部</option>
-                                <option value="1">待付款</option>
-                                <option value="2">已付款</option>
-                                <option value="4">已关闭</option>
-                                <option value="5">已完成</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-1">
-                        <span class="mb-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    </div>
-                </div>
+
+                <input type="text" placeholder="搜索内容" class="input" name="title" value="" style="width: 204px; height: 35px;" id="inputSearch">
+                <button class="btn btn-primary search_btn" id="btnSearch">查询</button>
+                <select id="inputStatus" class="select small newselect" style="height: 35px;">
+                    <option value="-1">全部</option>
+                    <option value="1">待付款</option>
+                    <option value="2">已付款</option>
+                    <option value="4">已关闭</option>
+                    <option value="5">已完成</option>
+                </select>
             </div>
             <div class="tablesWrap mgt10">
                 <table id="dataTable" class="wxtables table-order">
@@ -220,7 +196,7 @@
         <script type="text/javascript">
             seajs.use(["/js/order/order"], function (OrderList) {
                 var $ = OrderList.jQuery;
-                OrderList.OrderController.init({ el: $("#dataTable"), url: '', university: $("#select_university") });
+                OrderList.OrderController.init({ el: $("#dataTable"), url: '' });
             });
         </script>
     </div>

@@ -1,0 +1,42 @@
+﻿using Grpc.Service.Core.Domain.Commands;
+using SP.Service.Domain.Util;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace SP.Service.Domain.Commands.Statistics
+{
+    public class SumOrderStatisticsCommand : SPCommand
+    {
+        public string OrderId { get; set; }
+
+        public string OrderCode { get; set; }
+
+        public DateTime OrderDate { get; set; }
+
+        public string AccountId { get; set; }
+        public double Amount { get; set; }
+        public int AddressId { get; set; }
+        public bool IsVip { get; set; }
+
+<<<<<<< HEAD
+        public SumOrderStatisticsCommand(string orderId, string orderCode, string accountId, double amount, int addressId, DateTime orderDate)
+            : base(KafkaConfig.NormalCommandBusTopicTitle)
+=======
+        public SumOrderStatisticsCommand(string orderId, string orderCode, string accountId, double amount, int addressId, DateTime orderDate,bool isVip)
+>>>>>>> c3f230b2c921c074bd577ae335e8a5b1577b7cb5
+        {
+            this.OrderId = orderId;
+            this.OrderCode = orderCode;
+            this.OrderDate = orderDate;
+            this.AccountId = accountId;
+            this.Amount = amount;
+            this.AddressId = addressId;
+<<<<<<< HEAD
+            this.CommandType = CommandType.SumOrderStatistics;
+=======
+            this.IsVip = isVip;
+>>>>>>> c3f230b2c921c074bd577ae335e8a5b1577b7cb5
+        }
+    }
+}

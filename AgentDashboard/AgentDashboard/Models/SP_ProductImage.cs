@@ -21,6 +21,6 @@ namespace AgentDashboard.Models
         public Nullable<int> DisplaySequence { get; set; }
         public System.DateTime CreateTime { get; set; }
         public Nullable<System.DateTime> UpdateTime { get; set; }
-        public Nullable<bool> IsDel { get; set; }
+        public bool IsDel { get; set; }
     }
 }

@@ -376,6 +376,35 @@ namespace AccountGRPCInterface
                     domain.Unit = item.Unit;
                     domain.Description = item.Description;
                     domain.DiscountValue = item.DiscountValue;
+                    domain.Amount = item.Amount;
+                    list.Add(domain);
+                }
+            }
+            return list;
+        }
+        public static List<CouponsModel> GetAccountCouponsList(string accountId)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request1 = new AccountIdRequest()
+            {
+                AccountId = accountId
+            };
+            var result = client.GetAccountCouponsList(request1);
+            var list = new List<CouponsModel>();
+            if (result.Status == 10001)
+            {
+                foreach (var item in result.CouponsList)
+                {
+                    var domain = new CouponsModel();
+                    domain.Description = item.Description;
+                    domain.CouponId = item.CouponId;
+                    domain.Amount = item.Amount;
+                    domain.EndDate = item.EndDate;
+                    domain.Description = item.Description;
+                    domain.ModeAmount = item.ModeAmount;
+                    domain.ModeDescription = item.ModeDescription;
+                    domain.StartDate = item.StartDate;
+                    domain.Status = item.Status;
                     list.Add(domain);
                 }
             }
@@ -399,8 +428,7 @@ namespace AccountGRPCInterface
                 model.UserType = reuslt.UserType;
                 if(reuslt.AssociatorDate > 0)
                 {
-                    var currrentDate = new DateTime(reuslt.AssociatorDate);
-                    ;
+                    var currrentDate = new DateTime(reuslt.AssociatorDate);                    
                     model.AssociatorDate = GetTimestamp(currrentDate);
                     if(currrentDate > DateTime.Now)
                     {
@@ -632,6 +660,109 @@ namespace AccountGRPCInterface
                 DormId = dormId
             };
             var reuslt = client.ApplyPartner(request1);
+            if (reuslt.Status == 10001)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool BalancePay(string accountId, string token, string password, double amount, string orderCode,string sign)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request1 = new BalancePayRequest()
+            {
+                AccountId = accountId,
+                Amount = amount,
+                OrderCode = orderCode,
+                PassWord = password,
+                Token = token,
+                Sign = sign
+            };
+            var reuslt = client.BalancePay(request1);
+            if (reuslt.Status == 10001)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static List<TradeInfoModel> GetTradeList(string accountId, int pageIndex, int pageSize)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request1 = new TradeListRequest()
+            {
+                AccountId = accountId,
+                PageIndex = pageIndex,
+                PageSize = pageSize
+            };
+            var reuslt = client.GetTradeList(request1);
+            var list = new List<TradeInfoModel>();
+            if (reuslt.Status == 10001)
+            {
+                foreach (var item in reuslt.TradeList)
+                {
+                    var model = new TradeInfoModel();
+                    model.Type = item.Type;
+                    model.TradeNo = item.TradeNo;
+                    model.BalanceAmount = item.BalanceAmount;
+                    var date = new DateTime(item.CreateTime);
+                    model.CeateTime = GetTimestamp(date);
+                    model.Amount = item.Amount;
+                    list.Add(model);
+                }
+            }
+            return list;
+        }
+        public static long GetTradeListCount(string accountId)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request1 = new AccountIDRequest()
+            {
+                AccountId = accountId
+            };
+            var reuslt = client.GetTradeListCount(request1);
+            long total = 0;
+            if (reuslt.Status == 10001)
+            {
+                total = reuslt.Total;
+            }
+            return total;
+        }
+
+        public static bool UpdateAccountWxUnionId(string accountId, string wxUnionId)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request1 = new WxUnionIdRequest()
+            {
+                AccountId = accountId,
+                WxUnionId = wxUnionId
+            };
+            var reuslt = client.UpdateAccountWxUnionId(request1);
+            if (reuslt.Status == 10001)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool CreateWxOpenId(string accountId, string wxOpenId,int wxType)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request1 = new WxOpenIdRequest()
+            {
+                AccountId = accountId,
+                WxOpenId = wxOpenId,
+                WxType = wxType
+            };
+            var reuslt = client.CreateWxOpenId(request1);
             if (reuslt.Status == 10001)
             {
                 return true;

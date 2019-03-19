@@ -217,6 +217,39 @@
                     </div>
                 </div>
             </div>
+            <!--trade infomation-->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <i class="fa fa-dollar"></i>
+                            交易数据
+                        </div>
+                        <div class="card-body">
+                            <div class="row form-group mb-3">
+                                <div class="col-12">
+                                    <button class="btn btn-primary">7天</button>
+                                    <button class="btn btn-primary">15天</button>
+                                    <button class="btn btn-primary">30天</button>
+                                    <button class="btn btn-primary" id="orderAmount">交易额</button>
+                                    <button class="btn btn-primary" id="orderNum">数量</button>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <i class="fa fa-area-chart"></i> Area Chart Example
+                                </div>
+                                <div class="card-body">
+                                    <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                                    <canvas id="SellerChart" width="967" height="290" class="chartjs-render-monitor" style="display: block; width: 967px; height: 290px;"></canvas>
+                                </div>
+                                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -263,6 +296,8 @@
     <!-- Custom scripts for all pages-->
     <script src="~/js/sb-admin.min.js"></script>
     <!-- Custom scripts for this page-->
+    <script src="~/js/sb-admin-datatables.min.js"></script>
+    <script src="~/js/sb-admin-charts.min.js"></script>
     <script>
         $(function () {
             $('#myTab li:eq(0) a').tab('show');

@@ -24,6 +24,5 @@ namespace AgentDashboard.Models
         public Nullable<int> Num_BuyAssociator { get; set; }
         public Nullable<System.DateTime> UpdateTime { get; set; }
         public Nullable<bool> IsChecked { get; set; }
-        public int RegionId { get; set; }
     }
 }

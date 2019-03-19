@@ -17,6 +17,8 @@ using Grpc.Service.Core.Domain.Repositories.Extensions;
 using Grpc.Service.Core.Domain.Entity;
 using Grpc.Service.Core.Domain.Reporting;
 using Grpc.Service.Core.Domain.Sender;
+using Grpc.Service.Core.Domain.Commands;
+using Grpc.Service.Core.Domain.Events;
 
 namespace Grpc.Service.Core.Reflection
 {
@@ -70,6 +72,14 @@ namespace Grpc.Service.Core.Reflection
                 {
                     IocManager.Instance.Register(typeof(IEventBus), type, DependencyLifeStyle.Singleton);
                 }
+                else if (type.GetTypeInfo().GetInterface(typeof(ICommandExecuteHandler).FullName) != null)
+                {
+                    IocManager.Instance.Register(typeof(ICommandExecuteHandler),type, DependencyLifeStyle.Singleton);
+                }
+                else if (type.GetTypeInfo().GetInterface(typeof(IEventExecuteHandler).FullName) != null)
+                {
+                    IocManager.Instance.Register(typeof(IEventExecuteHandler),type, DependencyLifeStyle.Singleton);
+                }
                 else if (type.GetTypeInfo().GetInterface(typeof(ICommandHandler).FullName) != null 
                     || type.GetTypeInfo().GetInterface(typeof(IEventHandler).FullName) != null)
                 {
@@ -87,6 +97,30 @@ namespace Grpc.Service.Core.Reflection
                 {
                     IocManager.Instance.Register(type, DependencyLifeStyle.Singleton);
                 }
+                else if(type.GetTypeInfo().GetInterface(typeof(IDomainFactory).FullName) != null)
+                {
+                    IocManager.Instance.Register(type, DependencyLifeStyle.Singleton);
+                }
+                else if (type.GetTypeInfo().GetInterface(typeof(IDomainFactory).FullName) != null)
+                {
+                    IocManager.Instance.Register(type, DependencyLifeStyle.Singleton);
+                }
+                else if (type.GetTypeInfo().GetInterface(typeof(IMongoDatabaseProvider).FullName) != null)
+                {
+                    IocManager.Instance.Register(typeof(IMongoDatabaseProvider),type, DependencyLifeStyle.Singleton);
+                }
+                else if (type.BaseType.FullName != null &&　type.BaseType.FullName.Contains("MongoDbRepositoryBase"))
+                {
+                    IocManager.Instance.Register(type, DependencyLifeStyle.Singleton);
+                }
+                //else if(type.GetTypeInfo().FullName.Contains("CommandMongoDbRepository"))
+                //{
+                //    RegisterForCommandMongoDbRepository(type, IocManager.Instance);
+                //}
+                //else if (type.GetTypeInfo().FullName.Contains("EventMongoDbRepository"))
+                //{
+                //    RegisterForEventMongoDbRepository(type, IocManager.Instance);
+                //}
             }
             RegisterForIEventStorage(IocManager.Instance);
 
@@ -147,6 +181,51 @@ namespace Grpc.Service.Core.Reflection
             }
         }
 
+        public static void RegisterForCommandMongoDbRepository(Type dbContextType, IIocManager iocManager)
+        {
+            var autoRepository = typeof(ICommand);
+
+            var implTypes =
+                    _typeFinder.Find(type =>
+                        type.GetTypeInfo().IsPublic &&
+                        !type.GetTypeInfo().IsAbstract &&
+                        type.GetTypeInfo().IsClass &&
+                        type.GetTypeInfo().GetInterface(autoRepository.FullName) != null
+                        );
+            foreach (var implType in implTypes)
+            {
+                var impl = dbContextType.MakeGenericType(implType);
+
+                iocManager.Register(
+                    impl,
+                    impl,
+                    DependencyLifeStyle.Transient
+                    );
+            }
+        }
+
+        public static void RegisterForEventMongoDbRepository(Type dbContextType, IIocManager iocManager)
+        {
+            var autoRepository = typeof(IEvent);
+
+            var implTypes =
+                    _typeFinder.Find(type =>
+                        type.GetTypeInfo().IsPublic &&
+                        !type.GetTypeInfo().IsAbstract &&
+                        type.GetTypeInfo().IsClass &&
+                        type.GetTypeInfo().GetInterface(autoRepository.FullName) != null
+                        );
+            foreach (var implType in implTypes)
+            {
+                var impl = dbContextType.MakeGenericType(implType);
+
+                iocManager.Register(
+                    impl,
+                    impl,
+                    DependencyLifeStyle.Transient
+                    );
+            }
+        }
     }
 
     

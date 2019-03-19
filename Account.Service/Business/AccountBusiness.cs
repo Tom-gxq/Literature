@@ -1,5 +1,7 @@
-﻿using SP.Service;
+﻿using AutoMapper;
+using SP.Service;
 using SP.Service.Domain.Commands.Account;
+using SP.Service.Domain.Commands.BalancePay;
 using SP.Service.Domain.DomainEntity;
 using SP.Service.Entity;
 using System;
@@ -203,7 +205,31 @@ namespace Account.Service.Business
                     sysKind.Unit = item.Unit;
                     sysKind.Description = item.Description;
                     sysKind.DiscountValue = item.DiscountValue;
+                    sysKind.Amount = item.Amount;
                     result.KindList.Add(sysKind);
+                }
+            }
+            return result;
+        }
+        public static CouponsListResponse GetAccountCouponsList(string accountId)
+        {
+            var list = ServiceLocator.KindReportDatabase.GetAccountCouponsList(accountId);
+            var result = new CouponsListResponse();
+            result.Status = 10001;
+            if (list != null)
+            {
+                foreach (var item in list)
+                {
+                    var coupons = new Coupons();
+                    coupons.Description = item.Description;
+                    coupons.CouponId = item.CouponId;
+                    coupons.Amount = item.Amount;
+                    coupons.ModeAmount = item.ModelAmount;
+                    coupons.EndDate = item.EndDate.Ticks;
+                    coupons.StartDate = item.StartDate.Ticks;
+                    coupons.Status = item.Status;
+                    coupons.ModeDescription = item.ModeDescription;
+                    result.CouponsList.Add(coupons);
                 }
             }
             return result;
@@ -398,6 +424,53 @@ namespace Account.Service.Business
         public static AccountResultResponse ApplyPartner(string accountId,int dormId)
         {
             ServiceLocator.CommandBus.Send(new CreateApplyPartnerCommand(new Guid(accountId),dormId));
+            var result = new AccountResultResponse();
+            result.Status = 10001;
+            return result;
+        }
+
+        public static AccountResultResponse BalancePay(string accountId, string token, string password, double amount, string orderCode,string sign)
+        {
+            ServiceLocator.CommandBus.Send(new BalancePayCommand(token, password, orderCode, amount, accountId, sign));
+            var result = new AccountResultResponse();
+            result.Status = 10001;
+            return result;
+        }
+        public static TradeListResponse GetTradeList(string accountId, int pageIndex, int pageSize)
+        {
+            var list = ServiceLocator.TradeReportDatabase.GetTradeHistoryList(accountId, pageIndex, pageSize);
+            var result = new TradeListResponse();
+            result.Status = 10001;
+            if (list != null)
+            {
+                foreach (var item in list)
+                {
+                    var trade = Mapper.Map<Trade>(item);
+                    result.TradeList.Add(trade);
+                }
+            }
+            return result;
+        }
+
+        public static TradeTotalResponse GetTradeListCount(string accountId)
+        {
+            var count = ServiceLocator.TradeReportDatabase.GetTradeHistoryCount(accountId);
+            var result = new TradeTotalResponse();
+            result.Status = 10001;
+            result.Total = count;
+            return result;
+        }
+
+        public static AccountResultResponse UpdateAccountWxUnionId(string accountId, string wxUnionId)
+        {
+            ServiceLocator.CommandBus.Send(new EditWxUnionIdCommand(accountId, wxUnionId));
+            var result = new AccountResultResponse();
+            result.Status = 10001;
+            return result;
+        }
+        public static AccountResultResponse CreateWxOpenId(string accountId, string wxOpenId,int wxType)
+        {
+            ServiceLocator.CommandBus.Send(new CreateWxOpenIdCommand(accountId, wxOpenId, wxType));
             var result = new AccountResultResponse();
             result.Status = 10001;
             return result;

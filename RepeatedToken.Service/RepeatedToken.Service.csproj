@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ReportCommand\GenerateCommand.cs" />
+    <Compile Remove="ReportCommand\UpdateStatusCommand.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.1.1" />
+    <PackageReference Include="Google.Protobuf" Version="3.4.1" />
+    <PackageReference Include="Grpc.Core" Version="1.6.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Grpc.Service.Core\Grpc.Service.Core.csproj" />
+    <ProjectReference Include="..\RepeatedTokenGRPCInterface\RepeatedTokenGRPCInterface.csproj" />
+    <ProjectReference Include="..\SP.Service.Domain\SP.Service.Domain.csproj" />
+    <ProjectReference Include="..\SP.Service.EntityFramework\SP.Service.EntityFramework.csproj" />
+    <ProjectReference Include="..\SP.Service.Entity\SP.Service.Entity.csproj" />
+  </ItemGroup>
+
+</Project>

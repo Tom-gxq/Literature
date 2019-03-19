@@ -93,12 +93,11 @@ define(function (require, exports, module) {
                     }
                 );
             });
-            $("#btnSearch").click(function () {
-                var universityId = $("#select_university").val();
+            $("#btnSearch").click(function () {   
                 var productId = $("#productId").val();
                 var sellerId = $("#sellerId").val();
                 var type = $("#selleType").val();
-                window.location.href = 'ShopManager?universityId=' + universityId +'&productId=' + productId + '&sellerId=' + sellerId + '&type=' + type;
+                window.location.href = 'ShopManager?productId=' + productId + '&sellerId=' + sellerId + '&type=' + type;
             });
             $("#btnAdd").click(function (obj) {
                 //弹出添加的操作框
