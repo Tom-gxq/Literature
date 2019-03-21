@@ -1,0 +1,36 @@
+﻿<div id="main">
+    <div id="wizard">
+        <div class="items" id="{%=$data%}">
+            <div class="page">
+                <div class="contactInfo">
+                    <ul>
+                        <li style="width:100%">
+                            <span class="grayfont span">学校:</span>
+                            <select tabindex="2" id="region" class="select small newselect" style="height: 35px;">
+                                <option value="0" selected="">&nbsp;</option>
+                                {% for(var i =0, j=$data.regions.length; i  < j; i++) { %}
+                                <option value="{%=$data.regions[i].DataId%}">{%=$data.regions[i].DataName%}</option>
+                                {% } %}
+                            </select>
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">负责人:</span>
+                            <select tabindex="2" id="leader" class="select small newselect" style="height: 35px;">
+                                <option value="0" selected="">&nbsp;</option>
+                                {% for(var i =0, j=$data.leaders.length; i < j; i++) { %}
+                                <option value="{%=$data.leaders[i].AccountId%}">{%=$data.leaders[i].Fullname%}</option>
+                                {% } %}
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+                <div class="btn_nav right">
+                    <input type="button" class="next " id="sub" value="确定" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" class="prev" id="cacel" value="取消" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -47,20 +47,30 @@ namespace SP.Application.Suppler
                  UpdateTime = DateTime.Now
             });
         }
+
+        public bool DelSupplerById(int id)
+        {
+            var repository = IocManager.Instance.Resolve<SupplersRepository>();
+            return repository.DeleteById(id) > 0;
+        }
+
         public bool UpdateSeller(SupplerDto dto)
         {
             var repository = IocManager.Instance.Resolve<SupplersRepository>();
             return repository.UpdateSuppler(new SuppliersEntity()
             {
                 Id = dto.Id,
-                AlipayNo = string.IsNullOrEmpty(dto.AlipayNo)?null: dto.AlipayNo,
+                AccountId = string.IsNullOrEmpty(dto.AccountId) ? null : dto.AccountId,
+                AlipayNo = string.IsNullOrEmpty(dto.AlipayNo) ? null : dto.AlipayNo,
                 AuthorizationPath = string.IsNullOrEmpty(dto.AuthorizationPath) ? null : dto.AuthorizationPath,
                 LicensePath = string.IsNullOrEmpty(dto.LicensePath) ? null : dto.LicensePath,
                 LogoPath = string.IsNullOrEmpty(dto.LogoPath) ? null : dto.LogoPath,
                 PermitPath = string.IsNullOrEmpty(dto.PermitPath) ? null : dto.PermitPath,
-                SuppliersName= string.IsNullOrEmpty(dto.SuppliersName) ? null : dto.SuppliersName,
+                SuppliersName = string.IsNullOrEmpty(dto.SuppliersName) ? null : dto.SuppliersName,
                 TelPhone = string.IsNullOrEmpty(dto.TelPhone) ? null : dto.TelPhone,
-                UpdateTime = DateTime.Now
+                Status = dto.Status,
+                UpdateTime = DateTime.Now,
+                TypeId = dto.TypeId,
             });
         }
         public List<SupplerDto> GetSupplerList()
@@ -77,6 +87,28 @@ namespace SP.Application.Suppler
 
             return retList;
         }
+
+        public List<SupplerDto> GetSupplerList(int pageIndex, int pageSize)
+        {
+            var retList = new List<SupplerDto>();
+            var repository = IocManager.Instance.Resolve<SupplersRepository>();
+            var list = repository.GetSellerList(pageIndex, pageSize);
+            foreach (var item in list)
+            {
+                var entity = ConvertFromRepositoryEntity(item);
+
+                retList.Add(entity);
+            }
+
+            return retList;
+        }
+
+        public int GetSellerCount()
+        {
+            var repository = IocManager.Instance.Resolve<SupplersRepository>();
+            return repository.GetSellerCount();
+        }
+
         public List<SupplerDto> SearchSuppler(string productId, int supplerId, int type, int pageIndex, int pageSize)
         {
             var retList = new List<SupplerDto>();
@@ -143,11 +175,34 @@ namespace SP.Application.Suppler
                 PermitPath = entity.PermitPath,
                 SuppliersName = entity.SuppliersName,
                 TelPhone = entity.TelPhone,
-                CreateTime = entity.CreateTime!= null ? entity.CreateTime.Value:DateTime.MinValue,
+                CreateTime = entity.CreateTime != null ? entity.CreateTime.Value : DateTime.MinValue,
                 UpdateTime = entity.UpdateTime != null ? entity.UpdateTime.Value : DateTime.MinValue,
+                Status = (int)entity.Status
             };
 
             return shopDto;
+        }
+
+        public List<SupplerDto> SearchSellerByName(string name, int pageIndex, int pageSize)
+        {
+            var retList = new List<SupplerDto>();
+            var repository = IocManager.Instance.Resolve<SupplersRepository>();
+            var list = repository.SearchSellerByName(name, pageIndex, pageSize);
+            foreach (var item in list)
+            {
+                var entity = ConvertFromRepositoryEntity(item);
+
+                retList.Add(entity);
+            }
+
+            return retList;
+        }
+
+        public int SearchSellerByNameCount(string name)
+        {
+            var repository = IocManager.Instance.Resolve<SupplersRepository>();
+            var count = repository.SearchSellerByNameCount(name);
+            return count;
         }
     }
 }

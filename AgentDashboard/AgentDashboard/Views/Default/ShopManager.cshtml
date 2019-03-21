@@ -105,40 +105,66 @@
                 </li>
                 <li class="breadcrumb-item active">商家管理</li>
             </ol>
-            <div style="height:90px">
-                <input type="text" placeholder="产品名称" class="input" name="title" value="" style="width: 204px; height: 35px;" id="productSearch">
-                <input id="productId" class="input-text width400 Check owner" type="hidden" value="" />
-                <input type="text" placeholder="商家名称" class="input" name="title" value="" style="width: 204px; height: 35px;" id="sellerSearch">
-                <input id="sellerId" class="input-text width400 Check owner" type="hidden" value="" />
-                <select id="selleType" class="select small newselect" style="height: 35px;">
-                    <option value="-1"></option>
-                </select>
-                <button class="btn btn-primary " id="btnSearch">查询</button>
-                <br />
-                <button class="btn btn-info fa fa-fw fa-plus" id="btnAdd" style="height: 35px;width: 50px;"></button>
+            <div class="row mb-3">
+                <div class="col-4">
+                    <span class="mb-2">学校</span>
+                    <select id="select_university" class="form-control w-100">
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model.Universities)
+                            {
+                                <option value="@item.Key">@item.Value</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col-4">
+                    <span class="mb-2">产品名称</span>
+                    <input type="text" placeholder="" class="form-control w-100" name="title" value="" id="productSearch">
+                    <input id="productId" class="input-text width400 Check owner" type="hidden" value="" />
+                </div>
+                <div class="col-3">
+                    <span class="mb-2">商家名称</span>
+                    <div class="input-group">
+                        <input type="text" placeholder="" class="form-control w-75" name="title" value="" id="sellerSearch">
+                        <select id="selleType" class="select small newselect" style="height: 35px;">
+                            <option value="-1"></option>
+                        </select>
+                    </div>
+                    <input id="sellerId" class="input-text width400 Check owner" type="hidden" value="" />
+                </div>
+                <div class="col-1">
+                    <span class="mb-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <button class="btn btn-primary" id="btnSearch">查询</button>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-12">
+                    <button class="btn btn-info fa fa-fw fa-plus" id="btnAdd" style="height: 35px;width: 50px;"></button>
+                </div>
             </div>
             <!-- Icon Cards-->
             @if (Model != null)
             {
-                <div class="row">
-                    @foreach (var seller in Model)
+                <div class="row mb-3">
+                    @foreach (var seller in Model.Sellers)
                     {
                         <div class="col-xl-3 col-sm-6 mb-3">
                             <div class="card text-white bg-primary o-hidden h-100">
-                                <div class="card-body" dataid="@seller.SellerId">                                    
+                                <div class="card-body" dataid="@seller.SellerId">
                                     <div class="card-delete-icon" dataid="@seller.SellerId">
                                         <i class="fa fa-fw fa-close" dataid="@seller.SellerId"></i>
                                     </div>
                                     <div class="mr-5">@seller.SellerName</div>
-                                </div> 
-                                <div class="card-footer text-white clearfix small z-1" >
-                                    <input dataid="@seller.SellerId"  class="lic"  type="button" style="float: left;" value="执照"/>
-                                    <input dataid="@seller.SellerId" class="permit"   type="button" style="float: left;" value="经营许可" />
+                                </div>
+                                <div class="card-footer text-white clearfix small z-1">
+                                    <input dataid="@seller.SellerId" class="lic" type="button" style="float: left;" value="执照" />
+                                    <input dataid="@seller.SellerId" class="permit" type="button" style="float: left;" value="经营许可" />
                                     <input dataid="@seller.SellerId" class="auth" type="button" style="float: left;" value="授权函" />
                                 </div>
                             </div>
                         </div>
-                     }
+                    }
                 </div>
             }
         </div>

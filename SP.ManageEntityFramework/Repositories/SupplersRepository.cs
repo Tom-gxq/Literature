@@ -47,24 +47,24 @@ namespace SP.ManageEntityFramework.Repositories
             using (var db = Context.OpenDbConnection())
             {
                 var q = db.From<SuppliersEntity>();
-                if(!string.IsNullOrEmpty(productId))
+                if (!string.IsNullOrEmpty(productId))
                 {
-                    q = q.Join<SuppliersEntity, ProductEntity>((a,b)=>a.AccountId == b.SuppliersId && b.ProductId == productId);
+                    q = q.Join<SuppliersEntity, ProductEntity>((a, b) => a.AccountId == b.SuppliersId && b.ProductId == productId);
                 }
                 if (supplerId > 0)
                 {
                     if (type >= 0)
                     {
-                        q = q.Where(x => x.Id == supplerId && x.Type == type);
+                        q = q.Where(x => x.Id == supplerId);
                     }
                     else
                     {
                         q = q.Where(x => x.Id == supplerId);
                     }
                 }
-                else if(type >= 0)
+                else if (type >= 0)
                 {
-                    q = q.Where(x => x.Type == type && x.Status == 0);
+                    q = q.Where(x => x.Status == 0);
                 }
                 else
                 {
@@ -89,7 +89,7 @@ namespace SP.ManageEntityFramework.Repositories
                 {
                     if (type >= 0)
                     {
-                        q = q.Where(x => x.Id == supplerId && x.Type == type);
+                        q = q.Where(x => x.Id == supplerId);
                     }
                     else
                     {
@@ -98,7 +98,7 @@ namespace SP.ManageEntityFramework.Repositories
                 }
                 else if (type >= 0)
                 {
-                    q = q.Where(x => x.Type == type && x.Status == 0);
+                    q = q.Where(x => x.Status == 0);
                 }
                 else
                 {
@@ -120,7 +120,47 @@ namespace SP.ManageEntityFramework.Repositories
 
         public SuppliersEntity GetSellerDataByAccountId(string accountId)
         {
-            return this.Single(x=>x.AccountId == accountId && x.Status == 0);
+            return this.Single(x => x.AccountId == accountId && x.Status == 0);
+        }
+
+        public List<SuppliersEntity> GetSellerList(int pageIndex, int pageSize)
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<SuppliersEntity>();
+                q = q.Limit((pageIndex - 1) * pageSize, pageSize);
+                return db.Select<SuppliersEntity>(q);
+            }
+        }
+
+        public int GetSellerCount()
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<SuppliersEntity>();
+                q = q.Where(n => n.Status == 0);
+                return db.Select(q).Count;
+            }
+        }
+
+        public List<SuppliersEntity> SearchSellerByName(string name, int pageIndex, int pageSize)
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<SuppliersEntity>().Where(x => x.SuppliersName.Contains(name));
+                q = q.OrderByDescending(x => x.CreateTime);
+                q = q.Limit((pageIndex - 1) * pageSize, pageSize);
+                return db.Select(q);
+            }
+        }
+
+        public int SearchSellerByNameCount(string name)
+        {
+            using (var db = Context.OpenDbConnection())
+            {
+                var q = db.From<SuppliersEntity>().Where(x => x.SuppliersName.Contains(name));
+                return db.Select(q).Count;
+            }
         }
     }
 }

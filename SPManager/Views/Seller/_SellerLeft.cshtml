@@ -1,0 +1,21 @@
+﻿@{
+    var ActionName = Url.RequestContext.RouteData.Values["action"].ToString().ToLower();
+}
+<div class="content-left fl">
+    <dl class="left-menu shop_2 sub_home">
+        <dt>
+            <i class="icon-menu commodity"></i>
+            <span id="shop_2" data-id="2">商家管理</span>
+        </dt>
+        <dd class="subshop_2 @Html.GetActive(ActionName,"Index","active") @Html.GetActive(ActionName,"Product","active")" >
+            <a href="/Seller/Index">商家管理</a>
+        </dd>
+        <dd class="subshop_2  @Html.GetActive(ActionName,"Region","active")">
+            <a href="/Seller/Region">所见区域配置</a>
+        </dd>
+        <dd class="subshop_2 @Html.GetActive(ActionName,"Leader","active")">
+            <a href="/Seller/Leader">各校区负责人</a>
+        </dd>
+    </dl>
+</div>
+

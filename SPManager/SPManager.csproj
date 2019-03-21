@@ -255,6 +255,7 @@
     <Compile Include="Controllers\ProductTypeController.cs" />
     <Compile Include="Controllers\QiniuController.cs" />
     <Compile Include="Controllers\RegionDataController.cs" />
+    <Compile Include="Controllers\SellerController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Filters\UserActionAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -434,6 +435,8 @@
     <Content Include="Scripts\plug\plupload\plupload.full.min.js" />
     <Content Include="Scripts\plug\plupload\plupload.min.js" />
     <Content Include="Scripts\plug\qiniu\producttype.js" />
+    <Content Include="Scripts\plug\qiniu\sellerlicense.js" />
+    <Content Include="Scripts\plug\qiniu\sellerlogo.js" />
     <Content Include="Scripts\plug\qiniu\shop.js" />
     <Content Include="Scripts\plug\qiniu\css\highlight.css" />
     <Content Include="Scripts\plug\qiniu\highlight.js" />
@@ -474,6 +477,37 @@
     <Content Include="Scripts\resevent\reseventdata.js" />
     <Content Include="Scripts\resevent\list-item.html" />
     <Content Include="Scripts\resevent\style.css" />
+    <Content Include="Scripts\seller\addproduct.js" />
+    <Content Include="Scripts\seller\addproduct.html" />
+    <Content Include="Scripts\seller\editproduct.js" />
+    <Content Include="Scripts\seller\editproduct.html" />
+    <Content Include="Scripts\seller\editsellerauthorization.html" />
+    <Content Include="Scripts\seller\editsellerauthorization.js" />
+    <Content Include="Scripts\seller\editsellerpermit.js" />
+    <Content Include="Scripts\seller\editsellerpermit.html" />
+    <Content Include="Scripts\seller\editsellerlicense.html" />
+    <Content Include="Scripts\seller\editsellerlicense.js" />
+    <Content Include="Scripts\seller\editseller.js" />
+    <Content Include="Scripts\seller\editseller.html" />
+    <Content Include="Scripts\seller\addseller.html" />
+    <Content Include="Scripts\seller\addseller.js" />
+    <Content Include="Scripts\seller\addleader.js" />
+    <Content Include="Scripts\seller\addleader.html" />
+    <Content Include="Scripts\seller\addregion.html" />
+    <Content Include="Scripts\seller\addregion.js" />
+    <Content Include="Scripts\seller\editleader.js" />
+    <Content Include="Scripts\seller\editleader.html" />
+    <Content Include="Scripts\seller\leader.js" />
+    <Content Include="Scripts\seller\leader-item.html" />
+    <Content Include="Scripts\seller\product.js" />
+    <Content Include="Scripts\seller\product-item.html" />
+    <Content Include="Scripts\seller\seller-item.html" />
+    <Content Include="Scripts\seller\seller.js" />
+    <Content Include="Scripts\seller\editregion.html" />
+    <Content Include="Scripts\seller\editregion.js" />
+    <Content Include="Scripts\seller\region-item.html" />
+    <Content Include="Scripts\seller\region.js" />
+    <Content Include="Scripts\seller\style.css" />
     <Content Include="Scripts\shop\addshop.html" />
     <Content Include="Scripts\shop\addshop.js" />
     <Content Include="Scripts\shop\editshop.html" />
@@ -542,6 +576,11 @@
     <Content Include="Views\Product\MarketSkuIndex.cshtml" />
     <Content Include="Views\Associator\Index.cshtml" />
     <Content Include="Views\Associator\_AssociatorLeft.cshtml" />
+    <Content Include="Views\Seller\Index.cshtml" />
+    <Content Include="Views\Seller\_SellerLeft.cshtml" />
+    <Content Include="Views\Seller\Region.cshtml" />
+    <Content Include="Views\Seller\Product.cshtml" />
+    <Content Include="Views\Seller\Leader.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,43 @@
+﻿<div id="main">
+    <div id="wizard">
+        <div class="items" id="{%=$data%}">
+            <div class="page">
+                <div class="contactInfo">
+                    <ul>
+                        <li style="width:100%">
+                            <span class="grayfont span">产品名:</span>
+                            <input type="hidden" id="sellerProductId" value="{%=$data.Product.Id%}"/>
+                            <select id="procductlist" name="procducts" style="width:250px;" class="select small newselect">
+                                {% for(var i =0, j=$data.products.length; i  < j; i++) { %}
+                                <option value="{%=$data.products[i].ProductId%}" {%=$data.products[i].ProductId==$data.Product.ProductId?'selected':'' %}
+                                        data-image="{%=$data.products[i].ImgPath%}" data-title="" data-description="{%=$data.products[i].Description%}">{%=$data.products[i].ProductName%}</option>
+                                {% } %}
+                            </select>
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">供货价:</span>
+                            <input tabindex="2" class="input-text Check purchaseprice" style="width:250px;" type="text" value="{%=$data.Product.PurchasePrice%}" />
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">警戒库存:</span>
+                            <input tabindex="3" class="input-text Check alertstock" style="width:250px;" type="text" value="{%=$data.Product.AlertStock%}" />
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">市场价格:</span>
+                            <input tabindex="3" class="input-text Check marketprice" style="width:250px;" type="text" value="{%=$data.MarketPrice%}" />
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">会员价格:</span>
+                            <input tabindex="3" class="input-text Check vipprice" style="width:250px;" type="text" value="{%=$data.VIPPrice%}" />
+                        </li>
+                    </ul>
+                </div>
+                <div class="btn_nav right">
+                    <input type="button" class="next " id="sub" value="确定" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" class="prev" id="cacel" value="取消" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

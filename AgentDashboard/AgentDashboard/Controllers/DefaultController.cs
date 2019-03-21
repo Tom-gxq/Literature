@@ -109,6 +109,23 @@ namespace AgentDashboard.Controllers
             return (pageIndex - 1) * pageSize;
         }
 
+        /// <summary>
+        /// 取得当前用户ID
+        /// </summary>
+        /// <remarks>
+        /// 系统登录后在Session的Account里保存一个AccoutModel
+        /// 帐户Id就从这个AccoutModel中取得
+        /// </remarks>
+        /// <returns>当前用户ID</returns>
+        private String GetCurrentAccountId()
+        {
+            return (MDSession.Session["Account"] as AccountModel)?.AccountId;
+        }
+
+        /// <summary>
+        /// 餐厅页面
+        /// </summary>
+        /// <returns></returns>
         // GET: Default
         public ActionResult Index()
         {
@@ -119,19 +136,22 @@ namespace AgentDashboard.Controllers
                 ViewBag.CurrentPage = 1;
                 string food = ConfigurationManager.AppSettings["MainType.Food"];
                 int foodId = int.Parse(food);
+                String accountId = GetCurrentAccountId();
 
-                var shopList = sp.SP_Shop.Where(n=>n.ShopType == foodId)?.OrderByDescending(n => n.RegionId).OrderByDescending(n=>n.Id)
-                    //.Skip(GetStartRowNo(1, 20)).Take(20).ToList();
-                    .ToList();
-                shopsVM = shopList.Select(x => new ShopViewModel
-                {
-                    Id = x.Id,
-                    ShopName = x.ShopName,
-                    ShopType = x.ShopType,
-                    ShopStatus = x.ShopStatus,
-                    RegionId = x.RegionId,
-                }).ToList();
-                foreach(var item in shopsVM)
+                shopsVM = (from regionAccount in sp.SP_RegionAccount.Where(n => n.AccountId == accountId)
+                           join shop in sp.SP_Shop on regionAccount.RegionId equals shop.RegionId
+                           select new ShopViewModel
+                           {
+                               Id = shop.Id,
+                               ShopName = shop.ShopName,
+                               ShopType = shop.ShopType,
+                               ShopStatus = shop.ShopStatus,
+                               RegionId = shop.RegionId,
+                           }).Where(n=>n.ShopType == foodId)
+                           .OrderByDescending(n =>n.RegionId)
+                           .OrderByDescending(n => n.Id).ToList();
+
+                foreach (var item in shopsVM)
                 {
                     if (item.RegionId != null)
                     {
@@ -213,19 +233,20 @@ namespace AgentDashboard.Controllers
                             foreach (var deliverProduct in deliverProducts.ToList())
                             {
                                 ProductsViewModel procduct = new ProductsViewModel();
-                                procduct.Id = deliverProduct.ProductId;
+                                procduct.Id = deliverProduct.Id;
+                                procduct.ProductId = deliverProduct.ProductId;
                                 DateTime now = DateTime.Parse(DateTime.Now.ToShortDateString());
                                 
-                                var productStock =  ServerStockBusiness.GetAccountProductStock(account.AccountId, procduct.Id, shopId);
+                                var productStock =  ServerStockBusiness.GetAccountProductStock(account.AccountId, procduct.ProductId, shopId);
                                 procduct.Stocks = productStock;
                                 procduct.PreStocks = deliverProduct.PreStock;
 
-                                var procdutInfo = sp.SP_Products.SingleOrDefault(n => n.ProductId == procduct.Id);
+                                var procdutInfo = sp.SP_Products.SingleOrDefault(n => n.ProductId == procduct.ProductId);
                                 procduct.Name = procdutInfo?.ProductName ?? string.Empty;
                                 procduct.Description = procdutInfo?.Description;
 
                                 string domain = ConfigurationManager.AppSettings["Qiniu.Domain"];
-                                var procdutImageInfo = sp.SP_ProductImage.SingleOrDefault(n => n.ProductId == procduct.Id);
+                                var procdutImageInfo = sp.SP_ProductImage.SingleOrDefault(n => n.ProductId == procduct.ProductId);
                                 procduct.ImagePath = !string.IsNullOrEmpty(procdutImageInfo?.ImgPath) ? domain + procdutImageInfo.ImgPath : string.Empty;
                                 deliverMan.Products.Add(procduct);
                             }
@@ -237,6 +258,39 @@ namespace AgentDashboard.Controllers
             }
 
             return View(vm);
+        }
+
+        /// <summary>
+        /// 超市与餐饮的产品删除
+        /// </summary>
+        /// <param name="id">ID</param>
+        public void DeleteProduct(int id)
+        {
+            using (SPEntities spEntity = new SPEntities())
+            {
+                DbContextTransaction transcation = null;
+
+                try
+                {
+                    var product = spEntity.SP_AccountProduct.SingleOrDefault(n =>n.Id == id);
+                    if (product != null)
+                    {
+                        transcation = spEntity.Database.BeginTransaction();
+                        spEntity.SP_AccountProduct.Remove(product);
+                        spEntity.SaveChanges();
+                        transcation.Commit();
+                    }
+                }
+                catch (Exception)
+                {
+                    transcation.Rollback();
+                    throw;
+                }
+                finally
+                {
+                    if (transcation != null) transcation.Dispose();
+                }
+            }
         }
 
         [HttpPost]
@@ -397,6 +451,10 @@ namespace AgentDashboard.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 超市页面
+        /// </summary>
+        /// <returns></returns>
         public ActionResult SuperMarket()
         {
             List<ShopViewModel> shopsVM = null;
@@ -406,18 +464,23 @@ namespace AgentDashboard.Controllers
                 ViewBag.CurrentPage = 1;
                 string market = ConfigurationManager.AppSettings["MainType.Market"];
                 int marketId = int.Parse(market);
+                string accountId = GetCurrentAccountId();
+
+                shopsVM = (from regionAccount in sp.SP_RegionAccount.Where(n=>n.AccountId == accountId)
+                           join shop in sp.SP_Shop on regionAccount.RegionId equals shop.RegionId
+                           select new ShopViewModel
+                           {
+                               Id = shop.Id,
+                               ShopName = shop.ShopName,
+                               ShopType = shop.ShopType,
+                               ShopStatus = shop.ShopStatus,
+                               RegionId = shop.RegionId,
+                           }
+                           ).Where(n => n.ShopType == marketId)
+                           .OrderByDescending(n => n.RegionId)
+                           .OrderByDescending(n => n.Id)
+                           .ToList();
                 
-                var shopList = sp.SP_Shop.Where(n => n.ShopType == marketId)?.OrderByDescending(n => n.RegionId).OrderByDescending(n => n.Id)
-                    //.Skip(GetStartRowNo(1, 20)).Take(20).ToList();
-                    .ToList();
-                shopsVM = shopList.Select(x => new ShopViewModel
-                {
-                    Id = x.Id,
-                    ShopName = x.ShopName,
-                    ShopType = x.ShopType,
-                    ShopStatus = x.ShopStatus,
-                    RegionId = x.RegionId,
-                }).ToList();
                 foreach (var item in shopsVM)
                 {
                     if (item.RegionId != null)
@@ -442,175 +505,169 @@ namespace AgentDashboard.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 取得产品类别列表
+        /// </summary>
+        /// <remarks>
+        /// 人员管理页面
+        /// </remarks>
+        /// <param name="kind"></param>
+        /// <returns></returns>
         public JsonResult GetProductType(int kind)
         {
-            List<dynamic> productTypeList = new List<dynamic>();
-
             using (SPEntities spEntities = new SPEntities())
             {
-                var productTypes = spEntities.SP_ProductType.Where(n => n.Kind == kind)?.ToList();
-                foreach (var productType in productTypes)
-                {
-                    productTypeList.Add(new { ID = productType.Id, Kind = kind, Name = productType.TypeName });
-                }
-            }
+                var productTypeList = (from productType in spEntities.SP_ProductType
+                                       where productType.Kind == kind
+                                       select new
+                                       {
+                                           ID = productType.Id,
+                                           Kind = kind,
+                                           Name = productType.TypeName
+                                       }
+                       ).ToList();
 
-            return Json(productTypeList, JsonRequestBehavior.AllowGet);
+                return Json(productTypeList, JsonRequestBehavior.AllowGet);
+
+            }
         }
 
         /// <summary>
-        /// 
+        /// 检索人员管理信息
         /// </summary>
-        /// <param name="accountId"></param>
         /// <param name="unversityId"></param>
         /// <param name="colleageId"></param>
-        /// <param name="productType"></param>
+        /// <param name="typeId"></param>
         /// <returns></returns>
         public JsonResult GetDeliveryManInfo(int unversityId, int colleageId, int typeId)
         {
-            IProductTypeService service = IocManager.Instance.Resolve<IProductTypeService>();
-            var accountSession = MDSession.Session["Account"] as AccountInfo;
-            string accountId = accountSession?.AccountId;//"72a362ef-8e11-429b-b4d2-f7f67fcfd9a6";
-
-            List<HumanManagerViewModel> vmList = new List<HumanManagerViewModel>();
+            string accountId = GetCurrentAccountId();
+            List<HumanManagerViewModel> vmList = null;
 
             using (SPEntities spEntity = new SPEntities())
             {
-                if (unversityId == -1)
+                if (unversityId == -1 && colleageId == -1)
                 {
-                    var regionAccounts = spEntity.SP_RegionAccount.Where(n => n.AccountId == accountId);
+                    var queryList = (from regionAccount in spEntity.SP_RegionAccount.Where(n => n.AccountId == accountId)
+                                     join regionData in spEntity.SP_RegionData on regionAccount.RegionId.ToString() equals regionData.ParentDataID
+                                     join shop in spEntity.SP_Shop on regionData.DataID equals shop.RegionId
+                                     join shopOwner in spEntity.SP_ShopOwner on shop.Id equals shopOwner.ShopId
+                                     join shopProductType in spEntity.SP_ProductType on shop.ShopType equals shopProductType.Id
+                                     join account in spEntity.SP_Account on shopOwner.Id equals account.Id
+                                     join accountInfo in spEntity.SP_AccountInfo on shopOwner.OwnerId equals accountInfo.AccountId
+                                     select new HumanManagerViewModel
+                                     {
+                                         AccountId = account.AccountId,
+                                         FullName = accountInfo.Fullname,
+                                         CellPhoneNo = account.MobilePhone,
+                                         RegionName = regionData.DataName,
+                                         ProductType = shopProductType.Id,
+                                         TypeName = shopProductType.TypeName,
+                                     }).ToList();
 
-                    foreach (var regionAccount in regionAccounts)
+                    if (typeId == -1)
                     {
-                        var regionDatas = spEntity.SP_RegionData.Where(n => n.ParentDataID == regionAccount.RegionId.ToString());
-
-                        foreach (var regionData in regionDatas)
-                        {
-                            IQueryable<SP_Shop> shops = null;
-                            if (unversityId != -1)
-                            {
-                                if (colleageId != -1)
-                                {
-                                    shops = spEntity.SP_Shop.Where(n => n.RegionId == regionData.DataID).Where(n => n.RegionId == colleageId);
-                                }
-                                else
-                                {
-                                    shops = spEntity.SP_Shop.Where(n => n.RegionId == regionData.DataID);
-                                }
-                            }
-                            else
-                            {
-                                shops = spEntity.SP_Shop.Where(n => n.RegionId == regionData.DataID);
-                            }
-
-                            foreach (var shop in shops)
-                            {
-                                var shopOwners = spEntity.SP_ShopOwner.Where(n => n.ShopId == shop.Id);
-
-                                foreach (var shopOwner in shopOwners)
-                                {
-                                    var accountInfo = spEntity.SP_AccountInfo.SingleOrDefault(n => n.AccountId == shopOwner.OwnerId);
-                                    var account = spEntity.SP_Account.SingleOrDefault(n => n.AccountId == shopOwner.OwnerId);
-
-                                    if ((accountInfo != null) && (account != null))
-                                    {
-                                        if (vmList.Where(n => n.AccountId == account.AccountId).Count() == 0)
-                                        {
-                                            HumanManagerViewModel viewModel = new HumanManagerViewModel();
-                                            viewModel.AccountId = account.AccountId;
-                                            viewModel.FullName = accountInfo.Fullname;
-                                            viewModel.CellPhoneNo = account.MobilePhone;
-                                            viewModel.RegionName = regionData.DataName;
-                                            viewModel.TypeName = spEntity.SP_ProductType.SingleOrDefault(n => n.Id == shop.ShopType).TypeName;
-                                            viewModel.Birthday = accountInfo.Birthdate?.ToString("yyyy/MM/dd");
-                                            vmList.Add(viewModel);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    if (colleageId != -1)
-                    {
-                        var region = spEntity.SP_RegionData.Single(n => n.DataID == colleageId);
-                        var shops = spEntity.SP_Shop.Where(n => n.RegionId == colleageId);
-                        foreach (var shop in shops)
-                        {
-                            var shopOwners = spEntity.SP_ShopOwner.Where(n => n.ShopId == shop.Id);
-
-                            foreach (var shopOwner in shopOwners)
-                            {
-                                var accountInfo = spEntity.SP_AccountInfo.SingleOrDefault(n => n.AccountId == shopOwner.OwnerId);
-                                var account = spEntity.SP_Account.SingleOrDefault(n => n.AccountId == shopOwner.OwnerId);
-
-                                if ((accountInfo != null) && (account != null))
-                                {
-                                    if (vmList.Where(n => n.AccountId == account.AccountId).Count() == 0)
-                                    {
-                                        HumanManagerViewModel viewModel = new HumanManagerViewModel();
-                                        viewModel.AccountId = account.AccountId;
-                                        viewModel.FullName = accountInfo.Fullname;
-                                        viewModel.CellPhoneNo = account.MobilePhone;
-                                        viewModel.RegionName = region?.DataName??string.Empty;
-                                        viewModel.TypeName = spEntity.SP_ProductType.SingleOrDefault(n => n.Id == shop.ShopType).TypeName;
-                                        viewModel.Birthday = accountInfo.Birthdate?.ToString("yyyy/MM/dd");
-                                        vmList.Add(viewModel);
-                                    }
-                                }
-                            }
-                        }
+                        vmList = queryList;
                     }
                     else
                     {
-                        var regionDataList = spEntity.SP_RegionData.Where(n => n.ParentDataID == unversityId.ToString());
-
-                        foreach (var region in regionDataList)
-                        {
-                            var shops = spEntity.SP_Shop.Where(n => n.RegionId == region.DataID);
-
-                            foreach (var shop in shops)
-                            {
-                                var shopOwners = spEntity.SP_ShopOwner.Where(n => n.ShopId == shop.Id);
-
-                                foreach (var shopOwner in shopOwners)
-                                {
-                                    var accountInfo = spEntity.SP_AccountInfo.SingleOrDefault(n => n.AccountId == shopOwner.OwnerId);
-                                    var account = spEntity.SP_Account.SingleOrDefault(n => n.AccountId == shopOwner.OwnerId);
-
-                                    if ((accountInfo != null) && (account != null))
-                                    {
-                                        if (vmList.Where(n => n.AccountId == account.AccountId).Count() == 0)
-                                        {
-                                            HumanManagerViewModel viewModel = new HumanManagerViewModel();
-                                            viewModel.AccountId = account.AccountId;
-                                            viewModel.FullName = accountInfo.Fullname;
-                                            viewModel.CellPhoneNo = account.MobilePhone;
-                                            viewModel.RegionName = region.DataName;
-                                            viewModel.TypeName = spEntity.SP_ProductType.SingleOrDefault(n => n.Id == shop.ShopType).TypeName;
-                                            viewModel.Birthday = accountInfo.Birthdate?.ToString("yyyy/MM/dd");
-                                            vmList.Add(viewModel);
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        vmList = queryList.Where(n=>n.ProductType == typeId).ToList();
                     }
                 }
-            }
+                
+                if((unversityId != -1) && (colleageId == -1))
+                {
+                    var queryList =
+                        (from regionData in spEntity.SP_RegionData.Where(n => n.ParentDataID == unversityId.ToString())
+                         join shop in spEntity.SP_Shop on regionData.DataID equals shop.RegionId
+                         join shopOwner in spEntity.SP_ShopOwner on shop.Id equals shopOwner.ShopId
+                         join shopProductType in spEntity.SP_ProductType on shop.ShopType equals shopProductType.Id
+                         join account in spEntity.SP_Account on shopOwner.Id equals account.Id
+                         join accountInfo in spEntity.SP_AccountInfo on shopOwner.OwnerId equals accountInfo.AccountId
+                         select new HumanManagerViewModel
+                         {
+                             AccountId = account.AccountId,
+                             FullName = accountInfo.Fullname,
+                             CellPhoneNo = account.MobilePhone,
+                             RegionName = regionData.DataName,
+                             ProductType = shopProductType.Id,
+                             TypeName = shopProductType.TypeName,
+                         }).ToList();
 
-            return Json(vmList, JsonRequestBehavior.AllowGet);
+                    if(typeId == -1)
+                    {
+                        vmList = queryList;
+                    }
+                    else
+                    {
+                        vmList = queryList.Where(n => n.ProductType == typeId).ToList();
+                    }
+                }
+
+                if ((unversityId != -1) && (colleageId != -1))
+                {
+                    var queryList = (from regionData in spEntity.SP_RegionData.Where(n => n.DataID == colleageId)
+                                     join shop in spEntity.SP_Shop on regionData.DataID equals shop.RegionId
+                                     join shopOwner in spEntity.SP_ShopOwner on shop.Id equals shopOwner.ShopId
+                                     join shopProductType in spEntity.SP_ProductType on shop.ShopType equals shopProductType.Id
+                                     join account in spEntity.SP_Account on shopOwner.Id equals account.Id
+                                     join accountInfo in spEntity.SP_AccountInfo on shopOwner.OwnerId equals accountInfo.AccountId
+                                     select new HumanManagerViewModel
+                                     {
+                                         AccountId = account.AccountId,
+                                         FullName = accountInfo.Fullname,
+                                         CellPhoneNo = account.MobilePhone,
+                                         RegionName = regionData.DataName,
+                                         ProductType = shopProductType.Id,
+                                         TypeName = shopProductType.TypeName,
+                                     }).ToList();
+
+                    if(typeId == -1)
+                    {
+                        vmList = queryList;
+                    }
+                    else
+                    {
+                        vmList = queryList.Where(n => n.ProductType == typeId).ToList();
+                    }
+                }
+
+                return Json(vmList, JsonRequestBehavior.AllowGet);
+            }
         }
 
 
         public ActionResult DataAnalyze()
         {
-            return View();
+            string accountId = GetCurrentAccountId();
+            using (SPEntities sPEntities = new SPEntities())
+            {
+                var regionId = sPEntities.SP_RegionAccount.Where(n => n.AccountId == accountId)?.First();
+                DataAnalyzeViewModel viewModel = new DataAnalyzeViewModel();
+                if (regionId != null)
+                {
+                    viewModel.RegionId = regionId.RegionId;
+                }
+
+                var regionList = (from regionAccount in sPEntities.SP_RegionAccount.Where(n => n.AccountId == accountId)
+                                  join regionData in sPEntities.SP_RegionData on regionAccount.RegionId equals regionData.DataID
+                                  select new
+                                  {
+                                      DataId = regionData.DataID,
+                                      DataName = regionData.DataName
+                                  });
+
+                viewModel.Universities = new Dictionary<int, string>();
+                foreach (var region in regionList)
+                {
+                    viewModel.Universities.Add(region.DataId, region.DataName);
+                }
+
+                return View(viewModel);
+            }
         }
 
-        public ActionResult ShopManager(string productId = "", int sellerId = 0, int type = -1)
+        public ActionResult ShopManager(int universityId = -1, string productId = "", int sellerId = 0, int type = -1)
         {
             List<SellerViewModel> shopsVM = null;
             ISupplerAppService service = IocManager.Instance.Resolve<ISupplerAppService>();
@@ -623,6 +680,8 @@ namespace AgentDashboard.Controllers
             {
                 list = service.SearchSuppler(productId, sellerId, type, 1, 20);
             }
+
+            string accountId = GetCurrentAccountId();
             
             shopsVM = list.Select(x => new SellerViewModel
             {
@@ -632,8 +691,74 @@ namespace AgentDashboard.Controllers
                 LogoPath = x.LogoPath,
             }).ToList();
 
-            return View(shopsVM);
+            using (SPEntities sPEntities = new SPEntities())
+            {
+                ShopManagerViewModel viewModel = new ShopManagerViewModel();
+                RegionDataViewModel regionDataVm = new RegionDataViewModel();
+                var regionList = (from regionAccount in sPEntities.SP_RegionAccount.Where(n => n.AccountId == accountId)
+                                  join regionData in sPEntities.SP_RegionData on regionAccount.RegionId equals regionData.DataID
+                                  select new
+                                  {
+                                      DataId = regionData.DataID,
+                                      DataName = regionData.DataName
+                                  });
+
+                regionDataVm.Universities = new Dictionary<int, string>();
+                foreach (var region in regionList)
+                {
+                    regionDataVm.Universities.Add(region.DataId, region.DataName);
+                }
+
+                viewModel.Universities = regionDataVm.Universities;
+
+                dynamic sellersList = null;
+                if (universityId == -1)
+                {
+                    viewModel.SelectIndex = 0;
+
+                    sellersList = (from regionAccount in sPEntities.SP_RegionAccount.Where(n => n.AccountId == accountId)
+                                       join suppliers in sPEntities.SP_SuppliersRegion on regionAccount.RegionId equals suppliers.RegionID
+                                       select new
+                                       {
+                                           Id = suppliers.Id
+                                       }).ToList();
+                }
+                else
+                {
+                    int i = 0;
+                    foreach (var item in viewModel.Universities)
+                    {
+                        if (item.Key == universityId)
+                        {
+                            viewModel.SelectIndex = i;
+                        }
+                        i++;
+                    }
+
+                    sellersList = (from regionAccount in sPEntities.SP_RegionAccount.Where(n => n.AccountId == accountId)
+                                       join suppliers in sPEntities.SP_SuppliersRegion on regionAccount.RegionId equals suppliers.RegionID
+                                       select new
+                                       {
+                                           Id = suppliers.Id,
+                                           RegionId = suppliers.RegionID
+                                       }).Where(n=>n.RegionId == universityId).ToList();
+                }
+
+                viewModel.Sellers = new List<SellerViewModel>();
+
+                foreach (var item in sellersList)
+                {
+                    var seller = shopsVM.SingleOrDefault(n => n.SellerId == item.Id);
+                    if (seller != null)
+                    {
+                        viewModel.Sellers.Add(seller);
+                    }
+                }
+
+                return View(viewModel);
+            }
         }
+
         [HttpPost]
         public ActionResult DelSeller(int id)
         {            
@@ -975,20 +1100,26 @@ namespace AgentDashboard.Controllers
 
         public ActionResult RegionManager()
         {
-            RegionDataViewModel viewModel = new RegionDataViewModel();
-
-            using (SPEntities sp = new SPEntities())
+            string accountId = GetCurrentAccountId();
+            using (SPEntities sPEntities = new SPEntities())
             {
-                var regionList = sp.SP_RegionData.Where(n => n.DataType == 1).ToList();
-                viewModel.Universities = new Dictionary<int, string>();
+                RegionDataViewModel viewModel = new RegionDataViewModel();
+                var regionList = (from regionAccount in sPEntities.SP_RegionAccount.Where(n => n.AccountId == accountId)
+                                  join regionData in sPEntities.SP_RegionData on regionAccount.RegionId equals regionData.DataID
+                                  select new
+                                  {
+                                      DataId = regionData.DataID,
+                                      DataName = regionData.DataName
+                                  });
 
+                viewModel.Universities = new Dictionary<int, string>();
                 foreach (var region in regionList)
                 {
-                    viewModel.Universities.Add(region.DataID, region.DataName);
+                    viewModel.Universities.Add(region.DataId, region.DataName);
                 }
-            }
 
-            return View(viewModel);
+                return View(viewModel);
+            }
         }
 
         public void DeleteRoom(int id)
@@ -1080,34 +1211,43 @@ namespace AgentDashboard.Controllers
 
         public JsonResult GetUniversity()
         {
-            List<dynamic> universityList = new List<dynamic>();
-
             using (SPEntities sp = new SPEntities())
             {
-                var regionList = sp.SP_RegionData.Where(n => n.DataType == 1)?.ToList();
+                string accountId = GetCurrentAccountId();
+                dynamic universityList = (from regionAccount in sp.SP_RegionAccount.Where(n => n.AccountId == accountId)
+                                 join regionData in sp.SP_RegionData.Where(n => n.DataType == 1) on regionAccount.RegionId equals regionData.DataID
+                                 select new
+                                 {
+                                     ID = regionData.DataID,
+                                     Name = regionData.DataName
+                                 }).ToList();
 
-                foreach (var region in regionList)
-                {
-                    universityList.Add(new { ID = region.DataID, Name = region.DataName });
-                }
+                return Json(universityList, JsonRequestBehavior.AllowGet);
             }
-
-            return Json(universityList, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// 取得学院列表
+        /// </summary>
+        /// <remarks>
+        /// 人员管理页面
+        /// </remarks>
+        /// <param name="dataId">学校ID</param>
+        /// <returns></returns>
         public JsonResult GetColleges(int dataId)
         {
-            List<dynamic> viewModelList = new List<dynamic>();
             using (SPEntities spEntity = new SPEntities())
             {
-                var colleges = spEntity.SP_RegionData.Where(n => n.ParentDataID == dataId.ToString())?.ToList();
-                foreach (var item in colleges)
-                {
-                    viewModelList.Add(new { ID = item.DataID, Name = item.DataName });
-                }
-            }
+                var collegeList = (from regionData in spEntity.SP_RegionData.Where(n => n.ParentDataID == dataId.ToString())
+                                   select new
+                                   {
+                                       ID = regionData.DataID,
+                                       Name = regionData.DataName
+                                   }
+                                   ).ToList();
 
-            return Json(viewModelList, JsonRequestBehavior.AllowGet);
+                return Json(collegeList, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public JsonResult GetBuilding(int dataId)
@@ -1243,42 +1383,120 @@ namespace AgentDashboard.Controllers
 
         public ActionResult OrderManager()
         {
-            return View();
-        }
-        public JsonResult GetOrderList(int status, int pageIndex, int pageSize)
-        {
-            Dictionary<string, object> JsonResult = new Dictionary<string, object>();
-            IOrderAppService service = IocManager.Instance.Resolve<IOrderAppService>();
-            var list = service.GetOrderList(status, pageIndex, pageSize);
-            var total = service.GetOrderListCount(status);
-            PageModel jObject = new PageModel();
-            jObject.Total = (int)total;
-            jObject.Pages = (int)Math.Ceiling(Convert.ToDouble(total) / pageSize);
-            jObject.Index = pageIndex;
-            JsonResult.Add("data", jObject);
-
-            IProductAppService productService = IocManager.Instance.Resolve<IProductAppService>();
-            foreach (var item in list)
+            string accountId = GetCurrentAccountId();
+            using (SPEntities sPEntities = new SPEntities())
             {
-                item.ProductList = productService.GetProductListByOrderId(item.OrderId);
-                foreach (var pitem in item.ProductList)
+                OrderManagerViewModel viewModel = new OrderManagerViewModel();
+                var regionList = (from regionAccount in sPEntities.SP_RegionAccount.Where(n => n.AccountId == accountId)
+                                  join regionData in sPEntities.SP_RegionData on regionAccount.RegionId equals regionData.DataID
+                                  select new
+                                  {
+                                      DataId = regionData.DataID,
+                                      DataName = regionData.DataName
+                                  });
+
+                viewModel.Universities = new Dictionary<int, string>();
+                foreach (var region in regionList)
                 {
-                    string domain = ConfigurationManager.AppSettings["Qiniu.Domain"];
-                    foreach (var pimg in pitem.ProductImage)
+                    viewModel.Universities.Add(region.DataId, region.DataName);
+                }
+                return View(viewModel);
+            }
+        }
+
+        public JsonResult GetOrderList(int universityId, int status, int pageIndex, int pageSize)
+        {
+            using (SPEntities sPEntities = new SPEntities())
+            {
+                List<OrderManagerModel> ordersList;
+                if (status == -1)
+                {
+                    ordersList = sPEntities.SP_Orders.Where(n => n.RegionId == universityId).Select(x => new OrderManagerModel
                     {
-                        if (!string.IsNullOrEmpty(pimg.ImgPath) && !string.IsNullOrEmpty(domain))
+                        OrderId = x.OrderId,
+                        OrderCode = x.OrderCode,
+                        OrderDate = x.OrderDate,
+                        OrderStatus = x.OrderStatus,
+                        OrderAddress = x.OrderAddress ?? string.Empty,
+                        AccountId = x.AccountId,
+                        IsVip = x.IsVip,
+                        Amount = x.Amount,
+                        IsWxPay = x.IsWxPay,
+                        IsAliPay = x.IsAliPay,
+                        Remark = x.Remark ?? string.Empty
+                    }).ToList();
+                }
+                else
+                {
+                    ordersList = sPEntities.SP_Orders.Where(n => n.RegionId == universityId && n.OrderStatus == status).Select(x => new OrderManagerModel
+                    {
+                        OrderId = x.OrderId,
+                        OrderCode = x.OrderCode,
+                        OrderDate = x.OrderDate,
+                        OrderStatus = x.OrderStatus,
+                        OrderAddress = x.OrderAddress ?? string.Empty,
+                        AccountId = x.AccountId,
+                        IsVip = x.IsVip,
+                        Amount = x.Amount,
+                        IsWxPay = x.IsWxPay,
+                        IsAliPay = x.IsAliPay,
+                        Remark = x.Remark ?? string.Empty
+                    }).ToList();
+                }
+
+                var list = ordersList.Skip(pageIndex * pageSize).Take(pageSize).ToList();
+
+                foreach (var item in list)
+                {
+                    item.Owner = new AccountInfoDto();
+                    item.Owner.Fullname = sPEntities.SP_AccountInfo.SingleOrDefault(n=>n.AccountId == item.AccountId)?.Fullname;
+                    item.Owner.Mobile = sPEntities.SP_Account.SingleOrDefault(n => n.AccountId == item.AccountId)?.MobilePhone;
+
+                    var shipOrderList = sPEntities.SP_ShippingOrders.Where(n => n.OrderId == item.OrderId)?.GroupBy(n => n.ShippingId);
+
+                    item.Shiper = new List<AccountInfoDto>();
+
+                    foreach (var shipOrder in shipOrderList)
+                    {
+                        var shiper = new AccountInfoDto();
+                        shiper.AccountId = shipOrder.Key;
+                        shiper.Fullname = sPEntities.SP_AccountInfo.SingleOrDefault(n => n.AccountId == shipOrder.Key)?.Fullname;
+                        shiper.Mobile = sPEntities.SP_Account.SingleOrDefault(n => n.AccountId == shipOrder.Key)?.MobilePhone?.Replace("+86", "") ?? string.Empty;
+                        item.Shiper.Add(shiper);
+                    }
+                }
+
+                Dictionary<string, object> JsonResult = new Dictionary<string, object>();
+                var total = ordersList.Count;
+                PageModel jObject = new PageModel();
+                jObject.Total = (int)total;
+                jObject.Pages = (int)Math.Ceiling(Convert.ToDouble(total) / pageSize);
+                jObject.Index = pageIndex;
+                JsonResult.Add("data", jObject);
+
+                IProductAppService productService = IocManager.Instance.Resolve<IProductAppService>();
+                foreach (var item in list)
+                {
+                    item.ProductList = productService.GetProductListByOrderId(item.OrderId);
+                    foreach (var pitem in item.ProductList)
+                    {
+                        string domain = ConfigurationManager.AppSettings["Qiniu.Domain"];
+                        foreach (var pimg in pitem.ProductImage)
                         {
-                            pimg.ImgPath = domain + pimg.ImgPath;
+                            if (!string.IsNullOrEmpty(pimg.ImgPath) && !string.IsNullOrEmpty(domain))
+                            {
+                                pimg.ImgPath = domain + pimg.ImgPath;
+                            }
                         }
                     }
                 }
+                JsonResult.Add("result", list);
+                return new JsonResult()
+                {
+                    Data = JsonResult,
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
             }
-            JsonResult.Add("result", list);
-            return new JsonResult()
-            {
-                Data = JsonResult,
-                JsonRequestBehavior = JsonRequestBehavior.AllowGet
-            };
         }
 
         public ActionResult CreateAccount(AccountViewModel vm)
@@ -1349,11 +1567,12 @@ namespace AgentDashboard.Controllers
         }
 
         /// <summary>
-        /// 
+        /// 数据分析页面之用户注册数
         /// </summary>
-        /// <param name="day"></param>
+        /// <param name="regionId">学校Id</param>
+        /// <param name="day">天数</param>
         /// <returns></returns>
-        public JsonResult GetUserNameLineChartData(int day)
+        public JsonResult GetUserNameLineChartData(int regionId, int day)
         {
             Chart chart = new Chart();
             List<string> dayList = new List<string>();
@@ -1374,7 +1593,7 @@ namespace AgentDashboard.Controllers
                 foreach (var strDay in dayList)
                 {
                     DateTime dateTime = DateTime.Parse(strDay);
-                    int? newUserCnt = spEntity.SP_SysStatistics.SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_NewUser;
+                    int? newUserCnt = spEntity.SP_SysStatistics.Where(n=>n.RegionId == regionId).SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_NewUser;
                     userCntList.Add(newUserCnt ?? 0);
                 }
             }
@@ -1397,7 +1616,7 @@ namespace AgentDashboard.Controllers
         /// </summary>
         /// <param name="day"></param>
         /// <returns></returns>
-        public JsonResult GetNewOrderChartData(int day)
+        public JsonResult GetNewOrderChartData(int regionId, int day)
         {
             Chart chart = new Chart();
             List<string> dayList = new List<string>();
@@ -1418,7 +1637,7 @@ namespace AgentDashboard.Controllers
                 foreach (var strDay in dayList)
                 {
                     DateTime dateTime = DateTime.Parse(strDay);
-                    int? newOrder = spEntity.SP_SysStatistics.SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_NewOrder;
+                    int? newOrder = spEntity.SP_SysStatistics.Where(n => n.RegionId == regionId).SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_NewOrder;
                     newOderCnt.Add(newOrder ?? 0);
                 }
             }
@@ -1441,7 +1660,7 @@ namespace AgentDashboard.Controllers
         /// </summary>
         /// <param name="day"></param>
         /// <returns></returns>
-        public JsonResult GetNewAssociatorChartData(int day)
+        public JsonResult GetNewAssociatorChartData(int regionId, int day)
         {
             Chart chart = new Chart();
             List<string> dayList = new List<string>();
@@ -1462,7 +1681,7 @@ namespace AgentDashboard.Controllers
                 foreach (var strDay in dayList)
                 {
                     DateTime dateTime = DateTime.Parse(strDay);
-                    int? newAssociator = spEntity.SP_SysStatistics.SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_NewAssociator;
+                    int? newAssociator = spEntity.SP_SysStatistics.Where(n => n.RegionId == regionId).SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_NewAssociator;
                     newAssociatorCnt.Add(newAssociator ?? 0);
                 }
             }
@@ -1485,7 +1704,7 @@ namespace AgentDashboard.Controllers
         /// </summary>
         /// <param name="day"></param>
         /// <returns></returns>
-        public JsonResult GetOrderAmountChartData(int day)
+        public JsonResult GetOrderAmountChartData(int regionId, int day)
         {
             Chart chart = new Chart();
             List<string> dayList = new List<string>();
@@ -1507,7 +1726,7 @@ namespace AgentDashboard.Controllers
                 foreach (var strDay in dayList)
                 {
                     DateTime dateTime = DateTime.Parse(strDay);
-                    decimal? orderAmount = spEntity.SP_SysStatistics.SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_FoodOrderAmount;
+                    decimal? orderAmount = spEntity.SP_SysStatistics.Where(n => n.RegionId == regionId).SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_FoodOrderAmount;
                     orderAmountList.Add((int)(orderAmount ?? 0));
 
                     decimal? markAmount = spEntity.SP_SysStatistics.SingleOrDefault(n => n.CreateTime.Year == dateTime.Year && n.CreateTime.Month == dateTime.Month && n.CreateTime.Day == dateTime.Day)?.Num_MarkOrderAmount;
@@ -1623,6 +1842,22 @@ namespace AgentDashboard.Controllers
                 Data = JsonResult,
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
+        }
+
+        public void UpdateProductMarketPrice(string id, int price)
+        {
+            IProductAppService service = IocManager.Instance.Resolve<IProductAppService>();
+            var productInfo = service.GetProductDetail(id);
+            productInfo.MarketPrice = price;
+            service.EditProduct(productInfo);
+        }
+
+        public void UpdateProductVIPPrice(string id, int price)
+        {
+            IProductAppService service = IocManager.Instance.Resolve<IProductAppService>();
+            var productInfo = service.GetProductDetail(id);
+            productInfo.VIPPrice = price;
+            service.EditProduct(productInfo);
         }
     }
 }

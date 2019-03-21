@@ -87,6 +87,7 @@
     <Compile Include="Repositories\ProductSkuRespository.cs" />
     <Compile Include="Repositories\ProductsRespository.cs" />
     <Compile Include="Repositories\ProductTypeRespository.cs" />
+    <Compile Include="Repositories\RegionAccountRespository.cs" />
     <Compile Include="Repositories\RegionRespository.cs" />
     <Compile Include="Repositories\RegionTypeRespository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
@@ -97,6 +98,8 @@
     <Compile Include="Repositories\ShopProductRespository.cs" />
     <Compile Include="Repositories\ShopRespository.cs" />
     <Compile Include="Repositories\SupplersRepository.cs" />
+    <Compile Include="Repositories\SuppliersProductRepository.cs" />
+    <Compile Include="Repositories\SuppliersRegionRespository.cs" />
     <Compile Include="Repositories\SysKindRespository.cs" />
   </ItemGroup>
   <ItemGroup>
