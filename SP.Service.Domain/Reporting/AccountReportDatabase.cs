@@ -14,12 +14,15 @@ namespace SP.Service.Domain.Reporting
         private readonly AccessTokenRepository _tokenRepository;
         private readonly AccountInfoRepository _infoRepository;
         private readonly EventRepository _eventRepository;
-        public AccountReportDatabase(AccountRepository repository, AccessTokenRepository tokenRepository, AccountInfoRepository infoRepository, EventRepository eventRepository)
+        private readonly OpenIdRepository _openIdRepository;
+        public AccountReportDatabase(AccountRepository repository, AccessTokenRepository tokenRepository, AccountInfoRepository infoRepository, 
+            EventRepository eventRepository, OpenIdRepository openIdRepository)
         {
             _repository = repository;
             _tokenRepository = tokenRepository;
             _infoRepository = infoRepository;
             _eventRepository = eventRepository;
+            _openIdRepository = openIdRepository;
         }
 
         public bool Add(AccountEntity item)
@@ -37,6 +40,10 @@ namespace SP.Service.Domain.Reporting
         public bool UpdateInfo(AccountInfoEntity item)
         {
             return _infoRepository.UpdateAccountFullInfo(item);
+        }
+        public bool AddOpenId(AccountOpenIdEntity entity)
+        {
+            return _openIdRepository.AddOpenId(entity);
         }
         public AccountDomain GetAccountById(string accountId)
         {

@@ -26,30 +26,30 @@ namespace SP.Service.Domain.DomainEntity
 
         }
 
-        public SysStatisticsDomain(DateTime createTime, int num_NewUser, int num_NewAssociator, int num_BuyAssociator,
+        public SysStatisticsDomain(Guid id,DateTime createTime, int num_NewUser, int num_NewAssociator, int num_BuyAssociator,
             int num_NewOrder, double foodAmount, double markAmount)
         {
-            ApplyChange(new SysStatisticsCreateEvent(createTime, num_NewUser, num_NewAssociator, num_BuyAssociator, num_NewOrder, foodAmount, markAmount));
+            ApplyChange(new SysStatisticsCreateEvent(id,createTime, num_NewUser, num_NewAssociator, num_BuyAssociator, num_NewOrder, foodAmount, markAmount));
         }
 
-        public void SumOrderStatistics(string orderId, string orderCode, DateTime orderDate, string accountId,
+        public void SumOrderStatistics(Guid id,string orderId, string orderCode, DateTime orderDate, string accountId,
             double foodAmount, double markAmount, int addressId)
         {
-            ApplyChange(new SysStatisticsSumOrderEvent(orderId, orderCode, accountId, foodAmount, markAmount, addressId, orderDate));
+            ApplyChange(new SysStatisticsSumOrderEvent(id,orderId, orderCode, accountId, foodAmount, markAmount, addressId, orderDate));
         }
 
-        public void SumBuyMemberStatistics(string accountId, double amount, DateTime createTime)
+        public void SumBuyMemberStatistics(Guid id,string accountId, double amount, DateTime createTime)
         {
-            ApplyChange(new SysStatisticsSumBuyMemberEvent(accountId, amount, createTime));
+            ApplyChange(new SysStatisticsSumBuyMemberEvent(id,accountId, amount, createTime));
         }
-        public void SumNewMemberStatistics(string accountId, double amount, DateTime createTime)
+        public void SumNewMemberStatistics(Guid id,string accountId, double amount, DateTime createTime)
         {
-            ApplyChange(new SysStatisticsSumNewMemberEvent(accountId, amount, createTime));
+            ApplyChange(new SysStatisticsSumNewMemberEvent(id,accountId, amount, createTime));
         }
 
         public void SumUserStatistics(string accountId, DateTime createTime)
         {
-            ApplyChange(new SysStatisticsSumUserEvent(accountId, createTime));
+            ApplyChange(new SysStatisticsSumUserEvent(new Guid(accountId),accountId, createTime));
         }
 
         public void Handle(SysStatisticsSumOrderEvent e)

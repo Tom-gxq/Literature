@@ -12,9 +12,10 @@ namespace SP.Service.Domain.Events
         public string AccountId { get;  set; }
         public bool Status { get;  set; }
         public DateTime CreateTime { get;  set; }
-        public TokenCreatedEvent(string token,string accountId,bool status,DateTime createTime)
+        public TokenCreatedEvent(Guid id,string token,string accountId,bool status,DateTime createTime)
             : base(KafkaConfig.EventBusTopicTitle)
         {
+            this.CommandId = id.ToString();
             this.AccessToken = token;
             this.AccountId = accountId;
             this.Status = status;

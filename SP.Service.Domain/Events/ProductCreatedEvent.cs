@@ -15,6 +15,7 @@ namespace SP.Service.Domain.Events
         public ProductCreatedEvent(Guid id, long mainType, long secondType, string productName,
             string suppliersId, double marketPrice, double purchasePrice, double vipPrice) :base(id,productName, marketPrice, purchasePrice)
         {
+            this.CommandId = id.ToString();
             this.MainType = mainType;
             this.SecondType = secondType;
             this.SuppliersId = suppliersId;

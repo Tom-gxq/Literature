@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SP.Service.Domain.Commands.Token
 {
-    public class GenerateCommand : Command
+    public class GenerateCommand : SPCommand
     {
         public string AccessToken { get; set; }
         public string AccountId { get; set; }

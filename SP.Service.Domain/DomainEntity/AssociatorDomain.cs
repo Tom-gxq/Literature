@@ -30,15 +30,15 @@ namespace SP.Service.Domain.DomainEntity
 
         }
         public AssociatorDomain(Guid associatorId, string accountId, string kindId, int quantity,
-            string payOrderCode, int payType, double amount)
+            string payOrderCode, int payType, double amount, DateTime startDate)
         {
-            ApplyChange(new AssociatorCreatedEvent(associatorId,accountId, kindId, quantity, payOrderCode, payType, amount,0));
+            ApplyChange(new AssociatorCreatedEvent(associatorId,accountId, kindId, quantity, payOrderCode, payType, amount,0, startDate));
         }
         public void EditAssociatorDomain(Guid associatorId,int status)
         {
             ApplyChange(new AssociatorEditEvent(associatorId, status));
         }
-        public void AddMemberKafkaInfo(string accountId, double amount, AuthorizeType Type)
+        public void AddMemberKafkaInfo(Guid id,string accountId, double amount, AuthorizeType Type)
         {
             var config = IocManager.Instance.Resolve<IConfigurationRoot>();
             string kafkaIP = string.Empty;
@@ -51,7 +51,7 @@ namespace SP.Service.Domain.DomainEntity
             producer.AccountId = accountId;
             producer.Amount = amount;
             producer.Type = Type;
-            ApplyChange(new KafkaAddEvent(producer));
+            ApplyChange(new KafkaAddEvent(id,producer));
         }
         public BaseEntity GetMemento()
         {

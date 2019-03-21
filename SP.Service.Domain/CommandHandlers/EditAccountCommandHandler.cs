@@ -1,4 +1,5 @@
-﻿using Grpc.Service.Core.Domain.Handlers;
+﻿using Grpc.Service.Core.AutoMapper;
+using Grpc.Service.Core.Domain.Handlers;
 using Grpc.Service.Core.Domain.Storage;
 using SP.Service.Domain.Commands.Account;
 using SP.Service.Domain.DomainEntity;
@@ -20,8 +21,9 @@ namespace SP.Service.Domain.CommandHandlers
 
         public void Execute(EditAccountCommand command)
         {
-            var aggregate = new AccountDomain();
-            aggregate.EditAccount(command.Id, command.MobilePhone, command.Email, command.Password);
+            var aggregate = command.ToDomain<AccountDomain>();
+            //var aggregate = new AccountDomain();
+            //aggregate.EditAccount(command.Id, command.MobilePhone, command.Email, command.Password);
             _repository.Save(aggregate);            
         }
     }

@@ -11,11 +11,14 @@ namespace SP.Service.Entity
     {
         public string KindId { get; set; }
         public int? Kind { get; set; }
+        public string SaleModeId { get; set; }
         public int? Quantity { get; set; }
         public int? Unit { get; set; }
         public double? Price { get; set; }
         public string Description { get; set; }
         public double? DiscountValue { get; set; }
         public bool? IsDisplay { get; set; }
+        public double? Amount { get; set; }
+        public DateTime? CreateTime { get; set; }
     }
 }

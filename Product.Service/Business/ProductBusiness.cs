@@ -607,6 +607,45 @@ namespace Product.Service.Business
             }
             return result;
         }
+        public static ResultResponse AddSuppliersProduct(string accountId, string productId, double purchasePrice, int stock)
+        {
+            ServiceLocator.CommandBus.Send(new CreateSuppliersProductCommand(accountId, 0, purchasePrice, productId, stock));
+            var result = new ResultResponse();
+            result.Status = 10001;
+            return result;
+        }
 
+        public static ResultResponse AddSuppliersRegion(int supplierId, int regionId)
+        {
+            ServiceLocator.CommandBus.Send(new CreateSuppliersRegionCommand(supplierId, regionId));
+            var result = new ResultResponse();
+            result.Status = 10001;
+            return result;
+        }
+
+        public static SellerProductListResponse GetSuppliersProduct(int supplierId)
+        {
+            var result = new SellerProductListResponse();
+            result.Status = 10002;
+            var list = ServiceLocator.SuppliersReportDatabase.GetSuppliersProduct(supplierId);
+            if (list != null)
+            {
+                foreach (var item in list)
+                {
+                    var product = new SellerProduct();
+                    product.ProductName = item.ProductName;
+                    product.PurchasePrice = item.PurchasePrice ?? 0;                    
+                    product.ProductId = item.ProductId;
+                    var image = ServiceLocator.ProductImageReportDatabase.GetProductImage(item.ProductId);
+                    if (image != null)
+                    {
+                        product.ImagePath = image.ImgPath;
+                    }
+                    result.ProductList.Add(product);
+                }
+                result.Status = 10001;
+            }
+            return result;
+        }
     }
 }

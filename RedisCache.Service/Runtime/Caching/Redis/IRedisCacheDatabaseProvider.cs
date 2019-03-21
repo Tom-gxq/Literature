@@ -11,5 +11,6 @@ namespace RedisCache.Service.Runtime.Caching.Redis
         /// Gets the database connection.
         /// </summary>
         IDatabase GetDatabase();
+        ISubscriber GetSubscriber();
     }
 }

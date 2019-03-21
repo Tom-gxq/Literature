@@ -11,9 +11,10 @@ namespace SP.Service.Domain.Events
         public string AccountId { get; set; }
         public double Amount { get; set; }
         public DateTime CreateTime { get; set; }
-        public SysStatisticsSumNewMemberEvent(string accountId,double amount, DateTime createTime)
+        public SysStatisticsSumNewMemberEvent(Guid id,string accountId,double amount, DateTime createTime)
             : base(KafkaConfig.EventBusTopicTitle)
         {
+            this.CommandId = id.ToString();
             this.AccountId = accountId;
             this.Amount = amount;
             this.CreateTime = createTime;

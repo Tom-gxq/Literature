@@ -14,10 +14,11 @@ namespace SP.Service.Domain.Events
         public string RefreshToken { get; set; }
         public DateTime RefreshTokenExpires { get; set; }
         public DateTime CreateTime { get; set; }
-        public AccessTokenCreatedEvent(string accountId, string accessToken, DateTime accessTokenExpires,
+        public AccessTokenCreatedEvent(Guid id,string accountId, string accessToken, DateTime accessTokenExpires,
             string refreshToken, DateTime refreshTokenExpires, DateTime createTime)
             : base(KafkaConfig.EventBusTopicTitle)
         {
+            CommandId = id.ToString();
             AccessToken = accessToken;
             AccountId = accountId;
             AccessTokenExpires = accessTokenExpires;

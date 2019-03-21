@@ -23,5 +23,6 @@ namespace SP.Service.Entity
         public int? Status { get; set; }
         public DateTime? CreateTime { get; set; }
         public DateTime? UpdateTime { get; set; }
+        public int? TypeId { get; set; }
     }
 }

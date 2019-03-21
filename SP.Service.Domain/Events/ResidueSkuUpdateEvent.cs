@@ -16,6 +16,7 @@ namespace SP.Service.Domain.Events
         public ResidueSkuUpdateEvent(Guid id, int stock) : base(KafkaConfig.EventBusTopicTitle)
         {
             base.AggregateId = id;
+            this.CommandId = id.ToString();
             this.Stock = stock;
             this.EventType = EventType.ResidueSkuUpdate;
         }

@@ -14,15 +14,17 @@ namespace Grpc.Service.Core.Domain.Events
         public string CommandId { get; set; }
         public string TopicTitle { get; set; }
         public EventType EventType { get; set; }
+        public int ExcuteStatus { get; set; }
+        public string EventId { get; set; }
         public virtual string GetMessage()
         {
             return JsonConvert.SerializeObject(this);
         }
         public Event()
         {
-            
+            this.AggregateId = Guid.NewGuid();
         }
-        public Event(string topicTitle)
+        public Event(string topicTitle):this()
         {
             this.TopicTitle = topicTitle;
         }

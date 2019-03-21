@@ -12,6 +12,7 @@ namespace SP.Service.Domain.Events
         public BaseBindEvent(Guid id, string otherAccount) : base(KafkaConfig.EventBusTopicTitle)
         {
             this.AggregateId = id;
+            this.CommandId = id.ToString();
             this.OtherAccount = otherAccount;
         }
     }

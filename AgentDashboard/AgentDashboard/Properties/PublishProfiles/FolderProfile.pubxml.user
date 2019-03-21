@@ -10,16 +10,16 @@
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/AccountGRPCInterface.dll">
-      <publishTime>09/08/2018 20:02:02</publishTime>
+      <publishTime>01/02/2019 22:48:37</publishTime>
     </File>
     <File Include="bin/AccountGRPCInterface.pdb">
-      <publishTime>09/08/2018 20:02:02</publishTime>
+      <publishTime>01/02/2019 22:48:37</publishTime>
     </File>
     <File Include="bin/AgentDashboard.dll">
-      <publishTime>09/09/2018 10:00:15</publishTime>
+      <publishTime>01/02/2019 22:51:49</publishTime>
     </File>
     <File Include="bin/AgentDashboard.pdb">
-      <publishTime>09/09/2018 10:00:15</publishTime>
+      <publishTime>01/02/2019 22:51:49</publishTime>
     </File>
     <File Include="bin/Castle.Core.dll">
       <publishTime>11/05/2016 13:30:45</publishTime>
@@ -106,10 +106,10 @@
       <publishTime>11/16/2016 22:52:27</publishTime>
     </File>
     <File Include="bin/ProductGRPCInterface.dll">
-      <publishTime>09/09/2018 09:24:43</publishTime>
+      <publishTime>01/02/2019 22:48:42</publishTime>
     </File>
     <File Include="bin/ProductGRPCInterface.pdb">
-      <publishTime>09/09/2018 09:24:43</publishTime>
+      <publishTime>01/02/2019 22:48:42</publishTime>
     </File>
     <File Include="bin/Qiniu.dll">
       <publishTime>08/29/2017 17:46:14</publishTime>
@@ -253,10 +253,10 @@
       <publishTime>07/10/2018 11:50:14</publishTime>
     </File>
     <File Include="bin/RPCCommonTool.dll">
-      <publishTime>09/08/2018 22:24:40</publishTime>
+      <publishTime>12/14/2018 21:41:13</publishTime>
     </File>
     <File Include="bin/RPCCommonTool.pdb">
-      <publishTime>09/08/2018 22:24:40</publishTime>
+      <publishTime>12/14/2018 21:41:13</publishTime>
     </File>
     <File Include="bin/ServiceStack.Common.dll">
       <publishTime>11/16/2016 22:58:03</publishTime>
@@ -277,46 +277,46 @@
       <publishTime>11/16/2016 22:57:51</publishTime>
     </File>
     <File Include="bin/SP.Api.Cache.dll">
-      <publishTime>09/09/2018 09:24:43</publishTime>
+      <publishTime>01/02/2019 22:51:23</publishTime>
     </File>
     <File Include="bin/SP.Api.Cache.pdb">
-      <publishTime>09/09/2018 09:24:43</publishTime>
+      <publishTime>01/02/2019 22:51:23</publishTime>
     </File>
     <File Include="bin/SP.Api.Model.dll">
-      <publishTime>09/08/2018 22:24:40</publishTime>
+      <publishTime>01/02/2019 22:48:29</publishTime>
     </File>
     <File Include="bin/SP.Api.Model.pdb">
-      <publishTime>09/08/2018 22:24:40</publishTime>
+      <publishTime>01/02/2019 22:48:29</publishTime>
     </File>
     <File Include="bin/SP.Application.dll">
-      <publishTime>09/09/2018 09:24:43</publishTime>
+      <publishTime>01/02/2019 22:48:51</publishTime>
     </File>
     <File Include="bin/SP.Application.pdb">
-      <publishTime>09/09/2018 09:24:43</publishTime>
+      <publishTime>01/02/2019 22:48:51</publishTime>
     </File>
     <File Include="bin/SP.Core.dll">
-      <publishTime>09/08/2018 10:23:07</publishTime>
+      <publishTime>11/28/2018 20:41:37</publishTime>
     </File>
     <File Include="bin/SP.Core.pdb">
-      <publishTime>09/08/2018 10:23:07</publishTime>
+      <publishTime>11/28/2018 20:41:37</publishTime>
     </File>
     <File Include="bin/SP.DataEntity.dll">
-      <publishTime>09/09/2018 09:24:36</publishTime>
+      <publishTime>01/02/2019 22:48:35</publishTime>
     </File>
     <File Include="bin/SP.DataEntity.pdb">
-      <publishTime>09/09/2018 09:24:36</publishTime>
+      <publishTime>01/02/2019 22:48:35</publishTime>
     </File>
     <File Include="bin/SP.ManageEntityFramework.dll">
-      <publishTime>09/09/2018 09:24:40</publishTime>
+      <publishTime>01/02/2019 22:48:41</publishTime>
     </File>
     <File Include="bin/SP.ManageEntityFramework.pdb">
-      <publishTime>09/09/2018 09:24:40</publishTime>
+      <publishTime>01/02/2019 22:48:41</publishTime>
     </File>
     <File Include="bin/StockGRPCInterface.dll">
-      <publishTime>09/08/2018 22:24:49</publishTime>
+      <publishTime>01/02/2019 22:48:32</publishTime>
     </File>
     <File Include="bin/StockGRPCInterface.pdb">
-      <publishTime>09/08/2018 22:24:49</publishTime>
+      <publishTime>01/02/2019 22:48:32</publishTime>
     </File>
     <File Include="bin/System.AppContext.dll">
       <publishTime>07/18/2017 06:46:53</publishTime>
@@ -886,16 +886,16 @@
       <publishTime>07/25/2018 18:37:25</publishTime>
     </File>
     <File Include="js/plug/qiniu/main.js">
-      <publishTime>07/25/2018 18:37:25</publishTime>
+      <publishTime>11/09/2018 11:31:27</publishTime>
     </File>
     <File Include="js/plug/qiniu/producttype.js">
-      <publishTime>07/25/2018 18:37:25</publishTime>
+      <publishTime>11/09/2018 11:31:27</publishTime>
     </File>
     <File Include="js/plug/qiniu/qiniu.js">
       <publishTime>07/25/2018 18:37:25</publishTime>
     </File>
     <File Include="js/plug/qiniu/sellerlogo.js">
-      <publishTime>08/03/2018 17:45:07</publishTime>
+      <publishTime>11/09/2018 11:31:28</publishTime>
     </File>
     <File Include="js/plug/qiniu/ui.js">
       <publishTime>07/25/2018 18:37:26</publishTime>
@@ -961,7 +961,7 @@
       <publishTime>08/10/2018 14:27:16</publishTime>
     </File>
     <File Include="js/sellerdetail/detail.js">
-      <publishTime>08/21/2018 13:41:41</publishTime>
+      <publishTime>09/09/2018 11:13:29</publishTime>
     </File>
     <File Include="js/sellerdetail/style.css">
       <publishTime>08/02/2018 19:42:27</publishTime>
@@ -979,7 +979,7 @@
       <publishTime>09/15/2017 12:44:28</publishTime>
     </File>
     <File Include="Models/SP.edmx.diagram">
-      <publishTime>08/22/2018 20:20:38</publishTime>
+      <publishTime>11/12/2018 17:59:26</publishTime>
     </File>
     <File Include="pug/blank.pug">
       <publishTime>07/10/2018 11:50:12</publishTime>
@@ -1282,7 +1282,7 @@
       <publishTime>08/10/2018 11:02:50</publishTime>
     </File>
     <File Include="Views/Default/DataAnalyze.cshtml">
-      <publishTime>09/06/2018 10:23:08</publishTime>
+      <publishTime>09/12/2018 05:51:55</publishTime>
     </File>
     <File Include="Views/Default/DeliverymanViewer.cshtml">
       <publishTime>08/26/2018 18:26:38</publishTime>
@@ -1309,7 +1309,7 @@
       <publishTime>07/11/2018 10:13:53</publishTime>
     </File>
     <File Include="Views/Default/SellerDetails.cshtml">
-      <publishTime>09/09/2018 09:54:05</publishTime>
+      <publishTime>09/09/2018 11:03:57</publishTime>
     </File>
     <File Include="Views/Default/ShopDetails.cshtml">
       <publishTime>08/26/2018 18:28:54</publishTime>
@@ -1327,7 +1327,7 @@
       <publishTime>07/10/2018 11:50:12</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/26/2018 18:39:23</publishTime>
+      <publishTime>01/06/2019 21:51:16</publishTime>
     </File>
   </ItemGroup>
 </Project>

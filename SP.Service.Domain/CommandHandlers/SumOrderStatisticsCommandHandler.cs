@@ -78,12 +78,12 @@ namespace SP.Service.Domain.CommandHandlers
             if (entity != null && !string.IsNullOrEmpty(entity.AccountId))
             {
                 aggregate = new OrderStatisticsDomain();
-                aggregate.SumOrderStatistics(command.OrderId, command.OrderCode, command.OrderDate,
+                aggregate.SumOrderStatistics(command.Id,command.OrderId, command.OrderCode, command.OrderDate,
                     command.AccountId, foodAmount, markAmount, command.AddressId);
             }
             else
             {
-                aggregate = new OrderStatisticsDomain(command.OrderId, command.OrderCode, command.OrderDate,
+                aggregate = new OrderStatisticsDomain(command.Id,command.OrderId, command.OrderCode, command.OrderDate,
                     command.AccountId, foodAmount, markAmount, command.AddressId);
             }
             if (aggregate != null)
@@ -96,12 +96,12 @@ namespace SP.Service.Domain.CommandHandlers
             if (sysEntity != null && sysEntity.CreateTime >DateTime.MinValue)
             {
                 sysStatisticsDomain = new SysStatisticsDomain();
-                sysStatisticsDomain.SumOrderStatistics(command.OrderId, command.OrderCode, command.OrderDate,
+                sysStatisticsDomain.SumOrderStatistics(command.Id,command.OrderId, command.OrderCode, command.OrderDate,
                     command.AccountId, foodAmount, markAmount, command.AddressId);
             }
             else
             {
-                sysStatisticsDomain = new SysStatisticsDomain(command.OrderDate, 0, 0,0,1, foodAmount, markAmount);
+                sysStatisticsDomain = new SysStatisticsDomain(command.Id,command.OrderDate, 0, 0,0,1, foodAmount, markAmount);
             }
             if (sysStatisticsDomain != null)
             {

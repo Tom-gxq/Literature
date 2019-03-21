@@ -11,9 +11,10 @@ namespace SP.Service.Domain.Events
         public string AccountId { get;  set; }
         public string Alipay { get; set; }
         public double Money { get; set; }
-        public CashApplyCreatedEvent(string accountId, string alipay, double money)
+        public CashApplyCreatedEvent(Guid aggregateId,string accountId, string alipay, double money)
             : base(KafkaConfig.EventBusTopicTitle)
         {
+            this.CommandId = aggregateId.ToString();
             this.AccountId = accountId;
             this.Alipay = alipay;
             this.Money = money;

@@ -12,6 +12,7 @@ namespace SP.Service.Domain.Events
         public ApplyPartnerCreatedEvent(Guid id,int dormId) : base(KafkaConfig.EventBusTopicTitle)
         {
             this.AggregateId = id;
+            this.CommandId = id.ToString();
             this.DormId = dormId;
             this.EventType = EventType.ApplyPartnerCreated;
         }

@@ -1,9 +1,12 @@
-﻿using Grpc.Service.Core.Domain.Events;
+﻿using Grpc.Service.Core.Dependency;
+using Grpc.Service.Core.Domain.Events;
 using Grpc.Service.Core.Domain.HandlerFactory;
 using Grpc.Service.Core.Domain.Handlers;
 using Newtonsoft.Json;
+using SP.MongoDB.Repositories;
 using SP.Service.Domain.Events;
 using SP.Service.Domain.Exceptions;
+using SP.Service.Domain.Reporting;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,9 +16,11 @@ namespace SP.Service.Domain.EventHandlers.Execute
     public class EventExecuteHandler : IEventExecuteHandler
     {
         private readonly IEventHandlerFactory _eventHandlerFactory;
-        public EventExecuteHandler(IEventHandlerFactory eventHandlerFactory)
+        private readonly EventMongoDbRepository _reportDatabase;
+        public EventExecuteHandler(IEventHandlerFactory eventHandlerFactory, EventMongoDbRepository reportDatabase)
         {
             _eventHandlerFactory = eventHandlerFactory;
+            _reportDatabase = reportDatabase;
         }
         public void ExecuteEvent(string text)
         {
@@ -193,6 +198,27 @@ namespace SP.Service.Domain.EventHandlers.Execute
                 case EventType.UseAmountEdit:
                     ExecuteEvent<UseAmountEditEvent>(text);
                     break;
+                case EventType.BalancePay:
+                    ExecuteEvent<BalancePayEvent>(text);
+                    break;
+                case EventType.ConsumeTradeCreate:
+                    ExecuteEvent<ConsumeTradeCreateEvent>(text);
+                    break;
+                case EventType.IncomeTradeCreate:
+                    ExecuteEvent<IncomeTradeCreateEvent>(text);
+                    break;
+                case EventType.WxOpenIdCreate:
+                    ExecuteEvent<WxOpenIdCreateEvent>(text);
+                    break;
+                case EventType.WxUnionIdEdit:
+                    ExecuteEvent<WxUnionIdEditEvent>(text);
+                    break;
+                case EventType.SuppliersProductCreated:
+                    ExecuteEvent<SuppliersProductCreatedEvent>(text);
+                    break;
+                case EventType.SuppliersRegionCreated:
+                    ExecuteEvent<SuppliersRegionCreatedEvent>(text);
+                    break;
                 default:
                     throw new UnregisteredDomainCommandException($" unknown event: [{text}]");
 
@@ -201,6 +227,7 @@ namespace SP.Service.Domain.EventHandlers.Execute
         private void ExecuteEvent<T>(string text) where T : Event
         {
             var @event = JsonConvert.DeserializeObject<T>(text);
+            SaveEvent<T>(@event);
             var handlers = _eventHandlerFactory.GetHandlers<T>();
             if (handlers != null && @event != null)
             {
@@ -208,11 +235,22 @@ namespace SP.Service.Domain.EventHandlers.Execute
                 {
                     eventHandler.Handle(@event);
                 }
+                UpdateEventStatus<T>(@event.AggregateId.ToString(),1);
             }
             else
             {
                 throw new UnregisteredDomainCommandException($"no handler registered or unknown event: [{text}]");
             }
+        }
+
+        private void SaveEvent<T>(T @event) where T : Event
+        {
+            @event.EventId = @event.AggregateId.ToString();
+            this._reportDatabase.Insert(@event);
+        }
+        private void UpdateEventStatus<T>(string eventId,int status) where T : Event
+        {
+            this._reportDatabase.UpdateEventExcuteStatus(eventId, status);
         }
     }
 }

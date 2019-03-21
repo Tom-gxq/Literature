@@ -12,6 +12,7 @@ namespace SP.Service.Domain.Events
         public AssociatorEditEvent(Guid aggregateId, int status) : base(KafkaConfig.EventBusTopicTitle)
         {
             AggregateId = aggregateId;
+            CommandId = aggregateId.ToString();
             Status = status;
             EventType = EventType.AssociatorEdit;
         }

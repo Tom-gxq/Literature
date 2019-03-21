@@ -26,7 +26,8 @@ namespace SP.Service.EntityFramework.Repositories
         }
         public List<AssociatorEntity> GetAssociatorByAccountId(string accountId)
         {
-            return this.Select(x=>x.AccountId == accountId && x.Status >0 && x.EndDate >= DateTime.Now);
+            var nowDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+            return this.Select(x=>x.AccountId == accountId && x.Status >0 && x.EndDate >= nowDate);
         }
         public AssociatorEntity GetAssociatorById(string associatorId)
         {
@@ -47,10 +48,12 @@ namespace SP.Service.EntityFramework.Repositories
         }
         public List<AssociatorEntity> GetMemberByAccountId(string accountId)
         {
+            var nowDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             using (var db = OpenDbConnection())
             {
                 var q = db.From<AssociatorEntity>();
-                q = q.Join<AssociatorEntity, SysKindEntity>((e, a) => e.AccountId == accountId && e.Status > 0 && e.EndDate >= DateTime.Now && a.KindId == e.KindId && a.Kind == 100);
+                q = q.Join<AssociatorEntity, SysKindEntity>((e, a) => e.AccountId == accountId 
+                && e.Status > 0 && e.EndDate >= nowDate && a.KindId == e.KindId && a.Kind == 100);
                 return db.Select<AssociatorEntity>(q);
             }
         }

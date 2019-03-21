@@ -488,5 +488,97 @@ namespace WebApiGateway.Controllers.Account
             result.Data = JsonResult;
             return result;
         }
+
+        public ActionResult GetTradeListCount()
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                var total = AccountBusiness.GetTradeListCount(currentAccount.AccountId);
+                JsonResult.Add("total", total);
+                JsonResult.Add("status", 0);
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+
+        public ActionResult GetTradeList(int pageIndex, int pageSize)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                var list = AccountBusiness.GetTradeList(currentAccount.AccountId,pageIndex, pageSize);
+                JsonResult.Add("tradeList", list);
+                JsonResult.Add("status", 0);
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+
+        [System.Web.Http.HttpPost]
+        public ActionResult UpdateAccountWxUnionId(string wxUnionId)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+
+            try
+            {                
+                var retValue = AccountBusiness.UpdateAccountWxUnionId(currentAccount.AccountId, wxUnionId);
+                if (retValue)
+                {
+                    JsonResult.Add("status", 0);
+                }
+                else
+                {
+                    JsonResult.Add("status", 2);
+                }
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+
+        [System.Web.Http.HttpPost]
+        public ActionResult AddWxOpenId(string wxOpenId, int wxType)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+
+            try
+            {
+                var retValue = AccountBusiness.CreateWxOpenId(currentAccount.AccountId, wxOpenId, wxType);
+                if (retValue)
+                {
+                    JsonResult.Add("status", 0);
+                }
+                else
+                {
+                    JsonResult.Add("status", 2);
+                }
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
     }
 }

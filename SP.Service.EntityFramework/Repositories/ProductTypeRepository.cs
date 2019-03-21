@@ -29,5 +29,15 @@ namespace SP.Service.EntityFramework.Repositories
                 return db.Select(q);
             }
         }
+
+        public ProductTypeEntity GetProductTypeByShopId(int shopId)
+        {
+            using (var db = OpenDbConnection())
+            {
+                var q = db.From<ShopEntity>();
+                q = q.Join<ShopEntity, ProductTypeEntity>((a, e) => a.Id == shopId && a.ShopType == e.Id);
+                return db.Single<ProductTypeEntity>(q);
+            }
+        }
     }
 }

@@ -12,6 +12,7 @@ namespace SP.Service.Domain.Events
         public ProductImageCreatedEvent(Guid id, string imagePath) : base(KafkaConfig.EventBusTopicTitle)
         {
             base.AggregateId = id;
+            this.CommandId = id.ToString();
             this.ImagePath = imagePath;
             this.EventType = EventType.ProductImageCreated;
         }

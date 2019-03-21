@@ -7,6 +7,7 @@ namespace Grpc.Service.Core.Domain.Events
     public enum EventType
     {
         AccessTokenCreated,
+        AccessTokenDel,
         AccountCreated,
         AliBindCreated,
         WxBindCreated,
@@ -68,6 +69,13 @@ namespace Grpc.Service.Core.Domain.Events
         TokenDisabled,
         TradeCreate,
         UpdateShoppingCartOrderID,
-        UseAmountEdit
+        UseAmountEdit,
+        BalancePay,
+        ConsumeTradeCreate,
+        IncomeTradeCreate,
+        SuppliersProductCreated,
+        SuppliersRegionCreated,
+        WxUnionIdEdit,
+        WxOpenIdCreate,
     }
 }

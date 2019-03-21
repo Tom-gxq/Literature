@@ -7,14 +7,17 @@ using System.Text;
 namespace SP.Service.Entity
 {
     [Alias("SP_CashApply")]
-    public class CashApplyEntity : BaseEntity
+    public class CashApplyEntity : TradeBaseEntity
     {
         [AutoIncrement]
-        public int? Id { get; set; }
-        public string AccountId { get; set; }
+        public int? Id { get; set; }        
         public string Alipay { get; set; }
-        public double Money { get; set; }
-        public DateTime? CreateTime { get; set; }
+        public double Money { get; set; }        
         public int? Status { get; set; }
+        public DateTime? UpdateTime { get; set; }
+        public CashApplyEntity():base(1)
+        {
+
+        }
     }
 }

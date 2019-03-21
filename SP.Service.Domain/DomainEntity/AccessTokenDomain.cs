@@ -22,11 +22,15 @@ namespace SP.Service.Domain.DomainEntity
 
         public AccessTokenDomain()
         {
-
+            ApplyChange(new AccessTokenCreatedEvent(this.Id,this.AccountId, this.AccessToken, this.AccessTokenExpires, this.RefreshToken, this.RefreshTokenExpires, this.CreateTime));
         }
         public AccessTokenDomain(string accountId, string accessToken, DateTime accessTokenExpires, string refreshToken, DateTime refreshTokenExpires, DateTime createTime)
         {
-            ApplyChange(new AccessTokenCreatedEvent(accountId, accessToken, accessTokenExpires, refreshToken, refreshTokenExpires, createTime));
+            ApplyChange(new AccessTokenCreatedEvent(this.Id,accountId, accessToken, accessTokenExpires, refreshToken, refreshTokenExpires, createTime));
+        }
+        public void Remove()
+        {
+            ApplyChange(new AccessTokenDelEvent(this.Id,this.AccountId, this.AccessToken));
         }
         public BaseEntity GetMemento()
         {

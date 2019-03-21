@@ -23,37 +23,44 @@ namespace SP.Service {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChFDb21tb25Nb2RlbC5wcm90bxIKU1AuU2VydmljZSINCgtWb2lkUmVxdWVz",
-            "dCIlChBBY2NvdW50SWRSZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCSJSCglB",
-            "dHRyaWJ1dGUSEwoLYXR0cmlidXRlSWQYASABKAMSFQoNYXR0cmlidXRlTmFt",
-            "ZRgCIAEoCRIZChF1c2VBdHRyaWJ1dGVJbWFnZRgDIAEoCSJaCg5BdHRyaWJ1",
-            "dGVWYWx1ZRIPCgd2YWx1ZUlkGAEgASgDEhMKC2F0dHJpYnV0ZUlkGAIgASgD",
-            "EhAKCHZhbHVlU3RyGAMgASgJEhAKCGltYWdlVXJsGAQgASgJIv0BCgdBZGRy",
-            "ZXNzEgoKAklkGAEgASgFEhMKC2NvbnRhY3ROYW1lGAIgASgJEhYKDmNvbnRh",
-            "Y3RBZGRyZXNzGAMgASgJEhUKDWNvbnRhY3RNb2JpbGUYBCABKAkSDgoGZ2Vu",
-            "ZGVyGAUgASgFEg4KBnN0YXR1cxgGIAEoBRIRCglhY2NvdW50SWQYByABKAkS",
-            "EAoIc2Nob29sSWQYCCABKAUSEgoKc2Nob29sTmFtZRgJIAEoCRISCgpkaXN0",
-            "cmljdElkGAogASgFEhQKDGRpc3RyaWN0TmFtZRgLIAEoCRIMCgRkb3JtGAwg",
-            "ASgJEhEKCWlzRGVmYXVsdBgNIAEoBSKCAQoEU2hvcBIOCgZzaG9wSWQYASAB",
-            "KAMSEAoIc2hvcE5hbWUYAiABKAkSDwoHb3duZXJJZBgDIAEoCRIRCglvd25l",
-            "ck5hbWUYBCABKAkSEQoJc3RhcnRUaW1lGAUgASgJEg8KB2VuZFRpbWUYBiAB",
-            "KAkSEAoIc2hvcExvZ28YByABKAkisgEKDFNob3BwaW5nQ2FydBIRCglwcm9k",
-            "dWN0SWQYASABKAkSEQoJYWNjb3VudElkGAIgASgJEhAKCHF1YW50aXR5GAMg",
-            "ASgFEg4KBnNob3BJZBgEIAEoBRIOCgZjYXJ0SWQYBSABKAkSEgoKY3JlYXRl",
-            "VGltZRgGIAEoAxITCgtwcm9kdWN0TmFtZRgHIAEoCRIOCgZhbW91bnQYCCAB",
-            "KAESEQoJdW5pdFByaWNlGAkgASgBIlYKC0FjY291bnRJbmZvEhEKCWFjY291",
-            "bnRJZBgCIAEoCRITCgttb2JpbGVQaG9uZRgDIAEoCRINCgVlbWFpbBgEIAEo",
-            "CRIQCgh1c2VyTmFtZRgFIAEoCWIGcHJvdG8z"));
+            "dCIlChBBY2NvdW50SWRSZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCSInChFT",
+            "dXBwbGllcklkUmVxdWVzdBISCgpzdXBwbGllcklkGAEgASgFIlIKCUF0dHJp",
+            "YnV0ZRITCgthdHRyaWJ1dGVJZBgBIAEoAxIVCg1hdHRyaWJ1dGVOYW1lGAIg",
+            "ASgJEhkKEXVzZUF0dHJpYnV0ZUltYWdlGAMgASgJIloKDkF0dHJpYnV0ZVZh",
+            "bHVlEg8KB3ZhbHVlSWQYASABKAMSEwoLYXR0cmlidXRlSWQYAiABKAMSEAoI",
+            "dmFsdWVTdHIYAyABKAkSEAoIaW1hZ2VVcmwYBCABKAkiuwIKB0FkZHJlc3MS",
+            "CgoCSWQYASABKAUSEwoLY29udGFjdE5hbWUYAiABKAkSFgoOY29udGFjdEFk",
+            "ZHJlc3MYAyABKAkSFQoNY29udGFjdE1vYmlsZRgEIAEoCRIOCgZnZW5kZXIY",
+            "BSABKAUSDgoGc3RhdHVzGAYgASgFEhEKCWFjY291bnRJZBgHIAEoCRIQCghz",
+            "Y2hvb2xJZBgIIAEoBRISCgpzY2hvb2xOYW1lGAkgASgJEhIKCmRpc3RyaWN0",
+            "SWQYCiABKAUSFAoMZGlzdHJpY3ROYW1lGAsgASgJEhIKCmJ1aWxkaW5nSWQY",
+            "DCABKAUSFAoMYnVpbGRpbmdOYW1lGA0gASgJEg4KBmRvcm1JZBgOIAEoBRIQ",
+            "Cghkb3JtTmFtZRgPIAEoCRIRCglpc0RlZmF1bHQYECABKAUiggEKBFNob3AS",
+            "DgoGc2hvcElkGAEgASgDEhAKCHNob3BOYW1lGAIgASgJEg8KB293bmVySWQY",
+            "AyABKAkSEQoJb3duZXJOYW1lGAQgASgJEhEKCXN0YXJ0VGltZRgFIAEoCRIP",
+            "CgdlbmRUaW1lGAYgASgJEhAKCHNob3BMb2dvGAcgASgJIscBCgxTaG9wcGlu",
+            "Z0NhcnQSEQoJcHJvZHVjdElkGAEgASgJEhEKCWFjY291bnRJZBgCIAEoCRIQ",
+            "CghxdWFudGl0eRgDIAEoBRIOCgZzaG9wSWQYBCABKAUSDgoGY2FydElkGAUg",
+            "ASgJEhIKCmNyZWF0ZVRpbWUYBiABKAMSEwoLcHJvZHVjdE5hbWUYByABKAkS",
+            "DgoGYW1vdW50GAggASgBEhEKCXVuaXRQcmljZRgJIAEoARITCgtzaGlwT3Jk",
+            "ZXJJZBgKIAEoBSJWCgtBY2NvdW50SW5mbxIRCglhY2NvdW50SWQYAiABKAkS",
+            "EwoLbW9iaWxlUGhvbmUYAyABKAkSDQoFZW1haWwYBCABKAkSEAoIdXNlck5h",
+            "bWUYBSABKAkiWAoKUmVnaW9uRGF0YRIOCgZkYXRhSWQYASABKAUSEAoIZGF0",
+            "YU5hbWUYAiABKAkSFAoMcGFyZW50RGF0YUlkGAMgASgFEhIKCnVwZGF0ZVRp",
+            "bWUYBCABKANiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.VoidRequest), global::SP.Service.VoidRequest.Parser, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountIdRequest), global::SP.Service.AccountIdRequest.Parser, new[]{ "AccountId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SupplierIdRequest), global::SP.Service.SupplierIdRequest.Parser, new[]{ "SupplierId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.Attribute), global::SP.Service.Attribute.Parser, new[]{ "AttributeId", "AttributeName", "UseAttributeImage" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AttributeValue), global::SP.Service.AttributeValue.Parser, new[]{ "ValueId", "AttributeId", "ValueStr", "ImageUrl" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.Address), global::SP.Service.Address.Parser, new[]{ "Id", "ContactName", "ContactAddress", "ContactMobile", "Gender", "Status", "AccountId", "SchoolId", "SchoolName", "DistrictId", "DistrictName", "Dorm", "IsDefault" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.Address), global::SP.Service.Address.Parser, new[]{ "Id", "ContactName", "ContactAddress", "ContactMobile", "Gender", "Status", "AccountId", "SchoolId", "SchoolName", "DistrictId", "DistrictName", "BuildingId", "BuildingName", "DormId", "DormName", "IsDefault" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.Shop), global::SP.Service.Shop.Parser, new[]{ "ShopId", "ShopName", "OwnerId", "OwnerName", "StartTime", "EndTime", "ShopLogo" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ShoppingCart), global::SP.Service.ShoppingCart.Parser, new[]{ "ProductId", "AccountId", "Quantity", "ShopId", "CartId", "CreateTime", "ProductName", "Amount", "UnitPrice" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountInfo), global::SP.Service.AccountInfo.Parser, new[]{ "AccountId", "MobilePhone", "Email", "UserName" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ShoppingCart), global::SP.Service.ShoppingCart.Parser, new[]{ "ProductId", "AccountId", "Quantity", "ShopId", "CartId", "CreateTime", "ProductName", "Amount", "UnitPrice", "ShipOrderId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountInfo), global::SP.Service.AccountInfo.Parser, new[]{ "AccountId", "MobilePhone", "Email", "UserName" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.RegionData), global::SP.Service.RegionData.Parser, new[]{ "DataId", "DataName", "ParentDataId", "UpdateTime" }, null, null, null)
           }));
     }
     #endregion
@@ -280,6 +287,131 @@ namespace SP.Service {
 
   /// <summary>
   ///*
+  /// 供货商ID的请求参数
+  /// </summary>
+  public sealed partial class SupplierIdRequest : pb::IMessage<SupplierIdRequest> {
+    private static readonly pb::MessageParser<SupplierIdRequest> _parser = new pb::MessageParser<SupplierIdRequest>(() => new SupplierIdRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SupplierIdRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.CommonModelReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SupplierIdRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SupplierIdRequest(SupplierIdRequest other) : this() {
+      supplierId_ = other.supplierId_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SupplierIdRequest Clone() {
+      return new SupplierIdRequest(this);
+    }
+
+    /// <summary>Field number for the "supplierId" field.</summary>
+    public const int SupplierIdFieldNumber = 1;
+    private int supplierId_;
+    /// <summary>
+    ///*
+    /// 供货商ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int SupplierId {
+      get { return supplierId_; }
+      set {
+        supplierId_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SupplierIdRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SupplierIdRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (SupplierId != other.SupplierId) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (SupplierId != 0) hash ^= SupplierId.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (SupplierId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(SupplierId);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (SupplierId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(SupplierId);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SupplierIdRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.SupplierId != 0) {
+        SupplierId = other.SupplierId;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            SupplierId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
   /// 商品类型属性的返回信息
   /// </summary>
   public sealed partial class Attribute : pb::IMessage<Attribute> {
@@ -289,7 +421,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.CommonModelReflection.Descriptor.MessageTypes[2]; }
+      get { return global::SP.Service.CommonModelReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -478,7 +610,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.CommonModelReflection.Descriptor.MessageTypes[3]; }
+      get { return global::SP.Service.CommonModelReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -699,7 +831,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.CommonModelReflection.Descriptor.MessageTypes[4]; }
+      get { return global::SP.Service.CommonModelReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -727,7 +859,10 @@ namespace SP.Service {
       schoolName_ = other.schoolName_;
       districtId_ = other.districtId_;
       districtName_ = other.districtName_;
-      dorm_ = other.dorm_;
+      buildingId_ = other.buildingId_;
+      buildingName_ = other.buildingName_;
+      dormId_ = other.dormId_;
+      dormName_ = other.dormName_;
       isDefault_ = other.isDefault_;
     }
 
@@ -901,23 +1036,68 @@ namespace SP.Service {
       }
     }
 
-    /// <summary>Field number for the "dorm" field.</summary>
-    public const int DormFieldNumber = 12;
-    private string dorm_ = "";
+    /// <summary>Field number for the "buildingId" field.</summary>
+    public const int BuildingIdFieldNumber = 12;
+    private int buildingId_;
+    /// <summary>
+    ///*
+    ///  楼栋ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int BuildingId {
+      get { return buildingId_; }
+      set {
+        buildingId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "buildingName" field.</summary>
+    public const int BuildingNameFieldNumber = 13;
+    private string buildingName_ = "";
+    /// <summary>
+    ///*
+    ///  楼栋名
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string BuildingName {
+      get { return buildingName_; }
+      set {
+        buildingName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "dormId" field.</summary>
+    public const int DormIdFieldNumber = 14;
+    private int dormId_;
+    /// <summary>
+    ///*
+    ///  宿舍ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int DormId {
+      get { return dormId_; }
+      set {
+        dormId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "dormName" field.</summary>
+    public const int DormNameFieldNumber = 15;
+    private string dormName_ = "";
     /// <summary>
     ///*
     ///  宿舍号
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string Dorm {
-      get { return dorm_; }
+    public string DormName {
+      get { return dormName_; }
       set {
-        dorm_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        dormName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
     /// <summary>Field number for the "isDefault" field.</summary>
-    public const int IsDefaultFieldNumber = 13;
+    public const int IsDefaultFieldNumber = 16;
     private int isDefault_;
     /// <summary>
     ///*
@@ -955,7 +1135,10 @@ namespace SP.Service {
       if (SchoolName != other.SchoolName) return false;
       if (DistrictId != other.DistrictId) return false;
       if (DistrictName != other.DistrictName) return false;
-      if (Dorm != other.Dorm) return false;
+      if (BuildingId != other.BuildingId) return false;
+      if (BuildingName != other.BuildingName) return false;
+      if (DormId != other.DormId) return false;
+      if (DormName != other.DormName) return false;
       if (IsDefault != other.IsDefault) return false;
       return true;
     }
@@ -974,7 +1157,10 @@ namespace SP.Service {
       if (SchoolName.Length != 0) hash ^= SchoolName.GetHashCode();
       if (DistrictId != 0) hash ^= DistrictId.GetHashCode();
       if (DistrictName.Length != 0) hash ^= DistrictName.GetHashCode();
-      if (Dorm.Length != 0) hash ^= Dorm.GetHashCode();
+      if (BuildingId != 0) hash ^= BuildingId.GetHashCode();
+      if (BuildingName.Length != 0) hash ^= BuildingName.GetHashCode();
+      if (DormId != 0) hash ^= DormId.GetHashCode();
+      if (DormName.Length != 0) hash ^= DormName.GetHashCode();
       if (IsDefault != 0) hash ^= IsDefault.GetHashCode();
       return hash;
     }
@@ -1030,12 +1216,24 @@ namespace SP.Service {
         output.WriteRawTag(90);
         output.WriteString(DistrictName);
       }
-      if (Dorm.Length != 0) {
-        output.WriteRawTag(98);
-        output.WriteString(Dorm);
+      if (BuildingId != 0) {
+        output.WriteRawTag(96);
+        output.WriteInt32(BuildingId);
+      }
+      if (BuildingName.Length != 0) {
+        output.WriteRawTag(106);
+        output.WriteString(BuildingName);
+      }
+      if (DormId != 0) {
+        output.WriteRawTag(112);
+        output.WriteInt32(DormId);
+      }
+      if (DormName.Length != 0) {
+        output.WriteRawTag(122);
+        output.WriteString(DormName);
       }
       if (IsDefault != 0) {
-        output.WriteRawTag(104);
+        output.WriteRawTag(128, 1);
         output.WriteInt32(IsDefault);
       }
     }
@@ -1076,11 +1274,20 @@ namespace SP.Service {
       if (DistrictName.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(DistrictName);
       }
-      if (Dorm.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Dorm);
+      if (BuildingId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BuildingId);
+      }
+      if (BuildingName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(BuildingName);
+      }
+      if (DormId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(DormId);
+      }
+      if (DormName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(DormName);
       }
       if (IsDefault != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(IsDefault);
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(IsDefault);
       }
       return size;
     }
@@ -1123,8 +1330,17 @@ namespace SP.Service {
       if (other.DistrictName.Length != 0) {
         DistrictName = other.DistrictName;
       }
-      if (other.Dorm.Length != 0) {
-        Dorm = other.Dorm;
+      if (other.BuildingId != 0) {
+        BuildingId = other.BuildingId;
+      }
+      if (other.BuildingName.Length != 0) {
+        BuildingName = other.BuildingName;
+      }
+      if (other.DormId != 0) {
+        DormId = other.DormId;
+      }
+      if (other.DormName.Length != 0) {
+        DormName = other.DormName;
       }
       if (other.IsDefault != 0) {
         IsDefault = other.IsDefault;
@@ -1183,11 +1399,23 @@ namespace SP.Service {
             DistrictName = input.ReadString();
             break;
           }
-          case 98: {
-            Dorm = input.ReadString();
+          case 96: {
+            BuildingId = input.ReadInt32();
             break;
           }
-          case 104: {
+          case 106: {
+            BuildingName = input.ReadString();
+            break;
+          }
+          case 112: {
+            DormId = input.ReadInt32();
+            break;
+          }
+          case 122: {
+            DormName = input.ReadString();
+            break;
+          }
+          case 128: {
             IsDefault = input.ReadInt32();
             break;
           }
@@ -1208,7 +1436,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.CommonModelReflection.Descriptor.MessageTypes[5]; }
+      get { return global::SP.Service.CommonModelReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1525,7 +1753,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.CommonModelReflection.Descriptor.MessageTypes[6]; }
+      get { return global::SP.Service.CommonModelReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1551,6 +1779,7 @@ namespace SP.Service {
       productName_ = other.productName_;
       amount_ = other.amount_;
       unitPrice_ = other.unitPrice_;
+      shipOrderId_ = other.shipOrderId_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1693,6 +1922,21 @@ namespace SP.Service {
       }
     }
 
+    /// <summary>Field number for the "shipOrderId" field.</summary>
+    public const int ShipOrderIdFieldNumber = 10;
+    private int shipOrderId_;
+    /// <summary>
+    ///*
+    /// 配送订单ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int ShipOrderId {
+      get { return shipOrderId_; }
+      set {
+        shipOrderId_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as ShoppingCart);
@@ -1715,6 +1959,7 @@ namespace SP.Service {
       if (ProductName != other.ProductName) return false;
       if (Amount != other.Amount) return false;
       if (UnitPrice != other.UnitPrice) return false;
+      if (ShipOrderId != other.ShipOrderId) return false;
       return true;
     }
 
@@ -1730,6 +1975,7 @@ namespace SP.Service {
       if (ProductName.Length != 0) hash ^= ProductName.GetHashCode();
       if (Amount != 0D) hash ^= Amount.GetHashCode();
       if (UnitPrice != 0D) hash ^= UnitPrice.GetHashCode();
+      if (ShipOrderId != 0) hash ^= ShipOrderId.GetHashCode();
       return hash;
     }
 
@@ -1776,6 +2022,10 @@ namespace SP.Service {
         output.WriteRawTag(73);
         output.WriteDouble(UnitPrice);
       }
+      if (ShipOrderId != 0) {
+        output.WriteRawTag(80);
+        output.WriteInt32(ShipOrderId);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1807,6 +2057,9 @@ namespace SP.Service {
       }
       if (UnitPrice != 0D) {
         size += 1 + 8;
+      }
+      if (ShipOrderId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ShipOrderId);
       }
       return size;
     }
@@ -1842,6 +2095,9 @@ namespace SP.Service {
       }
       if (other.UnitPrice != 0D) {
         UnitPrice = other.UnitPrice;
+      }
+      if (other.ShipOrderId != 0) {
+        ShipOrderId = other.ShipOrderId;
       }
     }
 
@@ -1889,6 +2145,10 @@ namespace SP.Service {
             UnitPrice = input.ReadDouble();
             break;
           }
+          case 80: {
+            ShipOrderId = input.ReadInt32();
+            break;
+          }
         }
       }
     }
@@ -1906,7 +2166,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.CommonModelReflection.Descriptor.MessageTypes[7]; }
+      get { return global::SP.Service.CommonModelReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2108,6 +2368,227 @@ namespace SP.Service {
           }
           case 42: {
             UserName = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 区域的返回信息
+  /// </summary>
+  public sealed partial class RegionData : pb::IMessage<RegionData> {
+    private static readonly pb::MessageParser<RegionData> _parser = new pb::MessageParser<RegionData>(() => new RegionData());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<RegionData> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.CommonModelReflection.Descriptor.MessageTypes[9]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RegionData() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RegionData(RegionData other) : this() {
+      dataId_ = other.dataId_;
+      dataName_ = other.dataName_;
+      parentDataId_ = other.parentDataId_;
+      updateTime_ = other.updateTime_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RegionData Clone() {
+      return new RegionData(this);
+    }
+
+    /// <summary>Field number for the "dataId" field.</summary>
+    public const int DataIdFieldNumber = 1;
+    private int dataId_;
+    /// <summary>
+    ///*
+    ///  区域ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int DataId {
+      get { return dataId_; }
+      set {
+        dataId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "dataName" field.</summary>
+    public const int DataNameFieldNumber = 2;
+    private string dataName_ = "";
+    /// <summary>
+    ///*
+    ///  区域名称
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string DataName {
+      get { return dataName_; }
+      set {
+        dataName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "parentDataId" field.</summary>
+    public const int ParentDataIdFieldNumber = 3;
+    private int parentDataId_;
+    /// <summary>
+    ///*
+    ///  区域父ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int ParentDataId {
+      get { return parentDataId_; }
+      set {
+        parentDataId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "updateTime" field.</summary>
+    public const int UpdateTimeFieldNumber = 4;
+    private long updateTime_;
+    /// <summary>
+    ///*
+    ///  更新时间
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long UpdateTime {
+      get { return updateTime_; }
+      set {
+        updateTime_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as RegionData);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(RegionData other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (DataId != other.DataId) return false;
+      if (DataName != other.DataName) return false;
+      if (ParentDataId != other.ParentDataId) return false;
+      if (UpdateTime != other.UpdateTime) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (DataId != 0) hash ^= DataId.GetHashCode();
+      if (DataName.Length != 0) hash ^= DataName.GetHashCode();
+      if (ParentDataId != 0) hash ^= ParentDataId.GetHashCode();
+      if (UpdateTime != 0L) hash ^= UpdateTime.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (DataId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(DataId);
+      }
+      if (DataName.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(DataName);
+      }
+      if (ParentDataId != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(ParentDataId);
+      }
+      if (UpdateTime != 0L) {
+        output.WriteRawTag(32);
+        output.WriteInt64(UpdateTime);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (DataId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(DataId);
+      }
+      if (DataName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(DataName);
+      }
+      if (ParentDataId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ParentDataId);
+      }
+      if (UpdateTime != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(UpdateTime);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(RegionData other) {
+      if (other == null) {
+        return;
+      }
+      if (other.DataId != 0) {
+        DataId = other.DataId;
+      }
+      if (other.DataName.Length != 0) {
+        DataName = other.DataName;
+      }
+      if (other.ParentDataId != 0) {
+        ParentDataId = other.ParentDataId;
+      }
+      if (other.UpdateTime != 0L) {
+        UpdateTime = other.UpdateTime;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            DataId = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            DataName = input.ReadString();
+            break;
+          }
+          case 24: {
+            ParentDataId = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            UpdateTime = input.ReadInt64();
             break;
           }
         }

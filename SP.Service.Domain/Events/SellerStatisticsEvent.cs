@@ -16,6 +16,7 @@ namespace SP.Service.Domain.Events
             : base(KafkaConfig.EventBusTopicTitle)
         {
             this.AggregateId = id;
+            this.CommandId = id.ToString();
             this.CreateTime = createTime;
             this.NewOrder = newOrder;
             this.ShippingId = shippingId;

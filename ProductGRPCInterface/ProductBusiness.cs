@@ -561,5 +561,25 @@ namespace ProductGRPCInterface
             }
             return model;
         }
+        public static bool AddSuppliersProduct(string productId, string accountId,int stock,double purchasePrice)
+        {
+            var client = ProductClientHelper.GetClient();
+            var request1 = new AddSuppliersProductRequest()
+            {
+                ProductId = productId,
+                AccountId = accountId,
+                Stock = stock,
+                PurchasePrice = purchasePrice
+            };
+            var result = client.AddSuppliersProduct(request1);
+            if (result.Status == 10001)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

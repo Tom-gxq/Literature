@@ -10,8 +10,9 @@ namespace SP.Service.Domain.Events
     {
         public string AccountId { get;  set; }
         public double Amount { get; set; }
-        public AccountFinanceCreateEvent(string accountId,double haveAmount) : base(KafkaConfig.EventBusTopicTitle)
+        public AccountFinanceCreateEvent(Guid id,string accountId,double haveAmount) : base(KafkaConfig.EventBusTopicTitle)
         {
+            CommandId = id.ToString();
             AccountId = accountId;
             Amount = haveAmount;
             EventType = EventType.AccountFinanceCreate;

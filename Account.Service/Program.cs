@@ -1,8 +1,12 @@
-﻿using Account.Service.Business;
+﻿using Account.Service.AutoMap;
+using Account.Service.Business;
 using Account.Service.GrpcImpl;
+using AutoMapper;
 using Castle.Windsor.Installer;
+using Grpc.Service.Core.Dependency;
 using Grpc.Service.Core.Reflection;
 using Microsoft.Extensions.Configuration;
+using RedisCache.Service;
 using SP.Service;
 using System;
 using System.IO;
@@ -15,11 +19,16 @@ namespace Account.Service
         public static IConfigurationRoot Configuration { get; set; }
         static void Main(string[] args)
         {
+            Mapper.Initialize(cfg =>
+            {
+                cfg.AddProfile(new AccountProfile());
+            });
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
             Configuration = builder.Build();
             AssemblyRegistHelper.Register(Configuration);
+            RedisCacheRegisteConfig.Register(IocManager.Instance);
 
             var host = Configuration.GetSection(CommonKeys.AppHost).Value;
             var port = Configuration.GetSection(CommonKeys.AppPort).Value;

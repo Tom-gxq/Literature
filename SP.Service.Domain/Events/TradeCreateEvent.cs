@@ -17,6 +17,7 @@ namespace SP.Service.Domain.Events
              : base(KafkaConfig.EventBusTopicTitle)
         {
             AggregateId = aggregateId;
+            CommandId = aggregateId.ToString();
             AccountId = accountId;
             CartId = cartId;
             Subject = subject;

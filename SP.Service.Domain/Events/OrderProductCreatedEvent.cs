@@ -15,6 +15,7 @@ namespace SP.Service.Domain.Events
             : base(KafkaConfig.EventBusTopicTitle)
         {
             AggregateId = aggregateId;
+            CommandId = aggregateId.ToString();
             Order = order;
             VersionId = versionId;
             EventType = EventType.OrderProductCreated;

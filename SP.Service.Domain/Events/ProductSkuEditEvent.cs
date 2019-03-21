@@ -14,6 +14,7 @@ namespace SP.Service.Domain.Events
             : base(KafkaConfig.EventBusTopicTitle)
         {
             this.AggregateId = aggregateId;
+            this.CommandId = aggregateId.ToString();
             this.Host = host;
             this.AccountId = accountId;
             this.EventType = EventType.ProductSkuEdit;

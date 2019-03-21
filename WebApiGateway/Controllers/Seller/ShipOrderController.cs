@@ -143,13 +143,13 @@ namespace WebApiGateway.Controllers.Seller
         }
 
         [System.Web.Mvc.HttpPost]
-        public ActionResult GetShipOrderList(int orderStatus, int orderType = 0)
+        public ActionResult GetShipOrderList(int orderStatus, int orderType = 0, int pageIndex=1, int pageSize=10)
         {
             var result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var list = OrderBusiness.GetShipOrderList(currentAccount.AccountId, orderStatus, orderType);
+                var list = OrderBusiness.GetShipOrderList(currentAccount.AccountId, orderStatus, orderType, pageIndex, pageSize);
                 JsonResult.Add("orderList", list);
                 JsonResult.Add("status", 0);
             }
@@ -187,6 +187,43 @@ namespace WebApiGateway.Controllers.Seller
                 {
                     JsonResult.Add("status", 0);
                 }
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+
+        public ActionResult GetPurchaseOrderList(int pageIndex, int pageSize)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                var list = OrderBusiness.GetPurchaseOrderList(currentAccount.AccountId, pageIndex, pageSize);
+                JsonResult.Add("orders", list);
+                JsonResult.Add("status", 0);
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+        public ActionResult GetPurchaseOrderByOrderId(string orderId)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                var model = OrderBusiness.GetPurchaseOrderByOrderId(orderId);
+                JsonResult.Add("order", model );
+                JsonResult.Add("status", 0);
             }
             catch (Exception ex)
             {

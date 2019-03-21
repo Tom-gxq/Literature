@@ -40,7 +40,7 @@ namespace SP.Service.Domain.CommandHandlers
                     if (cart != null && !string.IsNullOrEmpty(cart.ShippingId) && !string.IsNullOrEmpty(cart.ProductId))
                     {                        
                         var sku = new ProductSkuDomain();
-                        sku.RedoProductSkuDomainStock(cart.ShopId.Value,cart.ProductId, cart.Stock.Value, cart.OrderId,cart.ShippingId);
+                        sku.RedoProductSkuDomainStock(command.Id,cart.ShopId.Value,cart.ProductId, cart.Stock.Value, cart.OrderId,cart.ShippingId);
                         _skuRepository.Save(sku);
                     }
                 }

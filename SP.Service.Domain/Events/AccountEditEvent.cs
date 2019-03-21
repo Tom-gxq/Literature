@@ -15,6 +15,7 @@ namespace SP.Service.Domain.Events
             : base(KafkaConfig.EventBusTopicTitle)
         {
             this.AggregateId = id;
+            this.CommandId = id.ToString();
             this.MobilePhone = mobilePhone;
             this.Email = email;
             this.Password = password;

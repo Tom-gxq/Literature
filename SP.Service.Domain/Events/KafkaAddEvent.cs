@@ -12,8 +12,9 @@ namespace SP.Service.Domain.Events
     {
         public AbstractEntity Prducer { get; set; }
 
-        public KafkaAddEvent(AbstractEntity prducer) : base(KafkaConfig.EventBusTopicTitle)
+        public KafkaAddEvent(Guid aggregateId,AbstractEntity prducer) : base(KafkaConfig.EventBusTopicTitle)
         {
+            CommandId = aggregateId.ToString();
             Prducer = prducer;
             this.EventType = EventType.KafkaAdd;
         }

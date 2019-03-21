@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="IncomeTradeEntity.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="ServiceStack.OrmLite.SqlServer.Core" Version="5.0.2" />
   </ItemGroup>
 

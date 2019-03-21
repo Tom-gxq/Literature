@@ -5,6 +5,7 @@ using Grpc.Service.Core.Reflection;
 using Microsoft.Extensions.Configuration;
 using SP.Service.Domain.AutoMap;
 using SP.Service.Domain.CommandHandlers.Execute;
+using SP.Service.Domain.Reporting;
 using System;
 using System.IO;
 
@@ -18,6 +19,7 @@ namespace SP.DomainService
             Mapper.Initialize(cfg =>
             {
                 cfg.AddProfile(new TokenProfile());
+                cfg.AddProfile(new AccountProfile());
             });
             var builder = new ConfigurationBuilder()
                .SetBasePath(Directory.GetCurrentDirectory())
@@ -76,5 +78,6 @@ namespace SP.DomainService
             Consumer.ConsumerRun();
 
         }
+        
     }
 }

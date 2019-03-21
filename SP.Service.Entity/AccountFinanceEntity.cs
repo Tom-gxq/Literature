@@ -14,5 +14,6 @@ namespace SP.Service.Entity
         public string AccountId { get; set; }
         public double? HaveAmount { get; set; }
         public double? UseAmount { get; set; }
+        public double? ConsumeAmount { get; set; }
     }
 }

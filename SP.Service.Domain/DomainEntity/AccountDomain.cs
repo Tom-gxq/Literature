@@ -14,7 +14,7 @@ namespace SP.Service.Domain.DomainEntity
 {
     public class AccountDomain : AggregateRoot<Guid>,
         IHandle<AccountCreatedEvent>, IHandle<AccountInfoCreatedEvent>, IHandle<AssociatorCreatedEvent>,
-        IHandle<AccountEditEvent>, IHandle<KafkaAddEvent>,
+        IHandle<AccountEditEvent>, IHandle<KafkaAddEvent>,IHandle<WxOpenIdCreateEvent>, IHandle<WxUnionIdEditEvent>,
         IOriginator
     {
         public string AccountId { get; set; }
@@ -28,6 +28,7 @@ namespace SP.Service.Domain.DomainEntity
         public string AliBind { get; set; }
         public string WxBind { get; set; }
         public string QQBind { get; set; }
+        public string WxUnionId { get; set; }
 
         public AccountDomain()
         {
@@ -62,7 +63,7 @@ namespace SP.Service.Domain.DomainEntity
         {
             var payType = 1;
             var payOrderCode = "ZSHY"+DateTime.Now.ToString("yyyyMMddHH24mmssffff");
-            ApplyChange(new AssociatorCreatedEvent(Guid.NewGuid(),accountId, kindId, quantity, payOrderCode, payType,0,1));
+            ApplyChange(new AssociatorCreatedEvent(Guid.NewGuid(),accountId, kindId, quantity, payOrderCode, payType,0,1, DateTime.Now));
         }
         public void EditAccount(Guid accountId, string mobilePhone, string email, string password)
         {
@@ -75,6 +76,14 @@ namespace SP.Service.Domain.DomainEntity
         public void EditAccountMobile(Guid accountId, string mobilePhone)
         {
             ApplyChange(new AccountEditEvent(accountId, mobilePhone, null, null));
+        }
+        public void EditWxUnionId(Guid id,string accountId, string wxUnionId)
+        {
+            ApplyChange(new WxUnionIdEditEvent(id,accountId, wxUnionId));
+        }
+        public void CreateOpenId(Guid id, string accountId, string wxOpenId, int wxType)
+        {
+            ApplyChange(new WxOpenIdCreateEvent(id, accountId, wxOpenId, wxType));
         }
         public void BindAccount(Guid accountId, string otherAccount, OtherType otherType)
         {
@@ -106,7 +115,7 @@ namespace SP.Service.Domain.DomainEntity
             var producer = new KafkaUserRegProducer();
             producer.IPConfig = kafkaIP;
             producer.AccountId = accountId;
-            ApplyChange(new KafkaAddEvent(producer));
+            ApplyChange(new KafkaAddEvent(new Guid(accountId),producer));
         }
         public void AddMemberKafkaInfo(string accountId,double amount, AuthorizeType Type)
         {
@@ -121,9 +130,17 @@ namespace SP.Service.Domain.DomainEntity
             producer.AccountId = accountId;
             producer.Amount = amount;
             producer.Type = Type;
-            ApplyChange(new KafkaAddEvent(producer));
+            ApplyChange(new KafkaAddEvent(new Guid(accountId),producer));
         }
         public void Handle(KafkaAddEvent e)
+        {
+
+        }
+        public void Handle(WxOpenIdCreateEvent e)
+        {
+
+        }
+        public void Handle(WxUnionIdEditEvent e)
         {
 
         }

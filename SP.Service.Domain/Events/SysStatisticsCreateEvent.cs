@@ -15,10 +15,11 @@ namespace SP.Service.Domain.Events
         public double Num_FoodOrderAmount { get; internal set; }
         public double Num_MarkOrderAmount { get; internal set; }
         public DateTime CreateTime { get; internal set; }
-        public SysStatisticsCreateEvent(DateTime createTime,int num_NewUser, int num_NewAssociator, int num_BuyAssociator,
+        public SysStatisticsCreateEvent(Guid id,DateTime createTime,int num_NewUser, int num_NewAssociator, int num_BuyAssociator,
             int num_NewOrder, double foodAmount, double markAmount)
              : base(KafkaConfig.EventBusTopicTitle)
         {
+            this.CommandId = id.ToString();
             this.CreateTime = createTime;
             this.Num_BuyAssociator = num_BuyAssociator;
             this.Num_NewAssociator = num_NewAssociator;

@@ -39,7 +39,7 @@ namespace SP.Service.Domain.CommandHandlers
                 {
                     var quantity = domain.Quantity + command.Quantity;
                     aggregate = new ShoppingCartsDomain();
-                    aggregate.AddShoppingCartNum(new Guid(domain.CartId), command.AccountId, quantity, command.ProductId, command.ShopId);
+                    aggregate.AddShoppingCartNum(command.Id, command.AccountId, quantity, command.ProductId, command.ShopId);
                 }
                 _repository.Save(aggregate);
             }

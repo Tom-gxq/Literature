@@ -1,4 +1,5 @@
-﻿using Grpc.Service.Core.Domain.Handlers;
+﻿using Grpc.Service.Core.AutoMapper;
+using Grpc.Service.Core.Domain.Handlers;
 using Grpc.Service.Core.Domain.Storage;
 using SP.Service.Domain.Commands.Order;
 using SP.Service.Domain.DomainEntity;
@@ -19,8 +20,8 @@ namespace SP.Service.Domain.CommandHandlers
 
         public void Execute(CreateCashApplyCommand command)
         {
-            var aggregate = new CashApplyDomain(command.AccountId, command.Alipay, command.Money);
-
+            var aggregate = command.ToDomain<TradeDomain>();
+            aggregate.CreateCashApply();
             _repository.Save(aggregate);
         }
     }

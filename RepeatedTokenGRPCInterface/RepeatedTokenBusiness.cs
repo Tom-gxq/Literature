@@ -25,7 +25,7 @@ namespace RepeatedTokenGRPCInterface
             }
             return domain;
         }
-        public static bool GenerateRepeatedToken(string accountId)
+        public static RepeatedTokenModel GenerateRepeatedToken(string accountId)
         {
             var client = RepeatedTokenClientHelper.GetClient();
             var request1 = new AccountIdRequest()
@@ -33,15 +33,14 @@ namespace RepeatedTokenGRPCInterface
                 AccountId = accountId,
             };
             var result = client.GenerateRepeatedToken(request1);
-            
+            var domain = new RepeatedTokenModel();
             if (result.Status == 10001)
             {
-                return true;
+                var item = result.RepeatedToken;
+                domain.Access_Token = item.AccessToken;
+                domain.AccountId = item.AccountId;
             }
-            else
-            {
-                return false;
-            }
+            return domain;
         }
         public static bool UpdateRepeatedTokenDisabled(string tokenKey, string accountId)
         {

@@ -12,6 +12,7 @@ namespace RedisCache.Service.Runtime.Caching.Redis
     {
         private readonly IDatabase _database;
         private readonly IRedisCacheSerializer _serializer;
+        private readonly ISubscriber _subscriber;
 
         /// <summary>
         /// Constructor.
@@ -23,6 +24,7 @@ namespace RedisCache.Service.Runtime.Caching.Redis
             : base(name)
         {
             _database = redisCacheDatabaseProvider.GetDatabase();
+            _subscriber = redisCacheDatabaseProvider.GetSubscriber();
             _serializer = redisCacheSerializer;
         }
 
@@ -100,16 +102,39 @@ namespace RedisCache.Service.Runtime.Caching.Redis
             var objbyte = _database.ListRemove(key, value, count);
             return objbyte;
         }
+        public override long ListLength(string key)
+        {
+            var objbyte = _database.ListLength(key);
+            return objbyte;
+        }
+        public override long ListLeftPush(string key, string value)
+        {
+            var objbyte = _database.ListLeftPush(key, value);
+            return objbyte;
+        }
+        public override long ListLeftPush(string key, string[] values)
+        {
+            //var objbyte = _database.ListLeftPush(key, values);
+            //return objbyte;
+            return 0;
+        }
+        public override object ListLeftPop(string key)
+        {
+            var objbyte = _database.ListLeftPop(key);
+            return objbyte;
+        }
         public override bool SortedSetAdd(string key, string member, double value)
         {
             var objbyte = _database.SortedSetAdd(GetHashKey(key), member, value);
             return objbyte;
         }
+
         public override IBatch CreateBatch(object asyncState = null)
         {
             var objbyte = _database.CreateBatch(asyncState);
             return objbyte;
         }
+
         public override bool SortedSetRemove(string key, string member)
         {
             var objbyte = _database.SortedSetRemove(GetHashKey(key), member);
@@ -199,7 +224,7 @@ namespace RedisCache.Service.Runtime.Caching.Redis
         {
             _database.KeyDeleteWithPrefix(GetLocalizedKey("*"));
         }
-
+        
         protected virtual string Serialize(object value, Type type)
         {
             return _serializer.Serialize(value, type);
@@ -231,6 +256,20 @@ namespace RedisCache.Service.Runtime.Caching.Redis
                 }
             }
             return key;
+        }
+
+        public override long Publish(string channel, string message)
+        {
+            return _subscriber.Publish(channel, message);
+        }
+        
+        public override void Subscribe(string channel, Action<string, string> handler)
+        {
+            _subscriber.Subscribe(channel, (RedisChannel, RedisValue) =>handler(RedisChannel, RedisValue));
+        }
+        public override void Unsubscribe(string channel, Action<string, string> handler)
+        {
+            _subscriber.Unsubscribe(channel, (RedisChannel, RedisValue) => handler(RedisChannel, RedisValue));
         }
     }
 }

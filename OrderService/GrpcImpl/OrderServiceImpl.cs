@@ -12,7 +12,7 @@ using SP.Service.Domain;
 
 namespace Order.Service.GrpcImpl
 {
-    public class OrderServiceImpl:OrderServiceBase
+    public partial class OrderServiceImpl:OrderServiceBase
     {
         private ILogger logger = new ServiceCollection()
              .AddLogging()
@@ -119,72 +119,7 @@ namespace Order.Service.GrpcImpl
             logger.LogInformation(this.prjLicEID, "UpdateOrderStatus {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
-
-        public override Task<SchoolLeadOrderListResponse> GetSchoolLeadList(SchoolLeadRequest request, ServerCallContext context)
-        {
-            logger.LogInformation(this.prjLicEID, "GetSchoolLeadList {Date} {IPAdress} {Status} Connected! AccountId:[{AccountId}] OrderStatus:[{OrderStatus}]  OrderType:[{OrderType}]",
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), 
-                request.AccountId ?? string.Empty, request.OrderStatus, request.OrderType);
-            SchoolLeadOrderListResponse response = null;
-            try
-            {
-                response = OrderBusiness.GetSchoolLeadList(request.AccountId, request.OrderStatus, request.OrderType);
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(this.prjLicEID, ex, "GetSchoolLeadList Exception");
-            }
-            logger.LogInformation(this.prjLicEID, "GetSchoolLeadList {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
-            return Task.FromResult(response);
-        }
-        public override Task<TradeListResponse> GetSchoolLeadTradeList(TradeRequest request, ServerCallContext context)
-        {
-            logger.LogInformation(this.prjLicEID, "GetSchoolLeadTradeList {Date} {IPAdress} {Status} Connected! AccountId:[{AccountId}]", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.AccountId ?? string.Empty);
-            TradeListResponse response = null;
-            try
-            {
-                response = OrderBusiness.GetSchoolLeadTradeList(request.AccountId, request.PageIndex, request.PageSize);
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(this.prjLicEID, ex, "GetSchoolLeadTradeList Exception");
-            }
-            logger.LogInformation(this.prjLicEID, "GetSchoolLeadTradeList {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
-            return Task.FromResult(response);
-        }
-        public override Task<SchoolLeadFinanceResponse> GetSchoolLeadFinance(AccountIdRequest request, ServerCallContext context)
-        {
-            logger.LogInformation(this.prjLicEID, "GetSchoolLeadFinance {Date} {IPAdress} {Status} Connected! AccountId:[{AccountId}]", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.AccountId ?? string.Empty);
-            SchoolLeadFinanceResponse response = null;
-            try
-            {
-                response = OrderBusiness.GetSchoolLeadFinance(request.AccountId);
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(this.prjLicEID, ex, "GetSchoolLeadFinance Exception");
-            }
-            logger.LogInformation(this.prjLicEID, "GetSchoolLeadFinance {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
-            return Task.FromResult(response);
-        }
-        public override Task<OrderStatusResponse> AddCashApply(AddCashApplyRequest request, ServerCallContext context)
-        {
-            logger.LogInformation(this.prjLicEID, "AddCashApply {Date} {IPAdress} {Status} Connected! AccountId:[{AccountId}] ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.AccountId ?? string.Empty);
-            var response = new OrderStatusResponse();
-            response.Status = 10002;
-            try
-            {
-                OrderBusiness.AddCashApply(request.AccountId, request.Alipay, request.Money);
-                response.Status = 10001;
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(this.prjLicEID, ex, "AddCashApply Exception");
-            }
-            logger.LogInformation(this.prjLicEID, "AddCashApply {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
-            return Task.FromResult(response);
-        }
-
+               
         public override Task<OrderStatusResponse> UpdateOrderStatusByOrderCode(UpdateOrderCodeRequest request, ServerCallContext context)
         {
             logger.LogInformation(this.prjLicEID, "UpdateOrderStatusByOrderCode {Date} {IPAdress} {Status} Connected! OrderCode:[{OrderCode}] OrderStatus:[{OrderStatus}]", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.OrderCode ?? string.Empty, request.OrderStatus);
@@ -228,63 +163,6 @@ namespace Order.Service.GrpcImpl
             return Task.FromResult(response);
         }
 
-        public override Task<OrderStatusResponse> UpdateShipOrderStatus(UpdateShipOrderRequest request, ServerCallContext context)
-        {
-            logger.LogInformation(this.prjLicEID, "UpdateShipOrderStatus {Date} {IPAdress} {Status} Connected! OrderId:[{OrderId}] OrderStatus:[{OrderStatus}] AccountId:[{AccountId}]", 
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.OrderId ?? string.Empty, request.OrderStatus, request.AccountId);
-            var response = new OrderStatusResponse();
-            response.Status = 10002;
-            try
-            {
-                OrderBusiness.UpdateShipOrderStatus(request.OrderId, request.OrderStatus, request.PayWay, request.AccountId);
-                response.Status = 10001;
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(this.prjLicEID, ex, "UpdateShipOrderStatus Exception");
-            }
-            logger.LogInformation(this.prjLicEID, "UpdateShipOrderStatus {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
-            return Task.FromResult(response);
-        }
-
-        public override Task<SchoolLeadOrderListResponse> GetShipOrderList(SchoolLeadRequest request, ServerCallContext context)
-        {
-            logger.LogInformation(this.prjLicEID, "GetShipOrderList {Date} {IPAdress} {Status} Connected! AccountId:[{AccountId}] OrderStatus:[{OrderStatus}]  OrderType:[{OrderType}]",
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(),
-                request.AccountId ?? string.Empty, request.OrderStatus, request.OrderType);
-            SchoolLeadOrderListResponse response = null;
-            try
-            {
-                response = OrderBusiness.GetShipOrderList(request.AccountId, request.OrderStatus, request.OrderType);
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(this.prjLicEID, ex, "GetShipOrderList Exception");
-            }
-            logger.LogInformation(this.prjLicEID, "GetShipOrderList {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
-            return Task.FromResult(response);
-        }
-
-        public override Task<OrderStatusResponse> UpdateShippingOrder(UpdateShippingOrderRequest request, ServerCallContext context)
-        {
-            logger.LogInformation(this.prjLicEID, "UpdateShippingOrder {Date} {IPAdress} {Status} Connected! OrderStatus:[{OrderStatus}]", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.OrderStatus);
-            foreach(var item in request.ShipOrderId)
-            {
-                System.Console.WriteLine($"UpdateShippingOrder ShipOrderId = {item} {DateTime.Now.ToLongDateString()}");
-            }
-            var response = new OrderStatusResponse();
-            response.Status = 10002;
-            try
-            {
-                OrderBusiness.UpdateShippingOrder(request.ShipOrderId.ToList(), request.OrderStatus);
-                response.Status = 10001;
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(this.prjLicEID, ex, "UpdateShippingOrder Exception");
-            }
-            logger.LogInformation(this.prjLicEID, "UpdateShippingOrder {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
-            return Task.FromResult(response);
-        }
+        
     }
 }

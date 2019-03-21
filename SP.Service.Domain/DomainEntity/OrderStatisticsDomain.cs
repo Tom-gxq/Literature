@@ -26,15 +26,15 @@ namespace SP.Service.Domain.DomainEntity
         {
 
         }
-        public OrderStatisticsDomain(string orderId, string orderCode, DateTime orderDate, string accountId,
+        public OrderStatisticsDomain(Guid id,string orderId, string orderCode, DateTime orderDate, string accountId,
             double foodAmount, double markAmount, int addressId)
         {
-            ApplyChange(new OrderStatisticsCreateEvent(orderId, orderCode, accountId, foodAmount, markAmount, addressId, orderDate));
+            ApplyChange(new OrderStatisticsCreateEvent(id,orderId, orderCode, accountId, foodAmount, markAmount, addressId, orderDate));
         }
-        public void SumOrderStatistics(string orderId, string orderCode, DateTime orderDate, string accountId,
+        public void SumOrderStatistics(Guid id,string orderId, string orderCode, DateTime orderDate, string accountId,
             double foodAmount, double markAmount, int addressId)
         {
-            ApplyChange(new OrderStatisticsSumEvent(orderId, orderCode, accountId, foodAmount, markAmount, addressId, orderDate));
+            ApplyChange(new OrderStatisticsSumEvent(id,orderId, orderCode, accountId, foodAmount, markAmount, addressId, orderDate));
         }
         public void Handle(OrderStatisticsSumEvent e)
         {

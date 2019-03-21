@@ -13,11 +13,13 @@ namespace SP.Service.Domain.Commands.Account
         public string PayOrderCode { get; set; }
         public int PayType { get; set; }
         public double Amount { get; set; }
-        public int Quantity { get; set; }
+        public int Quantity { get; set; }        
 
-        public CreatAssociatorCommand(Guid id, string kindId, string accountId, string payOrderCode, int payType,double amount, int quantity) : base(KafkaConfig.NormalCommandBusTopicTitle)
+        public CreatAssociatorCommand(Guid id, string kindId, string accountId, string payOrderCode, int payType,double amount, int quantity) 
+            : base(KafkaConfig.NormalCommandBusTopicTitle)
         {
             base.Id = id;
+            this.CommandId = id.ToString();
             this.KindId = kindId;
             this.AccountId = accountId;
             this.PayOrderCode = payOrderCode;

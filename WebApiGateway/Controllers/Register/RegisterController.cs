@@ -138,7 +138,7 @@ namespace WebApiGateway.Controllers.Register
                 bool isEmail = Common.ValidateEmail(Params.account);
                 //var accountId = MD.Business.Account.InsertAccount(Params.account, Params.password, Params.full_name, string.Empty, string.Empty);
                 var pwd = StringCrypt.Encrypt(Params.password, ConfigInfo.ConfigInfoData.CryptKey.MessageKey);
-                var model = new AccountModel()
+                var model = new SP.Api.Model.Account.AccountModel()
                 {
                     Email = isEmail ? Params.account : string.Empty,
                     MobilePhone = !isEmail ? Params.account : string.Empty,
@@ -187,7 +187,7 @@ namespace WebApiGateway.Controllers.Register
                 bool isEmail = Common.ValidateEmail(Params.account);
                 //var accountId = MD.Business.Account.InsertAccount(Params.account, Params.password, Params.full_name, string.Empty, string.Empty);
                 var pwd = StringCrypt.Encrypt(Params.password, ConfigInfo.ConfigInfoData.CryptKey.MessageKey);
-                var model = new AccountModel()
+                var model = new SP.Api.Model.Account.AccountModel()
                 {
                     Email = isEmail ? Params.account : string.Empty,
                     MobilePhone = !isEmail ? Params.account : string.Empty,
@@ -262,6 +262,26 @@ namespace WebApiGateway.Controllers.Register
                 return new ResultModel() { code = ApiEnum.ErrorCode.Fail, error_msg = ex.Message };
             }
             return new ResultModel() { code = errorCode, error_msg = errorMsg }; 
+        }
+        [HttpPost]
+        public Models.Regist.AccountModel IsExsitAccount(string account)
+        {
+            var result = new Models.Regist.AccountModel();
+            try
+            {
+                account = Common.CheckAccount(account);
+                var accountModel = AccountBusiness.GetAccount(account);
+
+                if (!string.IsNullOrEmpty(accountModel?.AccountId))
+                {
+                    result.Status = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                
+            }
+            return result;
         }
         #endregion
 

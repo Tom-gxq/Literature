@@ -14,7 +14,7 @@ namespace SP.Service.Domain.Commands.Account
         public int RegionID { get; set; }
         public string Address { get; set; }
         public string AccountId { get; set; }
-        public string Dorm { get; set; }
+        public string DormName { get; set; }
         public int IsDefault { get; set; }
         public CreatAddressCommand(Guid id, string userName, int gender, string mobile, int regionId, string address, string accountId,string dorm, int isDefault) : base(KafkaConfig.NormalCommandBusTopicTitle)
         {
@@ -25,7 +25,7 @@ namespace SP.Service.Domain.Commands.Account
             this.RegionID = regionId;
             this.Address = address;
             this.AccountId = accountId;
-            this.Dorm = dorm;
+            this.DormName = dorm;
             this.IsDefault = isDefault;
             this.CommandType = CommandType.CreatAddress;
         }

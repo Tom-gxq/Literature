@@ -8,7 +8,7 @@ using System.Text;
 
 namespace SP.Service.Domain.EventHandlers
 {
-    public class AccessTokenCreatedEventHandler : IEventHandler<AccessTokenCreatedEvent>
+    public class AccessTokenCreatedEventHandler : IEventHandler<AccessTokenCreatedEvent>, IEventHandler<AccessTokenDelEvent>
     {
         private readonly AccessTokenReportDatabase _reportDatabase;
         public AccessTokenCreatedEventHandler(AccessTokenReportDatabase reportDatabase)
@@ -28,6 +28,11 @@ namespace SP.Service.Domain.EventHandlers
             };
 
             _reportDatabase.Add(item);
+        }
+
+        public void Handle(AccessTokenDelEvent handle)
+        {
+            _reportDatabase.RemoveAccessToken(handle.AccessToken, handle.AccountId);
         }
     }
 }

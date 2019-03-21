@@ -10,9 +10,10 @@ namespace SP.Service.Domain.Events
     {
         public int ShipOrderId { get; set; }
         public bool IsShiped { get; set; }
-        public EditShipOrderStatusEvent(int shipOrderId,bool isShiped)
+        public EditShipOrderStatusEvent(Guid aggregateId,int shipOrderId,bool isShiped)
             : base(KafkaConfig.EventBusTopicTitle)
         {
+            this.CommandId = aggregateId.ToString();
             this.ShipOrderId = shipOrderId;
             this.IsShiped = isShiped;
             this.EventType = EventType.EditShipOrderStatus;

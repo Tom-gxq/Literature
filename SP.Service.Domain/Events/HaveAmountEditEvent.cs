@@ -10,8 +10,9 @@ namespace SP.Service.Domain.Events
     {
         public string AccountId { get; set; }
         public double Amount { get; set; }
-        public HaveAmountEditEvent(string accountId,double amount) : base(KafkaConfig.EventBusTopicTitle)
+        public HaveAmountEditEvent(Guid aggregateId,string accountId,double amount) : base(KafkaConfig.EventBusTopicTitle)
         {
+            CommandId = aggregateId.ToString();
             AccountId = accountId;
             Amount = amount;
             EventType = EventType.HaveAmountEdit;
