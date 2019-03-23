@@ -1,4 +1,5 @@
 ﻿using AccountGRPCInterface;
+using SP.Api.Cache;
 using SP.Api.Model.Account;
 using SP.Api.Model.Enum;
 using System;
@@ -292,8 +293,14 @@ namespace WebApiGateway.Controllers.Account
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var model = AddressBusiness.GetSchoolDistrictList(dataId, updateTime);
-                JsonResult.Add("regionData", model);
+                var list = RedisProvider.Default.GetValueFromHash<List<RegionDataModel>>("regionlist", dataId.ToString());
+                if (list == null)
+                {
+                    list = AddressBusiness.GetSchoolDistrictList(dataId, updateTime);
+                    RedisProvider.Default.SetEntryInHash<List<RegionDataModel>>("regionlist", dataId.ToString(), list);
+                }
+
+                JsonResult.Add("regionData", list);
                 JsonResult.Add("status", 0);
             }
             catch (Exception ex)
