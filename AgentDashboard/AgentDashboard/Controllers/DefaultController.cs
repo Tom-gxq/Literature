@@ -139,7 +139,8 @@ namespace AgentDashboard.Controllers
                 String accountId = GetCurrentAccountId();
 
                 shopsVM = (from regionAccount in sp.SP_RegionAccount.Where(n => n.AccountId == accountId)
-                           join shop in sp.SP_Shop on regionAccount.RegionId equals shop.RegionId
+                           join regionData in sp.SP_RegionData on regionAccount.RegionId.ToString() equals regionData.ParentDataID
+                           join shop in sp.SP_Shop on regionData.DataID equals shop.RegionId
                            select new ShopViewModel
                            {
                                Id = shop.Id,
@@ -467,7 +468,8 @@ namespace AgentDashboard.Controllers
                 string accountId = GetCurrentAccountId();
 
                 shopsVM = (from regionAccount in sp.SP_RegionAccount.Where(n=>n.AccountId == accountId)
-                           join shop in sp.SP_Shop on regionAccount.RegionId equals shop.RegionId
+                           join regionData in sp.SP_RegionData on regionAccount.RegionId.ToString() equals regionData.ParentDataID
+                           join shop in sp.SP_Shop on regionData.DataID equals shop.RegionId
                            select new ShopViewModel
                            {
                                Id = shop.Id,
