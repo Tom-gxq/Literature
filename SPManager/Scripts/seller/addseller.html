@@ -10,20 +10,23 @@
                         </li>
                         <li style="width:100%">
                             <span class="grayfont span">负责人:</span>
-                            <select tabindex="2" id="leader" class="select small newselect" style="height: 35px;">
-                                <option value="0" selected="">&nbsp;</option>
-                                {% for(var i =0, j=$data.leaders.length; i < j; i++) { %}
-                                <option value="{%=$data.leaders[i].AccountId%}">{%=$data.leaders[i].Fullname%}</option>
-                                {% } %}
+                            <input id="accountId" class="input-text width400 Check owner" type="hidden"/>
+                            <input id="account" class="input-text width400 Check txtAccount" type="text" placeholder="请输入负责人"/>
+                        </li>
+                        <li style="width:100%">
+                            <span class="grayfont span">经营类别:</span>
+                            <select tabindex="3" id="TypeId" class="select small newselect" style="height: 35px;">
+                                <option value="1" selected>餐饮</option>
+                                <option value="5">超市</option>
                             </select>
                         </li>
                         <li style="width:100%">
                             <span class="grayfont span">商家电话:</span>
-                            <input id="startTime" tabindex="1" class="input-text width200 Check telphone" type="text" value="" placeholder="商家电话" />
+                            <input id="startTime" tabindex="4" class="input-text width200 Check telphone" type="text" value="" placeholder="商家电话" />
                         </li>
                         <li style="width:100%">
                             <span class="grayfont span">提现账号:</span>
-                            <input id="startTime" tabindex="1" class="input-text width200 Check alipay" type="text" value="" placeholder="提现账号" />
+                            <input id="startTime" tabindex="5" class="input-text width200 Check alipay" type="text" value="" placeholder="提现账号" />
                         </li>
                         <li style="width:100%">
                             <div id="container">
@@ -33,7 +36,7 @@
                                         <span>商家Logo选择文件</span>
                                     </a>
                                 </div>
-                                <input tabindex="1" id="imgPath" class="input-text width400 Check sequence" type="hidden" value="" />
+                                <input tabindex="6" id="imgPath" class="input-text width400 Check sequence" type="hidden" value="" />
                             </div>
                         </li>
                     </ul>

@@ -71,6 +71,28 @@ define(function (require, exports, module) {
                             easydialog.close();
                         });
 
+                        var completeInfo = require('complete');
+                        completeInfo.createComplete({
+                            element: "#account",
+                            url: '/Account/SearchAccount',
+                            selectCallback: function (value, text) {
+                                _this.bindCompanyInfo(value, text);
+                            },
+                            asyncCallback: function (response, data) {
+                                console.log(data);
+                                response($.map(data.items, function (item) {
+                                    return {
+                                        label: item.Fullname,
+                                        valueKey: item.AccountId
+                                    }
+                                }));
+                            },
+                            data: function (request) {
+                                $(".clipLoader").show();
+                                return { keywords: request.term };
+                            }
+                        });
+
                     });
                 },
                 error: function (err) {
@@ -88,14 +110,18 @@ define(function (require, exports, module) {
                 oldRegionId: _this.setting.Id.split('&')[0],
                 oldAccountId: _this.setting.Id.split('&')[1],
                 regionId: $('#region').val(),
-                accountId: $('#leader').val()
+                accountId: $('#accountId').val()
             };
             leader = $.param(leader, true);
             Global.post("/Seller/EditLeader", leader, function (data) {
                 _this.setting.callBack(data);
             });
         },
-        
+
+        //绑定公司信息
+        bindCompanyInfo: function (accountId, name) {
+            $("#accountId").val(accountId);
+        },
     };
     
     //对外公布方法

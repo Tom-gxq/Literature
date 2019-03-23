@@ -72,8 +72,8 @@ define(function (require, exports, module) {
 
                         var completeInfo = require('complete');
                         completeInfo.createComplete({
-                            element: "#leader",
-                            url: 'SearchAccountByKeyWord',
+                            element: "#account",
+                            url: '/Account/SearchAccount',
                             selectCallback: function (value, text) {
                                 _this.bindAccountId(value, text);
                             },
@@ -108,7 +108,8 @@ define(function (require, exports, module) {
                 TelPhone: divElement.find('.telphone').val(),
                 AlipayNo: divElement.find('.alipay').val(),
                 LogoPath: divElement.find('#imgPath').val(),
-                AccountId: divElement.find('#leader').val(),
+                AccountId: divElement.find('#accountId').val(),
+                TypeId: divElement.find('#TypeId').val()
             };
             param = $.param(param, true);
             Global.post("/Seller/AddSeller", param, function (data) {
@@ -117,7 +118,7 @@ define(function (require, exports, module) {
         },
         //绑定产品信息
         bindAccountId: function (accountId, name) {
-            $("#leaderId").val(accountId);
+            $("#accountId").val(accountId);
         },
     };
 

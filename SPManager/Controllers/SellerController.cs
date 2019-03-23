@@ -209,9 +209,9 @@ namespace SPManager.Controllers
             var regions = regionSrv.GetRegionData(1);
             JsonResult.Add("regions", regions);
             IAccountAppService accountSrv = IocManager.Instance.Resolve<IAccountAppService>();
-            var leaders = accountSrv.GetAccountList();
-            JsonResult.Add("leaders", leaders);
+            var accountInfo = accountSrv.GetAccountInfo(accountId);
             JsonResult.Add("AccountId", accountId);
+            JsonResult.Add("FullName", accountInfo.Fullname);
             JsonResult.Add("RegionId", regionId);
 
             return new JsonResult()
@@ -226,9 +226,6 @@ namespace SPManager.Controllers
             IRegionAppService regionSrv = IocManager.Instance.Resolve<IRegionAppService>();
             var regions = regionSrv.GetRegionData(1);
             JsonResult.Add("regions", regions);
-            IAccountAppService accountSrv = IocManager.Instance.Resolve<IAccountAppService>();
-            var leaders = accountSrv.GetAccountList();
-            JsonResult.Add("leaders", leaders);
 
             return new JsonResult()
             {
@@ -325,8 +322,9 @@ namespace SPManager.Controllers
             var seller = service.GetSupplerDetail(id);
             JsonResult.Add("seller", seller);
             IAccountAppService accountSrv = IocManager.Instance.Resolve<IAccountAppService>();
-            var leaders = accountSrv.GetAccountList();
-            JsonResult.Add("leaders", leaders);
+            var accountInfo = accountSrv.GetAccountInfo(seller.AccountId);
+            JsonResult.Add("AccountId", accountInfo.AccountId);
+            JsonResult.Add("FullName", accountInfo.Fullname);
             JsonResult.Add("result", seller);
 
             return new JsonResult()
