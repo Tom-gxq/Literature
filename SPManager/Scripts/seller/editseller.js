@@ -53,7 +53,7 @@ define(function (require, exports, module) {
                         easydialog.open({
                             container: {
                                 id: "editseller",
-                                header: '编辑所见区域',
+                                header: '编辑商家',
                                 content: innerText
                             }
                         });
@@ -72,6 +72,28 @@ define(function (require, exports, module) {
                         });
 
                         qiniu.QiniuMainController.init();
+
+                        var completeInfo = require('complete');
+                        completeInfo.createComplete({
+                            element: "#account",
+                            url: '/Account/SearchAccount',
+                            selectCallback: function (value, text) {
+                                _this.bindAccountId(value, text);
+                            },
+                            asyncCallback: function (response, data) {
+
+                                response($.map(data.items, function (item) {
+                                    return {
+                                        label: item.Fullname,
+                                        valueKey: item.AccountId
+                                    };
+                                }));
+                            },
+                            data: function (request) {
+                                $(".clipLoader").show();
+                                return { keywords: request.term };
+                            }
+                        });
 
                         $('#easyDialogBox').css({
                             width: "500px",
@@ -97,14 +119,18 @@ define(function (require, exports, module) {
                 TelPhone: divElement.find('.telphone').val(),
                 AlipayNo: divElement.find('.alipay').val(),
                 LogoPath: divElement.find('#imgPath').val(),
-                AccountId: divElement.find('#leader').val(),
+                AccountId: divElement.find('#accountId').val(),
             };
             param = $.param(param, true);
             Global.post("/Seller/EditSeller", param, function (data) {
                 _this.setting.callBack(data);
             });
         },
-        
+
+        //绑定产品信息
+        bindAccountId: function (accountId, name) {
+            $("#accountId").val(accountId);
+        },
     };
     
     //对外公布方法

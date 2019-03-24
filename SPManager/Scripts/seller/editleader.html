@@ -15,12 +15,8 @@
                         </li>
                         <li style="width:100%">
                             <span class="grayfont span">负责人:</span>
-                            <select tabindex="2" id="leader" class="select small newselect" style="height: 35px;">
-                                <option value="0" selected="">&nbsp;</option>
-                                {% for(var i =0, j=$data.leaders.length; i < j; i++) { %}
-                                <option value="{%=$data.leaders[i].AccountId%}" {%=$data.AccountId==$data.leaders[i].AccountId?'selected':'' %}>{%=$data.leaders[i].Fullname%}</option>
-                                {% } %}
-                            </select>
+                            <input id="accountId" class="input-text width400 Check owner" type="hidden" value="{%=$data.AccountId%}"/>
+                            <input id="account" class="input-text width400 Check txtAccount" type="text" placeholder="请输入负责人" value="{%=$data.FullName%}"/>
                         </li>
                     </ul>
                 </div>

@@ -11,12 +11,8 @@
                         </li>
                         <li style="width:100%">
                             <span class="grayfont span">负责人:</span>
-                            <select tabindex="2" id="leader" class="select small newselect" style="height: 35px;">
-                                <option value="0" selected="">&nbsp;</option>
-                                {% for(var i =0, j=$data.leaders.length; i < j; i++) { %}
-                                <option value="{%=$data.leaders[i].AccountId%}" {%=$data.leaders[i].AccountId==$data.seller.AccountId?'selected':''%}>{%=$data.leaders[i].Fullname%}</option>
-                                {% } %}
-                            </select>
+                            <input id="accountId" class="input-text width400 Check owner" type="hidden" value="{%=$data.AccountId%}" />
+                            <input id="account" class="input-text width400 Check txtAccount" type="text" placeholder="请输入负责人" value="{%=$data.FullName%}"/>
                         </li>
                         <li style="width:100%">
                             <span class="grayfont span">商家电话:</span>
@@ -29,7 +25,7 @@
                         <li style="width:100%">
                             <span class="grayfont span">经营种类:</span>
                             <select tabindex="2" id="type" class="select small newselect" style="height: 35px;">
-                                <option value="0" {%=$data.seller.TypeId==0?'selected':'' %}>餐饮</option>
+                                <option value="5" {%=$data.seller.TypeId==0?'selected':'' %}>餐饮</option>
                                 <option value="1" {%=$data.seller.TypeId==1?'selected':'' %}>超市</option>
                             </select>
                         </li>
