@@ -135,14 +135,13 @@ namespace SP.Service.Domain.EventHandlers
                                         });
                                     }
                                     System.Console.WriteLine($"GetShippingOrders OrderId={domaint.OrderId} SuppliersId={product.SuppliersId}");
-                                    var shipEntity = _reportDatabase.GetShippingOrders(domaint.OrderId, product.SuppliersId);
+                                    var shipEntity = _reportDatabase.GetShippingOrders(domaint.OrderId, domaint.AccountId);
                                     if (shipEntity == null)
                                     {
                                         var ship = new ShippingOrdersEntity()
                                         {
                                             OrderId = domaint.OrderId,
                                             ProductId = product.ProductId,
-                                            ShippingId = product.SuppliersId,
                                             ShipTo = domaint.AccountId,
                                             ShippingDate = DateTime.Now,
                                             IsShipped = false,
@@ -160,7 +159,7 @@ namespace SP.Service.Domain.EventHandlers
                                     {
                                         OrderId = domaint.OrderId,
                                         ProductId = product.ProductId,
-                                        ShipId = product.SuppliersId,
+                                        //ShipId = product.SuppliersId,
                                         ShipTo = domaint.AccountId,
                                         ShipDate = DateTime.Now,
                                         IsShipped = false,
@@ -177,20 +176,20 @@ namespace SP.Service.Domain.EventHandlers
                         {
                             if (domaint.Products != null && domaint.Products.Count > 0)
                             {                                
-                                foreach (var product in domaint.Products.FindAll(x => x.SuppliersId == handle.AccountId))
-                                {
-                                    var ship = new ShipOrderEntity()
-                                    {
-                                        OrderId = domaint.OrderId,
-                                        ProductId = product.ProductId,
-                                        ShipId = product.SuppliersId,
-                                        ShipTo = domaint.AccountId,
-                                        ShippedDate = DateTime.Now,
-                                        IsShipped = true
-                                    };
-                                    _sellerShipOrderReportDatabase.UpdateShipOrderStatus(ship);
+                                //foreach (var product in domaint.Products.FindAll(x => x.SuppliersId == handle.AccountId))
+                                //{
+                                //    var ship = new ShipOrderEntity()
+                                //    {
+                                //        OrderId = domaint.OrderId,
+                                //        ProductId = product.ProductId,
+                                //        //ShipId = product.SuppliersId,
+                                //        ShipTo = domaint.AccountId,
+                                //        ShippedDate = DateTime.Now,
+                                //        IsShipped = true
+                                //    };
+                                //    _sellerShipOrderReportDatabase.UpdateShipOrderStatus(ship);
                                     
-                                }
+                                //}
                             }
                             var list = _sellerShipOrderReportDatabase.GetShippingOrdersByOrderId(handle.AggregateId.ToString());
                             
@@ -219,20 +218,20 @@ namespace SP.Service.Domain.EventHandlers
                     {
                         if (domaint.Products != null && domaint.Products.Count > 0)
                         {
-                            var shopOwner = _shopReportDatabase.GetShopStatus(domaint.AccountId);
-                            var list = new List<ProductSkuModel>();
-                            foreach (var product in domaint.Products.FindAll(x=>x.SuppliersId == handle.AccountId))
-                            {
-                                list.Add(new ProductSkuModel()
-                                {
-                                    accountId = domaint.AccountId,
-                                    productId = product.ProductId,
-                                    shopId = shopOwner.ShopId,
-                                    stock = product.Quantity,
-                                    type = 1,//增加
-                                });                                
-                            }
-                            var response = StockBusiness.UpdateProductSku(handle.Host, list);
+                            //var shopOwner = _shopReportDatabase.GetShopStatus(domaint.AccountId);
+                            //var list = new List<ProductSkuModel>();
+                            //foreach (var product in domaint.Products.FindAll(x=>x.SuppliersId == handle.AccountId))
+                            //{
+                            //    list.Add(new ProductSkuModel()
+                            //    {
+                            //        accountId = domaint.AccountId,
+                            //        productId = product.ProductId,
+                            //        shopId = shopOwner.ShopId,
+                            //        stock = product.Quantity,
+                            //        type = 1,//增加
+                            //    });                                
+                            //}
+                            //var response = StockBusiness.UpdateProductSku(handle.Host, list);
                         }
                     }
                 }

@@ -77,5 +77,7 @@ namespace Grpc.Service.Core.Domain.Events
         SuppliersRegionCreated,
         WxUnionIdEdit,
         WxOpenIdCreate,
+        SellerProductCreated,
+        SellerProductDel,
     }
 }

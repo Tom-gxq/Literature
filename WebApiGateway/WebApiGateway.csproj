@@ -223,6 +223,7 @@
     <Compile Include="Controllers\Register\RegisterController.cs" />
     <Compile Include="Controllers\Register\WXNotifyController.cs" />
     <Compile Include="Controllers\Seller\AccountIDController.cs" />
+    <Compile Include="Controllers\Seller\SellerFoodProductController.cs" />
     <Compile Include="Controllers\Seller\SellerProductController.cs" />
     <Compile Include="Controllers\Seller\SellerShopController.cs" />
     <Compile Include="Controllers\Seller\ShipOrderController.cs" />

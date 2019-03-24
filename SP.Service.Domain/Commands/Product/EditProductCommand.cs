@@ -8,18 +8,16 @@ namespace SP.Service.Domain.Commands.Product
 {
     public class EditProductCommand : SPCommand
     {
-        public string ProductName { get; set; }
-        public double MarketPrice { get; set; }
+        public string ProductId { get; set; }
         public double PurchasePrice { get; set; }
-        public string ImagePath { get; set; }
+        public int SuppliersId { get; set; }
 
-        public EditProductCommand(Guid id, string productName,double marketPrice, double purchasePrice, string imagePath) : base(KafkaConfig.NormalCommandBusTopicTitle)
+        public EditProductCommand(Guid id, string productId, double purchasePrice, int suppliersId) : base(KafkaConfig.NormalCommandBusTopicTitle)
         {
             base.Id = id;
-            this.ProductName = productName;
-            this.MarketPrice = marketPrice;
+            this.ProductId = productId;
             this.PurchasePrice = purchasePrice;
-            this.ImagePath = imagePath;
+            this.SuppliersId = suppliersId;
             this.CommandType = CommandType.EditProduct;
         }
     }

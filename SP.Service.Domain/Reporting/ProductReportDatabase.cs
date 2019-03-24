@@ -18,14 +18,16 @@ namespace SP.Service.Domain.Reporting
         private readonly BrandRepository _brandRepository;
         private readonly ProductTypeRepository _typeRepository;
         private readonly ProductAttributeRepository _attributeRepository;
+        private readonly SuppliersProductRepository _suppliersProductRepository;
         public ProductReportDatabase(ProductRepository repository, ProductImageRepository imageRepository, BrandRepository brandRepository, 
-            ProductTypeRepository typeRepository, ProductAttributeRepository attributeRepository)
+            ProductTypeRepository typeRepository, ProductAttributeRepository attributeRepository, SuppliersProductRepository suppliersProductRepository)
         {
             _repository = repository;
             _imageRepository = imageRepository;
             _brandRepository = brandRepository;
             _typeRepository = typeRepository;
             _attributeRepository = attributeRepository;
+            _suppliersProductRepository = suppliersProductRepository;
         }
 
         public ProductEntity GetProductById(string prductId)
@@ -245,6 +247,7 @@ namespace SP.Service.Domain.Reporting
         {
             return _repository.Add(item);
         }
+        
         public bool Update(ProductEntity item)
         {
             var ret= _repository.Update(item);
@@ -253,6 +256,15 @@ namespace SP.Service.Domain.Reporting
         public bool Del(string prductId)
         {
             var ret = _repository.Del(prductId);
+            return ret > 0;
+        }
+        public bool AddSuppliersProduct(SuppliersProductEntity item)
+        {
+                return _suppliersProductRepository.AddSuppliers(item);
+        }
+        public bool UpdateSuppliersProduct(SuppliersProductEntity item)
+        {
+            var ret = _suppliersProductRepository.UpdateSuppliers(item);
             return ret > 0;
         }
         public List<ProductDomain> GetDistributorMarketProduct(long typeId, long secondTypeId, int pageIndex, int pageSize)

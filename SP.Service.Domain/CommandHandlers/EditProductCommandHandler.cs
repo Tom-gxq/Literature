@@ -10,23 +10,23 @@ namespace SP.Service.Domain.CommandHandlers
 {
     public class EditProductCommandHandler : ICommandHandler<EditProductCommand>, ICommandHandler<EditSaleStatusCommand>
     {
-        private IDataRepository<ProductDomain> _repository;
-        public EditProductCommandHandler(IDataRepository<ProductDomain> repository)
+        private IDataRepository<SuppliersProductDomain> _repository;
+        public EditProductCommandHandler(IDataRepository<SuppliersProductDomain> repository)
         {
             this._repository = repository;
         }
 
         public void Execute(EditProductCommand command)
         {
-            var aggregate = new ProductDomain();
-            aggregate.EditProduct(command.Id, command.ProductName, command.MarketPrice, command.PurchasePrice, command.ImagePath);
+            var aggregate = new SuppliersProductDomain();
+            aggregate.EditProduct(command.Id, command.ProductId, command.PurchasePrice, command.SuppliersId);
             _repository.Save(aggregate);
         }
 
         public void Execute(EditSaleStatusCommand command)
         {
-            var aggregate = new ProductDomain();
-            aggregate.EditProductSaleStatus(command.Id, command.Status);
+            var aggregate = new SuppliersProductDomain();
+            aggregate.EditProductSaleStatus(command.Id, command.Status, command.SuppliersId, command.ProductId);
             _repository.Save(aggregate);
         }
     }

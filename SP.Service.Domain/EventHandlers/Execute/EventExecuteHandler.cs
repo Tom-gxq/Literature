@@ -219,6 +219,12 @@ namespace SP.Service.Domain.EventHandlers.Execute
                 case EventType.SuppliersRegionCreated:
                     ExecuteEvent<SuppliersRegionCreatedEvent>(text);
                     break;
+                case EventType.SellerProductCreated:
+                    ExecuteEvent<SellerProductCreatedEvent>(text);
+                    break;
+                case EventType.SellerProductDel:
+                    ExecuteEvent<SellerProductDelEvent>(text);
+                    break;
                 default:
                     throw new UnregisteredDomainCommandException($" unknown event: [{text}]");
 

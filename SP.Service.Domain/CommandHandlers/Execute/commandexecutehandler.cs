@@ -185,6 +185,12 @@ namespace SP.Service.Domain.CommandHandlers.Execute
                 case CommandType.CreateSuppliersRegion:
                     ExecuteCommand<CreateSuppliersRegionCommand>(text);
                     break;
+                case CommandType.CreateSellerProduct:
+                    ExecuteCommand<CreateSellerProductCommand>(text);
+                    break;
+                case CommandType.DelSellerProduct:
+                    ExecuteCommand<DelSellerProductCommand>(text);
+                    break;
                 default:
                     throw new UnregisteredDomainCommandException($" unknown command: [{text}]");
             }

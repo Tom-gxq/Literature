@@ -24,7 +24,7 @@ namespace SP.Service.Entity
         public double? MarketPrice { get; set; }
         public double? VIPPrice { get; set; }
         public int? BrandId { get; set; }
-        public string SuppliersId { get; set; }
+        public int SuppliersId { get; set; }
         public long? TypeId { get; set; }
         public long? SecondTypeId { get; set; }
         public DateTime? UpdateTime { get; set; }

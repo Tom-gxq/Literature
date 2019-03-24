@@ -7,7 +7,8 @@ using System.Text;
 
 namespace SP.Service.Domain.DomainEntity
 {
-    public class SuppliersProductDomain : AggregateRoot<Guid>, IHandle<SuppliersProductCreatedEvent>,IHandle<SuppliersRegionCreatedEvent>
+    public class SuppliersProductDomain : AggregateRoot<Guid>, IHandle<SuppliersProductCreatedEvent>,IHandle<SuppliersRegionCreatedEvent>, IHandle<SaleStatusEditEvent>,
+        IHandle<ProductEditEvent>
     {
         public int SuppliersId { get; set; }
         public string ProductId { get; set; }
@@ -20,6 +21,7 @@ namespace SP.Service.Domain.DomainEntity
         {
 
         }
+        
         public void Create()
         {
             var @event = new SuppliersProductCreatedEvent(this.Id, this.ProductId, this.SuppliersId, this.PurchasePrice, this.AlertStock);
@@ -33,7 +35,24 @@ namespace SP.Service.Domain.DomainEntity
 
             ApplyChange(@event);
         }
-
+        public void EditProductSaleStatus(Guid id, int status, int suppliersId, string productId)
+        {
+            ApplyChange(new SaleStatusEditEvent(id, status, suppliersId, productId));
+        }
+        public void EditProduct(Guid id, string productId, double purchasePrice, int suppliersId)
+        {
+            ApplyChange(new ProductEditEvent(id, productId, purchasePrice, suppliersId));
+        }
+        public void Handle(ProductEditEvent e)
+        {
+            this.Id = e.AggregateId;
+            this.ProductId = e.ProductId;
+            this.PurchasePrice = e.PurchasePrice;
+        }
+        public void Handle(SaleStatusEditEvent e)
+        {
+            this.SaleStatus = e.Status;
+        }
         public void Handle(SuppliersProductCreatedEvent e)
         {
             this.Id = e.AggregateId;

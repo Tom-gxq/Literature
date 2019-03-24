@@ -8,11 +8,15 @@ namespace SP.Service.Domain.Events
 {
     public class SaleStatusEditEvent: Event
     {
+        public int SuppliersId { get; set; }
+        public string ProductId { get; set; }
         public int Status { get; set; }
-        public SaleStatusEditEvent(Guid id, int status) : base(KafkaConfig.EventBusTopicTitle)
+        public SaleStatusEditEvent(Guid id, int status,int suppliersId,string productId) : base(KafkaConfig.EventBusTopicTitle)
         {
             base.AggregateId = id;
             this.CommandId = id.ToString();
+            this.SuppliersId = suppliersId;
+            this.ProductId = productId;
             this.Status = status;
             this.EventType = EventType.SaleStatusEdit;
         }

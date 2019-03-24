@@ -65,6 +65,7 @@ namespace Grpc.Service.Core.Domain.Commands
         //Pay
         BalancePay,
         //
-        
+        CreateSellerProduct,
+        DelSellerProduct,
     }
 }

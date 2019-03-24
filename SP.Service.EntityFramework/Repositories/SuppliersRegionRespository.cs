@@ -30,5 +30,18 @@ namespace SP.Service.EntityFramework.Repositories
                 return db.Select<SuppliersProductFullEntity>(q);
             }
         }
+
+        public List<SuppliersProductFullEntity> GetSuppliersProduct(int mainType, int secondType, int supplierId)
+        {
+            using (var db = OpenDbConnection())
+            {
+                var q = db.From<SuppliersProductEntity>();
+                q = q.Join<SuppliersProductEntity, ProductEntity>((e, a) => e.SuppliersId == supplierId 
+                && a.TypeId == mainType && a.SecondTypeId == secondType
+                && e.Status == 0 && e.ProductId == a.ProductId);
+                return db.Select<SuppliersProductFullEntity>(q);
+            }
+        }
+        
     }
 }

@@ -39,5 +39,6 @@ namespace SP.Service.EntityFramework.Repositories
                 return db.Single<ProductTypeEntity>(q);
             }
         }
+
     }
 }

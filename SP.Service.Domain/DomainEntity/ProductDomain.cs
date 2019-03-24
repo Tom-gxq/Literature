@@ -33,7 +33,7 @@ namespace SP.Service.Domain.DomainEntity
         public List<ProductAttributeInfoEntity> Attributes { get; internal set; }
         public long TypeId { get; internal set; }
         public long SecondTypeId { get; internal set; }
-        public string SuppliersId { get; internal set; }
+        public int SuppliersId { get; internal set; }
         public double PurchasePrice { get; internal set; }
         public string ImagePath { get; internal set; }
         public int Quantity { get; set; }
@@ -42,20 +42,18 @@ namespace SP.Service.Domain.DomainEntity
         {
 
         }
-        public ProductDomain(Guid id,long mainType,long secondType, string productName,string suppliersId, double marketPrice,double purchasePrice,string imagePath, double vipPrice)
+        public ProductDomain(Guid id, long mainType, long secondType, string productId,string accountId, double purchasePrice, int suppliersId)
         {
-            ApplyChange(new ProductCreatedEvent(id, mainType, secondType, productName, suppliersId, marketPrice, purchasePrice, vipPrice));
-            ApplyChange(new ProductImageCreatedEvent(id,imagePath));
+            ApplyChange(new ProductCreatedEvent(id, mainType, secondType, productId, accountId,  purchasePrice, suppliersId));
         }
-        public void EditProduct(Guid id, string productName, double marketPrice, double purchasePrice, string imagePath)
+        public void EditProduct(Guid id, string productId,double purchasePrice, int suppliersId)
         {
-            ApplyChange(new ProductEditEvent(id, productName, marketPrice, purchasePrice));
-            ApplyChange(new ProductImageEditEvent(id, imagePath));
+            ApplyChange(new ProductEditEvent(id, productId,  purchasePrice, suppliersId));
         }
 
-        public void EditProductSaleStatus(Guid id, int status)
+        public void EditProductSaleStatus(Guid id, int status, int suppliersId, string productId)
         {
-            ApplyChange(new SaleStatusEditEvent(id, status));
+            ApplyChange(new SaleStatusEditEvent(id,  status,  suppliersId,  productId));
         }
         public void DelProduct(Guid id)
         {
@@ -66,9 +64,8 @@ namespace SP.Service.Domain.DomainEntity
             this.Id = e.AggregateId;
             this.TypeId = e.MainType;
             this.SecondTypeId = e.SecondType;
-            this.ProductName = e.ProductName;
+            this.ProductId = e.ProductId;
             this.SuppliersId = e.SuppliersId;
-            this.MarketPrice = e.MarketPrice;
             this.PurchasePrice = e.PurchasePrice;
             
         }
@@ -79,8 +76,7 @@ namespace SP.Service.Domain.DomainEntity
         public void Handle(ProductEditEvent e)
         {
             this.Id = e.AggregateId;
-            this.ProductName = e.ProductName;
-            this.MarketPrice = e.MarketPrice;
+            this.ProductId = e.ProductId;
             this.PurchasePrice = e.PurchasePrice;
         }
         public void Handle(SaleStatusEditEvent e)
