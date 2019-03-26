@@ -10,6 +10,10 @@ namespace SP.Service.Domain.Reporting
     public class SellerProductReportDatabase : IReportDatabase
     {
         private readonly SellerProductRepository _repository;
+        public SellerProductReportDatabase(SellerProductRepository repository)
+        {
+            this._repository = repository;
+        }
 
         public bool Add(SellerProductEntity item)
         {

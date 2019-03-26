@@ -18,6 +18,7 @@ namespace SP.Service.Domain.Commands.Product
         public CreateSuppliersProductCommand(Guid id, string accountId, long mainType, long secondType, string productId, double purchasePrice, int suppliersId) 
             : base(KafkaConfig.NormalCommandBusTopicTitle)
         {
+            this.CommandId = id.ToString();
             this.AccountId = accountId;
             this.SuppliersId = suppliersId;
             this.ProductId = productId;

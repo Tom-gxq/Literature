@@ -705,7 +705,7 @@ namespace Product.Service.Business
             {
                 result.SuppliersId = domain.Id.Value;
                 result.SuppliersName = domain.SuppliersName;
-                result.TypeId = domain.TypeId.Value;
+                result.TypeId = domain.TypeId != null ? domain.TypeId.Value:0;
                 result.AccountId = domain.AccountId;
                 result.AlipayNo = domain.AlipayNo;
                 result.CellPhone = domain.TelPhone;
@@ -728,7 +728,12 @@ namespace Product.Service.Business
                     product.ProductName = item.ProductName;
                     product.PurchasePrice = item.PurchasePrice ?? 0;
                     product.ProductId = item.ProductId;
-                    product.SaleStatus = item.SaleStatus.Value;
+                    product.SaleStatus = item.SaleStatus != null ?item.SaleStatus.Value:0;
+                    var image = ServiceLocator.ProductImageReportDatabase.GetProductImage(item.ProductId);
+                    if (image != null)
+                    {
+                        product.ImagePath = image.ImgPath;
+                    }
                     result.ProductList.Add(product);
                 }
                 result.Status = 10001;
@@ -764,6 +769,11 @@ namespace Product.Service.Business
                         product.SelectedStatus = 1;
                     }
                     product.SupplierProductId = item.Id.Value;
+                    var image = ServiceLocator.ProductImageReportDatabase.GetProductImage(item.ProductId);
+                    if (image != null)
+                    {
+                        product.ImagePath = image.ImgPath;
+                    }
                     result.ProductList.Add(product);
                 }
                 result.Status = 10001;
@@ -786,6 +796,11 @@ namespace Product.Service.Business
                     product.PurchasePrice = item.PurchasePrice ?? 0;
                     product.ProductId = item.ProductId;
                     product.SupplierProductId = item.Id.Value;
+                    var image = ServiceLocator.ProductImageReportDatabase.GetProductImage(item.ProductId);
+                    if (image != null)
+                    {
+                        product.ImagePath = image.ImgPath;
+                    }
                     result.ProductList.Add(product);
                 }
                 result.Status = 10001;
@@ -808,6 +823,11 @@ namespace Product.Service.Business
                    SuppliersId = domain.SuppliersId.Value,
                    SaleStatus = domain.SaleStatus.Value
                 };
+                var image = ServiceLocator.ProductImageReportDatabase.GetProductImage(domain.ProductId);
+                if (image != null)
+                {
+                    result.Product.ImagePath = image.ImgPath;
+                }
                 result.Status = 10001;
             }
             return result;

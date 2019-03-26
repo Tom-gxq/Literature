@@ -10,7 +10,6 @@ namespace SP.Service.Entity
     public class SuppliersEntity : BaseEntity
     {
         [AutoIncrement]
-        [Alias("SuppliersId")]
         public int? Id { get; set; }
         public string SuppliersName { get; set; }
         public string AccountId { get; set; }

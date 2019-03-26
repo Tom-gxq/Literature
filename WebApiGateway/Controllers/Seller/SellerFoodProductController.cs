@@ -2,6 +2,7 @@
 using SP.Api.Model.Seller;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -119,6 +120,14 @@ namespace WebApiGateway.Controllers.Seller
             try
             {
                 var model = SellerProductBusiness.GetSuppliersProductById(suppliersPrductId);
+                string domainPath = ConfigurationManager.AppSettings["Qiniu.Domain"];
+                if (model != null)
+                {
+                    if (model.ImagePath != null && !model.ImagePath.ToLower().StartsWith("http://"))
+                    {
+                        model.ImagePath = domainPath + model.ImagePath;
+                    }
+                }
                 JsonResult.Add("product", model);
                 JsonResult.Add("status", 0);
             }
@@ -176,6 +185,17 @@ namespace WebApiGateway.Controllers.Seller
             try
             {
                 var model = SellerProductBusiness.GetSuppliersProducts( mainType,  secondType,  suppliersId);
+                string domainPath = ConfigurationManager.AppSettings["Qiniu.Domain"];
+                if (model != null)
+                {
+                    foreach (var item in model)
+                    {
+                        if (item.ImagePath != null && !item.ImagePath.ToLower().StartsWith("http://"))
+                        {
+                            item.ImagePath = domainPath + item.ImagePath;
+                        }
+                    }
+                }
                 JsonResult.Add("supplierProductList", model);
                 JsonResult.Add("status", 0);
             }
@@ -195,6 +215,17 @@ namespace WebApiGateway.Controllers.Seller
             try
             {
                 var model = SellerProductBusiness.GetSellerFoodProductList(regionId, currentAccount.AccountId, isSelected, pageIndex, pageSize);
+                string domainPath = ConfigurationManager.AppSettings["Qiniu.Domain"];
+                if (model != null)
+                {
+                    foreach (var item in model)
+                    {
+                        if (item.ImagePath != null && !item.ImagePath.ToLower().StartsWith("http://"))
+                        {
+                            item.ImagePath = domainPath + item.ImagePath;
+                        }
+                    }
+                }
                 JsonResult.Add("supplierProductList", model);
                 JsonResult.Add("status", 0);
             }

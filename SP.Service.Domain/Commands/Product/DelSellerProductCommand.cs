@@ -11,7 +11,6 @@ namespace SP.Service.Domain.Commands.Product
         public DelSellerProductCommand(Guid id, string accountId, int suppliersId)
             : base(id, accountId, suppliersId)
         {
-            base.Id = id;
             this.CommandType = CommandType.DelSellerProduct;
         }
     }

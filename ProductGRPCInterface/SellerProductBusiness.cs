@@ -165,7 +165,7 @@ namespace ProductGRPCInterface
             var modelList = new List<SuppliersProduct>();
             if (result.Status == 10001)
             {
-                foreach(var item in modelList)
+                foreach(var item in result.ProductList)
                 {
                     var model = new SuppliersProduct();
                     model.ProductName = item.ProductName;
@@ -195,7 +195,7 @@ namespace ProductGRPCInterface
             var modelList = new List<SellerFoodProductModel>();
             if (result.Status == 10001)
             {
-                foreach (var item in modelList)
+                foreach (var item in result.ProductList)
                 {
                     var model = new SellerFoodProductModel();
                     model.ProductName = item.ProductName;

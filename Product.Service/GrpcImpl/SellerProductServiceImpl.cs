@@ -132,7 +132,7 @@ namespace Product.Service.GrpcImpl
             SuppliersProductListResponse response = null;
             try
             {
-                response = ProductBusiness.GetSuppliersProducts(request.MainType, request.SecondType, request.SupplierId);
+                response = ProductBusiness.GetSuppliersProducts(request.MainType, request.SecondType, request.SupplierId);                
             }
             catch (Exception ex)
             {
@@ -149,7 +149,7 @@ namespace Product.Service.GrpcImpl
             SellerFoodProductListResponse response = null;
             try
             {
-                if(request.IsSelected)
+                if(!request.IsSelected)
                 {
                     response = ProductBusiness.GetSellerFoodProductList(request.RegionId, request.AccountId, request.PageIndex, request.PageSize);
                 }
