@@ -28,5 +28,15 @@ namespace SP.Service.Domain.Reporting
             }
             return retList;
         }
+
+        public ProductTypeDomain GetSuppliersType(int supplierId)
+        {
+            var entity = _repository.GetProductTypeById(supplierId);
+
+            var domain = new ProductTypeDomain();
+            domain.SetMemento(entity);
+
+            return domain;
+        }
     }
 }

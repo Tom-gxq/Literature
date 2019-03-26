@@ -1,4 +1,5 @@
 ﻿using Grpc.Service.Core.Domain.Events;
+using SP.Service.Domain.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,7 +15,7 @@ namespace SP.Service.Domain.Events
         public int AlertStock { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime UpdateTime { get; set; }
-        public SuppliersProductCreatedEvent(Guid id, string productId, int suppliersId,double purchasePrice, int alertStock)
+        public SuppliersProductCreatedEvent(Guid id, string productId, int suppliersId,double purchasePrice, int alertStock):base(KafkaConfig.EventBusTopicTitle)
         {
             this.CommandId = id.ToString();
             this.EventType = EventType.SuppliersProductCreated;

@@ -23,8 +23,9 @@ namespace SP.Service.EntityFramework.Repositories
 
         public ProductEntity GetSellerProduct(string productId,string accountId)
         {
-            var result = this.Single(x => x.ProductId == productId && x.SuppliersId == accountId);
-            return result;
+            //var result = this.Single(x => x.ProductId == productId && x.SuppliersId == accountId);
+            //return result;
+            return null;
         }
 
         public List<ProductEntity> GetProductList(int pageIndex, int pageSize)
@@ -207,7 +208,7 @@ namespace SP.Service.EntityFramework.Repositories
             using (var db = OpenDbConnection())
             {
                 var q = db.From<ProductEntity>();
-                q = q.Where(a =>  a.TypeId == typeId && a.SecondTypeId == secondTypeId && a.SuppliersId == accountId);
+                //q = q.Where(a =>  a.TypeId == typeId && a.SecondTypeId == secondTypeId && a.SuppliersId == accountId);
                 q = q.Limit((pageIndex - 1) * pageSize, (pageIndex - 1) * pageSize + pageSize);
                 return db.Select(q);
             }
@@ -217,7 +218,7 @@ namespace SP.Service.EntityFramework.Repositories
             using (var db = OpenDbConnection())
             {
                 var q = db.From<ProductEntity>();
-                q = q.Where(a =>  a.TypeId == typeId && a.SecondTypeId == secondTypeId && a.SuppliersId == accountId);
+                //q = q.Where(a =>  a.TypeId == typeId && a.SecondTypeId == secondTypeId && a.SuppliersId == accountId);
                 return db.Select(q).Count();
             }
         }

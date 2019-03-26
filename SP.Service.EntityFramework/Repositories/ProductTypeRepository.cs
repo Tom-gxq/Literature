@@ -14,10 +14,15 @@ namespace SP.Service.EntityFramework.Repositories
             DbConnection = context.GetConnectionString();
         }
 
-        public ProductTypeEntity GetProductTypeById(long typeId)
+        public ProductTypeEntity GetProductTypeById(long supplierId)
         {
-            var result = this.Single(x => x.Id == typeId);
-            return result;
+            using (var db = OpenDbConnection())
+            {
+                var q = db.From<ProductTypeEntity>();
+                q = q.Join<ProductTypeEntity, SuppliersEntity>((e, a) => a.Id == supplierId
+                && a.TypeId == e.Id);
+                return db.Single<ProductTypeEntity>(q);
+            }
         }
         public List<ProductTypeEntity> GetProductTypeByKind(int kind)
         {
@@ -39,5 +44,6 @@ namespace SP.Service.EntityFramework.Repositories
                 return db.Single<ProductTypeEntity>(q);
             }
         }
+
     }
 }

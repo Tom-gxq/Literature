@@ -10,26 +10,22 @@ namespace SP.Service.Domain.Commands.Product
     {
         public long MainType { get; set; }
         public long SecondType { get; set; }
-        public string ProductName { get; set; }
-        public string SuppliersId { get; set; }
-        public double MarketPrice { get; set; }
+        public string ProductId { get; set; }
+        public string AccountId { get; set; }
+        public int SuppliersId { get; set; }
         public double PurchasePrice { get; set; }
-        public string ImagePath { get; set; }
-        public double VIPPrice { get; set; }
 
-        public CreateProductCommand(Guid id, long mainType, long secondType, string productName, 
-            string suppliersId,double marketPrice,double purchasePrice,string imagePath, double vipPrice) 
+        public CreateProductCommand(Guid id, long mainType, long secondType, string productId, 
+            string accountId,double purchasePrice, int suppliersId) 
             : base(KafkaConfig.NormalCommandBusTopicTitle)
         {
             base.Id = id;
             this.MainType = mainType;
             this.SecondType = secondType;
-            this.ProductName = productName;
-            this.SuppliersId = suppliersId;
-            this.MarketPrice = marketPrice;
+            this.ProductId = productId;
+            this.AccountId = accountId;
             this.PurchasePrice = purchasePrice;
-            this.ImagePath = imagePath;
-            this.VIPPrice = vipPrice;
+            this.SuppliersId = suppliersId;
             this.CommandType = CommandType.CreateProduct;
         }
     }

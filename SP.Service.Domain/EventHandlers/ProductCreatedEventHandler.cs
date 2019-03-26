@@ -18,28 +18,24 @@ namespace SP.Service.Domain.EventHandlers
         }
         public void Handle(ProductCreatedEvent handle)
         {
-            _reportDatabase.Add(new ProductEntity()
+            _reportDatabase.AddSuppliersProduct(new SuppliersProductEntity()
             {
-                ProductId = handle.AggregateId.ToString(),
-                TypeId = handle.MainType,
-                SecondTypeId = handle.SecondType,
-                MarketPrice = handle.MarketPrice,
-                ProductName = handle.ProductName,
+                ProductId = handle.ProductId,
                 SuppliersId = handle.SuppliersId,
                 PurchasePrice = handle.PurchasePrice,
                 SaleStatus = 0,
-                Meta_Keywords = handle.ProductName+"|",
-                AddedDate = DateTime.Now,
-                VIPPrice = handle.VipPrice
+                AlertStock = 0,
+                Status = 0,
+                CreateTime = DateTime.Now,
+                UpdateTime = DateTime.Now
             });
         }
         public void Handle(ProductEditEvent handle)
         {
-            _reportDatabase.Update(new ProductEntity()
+            _reportDatabase.UpdateSuppliersProduct(new SuppliersProductEntity()
             {
-                ProductId = handle.AggregateId.ToString(),
-                MarketPrice = handle.MarketPrice,
-                ProductName = handle.ProductName,
+                ProductId = handle.ProductId,
+                SuppliersId = handle.SuppliersId,
                 PurchasePrice = handle.PurchasePrice,
                 UpdateTime = DateTime.Now
             });
@@ -47,9 +43,10 @@ namespace SP.Service.Domain.EventHandlers
 
         public void Handle(SaleStatusEditEvent handle)
         {
-            _reportDatabase.Update(new ProductEntity()
+            _reportDatabase.UpdateSuppliersProduct(new SuppliersProductEntity()
             {
-                ProductId = handle.AggregateId.ToString(),
+                ProductId = handle.ProductId,
+                SuppliersId = handle.SuppliersId,
                 SaleStatus = handle.Status,
                 UpdateTime = DateTime.Now
             });

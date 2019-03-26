@@ -19,6 +19,7 @@ namespace SP.DataService
             {
                 cfg.AddProfile(new TokenProfile());
                 cfg.AddProfile(new AccountProfile());
+                cfg.AddProfile(new SellerProductProfile());
             });
             var builder = new ConfigurationBuilder()
                .SetBasePath(Directory.GetCurrentDirectory())

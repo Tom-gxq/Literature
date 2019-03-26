@@ -24,7 +24,9 @@ namespace SP.Service.Domain.EventHandlers
                 PurchasePrice = handle.PurchasePrice,
                 SuppliersId = handle.SuppliersId,
                 Status = handle.Status,
+                SaleStatus = 0,
                 CreateTime = DateTime.Now,
+                UpdateTime = DateTime.Now,
             };
 
             _reportDatabase.AddSuppliersProduct(item);

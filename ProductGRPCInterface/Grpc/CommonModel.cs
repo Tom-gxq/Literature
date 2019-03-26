@@ -38,16 +38,16 @@ namespace SP.Service {
             "Cghkb3JtTmFtZRgPIAEoCRIRCglpc0RlZmF1bHQYECABKAUiggEKBFNob3AS",
             "DgoGc2hvcElkGAEgASgDEhAKCHNob3BOYW1lGAIgASgJEg8KB293bmVySWQY",
             "AyABKAkSEQoJb3duZXJOYW1lGAQgASgJEhEKCXN0YXJ0VGltZRgFIAEoCRIP",
-            "CgdlbmRUaW1lGAYgASgJEhAKCHNob3BMb2dvGAcgASgJIscBCgxTaG9wcGlu",
+            "CgdlbmRUaW1lGAYgASgJEhAKCHNob3BMb2dvGAcgASgJItkBCgxTaG9wcGlu",
             "Z0NhcnQSEQoJcHJvZHVjdElkGAEgASgJEhEKCWFjY291bnRJZBgCIAEoCRIQ",
             "CghxdWFudGl0eRgDIAEoBRIOCgZzaG9wSWQYBCABKAUSDgoGY2FydElkGAUg",
             "ASgJEhIKCmNyZWF0ZVRpbWUYBiABKAMSEwoLcHJvZHVjdE5hbWUYByABKAkS",
             "DgoGYW1vdW50GAggASgBEhEKCXVuaXRQcmljZRgJIAEoARITCgtzaGlwT3Jk",
-            "ZXJJZBgKIAEoBSJWCgtBY2NvdW50SW5mbxIRCglhY2NvdW50SWQYAiABKAkS",
-            "EwoLbW9iaWxlUGhvbmUYAyABKAkSDQoFZW1haWwYBCABKAkSEAoIdXNlck5h",
-            "bWUYBSABKAkiWAoKUmVnaW9uRGF0YRIOCgZkYXRhSWQYASABKAUSEAoIZGF0",
-            "YU5hbWUYAiABKAkSFAoMcGFyZW50RGF0YUlkGAMgASgFEhIKCnVwZGF0ZVRp",
-            "bWUYBCABKANiBnByb3RvMw=="));
+            "ZXJJZBgKIAEoBRIQCghzaG9wVHlwZRgLIAEoCSJWCgtBY2NvdW50SW5mbxIR",
+            "CglhY2NvdW50SWQYAiABKAkSEwoLbW9iaWxlUGhvbmUYAyABKAkSDQoFZW1h",
+            "aWwYBCABKAkSEAoIdXNlck5hbWUYBSABKAkiWAoKUmVnaW9uRGF0YRIOCgZk",
+            "YXRhSWQYASABKAUSEAoIZGF0YU5hbWUYAiABKAkSFAoMcGFyZW50RGF0YUlk",
+            "GAMgASgFEhIKCnVwZGF0ZVRpbWUYBCABKANiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -58,7 +58,7 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AttributeValue), global::SP.Service.AttributeValue.Parser, new[]{ "ValueId", "AttributeId", "ValueStr", "ImageUrl" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.Address), global::SP.Service.Address.Parser, new[]{ "Id", "ContactName", "ContactAddress", "ContactMobile", "Gender", "Status", "AccountId", "SchoolId", "SchoolName", "DistrictId", "DistrictName", "BuildingId", "BuildingName", "DormId", "DormName", "IsDefault" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.Shop), global::SP.Service.Shop.Parser, new[]{ "ShopId", "ShopName", "OwnerId", "OwnerName", "StartTime", "EndTime", "ShopLogo" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ShoppingCart), global::SP.Service.ShoppingCart.Parser, new[]{ "ProductId", "AccountId", "Quantity", "ShopId", "CartId", "CreateTime", "ProductName", "Amount", "UnitPrice", "ShipOrderId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ShoppingCart), global::SP.Service.ShoppingCart.Parser, new[]{ "ProductId", "AccountId", "Quantity", "ShopId", "CartId", "CreateTime", "ProductName", "Amount", "UnitPrice", "ShipOrderId", "ShopType" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AccountInfo), global::SP.Service.AccountInfo.Parser, new[]{ "AccountId", "MobilePhone", "Email", "UserName" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.RegionData), global::SP.Service.RegionData.Parser, new[]{ "DataId", "DataName", "ParentDataId", "UpdateTime" }, null, null, null)
           }));
@@ -1780,6 +1780,7 @@ namespace SP.Service {
       amount_ = other.amount_;
       unitPrice_ = other.unitPrice_;
       shipOrderId_ = other.shipOrderId_;
+      shopType_ = other.shopType_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1937,6 +1938,21 @@ namespace SP.Service {
       }
     }
 
+    /// <summary>Field number for the "shopType" field.</summary>
+    public const int ShopTypeFieldNumber = 11;
+    private string shopType_ = "";
+    /// <summary>
+    ///*
+    ///  分类名
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string ShopType {
+      get { return shopType_; }
+      set {
+        shopType_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as ShoppingCart);
@@ -1960,6 +1976,7 @@ namespace SP.Service {
       if (Amount != other.Amount) return false;
       if (UnitPrice != other.UnitPrice) return false;
       if (ShipOrderId != other.ShipOrderId) return false;
+      if (ShopType != other.ShopType) return false;
       return true;
     }
 
@@ -1976,6 +1993,7 @@ namespace SP.Service {
       if (Amount != 0D) hash ^= Amount.GetHashCode();
       if (UnitPrice != 0D) hash ^= UnitPrice.GetHashCode();
       if (ShipOrderId != 0) hash ^= ShipOrderId.GetHashCode();
+      if (ShopType.Length != 0) hash ^= ShopType.GetHashCode();
       return hash;
     }
 
@@ -2026,6 +2044,10 @@ namespace SP.Service {
         output.WriteRawTag(80);
         output.WriteInt32(ShipOrderId);
       }
+      if (ShopType.Length != 0) {
+        output.WriteRawTag(90);
+        output.WriteString(ShopType);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2060,6 +2082,9 @@ namespace SP.Service {
       }
       if (ShipOrderId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(ShipOrderId);
+      }
+      if (ShopType.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ShopType);
       }
       return size;
     }
@@ -2098,6 +2123,9 @@ namespace SP.Service {
       }
       if (other.ShipOrderId != 0) {
         ShipOrderId = other.ShipOrderId;
+      }
+      if (other.ShopType.Length != 0) {
+        ShopType = other.ShopType;
       }
     }
 
@@ -2147,6 +2175,10 @@ namespace SP.Service {
           }
           case 80: {
             ShipOrderId = input.ReadInt32();
+            break;
+          }
+          case 90: {
+            ShopType = input.ReadString();
             break;
           }
         }

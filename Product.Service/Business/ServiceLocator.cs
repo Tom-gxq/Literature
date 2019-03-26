@@ -18,6 +18,7 @@ namespace Product.Service.Business
         private static ProductImageReportDatabase _productImageReportDatabase;
         private static AddressReportDatabase _addressReportDatabase;
         private static SuppliersReportDatabase _suppliersReportDatabase;
+        private static SellerProductReportDatabase _sellerProductReportDatabase;
         private static bool _isInitialized;
         private static readonly object _lockThis = new object();
 
@@ -36,6 +37,7 @@ namespace Product.Service.Business
                     _productImageReportDatabase = IocManager.Instance.Resolve(typeof(ProductImageReportDatabase)) as ProductImageReportDatabase;
                     _addressReportDatabase = IocManager.Instance.Resolve(typeof(AddressReportDatabase)) as AddressReportDatabase;
                     _suppliersReportDatabase = IocManager.Instance.Resolve(typeof(SuppliersReportDatabase)) as SuppliersReportDatabase;
+                    _sellerProductReportDatabase = IocManager.Instance.Resolve(typeof(SellerProductReportDatabase)) as SellerProductReportDatabase;
                     _isInitialized = true;
                 }
             }
@@ -79,6 +81,10 @@ namespace Product.Service.Business
         public static SuppliersReportDatabase SuppliersReportDatabase
         {
             get { return _suppliersReportDatabase; }
+        }
+        public static SellerProductReportDatabase SellerProductReportDatabase
+        {
+            get { return _sellerProductReportDatabase; }
         }
     }
 }

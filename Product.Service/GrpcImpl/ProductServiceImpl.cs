@@ -11,7 +11,7 @@ using Product.Service.Business;
 
 namespace Product.Service.GrpcImpl
 {
-    public class ProductServiceImpl: ProductServiceBase
+    public partial class ProductServiceImpl: ProductServiceBase
     {
         private ILogger logger = new ServiceCollection()
              .AddLogging()
@@ -268,47 +268,7 @@ namespace Product.Service.GrpcImpl
             }
             logger.LogInformation(this.prjLicEID, "UpdateOpenShopStatus {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
-        }
-
-        public override Task<ResultResponse> AddProduct(ProductRequest request, ServerCallContext context)
-        {
-            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} AddProduct Connected!",
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
-            logger.LogInformation(this.prjLicEID, " {AccountId} {MainType} {SecondType} {ProductName} {MarketPrice} {PurchasePrice} {ImagePath} ", 
-                request.AccountId, request.MainType, request.SecondType, request.ProductName, request.MarketPrice, request.PurchasePrice, request.ImagePath);
-            var response = new ResultResponse();
-            response.Status = 10002;
-            try
-            {
-                response = ProductBusiness.AddProduct(request.AccountId, request.MainType, request.SecondType, request.ProductName, request.MarketPrice, request.PurchasePrice, request.ImagePath, request.VipPrice);
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(this.prjLicEID, ex, "AddProduct Exception");
-            }
-            logger.LogInformation(this.prjLicEID, "AddProduct {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
-            return Task.FromResult(response);
-        }
-
-        public override Task<ResultResponse> UpdateProduct(ProductRequest request, ServerCallContext context)
-        {
-            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} UpdateProduct Connected!",
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
-            logger.LogInformation(this.prjLicEID, " {AccountId}  {ProductName} {MarketPrice} {PurchasePrice} {ImagePath} ",
-                request.AccountId, request.ProductName, request.MarketPrice, request.PurchasePrice, request.ImagePath);
-            var response = new ResultResponse();
-            response.Status = 10002;
-            try
-            {
-                response = ProductBusiness.UpdateProduct(request.ProductId,  request.ProductName, request.MarketPrice, request.PurchasePrice, request.ImagePath);
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(this.prjLicEID, ex, "UpdateProduct Exception");
-            }
-            logger.LogInformation(this.prjLicEID, "UpdateProduct {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
-            return Task.FromResult(response);
-        }
+        }        
 
         public override Task<ResultResponse> DelProduct(ProductIdRequest request, ServerCallContext context)
         {
@@ -460,27 +420,45 @@ namespace Product.Service.GrpcImpl
             logger.LogInformation(this.prjLicEID, "GetShopStatus {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
-
-        public override Task<ResultResponse> AddSuppliersProduct(AddSuppliersProductRequest request, ServerCallContext context)
+        public override Task<ResultResponse> AddProduct(ProductRequest request, ServerCallContext context)
         {
-            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} AddSuppliersProduct Connected!",
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} AddProduct Connected!",
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
-            logger.LogInformation(this.prjLicEID, " {AccountId} {ProductId} {PurchasePrice} {Stock} ",
-                request.AccountId, request.ProductId, request.PurchasePrice, request.Stock);
+            logger.LogInformation(this.prjLicEID, " {AccountId} {MainType} {SecondType} {ProductId}  {PurchasePrice} {SuppliersId} ",
+                request.AccountId, request.MainType, request.SecondType, request.ProductId, request.PurchasePrice, request.SuppliersId);
             var response = new ResultResponse();
             response.Status = 10002;
             try
             {
-                response = ProductBusiness.AddSuppliersProduct(request.AccountId, request.ProductId, request.PurchasePrice, request.Stock);
+                response = ProductBusiness.AddProduct(request.AccountId, request.MainType, request.SecondType, request.ProductId, request.PurchasePrice, request.SuppliersId);
             }
             catch (Exception ex)
             {
-                logger.LogError(this.prjLicEID, ex, "AddSuppliersProduct Exception");
+                logger.LogError(this.prjLicEID, ex, "AddProduct Exception");
             }
-            logger.LogInformation(this.prjLicEID, "AddSuppliersProduct {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            logger.LogInformation(this.prjLicEID, "AddProduct {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
 
+        public override Task<ResultResponse> UpdateProduct(ProductRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} UpdateProduct Connected!",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, " {AccountId}  {ProductId}  {PurchasePrice} {SuppliersId} ",
+                request.AccountId, request.ProductId, request.PurchasePrice, request.SuppliersId);
+            var response = new ResultResponse();
+            response.Status = 10002;
+            try
+            {
+                response = ProductBusiness.UpdateProduct(request.ProductId, request.PurchasePrice, request.SuppliersId);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "UpdateProduct Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "UpdateProduct {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
         public override Task<ResultResponse> AddSuppliersRegion(AddSuppliersRegionRequest request, ServerCallContext context)
         {
             logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} AddSuppliersRegion Connected!",
@@ -500,21 +478,6 @@ namespace Product.Service.GrpcImpl
             return Task.FromResult(response);
         }
 
-        public override Task<SellerProductListResponse> GetSuppliersProduct(SupplierIdRequest request, ServerCallContext context)
-        {
-            logger.LogInformation(this.prjLicEID, "GetSuppliersProduct {Date} {IPAdress} {Status} Connected! ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
-            logger.LogInformation(this.prjLicEID, "{SupplierId}", request.SupplierId);
-            SellerProductListResponse response = null;
-            try
-            {
-                response = ProductBusiness.GetSuppliersProduct(request.SupplierId);
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(this.prjLicEID, ex, "GetSuppliersProduct Exception");
-            }
-            logger.LogInformation(this.prjLicEID, "GetSuppliersProduct {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
-            return Task.FromResult(response);
-        }
+       
     }
 }

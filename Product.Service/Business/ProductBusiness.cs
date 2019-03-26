@@ -1,4 +1,6 @@
-﻿using SP.Service;
+﻿using Grpc.Service.Core.Dependency;
+using Microsoft.Extensions.Configuration;
+using SP.Service;
 using SP.Service.Domain.Commands.Product;
 using SP.Service.Domain.DomainEntity;
 using System;
@@ -430,17 +432,17 @@ namespace Product.Service.Business
             return result;
         }
 
-        public static ResultResponse AddProduct(string accountId, long mainType, long secondType, string productName, double marketPrice, double purchasePrice, string imagePath, double vipPrice)
+        public static ResultResponse AddProduct(string accountId, long mainType, long secondType, string productId, double purchasePrice,int suppliersId)
         {
-            ServiceLocator.CommandBus.Send(new CreateProductCommand(Guid.NewGuid(), mainType, secondType, productName, accountId, marketPrice, purchasePrice, imagePath, vipPrice));
+            ServiceLocator.CommandBus.Send(new CreateProductCommand(Guid.NewGuid(), mainType, secondType, productId, accountId,  purchasePrice, suppliersId));
             var result = new ResultResponse();
             result.Status = 10001;
             return result;
         }
 
-        public static ResultResponse UpdateProduct(string productId, string productName, double marketPrice, double purchasePrice, string imagePath)
+        public static ResultResponse UpdateProduct(string productId, double purchasePrice, int suppliersId)
         {
-            ServiceLocator.CommandBus.Send(new EditProductCommand(new Guid(productId), productName, marketPrice, purchasePrice, imagePath));
+            ServiceLocator.CommandBus.Send(new EditProductCommand(new Guid(productId), productId,  purchasePrice, suppliersId));
             var result = new ResultResponse();
             result.Status = 10001;
             return result;
@@ -456,7 +458,7 @@ namespace Product.Service.Business
 
         public static ResultResponse UpdateProductSaleStatus(string productId, int status)
         {
-            ServiceLocator.CommandBus.Send(new EditSaleStatusCommand(new Guid(productId), status));
+            //ServiceLocator.CommandBus.Send(new EditSaleStatusCommand(new Guid(productId), status));
             var result = new ResultResponse();
             result.Status = 10001;
             return result;
@@ -476,7 +478,7 @@ namespace Product.Service.Business
                 result.Product.MarketPrice = product.MarketPrice != null ? product.MarketPrice.Value : 0;
                 result.Product.PurchasePrice = product.PurchasePrice != null ? product.PurchasePrice.Value : 0;
                 result.Product.ProductId = product.ProductId;
-                result.Product.SuppliersId = product.SuppliersId;
+                result.Product.SuppliersId = product.SuppliersId.ToString();
                 var image = ServiceLocator.ProductImageReportDatabase.GetProductImage(productId);
                 if (image != null)
                 {
@@ -607,9 +609,9 @@ namespace Product.Service.Business
             }
             return result;
         }
-        public static ResultResponse AddSuppliersProduct(string accountId, string productId, double purchasePrice, int stock)
+        public static ResultResponse AddSuppliersProduct(string accountId, long mainType, long secondType, string productId, double purchasePrice, int suppliersId)
         {
-            ServiceLocator.CommandBus.Send(new CreateSuppliersProductCommand(accountId, 0, purchasePrice, productId, stock));
+            ServiceLocator.CommandBus.Send(new CreateSuppliersProductCommand(Guid.NewGuid(), accountId, mainType, secondType, productId, purchasePrice, suppliersId));
             var result = new ResultResponse();
             result.Status = 10001;
             return result;
@@ -642,6 +644,189 @@ namespace Product.Service.Business
                         product.ImagePath = image.ImgPath;
                     }
                     result.ProductList.Add(product);
+                }
+                result.Status = 10001;
+            }
+            return result;
+        }
+
+
+        public static ResultResponse AddSellerProduct(string accountId, int suppliersId)
+        {
+            ServiceLocator.CommandBus.Send(new CreateSellerProductCommand(Guid.NewGuid(),  accountId, suppliersId));
+            var result = new ResultResponse();
+            result.Status = 10001;
+            return result;
+        }
+
+        public static ResultResponse DelSellerProduct(string accountId, int suppliersId)
+        {
+            ServiceLocator.CommandBus.Send(new DelSellerProductCommand(Guid.NewGuid(), accountId, suppliersId));
+            var result = new ResultResponse();
+            result.Status = 10001;
+            return result;
+        }
+
+        public static ResultResponse UpdateSupplierProductSaleStatus(string productId, int suppliersId,int saleStatus)
+        {
+            ServiceLocator.CommandBus.Send(new EditSaleStatusCommand(Guid.NewGuid(), saleStatus, suppliersId, productId));
+            var result = new ResultResponse();
+            result.Status = 10001;
+            return result;
+        }
+        public static ResultResponse UpdateSuppliersProduct(string productId, double purchasePrice, int suppliersId)
+        {
+            ServiceLocator.CommandBus.Send(new EditProductCommand(Guid.NewGuid(), productId, purchasePrice, suppliersId));
+            var result = new ResultResponse();
+            result.Status = 10001;
+            return result;
+        }
+        public static SuppliersTypeResponse GetSuppliersType(int supplierId)
+        {
+            var result = new SuppliersTypeResponse();
+            result.Status = 10002;
+            var domain = ServiceLocator.ProductTypeReportDatabase.GetSuppliersType(supplierId);
+            if (domain != null)
+            {
+                result.ProductType = new ProductType();
+                result.ProductType.TypeId = domain.Id;
+                result.ProductType.TypeName = domain.TypeName;
+                result.ProductType.Kind = domain.Kind;
+                result.Status = 10001;
+            }
+            return result;
+        }
+        public static SupplierInfoResponse GetSupplierInfo(string accountId)
+        {
+            var result = new SupplierInfoResponse();
+            result.Status = 10002;
+            var domain = ServiceLocator.SuppliersReportDatabase.GetSupplierInfo(accountId);
+            if (domain != null)
+            {
+                result.SuppliersId = domain.Id.Value;
+                result.SuppliersName = domain.SuppliersName;
+                result.TypeId = domain.TypeId != null ? domain.TypeId.Value:0;
+                result.AccountId = domain.AccountId;
+                result.AlipayNo = domain.AlipayNo;
+                result.CellPhone = domain.TelPhone;
+                result.Status = 10001;
+            }
+            return result;
+        }
+
+        public static SuppliersProductListResponse GetSuppliersProducts(int mainType, int secondType, int supplierId)
+        {
+            var result = new SuppliersProductListResponse();
+            result.Status = 10002;
+            var list = ServiceLocator.SuppliersReportDatabase.GetSuppliersProduct(mainType, secondType, supplierId);
+            if (list != null)
+            {
+                foreach (var item in list)
+                {
+                    var product = new SuppliersProduct();
+                    product.SuppliersId = item.SuppliersId.Value;
+                    product.ProductName = item.ProductName;
+                    product.PurchasePrice = item.PurchasePrice ?? 0;
+                    product.ProductId = item.ProductId;
+                    product.SaleStatus = item.SaleStatus != null ?item.SaleStatus.Value:0;
+                    var image = ServiceLocator.ProductImageReportDatabase.GetProductImage(item.ProductId);
+                    if (image != null)
+                    {
+                        product.ImagePath = image.ImgPath;
+                    }
+                    result.ProductList.Add(product);
+                }
+                result.Status = 10001;
+            }
+            return result;
+        }
+
+        public static SellerFoodProductListResponse GetSellerFoodProductList(int regionId, string accountId,int pageIndex, int pageSize)
+        {
+            var result = new SellerFoodProductListResponse();
+            result.Status = 10002;
+            var config = IocManager.Instance.Resolve<IConfigurationRoot>();
+            int typeId = -1;
+            if (config != null)
+            {
+                var reObj = config.GetSection("FoodId");
+                int.TryParse(reObj?.Value, out typeId);
+            }
+
+            var list = ServiceLocator.SuppliersReportDatabase.GetSellerProductList(regionId, typeId, pageIndex, pageSize);
+            if (list != null)
+            {
+                foreach (var item in list)
+                {
+                    var product = new SellerFoodProduct();
+                    product.SuppliersId = item.SuppliersId.Value;
+                    product.ProductName = item.ProductName;
+                    product.PurchasePrice = item.PurchasePrice ?? 0;
+                    product.ProductId = item.ProductId;
+                    var entity = ServiceLocator.SellerProductReportDatabase.GetSellerProduct(accountId, item.Id.Value);
+                    if (entity != null)
+                    {
+                        product.SelectedStatus = 1;
+                    }
+                    product.SupplierProductId = item.Id.Value;
+                    var image = ServiceLocator.ProductImageReportDatabase.GetProductImage(item.ProductId);
+                    if (image != null)
+                    {
+                        product.ImagePath = image.ImgPath;
+                    }
+                    result.ProductList.Add(product);
+                }
+                result.Status = 10001;
+            }
+            return result;
+        }
+
+        public static SellerFoodProductListResponse GetSellerProductListByAccountId(string accountId, int pageIndex, int pageSize)
+        {
+            var result = new SellerFoodProductListResponse();
+            result.Status = 10002;
+            var list = ServiceLocator.SuppliersReportDatabase.GetSellerProductListByAccountId(accountId, pageIndex, pageSize);
+            if (list != null)
+            {
+                foreach (var item in list)
+                {
+                    var product = new SellerFoodProduct();
+                    product.SuppliersId = item.SuppliersId.Value;
+                    product.ProductName = item.ProductName;
+                    product.PurchasePrice = item.PurchasePrice ?? 0;
+                    product.ProductId = item.ProductId;
+                    product.SupplierProductId = item.Id.Value;
+                    var image = ServiceLocator.ProductImageReportDatabase.GetProductImage(item.ProductId);
+                    if (image != null)
+                    {
+                        product.ImagePath = image.ImgPath;
+                    }
+                    result.ProductList.Add(product);
+                }
+                result.Status = 10001;
+            }
+            return result;
+        }
+
+        public static SuppliersProductResponse GetSuppliersProductById(int supplierProductId)
+        {
+            var result = new SuppliersProductResponse();
+            result.Status = 10002;
+            var domain = ServiceLocator.SuppliersReportDatabase.GetSuppliersProductById(supplierProductId);
+            if (domain != null)
+            {
+                result.Product = new SuppliersProduct()
+                {
+                   ProductId = domain.ProductId,
+                   ProductName = domain.ProductName,
+                   PurchasePrice = domain.PurchasePrice.Value,
+                   SuppliersId = domain.SuppliersId.Value,
+                   SaleStatus = domain.SaleStatus.Value
+                };
+                var image = ServiceLocator.ProductImageReportDatabase.GetProductImage(domain.ProductId);
+                if (image != null)
+                {
+                    result.Product.ImagePath = image.ImgPath;
                 }
                 result.Status = 10001;
             }

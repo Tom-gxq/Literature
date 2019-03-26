@@ -317,13 +317,11 @@ namespace ProductGRPCInterface
             var request1 = new ProductRequest()
             {
                 AccountId = model.accountId,
-                ImagePath = model.imagePath,
+                //SuppliersId = model.suppliersId,
                 MainType = model.mainType,
-                MarketPrice = model.marketPrice,
-                ProductName = model.productName,
+                ProductId = model.productId,
                 PurchasePrice = model.purchasePrice,
                 SecondType = model.secondType,
-                VipPrice = model.vipPrice,
 
             };
             var result = client.AddProduct(request1);
@@ -341,10 +339,7 @@ namespace ProductGRPCInterface
             var client = ProductClientHelper.GetClient();
             var request1 = new ProductRequest()
             {
-                AccountId = model.accountId,
-                ImagePath = model.imagePath,
-                MarketPrice = model.marketPrice,
-                ProductName = model.productName,
+                AccountId = model.accountId,                
                 PurchasePrice = model.purchasePrice,
                 ProductId = model.productId
 
@@ -568,7 +563,7 @@ namespace ProductGRPCInterface
             {
                 ProductId = productId,
                 AccountId = accountId,
-                Stock = stock,
+                
                 PurchasePrice = purchasePrice
             };
             var result = client.AddSuppliersProduct(request1);

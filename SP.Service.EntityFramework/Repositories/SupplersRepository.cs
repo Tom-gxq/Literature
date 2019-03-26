@@ -39,5 +39,11 @@ namespace SP.Service.EntityFramework.Repositories
                 return db.Select(q);
             }
         }
+
+        public SuppliersEntity GetSupplierInfo(string accountId)
+        {
+            var result = this.Single(x => x.AccountId == accountId);
+            return result;
+        }
     }
 }

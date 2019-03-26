@@ -46,6 +46,15 @@ namespace SP.Service {
     static readonly grpc::Marshaller<global::SP.Service.SupplierIdRequest> __Marshaller_SupplierIdRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.SupplierIdRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.AddSuppliersRegionRequest> __Marshaller_AddSuppliersRegionRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AddSuppliersRegionRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.SuppliersRegionListResponse> __Marshaller_SuppliersRegionListResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.SuppliersRegionListResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.SuppliersTypeResponse> __Marshaller_SuppliersTypeResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.SuppliersTypeResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.SupplierInfoResponse> __Marshaller_SupplierInfoResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.SupplierInfoResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.SuppliersProductRequest> __Marshaller_SuppliersProductRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.SuppliersProductRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.SuppliersProductListResponse> __Marshaller_SuppliersProductListResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.SuppliersProductListResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.SellerFoodProductRequest> __Marshaller_SellerFoodProductRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.SellerFoodProductRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.SellerFoodProductListResponse> __Marshaller_SellerFoodProductListResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.SellerFoodProductListResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.SupplierProductSaleStatusRequest> __Marshaller_SupplierProductSaleStatusRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.SupplierProductSaleStatusRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.SelectSellerProductRequest> __Marshaller_SelectSellerProductRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.SelectSellerProductRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.SuppliersProductResponse> __Marshaller_SuppliersProductResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.SuppliersProductResponse.Parser.ParseFrom);
 
     static readonly grpc::Method<global::SP.Service.ProductListRequest, global::SP.Service.ProductListResponse> __Method_GetProductList = new grpc::Method<global::SP.Service.ProductListRequest, global::SP.Service.ProductListResponse>(
         grpc::MethodType.Unary,
@@ -256,6 +265,62 @@ namespace SP.Service {
         "GetSuppliersRegion",
         __Marshaller_SupplierIdRequest,
         __Marshaller_SuppliersRegionListResponse);
+
+    static readonly grpc::Method<global::SP.Service.SupplierIdRequest, global::SP.Service.SuppliersTypeResponse> __Method_GetSuppliersType = new grpc::Method<global::SP.Service.SupplierIdRequest, global::SP.Service.SuppliersTypeResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetSuppliersType",
+        __Marshaller_SupplierIdRequest,
+        __Marshaller_SuppliersTypeResponse);
+
+    static readonly grpc::Method<global::SP.Service.AccountIdRequest, global::SP.Service.SupplierInfoResponse> __Method_GetSupplierInfo = new grpc::Method<global::SP.Service.AccountIdRequest, global::SP.Service.SupplierInfoResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetSupplierInfo",
+        __Marshaller_AccountIdRequest,
+        __Marshaller_SupplierInfoResponse);
+
+    static readonly grpc::Method<global::SP.Service.SuppliersProductRequest, global::SP.Service.SuppliersProductListResponse> __Method_GetSuppliersProducts = new grpc::Method<global::SP.Service.SuppliersProductRequest, global::SP.Service.SuppliersProductListResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetSuppliersProducts",
+        __Marshaller_SuppliersProductRequest,
+        __Marshaller_SuppliersProductListResponse);
+
+    static readonly grpc::Method<global::SP.Service.SellerFoodProductRequest, global::SP.Service.SellerFoodProductListResponse> __Method_GetSellerFoodProductList = new grpc::Method<global::SP.Service.SellerFoodProductRequest, global::SP.Service.SellerFoodProductListResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetSellerFoodProductList",
+        __Marshaller_SellerFoodProductRequest,
+        __Marshaller_SellerFoodProductListResponse);
+
+    static readonly grpc::Method<global::SP.Service.SupplierProductSaleStatusRequest, global::SP.Service.ResultResponse> __Method_UpdateSupplierProductSaleStatus = new grpc::Method<global::SP.Service.SupplierProductSaleStatusRequest, global::SP.Service.ResultResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "UpdateSupplierProductSaleStatus",
+        __Marshaller_SupplierProductSaleStatusRequest,
+        __Marshaller_ResultResponse);
+
+    static readonly grpc::Method<global::SP.Service.SelectSellerProductRequest, global::SP.Service.ResultResponse> __Method_SelectSellerProduct = new grpc::Method<global::SP.Service.SelectSellerProductRequest, global::SP.Service.ResultResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SelectSellerProduct",
+        __Marshaller_SelectSellerProductRequest,
+        __Marshaller_ResultResponse);
+
+    static readonly grpc::Method<global::SP.Service.ProductRequest, global::SP.Service.ResultResponse> __Method_UpdateSuppliersProduct = new grpc::Method<global::SP.Service.ProductRequest, global::SP.Service.ResultResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "UpdateSuppliersProduct",
+        __Marshaller_ProductRequest,
+        __Marshaller_ResultResponse);
+
+    static readonly grpc::Method<global::SP.Service.SupplierIdRequest, global::SP.Service.SuppliersProductResponse> __Method_GetSuppliersProductById = new grpc::Method<global::SP.Service.SupplierIdRequest, global::SP.Service.SuppliersProductResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetSuppliersProductById",
+        __Marshaller_SupplierIdRequest,
+        __Marshaller_SuppliersProductResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -622,6 +687,102 @@ namespace SP.Service {
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
       public virtual global::System.Threading.Tasks.Task<global::SP.Service.SuppliersRegionListResponse> GetSuppliersRegion(global::SP.Service.SupplierIdRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 获取供货商类型
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.SuppliersTypeResponse> GetSuppliersType(global::SP.Service.SupplierIdRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 获取供货商
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.SupplierInfoResponse> GetSupplierInfo(global::SP.Service.AccountIdRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 获取供货商产品列表
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.SuppliersProductListResponse> GetSuppliersProducts(global::SP.Service.SuppliersProductRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 获取餐饮商家的产品列表
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.SellerFoodProductListResponse> GetSellerFoodProductList(global::SP.Service.SellerFoodProductRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 更新商家产品上下架状态
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.ResultResponse> UpdateSupplierProductSaleStatus(global::SP.Service.SupplierProductSaleStatusRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 业务员选择商家产品
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.ResultResponse> SelectSellerProduct(global::SP.Service.SelectSellerProductRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 更新商家产品价格
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.ResultResponse> UpdateSuppliersProduct(global::SP.Service.ProductRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 获取供货商产品详情
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.SuppliersProductResponse> GetSuppliersProductById(global::SP.Service.SupplierIdRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -2091,6 +2252,390 @@ namespace SP.Service {
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetSuppliersRegion, null, options, request);
       }
+      /// <summary>
+      ///*
+      /// 获取供货商类型
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.SuppliersTypeResponse GetSuppliersType(global::SP.Service.SupplierIdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetSuppliersType(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取供货商类型
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.SuppliersTypeResponse GetSuppliersType(global::SP.Service.SupplierIdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetSuppliersType, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 获取供货商类型
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.SuppliersTypeResponse> GetSuppliersTypeAsync(global::SP.Service.SupplierIdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetSuppliersTypeAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取供货商类型
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.SuppliersTypeResponse> GetSuppliersTypeAsync(global::SP.Service.SupplierIdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetSuppliersType, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 获取供货商
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.SupplierInfoResponse GetSupplierInfo(global::SP.Service.AccountIdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetSupplierInfo(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取供货商
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.SupplierInfoResponse GetSupplierInfo(global::SP.Service.AccountIdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetSupplierInfo, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 获取供货商
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.SupplierInfoResponse> GetSupplierInfoAsync(global::SP.Service.AccountIdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetSupplierInfoAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取供货商
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.SupplierInfoResponse> GetSupplierInfoAsync(global::SP.Service.AccountIdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetSupplierInfo, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 获取供货商产品列表
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.SuppliersProductListResponse GetSuppliersProducts(global::SP.Service.SuppliersProductRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetSuppliersProducts(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取供货商产品列表
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.SuppliersProductListResponse GetSuppliersProducts(global::SP.Service.SuppliersProductRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetSuppliersProducts, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 获取供货商产品列表
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.SuppliersProductListResponse> GetSuppliersProductsAsync(global::SP.Service.SuppliersProductRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetSuppliersProductsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取供货商产品列表
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.SuppliersProductListResponse> GetSuppliersProductsAsync(global::SP.Service.SuppliersProductRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetSuppliersProducts, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 获取餐饮商家的产品列表
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.SellerFoodProductListResponse GetSellerFoodProductList(global::SP.Service.SellerFoodProductRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetSellerFoodProductList(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取餐饮商家的产品列表
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.SellerFoodProductListResponse GetSellerFoodProductList(global::SP.Service.SellerFoodProductRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetSellerFoodProductList, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 获取餐饮商家的产品列表
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.SellerFoodProductListResponse> GetSellerFoodProductListAsync(global::SP.Service.SellerFoodProductRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetSellerFoodProductListAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取餐饮商家的产品列表
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.SellerFoodProductListResponse> GetSellerFoodProductListAsync(global::SP.Service.SellerFoodProductRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetSellerFoodProductList, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 更新商家产品上下架状态
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.ResultResponse UpdateSupplierProductSaleStatus(global::SP.Service.SupplierProductSaleStatusRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UpdateSupplierProductSaleStatus(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 更新商家产品上下架状态
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.ResultResponse UpdateSupplierProductSaleStatus(global::SP.Service.SupplierProductSaleStatusRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_UpdateSupplierProductSaleStatus, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 更新商家产品上下架状态
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.ResultResponse> UpdateSupplierProductSaleStatusAsync(global::SP.Service.SupplierProductSaleStatusRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UpdateSupplierProductSaleStatusAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 更新商家产品上下架状态
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.ResultResponse> UpdateSupplierProductSaleStatusAsync(global::SP.Service.SupplierProductSaleStatusRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_UpdateSupplierProductSaleStatus, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 业务员选择商家产品
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.ResultResponse SelectSellerProduct(global::SP.Service.SelectSellerProductRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return SelectSellerProduct(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 业务员选择商家产品
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.ResultResponse SelectSellerProduct(global::SP.Service.SelectSellerProductRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SelectSellerProduct, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 业务员选择商家产品
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.ResultResponse> SelectSellerProductAsync(global::SP.Service.SelectSellerProductRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return SelectSellerProductAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 业务员选择商家产品
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.ResultResponse> SelectSellerProductAsync(global::SP.Service.SelectSellerProductRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SelectSellerProduct, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 更新商家产品价格
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.ResultResponse UpdateSuppliersProduct(global::SP.Service.ProductRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UpdateSuppliersProduct(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 更新商家产品价格
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.ResultResponse UpdateSuppliersProduct(global::SP.Service.ProductRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_UpdateSuppliersProduct, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 更新商家产品价格
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.ResultResponse> UpdateSuppliersProductAsync(global::SP.Service.ProductRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UpdateSuppliersProductAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 更新商家产品价格
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.ResultResponse> UpdateSuppliersProductAsync(global::SP.Service.ProductRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_UpdateSuppliersProduct, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 获取供货商产品详情
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.SuppliersProductResponse GetSuppliersProductById(global::SP.Service.SupplierIdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetSuppliersProductById(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取供货商产品详情
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.SuppliersProductResponse GetSuppliersProductById(global::SP.Service.SupplierIdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetSuppliersProductById, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 获取供货商产品详情
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.SuppliersProductResponse> GetSuppliersProductByIdAsync(global::SP.Service.SupplierIdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetSuppliersProductByIdAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 获取供货商产品详情
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.SuppliersProductResponse> GetSuppliersProductByIdAsync(global::SP.Service.SupplierIdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetSuppliersProductById, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override ProductServiceClient NewInstance(ClientBaseConfiguration configuration)
       {
@@ -2132,7 +2677,15 @@ namespace SP.Service {
           .AddMethod(__Method_AddSuppliersProduct, serviceImpl.AddSuppliersProduct)
           .AddMethod(__Method_GetSuppliersProduct, serviceImpl.GetSuppliersProduct)
           .AddMethod(__Method_AddSuppliersRegion, serviceImpl.AddSuppliersRegion)
-          .AddMethod(__Method_GetSuppliersRegion, serviceImpl.GetSuppliersRegion).Build();
+          .AddMethod(__Method_GetSuppliersRegion, serviceImpl.GetSuppliersRegion)
+          .AddMethod(__Method_GetSuppliersType, serviceImpl.GetSuppliersType)
+          .AddMethod(__Method_GetSupplierInfo, serviceImpl.GetSupplierInfo)
+          .AddMethod(__Method_GetSuppliersProducts, serviceImpl.GetSuppliersProducts)
+          .AddMethod(__Method_GetSellerFoodProductList, serviceImpl.GetSellerFoodProductList)
+          .AddMethod(__Method_UpdateSupplierProductSaleStatus, serviceImpl.UpdateSupplierProductSaleStatus)
+          .AddMethod(__Method_SelectSellerProduct, serviceImpl.SelectSellerProduct)
+          .AddMethod(__Method_UpdateSuppliersProduct, serviceImpl.UpdateSuppliersProduct)
+          .AddMethod(__Method_GetSuppliersProductById, serviceImpl.GetSuppliersProductById).Build();
     }
 
   }

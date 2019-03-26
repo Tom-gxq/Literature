@@ -6,9 +6,12 @@
 
   <ItemGroup>
     <Compile Remove="EventHandlers\AccountPayPwdCreateEventHandler.cs" />
-    <Compile Remove="Events\AccountInfoEditUserTypeEvent.cs" />
     <Compile Remove="Events\AliBindEvent.cs" />
     <Compile Remove="Events\ConsumeTradeCreatedEvent.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Events\SysStatisticsCreateEvent.cs.orig" />
   </ItemGroup>
 
   <ItemGroup>
