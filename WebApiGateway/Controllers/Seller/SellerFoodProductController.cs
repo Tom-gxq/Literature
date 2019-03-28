@@ -237,5 +237,44 @@ namespace WebApiGateway.Controllers.Seller
             result.Data = JsonResult;
             return result;
         }
+
+        public ActionResult GetProductDetail(string productId)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                var model = SellerProductBusiness.GetProductDetail(productId);
+                JsonResult.Add("product", model);
+                JsonResult.Add("status", 0);
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", -1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
+
+        public ActionResult SearchProductKeywordList(string keyWord)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                var model = SellerProductBusiness.SearchProductKeywordList(keyWord);
+                
+                JsonResult.Add("productList", model);
+                JsonResult.Add("status", 0);
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", -1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
     }
 }

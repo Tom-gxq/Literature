@@ -210,5 +210,45 @@ namespace ProductGRPCInterface
             }
             return modelList;
         }
+
+        public static SuppliersProductModel GetProductDetail(string productId)
+        {
+            var client = ProductClientHelper.GetClient();
+            var request1 = new ProductIdRequest()
+            {
+                ProductId = productId
+            };
+            var result = client.GetProductDetail(request1);
+            var model = new SuppliersProductModel();
+            if (result.Status == 10001)
+            {
+                model.ProductName = result.ProductDetail.ProductName;
+                model.ProductId = result.ProductDetail.ProductId;
+            }
+            return model;
+        }
+        public static List<SuppliersProduct> SearchProductKeywordList(string keyWord)
+        {
+            var client = ProductClientHelper.GetClient();
+            var request1 = new SearchProductRequest()
+            {
+                 KeyWord = keyWord,
+                 PageIndex = 1,
+                 PageSize = 20
+            };
+            var result = client.SearchProductKeywordList(request1);
+            var modelList = new List<SuppliersProduct>();
+            if (result.Status == 10001)
+            {
+                foreach (var item in result.ProductList)
+                {
+                    var model = new SuppliersProduct();
+                    model.ProductName = item.ProductName;
+                    model.ProductId = item.ProductId;
+                    modelList.Add(model);
+                }
+            }
+            return modelList;
+        }
     }
 }
