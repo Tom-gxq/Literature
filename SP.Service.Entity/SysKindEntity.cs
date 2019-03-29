@@ -11,6 +11,7 @@ namespace SP.Service.Entity
     {
         public string KindId { get; set; }
         public int? Kind { get; set; }
+        public int? Num { get; set; }
         public string SaleModeId { get; set; }
         public int? Quantity { get; set; }
         public int? Unit { get; set; }

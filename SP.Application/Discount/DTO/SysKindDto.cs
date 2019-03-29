@@ -8,6 +8,7 @@ namespace SP.Application.Discount.DTO
 {
     public class SysKindDto
     {
+        public int Num { get; set; }
         public string KindId { get; set; }
         public int Quantity { get; set; }
         public int Unit { get; set; }

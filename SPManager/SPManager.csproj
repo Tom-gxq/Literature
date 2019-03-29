@@ -351,6 +351,7 @@
     <Content Include="Scripts\discount\editassociatordata.js" />
     <Content Include="Scripts\discount\editcoupons.html" />
     <Content Include="Scripts\discount\editcouponsdata.js" />
+    <Content Include="Scripts\discount\couponlist-item.html" />
     <Content Include="Scripts\discount\list-item.html" />
     <Content Include="Scripts\discount\associatordata.js" />
     <Content Include="Scripts\discount\style.css" />

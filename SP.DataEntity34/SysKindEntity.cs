@@ -17,6 +17,7 @@ namespace SP.DataEntity
         [Alias("KindId")]
         public override string Id { get; set; }
         public int? Kind { get; set; }
+        public int? Num { get; set; }
         public int? Quantity { get; set; }
         public int? Unit { get; set; }
         public double? Price { get; set; }

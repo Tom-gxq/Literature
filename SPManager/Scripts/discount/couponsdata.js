@@ -71,7 +71,7 @@ define(function (require, exports, module) {
         dataBinding: function (data) {
             var _self = this
             items = '';
-            doT.exec('discount/list-item.html', function (templateFun) {
+            doT.exec('discount/couponlist-item.html', function (templateFun) {
                 items = templateFun(data);
                 items = $(items);
                 _self.bindItemEvent(items);

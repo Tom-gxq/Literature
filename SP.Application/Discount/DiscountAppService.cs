@@ -44,6 +44,7 @@ namespace SP.Application.Discount
             var ret = repository.AddSysKind(new SysKindEntity()
             {
                 Id = Guid.NewGuid().ToString(),
+                Num = sysKind.Num,
                 Description = sysKind.Description,
                 DiscountValue = sysKind.DiscountValue,
                 Kind = kind,
@@ -64,7 +65,7 @@ namespace SP.Application.Discount
             var repository = IocManager.Instance.Resolve<SysKindRespository>();
             return repository.EditSysKind(new SysKindEntity()
             {
-                Id = sysKind.KindId,
+                Id = sysKind.KindId,                
                 Description = sysKind.Description,
                 DiscountValue = sysKind.DiscountValue ,
                 Price = sysKind.Price,
@@ -239,6 +240,7 @@ namespace SP.Application.Discount
             {
                 Description = sysKind.Description,
                 DiscountValue = sysKind.DiscountValue == null ? 0 : sysKind.DiscountValue.Value,
+                Num = sysKind.Num != null ? sysKind.Num.Value:0,
                 KindId = sysKind.Id,
                 Price = sysKind.Price == null ? 0 : sysKind.Price.Value,
                 Quantity = sysKind.Quantity.Value,

@@ -98,6 +98,7 @@ define(function (require, exports, module) {
                 Unit: divElement.find('.newselect').val(),
                 Price: divElement.find('.txtPrice').val(),
                 DiscountValue: divElement.find('.txtDiscount').val(),
+                Num: divElement.find('.txtNum').val(),
             };
             type = $.param(type, true);
             Global.post("/Discount/AddCoupons", type, function (data) {

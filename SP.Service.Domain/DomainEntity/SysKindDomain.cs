@@ -8,6 +8,7 @@ namespace SP.Service.Domain.DomainEntity
 {
     public class SysKindDomain : AggregateRoot<Guid>
     {
+        public int Num { get; set; }
         public int Kind { get; set; }
         public int Quantity { get; set; }
         public int Unit { get; set; }
@@ -26,6 +27,7 @@ namespace SP.Service.Domain.DomainEntity
                 var entity = memento as SysKindEntity;
                 this.Id = new Guid(entity.KindId);
                 this.Kind = entity.Kind.Value;
+                this.Num = entity.Num!= null ?entity.Num.Value:0;
                 this.Price = entity.Price.Value;
                 this.Quantity = entity.Quantity.Value;
                 this.Unit = entity.Unit.Value;
