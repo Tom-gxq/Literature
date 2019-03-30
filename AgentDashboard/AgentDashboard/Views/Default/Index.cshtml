@@ -1,4 +1,4 @@
-﻿@model  IEnumerable<AgentDashboard.Models.ShopViewModel>
+﻿@model  AgentDashboard.Models.ShopsViewModel
 @{
     Layout = null;
 }
@@ -106,65 +106,107 @@
                 </li>
                 <li class="breadcrumb-item active">餐厅</li>
             </ol>
-
-            @if (Model != null)
-            {
-                <!-- Icon Cards-->
-                <div class="row">
-                    @foreach (var shop in Model)
-                    {
-                        <div class="col-xl-3 col-sm-6 mb-3">
-                            <div class="card text-white bg-primary o-hidden h-100">
-                                <div class="card-body">
-                                    <div class="mr-5">@shop.DistrictName</div>
-                                    <div class="card-body-icon">
-                                        <i class="fa fa-fw fa-home"></i>
-                                    </div>
-                                    <div class="mr-5">@shop.ShopName</div>
-                                </div>
-                                <a class="card-footer text-white clearfix small z-1" href="ShopDetails?shopId=@shop.Id">
-                                    <span>
-                                        @{
-                                            var ShopStauts = "开店";
-                                        }
-                                        @if (shop.ShopStatus == false)
-                                        {
-                                            ShopStauts = "闭店";
-                                        }
-                                        <Label id="Lable_@shop.Id" class="mr-5" for="CheckBox_@shop.Id">@ShopStauts</Label>
-                                        <input id="CheckBox_@shop.Id" type="checkbox" checked="@shop.ShopStatus" class="form-check-input" />
-                                    </span>
-                                    <span class="float-right">
-                                        <i class="fa fa-angle-right"></i>
-                                    </span>
-                                </a>
-                            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fa fa-dashboard"></i>
+                            餐厅列表
                         </div>
-                    }
-                </div>
-
-                if (ViewBag.TotalPages > 1)
-                {
-                    <div class="row">
-                        <div class="col-md-12">
-                            <ul class="pagination justify-content-md-center">
-                                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                @for (int @s = 1; @s <= ViewBag.TotalPages; @s++)
-                                {
-                                    if (@s == ViewBag.CurrentPage)
+                        <div class="card-body">
+                            @if (Model != null)
+                            {
+                                <div class="row mb-3">
+                                    <div class="col-4">
+                                        <span class="mb-2">学校</span>
+                                        <select id="select_university" class="form-control w-100">
+                                            <option value="-1">请选择</option>
+                                            @foreach (var unversity in Model.UniversityList)
+                                            {
+                                                <option value="@unversity.Id" selected>@unversity.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-4">
+                                        <span class="mb-2">院区</span>
+                                        <select id="select_college" class="form-control w-100">
+                                            <option value="-1" selected>请选择</option>
+                                            @foreach (var college in Model.ColleageList)
+                                            {
+                                                <option value="@college.Id">@college.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-1">
+                                        <span class="mb-2">&nbsp;</span>
+                                        <button id="btn_search" class="btn btn-primary w-100" type="button">
+                                            <i class="fa fa-search"></i>
+                                            检索
+                                        </button>
+                                    </div>
+                                    <div class="col-3">
+                                    </div>
+                                </div>
+                                <!-- Icon Cards-->
+                                <div id="div_shoplist" class="row mb-3">
+                                    @foreach (var shop in Model.ShopList)
                                     {
-                                        <li class="page-item active"><a class="page-link" href="#">@s</a></li>
-                                        continue;
+                                        <div class="col-xl-3 col-sm-6 mb-3">
+                                            <div class="card text-white bg-primary o-hidden h-100">
+                                                <div class="card-body">
+                                                    <div class="mr-5">@shop.DistrictName</div>
+                                                    <div class="card-body-icon">
+                                                        <i class="fa fa-fw fa-home"></i>
+                                                    </div>
+                                                    <div class="mr-5">@shop.ShopName</div>
+                                                </div>
+                                                <a class="card-footer text-white clearfix small z-1" href="ShopDetails?shopId=@shop.Id">
+                                                    <span>
+                                                        @{
+                                                            var ShopStauts = "开店";
+                                                        }
+                                                        @if (shop.ShopStatus == false)
+                                                        {
+                                                            ShopStauts = "闭店";
+                                                        }
+                                                        <Label id="Lable_@shop.Id" class="mr-5" for="CheckBox_@shop.Id">@ShopStauts</Label>
+                                                        <input id="CheckBox_@shop.Id" type="checkbox" checked="@shop.ShopStatus" class="form-check-input" />
+                                                    </span>
+                                                    <span class="float-right">
+                                                        <i class="fa fa-angle-right"></i>
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
                                     }
+                                </div>
 
-                                    <li class="page-item"><a class="page-link" href="#">@s</a></li>
+                                if (ViewBag.TotalPages > 1)
+                                {
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <ul class="pagination justify-content-md-center">
+                                                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                                @for (int @s = 1; @s <= ViewBag.TotalPages; @s++)
+                                                {
+                                                    if (@s == ViewBag.CurrentPage)
+                                                    {
+                                                        <li class="page-item active"><a class="page-link" href="#">@s</a></li>
+                                                        continue;
+                                                    }
+
+                                                    <li class="page-item"><a class="page-link" href="#">@s</a></li>
+                                                }
+                                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 }
-                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                            </ul>
+                            }
                         </div>
                     </div>
-                }
-            }
+                </div>
+            </div>
         </div>
         <!-- /.container-fluid-->
         <!-- /.content-wrapper-->
@@ -204,13 +246,10 @@
         <!-- Core plugin JavaScript-->
         <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
         <!-- Page level plugin JavaScript-->
-        <script src="~/vendor/chart.js/Chart.min.js"></script>
         <script src="~/vendor/datatables/jquery.dataTables.js"></script>
         <script src="~/vendor/datatables/dataTables.bootstrap4.js"></script>
         <!-- Custom scripts for all pages-->
-        <script src="~/js/sb-admin.min.js"></script>
-        <!-- Custom scripts for this page-->
-        <script src="~/js/sb-admin-datatables.min.js"></script>
+        <script src="~/js/sb-admin.js"></script>
         <script>
             $(document).ready(function () {
                 $("input[type='checkbox']").each(function (i) {
@@ -237,8 +276,120 @@
                         });
                     });
                 });
+
+                $("#btn_search").click(function () {
+                    var unversity = $("#select_university").val();
+                    if (unversity == -1) {
+                        alert("请选择学校!");
+                        return;
+                    }
+
+                    var college = $("#select_college").val();
+                    var data = $.getValues("GetShopListByRegionId?unversityId=" + unversity + "&collegeId=" + college);
+                    var shopList = $("#div_shoplist");
+                    shopList.empty();
+
+                    $.each(data, function (i, college) {
+                        var col = $("<div></div>")
+                            .addClass("col-xl-3 col-sm-6 mb-3")
+                            .appendTo(shopList);
+
+                        var card = $("<div></div>")
+                            .addClass("card text-white bg-primary o-hidden h-100")
+                            .appendTo(col);
+
+                        var cardbody = $("<div></div>")
+                            .addClass("card-body")
+                            .appendTo(card);
+
+                        var districtname = $("<div></div>")
+                            .addClass("mr-5")
+                            .text(college["DistrictName"])
+                            .appendTo(cardbody);
+
+                        var icon = $("<div></div>")
+                            .addClass("card-body-icon")
+                            .appendTo(cardbody);
+
+                        var i = $("<i></i>")
+                            .addClass("fa fa-fw fa-home")
+                            .appendTo(icon);
+
+                        var shopname = $("<div></div>")
+                            .addClass("mr-5")
+                            .text(college["ShopName"])
+                            .appendTo(cardbody);
+
+                        var footer = $("<a></a>")
+                            .addClass("card-footer text-white clearfix small z-1")
+                            .attr("href", "ShopDetails?shopId=" + college["Id"])
+                            .appendTo(card);
+
+                        var span = $("<span></span>")
+                            .appendTo(footer);
+
+                        var status = college["ShopStatus"];
+                        var statusTxt = status ? "开店" : "闭店";
+                        var lable = $("<Lable></Lable>")
+                            .attr("id", "Lable_" + college["Id"])
+                            .attr("for", "CheckBox_" + college["Id"])
+                            .text(statusTxt)
+                            .addClass("mr-5")
+                            .appendTo(span);
+
+                        var chkbox = $("<input></input>")
+                            .attr("type", "checkbox")
+                            .attr("id", "CheckBox_" + college["Id"])
+                            .attr("checked", college["ShopStatus"])
+                            .addClass("form-check-input")
+                            .appendTo(span);
+
+                        var spanright = $("<span></span>")
+                            .addClass("float-right")
+                            .appendTo(footer);
+
+                        var iright = $("<i></i>")
+                            .addClass("fa fa-angle-right")
+                            .appendTo(spanright);
+
+                        chkbox.change(function () {
+                            var jsonObj = [];
+                            var isChecked = $(this).prop("checked");
+                            jsonObj.push({ Id: college["Id"], ShopStatus: isChecked });
+                            var shopStatus = "闭店";
+                            if (isChecked) {
+                                shopStatus = "开店";
+                            }
+
+                            $.ajax({
+                                type: "POST",
+                                url: "UpdateShopStatus",
+                                data: JSON.stringify(jsonObj),
+                                dataType: "json",
+                                success: function (response) {
+                                    lable.text(shopStatus)
+                                }
+                            });
+                        });
+                    });
+                });
             });
 
+            $("#select_university").change(function () {
+                var tData = $.getValues("GetColleges?dataId=" + $(this).val());
+                $("#select_college").empty();
+                $("<option></option>")
+                    .val(-1)
+                    .text("请选择")
+                    .appendTo($("#select_college"));
+
+                $.each(tData, function (i, item) {
+                    $("<option></option>")
+                        .val(item["ID"])
+                        .text(item["Name"])
+                        .appendTo($("#select_college"));
+                });
+            });
         </script>
     </div>
 </body>
