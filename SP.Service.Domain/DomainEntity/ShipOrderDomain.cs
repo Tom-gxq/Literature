@@ -31,6 +31,11 @@ namespace SP.Service.Domain.DomainEntity
         public long SecondTypeId { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime PayDate { get; set; }
+        public string AccountId { get; set; }
+        public string OrderCode { get; set; }
+        public int OrderStatus { get; set; }
+        public double Amount { get; set; }
+        public double VIPAmount { get; set; }
         public ShipOrderDomain()
         {
 
@@ -69,13 +74,14 @@ namespace SP.Service.Domain.DomainEntity
                 this.OrderId = entity.OrderId;
                 this.ShippingId = entity.ShippingId;
                 this.ShipTo = entity.ShipTo;
-                this.ShippingDate = entity.ShippingDate.Value;
-                this.Stock = entity.Stock.Value;
+                this.ShippingDate = entity.ShippingDate!=null?entity.ShippingDate.Value:DateTime.MinValue;
+                this.Stock = entity.Stock!= null ? entity.Stock.Value:0;
                 this.ProductId = entity.ProductId;
             }
             if (memento is ShippingOrderFullEntity)
             {
                 var entity = memento as ShippingOrderFullEntity;
+                this.ShipTo = string.IsNullOrEmpty(entity.ShipTo) ? entity.AccountId : entity.ShipTo;
                 this.OrderAddress = entity.OrderAddress;
                 this.IsVip = entity.IsVip != null ? entity.IsVip.Value:false;
                 this.IsWxPay = entity.IsWxPay != null ? entity.IsWxPay.Value : false;
@@ -88,6 +94,10 @@ namespace SP.Service.Domain.DomainEntity
                 this.SecondTypeId = entity.SecondTypeId != null ? entity.SecondTypeId.Value : 0;
                 this.OrderDate = entity.OrderDate.Value;
                 this.PayDate = entity.PayDate != null ? entity.PayDate.Value : DateTime.MinValue;
+                this.Amount = entity.Amount != null ? entity.Amount.Value : 0;
+                this.OrderCode = entity.OrderCode;
+                this.OrderType = entity.OrderType != null ? entity.OrderType.Value : 0;
+                this.VIPAmount = entity.VIPAmount != null ? entity.VIPAmount.Value : 0;
             }
         }
 

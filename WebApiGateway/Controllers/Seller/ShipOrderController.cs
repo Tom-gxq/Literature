@@ -203,9 +203,11 @@ namespace WebApiGateway.Controllers.Seller
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var list = OrderBusiness.GetPurchaseOrderList(currentAccount.AccountId, pageIndex, pageSize);
+                long total = 0;
+                var list = OrderBusiness.GetPurchaseOrderList(currentAccount.AccountId, pageIndex, pageSize,out total);
                 JsonResult.Add("orders", list);
                 JsonResult.Add("status", 0);
+                JsonResult.Add("total", total);
             }
             catch (Exception ex)
             {

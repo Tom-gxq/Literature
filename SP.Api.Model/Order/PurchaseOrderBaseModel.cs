@@ -11,6 +11,6 @@ namespace SP.Api.Model.Order
         public string orderId { get; set; }
         public string orderDate { get; set; }
         public double amount { get; set; }
-        public int orderType { get; set; }
+        public int shopType { get; set; }
     }
 }

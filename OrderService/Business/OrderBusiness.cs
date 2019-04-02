@@ -387,9 +387,11 @@ namespace Order.Service.Business
         {
             var result = new PurchaseOrderListResponse();
             result.Status = 10002;
-            var list = ServiceLocator.ReportDatabase.GetPurchaseOrderList(accountId, pageIndex, pageSize);
+            long count = 0;
+            var list = ServiceLocator.ReportDatabase.GetPurchaseOrderList(accountId, pageIndex, pageSize,out count);
             if (list != null)
             {
+                result.Total = count;
                 foreach (var item in list)
                 {
                     if (item != null)
@@ -418,11 +420,11 @@ namespace Order.Service.Business
                 {
                     var address = new Address()
                     {
-                        BuildingName = order.Address.BuildingName,
-                        ContactAddress = order.Address.Address,
-                        SchoolName = order.Address.SchoolName,
-                        DistrictName = order.Address.DistrictName,
-                        DormName = order.Address.DormName
+                        BuildingName = !string.IsNullOrEmpty(order.Address.BuildingName)? order.Address.BuildingName :string.Empty,
+                        ContactAddress = !string.IsNullOrEmpty(order.Address.Address) ? order.Address.Address : string.Empty,
+                        SchoolName = !string.IsNullOrEmpty(order.Address.SchoolName) ? order.Address.SchoolName : string.Empty,
+                        DistrictName = !string.IsNullOrEmpty(order.Address.DistrictName) ? order.Address.DistrictName : string.Empty,
+                        DormName = !string.IsNullOrEmpty(order.Address.DormName) ? order.Address.DormName : string.Empty
                     };
                     result.Address = address;//订货人地址
                 }
@@ -440,7 +442,7 @@ namespace Order.Service.Business
                     shopcart.Quantity = item.Quantity;
                     shopcart.Amount = item.Amount;
                     shopcart.UnitPrice = item.Product.PurchasePrice != null ? item.Product.PurchasePrice.Value:0;
-                    shopcart.ShopType = item.ShopType;
+                    shopcart.ShopType = item.ShopType??string.Empty;
                     result.ShoppingCartList.Add(shopcart);
                 }
             }

@@ -517,7 +517,7 @@ namespace OrderGRPCInterface.Business
             }
             return list;
         }
-        public static List<PurchaseOrderBaseModel> GetPurchaseOrderList(string accountId, int pageIndex,int pageSize)
+        public static List<PurchaseOrderBaseModel> GetPurchaseOrderList(string accountId, int pageIndex,int pageSize,out long total)
         {
             List<PurchaseOrderBaseModel> list = new List<PurchaseOrderBaseModel>();
             var client = OrderClientHelper.GetClient();
@@ -538,9 +538,10 @@ namespace OrderGRPCInterface.Business
                     model.orderDate = date.ToString();
                 }
                 model.amount = item.Amount;
-                model.orderType = item.OrderType;
+                model.shopType = item.OrderType;
                 list.Add(model);
             }
+            total = result.Total;
             return list;
         }
         public static PurchaseOrderModel GetPurchaseOrderByOrderId(string orderId)
@@ -574,14 +575,7 @@ namespace OrderGRPCInterface.Business
             };
             if (result.Address != null)
             {
-                model.address = new AddressModel()
-                {
-                    buildingName = result.Address.BuildingName,
-                    districtName = result.Address.DistrictName,
-                    dorm = result.Address.DormName,
-                    schoolName = result.Address.SchoolName,
-                    contactAddress = result.Address.ContactAddress
-                };
+                model.address = result.Address.SchoolName+ result.Address.BuildingName+ result.Address.DistrictName+ result.Address.DormName;
             }
             model.shoppingCartList = new List<ShoppingCartModel>();
             if(result.ShoppingCartList != null)

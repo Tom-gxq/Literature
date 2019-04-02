@@ -18,6 +18,10 @@ namespace SP.Service.Entity
         public long? SecondTypeId { get; set; }
         public DateTime? OrderDate { get; set; }
         public DateTime? PayDate { get; set; }
-        public int? ShopId { get; set; }
+        public string AccountId { get; set; }
+        public string OrderCode { get; set; }
+        public int? OrderStatus { get; set; }
+        public double? Amount { get; set; }
+        public double? VIPAmount { get; set; }
     }
 }

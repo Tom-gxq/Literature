@@ -194,11 +194,13 @@ namespace SP.Service.Domain.Reporting
             return domainList;
         }
 
-        public List<LeadOrderDomain> GetPurchaseOrderList(string accountId, int pageIndex, int pageSize)
+        public List<LeadOrderDomain> GetPurchaseOrderList(string accountId, int pageIndex, int pageSize,out long count)
         {
             var domainList = new List<LeadOrderDomain>();
             var list = _repository.GetPurchaseOrderList(accountId, pageIndex, pageSize);
-            var result = list.GroupBy(s => s.OrderId).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            var allList = list.GroupBy(s => s.OrderId);
+            count = allList.Length();
+            var result = allList.Skip((pageIndex - 1) * pageSize).Take(pageSize);
             foreach (var item in result)
             {
                 var domain = new LeadOrderDomain();
@@ -227,8 +229,11 @@ namespace SP.Service.Domain.Reporting
                             {
                                 System.Console.WriteLine($"GetShipOrderList order.ShipTo  is not Exsit [{order?.ShipTo ?? string.Empty}]");
                             }
+                            domain.IsAliPay = order.IsAliPay;
+                            domain.IsWxPay = order.IsWxPay;
                             domain.PayDate = order.PayDate;
                             domain.OrderDate = order.OrderDate;
+                            domain.Amount = order.Amount;
                         }
                         domain.Shop = shopReport.GetShopById(orderInfo.ShopId.Value);
                         index++;

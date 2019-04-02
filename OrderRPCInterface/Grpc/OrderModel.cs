@@ -87,15 +87,16 @@ namespace SP.Service {
             "TGlzdFJlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEhEKCXBhZ2VJbmRleBgE",
             "IAEoBRIQCghwYWdlU2l6ZRgFIAEoBSJWCg1QdXJjaGFzZU9yZGVyEg8KB29y",
             "ZGVySWQYASABKAkSDgoGYW1vdW50GAIgASgBEhEKCW9yZGVyRGF0ZRgEIAEo",
-            "AxIRCglvcmRlclR5cGUYCyABKAUiWQoZUHVyY2hhc2VPcmRlckxpc3RSZXNw",
+            "AxIRCglvcmRlclR5cGUYCyABKAUiaAoZUHVyY2hhc2VPcmRlckxpc3RSZXNw",
             "b25zZRIOCgZzdGF0dXMYASABKAUSLAoJb3JkZXJJbmZvGAIgAygLMhkuU1Au",
-            "U2VydmljZS5QdXJjaGFzZU9yZGVyIpkCChVQdXJjaGFzZU9yZGVyUmVzcG9u",
-            "c2USDwoHb3JkZXJJZBgBIAEoCRIOCgZhbW91bnQYAiABKAESEQoJb3JkZXJD",
-            "b2RlGAMgASgJEhEKCW9yZGVyRGF0ZRgEIAEoAxIPCgdwYXlEYXRlGAUgASgD",
-            "EigKB2FjY291bnQYBiABKAsyFy5TUC5TZXJ2aWNlLkFjY291bnRJbmZvEiQK",
-            "B2FkZHJlc3MYByABKAsyEy5TUC5TZXJ2aWNlLkFkZHJlc3MSDwoHcGF5VHlw",
-            "ZRgIIAEoBRIyChBzaG9wcGluZ0NhcnRMaXN0GAkgAygLMhguU1AuU2Vydmlj",
-            "ZS5TaG9wcGluZ0NhcnQSEwoLb3JkZXJTdGF0dXMYCiABKAViBnByb3RvMw=="));
+            "U2VydmljZS5QdXJjaGFzZU9yZGVyEg0KBXRvdGFsGAQgASgDIpkCChVQdXJj",
+            "aGFzZU9yZGVyUmVzcG9uc2USDwoHb3JkZXJJZBgBIAEoCRIOCgZhbW91bnQY",
+            "AiABKAESEQoJb3JkZXJDb2RlGAMgASgJEhEKCW9yZGVyRGF0ZRgEIAEoAxIP",
+            "CgdwYXlEYXRlGAUgASgDEigKB2FjY291bnQYBiABKAsyFy5TUC5TZXJ2aWNl",
+            "LkFjY291bnRJbmZvEiQKB2FkZHJlc3MYByABKAsyEy5TUC5TZXJ2aWNlLkFk",
+            "ZHJlc3MSDwoHcGF5VHlwZRgIIAEoBRIyChBzaG9wcGluZ0NhcnRMaXN0GAkg",
+            "AygLMhguU1AuU2VydmljZS5TaG9wcGluZ0NhcnQSEwoLb3JkZXJTdGF0dXMY",
+            "CiABKAViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, global::SP.Service.ProductModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -126,7 +127,7 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.ShipOrderRequest), global::SP.Service.ShipOrderRequest.Parser, new[]{ "AccountId", "OrderStatus", "OrderType", "PageIndex", "PageSize" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.PurchaseOrderListRequest), global::SP.Service.PurchaseOrderListRequest.Parser, new[]{ "AccountId", "PageIndex", "PageSize" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.PurchaseOrder), global::SP.Service.PurchaseOrder.Parser, new[]{ "OrderId", "Amount", "OrderDate", "OrderType" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.PurchaseOrderListResponse), global::SP.Service.PurchaseOrderListResponse.Parser, new[]{ "Status", "OrderInfo" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.PurchaseOrderListResponse), global::SP.Service.PurchaseOrderListResponse.Parser, new[]{ "Status", "OrderInfo", "Total" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.PurchaseOrderResponse), global::SP.Service.PurchaseOrderResponse.Parser, new[]{ "OrderId", "Amount", "OrderCode", "OrderDate", "PayDate", "Account", "Address", "PayType", "ShoppingCartList", "OrderStatus" }, null, null, null)
           }));
     }
@@ -6218,6 +6219,7 @@ namespace SP.Service {
     public PurchaseOrderListResponse(PurchaseOrderListResponse other) : this() {
       status_ = other.status_;
       orderInfo_ = other.orderInfo_.Clone();
+      total_ = other.total_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6254,6 +6256,21 @@ namespace SP.Service {
       get { return orderInfo_; }
     }
 
+    /// <summary>Field number for the "total" field.</summary>
+    public const int TotalFieldNumber = 4;
+    private long total_;
+    /// <summary>
+    ///*
+    /// 总行数
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long Total {
+      get { return total_; }
+      set {
+        total_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as PurchaseOrderListResponse);
@@ -6269,6 +6286,7 @@ namespace SP.Service {
       }
       if (Status != other.Status) return false;
       if(!orderInfo_.Equals(other.orderInfo_)) return false;
+      if (Total != other.Total) return false;
       return true;
     }
 
@@ -6277,6 +6295,7 @@ namespace SP.Service {
       int hash = 1;
       if (Status != 0) hash ^= Status.GetHashCode();
       hash ^= orderInfo_.GetHashCode();
+      if (Total != 0L) hash ^= Total.GetHashCode();
       return hash;
     }
 
@@ -6292,6 +6311,10 @@ namespace SP.Service {
         output.WriteInt32(Status);
       }
       orderInfo_.WriteTo(output, _repeated_orderInfo_codec);
+      if (Total != 0L) {
+        output.WriteRawTag(32);
+        output.WriteInt64(Total);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6301,6 +6324,9 @@ namespace SP.Service {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Status);
       }
       size += orderInfo_.CalculateSize(_repeated_orderInfo_codec);
+      if (Total != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Total);
+      }
       return size;
     }
 
@@ -6313,6 +6339,9 @@ namespace SP.Service {
         Status = other.Status;
       }
       orderInfo_.Add(other.orderInfo_);
+      if (other.Total != 0L) {
+        Total = other.Total;
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6329,6 +6358,10 @@ namespace SP.Service {
           }
           case 18: {
             orderInfo_.AddEntriesFrom(input, _repeated_orderInfo_codec);
+            break;
+          }
+          case 32: {
+            Total = input.ReadInt64();
             break;
           }
         }

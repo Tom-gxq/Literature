@@ -14,7 +14,7 @@ namespace SP.Api.Model.Order
         public int payType { get; set; }
         public int orderStatus { get; set; }
         public AccountInfo account { get; set; }
-        public AddressModel address { get; set; }
+        public string address { get; set; }
         public List<ShoppingCartModel> shoppingCartList { get; set; }
     }
 }
