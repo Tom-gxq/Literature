@@ -79,15 +79,13 @@ namespace AgentDashboard.Controllers
                 var finace = sPEntities.SP_AccountFinance.SingleOrDefault(x=>x.AccountId == accountId);
                 if(finace != null)
                 {
-                    
                     var cashList = sPEntities.SP_CashApply.Where(x => x.AccountId == accountId && x.Status == 0).ToList();
                     var sum = cashList.Sum(x=>x.Money) ;
                     viewModel.Amount = (finace.HaveAmount??0) - (finace.UseAmount??0) - (sum!=null?sum.Value:0);
                 }
-                viewModel.FullName = actInfo.Fullname;
-                viewModel.Birthday = actInfo.Birthdate != null ? actInfo.Birthdate.Value.ToShortDateString():string.Empty;
-                viewModel.Phone = act.MobilePhone.Replace("+86","");
-                
+                viewModel.FullName = actInfo?.Fullname;
+                viewModel.Birthday = actInfo?.Birthdate != null ? actInfo?.Birthdate.Value.ToShortDateString():string.Empty;
+                viewModel.Phone = act?.MobilePhone.Replace("+86","");
             }
 
             return View(viewModel);
@@ -614,21 +612,23 @@ namespace AgentDashboard.Controllers
                 if (unversityId == -1 && colleageId == -1)
                 {
                     var queryList = (from regionAccount in spEntity.SP_RegionAccount.Where(n => n.AccountId == accountId)
-                                     join regionData in spEntity.SP_RegionData on regionAccount.RegionId.ToString() equals regionData.ParentDataID
-                                     join shop in spEntity.SP_Shop on regionData.DataID equals shop.RegionId
+                                     join unversityRegionData in spEntity.SP_RegionData on regionAccount.RegionId equals unversityRegionData.DataID
+                                     join collegeRegionData in spEntity.SP_RegionData on unversityRegionData.DataID.ToString() equals collegeRegionData.ParentDataID
+                                     join shop in spEntity.SP_Shop on collegeRegionData.DataID equals shop.RegionId
                                      join shopOwner in spEntity.SP_ShopOwner on shop.Id equals shopOwner.ShopId
                                      join shopProductType in spEntity.SP_ProductType on shop.ShopType equals shopProductType.Id
-                                     join account in spEntity.SP_Account on shopOwner.Id equals account.Id
+                                     join account in spEntity.SP_Account on shopOwner.OwnerId equals account.AccountId
                                      join accountInfo in spEntity.SP_AccountInfo on shopOwner.OwnerId equals accountInfo.AccountId
                                      select new HumanManagerViewModel
                                      {
                                          AccountId = account.AccountId,
                                          FullName = accountInfo.Fullname,
                                          CellPhoneNo = account.MobilePhone,
-                                         RegionName = regionData.DataName,
+                                         RegionName = collegeRegionData.DataName,
                                          ProductType = shopProductType.Id,
                                          TypeName = shopProductType.TypeName,
-                                     }).ToList();
+                                         CreateTime = account.CreateTime
+                                     }).OrderBy(x => x.CreateTime).ToList();
 
                     if (typeId == -1)
                     {
@@ -643,23 +643,24 @@ namespace AgentDashboard.Controllers
                 if((unversityId != -1) && (colleageId == -1))
                 {
                     var queryList =
-                        (from regionData in spEntity.SP_RegionData.Where(n => n.ParentDataID == unversityId.ToString())
-                         join shop in spEntity.SP_Shop on regionData.DataID equals shop.RegionId
+                        (from collegeRegionData in spEntity.SP_RegionData.Where(n => n.ParentDataID == unversityId.ToString())
+                         join shop in spEntity.SP_Shop on collegeRegionData.DataID equals shop.RegionId
                          join shopOwner in spEntity.SP_ShopOwner on shop.Id equals shopOwner.ShopId
                          join shopProductType in spEntity.SP_ProductType on shop.ShopType equals shopProductType.Id
-                         join account in spEntity.SP_Account on shopOwner.Id equals account.Id
+                         join account in spEntity.SP_Account on shopOwner.OwnerId equals account.AccountId
                          join accountInfo in spEntity.SP_AccountInfo on shopOwner.OwnerId equals accountInfo.AccountId
                          select new HumanManagerViewModel
                          {
                              AccountId = account.AccountId,
                              FullName = accountInfo.Fullname,
                              CellPhoneNo = account.MobilePhone,
-                             RegionName = regionData.DataName,
+                             RegionName = collegeRegionData.DataName,
                              ProductType = shopProductType.Id,
                              TypeName = shopProductType.TypeName,
-                         }).ToList();
+                             CreateTime = account.CreateTime
+                         }).OrderBy(x => x.CreateTime).ToList();
 
-                    if(typeId == -1)
+                    if (typeId == -1)
                     {
                         vmList = queryList;
                     }
@@ -671,23 +672,24 @@ namespace AgentDashboard.Controllers
 
                 if ((unversityId != -1) && (colleageId != -1))
                 {
-                    var queryList = (from regionData in spEntity.SP_RegionData.Where(n => n.DataID == colleageId)
-                                     join shop in spEntity.SP_Shop on regionData.DataID equals shop.RegionId
+                    var queryList = (from collegeRegionData in spEntity.SP_RegionData.Where(n => n.DataID == colleageId)
+                                     join shop in spEntity.SP_Shop on collegeRegionData.DataID equals shop.RegionId
                                      join shopOwner in spEntity.SP_ShopOwner on shop.Id equals shopOwner.ShopId
                                      join shopProductType in spEntity.SP_ProductType on shop.ShopType equals shopProductType.Id
-                                     join account in spEntity.SP_Account on shopOwner.Id equals account.Id
+                                     join account in spEntity.SP_Account on shopOwner.OwnerId equals account.AccountId
                                      join accountInfo in spEntity.SP_AccountInfo on shopOwner.OwnerId equals accountInfo.AccountId
                                      select new HumanManagerViewModel
                                      {
                                          AccountId = account.AccountId,
                                          FullName = accountInfo.Fullname,
                                          CellPhoneNo = account.MobilePhone,
-                                         RegionName = regionData.DataName,
+                                         RegionName = collegeRegionData.DataName,
                                          ProductType = shopProductType.Id,
                                          TypeName = shopProductType.TypeName,
-                                     }).ToList();
+                                         CreateTime = account.CreateTime
+                                     }).OrderBy(x => x.CreateTime).ToList();
 
-                    if(typeId == -1)
+                    if (typeId == -1)
                     {
                         vmList = queryList;
                     }
@@ -700,7 +702,6 @@ namespace AgentDashboard.Controllers
                 return Json(vmList, JsonRequestBehavior.AllowGet);
             }
         }
-
 
         public ActionResult DataAnalyze()
         {

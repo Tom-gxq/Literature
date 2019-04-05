@@ -236,15 +236,7 @@
                     .text("请选择")
                     .appendTo($("#select_type"));
 
-                var typeData = $.getValues("GetProductType?kind=1");
-                $.each(typeData, function (i, item) {
-                    $("<option></option>")
-                        .val(item["ID"])
-                        .text(item["Name"])
-                        .appendTo($("#select_type"));
-                });
-
-                typeData = $.getValues("GetProductType?kind=2");
+                var typeData = $.getValues("GetProductType?kind=0");
                 $.each(typeData, function (i, item) {
                     $("<option></option>")
                         .val(item["ID"])

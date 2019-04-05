@@ -17,5 +17,6 @@ namespace AgentDashboard.Models
         public string TypeName { get; set; }
         public String Birthday { get; set; }
         public int ProductType { get; set; }
+        public DateTime? CreateTime { get; set; }
     }
 }
