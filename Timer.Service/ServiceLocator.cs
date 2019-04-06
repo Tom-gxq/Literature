@@ -14,6 +14,10 @@ namespace Timer.Service
         private static ICommandBus _commandBus;
         private static ProductSkuReportDatabase _reportDatabase;
         private static AccountProductReportDatabase _accountProductReportDatabase;
+        private static SellerProductReportDatabase _sellerProductReportDatabase;
+        private static SuppliersReportDatabase _suppliersReportDatabase;
+        private static ShipOrderReportDatabase _shipOrderReportDatabase;
+        private static ShopReportDatabase _shopReportDatabase;
         static ServiceLocator()
         {
             if (!_isInitialized)
@@ -22,7 +26,10 @@ namespace Timer.Service
                 {
                     _commandBus = IocManager.Instance.Resolve(typeof(ICommandBus)) as ICommandBus;
                     _reportDatabase = IocManager.Instance.Resolve(typeof(ProductSkuReportDatabase)) as ProductSkuReportDatabase;
-                    _accountProductReportDatabase = IocManager.Instance.Resolve(typeof(AccountProductReportDatabase)) as AccountProductReportDatabase;
+                    _sellerProductReportDatabase = IocManager.Instance.Resolve(typeof(SellerProductReportDatabase)) as SellerProductReportDatabase;
+                    _suppliersReportDatabase = IocManager.Instance.Resolve(typeof(SuppliersReportDatabase)) as SuppliersReportDatabase;
+                    _shipOrderReportDatabase = IocManager.Instance.Resolve(typeof(ShipOrderReportDatabase)) as ShipOrderReportDatabase;
+                    _shopReportDatabase = IocManager.Instance.Resolve(typeof(ShopReportDatabase)) as ShopReportDatabase;
                     _isInitialized = true;
                 }
             }
@@ -38,6 +45,22 @@ namespace Timer.Service
         public static AccountProductReportDatabase AccountProductReportDatabase
         {
             get { return _accountProductReportDatabase; }
+        }
+        public static SellerProductReportDatabase SellerProductReportDatabase
+        {
+            get { return _sellerProductReportDatabase; }
+        }
+        public static SuppliersReportDatabase SuppliersReportDatabase
+        {
+            get { return _suppliersReportDatabase; }
+        }
+        public static ShipOrderReportDatabase ShipOrderReportDatabase
+        {
+            get { return _shipOrderReportDatabase; }
+        }
+        public static ShopReportDatabase ShopReportDatabase
+        {
+            get { return _shopReportDatabase; }
         }
     }
 }

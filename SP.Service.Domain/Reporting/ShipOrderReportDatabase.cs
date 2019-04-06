@@ -42,5 +42,10 @@ namespace SP.Service.Domain.Reporting
         {
             return _repository.UpdateShippingOrderStatus(item);
         }
+
+        public List<ShippingOrdersEntity> GetTodayShippingOrders(string accountId, string productId)
+        {
+            return _repository.GetTodayShippingOrders( accountId, productId);
+        }
     }
 }

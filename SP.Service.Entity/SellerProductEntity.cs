@@ -11,5 +11,6 @@ namespace SP.Service.Entity
     {
         public int? SupplierProductId { get; set; }
         public string AccountId { get; set; }
+        public int? PreStock { get; set; }
     }
 }

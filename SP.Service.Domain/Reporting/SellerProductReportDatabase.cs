@@ -28,5 +28,24 @@ namespace SP.Service.Domain.Reporting
         {
             return _repository.GetSellerProduct(accountId, supplierProductId);
         }
+
+        public long GetSellerProductCount()
+        {
+            return _repository.GetSellerProductCount();
+        }
+        public List<SellerProductEntity> GetSellerProductList(int pageIndex, int pageSize)
+        {
+            return _repository.GetSellerProductList(pageIndex, pageSize);
+        }
+
+        public bool Update(SellerProductEntity sellerProuct)
+        {
+            return _repository.Update(sellerProuct);
+        }
+
+        public List<SellerProductEntity> GetAllFoodProduct()
+        {
+            return _repository.GetAllFoodProduct();
+        }
     }
 }

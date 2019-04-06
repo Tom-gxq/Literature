@@ -26,10 +26,12 @@ namespace Timer.Service
             this.ClearDayStockTime = clearDayStockTime;
             this.AutoSettingStockTime = autoSettingStockTime;
             Schedule(() => ClearDayStock()).ToRunEvery(1).Days().At(this.ClearDayStockTime, 0);
+            Schedule(() => AutoCheckPreStock()).ToRunEvery(1).Days().At(0, 30);
             Schedule(() => AutoCheckShopOwner()).ToRunEvery(1).Days().At(this.ClearDayStockTime, 50);
             Schedule(() => AutoSettingAccountStock()).ToRunEvery(1).Days().At(this.AutoSettingStockTime, 0);
             System.Console.WriteLine($"AutoSettingStock Run..... " +
-                $"StockSvrHost=[{this.StockSvrHost}] ShopType=[{this.ShopType}] ClearDayStockTime=[{this.ClearDayStockTime}] AutoSettingStockTime=[{this.AutoSettingStockTime}]");
+                $"StockSvrHost=[{this.StockSvrHost}] ShopType=[{this.ShopType}] ClearDayStockTime=[{this.ClearDayStockTime}] " +
+                $"AutoSettingStockTime=[{this.AutoSettingStockTime}]");
         }
         
         private void ClearDayStock()
@@ -74,27 +76,31 @@ namespace Timer.Service
         private void AutoSettingAccountStock()
         {
             System.Console.WriteLine("AutoSettingAccountStock Run.....");
-            var list = ServiceLocator.AccountProductReportDatabase.GetAllFoodAccountProduct();
+            var list = ServiceLocator.SellerProductReportDatabase.GetAllFoodProduct();
             List<ProductSkuModel> skulist = new List<ProductSkuModel>();
             foreach(var item in list)
             {
-                ProductSkuModel model = new ProductSkuModel();
-                model.accountId = item.AccountId;
-                model.productId = item.ProductId;
-                model.shopId = item.ShopId != null ? item.ShopId.Value : 0;
-                model.stock = item.PreStock != null ? item.PreStock.Value : 0;
-                model.type = 0;
-                System.Console.WriteLine($"AccountId={model.accountId},ProductId={model.productId},ShopId={model.shopId},PreStock={model.stock}");
-                skulist.Add(model);
+                var supplier = ServiceLocator.SuppliersReportDatabase.GetSuppliersProductById(item.SupplierProductId.Value);
+                var shopDomain = ServiceLocator.ShopReportDatabase.GetShopStatus(item.AccountId);
+                if (supplier != null && shopDomain != null)
+                {
+                    ProductSkuModel model = new ProductSkuModel();
+                    model.accountId = item.AccountId;
+                    model.productId = supplier.ProductId;
+                    model.shopId = shopDomain.ShopId;
+                    model.stock = item.PreStock != null ? item.PreStock.Value : 0;
+                    model.type = 0;//覆盖
+                    skulist.Add(model);
+                }
             }
             var result = StockBusiness.UpdateProductSku(this.StockSvrHost, skulist);
             if (result.Status == 10001)
             {
                 System.Console.WriteLine("UpdateProductSku Success");
-                foreach (var item in list)
+                foreach (var item in skulist)
                 {
-                    ServiceLocator.CommandBus.Send(new CreateProductSkuDBCommand(Guid.NewGuid(), item.AccountId, item.ProductId, 
-                        (item.ShopId != null ? item.ShopId.Value : 0), (item.PreStock != null ? item.PreStock.Value : 0)));
+                    ServiceLocator.CommandBus.Send(new CreateProductSkuDBCommand(Guid.NewGuid(), item.accountId, item.productId,
+                        item.shopId, item.stock));
                 }
             }
             else
@@ -136,6 +142,51 @@ namespace Timer.Service
                 System.Console.WriteLine($"ex ={ex.Message} \n stack={ex.StackTrace}");
             }
             System.Console.WriteLine("AutoCheckShopOwner Success");
+        }
+
+        private void AutoCheckPreStock()
+        {
+            System.Console.WriteLine("AutoCheckPreStock Run.....");
+            try
+            {
+                var count = ServiceLocator.SellerProductReportDatabase.GetSellerProductCount();
+                for (int i = 1; i < count; i += 10)
+                {
+                    var list = ServiceLocator.SellerProductReportDatabase.GetSellerProductList(i, 10);
+                    foreach (var item in list)
+                    {
+                        var supplier = ServiceLocator.SuppliersReportDatabase.GetSuppliersProductById(item.SupplierProductId.Value);
+                        if (supplier != null)
+                        {
+                            var shippings = ServiceLocator.ShipOrderReportDatabase.GetTodayShippingOrders(item.AccountId, supplier.ProductId);
+                            var stock = shippings.Sum(x => x.Stock);
+                            if (stock.Value > 0 && item.PreStock.Value >=2)
+                            {
+                                int preStock = item.PreStock.Value;
+                                if (stock.Value < item.PreStock.Value)
+                                {
+                                    preStock--;
+                                }
+                                else if(stock.Value > item.PreStock.Value)
+                                {
+                                    preStock++;
+                                }
+                                ServiceLocator.SellerProductReportDatabase.Update(new SP.Service.Entity.SellerProductEntity()
+                                {
+                                    AccountId = item.AccountId,
+                                    SupplierProductId = item.SupplierProductId,
+                                    PreStock = preStock
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine($"ex ={ex.Message} \n stack={ex.StackTrace}");
+            }
+            System.Console.WriteLine("AutoCheckPreStock Success");
         }
     }
 }

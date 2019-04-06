@@ -58,5 +58,11 @@ namespace SP.Service.EntityFramework.Repositories
         {
             return this.Single(x=>x.Id == shipOrderId);
         }
+
+        public List<ShippingOrdersEntity> GetTodayShippingOrders(string accountId, string productId)
+        {
+            var today = DateTime.Parse(DateTime.Now.AddDays(-1).ToShortDateString());
+            return this.Select(x => x.ShippingId == accountId && x.ProductId == productId && x.ShippingDate >= today);
+        }
     }
 }

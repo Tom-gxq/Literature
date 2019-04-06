@@ -20,7 +20,8 @@ namespace SP.Service.Domain.EventHandlers
             var item = new SellerProductEntity()
             {                
                  AccountId = handle.AccountId,
-                 SupplierProductId = handle.SupplierProductId
+                 SupplierProductId = handle.SupplierProductId,
+                 PreStock = 2
             };
 
             _reportDatabase.Add(item);

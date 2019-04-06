@@ -12,6 +12,7 @@ namespace SP.Service.Domain.DomainEntity
     {
         public string AccountId { get; internal set; }
         public int SupplierProductId { get; internal set; }
+        public int PreStock { get; internal set; }
 
         public SellerProductDomain()
         {
@@ -45,6 +46,7 @@ namespace SP.Service.Domain.DomainEntity
             {
                 this.AccountId = memento.AccountId;
                 this.SupplierProductId = memento.SupplierProductId.Value;
+                this.PreStock = memento.PreStock != null ? memento.PreStock.Value : 0;
             }
         }
     }
