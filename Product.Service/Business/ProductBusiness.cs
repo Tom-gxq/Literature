@@ -245,7 +245,7 @@ namespace Product.Service.Business
         {
             var result = new ProductListResponse();
             result.Status = 10002;
-            result.Total = ServiceLocator.ReportDatabase.GetFoodShopProductListCount(districtId, shopId, pageIndex, pageSize);
+            result.Total = ServiceLocator.ReportDatabase.GetFoodShopProductListCount(districtId, shopId);
             if (result.Total > 0)
             {
                 var list = ServiceLocator.ReportDatabase.GetFoodShopProductList(districtId, shopId, pageIndex, (int)result.Total);

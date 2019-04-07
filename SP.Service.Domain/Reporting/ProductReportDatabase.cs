@@ -238,9 +238,9 @@ namespace SP.Service.Domain.Reporting
         {
             return  _repository.GetShopProductCount(districtId,shopId, typeId, pageIndex, pageSize);
         }
-        public int GetFoodShopProductListCount(int districtId, int shopId,  int pageIndex, int pageSize)
+        public int GetFoodShopProductListCount(int districtId, int shopId)
         {
-            return _repository.GetFoodShopProductListCount(districtId, shopId, pageIndex, pageSize);
+            return _repository.GetFoodShopProductListCount(districtId, shopId);
         }
 
         public bool Add(ProductEntity item)

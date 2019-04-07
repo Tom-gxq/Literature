@@ -2522,10 +2522,6 @@ RepeatedTokenGRPCInterface/bin/Debug/netstandard2.0/RPCCommonTool.dll
 RepeatedTokenGRPCInterface/bin/Debug/netstandard2.0/RPCCommonTool.pdb
 RepeatedTokenGRPCInterface/bin/Debug/netstandard2.0/SP.Api.Model.dll
 RepeatedTokenGRPCInterface/bin/Debug/netstandard2.0/SP.Api.Model.pdb
-RepeatedTokenGRPCInterface/Grpc/CommonModel.cs
-RepeatedTokenGRPCInterface/Grpc/RepeatedTokenModel.cs
-RepeatedTokenGRPCInterface/Grpc/RepeatedTokenService.cs
-RepeatedTokenGRPCInterface/Grpc/RepeatedTokenServiceGrpc.cs
 RepeatedTokenGRPCInterface/obj/Debug/netstandard2.0/RepeatedTokenGRPCInterface.AssemblyInfo.cs
 RepeatedTokenGRPCInterface/obj/Debug/netstandard2.0/RepeatedTokenGRPCInterface.AssemblyInfoInputs.cache
 RepeatedTokenGRPCInterface/obj/Debug/netstandard2.0/RepeatedTokenGRPCInterface.csproj.CopyComplete
