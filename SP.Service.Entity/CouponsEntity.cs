@@ -11,10 +11,13 @@ namespace SP.Service.Entity
     {
         public string CouponId { get; set; }
         public string KindId { get; set; }
-        public string AssociatorId { get; set; }
         public string AccountId { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public int? Status { get; set; }
+        public string PayOrderCode { get; set; }
+        public int? PayType { get; set; }
+        public int? PayStatus { get; set; }
+        public double? PayAmount { get; set; }
     }
 }

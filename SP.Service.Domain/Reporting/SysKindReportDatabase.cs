@@ -37,18 +37,6 @@ namespace SP.Service.Domain.Reporting
             }
             return list;
         }
-
-        public List<CouponsDomain> GetAccountCouponsList(string accountId)
-        {
-            var entityList = _couponRepository.GetAccountCouponsList(accountId);
-            var list = new List<CouponsDomain>();
-            foreach (var item in entityList)
-            {
-                var domain = new CouponsDomain();
-                domain.SetMemento(item);
-                list.Add(domain);
-            }
-            return list;
-        }
+        
     }
 }

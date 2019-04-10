@@ -576,5 +576,61 @@ namespace ProductGRPCInterface
                 return false;
             }
         }
+
+        public static ProductModel GetProductDetail(string productId)
+        {
+            var client = ProductClientHelper.GetClient();
+            var request1 = new ProductIdRequest()
+            {
+                 ProductId = productId
+            };
+            var result = client.GetProductDetail(request1);
+            var domain = new ProductModel();
+            if (result.Status == 10001)
+            {
+                domain.productId = result.ProductDetail.ProductId;
+                domain.addedDate = new DateTime(result.ProductDetail.AddedDate);
+                domain.description = result.ProductDetail.Description;
+                domain.shortDescription = result.ProductDetail.ShortDescription;
+                domain.productName = result.ProductDetail.ProductName;
+                domain.marketPrice = result.ProductDetail.MarketPrice;
+                domain.vipPrice = result.ProductDetail.VipPrice;
+                domain.productCode = result.ProductDetail.ProductCode;
+                domain.unit = result.ProductDetail.Unit;
+                domain.shopId = result.ProductDetail.ShopId;
+                if (result.ProductDetail.Brand != null)
+                {
+                    domain.brand = new BrandModel()
+                    {
+                        brandId = result.ProductDetail.Brand != null ? result.ProductDetail.Brand.BrandId : 0,
+                        brandName = result.ProductDetail.Brand != null ? result.ProductDetail.Brand.BrandName : string.Empty,
+                        description = result.ProductDetail.Brand != null ? result.ProductDetail.Brand.Description : string.Empty,
+                    };
+                }
+                if (result.ProductDetail.ProductType != null)
+                {
+                    domain.productType = new ProductTypeModel()
+                    {
+                        typeId = result.ProductDetail.ProductType != null ? result.ProductDetail.ProductType.TypeId : 0,
+                        typeName = result.ProductDetail.ProductType != null ? result.ProductDetail.ProductType.TypeName : string.Empty,
+                    };
+                }
+                if (result.ProductDetail.Image != null)
+                {
+                    domain.images = new List<ProductImageModel>();
+                    foreach (var imageItem in result.ProductDetail.Image)
+                    {
+                        var imageModel = new ProductImageModel()
+                        {
+                            id = imageItem != null ? imageItem.Id : 0,
+                            imgPath = imageItem != null ? imageItem.ImgPath : string.Empty,
+                            postion = imageItem != null ? imageItem.Postion : 0,
+                        };
+                        domain.images.Add(imageModel);
+                    }
+                }
+            }
+            return domain;
+        }
     }
 }

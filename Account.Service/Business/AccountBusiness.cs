@@ -206,6 +206,7 @@ namespace Account.Service.Business
                     sysKind.Description = item.Description;
                     sysKind.DiscountValue = item.DiscountValue;
                     sysKind.Amount = item.Amount;
+                    sysKind.Num = item.Num;
                     result.KindList.Add(sysKind);
                 }
             }
@@ -213,7 +214,7 @@ namespace Account.Service.Business
         }
         public static CouponsListResponse GetAccountCouponsList(string accountId)
         {
-            var list = ServiceLocator.KindReportDatabase.GetAccountCouponsList(accountId);
+            var list = ServiceLocator.CouponsReportDatabase.GetAccountCouponsList(accountId);
             var result = new CouponsListResponse();
             result.Status = 10001;
             if (list != null)
@@ -471,6 +472,29 @@ namespace Account.Service.Business
         public static AccountResultResponse CreateWxOpenId(string accountId, string wxOpenId,int wxType)
         {
             ServiceLocator.CommandBus.Send(new CreateWxOpenIdCommand(accountId, wxOpenId, wxType));
+            var result = new AccountResultResponse();
+            result.Status = 10001;
+            return result;
+        }
+
+        public static AccountResultResponse AddCoupon(string kindId, string accountId)
+        {
+            ServiceLocator.CommandBus.Send(new CreateCouponCommand(kindId, accountId));
+            var result = new AccountResultResponse();
+            result.Status = 10001;
+            return result;
+        }
+
+        public static AccountResultResponse UpdateCoupon(string kindId, double payAmount, int payType, int type)
+        {
+            if(type == 0)
+            {
+                ServiceLocator.CommandBus.Send(new PayCouponCommand(new Guid(kindId), payAmount, payType));
+            }
+            else if(type == 1)
+            {
+                ServiceLocator.CommandBus.Send(new UseCouponCommand(new Guid(kindId)));
+            }
             var result = new AccountResultResponse();
             result.Status = 10001;
             return result;

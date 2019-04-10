@@ -18,9 +18,9 @@ namespace SP.Service.EntityFramework.Repositories
             var result = this.Insert(entity);
             return result > 0;
         }
-        public bool UpdateAssociator(CouponsEntity entity)
+        public bool Update(CouponsEntity entity)
         {
-            var result = this.UpdateNonDefaults(entity, x => x.AssociatorId == entity.AssociatorId);
+            var result = this.UpdateNonDefaults(entity, x => x.CouponId == entity.CouponId);
             return result > 0;
         }
         public List<CouponsFullEntity> GetAccountCouponsList(string accountId)

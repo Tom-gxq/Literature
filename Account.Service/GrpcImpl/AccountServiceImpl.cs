@@ -1033,5 +1033,40 @@ namespace Account.Service.GrpcImpl
             logger.LogInformation(this.prjLicEID, "CreateWxOpenId {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
+
+        public override Task<AccountResultResponse> AddCoupon(AddCouponRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} AddCoupon Connected! AccountId:[{AccountId}]   KindId:[{KindId}]",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.AccountId, request.KindId);
+            var response = new AccountResultResponse();
+            response.Status = 10002;
+            try
+            {
+                response = AccountBusiness.AddCoupon(request.KindId, request.AccountId);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "AddCoupon Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "AddCoupon {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+        public override Task<AccountResultResponse> UpdateCoupon(UpdateCouponRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} UpdateCoupon Connected! PayType:[{PayType}]   KindId:[{KindId}]   Type:[{Type}]   PayAmount:[{PayAmount}]",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.PayType, request.KindId, request.Type, request.PayAmount);
+            var response = new AccountResultResponse();
+            response.Status = 10002;
+            try
+            {
+                response = AccountBusiness.UpdateCoupon(request.KindId, request.PayAmount, request.PayType, request.Type);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "UpdateCoupon Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "UpdateCoupon {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
     }
 }

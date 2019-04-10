@@ -18,6 +18,7 @@ namespace Account.Service.Business
         private static SysKindReportDatabase _kindReportDatabase;
         private static AccountInfoReportDatabase _accountInfoReportDatabase;
         private static TradeReportDatabase _tradeReportDatabase;
+        private static CouponsReportDatabase _couponsReportDatabase;
         private static bool _isInitialized;
         private static readonly object _lockThis = new object();
 
@@ -36,6 +37,7 @@ namespace Account.Service.Business
                     _kindReportDatabase = IocManager.Instance.Resolve(typeof(SysKindReportDatabase)) as SysKindReportDatabase;
                     _accountInfoReportDatabase = IocManager.Instance.Resolve(typeof(AccountInfoReportDatabase)) as AccountInfoReportDatabase;
                     _tradeReportDatabase = IocManager.Instance.Resolve(typeof(TradeReportDatabase)) as TradeReportDatabase;
+                    _couponsReportDatabase = IocManager.Instance.Resolve(typeof(CouponsReportDatabase)) as CouponsReportDatabase;
                     _isInitialized = true;
                 }
             }
@@ -78,6 +80,11 @@ namespace Account.Service.Business
         public static TradeReportDatabase TradeReportDatabase
         {
             get { return _tradeReportDatabase; }
+        }
+
+        public static CouponsReportDatabase CouponsReportDatabase
+        {
+            get { return _couponsReportDatabase; }
         }
     }
 }

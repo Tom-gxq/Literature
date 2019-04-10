@@ -225,6 +225,15 @@ namespace SP.Service.Domain.EventHandlers.Execute
                 case EventType.SellerProductDel:
                     ExecuteEvent<SellerProductDelEvent>(text);
                     break;
+                case EventType.CouponCreated:
+                    ExecuteEvent<CouponCreatedEvent>(text);
+                    break;
+                case EventType.CouponPayed:
+                    ExecuteEvent<CouponPayedEvent>(text);
+                    break;
+                case EventType.CouponUsed:
+                    ExecuteEvent<CouponUsedEvent>(text);
+                    break;
                 default:
                     throw new UnregisteredDomainCommandException($" unknown event: [{text}]");
 

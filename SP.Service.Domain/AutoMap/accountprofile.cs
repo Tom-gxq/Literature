@@ -113,6 +113,26 @@ namespace SP.Service.Domain.AutoMap
                 .ForSourceMember(command => command.CommandType, domain => domain.Ignore())
                 .ForSourceMember(command => command.ExcuteStatus, domain => domain.Ignore())
                 .ForSourceMember(command => command.TopicTitle, domain => domain.Ignore());
+            // 输入
+            CreateMap<CreateCouponCommand, CouponsDomain>()
+                .ForSourceMember(command => command.CommandType, domain => domain.Ignore())
+                .ForSourceMember(command => command.ExcuteStatus, domain => domain.Ignore())
+                .ForSourceMember(command => command.TopicTitle, domain => domain.Ignore());
+            // 输入
+            CreateMap<EditCouponCommand, CouponsDomain>()
+                .ForSourceMember(command => command.CommandType, domain => domain.Ignore())
+                .ForSourceMember(command => command.ExcuteStatus, domain => domain.Ignore())
+                .ForSourceMember(command => command.TopicTitle, domain => domain.Ignore());
+            // 输入
+            CreateMap<PayCouponCommand, CouponsDomain>()
+                .ForSourceMember(command => command.CommandType, domain => domain.Ignore())
+                .ForSourceMember(command => command.ExcuteStatus, domain => domain.Ignore())
+                .ForSourceMember(command => command.TopicTitle, domain => domain.Ignore());
+            // 输入
+            CreateMap<UseCouponCommand, CouponsDomain>()
+                .ForSourceMember(command => command.CommandType, domain => domain.Ignore())
+                .ForSourceMember(command => command.ExcuteStatus, domain => domain.Ignore())
+                .ForSourceMember(command => command.TopicTitle, domain => domain.Ignore());
         }
     }
 }

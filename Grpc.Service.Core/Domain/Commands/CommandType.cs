@@ -17,6 +17,7 @@ namespace Grpc.Service.Core.Domain.Commands
         CreateAccountPayPwd,
         CreateApplyPartner,
         CreateOtherAccount,
+        CreateCoupon,
         DelAccessToken,
         DelAddress,
         EditAccount,
@@ -29,6 +30,9 @@ namespace Grpc.Service.Core.Domain.Commands
         EditAuthentication,
         CreateWxOpenId,
         EditWxUnionId,
+        EditCoupon,
+        PayCoupon,
+        UseCoupon,
         //Order
         CreateCashApply,
         CreateOrder,

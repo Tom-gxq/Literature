@@ -191,6 +191,18 @@ namespace SP.Service.Domain.CommandHandlers.Execute
                 case CommandType.DelSellerProduct:
                     ExecuteCommand<DelSellerProductCommand>(text);
                     break;
+                case CommandType.CreateCoupon:
+                    ExecuteCommand<CreateCouponCommand>(text);
+                    break;
+                case CommandType.EditCoupon:
+                    ExecuteCommand<EditCouponCommand>(text);
+                    break;
+                case CommandType.PayCoupon:
+                    ExecuteCommand<PayCouponCommand>(text);
+                    break;
+                case CommandType.UseCoupon:
+                    ExecuteCommand<UseCouponCommand>(text);
+                    break;
                 default:
                     throw new UnregisteredDomainCommandException($" unknown command: [{text}]");
             }

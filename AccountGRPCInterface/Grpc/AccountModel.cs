@@ -89,61 +89,64 @@ namespace SP.Service {
             "cGF5T3JkZXJDb2RlGAYgASgJEg8KB3BheVR5cGUYByABKAUiWAoWQXNzb2Np",
             "YXRvckxpc3RSZXNwb25zZRIOCgZzdGF0dXMYASABKAUSLgoOYXNzb2NpYXRv",
             "ckxpc3QYAiADKAsyFi5TUC5TZXJ2aWNlLkFzc29jaWF0b3IiIQoRR2V0U3lz",
-            "S2luZFJlcXVlc3QSDAoEa2luZBgBIAEoBSKSAQoHU3lzS2luZBIOCgZraW5k",
+            "S2luZFJlcXVlc3QSDAoEa2luZBgBIAEoBSKfAQoHU3lzS2luZBIOCgZraW5k",
             "SWQYASABKAkSDAoEa2luZBgCIAEoBRIQCghxdWFudGl0eRgDIAEoBRIMCgR1",
             "bml0GAQgASgFEg0KBXByaWNlGAUgASgBEhMKC2Rlc2NyaXB0aW9uGAYgASgJ",
-            "EhUKDWRpc2NvdW50VmFsdWUYByABKAESDgoGYW1vdW50GAggASgBIkwKE1N5",
-            "c0tpbmRMaXN0UmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEiUKCGtpbmRMaXN0",
-            "GAIgAygLMhMuU1AuU2VydmljZS5TeXNLaW5kIqEBCgdDb3Vwb25zEhAKCGNv",
-            "dXBvbklkGAEgASgJEhEKCXN0YXJ0RGF0ZRgCIAEoAxIPCgdlbmREYXRlGAMg",
-            "ASgDEg4KBnN0YXR1cxgEIAEoBRIOCgZhbW91bnQYBSABKAESEwoLZGVzY3Jp",
-            "cHRpb24YBiABKAkSEgoKbW9kZUFtb3VudBgHIAEoARIXCg9tb2RlRGVzY3Jp",
-            "cHRpb24YCCABKAkiTwoTQ291cG9uc0xpc3RSZXNwb25zZRIOCgZzdGF0dXMY",
-            "ASABKAUSKAoLY291cG9uc0xpc3QYAiADKAsyEy5TUC5TZXJ2aWNlLkNvdXBv",
-            "bnMimgEKF0FjY291bnRGdWxsSW5mb1Jlc3BvbnNlEg4KBnN0YXR1cxgBIAEo",
-            "BRIOCgZhdmF0YXIYAiABKAkSEAoIZnVsbE5hbWUYAyABKAkSDgoGZ2VuZGVy",
-            "GAQgASgIEhMKC3BheVBhc3NXb3JkGAUgASgJEhAKCHVzZXJUeXBlGAYgASgF",
-            "EhYKDmFzc29jaWF0b3JEYXRlGAcgASgDIn8KFkFjY291bnRGdWxsSW5mb1Jl",
-            "cXVlc3QSEQoJYWNjb3VudElkGAEgASgJEg4KBmF2YXRhchgCIAEoCRIQCghm",
-            "dWxsTmFtZRgDIAEoCRIOCgZnZW5kZXIYBCABKAgSEAoIdXNlclR5cGUYBSAB",
-            "KAUSDgoGZG9ybUlkGAYgASgFIjIKD0Rpc2NvdW50UmVxdWVzdBIRCglhY2Nv",
-            "dW50SWQYASABKAkSDAoEa2luZBgCIAEoBSIrChNBc3NvY2lhdG9ySWRSZXF1",
-            "ZXN0EhQKDGFzc29jaWF0b3JJZBgBIAEoCSJQChJBc3NvY2lhdG9yUmVzcG9u",
-            "c2USDgoGc3RhdHVzGAEgASgFEioKCmFzc29jaWF0b3IYAiABKAsyFi5TUC5T",
-            "ZXJ2aWNlLkFzc29jaWF0b3IiRQodVXBkYXRlQXNzb2NpYXRvclN0YXR1c1Jl",
-            "cXVlc3QSFAoMYXNzb2NpYXRvcklkGAEgASgJEg4KBnN0YXR1cxgCIAEoBSJN",
-            "ChVNeVNob3BwaW5nQ2FydFJlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEg8K",
-            "B29yZGVySWQYAiABKAkSEAoIdXNlclR5cGUYAyABKAUiOQoUQWNjb3VudFBh",
-            "eVB3ZFJlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEg4KBnBheVB3ZBgCIAEo",
-            "CSKCAQoSQmluZ0FjY291bnRSZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIR",
-            "CglvdGhlclR5cGUYAiABKAUSFAoMb3RoZXJBY2NvdW50GAMgASgJEg4KBmF2",
-            "YXRhchgEIAEoCRIQCghmdWxsTmFtZRgFIAEoCRIOCgZnZW5kZXIYBiABKAgi",
-            "hQEKE090aGVyQWNjb3VudFJlcXVlc3QSEwoLbW9iaWxlUGhvbmUYASABKAkS",
-            "EQoJb3RoZXJUeXBlGAIgASgFEhQKDG90aGVyQWNjb3VudBgDIAEoCRIOCgZh",
-            "dmF0YXIYBCABKAkSEAoIZnVsbE5hbWUYBSABKAkSDgoGZ2VuZGVyGAYgASgI",
-            "IkEKFkdldE90aGVyQWNjb3VudFJlcXVlc3QSEQoJb3RoZXJUeXBlGAIgASgF",
-            "EhQKDG90aGVyQWNjb3VudBgDIAEoCSI+ChRBY2NvdW50TW9iaWxlUmVxdWVz",
-            "dBIRCglhY2NvdW50SWQYASABKAkSEwoLbW9iaWxlUGhvbmUYAiABKAkiWQoQ",
-            "QWNjb3VudElEUmVxdWVzdBIQCgh1c2VyVHlwZRgBIAEoBRIOCgZkb3JtSWQY",
-            "AiABKAUSEQoJYWNjb3VudElkGAMgASgJEhAKCGZ1bGxOYW1lGAQgASgJIjgK",
-            "E0FwcGx5UGFydG5lclJlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEg4KBmRv",
-            "cm1JZBgCIAEoBSI9ChZHZXRTaG9wcGluZ0NhcnRSZXF1ZXN0EhEKCWFjY291",
-            "bnRJZBgBIAEoCRIQCgh1c2VyVHlwZRgCIAEoBSIvChVBc3NvY2lhdG9yQ29k",
-            "ZVJlcXVlc3QSFgoOYXNzb2NpYXRvckNvZGUYASABKAkiOAoSQ2hpbGRSZWdp",
-            "b25SZXF1ZXN0Eg4KBmRhdGFJZBgBIAEoBRISCgp1cGRhdGVUaW1lGAIgASgD",
-            "IngKEUJhbGFuY2VQYXlSZXF1ZXN0Eg0KBXRva2VuGAEgASgJEhAKCHBhc3NX",
-            "b3JkGAIgASgJEg4KBmFtb3VudBgDIAEoARIRCglvcmRlckNvZGUYBCABKAkS",
-            "EQoJYWNjb3VudElkGAUgASgJEgwKBHNpZ24YBiABKAkiYQoFVHJhZGUSDAoE",
-            "dHlwZRgBIAEoBRISCgpjcmVhdGVUaW1lGAIgASgDEg8KB3RyYWRlTm8YAyAB",
-            "KAkSFQoNYmFsYW5jZUFtb3VudBgEIAEoARIOCgZhbW91bnQYBSABKAEiSQoR",
-            "VHJhZGVMaXN0UmVzcG9uc2USDgoGc3RhdHVzGAEgASgFEiQKCXRyYWRlTGlz",
-            "dBgCIAMoCzIRLlNQLlNlcnZpY2UuVHJhZGUiSgoQVHJhZGVMaXN0UmVxdWVz",
-            "dBIRCglhY2NvdW50SWQYASABKAkSEQoJcGFnZUluZGV4GAIgASgFEhAKCHBh",
-            "Z2VTaXplGAMgASgFIjMKElRyYWRlVG90YWxSZXNwb25zZRIOCgZzdGF0dXMY",
-            "ASABKAUSDQoFdG90YWwYAiABKAMiOAoQV3hVbmlvbklkUmVxdWVzdBIRCglh",
-            "Y2NvdW50SWQYASABKAkSEQoJd3hVbmlvbklkGAIgASgJIkYKD1d4T3Blbklk",
-            "UmVxdWVzdBIRCglhY2NvdW50SWQYASABKAkSEAoId3hPcGVuSWQYAiABKAkS",
-            "DgoGd3hUeXBlGAMgASgFYgZwcm90bzM="));
+            "EhUKDWRpc2NvdW50VmFsdWUYByABKAESDgoGYW1vdW50GAggASgBEgsKA251",
+            "bRgJIAEoBSJMChNTeXNLaW5kTGlzdFJlc3BvbnNlEg4KBnN0YXR1cxgBIAEo",
+            "BRIlCghraW5kTGlzdBgCIAMoCzITLlNQLlNlcnZpY2UuU3lzS2luZCKhAQoH",
+            "Q291cG9ucxIQCghjb3Vwb25JZBgBIAEoCRIRCglzdGFydERhdGUYAiABKAMS",
+            "DwoHZW5kRGF0ZRgDIAEoAxIOCgZzdGF0dXMYBCABKAUSDgoGYW1vdW50GAUg",
+            "ASgBEhMKC2Rlc2NyaXB0aW9uGAYgASgJEhIKCm1vZGVBbW91bnQYByABKAES",
+            "FwoPbW9kZURlc2NyaXB0aW9uGAggASgJIk8KE0NvdXBvbnNMaXN0UmVzcG9u",
+            "c2USDgoGc3RhdHVzGAEgASgFEigKC2NvdXBvbnNMaXN0GAIgAygLMhMuU1Au",
+            "U2VydmljZS5Db3Vwb25zIpoBChdBY2NvdW50RnVsbEluZm9SZXNwb25zZRIO",
+            "CgZzdGF0dXMYASABKAUSDgoGYXZhdGFyGAIgASgJEhAKCGZ1bGxOYW1lGAMg",
+            "ASgJEg4KBmdlbmRlchgEIAEoCBITCgtwYXlQYXNzV29yZBgFIAEoCRIQCgh1",
+            "c2VyVHlwZRgGIAEoBRIWCg5hc3NvY2lhdG9yRGF0ZRgHIAEoAyJ/ChZBY2Nv",
+            "dW50RnVsbEluZm9SZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIOCgZhdmF0",
+            "YXIYAiABKAkSEAoIZnVsbE5hbWUYAyABKAkSDgoGZ2VuZGVyGAQgASgIEhAK",
+            "CHVzZXJUeXBlGAUgASgFEg4KBmRvcm1JZBgGIAEoBSIyCg9EaXNjb3VudFJl",
+            "cXVlc3QSEQoJYWNjb3VudElkGAEgASgJEgwKBGtpbmQYAiABKAUiKwoTQXNz",
+            "b2NpYXRvcklkUmVxdWVzdBIUCgxhc3NvY2lhdG9ySWQYASABKAkiUAoSQXNz",
+            "b2NpYXRvclJlc3BvbnNlEg4KBnN0YXR1cxgBIAEoBRIqCgphc3NvY2lhdG9y",
+            "GAIgASgLMhYuU1AuU2VydmljZS5Bc3NvY2lhdG9yIkUKHVVwZGF0ZUFzc29j",
+            "aWF0b3JTdGF0dXNSZXF1ZXN0EhQKDGFzc29jaWF0b3JJZBgBIAEoCRIOCgZz",
+            "dGF0dXMYAiABKAUiTQoVTXlTaG9wcGluZ0NhcnRSZXF1ZXN0EhEKCWFjY291",
+            "bnRJZBgBIAEoCRIPCgdvcmRlcklkGAIgASgJEhAKCHVzZXJUeXBlGAMgASgF",
+            "IjkKFEFjY291bnRQYXlQd2RSZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIO",
+            "CgZwYXlQd2QYAiABKAkiggEKEkJpbmdBY2NvdW50UmVxdWVzdBIRCglhY2Nv",
+            "dW50SWQYASABKAkSEQoJb3RoZXJUeXBlGAIgASgFEhQKDG90aGVyQWNjb3Vu",
+            "dBgDIAEoCRIOCgZhdmF0YXIYBCABKAkSEAoIZnVsbE5hbWUYBSABKAkSDgoG",
+            "Z2VuZGVyGAYgASgIIoUBChNPdGhlckFjY291bnRSZXF1ZXN0EhMKC21vYmls",
+            "ZVBob25lGAEgASgJEhEKCW90aGVyVHlwZRgCIAEoBRIUCgxvdGhlckFjY291",
+            "bnQYAyABKAkSDgoGYXZhdGFyGAQgASgJEhAKCGZ1bGxOYW1lGAUgASgJEg4K",
+            "BmdlbmRlchgGIAEoCCJBChZHZXRPdGhlckFjY291bnRSZXF1ZXN0EhEKCW90",
+            "aGVyVHlwZRgCIAEoBRIUCgxvdGhlckFjY291bnQYAyABKAkiPgoUQWNjb3Vu",
+            "dE1vYmlsZVJlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEhMKC21vYmlsZVBo",
+            "b25lGAIgASgJIlkKEEFjY291bnRJRFJlcXVlc3QSEAoIdXNlclR5cGUYASAB",
+            "KAUSDgoGZG9ybUlkGAIgASgFEhEKCWFjY291bnRJZBgDIAEoCRIQCghmdWxs",
+            "TmFtZRgEIAEoCSI4ChNBcHBseVBhcnRuZXJSZXF1ZXN0EhEKCWFjY291bnRJ",
+            "ZBgBIAEoCRIOCgZkb3JtSWQYAiABKAUiPQoWR2V0U2hvcHBpbmdDYXJ0UmVx",
+            "dWVzdBIRCglhY2NvdW50SWQYASABKAkSEAoIdXNlclR5cGUYAiABKAUiLwoV",
+            "QXNzb2NpYXRvckNvZGVSZXF1ZXN0EhYKDmFzc29jaWF0b3JDb2RlGAEgASgJ",
+            "IjgKEkNoaWxkUmVnaW9uUmVxdWVzdBIOCgZkYXRhSWQYASABKAUSEgoKdXBk",
+            "YXRlVGltZRgCIAEoAyJ4ChFCYWxhbmNlUGF5UmVxdWVzdBINCgV0b2tlbhgB",
+            "IAEoCRIQCghwYXNzV29yZBgCIAEoCRIOCgZhbW91bnQYAyABKAESEQoJb3Jk",
+            "ZXJDb2RlGAQgASgJEhEKCWFjY291bnRJZBgFIAEoCRIMCgRzaWduGAYgASgJ",
+            "ImEKBVRyYWRlEgwKBHR5cGUYASABKAUSEgoKY3JlYXRlVGltZRgCIAEoAxIP",
+            "Cgd0cmFkZU5vGAMgASgJEhUKDWJhbGFuY2VBbW91bnQYBCABKAESDgoGYW1v",
+            "dW50GAUgASgBIkkKEVRyYWRlTGlzdFJlc3BvbnNlEg4KBnN0YXR1cxgBIAEo",
+            "BRIkCgl0cmFkZUxpc3QYAiADKAsyES5TUC5TZXJ2aWNlLlRyYWRlIkoKEFRy",
+            "YWRlTGlzdFJlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEhEKCXBhZ2VJbmRl",
+            "eBgCIAEoBRIQCghwYWdlU2l6ZRgDIAEoBSIzChJUcmFkZVRvdGFsUmVzcG9u",
+            "c2USDgoGc3RhdHVzGAEgASgFEg0KBXRvdGFsGAIgASgDIjgKEFd4VW5pb25J",
+            "ZFJlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEhEKCXd4VW5pb25JZBgCIAEo",
+            "CSJGCg9XeE9wZW5JZFJlcXVlc3QSEQoJYWNjb3VudElkGAEgASgJEhAKCHd4",
+            "T3BlbklkGAIgASgJEg4KBnd4VHlwZRgDIAEoBSI1ChBBZGRDb3Vwb25SZXF1",
+            "ZXN0Eg4KBmtpbmRJZBgBIAEoCRIRCglhY2NvdW50SWQYAiABKAkiVwoTVXBk",
+            "YXRlQ291cG9uUmVxdWVzdBIOCgZraW5kSWQYASABKAkSDwoHcGF5VHlwZRgC",
+            "IAEoBRIRCglwYXlBbW91bnQYAyABKAESDAoEdHlwZRgEIAEoBWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -183,7 +186,7 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AddAssociatorRequest), global::SP.Service.AddAssociatorRequest.Parser, new[]{ "AccountId", "KindId", "Quantity", "Amount", "PayOrderCode", "PayType" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AssociatorListResponse), global::SP.Service.AssociatorListResponse.Parser, new[]{ "Status", "AssociatorList" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.GetSysKindRequest), global::SP.Service.GetSysKindRequest.Parser, new[]{ "Kind" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SysKind), global::SP.Service.SysKind.Parser, new[]{ "KindId", "Kind", "Quantity", "Unit", "Price", "Description", "DiscountValue", "Amount" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SysKind), global::SP.Service.SysKind.Parser, new[]{ "KindId", "Kind", "Quantity", "Unit", "Price", "Description", "DiscountValue", "Amount", "Num" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.SysKindListResponse), global::SP.Service.SysKindListResponse.Parser, new[]{ "Status", "KindList" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.Coupons), global::SP.Service.Coupons.Parser, new[]{ "CouponId", "StartDate", "EndDate", "Status", "Amount", "Description", "ModeAmount", "ModeDescription" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.CouponsListResponse), global::SP.Service.CouponsListResponse.Parser, new[]{ "Status", "CouponsList" }, null, null, null),
@@ -210,7 +213,9 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TradeListRequest), global::SP.Service.TradeListRequest.Parser, new[]{ "AccountId", "PageIndex", "PageSize" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TradeTotalResponse), global::SP.Service.TradeTotalResponse.Parser, new[]{ "Status", "Total" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.WxUnionIdRequest), global::SP.Service.WxUnionIdRequest.Parser, new[]{ "AccountId", "WxUnionId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.WxOpenIdRequest), global::SP.Service.WxOpenIdRequest.Parser, new[]{ "AccountId", "WxOpenId", "WxType" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.WxOpenIdRequest), global::SP.Service.WxOpenIdRequest.Parser, new[]{ "AccountId", "WxOpenId", "WxType" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AddCouponRequest), global::SP.Service.AddCouponRequest.Parser, new[]{ "KindId", "AccountId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.UpdateCouponRequest), global::SP.Service.UpdateCouponRequest.Parser, new[]{ "KindId", "PayType", "PayAmount", "Type" }, null, null, null)
           }));
     }
     #endregion
@@ -7047,6 +7052,7 @@ namespace SP.Service {
       description_ = other.description_;
       discountValue_ = other.discountValue_;
       amount_ = other.amount_;
+      num_ = other.num_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7174,6 +7180,21 @@ namespace SP.Service {
       }
     }
 
+    /// <summary>Field number for the "num" field.</summary>
+    public const int NumFieldNumber = 9;
+    private int num_;
+    /// <summary>
+    ///*
+    ///  单张优惠券的数量
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Num {
+      get { return num_; }
+      set {
+        num_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as SysKind);
@@ -7195,6 +7216,7 @@ namespace SP.Service {
       if (Description != other.Description) return false;
       if (DiscountValue != other.DiscountValue) return false;
       if (Amount != other.Amount) return false;
+      if (Num != other.Num) return false;
       return true;
     }
 
@@ -7209,6 +7231,7 @@ namespace SP.Service {
       if (Description.Length != 0) hash ^= Description.GetHashCode();
       if (DiscountValue != 0D) hash ^= DiscountValue.GetHashCode();
       if (Amount != 0D) hash ^= Amount.GetHashCode();
+      if (Num != 0) hash ^= Num.GetHashCode();
       return hash;
     }
 
@@ -7251,6 +7274,10 @@ namespace SP.Service {
         output.WriteRawTag(65);
         output.WriteDouble(Amount);
       }
+      if (Num != 0) {
+        output.WriteRawTag(72);
+        output.WriteInt32(Num);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7279,6 +7306,9 @@ namespace SP.Service {
       }
       if (Amount != 0D) {
         size += 1 + 8;
+      }
+      if (Num != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Num);
       }
       return size;
     }
@@ -7311,6 +7341,9 @@ namespace SP.Service {
       }
       if (other.Amount != 0D) {
         Amount = other.Amount;
+      }
+      if (other.Num != 0) {
+        Num = other.Num;
       }
     }
 
@@ -7352,6 +7385,10 @@ namespace SP.Service {
           }
           case 65: {
             Amount = input.ReadDouble();
+            break;
+          }
+          case 72: {
+            Num = input.ReadInt32();
             break;
           }
         }
@@ -12621,6 +12658,384 @@ namespace SP.Service {
           }
           case 24: {
             WxType = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 添加优惠券的请求参数
+  /// </summary>
+  public sealed partial class AddCouponRequest : pb::IMessage<AddCouponRequest> {
+    private static readonly pb::MessageParser<AddCouponRequest> _parser = new pb::MessageParser<AddCouponRequest>(() => new AddCouponRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<AddCouponRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[64]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AddCouponRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AddCouponRequest(AddCouponRequest other) : this() {
+      kindId_ = other.kindId_;
+      accountId_ = other.accountId_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AddCouponRequest Clone() {
+      return new AddCouponRequest(this);
+    }
+
+    /// <summary>Field number for the "kindId" field.</summary>
+    public const int KindIdFieldNumber = 1;
+    private string kindId_ = "";
+    /// <summary>
+    ///*
+    ///  优惠券ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string KindId {
+      get { return kindId_; }
+      set {
+        kindId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "accountId" field.</summary>
+    public const int AccountIdFieldNumber = 2;
+    private string accountId_ = "";
+    /// <summary>
+    ///*
+    ///  账户ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AccountId {
+      get { return accountId_; }
+      set {
+        accountId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as AddCouponRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(AddCouponRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (KindId != other.KindId) return false;
+      if (AccountId != other.AccountId) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (KindId.Length != 0) hash ^= KindId.GetHashCode();
+      if (AccountId.Length != 0) hash ^= AccountId.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (KindId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(KindId);
+      }
+      if (AccountId.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(AccountId);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (KindId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(KindId);
+      }
+      if (AccountId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountId);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(AddCouponRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.KindId.Length != 0) {
+        KindId = other.KindId;
+      }
+      if (other.AccountId.Length != 0) {
+        AccountId = other.AccountId;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            KindId = input.ReadString();
+            break;
+          }
+          case 18: {
+            AccountId = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 更新优惠券的请求参数
+  /// </summary>
+  public sealed partial class UpdateCouponRequest : pb::IMessage<UpdateCouponRequest> {
+    private static readonly pb::MessageParser<UpdateCouponRequest> _parser = new pb::MessageParser<UpdateCouponRequest>(() => new UpdateCouponRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<UpdateCouponRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[65]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UpdateCouponRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UpdateCouponRequest(UpdateCouponRequest other) : this() {
+      kindId_ = other.kindId_;
+      payType_ = other.payType_;
+      payAmount_ = other.payAmount_;
+      type_ = other.type_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UpdateCouponRequest Clone() {
+      return new UpdateCouponRequest(this);
+    }
+
+    /// <summary>Field number for the "kindId" field.</summary>
+    public const int KindIdFieldNumber = 1;
+    private string kindId_ = "";
+    /// <summary>
+    ///*
+    ///  优惠券ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string KindId {
+      get { return kindId_; }
+      set {
+        kindId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "payType" field.</summary>
+    public const int PayTypeFieldNumber = 2;
+    private int payType_;
+    /// <summary>
+    ///*
+    ///  支付类型
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int PayType {
+      get { return payType_; }
+      set {
+        payType_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "payAmount" field.</summary>
+    public const int PayAmountFieldNumber = 3;
+    private double payAmount_;
+    /// <summary>
+    ///*
+    ///  支付金额
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public double PayAmount {
+      get { return payAmount_; }
+      set {
+        payAmount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "type" field.</summary>
+    public const int TypeFieldNumber = 4;
+    private int type_;
+    /// <summary>
+    ///*
+    ///  更新类型(0:支付更新 1:使用更新)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Type {
+      get { return type_; }
+      set {
+        type_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as UpdateCouponRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(UpdateCouponRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (KindId != other.KindId) return false;
+      if (PayType != other.PayType) return false;
+      if (PayAmount != other.PayAmount) return false;
+      if (Type != other.Type) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (KindId.Length != 0) hash ^= KindId.GetHashCode();
+      if (PayType != 0) hash ^= PayType.GetHashCode();
+      if (PayAmount != 0D) hash ^= PayAmount.GetHashCode();
+      if (Type != 0) hash ^= Type.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (KindId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(KindId);
+      }
+      if (PayType != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(PayType);
+      }
+      if (PayAmount != 0D) {
+        output.WriteRawTag(25);
+        output.WriteDouble(PayAmount);
+      }
+      if (Type != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(Type);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (KindId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(KindId);
+      }
+      if (PayType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PayType);
+      }
+      if (PayAmount != 0D) {
+        size += 1 + 8;
+      }
+      if (Type != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Type);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(UpdateCouponRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.KindId.Length != 0) {
+        KindId = other.KindId;
+      }
+      if (other.PayType != 0) {
+        PayType = other.PayType;
+      }
+      if (other.PayAmount != 0D) {
+        PayAmount = other.PayAmount;
+      }
+      if (other.Type != 0) {
+        Type = other.Type;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            KindId = input.ReadString();
+            break;
+          }
+          case 16: {
+            PayType = input.ReadInt32();
+            break;
+          }
+          case 25: {
+            PayAmount = input.ReadDouble();
+            break;
+          }
+          case 32: {
+            Type = input.ReadInt32();
             break;
           }
         }

@@ -269,6 +269,24 @@ namespace AccountGRPCInterface
                 return string.Empty;
             }
         }
+        public static bool AddCoupon(SysKindModel model,string accountId)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request = new AddCouponRequest()
+            {
+                KindId = model.KindId,
+                AccountId = accountId,
+            };
+            var result = client.AddCoupon(request);
+            if (result.Status == 10001)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public static bool UpdateAssociatorStatus(AssociatorModel model)
         {
             var client = AccountClientHelper.GetClient();
@@ -377,6 +395,7 @@ namespace AccountGRPCInterface
                     domain.Description = item.Description;
                     domain.DiscountValue = item.DiscountValue;
                     domain.Amount = item.Amount;
+                    domain.Num = item.Num;
                     list.Add(domain);
                 }
             }

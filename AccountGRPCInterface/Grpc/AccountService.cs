@@ -23,7 +23,7 @@ namespace SP.Service {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChRBY2NvdW50U2VydmljZS5wcm90bxIKU1AuU2VydmljZRoRQ29tbW9uTW9k",
-            "ZWwucHJvdG8aEkFjY291bnRNb2RlbC5wcm90bzKYJwoOQWNjb3VudFNlcnZp",
+            "ZWwucHJvdG8aEkFjY291bnRNb2RlbC5wcm90bzK+KAoOQWNjb3VudFNlcnZp",
             "Y2USTwoNUmVnaXN0QWNjb3VudBIZLlNQLlNlcnZpY2UuUmVnaXN0UmVxdWVz",
             "dBohLlNQLlNlcnZpY2UuQWNjb3VudFJlc3VsdFJlc3BvbnNlIgASVgoNVXBk",
             "YXRlQWNjb3VudBIgLlNQLlNlcnZpY2UuVXBkYXRlQWNjb3VudFJlcXVlc3Qa",
@@ -135,7 +135,11 @@ namespace SP.Service {
             "dmljZS5XeFVuaW9uSWRSZXF1ZXN0GiEuU1AuU2VydmljZS5BY2NvdW50UmVz",
             "dWx0UmVzcG9uc2UiABJSCg5DcmVhdGVXeE9wZW5JZBIbLlNQLlNlcnZpY2Uu",
             "V3hPcGVuSWRSZXF1ZXN0GiEuU1AuU2VydmljZS5BY2NvdW50UmVzdWx0UmVz",
-            "cG9uc2UiAGIGcHJvdG8z"));
+            "cG9uc2UiABJOCglBZGRDb3Vwb24SHC5TUC5TZXJ2aWNlLkFkZENvdXBvblJl",
+            "cXVlc3QaIS5TUC5TZXJ2aWNlLkFjY291bnRSZXN1bHRSZXNwb25zZSIAElQK",
+            "DFVwZGF0ZUNvdXBvbhIfLlNQLlNlcnZpY2UuVXBkYXRlQ291cG9uUmVxdWVz",
+            "dBohLlNQLlNlcnZpY2UuQWNjb3VudFJlc3VsdFJlc3BvbnNlIgBiBnByb3Rv",
+            "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, global::SP.Service.AccountModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null));

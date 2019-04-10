@@ -13,6 +13,7 @@ namespace SP.Service.Entity
         public int? Kind { get; set; }
         public string SaleModeId { get; set; }
         public int? Quantity { get; set; }
+        public int? Num { get; set; }
         public int? Unit { get; set; }
         public double? Price { get; set; }
         public string Description { get; set; }

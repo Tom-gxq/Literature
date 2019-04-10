@@ -15,5 +15,6 @@ namespace SP.Api.Model.Account
         public string Description { get; set; }
         public double DiscountValue { get; set; }
         public double Amount { get; set; }
+        public int Num { get; set; }
     }
 }

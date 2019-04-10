@@ -79,5 +79,8 @@ namespace Grpc.Service.Core.Domain.Events
         WxOpenIdCreate,
         SellerProductCreated,
         SellerProductDel,
+        CouponCreated,
+        CouponPayed,
+        CouponUsed,
     }
 }

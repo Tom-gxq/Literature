@@ -97,18 +97,16 @@ namespace WebApiGateway.Controllers.Account
         }
 
         [System.Web.Mvc.HttpPost]
-        public ActionResult BuyCoupons([FromBody]AssociatorModel model)
+        public ActionResult BuyCoupons([FromBody]SysKindModel model)
         {
             var result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                model.accountId = currentAccount.AccountId;
-                var retValue = AccountBusiness.AddAssociator(model);
-                if (!string.IsNullOrEmpty(retValue))
+                var retValue = AccountBusiness.AddCoupon(model, currentAccount.AccountId);
+                if (retValue)
                 {
                     JsonResult.Add("status", 0);
-                    JsonResult.Add("associatorId", retValue);
                 }
                 else
                 {

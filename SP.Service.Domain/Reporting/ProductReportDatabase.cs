@@ -197,12 +197,18 @@ namespace SP.Service.Domain.Reporting
             foreach (var item in productList)
             {
                 var domain = GetProductDomainById(item);
-                var host = OrderCommon.GetHost();
-                var response = StockBusiness.GetProductSku(host, item.ProductId, domain.ShopId);
-                if (response.Sku != null && response.Sku.Count > 0)
+                try
                 {
-                    domain.SkuNum = response.Sku[0].Stock;
-                    domain.SkuId = response.Sku[0].SkuId;
+                    var host = OrderCommon.GetHost();
+                    var response = StockBusiness.GetProductSku(host, item.ProductId, domain.ShopId);
+                    if (response.Sku != null && response.Sku.Count > 0)
+                    {
+                        domain.SkuNum = response.Sku[0].Stock;
+                        domain.SkuId = response.Sku[0].SkuId;
+                    }                    
+                }
+                catch
+                {
                 }
                 domainList.Add(domain);
             }

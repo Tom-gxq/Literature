@@ -212,5 +212,25 @@ namespace WebApiGateway.Controllers.Product
             result.Data = JsonResult;
             return result;
         }
+
+        [System.Web.Mvc.HttpPost]
+        public ActionResult GetProductDetail(string productId)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            try
+            {
+                var model = ProductBusiness.GetProductDetail(productId);
+                JsonResult.Add("product", model);
+                JsonResult.Add("status", 0);
+            }
+            catch (Exception ex)
+            {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
+            }
+            result.Data = JsonResult;
+            return result;
+        }
     }
 }
