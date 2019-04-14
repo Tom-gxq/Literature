@@ -341,6 +341,7 @@
     <Compile Include="Models\SellerViewModel.cs" />
     <Compile Include="Models\ShopDetailsViewModel.cs" />
     <Compile Include="Models\ShopManagerViewModel.cs" />
+    <Compile Include="Models\ShopsViewModel.cs" />
     <Compile Include="Models\ShopViewModel.cs" />
     <Compile Include="Models\SP.Context.cs">
       <AutoGen>True</AutoGen>
@@ -498,6 +499,7 @@
     <Compile Include="Models\SP_UserShipping.cs">
       <DependentUpon>SP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RegionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

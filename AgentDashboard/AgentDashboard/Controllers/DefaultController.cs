@@ -79,15 +79,13 @@ namespace AgentDashboard.Controllers
                 var finace = sPEntities.SP_AccountFinance.SingleOrDefault(x=>x.AccountId == accountId);
                 if(finace != null)
                 {
-                    
                     var cashList = sPEntities.SP_CashApply.Where(x => x.AccountId == accountId && x.Status == 0).ToList();
                     var sum = cashList.Sum(x=>x.Money) ;
                     viewModel.Amount = (finace.HaveAmount??0) - (finace.UseAmount??0) - (sum!=null?sum.Value:0);
                 }
-                viewModel.FullName = actInfo.Fullname;
-                viewModel.Birthday = actInfo.Birthdate != null ? actInfo.Birthdate.Value.ToShortDateString():string.Empty;
-                viewModel.Phone = act.MobilePhone.Replace("+86","");
-                
+                viewModel.FullName = actInfo?.Fullname;
+                viewModel.Birthday = actInfo?.Birthdate != null ? actInfo?.Birthdate.Value.ToShortDateString():string.Empty;
+                viewModel.Phone = act?.MobilePhone.Replace("+86","");
             }
 
             return View(viewModel);
@@ -130,6 +128,8 @@ namespace AgentDashboard.Controllers
         public ActionResult Index()
         {
             List<ShopViewModel> shopsVM = null;
+            List<RegionViewModel> universities = null;
+            List<RegionViewModel> colleges = null;
             using (SPEntities sp = new SPEntities())
             {
                 ViewBag.TotalPages = Math.Ceiling((Double)sp.SP_Shop.Count() / 20.00d);
@@ -138,7 +138,35 @@ namespace AgentDashboard.Controllers
                 int foodId = int.Parse(food);
                 String accountId = GetCurrentAccountId();
 
-                shopsVM = (from regionAccount in sp.SP_RegionAccount.Where(n => n.AccountId == accountId)
+                universities = (from regionAccount in sp.SP_RegionAccount.Where(n => n.AccountId == accountId)
+                                join regionData in sp.SP_RegionData on regionAccount.RegionId equals regionData.DataID
+                                select new RegionViewModel
+                                {
+                                    Id = regionData.DataID,
+                                    Name = regionData.DataName
+                                }).ToList();
+
+                if (universities.Count == 0)
+                {
+                    return View();
+                }
+
+                int unversityId = universities[0].Id;
+
+                colleges = (from regionData in sp.SP_RegionData.Where(n => n.ParentDataID == unversityId.ToString())
+                                   select new RegionViewModel
+                                   {
+                                       Id = regionData.DataID,
+                                       Name = regionData.DataName
+                                   }
+                                   ).ToList();
+
+                if (colleges.Count() == 0)
+                {
+                    return View();
+                }
+
+                shopsVM = (from regionAccount in sp.SP_RegionAccount.Where(n => n.AccountId == accountId && n.RegionId == unversityId)
                            join regionData in sp.SP_RegionData on regionAccount.RegionId.ToString() equals regionData.ParentDataID
                            join shop in sp.SP_Shop on regionData.DataID equals shop.RegionId
                            select new ShopViewModel
@@ -163,7 +191,9 @@ namespace AgentDashboard.Controllers
                 }
             }
 
-            return View(shopsVM);
+            ShopsViewModel shopList = new ShopsViewModel(){ ShopList = shopsVM, UniversityList = universities, ColleageList = colleges };
+
+            return View(shopList);
         }
 
         /// <summary>
@@ -400,40 +430,42 @@ namespace AgentDashboard.Controllers
         [HttpPost]
         public ActionResult UpdateShopStatus()
         {
-            SPEntities spEntity = new SPEntities();
-            var sr = new StreamReader(Request.InputStream);
-            var stream = sr.ReadToEnd();
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            var list = js.Deserialize<List<ShopViewModel>>(stream);
-
-            if (list != null)
+            using (SPEntities spEntity = new SPEntities())
             {
-                foreach (var item in list)
+                var sr = new StreamReader(Request.InputStream);
+                var stream = sr.ReadToEnd();
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                var list = js.Deserialize<List<ShopViewModel>>(stream);
+
+                if (list != null)
                 {
-                    DbContextTransaction transcation = null;
+                    foreach (var item in list)
+                    {
+                        DbContextTransaction transcation = null;
 
-                    try
-                    {
-                        var shop = spEntity.SP_Shop.Where(n => n.Id == item.Id).FirstOrDefault();
+                        try
+                        {
+                            var shop = spEntity.SP_Shop.Where(n => n.Id == item.Id).FirstOrDefault();
 
-                        transcation = spEntity.Database.BeginTransaction();
-                        shop.ShopStatus = item.ShopStatus;
-                        spEntity.SaveChanges();
-                        transcation.Commit();
-                    }
-                    catch (Exception)
-                    {
-                        transcation.Rollback();
-                        throw;
-                    }
-                    finally
-                    {
-                        if (transcation != null) transcation.Dispose();
+                            transcation = spEntity.Database.BeginTransaction();
+                            shop.ShopStatus = item.ShopStatus;
+                            spEntity.SaveChanges();
+                            transcation.Commit();
+                        }
+                        catch (Exception)
+                        {
+                            transcation.Rollback();
+                            throw;
+                        }
+                        finally
+                        {
+                            if (transcation != null) transcation.Dispose();
+                        }
                     }
                 }
+
+                return Json(String.Empty);
             }
-            
-            return Json(String.Empty);
         }
 
         // GET: Default
@@ -459,6 +491,8 @@ namespace AgentDashboard.Controllers
         public ActionResult SuperMarket()
         {
             List<ShopViewModel> shopsVM = null;
+            List<RegionViewModel> universities = null;
+            List<RegionViewModel> colleges = null;
             using (SPEntities sp = new SPEntities())
             {
                 ViewBag.TotalPages = Math.Ceiling((Double)sp.SP_Shop.Count() / 20.00d);
@@ -467,7 +501,34 @@ namespace AgentDashboard.Controllers
                 int marketId = int.Parse(market);
                 string accountId = GetCurrentAccountId();
 
-                shopsVM = (from regionAccount in sp.SP_RegionAccount.Where(n=>n.AccountId == accountId)
+                universities = (from regionAccount in sp.SP_RegionAccount.Where(n => n.AccountId == accountId)
+                                join regionData in sp.SP_RegionData on regionAccount.RegionId equals regionData.DataID
+                                select new RegionViewModel
+                                {
+                                    Id = regionData.DataID,
+                                    Name = regionData.DataName
+                                }).ToList();
+
+                if (universities.Count == 0)
+                {
+                    return View();
+                }
+
+                int unversityId = universities[0].Id;
+
+                colleges = (from regionData in sp.SP_RegionData.Where(n => n.ParentDataID == unversityId.ToString())
+                            select new RegionViewModel
+                            {
+                                Id = regionData.DataID,
+                                Name = regionData.DataName
+                            }).ToList();
+
+                if (colleges.Count() == 0)
+                {
+                    return View();
+                }
+
+                shopsVM = (from regionAccount in sp.SP_RegionAccount.Where(n => n.AccountId == accountId && n.RegionId == unversityId)
                            join regionData in sp.SP_RegionData on regionAccount.RegionId.ToString() equals regionData.ParentDataID
                            join shop in sp.SP_Shop on regionData.DataID equals shop.RegionId
                            select new ShopViewModel
@@ -477,24 +538,24 @@ namespace AgentDashboard.Controllers
                                ShopType = shop.ShopType,
                                ShopStatus = shop.ShopStatus,
                                RegionId = shop.RegionId,
-                           }
-                           ).Where(n => n.ShopType == marketId)
+                           }).Where(n => n.ShopType == marketId)
                            .OrderByDescending(n => n.RegionId)
-                           .OrderByDescending(n => n.Id)
-                           .ToList();
-                
+                           .OrderByDescending(n => n.Id).ToList();
+
                 foreach (var item in shopsVM)
                 {
                     if (item.RegionId != null)
                     {
                         IRegionAppService service = IocManager.Instance.Resolve<IRegionAppService>();
                         var region = service.GetRegionDataDetail(item.RegionId.Value);
-                        item.DistrictName = region.DataName;
+                        item.DistrictName = region?.DataName ?? string.Empty;
                     }
                 }
             }
 
-            return View(shopsVM);
+            ShopsViewModel shopList = new ShopsViewModel() { ShopList = shopsVM, UniversityList = universities, ColleageList = colleges };
+
+            return View(shopList);
         }
 
         public ActionResult Details()
@@ -551,21 +612,23 @@ namespace AgentDashboard.Controllers
                 if (unversityId == -1 && colleageId == -1)
                 {
                     var queryList = (from regionAccount in spEntity.SP_RegionAccount.Where(n => n.AccountId == accountId)
-                                     join regionData in spEntity.SP_RegionData on regionAccount.RegionId.ToString() equals regionData.ParentDataID
-                                     join shop in spEntity.SP_Shop on regionData.DataID equals shop.RegionId
+                                     join unversityRegionData in spEntity.SP_RegionData on regionAccount.RegionId equals unversityRegionData.DataID
+                                     join collegeRegionData in spEntity.SP_RegionData on unversityRegionData.DataID.ToString() equals collegeRegionData.ParentDataID
+                                     join shop in spEntity.SP_Shop on collegeRegionData.DataID equals shop.RegionId
                                      join shopOwner in spEntity.SP_ShopOwner on shop.Id equals shopOwner.ShopId
                                      join shopProductType in spEntity.SP_ProductType on shop.ShopType equals shopProductType.Id
-                                     join account in spEntity.SP_Account on shopOwner.Id equals account.Id
+                                     join account in spEntity.SP_Account on shopOwner.OwnerId equals account.AccountId
                                      join accountInfo in spEntity.SP_AccountInfo on shopOwner.OwnerId equals accountInfo.AccountId
                                      select new HumanManagerViewModel
                                      {
                                          AccountId = account.AccountId,
                                          FullName = accountInfo.Fullname,
                                          CellPhoneNo = account.MobilePhone,
-                                         RegionName = regionData.DataName,
+                                         RegionName = collegeRegionData.DataName,
                                          ProductType = shopProductType.Id,
                                          TypeName = shopProductType.TypeName,
-                                     }).ToList();
+                                         CreateTime = account.CreateTime
+                                     }).OrderBy(x => x.CreateTime).ToList();
 
                     if (typeId == -1)
                     {
@@ -580,23 +643,24 @@ namespace AgentDashboard.Controllers
                 if((unversityId != -1) && (colleageId == -1))
                 {
                     var queryList =
-                        (from regionData in spEntity.SP_RegionData.Where(n => n.ParentDataID == unversityId.ToString())
-                         join shop in spEntity.SP_Shop on regionData.DataID equals shop.RegionId
+                        (from collegeRegionData in spEntity.SP_RegionData.Where(n => n.ParentDataID == unversityId.ToString())
+                         join shop in spEntity.SP_Shop on collegeRegionData.DataID equals shop.RegionId
                          join shopOwner in spEntity.SP_ShopOwner on shop.Id equals shopOwner.ShopId
                          join shopProductType in spEntity.SP_ProductType on shop.ShopType equals shopProductType.Id
-                         join account in spEntity.SP_Account on shopOwner.Id equals account.Id
+                         join account in spEntity.SP_Account on shopOwner.OwnerId equals account.AccountId
                          join accountInfo in spEntity.SP_AccountInfo on shopOwner.OwnerId equals accountInfo.AccountId
                          select new HumanManagerViewModel
                          {
                              AccountId = account.AccountId,
                              FullName = accountInfo.Fullname,
                              CellPhoneNo = account.MobilePhone,
-                             RegionName = regionData.DataName,
+                             RegionName = collegeRegionData.DataName,
                              ProductType = shopProductType.Id,
                              TypeName = shopProductType.TypeName,
-                         }).ToList();
+                             CreateTime = account.CreateTime
+                         }).OrderBy(x => x.CreateTime).ToList();
 
-                    if(typeId == -1)
+                    if (typeId == -1)
                     {
                         vmList = queryList;
                     }
@@ -608,23 +672,24 @@ namespace AgentDashboard.Controllers
 
                 if ((unversityId != -1) && (colleageId != -1))
                 {
-                    var queryList = (from regionData in spEntity.SP_RegionData.Where(n => n.DataID == colleageId)
-                                     join shop in spEntity.SP_Shop on regionData.DataID equals shop.RegionId
+                    var queryList = (from collegeRegionData in spEntity.SP_RegionData.Where(n => n.DataID == colleageId)
+                                     join shop in spEntity.SP_Shop on collegeRegionData.DataID equals shop.RegionId
                                      join shopOwner in spEntity.SP_ShopOwner on shop.Id equals shopOwner.ShopId
                                      join shopProductType in spEntity.SP_ProductType on shop.ShopType equals shopProductType.Id
-                                     join account in spEntity.SP_Account on shopOwner.Id equals account.Id
+                                     join account in spEntity.SP_Account on shopOwner.OwnerId equals account.AccountId
                                      join accountInfo in spEntity.SP_AccountInfo on shopOwner.OwnerId equals accountInfo.AccountId
                                      select new HumanManagerViewModel
                                      {
                                          AccountId = account.AccountId,
                                          FullName = accountInfo.Fullname,
                                          CellPhoneNo = account.MobilePhone,
-                                         RegionName = regionData.DataName,
+                                         RegionName = collegeRegionData.DataName,
                                          ProductType = shopProductType.Id,
                                          TypeName = shopProductType.TypeName,
-                                     }).ToList();
+                                         CreateTime = account.CreateTime
+                                     }).OrderBy(x => x.CreateTime).ToList();
 
-                    if(typeId == -1)
+                    if (typeId == -1)
                     {
                         vmList = queryList;
                     }
@@ -637,7 +702,6 @@ namespace AgentDashboard.Controllers
                 return Json(vmList, JsonRequestBehavior.AllowGet);
             }
         }
-
 
         public ActionResult DataAnalyze()
         {
@@ -1860,6 +1924,126 @@ namespace AgentDashboard.Controllers
             var productInfo = service.GetProductDetail(id);
             productInfo.VIPPrice = price;
             service.EditProduct(productInfo);
+        }
+
+        public JsonResult GetShopListByRegionId(int unversityId, int collegeId)
+        {
+            dynamic shopsVM;
+            using (SPEntities sp = new SPEntities())
+            {
+                ViewBag.TotalPages = Math.Ceiling((Double)sp.SP_Shop.Count() / 20.00d);
+                ViewBag.CurrentPage = 1;
+                string food = ConfigurationManager.AppSettings["MainType.Food"];
+                int foodId = int.Parse(food);
+                String accountId = GetCurrentAccountId();
+
+                if (collegeId == -1)
+                {
+
+                    shopsVM = (from regionAccount in sp.SP_RegionAccount.Where(n => n.AccountId == accountId && n.RegionId == unversityId)
+                               join regionData in sp.SP_RegionData on regionAccount.RegionId.ToString() equals regionData.ParentDataID
+                               join shop in sp.SP_Shop on regionData.DataID equals shop.RegionId
+                               select new ShopViewModel
+                               {
+                                   Id = shop.Id,
+                                   ShopName = shop.ShopName,
+                                   ShopType = shop.ShopType,
+                                   ShopStatus = shop.ShopStatus,
+                                   RegionId = shop.RegionId,
+                               }).Where(n => n.ShopType == foodId)
+                               .OrderByDescending(n => n.RegionId)
+                               .OrderByDescending(n => n.Id).ToList();
+                }
+                else
+                {
+                    shopsVM = (from regionData in sp.SP_RegionData.Where(n => n.DataID == collegeId)
+                               join shop in sp.SP_Shop on regionData.DataID equals shop.RegionId
+                               select new ShopViewModel
+                               {
+                                   Id = shop.Id,
+                                   ShopName = shop.ShopName,
+                                   ShopType = shop.ShopType,
+                                   ShopStatus = shop.ShopStatus,
+                                   RegionId = shop.RegionId,
+                               }).Where(n => n.ShopType == foodId)
+                               .OrderByDescending(n => n.RegionId)
+                               .OrderByDescending(n => n.Id).ToList();
+                }
+
+                foreach (var item in shopsVM)
+                {
+                    if (item.RegionId != null)
+                    {
+                        IRegionAppService service = IocManager.Instance.Resolve<IRegionAppService>();
+                        var region = service.GetRegionDataDetail(item.RegionId);
+                        item.DistrictName = region?.DataName ?? string.Empty;
+                    }
+                }
+            }
+
+            var result = Json(shopsVM, JsonRequestBehavior.AllowGet);
+
+            return result;
+        }
+
+        public JsonResult GetSupperMarketListByRegionId(int unversityId, int collegeId)
+        {
+            dynamic shopsVM;
+            using (SPEntities sp = new SPEntities())
+            {
+                ViewBag.TotalPages = Math.Ceiling((Double)sp.SP_Shop.Count() / 20.00d);
+                ViewBag.CurrentPage = 1;
+                string market = ConfigurationManager.AppSettings["MainType.Market"];
+                int marketId = int.Parse(market);
+                String accountId = GetCurrentAccountId();
+
+                if (collegeId == -1)
+                {
+
+                    shopsVM = (from regionAccount in sp.SP_RegionAccount.Where(n => n.AccountId == accountId && n.RegionId == unversityId)
+                               join regionData in sp.SP_RegionData on regionAccount.RegionId.ToString() equals regionData.ParentDataID
+                               join shop in sp.SP_Shop on regionData.DataID equals shop.RegionId
+                               select new ShopViewModel
+                               {
+                                   Id = shop.Id,
+                                   ShopName = shop.ShopName,
+                                   ShopType = shop.ShopType,
+                                   ShopStatus = shop.ShopStatus,
+                                   RegionId = shop.RegionId,
+                               }).Where(n => n.ShopType == marketId)
+                               .OrderByDescending(n => n.RegionId)
+                               .OrderByDescending(n => n.Id).ToList();
+                }
+                else
+                {
+                    shopsVM = (from regionData in sp.SP_RegionData.Where(n => n.DataID == collegeId)
+                               join shop in sp.SP_Shop on regionData.DataID equals shop.RegionId
+                               select new ShopViewModel
+                               {
+                                   Id = shop.Id,
+                                   ShopName = shop.ShopName,
+                                   ShopType = shop.ShopType,
+                                   ShopStatus = shop.ShopStatus,
+                                   RegionId = shop.RegionId,
+                               }).Where(n => n.ShopType == marketId)
+                               .OrderByDescending(n => n.RegionId)
+                               .OrderByDescending(n => n.Id).ToList();
+                }
+
+                foreach (var item in shopsVM)
+                {
+                    if (item.RegionId != null)
+                    {
+                        IRegionAppService service = IocManager.Instance.Resolve<IRegionAppService>();
+                        var region = service.GetRegionDataDetail(item.RegionId);
+                        item.DistrictName = region?.DataName ?? string.Empty;
+                    }
+                }
+            }
+
+            var result = Json(shopsVM, JsonRequestBehavior.AllowGet);
+
+            return result;
         }
     }
 }
