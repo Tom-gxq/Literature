@@ -104,8 +104,9 @@ namespace WebApiGateway.Controllers.Account
             try
             {
                 var retValue = AccountBusiness.AddCoupon(model, currentAccount.AccountId);
-                if (retValue)
+                if (!string.IsNullOrEmpty(retValue))
                 {
+                    JsonResult.Add("couponId", retValue);
                     JsonResult.Add("status", 0);
                 }
                 else
@@ -181,7 +182,14 @@ namespace WebApiGateway.Controllers.Account
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var payStr = GetAlipayParam(associatorId);
+                var content = new JObject();
+                var member = AccountBusiness.GetAssociatorById(associatorId);
+                //content.Add("product_code", "QUICK_MSECURITY_PAY");
+                content.Add("total_amount", member.amount);
+                //content.Add("subject", "饿家军");
+                content.Add("out_trade_no", member.payOrderCode);
+                content.Add("body", "会员服务");
+                var payStr = GetAlipayParam(content);
                 JsonResult.Add("payStr", payStr);
                 JsonResult.Add("status", 0);
             }
@@ -193,22 +201,33 @@ namespace WebApiGateway.Controllers.Account
             result.Data = JsonResult;
             return result;
         }
-        private string GetAlipayParam(string associatorId)
+        public ActionResult GetCouponAlipayStr(string couponId)
         {
-            var content = new JObject();
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var member = AccountBusiness.GetAssociatorById(associatorId);
+                var content = new JObject();
+                var member = AccountBusiness.GetCouponById(couponId);                
                 //content.Add("product_code", "QUICK_MSECURITY_PAY");
-                content.Add("total_amount", member.amount);
+                content.Add("total_amount", member.Amount);
                 //content.Add("subject", "饿家军");
-                content.Add("out_trade_no", member.payOrderCode);
-                content.Add("body", "会员服务");
-                
+                content.Add("out_trade_no", member.PayOrderCode);
+                content.Add("body", "优惠卷");
+                var payStr = GetAlipayParam(content);
+                JsonResult.Add("payStr", payStr);
+                JsonResult.Add("status", 0);
             }
             catch (Exception ex)
             {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
             }
+            result.Data = JsonResult;
+            return result;
+        }
+        private string GetAlipayParam(JObject content)
+        {
             var client = GetAlipayClient();
             //实例化具体API对应的request类,类名称和接口名称对应,当前调用接口名称如：alipay.trade.app.pay
             AlipayTradeAppPayRequest request = new AlipayTradeAppPayRequest();
@@ -255,7 +274,15 @@ namespace WebApiGateway.Controllers.Account
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var payStr = GetWxPayParam(associatorId);
+                var content = new JObject();
+                var member = AccountBusiness.GetAssociatorById(associatorId);
+                //content.Add("product_code", "QUICK_MSECURITY_PAY");
+                content.Add("total_amount", member.amount);
+                //content.Add("subject", "饿家军");
+                content.Add("out_trade_no", member.payOrderCode);
+                content.Add("body", "会员服务");
+
+                var payStr = GetWxPayParam(content);
                 JsonResult.Add("payStr", payStr);
                 JsonResult.Add("status", 0);
             }
@@ -267,22 +294,34 @@ namespace WebApiGateway.Controllers.Account
             result.Data = JsonResult;
             return result;
         }
-        private WxPrePayModel GetWxPayParam(string associatorId)
+        public ActionResult GetCouponWxPayStr(string couponId)
         {
-            var content = new JObject();
+            var result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             try
             {
-                var member = AccountBusiness.GetAssociatorById(associatorId);
+                var content = new JObject();
+                var member = AccountBusiness.GetCouponById(couponId);
                 //content.Add("product_code", "QUICK_MSECURITY_PAY");
-                content.Add("total_amount", member.amount);
+                content.Add("total_amount", member.Amount);
                 //content.Add("subject", "饿家军");
-                content.Add("out_trade_no", member.payOrderCode);
-                content.Add("body", "会员服务");
+                content.Add("out_trade_no", member.PayOrderCode);
+                content.Add("body", "优惠卷");
 
+                var payStr = GetWxPayParam(content);
+                JsonResult.Add("payStr", payStr);
+                JsonResult.Add("status", 0);
             }
             catch (Exception ex)
             {
+                JsonResult.Add("error_msg", ex.Message);
+                JsonResult.Add("status", 1);
             }
+            result.Data = JsonResult;
+            return result;
+        }
+        private WxPrePayModel GetWxPayParam(JObject content)
+        {            
             //随机验证码
             var nonceStr = TenpayUtil.getNoncestr().Replace("-", "");
             WxPrePayModel wxPrePaymodel = new WxPrePayModel();

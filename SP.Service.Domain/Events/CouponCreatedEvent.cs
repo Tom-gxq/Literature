@@ -24,7 +24,7 @@ namespace SP.Service.Domain.Events
         public CouponCreatedEvent(Guid aggregateId,  string kindId, string accountId, DateTime startDate, DateTime endDate, string payOrderCode)
             : base(KafkaConfig.EventBusTopicTitle)
         {
-            AggregateId = aggregateId;
+            AggregateId = Guid.NewGuid();
             CommandId = aggregateId.ToString();
             KindId = kindId;
             AccountId = accountId;

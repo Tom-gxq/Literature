@@ -714,6 +714,40 @@ namespace Account.Service.GrpcImpl
             logger.LogInformation(this.prjLicEID, "GetAccountCouponsList {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
+        public override Task<CouponsResponse> GetCouponByCode(CouponCodeRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} GetCouponByCode Connected! CouponCode:[{CouponCode}] ",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.CouponCode);
+            var response = new CouponsResponse();
+            response.Status = 10002;
+            try
+            {
+                response = AccountBusiness.GetCouponByCode(request.CouponCode);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "GetCouponByCode Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "GetCouponByCode {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+        public override Task<CouponsResponse> GetCouponById(CouponIdRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} GetCouponById Connected! CouponId:[{CouponId}] ",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.CouponId);
+            var response = new CouponsResponse();
+            response.Status = 10002;
+            try
+            {
+                response = AccountBusiness.GetCouponById(request.CouponId);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "GetCouponById Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "GetCouponById {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
         public override Task<AccountFullInfoResponse> GetAccountFullInfo(AccountIdRequest request, ServerCallContext context)
         {
             logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} GetAccountFullInfo Connected! AccountId:[{AccountId}] ",
@@ -1034,11 +1068,11 @@ namespace Account.Service.GrpcImpl
             return Task.FromResult(response);
         }
 
-        public override Task<AccountResultResponse> AddCoupon(AddCouponRequest request, ServerCallContext context)
+        public override Task<CouponsResponse> AddCoupon(AddCouponRequest request, ServerCallContext context)
         {
             logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} AddCoupon Connected! AccountId:[{AccountId}]   KindId:[{KindId}]",
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.AccountId, request.KindId);
-            var response = new AccountResultResponse();
+            var response = new CouponsResponse();
             response.Status = 10002;
             try
             {
@@ -1053,13 +1087,13 @@ namespace Account.Service.GrpcImpl
         }
         public override Task<AccountResultResponse> UpdateCoupon(UpdateCouponRequest request, ServerCallContext context)
         {
-            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} UpdateCoupon Connected! PayType:[{PayType}]   KindId:[{KindId}]   Type:[{Type}]   PayAmount:[{PayAmount}]",
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.PayType, request.KindId, request.Type, request.PayAmount);
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} UpdateCoupon Connected! PayType:[{PayType}]   CouponIdId:[{CouponIdId}]   Type:[{Type}]   PayAmount:[{PayAmount}]",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString(), request.PayType, request.CouponIdId, request.Type, request.PayAmount);
             var response = new AccountResultResponse();
             response.Status = 10002;
             try
             {
-                response = AccountBusiness.UpdateCoupon(request.KindId, request.PayAmount, request.PayType, request.Type);
+                response = AccountBusiness.UpdateCoupon(request.CouponIdId, request.PayAmount, request.PayType, request.Type);
             }
             catch (Exception ex)
             {

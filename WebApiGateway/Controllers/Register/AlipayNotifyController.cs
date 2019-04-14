@@ -64,6 +64,11 @@ namespace WebApiGateway.Controllers
                         Common.WriteLog("HY State Update out_trade_no=" + out_trade_no);
                         retVal = UpdateHYState(out_trade_no);                        
                     }
+                    else if (out_trade_no.ToLower().StartsWith("yhj"))
+                    {
+                        Common.WriteLog("YHJ State Update out_trade_no=" + out_trade_no);
+                        retVal = UpdateYHJState(out_trade_no, total_amount);
+                    }
                     else
                     {
                         retVal = UpdateOrderState(out_trade_no);
@@ -242,6 +247,26 @@ namespace WebApiGateway.Controllers
                              associatorId = order.associatorId,
                              status = 2
                         });
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Common.WriteLog(ex.ToString());
+                }
+            }
+            return retValue;
+        }
+        private bool UpdateYHJState(string orderCode, double total_amount)
+        {
+            bool retValue = false;
+            if (!string.IsNullOrEmpty(orderCode))
+            {
+                try
+                {
+                    var order = AccountBusiness.GetCouponByCode(orderCode);
+                    if (order != null )
+                    {
+                        retValue = AccountBusiness.PayedCoupon(order.CouponId, total_amount, 1);
                     }
                 }
                 catch (Exception ex)

@@ -11,6 +11,7 @@ namespace SP.Api.Model.Account
         public string CouponId { get; set; }
         public string Description { get; set; }
         public string ModeDescription { get; set; }
+        public string PayOrderCode { get; set; }
         public long StartDate { get; set; }
         public long EndDate { get; set; }
         public int Status { get; set; }

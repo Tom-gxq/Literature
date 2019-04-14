@@ -52,6 +52,19 @@ namespace SP.Service.Domain.DomainEntity
             ApplyChange(@event);
         }
 
+        public void Handle(CouponCreatedEvent e)
+        {
+            
+        }
+        public void Handle(CouponPayedEvent e)
+        {
+
+        }
+        public void Handle(CouponUsedEvent e)
+        {
+
+        }
+
         public void SetMemento(BaseEntity memento)
         {
             if (memento is CouponsEntity)

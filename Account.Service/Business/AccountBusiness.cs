@@ -225,6 +225,7 @@ namespace Account.Service.Business
                     coupons.Description = item.Description;
                     coupons.CouponId = item.CouponId;
                     coupons.Amount = item.Amount;
+                    coupons.PayOrderCode = item.PayOrderCode;
                     coupons.ModeAmount = item.ModelAmount;
                     coupons.EndDate = item.EndDate.Ticks;
                     coupons.StartDate = item.StartDate.Ticks;
@@ -232,6 +233,45 @@ namespace Account.Service.Business
                     coupons.ModeDescription = item.ModeDescription;
                     result.CouponsList.Add(coupons);
                 }
+            }
+            return result;
+        }
+        public static CouponsResponse GetCouponByCode(string couponCode)
+        {
+            var domain = ServiceLocator.CouponsReportDatabase.GetCouponByCode(couponCode);
+            var result = new CouponsResponse();
+            result.Status = 10001;
+            if (domain != null)
+            {
+                var coupons = new Coupons();
+                coupons.Description = domain.Description;
+                coupons.CouponId = domain.CouponId;
+                coupons.Amount = domain.Amount;
+                coupons.PayOrderCode = domain.PayOrderCode;
+                coupons.ModeAmount = domain.ModelAmount;
+                coupons.EndDate = domain.EndDate.Ticks;
+                coupons.StartDate = domain.StartDate.Ticks;
+                coupons.Status = domain.Status;
+                coupons.ModeDescription = domain.ModeDescription;
+                result.Coupons = coupons;
+            }
+            return result;
+        }
+        public static CouponsResponse GetCouponById(string couponId)
+        {
+            var domain = ServiceLocator.CouponsReportDatabase.GetCouponById(couponId);
+            var result = new CouponsResponse();
+            result.Status = 10001;
+            if (domain != null)
+            {
+                var coupons = new Coupons();
+                coupons.Description = domain.Description;
+                coupons.CouponId = domain.CouponId;
+                coupons.PayOrderCode = domain.PayOrderCode;
+                coupons.EndDate = domain.EndDate.Ticks;
+                coupons.StartDate = domain.StartDate.Ticks;
+                coupons.Status = domain.Status;
+                result.Coupons = coupons;
             }
             return result;
         }
@@ -477,11 +517,17 @@ namespace Account.Service.Business
             return result;
         }
 
-        public static AccountResultResponse AddCoupon(string kindId, string accountId)
+        public static CouponsResponse AddCoupon(string kindId, string accountId)
         {
-            ServiceLocator.CommandBus.Send(new CreateCouponCommand(kindId, accountId));
-            var result = new AccountResultResponse();
+            var payOrderCode = "YHJ" + DateTime.Now.ToString("yyyyMMddHH24mmssffff");
+            var command = new CreateCouponCommand(kindId, accountId, payOrderCode);
+            ServiceLocator.CommandBus.Send(command);
+            var result = new CouponsResponse();
             result.Status = 10001;
+            result.Coupons = new Coupons()
+            {
+                 CouponId = command.Id.ToString()
+            };
             return result;
         }
 

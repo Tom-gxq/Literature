@@ -269,7 +269,7 @@ namespace AccountGRPCInterface
                 return string.Empty;
             }
         }
-        public static bool AddCoupon(SysKindModel model,string accountId)
+        public static string AddCoupon(SysKindModel model,string accountId)
         {
             var client = AccountClientHelper.GetClient();
             var request = new AddCouponRequest()
@@ -278,6 +278,44 @@ namespace AccountGRPCInterface
                 AccountId = accountId,
             };
             var result = client.AddCoupon(request);
+            if (result.Status == 10001)
+            {
+                return result.Coupons.CouponId;
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+        public static bool UsedCoupon(string couponId)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request = new UpdateCouponRequest()
+            {
+                CouponIdId = couponId,
+                Type = 1
+            };
+            var result = client.UpdateCoupon(request);
+            if (result.Status == 10001)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool PayedCoupon(string couponId,double payAmount,int payType)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request = new UpdateCouponRequest()
+            {
+                CouponIdId = couponId,
+                PayAmount = payAmount,
+                PayType= payType,
+                Type = 0
+            };
+            var result = client.UpdateCoupon(request);
             if (result.Status == 10001)
             {
                 return true;
@@ -771,6 +809,49 @@ namespace AccountGRPCInterface
             {
                 return false;
             }
+        }
+        public static CouponsModel GetCouponByCode(string couponCode)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request = new CouponCodeRequest()
+            {
+                 CouponCode = couponCode
+            };
+            var result = client.GetCouponByCode(request);
+            var domain = new CouponsModel();
+            if (result.Status == 10001)
+            {
+                domain.CouponId = result.Coupons.CouponId;
+                domain.Amount = result.Coupons.Amount;
+                domain.Description = result.Coupons.Description;
+                domain.EndDate = result.Coupons.EndDate;
+                domain.StartDate = result.Coupons.StartDate;
+                domain.ModeDescription = result.Coupons.ModeDescription;
+                domain.ModeAmount = result.Coupons.ModeAmount;
+            }
+            return domain;
+        }
+        public static CouponsModel GetCouponById(string couponId)
+        {
+            var client = AccountClientHelper.GetClient();
+            var request = new CouponIdRequest()
+            {
+                CouponId = couponId
+            };
+            var result = client.GetCouponById(request);
+            var domain = new CouponsModel();
+            if (result.Status == 10001)
+            {
+                domain.CouponId = result.Coupons.CouponId;
+                domain.PayOrderCode = result.Coupons.PayOrderCode;
+                domain.Amount = result.Coupons.Amount;
+                domain.Description = result.Coupons.Description;
+                domain.EndDate = result.Coupons.EndDate;
+                domain.StartDate = result.Coupons.StartDate;
+                domain.ModeDescription = result.Coupons.ModeDescription;
+                domain.ModeAmount = result.Coupons.ModeAmount;
+            }
+            return domain;
         }
         public static bool CreateWxOpenId(string accountId, string wxOpenId,int wxType)
         {

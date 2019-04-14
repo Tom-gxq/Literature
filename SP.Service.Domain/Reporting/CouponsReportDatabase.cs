@@ -38,6 +38,28 @@ namespace SP.Service.Domain.Reporting
             return list;
         }
 
+        public CouponsDomain GetCouponByCode(string couponCode)
+        {
+            var entityList = _repository.GetCouponByCode(couponCode);
+            var domain = new CouponsDomain();
+            foreach (var item in entityList)
+            {                
+                domain.SetMemento(item);
+            }
+            return domain;
+        }
+
+        public CouponsDomain GetCouponById(string couponId)
+        {
+            var entityList = _repository.GetCouponById(couponId);
+            var domain = new CouponsDomain();
+            foreach (var item in entityList)
+            {
+                domain.SetMemento(item);
+            }
+            return domain;
+        }
+
         private AssociatorDomain ConvertEntityToDomain(AssociatorEntity entity)
         {
             var associator = new AssociatorDomain();

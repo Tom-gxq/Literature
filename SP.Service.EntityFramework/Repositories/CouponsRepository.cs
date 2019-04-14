@@ -29,8 +29,27 @@ namespace SP.Service.EntityFramework.Repositories
             using (var db = OpenDbConnection())
             {
                 var q = db.From<CouponsEntity>();
-                q = q.Join<CouponsEntity, SysKindEntity>((e, a) => e.AccountId == accountId && a.KindId == e.KindId );
+                q = q.Join<CouponsEntity, SysKindEntity>((e, a) => e.AccountId == accountId && e.Status == 1 && e.PayStatus == 1 && a.KindId == e.KindId );
                 q = q.Join<SysKindEntity, SaleModeEntity>((e, a) => e.SaleModeId == a.SaleModeId);
+                return db.Select<CouponsFullEntity>(q);
+            }
+        }
+        public List<CouponsFullEntity> GetCouponByCode(string couponCode)
+        {
+            using (var db = OpenDbConnection())
+            {
+                var q = db.From<CouponsEntity>();
+                q = q.Join<CouponsEntity, SysKindEntity>((e, a) => e.PayOrderCode == couponCode && a.KindId == e.KindId);
+                q = q.Join<SysKindEntity, SaleModeEntity>((e, a) => e.SaleModeId == a.SaleModeId);
+                return db.Select<CouponsFullEntity>(q);
+            }
+        }
+        public List<CouponsFullEntity> GetCouponById(string couponId)
+        {
+            using (var db = OpenDbConnection())
+            {
+                var q = db.From<CouponsEntity>();
+                q = q.Join<CouponsEntity, SysKindEntity>((e, a) => e.CommandId == couponId && a.KindId == e.KindId);
                 return db.Select<CouponsFullEntity>(q);
             }
         }

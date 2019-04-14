@@ -18,11 +18,12 @@ namespace SP.Service.Domain.Commands.Account
         public int PayType { get; set; }
         public int PayStatus { get; set; }
 
-        public CreateCouponCommand(string kindId, string accountId) : base(KafkaConfig.NormalCommandBusTopicTitle)
+        public CreateCouponCommand(string kindId, string accountId, string payOrderCode) : base(KafkaConfig.NormalCommandBusTopicTitle)
         {
             base.Id = Guid.NewGuid();
             this.KindId = kindId;
             this.AccountId = accountId;
+            this.PayOrderCode = payOrderCode;
             this.CommandType = CommandType.CreateCoupon;
         }
     }

@@ -19,11 +19,13 @@ namespace SP.Service.Domain.EventHandlers
         {
             var item = new CouponsEntity()
             {
+                CommandId = handle.CommandId,
                 CouponId = handle.AggregateId.ToString(),
                 AccountId = handle.AccountId,
                 KindId = handle.KindId,
                 EndDate = handle.EndDate,
-                StartDate = handle.StartDate,    
+                StartDate = handle.StartDate,
+                PayOrderCode= handle.PayOrderCode,
                 Status = 1,
                 PayStatus = 0
             };

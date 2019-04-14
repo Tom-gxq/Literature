@@ -12,6 +12,7 @@ namespace SP.Service.Entity
         public string CouponId { get; set; }
         public string KindId { get; set; }
         public string AccountId { get; set; }
+        public string CommandId { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public int? Status { get; set; }
