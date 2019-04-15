@@ -148,38 +148,41 @@
                                     </div>
                                 </div>
                                 <!-- Icon Cards-->
-                                <div id="div_shoplist" class="row mb-3">
-                                    @foreach (var shop in Model.ShopList)
-                                    {
-                                        <div class="col-xl-3 col-sm-6 mb-3">
-                                            <div class="card text-white bg-primary o-hidden h-100">
-                                                <div class="card-body">
-                                                    <div class="mr-5">@shop.DistrictName</div>
-                                                    <div class="card-body-icon">
-                                                        <i class="fa fa-fw fa-home"></i>
-                                                    </div>
-                                                    <div class="mr-5">@shop.ShopName</div>
+                        <div id="div_shoplist" class="row mb-3">
+                            @if (Model.ShopList != null)
+                            {
+                                foreach (var shop in Model.ShopList)
+                                {
+                                    <div class="col-xl-3 col-sm-6 mb-3">
+                                        <div class="card text-white bg-primary o-hidden h-100">
+                                            <div class="card-body">
+                                                <div class="mr-5">@shop.DistrictName</div>
+                                                <div class="card-body-icon">
+                                                    <i class="fa fa-fw fa-home"></i>
                                                 </div>
-                                                <a class="card-footer text-white clearfix small z-1" href="ShopDetails?shopId=@shop.Id">
-                                                    <span>
-                                                        @{
-                                                            var ShopStauts = "开店";
-                                                        }
-                                                        @if (shop.ShopStatus == false)
-                                                        {
-                                                            ShopStauts = "闭店";
-                                                        }
-                                                        <Label id="Lable_@shop.Id" class="mr-5" for="CheckBox_@shop.Id">@ShopStauts</Label>
-                                                        <input id="CheckBox_@shop.Id" type="checkbox" checked="@shop.ShopStatus" class="form-check-input" />
-                                                    </span>
-                                                    <span class="float-right">
-                                                        <i class="fa fa-angle-right"></i>
-                                                    </span>
-                                                </a>
+                                                <div class="mr-5">@shop.ShopName</div>
                                             </div>
+                                            <a class="card-footer text-white clearfix small z-1" href="ShopDetails?shopId=@shop.Id">
+                                                <span>
+                                                    @{
+                                                        var ShopStauts = "开店";
+                                                    }
+                                                    @if (shop.ShopStatus == false)
+                                                    {
+                                                        ShopStauts = "闭店";
+                                                    }
+                                                    <Label id="Lable_@shop.Id" class="mr-5" for="CheckBox_@shop.Id">@ShopStauts</Label>
+                                                    <input id="CheckBox_@shop.Id" type="checkbox" checked="@shop.ShopStatus" class="form-check-input" />
+                                                </span>
+                                                <span class="float-right">
+                                                    <i class="fa fa-angle-right"></i>
+                                                </span>
+                                            </a>
                                         </div>
-                                    }
-                                </div>
+                                    </div>
+                                 }
+                             }
+                        </div>
 
                                 if (ViewBag.TotalPages > 1)
                                 {
