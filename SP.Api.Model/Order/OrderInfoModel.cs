@@ -18,6 +18,7 @@ namespace SP.Api.Model.Order
 
         public List<ProductModel> productList { get; set; }
         public CouponsModel Coupons { get; set; }
+        public string shopType { get; set; }
 
     }
 }

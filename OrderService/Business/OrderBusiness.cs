@@ -238,6 +238,7 @@ namespace Order.Service.Business
                     }
                 }
             }
+            order.ShopType = entity.ShopType??string.Empty;
             return order;
         }
 

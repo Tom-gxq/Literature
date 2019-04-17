@@ -456,11 +456,11 @@ namespace AccountGRPCInterface
                     domain.Description = item.Description;
                     domain.CouponId = item.CouponId;
                     domain.Amount = item.Amount;
-                    domain.EndDate = item.EndDate;
                     domain.Description = item.Description;
                     domain.ModeAmount = item.ModeAmount;
                     domain.ModeDescription = item.ModeDescription;
-                    domain.StartDate = item.StartDate;
+                    domain.EndDate = GetTimestamp(new DateTime(item.EndDate));
+                    domain.StartDate = GetTimestamp(new DateTime(item.StartDate));
                     domain.Status = item.Status;
                     list.Add(domain);
                 }

@@ -45,6 +45,7 @@ namespace SP.Service.Domain.DomainEntity
         public int OrderType { get; set; }
 
         public CouponsFullEntity Coupons { get; set; }
+        public string ShopType { get; internal set; }
 
         public OrderDomain()
         {

@@ -81,6 +81,7 @@ namespace OrderGRPCInterface.Business
                         }
                         domain.productList = productList;
                     }
+                    domain.shopType = item.ShopType;
                     list.Add(domain);
                 }
             }

@@ -16,13 +16,15 @@ namespace SP.Service.Domain.Reporting
         private readonly ShoppingCartRespository _cartRepository;
         private readonly SaleModeRepository _saleModeRepository;
         private readonly CouponsRepository _couponsRepository;
+        private readonly ProductTypeRepository _productTypeRepository;
         public OrderReportDatabase(OrderRepository repository,ShoppingCartRespository cartRepository, 
-            SaleModeRepository saleModeRepository, CouponsRepository couponsRepository)
+            SaleModeRepository saleModeRepository, CouponsRepository couponsRepository, ProductTypeRepository productTypeRepository)
         {
             _repository = repository;
             _cartRepository = cartRepository;
             _saleModeRepository = saleModeRepository;
             _couponsRepository = couponsRepository;
+            _productTypeRepository = productTypeRepository;
         }
 
         public void Add(OrdersEntity item)
@@ -40,14 +42,23 @@ namespace SP.Service.Domain.Reporting
             var orderDomainList = new List<OrderDomain>();
             var orderList = new List<OrdersEntity>();
             orderList = _repository.GetMyHistoryOrderList(accountId, orderDate);
-
+            var shopReport = IocManager.Instance.Resolve(typeof(ShopReportDatabase)) as ShopReportDatabase;
             foreach (var item in orderList)
             {
                 var order = ConvertOrderEntityToDomain(item);
                 if (order != null)
                 {
+                    var list = _cartRepository.GetShoppingCartsByOrderId(order.OrderId);
+                    if (list != null && list.Count > 0)
+                    {
+                        var productType = _productTypeRepository.GetProductTypeByShopId(list[0].ShopId.Value);
+                        if (productType != null)
+                        {
+                            order.ShopType = productType.TypeName;
+                        }
+                    }
                     orderDomainList.Add(order);
-                }
+                }                
             }
             return orderDomainList;
         }
@@ -201,11 +212,11 @@ namespace SP.Service.Domain.Reporting
             var allList = list.GroupBy(s => s.OrderId);
             count = allList.Length();
             var result = allList.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            var shopReport = IocManager.Instance.Resolve(typeof(ShopReportDatabase)) as ShopReportDatabase;
             foreach (var item in result)
             {
                 var domain = new LeadOrderDomain();
-                int index = 0;
-                var shopReport = IocManager.Instance.Resolve(typeof(ShopReportDatabase)) as ShopReportDatabase;
+                int index = 0;               
                 foreach (var orderInfo in item)
                 {
                     var order = ConvertOrderEntityToLeadOrderDomain(orderInfo);

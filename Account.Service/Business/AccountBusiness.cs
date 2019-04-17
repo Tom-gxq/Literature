@@ -230,7 +230,7 @@ namespace Account.Service.Business
                     coupons.EndDate = item.EndDate.Ticks;
                     coupons.StartDate = item.StartDate.Ticks;
                     coupons.Status = item.Status;
-                    coupons.ModeDescription = item.ModeDescription;
+                    coupons.ModeDescription = item.ModeDescription??string.Empty;
                     result.CouponsList.Add(coupons);
                 }
             }

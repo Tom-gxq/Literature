@@ -30,7 +30,7 @@ namespace SP.Service.EntityFramework.Repositories
             using (var db = OpenDbConnection())
             {
                 var q = db.From<OrdersEntity>();
-                q = q.Join<OrdersEntity, ShoppingCartsEntity>((e, a) => a.OrderId == e.OrderId
+                q = q.Join<OrdersEntity, ShoppingCartsEntity>((e, a) => a.OrderId == e.OrderId && e.OrderType==0
                 && e.OrderDate >= orderDate && (e.OrderStatus == 2 || e.OrderStatus == 5) && e.AccountId == accountId);
                 q = q.Join<ShoppingCartsEntity, ProductEntity>((e, a) => a.ProductId == e.ProductId);
                 q = q.OrderByDescending(x=>x.OrderDate);
