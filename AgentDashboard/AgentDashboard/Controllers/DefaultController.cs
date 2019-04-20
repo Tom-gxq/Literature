@@ -797,6 +797,7 @@ namespace AgentDashboard.Controllers
                         if (item.Key == universityId)
                         {
                             viewModel.SelectIndex = i;
+                            break;
                         }
                         i++;
                     }
