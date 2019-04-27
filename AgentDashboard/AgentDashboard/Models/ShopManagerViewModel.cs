@@ -9,6 +9,13 @@ namespace AgentDashboard.Models
     {
         public List<SellerViewModel> Sellers;
         public Dictionary<int, String> Universities { get; set; }
-        public int SelectIndex { get; set; }
+        public int UniversityIdx { get; set; }
+
+        public Dictionary<int, String> TypeList { get; set; }
+        public int TypeId { get; set; }
+        public string ProductName { get; set; }
+        public string ProductId { get; set; }
+        public int SellerId { get; set; }
+        public string SellerName { get; set; }
     }
 }

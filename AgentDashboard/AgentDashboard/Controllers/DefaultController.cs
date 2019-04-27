@@ -34,6 +34,23 @@ namespace AgentDashboard.Controllers
 {
     public class DefaultController : Controller
     {
+        #region "帐户"
+
+        /// <summary>
+        /// 取得当前用户ID
+        /// </summary>
+        /// <remarks>
+        /// 系统登录后在Session的Account里保存一个AccoutModel
+        /// 帐户Id就从这个AccoutModel中取得
+        /// </remarks>
+        /// <returns>当前用户ID</returns>
+        private String GetCurrentAccountId()
+        {
+            return (MDSession.Session["Account"] as AccountModel)?.AccountId;
+        }
+
+        #endregion "帐户"
+
         public ActionResult DeliverymanViewer(string accountId)
         {
             DeliverymanViewerViewModel viewModel = new DeliverymanViewerViewModel();
@@ -107,18 +124,7 @@ namespace AgentDashboard.Controllers
             return (pageIndex - 1) * pageSize;
         }
 
-        /// <summary>
-        /// 取得当前用户ID
-        /// </summary>
-        /// <remarks>
-        /// 系统登录后在Session的Account里保存一个AccoutModel
-        /// 帐户Id就从这个AccoutModel中取得
-        /// </remarks>
-        /// <returns>当前用户ID</returns>
-        private String GetCurrentAccountId()
-        {
-            return (MDSession.Session["Account"] as AccountModel)?.AccountId;
-        }
+        #region "餐厅"
 
         /// <summary>
         /// 餐厅页面
@@ -195,6 +201,8 @@ namespace AgentDashboard.Controllers
 
             return View(shopList);
         }
+
+        #endregion "餐厅"
 
         /// <summary>
         /// 
@@ -733,94 +741,92 @@ namespace AgentDashboard.Controllers
             }
         }
 
-        public ActionResult ShopManager(int universityId = -1, string productId = "", int sellerId = 0, int type = -1)
+        public ActionResult ShopManager(int universityId = -1, string productId = "", int sellerId = -1, int type = -1)
         {
-            List<SellerViewModel> shopsVM = null;
-            ISupplerAppService service = IocManager.Instance.Resolve<ISupplerAppService>();
-            List<SupplerDto> list = null;
-            if (string.IsNullOrEmpty(productId) && sellerId == 0 && type == -1)
-            {
-                list = service.GetSupplerList();
-            }
-            else
-            {
-                list = service.SearchSuppler(productId, sellerId, type, 1, 20);
-            }
-
-            string accountId = GetCurrentAccountId();
-            
-            shopsVM = list.Select(x => new SellerViewModel
-            {
-                SellerId = x.Id,
-                AccountId = x.AccountId,
-                SellerName = x.SuppliersName,
-                LogoPath = x.LogoPath,
-            }).ToList();
-
-            using (SPEntities sPEntities = new SPEntities())
+            using (SPEntities sp = new SPEntities())
             {
                 ShopManagerViewModel viewModel = new ShopManagerViewModel();
-                RegionDataViewModel regionDataVm = new RegionDataViewModel();
-                var regionList = (from regionAccount in sPEntities.SP_RegionAccount.Where(n => n.AccountId == accountId)
-                                  join regionData in sPEntities.SP_RegionData on regionAccount.RegionId equals regionData.DataID
-                                  select new
-                                  {
-                                      DataId = regionData.DataID,
-                                      DataName = regionData.DataName
-                                  });
+                viewModel.Universities = new Dictionary<int, string>();
+                viewModel.Sellers = new List<SellerViewModel>();
+                viewModel.TypeList = GetProductAllType();
+                viewModel.TypeId = type;
+                viewModel.ProductId = productId;
+                viewModel.ProductName = string.Empty;
+                viewModel.SellerId = sellerId;
+                viewModel.SellerName = string.Empty;
 
-                regionDataVm.Universities = new Dictionary<int, string>();
-                foreach (var region in regionList)
+                string currentAccountId = GetCurrentAccountId();
+
+                foreach (var university in GetUniversityList(currentAccountId))
                 {
-                    regionDataVm.Universities.Add(region.DataId, region.DataName);
+                    viewModel.Universities.Add(university.Id, university.Name);
                 }
 
-                viewModel.Universities = regionDataVm.Universities;
-
-                dynamic sellersList = null;
+                IQueryable<SellerViewModel> sellers = null;
                 if (universityId == -1)
                 {
-                    viewModel.SelectIndex = 0;
-
-                    sellersList = (from regionAccount in sPEntities.SP_RegionAccount.Where(n => n.AccountId == accountId)
-                                       join suppliers in sPEntities.SP_SuppliersRegion on regionAccount.RegionId equals suppliers.RegionID
-                                       select new
-                                       {
-                                           Id = suppliers.Id
-                                       }).ToList();
+                    viewModel.UniversityIdx = -1;
+                    sellers = (from regionAccount in sp.SP_RegionAccount.Where(n => n.AccountId == currentAccountId)
+                               join suppliersRegion in sp.SP_SuppliersRegion on regionAccount.RegionId equals suppliersRegion.RegionID
+                               join suppliers in sp.SP_Suppliers on suppliersRegion.SuppliersId equals suppliers.Id
+                               select new SellerViewModel
+                               {
+                                   SellerId = suppliers.Id,
+                                   AccountId = currentAccountId,
+                                   SellerName = suppliers.SuppliersName,
+                                   LogoPath = suppliers.LogoPath,
+                                   TypeId = suppliers.TypeId,
+                               });
                 }
                 else
                 {
-                    int i = 0;
-                    foreach (var item in viewModel.Universities)
-                    {
-                        if (item.Key == universityId)
-                        {
-                            viewModel.SelectIndex = i;
-                            break;
-                        }
-                        i++;
-                    }
+                    sellers = (from regionAccount in sp.SP_RegionAccount.Where(n => n.AccountId == currentAccountId)
+                               join suppliersRegion in sp.SP_SuppliersRegion.Where(n => n.RegionID == universityId) on regionAccount.RegionId equals suppliersRegion.RegionID
+                               join suppliers in sp.SP_Suppliers on suppliersRegion.SuppliersId equals suppliers.Id
+                               select new SellerViewModel
+                               {
+                                   SellerId = suppliers.Id,
+                                   AccountId = currentAccountId,
+                                   SellerName = suppliers.SuppliersName,
+                                   LogoPath = suppliers.LogoPath,
+                                   TypeId = suppliers.TypeId,
+                               });
 
-                    sellersList = (from regionAccount in sPEntities.SP_RegionAccount.Where(n => n.AccountId == accountId)
-                                       join suppliers in sPEntities.SP_SuppliersRegion on regionAccount.RegionId equals suppliers.RegionID
-                                       select new
-                                       {
-                                           Id = suppliers.Id,
-                                           RegionId = suppliers.RegionID
-                                       }).Where(n=>n.RegionId == universityId).ToList();
+                    if(viewModel.Universities.ContainsKey(universityId))
+                    {
+                        viewModel.UniversityIdx = viewModel.Universities.Keys.ToList().IndexOf(universityId);
+                    }
                 }
 
-                viewModel.Sellers = new List<SellerViewModel>();
-
-                foreach (var item in sellersList)
+                if (!String.IsNullOrEmpty(productId))
                 {
-                    var seller = shopsVM.SingleOrDefault(n => n.SellerId == item.Id);
-                    if (seller != null)
-                    {
-                        viewModel.Sellers.Add(seller);
-                    }
+                    viewModel.ProductName = sp.SP_Products.SingleOrDefault(n => n.ProductId == productId)?.ProductName;
+
+                    sellers = (from seller in sellers
+                               join product in sp.SP_SuppliersProduct.Where(n => n.ProductId == productId) on seller.SellerId equals product.SuppliersId
+                               select new SellerViewModel
+                               {
+                                   SellerId = seller.SellerId,
+                                   AccountId = seller.AccountId,
+                                   SellerName = seller.SellerName,
+                                   LogoPath = seller.LogoPath,
+                                   TypeId = seller.TypeId,
+                               });
                 }
+
+                if (sellerId != -1)
+                {
+                    viewModel.SellerName = sp.SP_Suppliers.SingleOrDefault(n => n.Id == sellerId)?.SuppliersName;
+
+                    sellers = sellers.Where(n => n.SellerId == sellerId);
+                }
+
+                if (type != -1)
+                {
+                    sellers = sellers.Where(n => n.TypeId == type);
+                }
+
+                viewModel.Sellers = sellers.ToList();
 
                 return View(viewModel);
             }
@@ -2046,5 +2052,69 @@ namespace AgentDashboard.Controllers
 
             return result;
         }
+
+        #region "产品"
+
+        /// <summary>
+        /// 产品所有类别列表
+        /// </summary>
+        /// <returns>所有类别列表</returns>
+        private Dictionary<int, string> GetProductAllType()
+        {
+            Dictionary<int, string> returnValue = new Dictionary<int, string>();
+
+            using (SPEntities sp = new SPEntities())
+            {
+                foreach (var productType in sp.SP_ProductType)
+                {
+                    returnValue.Add(productType.Id, productType.TypeName);
+                }
+
+                return returnValue;
+            }
+        }
+
+        #endregion "产品"
+
+        #region "区域"
+
+        /// <summary>
+        /// 根据帐户Id取得学校列表
+        /// </summary>
+        /// <param name="accountId">帐户Id</param>
+        /// <returns>学校列表</returns>
+        private List<RegionViewModel> GetUniversityList(string accountId)
+        {
+            using (SPEntities sp = new SPEntities())
+            {
+                return (from regionAccount in sp.SP_RegionAccount.Where(n => n.AccountId == accountId)
+                        join regionData in sp.SP_RegionData on regionAccount.RegionId equals regionData.DataID
+                        select new RegionViewModel
+                        {
+                            Id = regionData.DataID,
+                            Name = regionData.DataName
+                        }).ToList();
+            }
+        }
+
+        /// <summary>
+        /// 根据学校Id取得院区列表
+        /// </summary>
+        /// <param name="unversityId">学校Id</param>
+        /// <returns>院区列表</returns>
+        private List<RegionViewModel> GetCollegeList(int unversityId)
+        {
+            using (SPEntities sp = new SPEntities())
+            {
+                return (from regionData in sp.SP_RegionData.Where(n => n.ParentDataID == unversityId.ToString())
+                        select new RegionViewModel
+                        {
+                            Id = regionData.DataID,
+                            Name = regionData.DataName
+                        }).ToList();
+            }
+        }
+
+        #endregion "区域"
     }
 }
