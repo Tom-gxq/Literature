@@ -12,10 +12,13 @@ namespace SP.Service.Domain.Events
         public string MobilePhone { get;  set; }
         public string Email { get;  set; }
         public string Password { get;  set; }
-        public int Status { get;  set; }        
+        public int Status { get;  set; }
+        public string WxUnionId { get; set; }
+        public string WxBind { get; set; }
+        public int AccountType { get; set; }
 
-        public AccountCreatedEvent(Guid aggregateId, string mobilePhone, string email,string password,int status)
-            : base(KafkaConfig.EventBusTopicTitle)
+        public AccountCreatedEvent(Guid aggregateId, string mobilePhone, string email,string password,
+            int status,string wxUnionId="",string wxBind="",int accountType=0) : base(KafkaConfig.EventBusTopicTitle)
         {
             AggregateId = aggregateId;
             CommandId = aggregateId.ToString();
@@ -23,6 +26,9 @@ namespace SP.Service.Domain.Events
             Email = email;
             Password = password;
             Status = status;
+            WxUnionId = wxUnionId;
+            WxBind = wxBind;
+            AccountType = accountType;
             EventType = EventType.AccountCreated;
         }
     }

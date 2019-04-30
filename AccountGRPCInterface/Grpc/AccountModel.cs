@@ -142,16 +142,21 @@ namespace SP.Service {
             "aXN0UmVxdWVzdBIRCglhY2NvdW50SWQYASABKAkSEQoJcGFnZUluZGV4GAIg",
             "ASgFEhAKCHBhZ2VTaXplGAMgASgFIjMKElRyYWRlVG90YWxSZXNwb25zZRIO",
             "CgZzdGF0dXMYASABKAUSDQoFdG90YWwYAiABKAMiOAoQV3hVbmlvbklkUmVx",
-            "dWVzdBIRCglhY2NvdW50SWQYASABKAkSEQoJd3hVbmlvbklkGAIgASgJIkYK",
-            "D1d4T3BlbklkUmVxdWVzdBIRCglhY2NvdW50SWQYASABKAkSEAoId3hPcGVu",
-            "SWQYAiABKAkSDgoGd3hUeXBlGAMgASgFIjUKEEFkZENvdXBvblJlcXVlc3QS",
-            "DgoGa2luZElkGAEgASgJEhEKCWFjY291bnRJZBgCIAEoCSJbChNVcGRhdGVD",
-            "b3Vwb25SZXF1ZXN0EhIKCmNvdXBvbklkSWQYASABKAkSDwoHcGF5VHlwZRgC",
-            "IAEoBRIRCglwYXlBbW91bnQYAyABKAESDAoEdHlwZRgEIAEoBSInChFDb3Vw",
-            "b25Db2RlUmVxdWVzdBISCgpjb3Vwb25Db2RlGAEgASgJIkcKD0NvdXBvbnNS",
-            "ZXNwb25zZRIOCgZzdGF0dXMYASABKAUSJAoHY291cG9ucxgCIAEoCzITLlNQ",
-            "LlNlcnZpY2UuQ291cG9ucyIjCg9Db3Vwb25JZFJlcXVlc3QSEAoIY291cG9u",
-            "SWQYASABKAliBnByb3RvMw=="));
+            "dWVzdBIRCglhY2NvdW50SWQYASABKAkSEQoJd3hVbmlvbklkGAIgASgJIrAB",
+            "Ch1DcmVhdGVBY2NvdW50V3hVbmlvbklkUmVxdWVzdBITCgttb2JpbGVQaG9u",
+            "ZRgBIAEoCRIRCgl3eFVuaW9uSWQYAiABKAkSEAoIcGFzc1dvcmQYAyABKAkS",
+            "DgoGd3hUeXBlGAQgASgFEhAKCG5pY2tOYW1lGAUgASgJEhEKCWF2YXRhclVy",
+            "bBgGIAEoCRIOCgZnZW5kZXIYByABKAUSEAoId3hPcGVuSWQYCCABKAkiRgoP",
+            "V3hPcGVuSWRSZXF1ZXN0EhEKCWFjY291bnRJZBgBIAEoCRIQCgh3eE9wZW5J",
+            "ZBgCIAEoCRIOCgZ3eFR5cGUYAyABKAUiNQoQQWRkQ291cG9uUmVxdWVzdBIO",
+            "CgZraW5kSWQYASABKAkSEQoJYWNjb3VudElkGAIgASgJIlsKE1VwZGF0ZUNv",
+            "dXBvblJlcXVlc3QSEgoKY291cG9uSWRJZBgBIAEoCRIPCgdwYXlUeXBlGAIg",
+            "ASgFEhEKCXBheUFtb3VudBgDIAEoARIMCgR0eXBlGAQgASgFIicKEUNvdXBv",
+            "bkNvZGVSZXF1ZXN0EhIKCmNvdXBvbkNvZGUYASABKAkiRwoPQ291cG9uc1Jl",
+            "c3BvbnNlEg4KBnN0YXR1cxgBIAEoBRIkCgdjb3Vwb25zGAIgASgLMhMuU1Au",
+            "U2VydmljZS5Db3Vwb25zIiMKD0NvdXBvbklkUmVxdWVzdBIQCghjb3Vwb25J",
+            "ZBgBIAEoCSIpChJNb2JpbGVQaG9uZVJlcXVlc3QSEwoLbW9iaWxlUGhvbmUY",
+            "ASABKAliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::SP.Service.CommonModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -218,12 +223,14 @@ namespace SP.Service {
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TradeListRequest), global::SP.Service.TradeListRequest.Parser, new[]{ "AccountId", "PageIndex", "PageSize" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.TradeTotalResponse), global::SP.Service.TradeTotalResponse.Parser, new[]{ "Status", "Total" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.WxUnionIdRequest), global::SP.Service.WxUnionIdRequest.Parser, new[]{ "AccountId", "WxUnionId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.CreateAccountWxUnionIdRequest), global::SP.Service.CreateAccountWxUnionIdRequest.Parser, new[]{ "MobilePhone", "WxUnionId", "PassWord", "WxType", "NickName", "AvatarUrl", "Gender", "WxOpenId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.WxOpenIdRequest), global::SP.Service.WxOpenIdRequest.Parser, new[]{ "AccountId", "WxOpenId", "WxType" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.AddCouponRequest), global::SP.Service.AddCouponRequest.Parser, new[]{ "KindId", "AccountId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.UpdateCouponRequest), global::SP.Service.UpdateCouponRequest.Parser, new[]{ "CouponIdId", "PayType", "PayAmount", "Type" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.CouponCodeRequest), global::SP.Service.CouponCodeRequest.Parser, new[]{ "CouponCode" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.CouponsResponse), global::SP.Service.CouponsResponse.Parser, new[]{ "Status", "Coupons" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.CouponIdRequest), global::SP.Service.CouponIdRequest.Parser, new[]{ "CouponId" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.CouponIdRequest), global::SP.Service.CouponIdRequest.Parser, new[]{ "CouponId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SP.Service.MobilePhoneRequest), global::SP.Service.MobilePhoneRequest.Parser, new[]{ "MobilePhone" }, null, null, null)
           }));
     }
     #endregion
@@ -12449,7 +12456,7 @@ namespace SP.Service {
     private string wxUnionId_ = "";
     /// <summary>
     ///*
-    ///  更新时间
+    ///  微信UnionId
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string WxUnionId {
@@ -12553,6 +12560,355 @@ namespace SP.Service {
   ///*
   /// 区域ID的请求参数
   /// </summary>
+  public sealed partial class CreateAccountWxUnionIdRequest : pb::IMessage<CreateAccountWxUnionIdRequest> {
+    private static readonly pb::MessageParser<CreateAccountWxUnionIdRequest> _parser = new pb::MessageParser<CreateAccountWxUnionIdRequest>(() => new CreateAccountWxUnionIdRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<CreateAccountWxUnionIdRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[63]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CreateAccountWxUnionIdRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CreateAccountWxUnionIdRequest(CreateAccountWxUnionIdRequest other) : this() {
+      mobilePhone_ = other.mobilePhone_;
+      wxUnionId_ = other.wxUnionId_;
+      passWord_ = other.passWord_;
+      wxType_ = other.wxType_;
+      nickName_ = other.nickName_;
+      avatarUrl_ = other.avatarUrl_;
+      gender_ = other.gender_;
+      wxOpenId_ = other.wxOpenId_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CreateAccountWxUnionIdRequest Clone() {
+      return new CreateAccountWxUnionIdRequest(this);
+    }
+
+    /// <summary>Field number for the "mobilePhone" field.</summary>
+    public const int MobilePhoneFieldNumber = 1;
+    private string mobilePhone_ = "";
+    /// <summary>
+    ///*
+    /// 账户电话号码
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string MobilePhone {
+      get { return mobilePhone_; }
+      set {
+        mobilePhone_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "wxUnionId" field.</summary>
+    public const int WxUnionIdFieldNumber = 2;
+    private string wxUnionId_ = "";
+    /// <summary>
+    ///*
+    ///  微信UnionId
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string WxUnionId {
+      get { return wxUnionId_; }
+      set {
+        wxUnionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "passWord" field.</summary>
+    public const int PassWordFieldNumber = 3;
+    private string passWord_ = "";
+    /// <summary>
+    ///*
+    ///  账户密码
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string PassWord {
+      get { return passWord_; }
+      set {
+        passWord_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "wxType" field.</summary>
+    public const int WxTypeFieldNumber = 4;
+    private int wxType_;
+    /// <summary>
+    ///*
+    ///  微信类别(1：小程序 2：微信登录)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int WxType {
+      get { return wxType_; }
+      set {
+        wxType_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "nickName" field.</summary>
+    public const int NickNameFieldNumber = 5;
+    private string nickName_ = "";
+    /// <summary>
+    ///*
+    ///  微信昵称
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string NickName {
+      get { return nickName_; }
+      set {
+        nickName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "avatarUrl" field.</summary>
+    public const int AvatarUrlFieldNumber = 6;
+    private string avatarUrl_ = "";
+    /// <summary>
+    ///*
+    ///  微信头像
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AvatarUrl {
+      get { return avatarUrl_; }
+      set {
+        avatarUrl_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "gender" field.</summary>
+    public const int GenderFieldNumber = 7;
+    private int gender_;
+    /// <summary>
+    ///*
+    ///  微信性别
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Gender {
+      get { return gender_; }
+      set {
+        gender_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "wxOpenId" field.</summary>
+    public const int WxOpenIdFieldNumber = 8;
+    private string wxOpenId_ = "";
+    /// <summary>
+    ///*
+    ///  微信OpenId
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string WxOpenId {
+      get { return wxOpenId_; }
+      set {
+        wxOpenId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as CreateAccountWxUnionIdRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(CreateAccountWxUnionIdRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (MobilePhone != other.MobilePhone) return false;
+      if (WxUnionId != other.WxUnionId) return false;
+      if (PassWord != other.PassWord) return false;
+      if (WxType != other.WxType) return false;
+      if (NickName != other.NickName) return false;
+      if (AvatarUrl != other.AvatarUrl) return false;
+      if (Gender != other.Gender) return false;
+      if (WxOpenId != other.WxOpenId) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (MobilePhone.Length != 0) hash ^= MobilePhone.GetHashCode();
+      if (WxUnionId.Length != 0) hash ^= WxUnionId.GetHashCode();
+      if (PassWord.Length != 0) hash ^= PassWord.GetHashCode();
+      if (WxType != 0) hash ^= WxType.GetHashCode();
+      if (NickName.Length != 0) hash ^= NickName.GetHashCode();
+      if (AvatarUrl.Length != 0) hash ^= AvatarUrl.GetHashCode();
+      if (Gender != 0) hash ^= Gender.GetHashCode();
+      if (WxOpenId.Length != 0) hash ^= WxOpenId.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (MobilePhone.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(MobilePhone);
+      }
+      if (WxUnionId.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(WxUnionId);
+      }
+      if (PassWord.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(PassWord);
+      }
+      if (WxType != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(WxType);
+      }
+      if (NickName.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(NickName);
+      }
+      if (AvatarUrl.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteString(AvatarUrl);
+      }
+      if (Gender != 0) {
+        output.WriteRawTag(56);
+        output.WriteInt32(Gender);
+      }
+      if (WxOpenId.Length != 0) {
+        output.WriteRawTag(66);
+        output.WriteString(WxOpenId);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (MobilePhone.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(MobilePhone);
+      }
+      if (WxUnionId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(WxUnionId);
+      }
+      if (PassWord.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(PassWord);
+      }
+      if (WxType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(WxType);
+      }
+      if (NickName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(NickName);
+      }
+      if (AvatarUrl.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AvatarUrl);
+      }
+      if (Gender != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Gender);
+      }
+      if (WxOpenId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(WxOpenId);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(CreateAccountWxUnionIdRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.MobilePhone.Length != 0) {
+        MobilePhone = other.MobilePhone;
+      }
+      if (other.WxUnionId.Length != 0) {
+        WxUnionId = other.WxUnionId;
+      }
+      if (other.PassWord.Length != 0) {
+        PassWord = other.PassWord;
+      }
+      if (other.WxType != 0) {
+        WxType = other.WxType;
+      }
+      if (other.NickName.Length != 0) {
+        NickName = other.NickName;
+      }
+      if (other.AvatarUrl.Length != 0) {
+        AvatarUrl = other.AvatarUrl;
+      }
+      if (other.Gender != 0) {
+        Gender = other.Gender;
+      }
+      if (other.WxOpenId.Length != 0) {
+        WxOpenId = other.WxOpenId;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            MobilePhone = input.ReadString();
+            break;
+          }
+          case 18: {
+            WxUnionId = input.ReadString();
+            break;
+          }
+          case 26: {
+            PassWord = input.ReadString();
+            break;
+          }
+          case 32: {
+            WxType = input.ReadInt32();
+            break;
+          }
+          case 42: {
+            NickName = input.ReadString();
+            break;
+          }
+          case 50: {
+            AvatarUrl = input.ReadString();
+            break;
+          }
+          case 56: {
+            Gender = input.ReadInt32();
+            break;
+          }
+          case 66: {
+            WxOpenId = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 区域ID的请求参数
+  /// </summary>
   public sealed partial class WxOpenIdRequest : pb::IMessage<WxOpenIdRequest> {
     private static readonly pb::MessageParser<WxOpenIdRequest> _parser = new pb::MessageParser<WxOpenIdRequest>(() => new WxOpenIdRequest());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12560,7 +12916,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[63]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[64]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12749,7 +13105,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[64]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[65]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12906,7 +13262,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[65]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[66]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13127,7 +13483,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[66]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[67]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13252,7 +13608,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[67]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[68]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13415,7 +13771,7 @@ namespace SP.Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[68]; }
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[69]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13521,6 +13877,131 @@ namespace SP.Service {
             break;
           case 10: {
             CouponId = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///*
+  /// 根据电话号码获取用户信息的请求参数
+  /// </summary>
+  public sealed partial class MobilePhoneRequest : pb::IMessage<MobilePhoneRequest> {
+    private static readonly pb::MessageParser<MobilePhoneRequest> _parser = new pb::MessageParser<MobilePhoneRequest>(() => new MobilePhoneRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<MobilePhoneRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SP.Service.AccountModelReflection.Descriptor.MessageTypes[70]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MobilePhoneRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MobilePhoneRequest(MobilePhoneRequest other) : this() {
+      mobilePhone_ = other.mobilePhone_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MobilePhoneRequest Clone() {
+      return new MobilePhoneRequest(this);
+    }
+
+    /// <summary>Field number for the "mobilePhone" field.</summary>
+    public const int MobilePhoneFieldNumber = 1;
+    private string mobilePhone_ = "";
+    /// <summary>
+    ///*
+    ///  电话号码
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string MobilePhone {
+      get { return mobilePhone_; }
+      set {
+        mobilePhone_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as MobilePhoneRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(MobilePhoneRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (MobilePhone != other.MobilePhone) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (MobilePhone.Length != 0) hash ^= MobilePhone.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (MobilePhone.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(MobilePhone);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (MobilePhone.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(MobilePhone);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(MobilePhoneRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.MobilePhone.Length != 0) {
+        MobilePhone = other.MobilePhone;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            MobilePhone = input.ReadString();
             break;
           }
         }

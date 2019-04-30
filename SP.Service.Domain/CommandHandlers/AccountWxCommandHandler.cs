@@ -9,7 +9,8 @@ using System.Text;
 
 namespace SP.Service.Domain.CommandHandlers
 {
-    public class AccountWxCommandHandler : ICommandHandler<EditWxUnionIdCommand>,ICommandHandler<CreateWxOpenIdCommand>
+    public class AccountWxCommandHandler : ICommandHandler<EditWxUnionIdCommand>,ICommandHandler<CreateWxOpenIdCommand>, 
+        ICommandHandler<CreateAccountWxUnionIdCommand>
     {
         private IDataRepository<AccountDomain> _repository;
         public AccountWxCommandHandler(IDataRepository<AccountDomain> repository)
@@ -27,6 +28,13 @@ namespace SP.Service.Domain.CommandHandlers
         {
             var aggregate = command.ToDomain<AccountDomain>();
             aggregate.CreateOpenId(command.Id, command.AccountId, command.WxOpenId, command.WxType);
+            _repository.Save(aggregate);
+        }
+
+        public void Execute(CreateAccountWxUnionIdCommand command)
+        {
+            var aggregate = command.ToDomain<AccountDomain>();
+            aggregate.CreateAccountWxUnionId();
             _repository.Save(aggregate);
         }
     }

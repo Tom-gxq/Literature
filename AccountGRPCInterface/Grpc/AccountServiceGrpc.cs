@@ -70,12 +70,14 @@ namespace SP.Service {
     static readonly grpc::Marshaller<global::SP.Service.TradeListResponse> __Marshaller_TradeListResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.TradeListResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.TradeTotalResponse> __Marshaller_TradeTotalResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.TradeTotalResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.WxUnionIdRequest> __Marshaller_WxUnionIdRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.WxUnionIdRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.CreateAccountWxUnionIdRequest> __Marshaller_CreateAccountWxUnionIdRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.CreateAccountWxUnionIdRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.WxOpenIdRequest> __Marshaller_WxOpenIdRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.WxOpenIdRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.AddCouponRequest> __Marshaller_AddCouponRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.AddCouponRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.CouponsResponse> __Marshaller_CouponsResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.CouponsResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.UpdateCouponRequest> __Marshaller_UpdateCouponRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.UpdateCouponRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.CouponCodeRequest> __Marshaller_CouponCodeRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.CouponCodeRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::SP.Service.CouponIdRequest> __Marshaller_CouponIdRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.CouponIdRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::SP.Service.MobilePhoneRequest> __Marshaller_MobilePhoneRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SP.Service.MobilePhoneRequest.Parser.ParseFrom);
 
     static readonly grpc::Method<global::SP.Service.RegistRequest, global::SP.Service.AccountResultResponse> __Method_RegistAccount = new grpc::Method<global::SP.Service.RegistRequest, global::SP.Service.AccountResultResponse>(
         grpc::MethodType.Unary,
@@ -455,6 +457,13 @@ namespace SP.Service {
         __Marshaller_WxUnionIdRequest,
         __Marshaller_AccountResultResponse);
 
+    static readonly grpc::Method<global::SP.Service.CreateAccountWxUnionIdRequest, global::SP.Service.AccountResultResponse> __Method_CreateAccountWxUnionId = new grpc::Method<global::SP.Service.CreateAccountWxUnionIdRequest, global::SP.Service.AccountResultResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "CreateAccountWxUnionId",
+        __Marshaller_CreateAccountWxUnionIdRequest,
+        __Marshaller_AccountResultResponse);
+
     static readonly grpc::Method<global::SP.Service.WxOpenIdRequest, global::SP.Service.AccountResultResponse> __Method_CreateWxOpenId = new grpc::Method<global::SP.Service.WxOpenIdRequest, global::SP.Service.AccountResultResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
@@ -489,6 +498,20 @@ namespace SP.Service {
         "GetCouponById",
         __Marshaller_CouponIdRequest,
         __Marshaller_CouponsResponse);
+
+    static readonly grpc::Method<global::SP.Service.WxUnionIdRequest, global::SP.Service.AccountResponse> __Method_GetAccountByUnionId = new grpc::Method<global::SP.Service.WxUnionIdRequest, global::SP.Service.AccountResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetAccountByUnionId",
+        __Marshaller_WxUnionIdRequest,
+        __Marshaller_AccountResponse);
+
+    static readonly grpc::Method<global::SP.Service.MobilePhoneRequest, global::SP.Service.AccountResponse> __Method_GetAccountByMobilePhone = new grpc::Method<global::SP.Service.MobilePhoneRequest, global::SP.Service.AccountResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetAccountByMobilePhone",
+        __Marshaller_MobilePhoneRequest,
+        __Marshaller_AccountResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -1149,6 +1172,18 @@ namespace SP.Service {
 
       /// <summary>
       ///*
+      /// 根据用户微信的UnionId创建账号
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.AccountResultResponse> CreateAccountWxUnionId(global::SP.Service.CreateAccountWxUnionIdRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
       /// 绑定微信的OpenId
       /// </summary>
       /// <param name="request">The request received from the client.</param>
@@ -1203,6 +1238,30 @@ namespace SP.Service {
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
       public virtual global::System.Threading.Tasks.Task<global::SP.Service.CouponsResponse> GetCouponById(global::SP.Service.CouponIdRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 根据微信UnionId获取用户信息
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.AccountResponse> GetAccountByUnionId(global::SP.Service.WxUnionIdRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///*
+      /// 根据电话号码获取用户信息
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::SP.Service.AccountResponse> GetAccountByMobilePhone(global::SP.Service.MobilePhoneRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -3826,6 +3885,54 @@ namespace SP.Service {
       }
       /// <summary>
       ///*
+      /// 根据用户微信的UnionId创建账号
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResultResponse CreateAccountWxUnionId(global::SP.Service.CreateAccountWxUnionIdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return CreateAccountWxUnionId(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 根据用户微信的UnionId创建账号
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResultResponse CreateAccountWxUnionId(global::SP.Service.CreateAccountWxUnionIdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_CreateAccountWxUnionId, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 根据用户微信的UnionId创建账号
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> CreateAccountWxUnionIdAsync(global::SP.Service.CreateAccountWxUnionIdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return CreateAccountWxUnionIdAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 根据用户微信的UnionId创建账号
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResultResponse> CreateAccountWxUnionIdAsync(global::SP.Service.CreateAccountWxUnionIdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_CreateAccountWxUnionId, null, options, request);
+      }
+      /// <summary>
+      ///*
       /// 绑定微信的OpenId
       /// </summary>
       /// <param name="request">The request to send to the server.</param>
@@ -4064,6 +4171,102 @@ namespace SP.Service {
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetCouponById, null, options, request);
       }
+      /// <summary>
+      ///*
+      /// 根据微信UnionId获取用户信息
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResponse GetAccountByUnionId(global::SP.Service.WxUnionIdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetAccountByUnionId(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 根据微信UnionId获取用户信息
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResponse GetAccountByUnionId(global::SP.Service.WxUnionIdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetAccountByUnionId, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 根据微信UnionId获取用户信息
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResponse> GetAccountByUnionIdAsync(global::SP.Service.WxUnionIdRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetAccountByUnionIdAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 根据微信UnionId获取用户信息
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResponse> GetAccountByUnionIdAsync(global::SP.Service.WxUnionIdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetAccountByUnionId, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 根据电话号码获取用户信息
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResponse GetAccountByMobilePhone(global::SP.Service.MobilePhoneRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetAccountByMobilePhone(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 根据电话号码获取用户信息
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::SP.Service.AccountResponse GetAccountByMobilePhone(global::SP.Service.MobilePhoneRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetAccountByMobilePhone, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// 根据电话号码获取用户信息
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResponse> GetAccountByMobilePhoneAsync(global::SP.Service.MobilePhoneRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetAccountByMobilePhoneAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// 根据电话号码获取用户信息
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::SP.Service.AccountResponse> GetAccountByMobilePhoneAsync(global::SP.Service.MobilePhoneRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetAccountByMobilePhone, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override AccountServiceClient NewInstance(ClientBaseConfiguration configuration)
       {
@@ -4130,11 +4333,14 @@ namespace SP.Service {
           .AddMethod(__Method_GetTradeList, serviceImpl.GetTradeList)
           .AddMethod(__Method_GetTradeListCount, serviceImpl.GetTradeListCount)
           .AddMethod(__Method_UpdateAccountWxUnionId, serviceImpl.UpdateAccountWxUnionId)
+          .AddMethod(__Method_CreateAccountWxUnionId, serviceImpl.CreateAccountWxUnionId)
           .AddMethod(__Method_CreateWxOpenId, serviceImpl.CreateWxOpenId)
           .AddMethod(__Method_AddCoupon, serviceImpl.AddCoupon)
           .AddMethod(__Method_UpdateCoupon, serviceImpl.UpdateCoupon)
           .AddMethod(__Method_GetCouponByCode, serviceImpl.GetCouponByCode)
-          .AddMethod(__Method_GetCouponById, serviceImpl.GetCouponById).Build();
+          .AddMethod(__Method_GetCouponById, serviceImpl.GetCouponById)
+          .AddMethod(__Method_GetAccountByUnionId, serviceImpl.GetAccountByUnionId)
+          .AddMethod(__Method_GetAccountByMobilePhone, serviceImpl.GetAccountByMobilePhone).Build();
     }
 
   }

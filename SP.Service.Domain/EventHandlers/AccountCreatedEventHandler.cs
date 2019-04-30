@@ -25,6 +25,9 @@ namespace SP.Service.Domain.EventHandlers
                 MobilePhone = handle.MobilePhone,
                 Password = handle.Password,
                 Status = handle.Status,
+                WxBind = handle.WxBind,
+                WxUnionId = handle.WxUnionId,
+                AccountType = handle.AccountType,
                 CreateTime = DateTime.Now,
                 UpdateTime = DateTime.Now,
             };

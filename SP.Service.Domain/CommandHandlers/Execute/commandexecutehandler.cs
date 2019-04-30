@@ -203,6 +203,9 @@ namespace SP.Service.Domain.CommandHandlers.Execute
                 case CommandType.UseCoupon:
                     ExecuteCommand<UseCouponCommand>(text);
                     break;
+                case CommandType.CreateAccountWxUnionId:
+                    ExecuteCommand<CreateAccountWxUnionIdCommand>(text);
+                    break;
                 default:
                     throw new UnregisteredDomainCommandException($" unknown command: [{text}]");
             }

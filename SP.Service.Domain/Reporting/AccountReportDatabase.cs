@@ -108,6 +108,19 @@ namespace SP.Service.Domain.Reporting
             return ConvertOrderEntityToDomain(account);
         }
 
+        public AccountDomain GetAccountByUnionId(string wxUnionId)
+        {
+            var account = _repository.GetAccountByUnionId(wxUnionId);
+            return ConvertOrderEntityToDomain(account);
+        }
+
+        public AccountDomain GetAccountByMobilePhone(string mobilePhone)
+        {
+            var account = _repository.GetAccountByMobilePhone(mobilePhone);
+            return ConvertOrderEntityToDomain(account);
+        }
+
+
         private AccountDomain ConvertOrderEntityToDomain(AccountEntity entity)
         {
             if(entity == null)

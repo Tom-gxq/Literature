@@ -42,7 +42,7 @@ namespace SP.Service.Domain.Reporting
             }
             return DateTime.MinValue;
         }
-
+        
         private AccountInfoDomain ConvertEntityToDomain(AccountInfoEntity entity)
         {
             var account = new AccountInfoDomain();

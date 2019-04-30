@@ -545,5 +545,53 @@ namespace Account.Service.Business
             result.Status = 10001;
             return result;
         }
+
+        public static AccountResponse GetAccountByUnionId(string wxUnionId)
+        {
+            var account = ServiceLocator.ReportDatabase.GetAccountByUnionId(wxUnionId);
+            var result = new AccountResponse();
+            result.Status = 10001;
+            if (account != null)
+            {
+                result.MobilePhone = account.MobilePhone;
+                result.Email = !string.IsNullOrEmpty(account?.Email) ? account.Email : string.Empty;
+                result.Password = !string.IsNullOrEmpty(account?.Password) ? account.Password : string.Empty;
+                result.AccountId = account.AccountId;
+                result.AliBind = !string.IsNullOrEmpty(account.AliBind) ? account.AliBind : string.Empty;
+                result.WxBind = !string.IsNullOrEmpty(account.WxBind) ? account.WxBind : string.Empty;
+                result.QQBind = !string.IsNullOrEmpty(account.QQBind) ? account.QQBind : string.Empty;
+                var accountInfo = ServiceLocator.AccountInfoReportDatabase.GetAccountInfoById(account.AccountId);
+
+                result.UserType = accountInfo != null ? accountInfo.UserType : 0;
+            }
+            return result;
+        }
+        public static AccountResponse GetAccountByMobilePhone(string mobilePhone)
+        {
+            var account = ServiceLocator.ReportDatabase.GetAccountByMobilePhone(mobilePhone);
+            var result = new AccountResponse();
+            result.Status = 10001;
+            if (account != null)
+            {
+                result.MobilePhone = account.MobilePhone;
+                result.Email = !string.IsNullOrEmpty(account?.Email) ? account.Email : string.Empty;
+                result.Password = !string.IsNullOrEmpty(account?.Password) ? account.Password : string.Empty;
+                result.AccountId = account.AccountId;
+                result.AliBind = !string.IsNullOrEmpty(account.AliBind) ? account.AliBind : string.Empty;
+                result.WxBind = !string.IsNullOrEmpty(account.WxBind) ? account.WxBind : string.Empty;
+                result.QQBind = !string.IsNullOrEmpty(account.QQBind) ? account.QQBind : string.Empty;
+                var accountInfo = ServiceLocator.AccountInfoReportDatabase.GetAccountInfoById(account.AccountId);
+
+                result.UserType = accountInfo != null ? accountInfo.UserType : 0;
+            }
+            return result;
+        }
+        public static AccountResultResponse CreateAccountWxUnionId(string mobilePhone, string wxUnionId, int wxType, string passWord,string nickName,string avatar,int gender,string wxOpenId)
+        {
+            ServiceLocator.CommandBus.Send(new CreateAccountWxUnionIdCommand(mobilePhone, wxUnionId, wxType, nickName, avatar, passWord, gender, wxOpenId));
+            var result = new AccountResultResponse();
+            result.Status = 10001;
+            return result;
+        }
     }
 }

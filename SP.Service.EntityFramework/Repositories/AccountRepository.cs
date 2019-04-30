@@ -47,5 +47,14 @@ namespace SP.Service.EntityFramework.Repositories
         {
             return this.Single(x => x.QQBind == otherAccount);
         }
+
+        public AccountEntity GetAccountByUnionId(string wxUnionId)
+        {
+            return this.Single(x => x.WxUnionId == wxUnionId);
+        }
+        public AccountEntity GetAccountByMobilePhone(string mobilePhone)
+        {
+            return this.Single(x => x.MobilePhone.Contains(mobilePhone));
+        }
     }
 }

@@ -4,15 +4,15 @@ using SP.Api.Model.Seller;
 using SP.Service;
 using System;
 using System.Collections.Generic;
-using static SP.Service.AccountService;
+using System.Text;
 
 namespace AccountGRPCInterface
 {
-    public class AccountBusiness
+    public class AccountCoreBusiness
     {
         public static AccountModel GetAccount(string account)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request1 = new AccountRequest()
             {
                 Account = account
@@ -38,7 +38,7 @@ namespace AccountGRPCInterface
 
         public static AccountModel GetAccountDetail(string accountId)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request1 = new AccountIdRequest()
             {
                 AccountId = accountId
@@ -62,10 +62,10 @@ namespace AccountGRPCInterface
                 return null;
             }
         }
-        public  static string RegistAccount(AccountModel model)
+        public static string RegistAccount(AccountModel model)
         {
             string reuslt = string.Empty;
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request1 = new RegistRequest()
             {
                 Email = model.Email,
@@ -74,7 +74,7 @@ namespace AccountGRPCInterface
                 UserName = model.UserName
             };
             var result = client.RegistAccount(request1);
-            if(result.Status == 10001)
+            if (result.Status == 10001)
             {
                 var account = client.GetAccount(new AccountRequest()
                 {
@@ -87,7 +87,7 @@ namespace AccountGRPCInterface
         public static string UpdateAccount(AccountModel model)
         {
             string reuslt = string.Empty;
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request1 = new UpdateAccountRequest()
             {
                 Email = model.Email,
@@ -105,7 +105,7 @@ namespace AccountGRPCInterface
 
         public static TokenModel GetAccessToken(string userKey)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request1 = new TokenKeyRequest()
             {
                 Key = userKey
@@ -126,7 +126,7 @@ namespace AccountGRPCInterface
 
         public static TokenModel GetAccessTokenByRefreshToken(string refreshToken)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request1 = new TokenKeyRequest()
             {
                 Key = refreshToken
@@ -148,17 +148,17 @@ namespace AccountGRPCInterface
         public static bool AddAccessToken(OAuth2AccessToken token)
         {
             bool status = false;
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request = new AccessTokenRequest()
             {
-                 AccessToken = new AccessToken()
-                 {
-                     AccountId = token.AccountID,
-                     AccessToken_ = token.AccessToken,
-                     RefreshToken = token.RefreshToken,
-                     AccessTokenExpires = token.AccessTokenExpires.Value.Ticks,
-                     RefreshTokenExpires = token.RefreshTokenExpires.Value.Ticks
-                 }
+                AccessToken = new AccessToken()
+                {
+                    AccountId = token.AccountID,
+                    AccessToken_ = token.AccessToken,
+                    RefreshToken = token.RefreshToken,
+                    AccessTokenExpires = token.AccessTokenExpires.Value.Ticks,
+                    RefreshTokenExpires = token.RefreshTokenExpires.Value.Ticks
+                }
             };
             var result = client.AddAccessToken(request);
             if (result.Status == 10001)
@@ -168,10 +168,10 @@ namespace AccountGRPCInterface
             return status;
         }
 
-        public static bool RemoveAccessToken(string token,string accountId)
+        public static bool RemoveAccessToken(string token, string accountId)
         {
             bool status = false;
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request = new TokenIdRequest()
             {
                 AccessToken = token,
@@ -188,7 +188,7 @@ namespace AccountGRPCInterface
         public static bool AddAccountAuthentication(AuthenticationModel model)
         {
             bool status = false;
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request = new AddAuthenticationRequest()
             {
                 AccountAuth = new AccountAuthentication()
@@ -211,7 +211,7 @@ namespace AccountGRPCInterface
         public static bool UpdateAuthStatusByAccount(AuthenticationModel model)
         {
             bool status = false;
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request = new UpdateAuthenticationRequest()
             {
                 Account = model.Account,
@@ -229,12 +229,12 @@ namespace AccountGRPCInterface
 
         public static string GetValidVerifyCodeByAccount(AuthenticationModel model)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request = new GetVerifyCodeRequest()
             {
                 Account = model.Account,
                 AccountId = model.AccountId,
-                AuthType = (int)model.AuthType,                
+                AuthType = (int)model.AuthType,
             };
             var result = client.GetValidVerifyCodeByAccount(request);
             if (result.Status == 10001)
@@ -249,7 +249,7 @@ namespace AccountGRPCInterface
 
         public static string AddAssociator(AssociatorModel model)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request = new AddAssociatorRequest()
             {
                 KindId = model.kindId,
@@ -269,9 +269,9 @@ namespace AccountGRPCInterface
                 return string.Empty;
             }
         }
-        public static string AddCoupon(SysKindModel model,string accountId)
+        public static string AddCoupon(SysKindModel model, string accountId)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request = new AddCouponRequest()
             {
                 KindId = model.KindId,
@@ -289,7 +289,7 @@ namespace AccountGRPCInterface
         }
         public static bool UsedCoupon(string couponId)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request = new UpdateCouponRequest()
             {
                 CouponIdId = couponId,
@@ -305,14 +305,14 @@ namespace AccountGRPCInterface
                 return false;
             }
         }
-        public static bool PayedCoupon(string couponId,double payAmount,int payType)
+        public static bool PayedCoupon(string couponId, double payAmount, int payType)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request = new UpdateCouponRequest()
             {
                 CouponIdId = couponId,
                 PayAmount = payAmount,
-                PayType= payType,
+                PayType = payType,
                 Type = 0
             };
             var result = client.UpdateCoupon(request);
@@ -327,11 +327,11 @@ namespace AccountGRPCInterface
         }
         public static bool UpdateAssociatorStatus(AssociatorModel model)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request = new UpdateAssociatorStatusRequest()
             {
-                 AssociatorId = model.associatorId,
-                 Status = model.status
+                AssociatorId = model.associatorId,
+                Status = model.status
             };
             var result = client.UpdateAssociatorStatus(request);
             if (result.Status == 10001)
@@ -345,7 +345,7 @@ namespace AccountGRPCInterface
         }
         public static AssociatorModel GetAssociatorById(string associatorId)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request = new AssociatorIdRequest()
             {
                 AssociatorId = associatorId
@@ -366,7 +366,7 @@ namespace AccountGRPCInterface
         }
         public static AssociatorModel GetAssociatorByCode(string associatorCode)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request = new AssociatorCodeRequest()
             {
                 AssociatorCode = associatorCode
@@ -388,7 +388,7 @@ namespace AccountGRPCInterface
 
         public static List<SysKindModel> GetAssociatorKindList()
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request1 = new GetSysKindRequest()
             {
                 Kind = 100,
@@ -414,7 +414,7 @@ namespace AccountGRPCInterface
 
         public static List<SysKindModel> GetCouponsKindList()
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request1 = new GetSysKindRequest()
             {
                 Kind = 200,
@@ -441,7 +441,7 @@ namespace AccountGRPCInterface
         }
         public static List<CouponsModel> GetAccountCouponsList(string accountId)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request1 = new AccountIdRequest()
             {
                 AccountId = accountId
@@ -469,7 +469,7 @@ namespace AccountGRPCInterface
         }
         public static AccountFullInfoModel GetAccountFullInfo(string accountId)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request1 = new AccountIdRequest()
             {
                 AccountId = accountId
@@ -483,11 +483,11 @@ namespace AccountGRPCInterface
                 model.Gender = reuslt.Gender;
                 model.PayPassWord = reuslt.PayPassWord;
                 model.UserType = reuslt.UserType;
-                if(reuslt.AssociatorDate > 0)
+                if (reuslt.AssociatorDate > 0)
                 {
-                    var currrentDate = new DateTime(reuslt.AssociatorDate);                    
+                    var currrentDate = new DateTime(reuslt.AssociatorDate);
                     model.AssociatorDate = GetTimestamp(currrentDate);
-                    if(currrentDate > DateTime.Now)
+                    if (currrentDate > DateTime.Now)
                     {
                         model.IsAssociator = true;
                     }
@@ -505,11 +505,11 @@ namespace AccountGRPCInterface
         }
         public static bool UpdateAccountFullInfo(AccountFullInfoModel model)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request = new AccountFullInfoRequest()
             {
                 AccountId = model.AccountId,
-                Avatar = string.IsNullOrEmpty(model.Avatar)?string.Empty: model.Avatar,
+                Avatar = string.IsNullOrEmpty(model.Avatar) ? string.Empty : model.Avatar,
                 FullName = model.FullName,
                 Gender = model.Gender,
                 DormId = model.DormId
@@ -524,9 +524,9 @@ namespace AccountGRPCInterface
                 return false;
             }
         }
-        public static List<DiscountModel> GetDiscountByAccountId(string accountId,int kind)
+        public static List<DiscountModel> GetDiscountByAccountId(string accountId, int kind)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request1 = new DiscountRequest()
             {
                 AccountId = accountId,
@@ -544,7 +544,7 @@ namespace AccountGRPCInterface
                     domain.Quantity = item.Quantity;
                     domain.StartDate = new DateTime(item.StartDate).ToString("yyyy-MM-dd");
                     domain.Description = item.Description;
-                    domain.DiscountValue = item.DiscountValue;                    
+                    domain.DiscountValue = item.DiscountValue;
                     list.Add(domain);
                 }
             }
@@ -552,7 +552,7 @@ namespace AccountGRPCInterface
         }
         public static bool SetAccountPayPwd(PayPwdModel model)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request = new AccountPayPwdRequest()
             {
                 AccountId = model.AccountId,
@@ -570,7 +570,7 @@ namespace AccountGRPCInterface
         }
         public static bool UpdateAccountPayPwd(PayPwdModel model)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request = new AccountPayPwdRequest()
             {
                 AccountId = model.AccountId,
@@ -589,7 +589,7 @@ namespace AccountGRPCInterface
 
         public static bool UpdateAccountLoginPwd(PayPwdModel model)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request = new AccountPayPwdRequest()
             {
                 AccountId = model.AccountId,
@@ -607,7 +607,7 @@ namespace AccountGRPCInterface
         }
         public static bool UpdateAccountMobile(AccountModel model)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request = new AccountMobileRequest()
             {
                 AccountId = model.AccountId,
@@ -625,7 +625,7 @@ namespace AccountGRPCInterface
         }
         public static bool BindOtherAccount(BingAccountModel model)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request = new BingAccountRequest()
             {
                 AccountId = model.AccountId,
@@ -645,7 +645,7 @@ namespace AccountGRPCInterface
 
         public static bool CreateOtherAccount(OtherAccountModel model)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request = new OtherAccountRequest()
             {
                 MobilePhone = model.MobilePhone,
@@ -665,9 +665,9 @@ namespace AccountGRPCInterface
                 return false;
             }
         }
-        public static AccountModel GetOtherAccount(string otherAccount,int otherType)
+        public static AccountModel GetOtherAccount(string otherAccount, int otherType)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request1 = new GetOtherAccountRequest()
             {
                 OtherAccount = otherAccount,
@@ -690,7 +690,7 @@ namespace AccountGRPCInterface
         }
         public static bool UpdateAccountIDInfo(AccountIDModel model)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request1 = new AccountIDRequest()
             {
                 AccountId = model.AccountId,
@@ -708,9 +708,9 @@ namespace AccountGRPCInterface
                 return false;
             }
         }
-        public static bool ApplyPartner(string accountId,int dormId)
+        public static bool ApplyPartner(string accountId, int dormId)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request1 = new ApplyPartnerRequest()
             {
                 AccountId = accountId,
@@ -726,9 +726,9 @@ namespace AccountGRPCInterface
                 return false;
             }
         }
-        public static bool BalancePay(string accountId, string token, string password, double amount, string orderCode,string sign)
+        public static bool BalancePay(string accountId, string token, string password, double amount, string orderCode, string sign)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request1 = new BalancePayRequest()
             {
                 AccountId = accountId,
@@ -751,7 +751,7 @@ namespace AccountGRPCInterface
 
         public static List<TradeInfoModel> GetTradeList(string accountId, int pageIndex, int pageSize)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request1 = new TradeListRequest()
             {
                 AccountId = accountId,
@@ -778,7 +778,7 @@ namespace AccountGRPCInterface
         }
         public static long GetTradeListCount(string accountId)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request1 = new AccountIDRequest()
             {
                 AccountId = accountId
@@ -794,7 +794,7 @@ namespace AccountGRPCInterface
 
         public static bool UpdateAccountWxUnionId(string accountId, string wxUnionId)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request1 = new WxUnionIdRequest()
             {
                 AccountId = accountId,
@@ -812,10 +812,10 @@ namespace AccountGRPCInterface
         }
         public static CouponsModel GetCouponByCode(string couponCode)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request = new CouponCodeRequest()
             {
-                 CouponCode = couponCode
+                CouponCode = couponCode
             };
             var result = client.GetCouponByCode(request);
             var domain = new CouponsModel();
@@ -833,7 +833,7 @@ namespace AccountGRPCInterface
         }
         public static CouponsModel GetCouponById(string couponId)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request = new CouponIdRequest()
             {
                 CouponId = couponId
@@ -853,9 +853,9 @@ namespace AccountGRPCInterface
             }
             return domain;
         }
-        public static bool CreateWxOpenId(string accountId, string wxOpenId,int wxType)
+        public static bool CreateWxOpenId(string accountId, string wxOpenId, int wxType)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request1 = new WxOpenIdRequest()
             {
                 AccountId = accountId,
@@ -875,13 +875,13 @@ namespace AccountGRPCInterface
 
         public static AccountModel GetAccountByUnionId(string wxUnionId)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request = new WxUnionIdRequest()
             {
                 WxUnionId = wxUnionId
             };
             var result = client.GetAccountByUnionId(request);
-            
+
             if (result.Status == 10001)
             {
                 var domain = new AccountModel();
@@ -897,18 +897,18 @@ namespace AccountGRPCInterface
             {
                 return null;
             }
-            
+
         }
 
         public static AccountModel GetAccountByMobilePhone(string mobilePhone)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request = new MobilePhoneRequest()
             {
                 MobilePhone = mobilePhone
             };
             var result = client.GetAccountByMobilePhone(request);
-            
+
             if (result.Status == 10001)
             {
                 var domain = new AccountModel();
@@ -925,9 +925,9 @@ namespace AccountGRPCInterface
                 return null;
             }
         }
-        public static bool CreateAccountWxUnionId(string mobilePhone,string avatarUrl, string wxOpenId, int wxType,string nickName,string passWord,string wxUnionId,int gender)
+        public static bool CreateAccountWxUnionId(string mobilePhone, string avatarUrl, string wxOpenId, int wxType, string nickName, string passWord, string wxUnionId, int gender)
         {
-            var client = AccountClientHelper.GetClient();
+            var client = AccountCoreClientHelper.GetClient();
             var request1 = new CreateAccountWxUnionIdRequest()
             {
                 AvatarUrl = avatarUrl,

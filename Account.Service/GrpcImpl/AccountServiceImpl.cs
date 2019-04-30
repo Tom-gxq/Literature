@@ -1049,6 +1049,26 @@ namespace Account.Service.GrpcImpl
             return Task.FromResult(response);
         }
 
+        public override Task<AccountResultResponse> CreateAccountWxUnionId(CreateAccountWxUnionIdRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} CreateAccountWxUnionId Connected!",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, " {MobilePhone} {WxUnionId} {WxType} {NickName} {AvatarUrl} {Gender} {WxOpenId}", 
+                request.MobilePhone, request.WxUnionId, request.WxType, request.NickName, request.AvatarUrl, request.Gender, request.WxOpenId);
+            var response = new AccountResultResponse();
+            response.Status = 10002;
+            try
+            {
+                response = AccountBusiness.CreateAccountWxUnionId(request.MobilePhone, request.WxUnionId, request.WxType, request.PassWord, request.NickName, request.AvatarUrl, request.Gender, request.WxOpenId);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "CreateAccountWxUnionId Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "CreateAccountWxUnionId {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+
         public override Task<AccountResultResponse> CreateWxOpenId(WxOpenIdRequest request, ServerCallContext context)
         {
             logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} CreateWxOpenId Connected!",
@@ -1100,6 +1120,44 @@ namespace Account.Service.GrpcImpl
                 logger.LogError(this.prjLicEID, ex, "UpdateCoupon Exception");
             }
             logger.LogInformation(this.prjLicEID, "UpdateCoupon {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+
+        public override Task<AccountResponse> GetAccountByUnionId(WxUnionIdRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} GetAccountByUnionId Connected!",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, " {WxUnionId} ", request.WxUnionId);
+            var response = new AccountResponse();
+            response.Status = 10002;
+            try
+            {
+                response = AccountBusiness.GetAccountByUnionId(request.WxUnionId);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "GetAccountByUnionId Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "GetAccountByUnionId {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
+            return Task.FromResult(response);
+        }
+
+        public override Task<AccountResponse> GetAccountByMobilePhone(MobilePhoneRequest request, ServerCallContext context)
+        {
+            logger.LogInformation(this.prjLicEID, "{Date} {IPAdress} {Status} GetAccountByMobilePhone Connected!",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), context.Peer, context.Status.ToString());
+            logger.LogInformation(this.prjLicEID, " {MobilePhone} ", request.MobilePhone);
+            var response = new AccountResponse();
+            response.Status = 10002;
+            try
+            {
+                response = AccountBusiness.GetAccountByMobilePhone(request.MobilePhone);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(this.prjLicEID, ex, "GetAccountByMobilePhone Exception");
+            }
+            logger.LogInformation(this.prjLicEID, "GetAccountByMobilePhone {Date} ReturnResult:{Result}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff"), response.ToString());
             return Task.FromResult(response);
         }
     }

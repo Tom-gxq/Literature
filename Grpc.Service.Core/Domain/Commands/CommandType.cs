@@ -33,6 +33,7 @@ namespace Grpc.Service.Core.Domain.Commands
         EditCoupon,
         PayCoupon,
         UseCoupon,
+        CreateAccountWxUnionId,
         //Order
         CreateCashApply,
         CreateOrder,

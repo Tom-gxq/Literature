@@ -19,6 +19,31 @@ namespace SP.Service.Domain.AutoMap
                 .ForSourceMember(command => command.ExcuteStatus, domain => domain.Ignore())
                 .ForSourceMember(command => command.TopicTitle, domain => domain.Ignore());
             // 输入
+            CreateMap<CreateAccountWxUnionIdCommand, AccountDomain>()
+                .ForSourceMember(command => command.CommandType, domain => domain.Ignore())
+                .ForSourceMember(command => command.ExcuteStatus, domain => domain.Ignore())
+                .ForSourceMember(command => command.TopicTitle, domain => domain.Ignore());
+            // 输入
+            CreateMap<EditAccountPwdCommand, AccountDomain>()
+                .ForSourceMember(command => command.CommandType, domain => domain.Ignore())
+                .ForSourceMember(command => command.ExcuteStatus, domain => domain.Ignore())
+                .ForSourceMember(command => command.TopicTitle, domain => domain.Ignore());
+            // 输入
+            CreateMap<EditAccountMobileCommand, AccountDomain>()
+                .ForSourceMember(command => command.CommandType, domain => domain.Ignore())
+                .ForSourceMember(command => command.ExcuteStatus, domain => domain.Ignore())
+                .ForSourceMember(command => command.TopicTitle, domain => domain.Ignore());
+            // 输入
+            CreateMap<BindOtherAccountCommand, AccountDomain>()
+                .ForSourceMember(command => command.CommandType, domain => domain.Ignore())
+                .ForSourceMember(command => command.ExcuteStatus, domain => domain.Ignore())
+                .ForSourceMember(command => command.TopicTitle, domain => domain.Ignore());
+            // 输入
+            CreateMap<CreateOtherAccountCommand, AccountDomain>()
+                .ForSourceMember(command => command.CommandType, domain => domain.Ignore())
+                .ForSourceMember(command => command.ExcuteStatus, domain => domain.Ignore())
+                .ForSourceMember(command => command.TopicTitle, domain => domain.Ignore());
+            // 输入
             CreateMap<EditAccountCommand, RepeatedTokenDomain>()
                 .ForSourceMember(command => command.CommandType, domain => domain.Ignore())
                 .ForSourceMember(command => command.ExcuteStatus, domain => domain.Ignore())
@@ -62,27 +87,7 @@ namespace SP.Service.Domain.AutoMap
             CreateMap<EditAccountPayPwdCommand, AccountInfoDomain>()
                 .ForSourceMember(command => command.CommandType, domain => domain.Ignore())
                 .ForSourceMember(command => command.ExcuteStatus, domain => domain.Ignore())
-                .ForSourceMember(command => command.TopicTitle, domain => domain.Ignore());
-            // 输入
-            CreateMap<EditAccountPwdCommand, AccountDomain>()
-                .ForSourceMember(command => command.CommandType, domain => domain.Ignore())
-                .ForSourceMember(command => command.ExcuteStatus, domain => domain.Ignore())
-                .ForSourceMember(command => command.TopicTitle, domain => domain.Ignore());
-            // 输入
-            CreateMap<EditAccountMobileCommand, AccountDomain>()
-                .ForSourceMember(command => command.CommandType, domain => domain.Ignore())
-                .ForSourceMember(command => command.ExcuteStatus, domain => domain.Ignore())
-                .ForSourceMember(command => command.TopicTitle, domain => domain.Ignore());
-            // 输入
-            CreateMap<BindOtherAccountCommand, AccountDomain>()
-                .ForSourceMember(command => command.CommandType, domain => domain.Ignore())
-                .ForSourceMember(command => command.ExcuteStatus, domain => domain.Ignore())
-                .ForSourceMember(command => command.TopicTitle, domain => domain.Ignore());
-            // 输入
-            CreateMap<CreateOtherAccountCommand, AccountDomain>()
-                .ForSourceMember(command => command.CommandType, domain => domain.Ignore())
-                .ForSourceMember(command => command.ExcuteStatus, domain => domain.Ignore())
-                .ForSourceMember(command => command.TopicTitle, domain => domain.Ignore());
+                .ForSourceMember(command => command.TopicTitle, domain => domain.Ignore());            
             // 输入
             CreateMap<CreateAccountIDCardCommand, AccountInfoDomain>()
                 .ForSourceMember(command => command.CommandType, domain => domain.Ignore())

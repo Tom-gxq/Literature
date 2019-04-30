@@ -29,6 +29,9 @@ namespace SP.Service.Domain.DomainEntity
         public string WxBind { get; set; }
         public string QQBind { get; set; }
         public string WxUnionId { get; set; }
+        public int WxType { get; set; }
+        public int Gender { get; set; }
+        public string Avatar { get; set; }
 
         public AccountDomain()
         {
@@ -84,6 +87,11 @@ namespace SP.Service.Domain.DomainEntity
         public void CreateOpenId(Guid id, string accountId, string wxOpenId, int wxType)
         {
             ApplyChange(new WxOpenIdCreateEvent(id, accountId, wxOpenId, wxType));
+        }
+        public void CreateAccountWxUnionId()
+        {
+            ApplyChange(new AccountCreatedEvent(this.Id, this.MobilePhone, this.Email, this.Password, this.Status,this.WxUnionId,this.WxBind,this.WxType));
+            ApplyChange(new AccountInfoCreatedEvent(this.Id,this.Avatar, this.UserName,gender:(this.Gender==1?true:false)));
         }
         public void BindAccount(Guid accountId, string otherAccount, OtherType otherType)
         {
