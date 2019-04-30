@@ -106,32 +106,55 @@
                 <li class="breadcrumb-item active">商家管理</li>
             </ol>
             <div class="row mb-3">
-                <div class="col-4">
+                <div class="col-3">
                     <span class="mb-2">学校</span>
                     <select id="select_university" class="form-control w-100">
-                        @if (Model != null)
+                        <option value="-1">请选择</option>
+                        @if ((Model != null) && (Model.Universities != null))
                         {
+                            int selectIdx = 0;
                             foreach (var item in Model.Universities)
                             {
-                                <option value="@item.Key">@item.Value</option>
+                                string select = @selectIdx == @Model.UniversityIdx ? "selected" : "";
+                                <option value="@item.Key" @select>@item.Value</option>
+                                selectIdx++;
                             }
                         }
                     </select>
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                     <span class="mb-2">产品名称</span>
-                    <input type="text" placeholder="" class="form-control w-100" name="title" value="" id="productSearch">
-                    <input id="productId" class="input-text width400 Check owner" type="hidden" value="" />
-                </div>
+                    @if (Model != null)
+                    {
+                        <input type="text" placeholder="" class="form-control w-100" name="title" value="@Model.ProductName" id="productSearch">
+                        <input id="productId" class="input-text width400 Check owner" type="hidden" value="@Model.ProductId" />
+                    }
+                    </div>
                 <div class="col-3">
                     <span class="mb-2">商家名称</span>
+                    @if (Model != null)
+                    {
+                        <div class="input-group">
+                            <input type="text" placeholder="" class="form-control w-75" name="title" value="@Model.SellerName" id="sellerSearch">
+                        </div>
+                        <input id="sellerId" class="input-text width400 Check owner" type="hidden" value="@Model.SellerId" />
+                    }
+                </div>
+                <div class="col-2">
+                    <span class="mb-2">商品类别</span>
                     <div class="input-group">
-                        <input type="text" placeholder="" class="form-control w-75" name="title" value="" id="sellerSearch">
-                        <select id="selleType" class="select small newselect" style="height: 35px;">
-                            <option value="-1"></option>
+                        <select id="selleType" class="form-control w-100">
+                            <option value="-1">请选择</option>
+                            @if ((Model != null) && (Model.TypeList != null))
+                            {
+                                foreach (var item in Model.TypeList)
+                                {
+                                    string select = @Model.TypeId == @item.Key ? "selected" : "";
+                                    <option value="@item.Key" @select>@item.Value</option>
+                                }
+                            }
                         </select>
                     </div>
-                    <input id="sellerId" class="input-text width400 Check owner" type="hidden" value="" />
                 </div>
                 <div class="col-1">
                     <span class="mb-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -219,6 +242,23 @@
             seajs.use(["/js/seller/seller"], function (OrderList) {
                 var $ = OrderList.jQuery;
                 OrderList.SellerController.init({ el: '', url: '' });
+            });
+
+            $(document).ready(function () {
+                var productSearch = $("#productSearch");
+                productSearch.change(function ()
+                {
+                    if (productSearch.val() == '') {
+                        $("#productId").val('');
+                    }
+                });
+
+                var sellerSearch = $("#sellerSearch");
+                sellerSearch.change(function () {
+                    if (sellerSearch.val() == '') {
+                        $("#sellerId").val('');
+                    }
+                });
             });
         </script>
         <script type="text/javascript" src="/js/plug/plupload/plupload.full.min.js"></script>

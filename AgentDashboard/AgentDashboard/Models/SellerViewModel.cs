@@ -32,5 +32,6 @@ namespace AgentDashboard.Models
         public string AlipayNo { get; set; }
         public List<ProductTypeModel> TypeList { get; set; }
         public Dictionary<ProductTypeDto, List<ProductsDto>> ProductDic { get; set; }
+        public int? TypeId { get; set; }
     }
 }
