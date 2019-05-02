@@ -121,9 +121,10 @@
                                         <span class="mb-2">学校</span>
                                         <select id="select_university" class="form-control w-100">
                                             <option value="-1">请选择</option>
-                                            @foreach (var unversity in Model.UniversityList)
+                                            @foreach (var university in Model.UniversityList)
                                             {
-                                                <option value="@unversity.Id" selected>@unversity.Name</option>
+                                                string select = @university.Id == @Model.UniversityId ? "selected" : "";
+                                                <option value="@university.Id" @select>@university.Name</option>
                                             }
                                         </select>
                                     </div>
@@ -276,8 +277,6 @@
                         });
                     });
                 });
-
-                $("#select_university").get(0).selectedIndex = 1;
 
                 $("#btn_search").click(function () {
                     var unversity = $("#select_university").val();

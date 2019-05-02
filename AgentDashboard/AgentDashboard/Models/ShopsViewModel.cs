@@ -10,5 +10,6 @@ namespace AgentDashboard.Models
         public List<ShopViewModel> ShopList { get; set; }
         public List<RegionViewModel> UniversityList { get; set; }
         public List<RegionViewModel> ColleageList { get; set; }
+        public int UniversityId { get; set; }
     }
 }

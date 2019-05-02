@@ -157,9 +157,9 @@ namespace AgentDashboard.Controllers
                     return View();
                 }
 
-                int unversityId = universities[0].Id;
+                int universityId = universities[0].Id;
 
-                colleges = (from regionData in sp.SP_RegionData.Where(n => n.ParentDataID == unversityId.ToString())
+                colleges = (from regionData in sp.SP_RegionData.Where(n => n.ParentDataID == universityId.ToString())
                                    select new RegionViewModel
                                    {
                                        Id = regionData.DataID,
@@ -172,7 +172,7 @@ namespace AgentDashboard.Controllers
                     return View();
                 }
 
-                shopsVM = (from regionAccount in sp.SP_RegionAccount.Where(n => n.AccountId == accountId && n.RegionId == unversityId)
+                shopsVM = (from regionAccount in sp.SP_RegionAccount.Where(n => n.AccountId == accountId && n.RegionId == universityId)
                            join regionData in sp.SP_RegionData on regionAccount.RegionId.ToString() equals regionData.ParentDataID
                            join shop in sp.SP_Shop on regionData.DataID equals shop.RegionId
                            select new ShopViewModel
@@ -195,11 +195,11 @@ namespace AgentDashboard.Controllers
                         item.DistrictName = region?.DataName??string.Empty;
                     }
                 }
+
+                ShopsViewModel shopList = new ShopsViewModel() { ShopList = shopsVM, UniversityList = universities, ColleageList = colleges, UniversityId = universityId };
+
+                return View(shopList);
             }
-
-            ShopsViewModel shopList = new ShopsViewModel(){ ShopList = shopsVM, UniversityList = universities, ColleageList = colleges };
-
-            return View(shopList);
         }
 
         #endregion "餐厅"
@@ -522,9 +522,9 @@ namespace AgentDashboard.Controllers
                     return View();
                 }
 
-                int unversityId = universities[0].Id;
+                int universityId = universities[0].Id;
 
-                colleges = (from regionData in sp.SP_RegionData.Where(n => n.ParentDataID == unversityId.ToString())
+                colleges = (from regionData in sp.SP_RegionData.Where(n => n.ParentDataID == universityId.ToString())
                             select new RegionViewModel
                             {
                                 Id = regionData.DataID,
@@ -536,7 +536,7 @@ namespace AgentDashboard.Controllers
                     return View();
                 }
 
-                shopsVM = (from regionAccount in sp.SP_RegionAccount.Where(n => n.AccountId == accountId && n.RegionId == unversityId)
+                shopsVM = (from regionAccount in sp.SP_RegionAccount.Where(n => n.AccountId == accountId && n.RegionId == universityId)
                            join regionData in sp.SP_RegionData on regionAccount.RegionId.ToString() equals regionData.ParentDataID
                            join shop in sp.SP_Shop on regionData.DataID equals shop.RegionId
                            select new ShopViewModel
@@ -559,11 +559,11 @@ namespace AgentDashboard.Controllers
                         item.DistrictName = region?.DataName ?? string.Empty;
                     }
                 }
+
+                ShopsViewModel shopList = new ShopsViewModel() { ShopList = shopsVM, UniversityList = universities, ColleageList = colleges, UniversityId = universityId };
+
+                return View(shopList);
             }
-
-            ShopsViewModel shopList = new ShopsViewModel() { ShopList = shopsVM, UniversityList = universities, ColleageList = colleges };
-
-            return View(shopList);
         }
 
         public ActionResult Details()
