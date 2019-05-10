@@ -22,6 +22,7 @@ namespace RPCCommonTool
         }
         private void CreateChanel(string key, ChannelCredentials credentials = null, IEnumerable<ChannelOption> options = null)
         {
+            Console.WriteLine("CreateChanel key="+ key);
             var targets = GrpcChannelTargetsSection.Current.GetTarget(key);
             if (targets == null)
             {
@@ -31,8 +32,10 @@ namespace RPCCommonTool
             {
                 credentials = ChannelCredentials.Insecure;
             }
+            Console.WriteLine("CreateChanel targetcount="+ targets.Count());
             foreach (var target in targets.OrderBy(x => Guid.NewGuid()))
             {
+                Console.WriteLine("CreateChanel target=" + target);
                 if (!this.ipAddress.ContainsKey(target))
                 {
                     int tInd = 0;
@@ -49,6 +52,8 @@ namespace RPCCommonTool
                     }
                     catch (Exception ex)
                     {
+                        Console.WriteLine("CreateChanel Exception=" + ex.ToString());
+                        Console.WriteLine("CreateChanel Exception=" + ex.StackTrace);
                         if (this.channelList[tInd] != null)
                         {
                             var tmpChannel = this.channelList[tInd];

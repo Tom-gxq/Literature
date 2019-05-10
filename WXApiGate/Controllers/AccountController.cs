@@ -79,6 +79,43 @@ namespace WXApiGate.Controllers
             JsonResult result = new JsonResult(ok);
             return result;
         }
+        
+        [Route("GetSchoolDistrictList")]
+        public ActionResult GetSchoolDistrictList(int dataId, long updateTime = 0)
+        {
+            var jobject = new JObject();
+            try
+            {
+                var model = AddressBusiness.GetSchoolDistrictList(dataId, updateTime);
+                //jobject.Add("regionList", list);
+                jobject.Add("status", 0);
+            }
+            catch (Exception ex)
+            {
+                jobject.Add("error_msg", ex.Message);
+                jobject.Add("status", 1);
+            }
+            JsonResult result = new JsonResult(jobject);
+            return result;
+        }
+        [Route("GetDefaultSelectedAddress")]
+        public ActionResult GetDefaultSelectedAddress()
+        {
+            var jobject = new JObject();
+            try
+            {
+                var address = AddressBusiness.GetDefaultSelectedAddress(currentAccount.AccountId);                
+                jobject.Add("defaultAddress", address);
+                jobject.Add("status", 0);
+            }
+            catch (Exception ex)
+            {
+                jobject.Add("error_msg", ex.Message);
+                jobject.Add("status", 1);
+            }
+            JsonResult result = new JsonResult(jobject);
+            return result;
+        }
         private JObject GetWxUserInfo(string code, string encryptedData, string iv)
         {
             StringBuilder urlStr = new StringBuilder();

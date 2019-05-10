@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using WXApiGate.Middleware;
 
 namespace WXApiGate
 {
@@ -33,7 +34,7 @@ namespace WXApiGate
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseMiddleware<AuthMiddleware>();
             app.UseMvc();
         }
     }
